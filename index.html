@@ -25,7 +25,7 @@
 <meta name="theme-color" content="#0f1923" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#faf8f5" media="(prefers-color-scheme: light)">
 <meta name="color-scheme" content="light dark">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-VMCdcVmbDhlVY6UrOgsjopnoijam046Vt25jLsQJ2pA=' 'sha256-59VEr3/W5LJ1UZjfsZDaNxLcfxhrwoNUoERX3HTQR40='; style-src 'sha256-/jAMIj6HbmBoLHxKxQoZJmRwjbPm1h3UKisD0L//Up8=' 'sha256-DqzH+Thz0KO6s31+F+mXNZuLGJeUOgczZZBFwwVBzdA=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ='; img-src 'self'; font-src 'self'; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-VMCdcVmbDhlVY6UrOgsjopnoijam046Vt25jLsQJ2pA=' 'sha256-gAV8ZoMTnPEEUPk5UqrBzDwdfiR8b7ZQwWM0z5NVbzA='; style-src 'sha256-/jAMIj6HbmBoLHxKxQoZJmRwjbPm1h3UKisD0L//Up8=' 'sha256-qo0n7qSFdsxM0Ir6hDyhnmRSnb4hXkMBqKwJqylZMX4=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ='; img-src 'self'; font-src 'self'; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
 <link rel="canonical" href="https://audreyt.org/">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon.ico" sizes="any">
@@ -899,8 +899,8 @@ nav.scrolled {
     margin-left: auto;
 }
 
-.nav-links a { color: var(--text); text-decoration: none; }
-.nav-links a:hover { color: var(--gold); }
+.nav-links a { color: var(--text); text-decoration: none; transition: color 0.3s; }
+.nav-links a:hover, .nav-links a.active { color: var(--gold); }
 
 .hamburger {
     display: none;
@@ -1779,6 +1779,20 @@ if ('IntersectionObserver' in window) {
 } else {
     reveals.forEach(el => el.classList.add('visible'));
 }
+
+// Scroll-spy: highlight active nav link
+const spySections = document.querySelectorAll('section[id]');
+const navAnchors = document.querySelectorAll('.nav-links a[href^="#"]');
+const spyObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            navAnchors.forEach(a => a.classList.remove('active'));
+            const hit = document.querySelector('.nav-links a[href="#' + entry.target.id + '"]');
+            if (hit) hit.classList.add('active');
+        }
+    });
+}, { rootMargin: '-20% 0px -60% 0px' });
+spySections.forEach(s => spyObserver.observe(s));
 
 // Language toggle
 document.querySelector('.lang-toggle').addEventListener('click', () => {
