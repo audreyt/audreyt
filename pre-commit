@@ -1,18 +1,160 @@
 #!/usr/bin/env python3
-"""Pre-commit hook: recompute CSP hashes for inline <script> and <style> blocks in index.html."""
+"""Pre-commit hook: recompute LQIP for changed images, then update CSP hashes."""
 
 import base64
 import hashlib
+import math
 import re
 import subprocess
 import sys
 
 FILE = "index.html"
 
-# Only run if index.html is staged
 staged = subprocess.run(
     ["git", "diff", "--cached", "--name-only"],
-    capture_output=True, text=True
+    capture_output=True, text=True,
+).stdout.splitlines()
+
+# ─── Phase 1: LQIP for changed images ───────────────────────────────
+
+# image path → unique fragment on the --lqip CSS line
+IMAGE_LQIP = {
+    "assets/at-fallback.jpg": ".hero-portrait",
+    "assets/at-480.jpg":      ".hero-portrait",
+    "assets/at-800.jpg":      ".hero-portrait",
+    "assets/at-1200.jpg":     ".hero-portrait",
+    "assets/at-1920.jpg":     ".hero-portrait",
+    "thumbs/iZWtNLFaC-U.jpg": "nth-child(1) .thumb",
+    "thumbs/OcpF2yXj3b0.jpg": "nth-child(2) .thumb",
+    "thumbs/q3PuX1JztKI.jpg": "nth-child(3) .thumb",
+    "assets/au-ey.jpg":       "figure:nth-child(1)",
+    "assets/kaii-chiang.jpg":  "figure:nth-child(2)",
+    "assets/au.jpg":           "figure:nth-child(3)",
+}
+
+lqip_updates = {}  # selector-fragment → image path (first match wins)
+for path in staged:
+    if path in IMAGE_LQIP:
+        frag = IMAGE_LQIP[path]
+        lqip_updates.setdefault(frag, path)
+
+if lqip_updates:
+    try:
+        from colorthief import ColorThief
+        from PIL import Image
+    except ImportError:
+        print(
+            "pre-commit: Pillow + colorthief required for LQIP.\n"
+            "  pip install Pillow colorthief",
+            file=sys.stderr,
+        )
+        sys.exit(1)
+
+    # ── colour helpers ──
+
+    def srgb_to_linear(c):
+        c /= 255.0
+        return c / 12.92 if c <= 0.04045 else ((c + 0.055) / 1.055) ** 2.4
+
+    def rgb_to_oklab(r, g, b):
+        rl, gl, bl = srgb_to_linear(r), srgb_to_linear(g), srgb_to_linear(b)
+        l = 0.4122214708 * rl + 0.5363325363 * gl + 0.0514459929 * bl
+        m = 0.2119034982 * rl + 0.6806995451 * gl + 0.1073969566 * bl
+        s = 0.0883024619 * rl + 0.2817188376 * gl + 0.6299787005 * bl
+        l_ = math.copysign(abs(l) ** (1 / 3), l) if l else 0.0
+        m_ = math.copysign(abs(m) ** (1 / 3), m) if m else 0.0
+        s_ = math.copysign(abs(s) ** (1 / 3), s) if s else 0.0
+        L = 0.2104542553 * l_ + 0.7936177850 * m_ - 0.0040720468 * s_
+        a = 1.9779984951 * l_ - 2.4285922050 * m_ + 0.4505937099 * s_
+        bv = 0.0259040371 * l_ + 0.7827717662 * m_ - 0.8086757660 * s_
+        return L, a, bv
+
+    def bits_to_lab(ll, aaa, bbb):
+        L = ll / 3 * 0.6 + 0.2
+        a = aaa / 8 * 0.7 - 0.35
+        b = (bbb + 1) / 8 * 0.7 - 0.35
+        return L, a, b
+
+    def find_oklab_bits(tL, ta, tb):
+        """Brute-force best 8-bit OKLab quantisation (matches leanrada encoder)."""
+        tc = math.hypot(ta, tb)
+        sta = ta / (1e-6 + tc ** 0.5)
+        stb = tb / (1e-6 + tc ** 0.5)
+        best, best_d = (0, 0, 0), float("inf")
+        for ll in range(4):
+            for aaa in range(8):
+                for bbb in range(8):
+                    L, a, b = bits_to_lab(ll, aaa, bbb)
+                    c = math.hypot(a, b)
+                    d = math.hypot(
+                        L - tL,
+                        a / (1e-6 + c ** 0.5) - sta,
+                        b / (1e-6 + c ** 0.5) - stb,
+                    )
+                    if d < best_d:
+                        best_d = d
+                        best = (ll, aaa, bbb)
+        return best
+
+    # ── encoder ──
+
+    def compute_lqip(image_path):
+        # dominant colour → OKLab base
+        ct = ColorThief(image_path)
+        dom = ct.get_palette(color_count=4, quality=10)[0]
+        raw_L, raw_a, raw_b = rgb_to_oklab(*dom)
+        ll, aaa, bbb = find_oklab_bits(raw_L, raw_a, raw_b)
+        base_L, _, _ = bits_to_lab(ll, aaa, bbb)
+
+        # 3×2 preview → relative grayscale
+        img = Image.open(image_path).convert("RGB")
+        small = img.resize((3, 2), Image.LANCZOS)
+        grays = []
+        for r, g, b in small.getdata():
+            pL, _, _ = rgb_to_oklab(r, g, b)
+            v = max(0.0, min(1.0, 0.5 + pL - base_L))
+            grays.append(max(0, min(3, round(v * 3))))
+
+        ca, cb, cc, cd, ce, cf = grays
+        unsigned = (
+            (ca << 18) | (cb << 16) | (cc << 14)
+            | (cd << 12) | (ce << 10) | (cf << 8)
+            | (ll << 6) | (aaa << 3) | bbb
+        )
+        return unsigned - (1 << 19)
+
+    # ── patch index.html ──
+
+    with open(FILE, encoding="utf-8") as f:
+        content = f.read()
+
+    lqip_changed = False
+    for frag, image_path in lqip_updates.items():
+        new_val = compute_lqip(image_path)
+        lines = content.split("\n")
+        for i, line in enumerate(lines):
+            if frag in line and re.search(r"--lqip:\s*-?\d+", line):
+                lines[i] = re.sub(
+                    r"(--lqip:)\s*-?\d+",
+                    lambda m: m.group(1) + f"{new_val:>8d}",
+                    line,
+                )
+                lqip_changed = True
+                print(f"pre-commit: LQIP {image_path} → {new_val}")
+                break
+        content = "\n".join(lines)
+
+    if lqip_changed:
+        with open(FILE, "w", encoding="utf-8") as f:
+            f.write(content)
+        subprocess.run(["git", "add", FILE])
+
+# ─── Phase 2: CSP hashes ────────────────────────────────────────────
+
+# Re-check staged (index.html may have been added by phase 1)
+staged = subprocess.run(
+    ["git", "diff", "--cached", "--name-only"],
+    capture_output=True, text=True,
 ).stdout.splitlines()
 
 if FILE not in staged:
@@ -23,8 +165,12 @@ with open(FILE, encoding="utf-8") as f:
 
 def hashes(tag):
     blocks = re.findall(rf"<{tag}>(.*?)</{tag}>", content, re.DOTALL)
-    return ["'sha256-" + base64.b64encode(hashlib.sha256(b.encode()).digest()).decode() + "'"
-            for b in blocks]
+    return [
+        "'sha256-"
+        + base64.b64encode(hashlib.sha256(b.encode()).digest()).decode()
+        + "'"
+        for b in blocks
+    ]
 
 script_hashes = " ".join(hashes("script"))
 style_hashes  = " ".join(hashes("style"))
@@ -33,7 +179,7 @@ def replace_directive(csp, directive, new_hashes):
     return re.sub(
         rf"{directive} [^;]+",
         f"{directive} {new_hashes}",
-        csp
+        csp,
     )
 
 def update_csp(text):
