@@ -25,7 +25,7 @@
 <meta name="theme-color" content="#0f1923" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#faf8f5" media="(prefers-color-scheme: light)">
 <meta name="color-scheme" content="light dark">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-VMCdcVmbDhlVY6UrOgsjopnoijam046Vt25jLsQJ2pA=' 'sha256-q1gAlicM/8Z62zbZWjILkhcaRRJd36TWA0reM2BoJQw='; style-src 'sha256-/jAMIj6HbmBoLHxKxQoZJmRwjbPm1h3UKisD0L//Up8=' 'sha256-wxEZpqtC+fSEfdaP0OWQ+C1T4db5aJazu230lY3hwVM=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ='; img-src 'self'; font-src 'self'; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-VMCdcVmbDhlVY6UrOgsjopnoijam046Vt25jLsQJ2pA=' 'sha256-dZKiJFHS6zx6Y7CgytDntAlTGQcUfC/95Bsl+2HazP4='; style-src 'sha256-/jAMIj6HbmBoLHxKxQoZJmRwjbPm1h3UKisD0L//Up8=' 'sha256-wxEZpqtC+fSEfdaP0OWQ+C1T4db5aJazu230lY3hwVM=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ='; img-src 'self'; font-src 'self'; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
 <link rel="canonical" href="https://audreyt.org/">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon.ico" sizes="any">
@@ -1265,7 +1265,7 @@ picture { display: block; }
 <nav id="nav">
     <div class="nav-content">
         <a href="#" class="nav-logo">Audrey Tang<span class="cjk" lang="zh-TW">唐鳳</span></a>
-        <div class="nav-links" id="nav-links">
+        <div class="nav-links" id="nav-links" aria-hidden="true">
             <a href="#dialogue"><span lang="en-GB">Talks</span><span lang="zh-TW">演講</span></a>
             <a href="#recognition"><span lang="en-GB">Recognition</span><span lang="zh-TW">獲獎</span></a>
             <a href="#work"><span lang="en-GB">Work</span><span lang="zh-TW">工作</span></a>
@@ -1742,25 +1742,38 @@ window.addEventListener('scroll', () => {
 
 // Hamburger menu
 const hamburger = document.querySelector('.hamburger');
+const navLinks = document.querySelector('.nav-links');
+
+const closeMenu = () => {
+    navLinks.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    navLinks.setAttribute('aria-hidden', 'true');
+};
+
 hamburger.addEventListener('click', () => {
-    const links = document.querySelector('.nav-links');
-    const open = links.classList.toggle('open');
+    const open = navLinks.classList.toggle('open');
     hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
-});
-document.querySelectorAll('.nav-links a').forEach(a => {
-    a.addEventListener('click', () => {
-        document.querySelector('.nav-links').classList.remove('open');
-        document.querySelector('.hamburger').setAttribute('aria-expanded', 'false');
-    });
+    navLinks.setAttribute('aria-hidden', open ? 'false' : 'true');
+    if (open) {
+        const firstLink = navLinks.querySelector('a');
+        if (firstLink) firstLink.focus();
+    }
 });
 
-// Close mobile menu on click outside
+navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', closeMenu);
+});
+
+// Close mobile menu on Escape or click outside
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+        closeMenu();
+        hamburger.focus();
+    }
+});
 document.addEventListener('click', (e) => {
-    const navLinks = document.querySelector('.nav-links');
-    const hamburger = document.querySelector('.hamburger');
     if (navLinks.classList.contains('open') && !navLinks.contains(e.target) && !hamburger.contains(e.target)) {
-        navLinks.classList.remove('open');
-        hamburger.setAttribute('aria-expanded', 'false');
+        closeMenu();
     }
 });
 
