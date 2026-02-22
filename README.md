@@ -142,4 +142,4 @@ For speaking engagements, contact [ProjectSpeaker](https://www.projectspeaker.co
 
 ---
 
-Site text and code [CC0 1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/) — no rights reserved.
+[Site text and code](https://github.com/audreyt/audreyt.org) [CC0 1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/) — no rights reserved.
