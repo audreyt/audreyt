@@ -1,0 +1,62 @@
+#!/usr/bin/env python3
+"""Pre-commit hook: recompute CSP hashes for inline <script> and <style> blocks in index.html."""
+
+import base64
+import hashlib
+import re
+import subprocess
+import sys
+
+FILE = "index.html"
+
+# Only run if index.html is staged
+staged = subprocess.run(
+    ["git", "diff", "--cached", "--name-only"],
+    capture_output=True, text=True
+).stdout.splitlines()
+
+if FILE not in staged:
+    sys.exit(0)
+
+with open(FILE, encoding="utf-8") as f:
+    content = f.read()
+
+def hashes(tag):
+    blocks = re.findall(rf"<{tag}>(.*?)</{tag}>", content, re.DOTALL)
+    return ["'sha256-" + base64.b64encode(hashlib.sha256(b.encode()).digest()).decode() + "'"
+            for b in blocks]
+
+script_hashes = " ".join(hashes("script"))
+style_hashes  = " ".join(hashes("style"))
+
+def replace_directive(csp, directive, new_hashes):
+    return re.sub(
+        rf"{directive} [^;]+",
+        f"{directive} {new_hashes}",
+        csp
+    )
+
+def update_csp(text):
+    csp_pattern = r'(content=")(default-src[^"]+)(")'
+    m = re.search(csp_pattern, text)
+    if not m:
+        print(f"pre-commit: CSP meta tag not found in {FILE}", file=sys.stderr)
+        sys.exit(1)
+    old_csp = m.group(2)
+    new_csp = replace_directive(old_csp, "script-src", script_hashes)
+    new_csp = replace_directive(new_csp, "style-src",  style_hashes)
+    if old_csp == new_csp:
+        return text, False
+    return text.replace(m.group(0), m.group(1) + new_csp + m.group(3)), True
+
+updated, changed = update_csp(content)
+
+if changed:
+    with open(FILE, "w", encoding="utf-8") as f:
+        f.write(updated)
+    subprocess.run(["git", "add", FILE])
+    print(f"pre-commit: updated CSP hashes in {FILE}")
+    print(f"  script-src {script_hashes}")
+    print(f"  style-src  {style_hashes}")
+
+sys.exit(0)
