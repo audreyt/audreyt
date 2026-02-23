@@ -1,14 +1,25 @@
 #!/usr/bin/env python3
-"""Pre-commit hook: recompute LQIP for changed images, then update CSP hashes."""
+"""Pre-commit hook: recompute LQIP for changed images, then update CSP hashes.
+
+Run manually (./pre-commit or python3 pre-commit) to force-rehash CSP
+without staging. Auto-detected: if invoked outside .git/hooks/, force
+mode activates. Also accepts --force / -f explicitly.
+"""
 
 import base64
 import hashlib
 import math
+import os
 import re
 import subprocess
 import sys
 
 FILE = "index.html"
+FORCE = (
+    "--force" in sys.argv
+    or "-f" in sys.argv
+    or ".git/" not in os.path.abspath(sys.argv[0])
+)
 
 staged = subprocess.run(
     ["git", "diff", "--cached", "--name-only"],
@@ -157,7 +168,7 @@ staged = subprocess.run(
     capture_output=True, text=True,
 ).stdout.splitlines()
 
-if FILE not in staged:
+if FILE not in staged and not FORCE:
     sys.exit(0)
 
 with open(FILE, encoding="utf-8") as f:
@@ -200,9 +211,12 @@ updated, changed = update_csp(content)
 if changed:
     with open(FILE, "w", encoding="utf-8") as f:
         f.write(updated)
-    subprocess.run(["git", "add", FILE])
+    if not FORCE:
+        subprocess.run(["git", "add", FILE])
     print(f"pre-commit: updated CSP hashes in {FILE}")
     print(f"  script-src {script_hashes}")
     print(f"  style-src  {style_hashes}")
+elif FORCE:
+    print(f"pre-commit: CSP hashes already up to date")
 
 sys.exit(0)
