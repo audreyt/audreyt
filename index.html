@@ -25,7 +25,7 @@
 <meta name="theme-color" content="#0f1923" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#faf8f5" media="(prefers-color-scheme: light)">
 <meta name="color-scheme" content="light dark">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-VMCdcVmbDhlVY6UrOgsjopnoijam046Vt25jLsQJ2pA=' 'sha256-4G7wnwQc6qvKDvB+Quf3SC5N+0WcBvc/riHtQRDvDX4=' 'sha256-PE62L7NErcnD43wpztsGC6GwUOL13/ZV7MeXIcGmomo=' 'sha256-U11ICWaYPkLESDTx8Dae/9XKufVBH6td3+C00uDFbTw='; style-src 'sha256-FSDXiZOZu2cPo3EcU0eLvJeBsnp8hRDhmpvxL21XnVQ=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-kTULIk1LNNTuREciBeliE5aA3crzF37/I9L8WOTrbcw=' 'sha256-j4/00Y/LHlC11N6CFUbUmMAXtxIuBkVAAUdVGkER35A=' 'sha256-+E+Pis7hqjW93XR/FXb8Wx+jBfBG6Rj5OYnQUelmH8U='; img-src 'self'; font-src 'self' data:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-VMCdcVmbDhlVY6UrOgsjopnoijam046Vt25jLsQJ2pA=' 'sha256-4G7wnwQc6qvKDvB+Quf3SC5N+0WcBvc/riHtQRDvDX4=' 'sha256-U11ICWaYPkLESDTx8Dae/9XKufVBH6td3+C00uDFbTw='; style-src 'sha256-FSDXiZOZu2cPo3EcU0eLvJeBsnp8hRDhmpvxL21XnVQ=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-kTULIk1LNNTuREciBeliE5aA3crzF37/I9L8WOTrbcw=' 'sha256-j4/00Y/LHlC11N6CFUbUmMAXtxIuBkVAAUdVGkER35A='; img-src 'self'; font-src 'self' data:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
 <link rel="canonical" href="https://audreyt.org/">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon.ico" sizes="any">
@@ -1252,22 +1252,12 @@ footer .footer-name {
 
 <!-- ════════ HERO ════════ -->
 <header class="hero">
-    <picture class="hero-portrait-picture">
-        <!-- Sources injected by JS after decode probe (Lockdown Mode safe) -->
-        <img class="hero-portrait"
-             alt="Portrait of Audrey Tang" title="Audrey Tang portrait by Kaii Chiang, CC BY-NC-SA 4.0" width="1200" height="1200" fetchpriority="high" decoding="async">
-    </picture>
-    <noscript><style>.hero-portrait{content:url(assets/at-fallback.jpg)}</style></noscript>
-    <script>
-    Promise.all([window.__avif,window.__webp]).then(function(r){
-      var p=document.querySelector('.hero-portrait-picture'),img=p&&p.querySelector('img'),sz='(max-width: 768px) 100vw, 65vw';
-      if(!p)return;
-      function add(t,ss){var s=document.createElement('source');s.type=t;s.srcset=ss;s.sizes=sz;p.prepend(s)}
-      if(r[0])add('image/avif','assets/at-480.avif 480w, assets/at-800.avif 800w, assets/at-1200.avif 1200w, assets/at-1920.avif 1920w');
-      else if(r[1])add('image/webp','assets/at-480.webp 480w, assets/at-800.webp 800w, assets/at-1200.webp 1200w, assets/at-1920.webp 1920w');
-      img.src='assets/at-fallback.jpg';
-    })
-    </script>
+    <div class="hero-portrait-picture">
+        <noscript><img class="hero-portrait" src="assets/at-fallback.jpg"
+             srcset="assets/at-480.jpg 480w, assets/at-800.jpg 800w, assets/at-1200.jpg 1200w, assets/at-1920.jpg 1920w"
+             sizes="(max-width: 768px) 100vw, 65vw"
+             alt="Portrait of Audrey Tang" title="Audrey Tang portrait by Kaii Chiang, CC BY-NC-SA 4.0" width="1200" height="1200" fetchpriority="high" decoding="async"></noscript>
+    </div>
     <div class="hero-content">
         <div class="hero-label" lang="en-GB">Cyber Ambassador &#x1F1F9;&#x1F1FC; Taiwan</div>
         <div class="hero-label" lang="zh-TW">&#x1F1F9;&#x1F1FC; 數位治理大使</div>
