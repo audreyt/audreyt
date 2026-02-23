@@ -25,7 +25,7 @@
 <meta name="theme-color" content="#0f1923" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#faf8f5" media="(prefers-color-scheme: light)">
 <meta name="color-scheme" content="light dark">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-uuoz5TQ6x7Soce1tzIb0Z2db7jLBjb7qhVerELB8ywk=' 'sha256-4G7wnwQc6qvKDvB+Quf3SC5N+0WcBvc/riHtQRDvDX4=' 'sha256-wYgLbbzWQxLYspDgW/4x82lP7/TdKRX5UzlbxtbJ4xY='; style-src 'sha256-nyob/IY7tCn3HAZ7JXSWM7CnC0Hou6ZgELSCjgvzBZM=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-kTULIk1LNNTuREciBeliE5aA3crzF37/I9L8WOTrbcw=' 'sha256-td9gLzffbaHedT9QiahjqJhjZYmnhkXuVX8PjPeXzJ0='; img-src 'self'; font-src 'self' data:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-uuoz5TQ6x7Soce1tzIb0Z2db7jLBjb7qhVerELB8ywk=' 'sha256-4G7wnwQc6qvKDvB+Quf3SC5N+0WcBvc/riHtQRDvDX4=' 'sha256-wYgLbbzWQxLYspDgW/4x82lP7/TdKRX5UzlbxtbJ4xY='; style-src 'sha256-nyob/IY7tCn3HAZ7JXSWM7CnC0Hou6ZgELSCjgvzBZM=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-kTULIk1LNNTuREciBeliE5aA3crzF37/I9L8WOTrbcw=' 'sha256-Lvy2cbshO3ndiWorgOUGHFOE0iHJNzY2RZYiphftSBQ='; img-src 'self'; font-src 'self' data:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
 <link rel="canonical" href="https://audreyt.org/">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon.ico" sizes="any">
@@ -1248,12 +1248,18 @@ footer .footer-name {
 @media print {
     nav, .skip-link, .hamburger, .lang-toggle, .film, .gallery,
     #connect, .pullquote, .featured-in, footer,
-    .hero-portrait-picture, .hero::after, video, .sr-only { display: none !important; }
+    .hero-portrait-picture, .hero::after, .hero-scroll,
+    .thumb, video, .sr-only { display: none !important; }
     * { color: #000 !important; background: #fff !important; box-shadow: none !important; text-shadow: none !important; }
     body { font-size: 12pt; line-height: 1.5; }
-    .hero { min-height: auto !important; padding: 24pt 0 !important; }
-    .hero-content { position: static !important; padding: 0 !important; }
-    .section { padding: 24pt 0 !important; break-inside: avoid; }
+    .hero { min-height: 0 !important; height: auto !important; display: block !important; padding: 12pt 0 !important; }
+    .hero-content { position: static !important; padding: 0 !important; max-width: none !important; }
+    .hero h1 { font-size: 24pt !important; color: #000 !important; }
+    .hero h1 .cjk { color: #333 !important; }
+    .hero-label { color: #333 !important; }
+    .hero-subtitle { color: #000 !important; }
+    .hero-quote { color: #333 !important; border-color: #999 !important; }
+    .section { padding: 18pt 0 !important; break-inside: avoid; }
     .reveal { opacity: 1 !important; transform: none !important; }
     a[href]::after { content: " (" attr(href) ")"; font-size: 0.85em; }
     a[href^="#"]::after, a[href^="javascript"]::after { content: none; }
