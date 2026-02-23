@@ -25,7 +25,7 @@
 <meta name="theme-color" content="#0f1923" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#faf8f5" media="(prefers-color-scheme: light)">
 <meta name="color-scheme" content="light dark">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-VMCdcVmbDhlVY6UrOgsjopnoijam046Vt25jLsQJ2pA=' 'sha256-toMLJCrs2cSLTPzOZOeS3iIEX0HvYiadgX0bcIf9bcU='; style-src 'sha256-kwyAgbf0ezhMKRQpcsBvt2SdhDwIB55/p+Lx4Af3oiM=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-kTULIk1LNNTuREciBeliE5aA3crzF37/I9L8WOTrbcw=' 'sha256-N5Yhd8hx5UFkBJ9BTb61eOYC5tpZQpi5E6ZxaMD09Bg='; img-src 'self'; font-src 'self' data:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-VMCdcVmbDhlVY6UrOgsjopnoijam046Vt25jLsQJ2pA=' 'sha256-toMLJCrs2cSLTPzOZOeS3iIEX0HvYiadgX0bcIf9bcU='; style-src 'sha256-do3XeAQcnE2ojYLZgQ8SKgrGiP/CZDbnDxD6zebNAv4=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-kTULIk1LNNTuREciBeliE5aA3crzF37/I9L8WOTrbcw=' 'sha256-N5Yhd8hx5UFkBJ9BTb61eOYC5tpZQpi5E6ZxaMD09Bg='; img-src 'self'; font-src 'self' data:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
 <link rel="canonical" href="https://audreyt.org/">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon.ico" sizes="any">
@@ -56,6 +56,14 @@ html.lang-zh-TW blockquote { font-style: normal; font-family: 'Kaiti TC', 'DFKai
     --serif: 'Cormorant Garamond', 'Noto Serif TC', Georgia, serif;
     --sans: 'Outfit', 'Noto Sans TC', system-ui, sans-serif;
     --cjk: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+}
+@font-face {
+    font-family: 'Cormorant Garamond';
+    font-style: normal;
+    font-weight: 400;
+    font-display: block;
+    src: url('data:font/woff2;base64,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') format('woff2');
+    unicode-range: U+0020, U+0041, U+0054, U+0061, U+0064, U+0065, U+0067, U+006E, U+0072, U+0075, U+0079;
 }
 
 html { scroll-behavior: smooth; }
@@ -108,7 +116,7 @@ nav.scrolled {
 .nav-logo {
     font-family: var(--serif);
     font-size: 1.3rem;
-    font-weight: 700;
+    font-weight: 400;
     color: var(--heading);
     text-decoration: none;
 }
@@ -246,17 +254,20 @@ picture { display: block; }
 <a class="skip-link" href="#main"><span lang="en-GB">Skip to content</span><span lang="zh-TW">跳至內容</span></a>
 
 <!--
-  Fonts are base64-inlined to avoid swap flash — external woff2 files
-  cause visible text reflow even with font-display:swap. The trade-off
-  is ~125KB of base64 in the HTML (compresses to ~95KB with gzip).
+  Two-stage font loading to eliminate swap flash on slow connections:
 
-  Order matters for first paint on slow connections:
-    1. Cormorant Garamond normal — nav-logo font, renders above the fold
+  Stage 1 (critical, in the head): A ~3KB subset of Cormorant Garamond
+  containing only "Audrey Tang" glyphs with unicode-range scoping.
+  The nav-logo renders instantly with the real typeface, zero swap.
+
+  Stage 2 (deferred, here after the nav): Full inline base64 fonts.
+  The browser seamlessly upgrades from the subset — same family name,
+  same weight, so no visible reflow. Order matters:
+    1. Cormorant Garamond normal (full) — covers all Latin glyphs
     2. Outfit — body/nav-link font, used immediately after nav
     3. Cormorant Garamond italic — pullquote only, well below the fold
-  The first two are in this deferred block (after the nav) so they don't
-  block the critical 5KB nav CSS in the head. The italic is further down,
-  just before the pullquote section that uses it.
+  All are base64-inlined to avoid swap flash from external woff2 loads.
+  Trade-off: ~125KB base64 (compresses to ~95KB gzip).
 -->
 <style>
 @font-face {
