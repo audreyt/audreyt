@@ -25,7 +25,7 @@
 <meta name="theme-color" content="#0f1923" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#faf8f5" media="(prefers-color-scheme: light)">
 <meta name="color-scheme" content="light dark">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-VMCdcVmbDhlVY6UrOgsjopnoijam046Vt25jLsQJ2pA=' 'sha256-dZKiJFHS6zx6Y7CgytDntAlTGQcUfC/95Bsl+2HazP4='; style-src 'sha256-kwyAgbf0ezhMKRQpcsBvt2SdhDwIB55/p+Lx4Af3oiM=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-85f5HYQhyMghK4WDNRvQBaSuzYC3kfI51HtOCCrMEL0=' 'sha256-N5Yhd8hx5UFkBJ9BTb61eOYC5tpZQpi5E6ZxaMD09Bg='; img-src 'self'; font-src 'self' data:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-VMCdcVmbDhlVY6UrOgsjopnoijam046Vt25jLsQJ2pA=' 'sha256-dZKiJFHS6zx6Y7CgytDntAlTGQcUfC/95Bsl+2HazP4='; style-src 'sha256-kwyAgbf0ezhMKRQpcsBvt2SdhDwIB55/p+Lx4Af3oiM=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-kTULIk1LNNTuREciBeliE5aA3crzF37/I9L8WOTrbcw=' 'sha256-N5Yhd8hx5UFkBJ9BTb61eOYC5tpZQpi5E6ZxaMD09Bg='; img-src 'self'; font-src 'self' data:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
 <link rel="canonical" href="https://audreyt.org/">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon.ico" sizes="any">
@@ -254,8 +254,8 @@ picture { display: block; }
     1. Cormorant Garamond normal — nav-logo font, renders above the fold
     2. Outfit — body/nav-link font, used immediately after nav
     3. Cormorant Garamond italic — pullquote only, well below the fold
-  The first two are in this deferred <style> (after </nav>) so they don't
-  block the critical 5KB nav CSS in <head>. The italic is further down,
+  The first two are in this deferred block (after the nav) so they don't
+  block the critical 5KB nav CSS in the head. The italic is further down,
   just before the pullquote section that uses it.
 -->
 <style>
