@@ -25,7 +25,7 @@
 <meta name="theme-color" content="#0f1923" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#faf8f5" media="(prefers-color-scheme: light)">
 <meta name="color-scheme" content="light dark">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-VMCdcVmbDhlVY6UrOgsjopnoijam046Vt25jLsQJ2pA=' 'sha256-dZKiJFHS6zx6Y7CgytDntAlTGQcUfC/95Bsl+2HazP4='; style-src 'sha256-kwyAgbf0ezhMKRQpcsBvt2SdhDwIB55/p+Lx4Af3oiM=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-kTULIk1LNNTuREciBeliE5aA3crzF37/I9L8WOTrbcw=' 'sha256-8y1tU8JTQQGZP5iGNRAyKHykhzg8hgeCu6DQ9JcHwwo='; img-src 'self'; font-src 'self' data:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-VMCdcVmbDhlVY6UrOgsjopnoijam046Vt25jLsQJ2pA=' 'sha256-dZKiJFHS6zx6Y7CgytDntAlTGQcUfC/95Bsl+2HazP4='; style-src 'sha256-kwyAgbf0ezhMKRQpcsBvt2SdhDwIB55/p+Lx4Af3oiM=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-kTULIk1LNNTuREciBeliE5aA3crzF37/I9L8WOTrbcw=' 'sha256-MKiEgWXi+8RVH/7igguG8Hm/vz4uiPfOaC5cvSJEWP4='; img-src 'self'; font-src 'self' data:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
 <link rel="canonical" href="https://audreyt.org/">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon.ico" sizes="any">
@@ -259,7 +259,7 @@ picture { display: block; }
 <!-- ════════ NAV ════════ -->
 <nav id="nav">
     <div class="nav-content">
-        <a href="#" class="nav-logo">Audrey Tang<span class="cjk" lang="zh-TW">唐鳳</span></a>
+        <a href="#" class="nav-logo active">Audrey Tang<span class="cjk" lang="zh-TW">唐鳳</span></a>
         <div class="nav-links" id="nav-links" aria-hidden="true">
             <a href="#dialogue"><span lang="en-GB">Talks</span><span lang="zh-TW">演講</span></a>
             <a href="#recognition"><span lang="en-GB">Recognition</span><span lang="zh-TW">獲獎</span></a>
@@ -280,7 +280,7 @@ picture { display: block; }
     font-family: 'Outfit';
     font-style: normal;
     font-weight: 300 600;
-    font-display: swap;
+    font-display: block;
     src: url('assets/outfit.woff2') format('woff2');
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
@@ -1210,12 +1210,11 @@ footer .footer-name {
     .hero-quote { opacity: 1 !important; transform: none !important; }
 }
 
-
 @font-face {
     font-family: 'Cormorant Garamond';
     font-style: italic;
     font-weight: 400;
-    font-display: swap;
+    font-display: block;
     src: url('assets/cormorant-italic.woff2') format('woff2');
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
