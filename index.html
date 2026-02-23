@@ -25,7 +25,7 @@
 <meta name="theme-color" content="#0f1923" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#faf8f5" media="(prefers-color-scheme: light)">
 <meta name="color-scheme" content="light dark">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-uuoz5TQ6x7Soce1tzIb0Z2db7jLBjb7qhVerELB8ywk=' 'sha256-4G7wnwQc6qvKDvB+Quf3SC5N+0WcBvc/riHtQRDvDX4=' 'sha256-wYgLbbzWQxLYspDgW/4x82lP7/TdKRX5UzlbxtbJ4xY='; style-src 'sha256-nyob/IY7tCn3HAZ7JXSWM7CnC0Hou6ZgELSCjgvzBZM=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-kTULIk1LNNTuREciBeliE5aA3crzF37/I9L8WOTrbcw=' 'sha256-Lvy2cbshO3ndiWorgOUGHFOE0iHJNzY2RZYiphftSBQ='; img-src 'self'; font-src 'self' data:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-uuoz5TQ6x7Soce1tzIb0Z2db7jLBjb7qhVerELB8ywk=' 'sha256-4G7wnwQc6qvKDvB+Quf3SC5N+0WcBvc/riHtQRDvDX4=' 'sha256-wYgLbbzWQxLYspDgW/4x82lP7/TdKRX5UzlbxtbJ4xY='; style-src 'sha256-nyob/IY7tCn3HAZ7JXSWM7CnC0Hou6ZgELSCjgvzBZM=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-kTULIk1LNNTuREciBeliE5aA3crzF37/I9L8WOTrbcw=' 'sha256-28bYMpyDyNRUhKO1uYxRLEu1Zl4JHzLC8ujMAL+4i/Q='; img-src 'self'; font-src 'self' data:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
 <link rel="canonical" href="https://audreyt.org/">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon.ico" sizes="any">
@@ -1247,19 +1247,24 @@ footer .footer-name {
 
 @media print {
     nav, .skip-link, .hamburger, .lang-toggle, .film, .gallery,
-    #connect, .pullquote, .featured-in, footer,
-    .hero-portrait-picture, .hero::after, .hero-scroll,
+    #connect, .pullquote, .featured-in, footer, .hero::after, .hero-scroll,
     .thumb, video, .sr-only { display: none !important; }
     * { color: #000 !important; background: #fff !important; box-shadow: none !important; text-shadow: none !important; }
-    body { font-size: 12pt; line-height: 1.5; }
-    .hero { min-height: 0 !important; height: auto !important; display: block !important; padding: 12pt 0 !important; }
-    .hero-content { position: static !important; padding: 0 !important; max-width: none !important; }
-    .hero h1 { font-size: 24pt !important; color: #000 !important; }
+    body { font-size: 11pt; line-height: 1.4; margin: 0; padding: 0; }
+    .hero { min-height: 0 !important; height: auto !important; display: flex !important; flex-direction: row-reverse !important; align-items: flex-start !important; padding: 0 !important; gap: 18pt; }
+    .hero-portrait-picture { position: static !important; width: auto !important; height: auto !important; flex-shrink: 0; }
+    .hero-portrait { position: static !important; width: 120pt !important; height: auto !important; opacity: 1 !important; object-fit: cover; border-radius: 4px; }
+    .hero-content { position: static !important; padding: 0 !important; max-width: none !important; flex: 1; }
+    .hero h1 { font-size: 22pt !important; color: #000 !important; margin: 0 0 4pt !important; }
     .hero h1 .cjk { color: #333 !important; }
     .hero-label { color: #333 !important; }
-    .hero-subtitle { color: #000 !important; }
-    .hero-quote { color: #333 !important; border-color: #999 !important; }
-    .section { padding: 18pt 0 !important; break-inside: avoid; }
+    .hero-subtitle { color: #000 !important; margin: 2pt 0 !important; font-size: 10pt !important; }
+    .hero-quote { color: #333 !important; border-color: #999 !important; margin: 6pt 0 !important; font-size: 10pt !important; }
+    .section { padding: 10pt 0 !important; }
+    .dialogue-card, .award-card { border: none !important; padding: 6pt 0 !important; break-inside: avoid; }
+    .dialogue-card .body { padding: 6pt 0 !important; }
+    .dialogue-grid, .awards-grid { gap: 6pt !important; margin-top: 12pt !important; }
+    .section-label { margin-bottom: 4pt !important; }
     .reveal { opacity: 1 !important; transform: none !important; }
     a[href]::after { content: " (" attr(href) ")"; font-size: 0.85em; }
     a[href^="#"]::after, a[href^="javascript"]::after { content: none; }
