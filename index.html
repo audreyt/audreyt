@@ -269,22 +269,7 @@ picture { display: block; }
     </div>
 </nav>
 
-<!--
-  Two-stage font loading to eliminate swap flash on slow connections:
-
-  Stage 1 (critical, in the head): A ~3KB subset of Cormorant Garamond
-  containing only "Audrey Tang" glyphs with unicode-range scoping.
-  The nav-logo renders instantly with the real typeface, zero swap.
-
-  Stage 2 (deferred, here after the nav): Full inline base64 fonts.
-  The browser seamlessly upgrades from the subset — same family name,
-  same weight, so no visible reflow. Order matters:
-    1. Cormorant Garamond normal (full) — covers all Latin glyphs
-    2. Outfit — body/nav-link font, used immediately after nav
-    3. Cormorant Garamond italic — pullquote only, well below the fold
-  All are base64-inlined to avoid swap flash from external woff2 loads.
-  Trade-off: ~125KB base64 (compresses to ~95KB gzip).
--->
+<!-- Two-stage font loading: see AGENTS.md -->
 <style>
 @font-face {
     font-family: 'Cormorant Garamond';
@@ -1406,7 +1391,7 @@ footer .footer-name {
             <div class="award-name" lang="en-GB">Right Livelihood Award</div>
             <div class="award-name" lang="zh-TW">正命獎</div>
             <div class="award-desc" lang="en-GB">Often called the &ldquo;Alternative Nobel Prize,&rdquo; honouring work in Civic AI that channels conflict into co-creation.</div>
-            <div class="award-desc" lang="zh-TW">素有「另類諾貝爾獎」之稱，表彰以仁工智慧將衝突化為共創的貢獻。</div>
+            <div class="award-desc" lang="zh-TW">素有「諾貝爾替代獎」之稱，表彰以仁工智慧將衝突化為共創的貢獻。</div>
         </a>
         <a href="https://bostonglobalforum.org/news/honoring-audrey-tang-2025-world-leader-in-ai-world-society-award-2/" class="award-card" target="_blank" rel="noopener noreferrer">
             <time class="award-year" datetime="2025">2025</time>

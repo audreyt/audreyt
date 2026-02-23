@@ -43,7 +43,7 @@ The hamster runs faster in the wheel — but goes nowhere. On moving from "human
 
 ### 2025 — [Right Livelihood Award](https://rightlivelihood.org/the-change-makers/find-a-laureate/audrey-tang/)
 
-Not to silence conflict, but to channel it — and for proving AI must connect us through uncommon ground, not divide us with outrage.
+Often called the &ldquo;Alternative Nobel Prize,&rdquo; honouring work in Civic AI that channels conflict into co-creation.
 
 ### 2025 — [AI World Society World Leader Award](https://bostonglobalforum.org/news/honoring-audrey-tang-2025-world-leader-in-ai-world-society-award-2/)
 
