@@ -25,7 +25,7 @@
 <meta name="theme-color" content="#0f1923" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#faf8f5" media="(prefers-color-scheme: light)">
 <meta name="color-scheme" content="light dark">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-VMCdcVmbDhlVY6UrOgsjopnoijam046Vt25jLsQJ2pA=' 'sha256-toMLJCrs2cSLTPzOZOeS3iIEX0HvYiadgX0bcIf9bcU='; style-src 'sha256-FSDXiZOZu2cPo3EcU0eLvJeBsnp8hRDhmpvxL21XnVQ=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-kTULIk1LNNTuREciBeliE5aA3crzF37/I9L8WOTrbcw=' 'sha256-2DHHI1S+8r7u99HPC00XYeGCWMHEtVwpyBc2Xb9eKfY='; img-src 'self'; font-src 'self' data:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-VMCdcVmbDhlVY6UrOgsjopnoijam046Vt25jLsQJ2pA=' 'sha256-toMLJCrs2cSLTPzOZOeS3iIEX0HvYiadgX0bcIf9bcU='; style-src 'sha256-FSDXiZOZu2cPo3EcU0eLvJeBsnp8hRDhmpvxL21XnVQ=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-kTULIk1LNNTuREciBeliE5aA3crzF37/I9L8WOTrbcw=' 'sha256-j4/00Y/LHlC11N6CFUbUmMAXtxIuBkVAAUdVGkER35A='; img-src 'self'; font-src 'self' data:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
 <link rel="canonical" href="https://audreyt.org/">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon.ico" sizes="any">
@@ -783,7 +783,6 @@ a.featured-outlet:hover {
     width: 100%;
     height: 100%;
     object-fit: contain;
-    cursor: pointer;
 }
 
 .film-meta {
@@ -1539,7 +1538,8 @@ footer .footer-name {
         <p class="film-subtitle" id="film-desc-zh" lang="zh-TW">奧斯卡與艾美獎得主導演 Cynthia Wade 執導的紀錄片，探討民主、生死，以及留給後代更寬廣舞台的勇氣。獲得 <strong>SCAD 薩凡納電影節最佳專業紀錄短片獎</strong>，於伍德斯托克電影節與雅典娜電影節放映。片長 21 分鐘。</p>
         <div class="film-video">
             <video controls preload="none" poster="assets/GEA-poster.jpg" playsinline width="900" height="506" aria-label="Good Enough Ancestor — short documentary directed by Cynthia Wade, 21 min." aria-describedby="film-desc-en film-desc-zh">
-                <source src="assets/GEA.webm" type="video/webm">
+                <source src="assets/GEA.av1.mp4" type="video/mp4; codecs=av01">
+                <source src="assets/GEA.webm" type="video/webm; codecs=vp9">
                 <source src="assets/GEA.mp4" type="video/mp4">
                 <track kind="captions" src="assets/captions.vtt" srclang="en-GB" label="English">
                 <p>Your browser doesn't support HTML5 video. <a href="assets/GEA.mp4">Download the video here.</a></p>
