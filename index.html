@@ -25,7 +25,7 @@
 <meta name="theme-color" content="#0f1923" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#faf8f5" media="(prefers-color-scheme: light)">
 <meta name="color-scheme" content="light dark">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-VMCdcVmbDhlVY6UrOgsjopnoijam046Vt25jLsQJ2pA=' 'sha256-4G7wnwQc6qvKDvB+Quf3SC5N+0WcBvc/riHtQRDvDX4=' 'sha256-PE62L7NErcnD43wpztsGC6GwUOL13/ZV7MeXIcGmomo=' 'sha256-W4I8RFXoK05wAyBxl+ME02njJ4u7vQLJiYvzyijoIes='; style-src 'sha256-FSDXiZOZu2cPo3EcU0eLvJeBsnp8hRDhmpvxL21XnVQ=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-kTULIk1LNNTuREciBeliE5aA3crzF37/I9L8WOTrbcw=' 'sha256-j4/00Y/LHlC11N6CFUbUmMAXtxIuBkVAAUdVGkER35A=' 'sha256-+E+Pis7hqjW93XR/FXb8Wx+jBfBG6Rj5OYnQUelmH8U='; img-src 'self'; font-src 'self' data:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-VMCdcVmbDhlVY6UrOgsjopnoijam046Vt25jLsQJ2pA=' 'sha256-4G7wnwQc6qvKDvB+Quf3SC5N+0WcBvc/riHtQRDvDX4=' 'sha256-PE62L7NErcnD43wpztsGC6GwUOL13/ZV7MeXIcGmomo=' 'sha256-W4I8RFXoK05wAyBxl+ME02njJ4u7vQLJiYvzyijoIes='; style-src 'sha256-Q2CIj/j/gBcDfuPeGjKaE4KyMtHLbOSthc4p+dMBqnA=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-kTULIk1LNNTuREciBeliE5aA3crzF37/I9L8WOTrbcw=' 'sha256-j4/00Y/LHlC11N6CFUbUmMAXtxIuBkVAAUdVGkER35A=' 'sha256-+E+Pis7hqjW93XR/FXb8Wx+jBfBG6Rj5OYnQUelmH8U='; img-src 'self'; font-src 'self' data:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
 <link rel="canonical" href="https://audreyt.org/">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon.ico" sizes="any">
@@ -192,6 +192,7 @@ nav.scrolled {
 }
 
 picture { display: block; }
+html:not(.js) [data-src] { display: none; }
 
 /* ─── A11Y ─── */
 :focus-visible {
@@ -1375,7 +1376,7 @@ footer .footer-name {
     <h2 lang="zh-TW">我們全民，<span class="nowrap">才是超級智慧</span></h2>
     <div class="dialogue-grid">
         <a href="https://www.youtube.com/watch?v=iZWtNLFaC-U&t=8m46s" target="_blank" rel="noopener noreferrer" class="dialogue-card">
-            <div class="thumb"><img data-src="thumbs/iZWtNLFaC-U" data-sz="(max-width: 768px) calc(100vw - 48px), 504px" data-ss="760,1280" alt="" aria-hidden="true" width="1280" height="720" loading="lazy" decoding="async"></div>
+            <div class="thumb"><img data-src="thumbs/iZWtNLFaC-U" data-sz="(max-width: 768px) calc(100vw - 48px), 504px" data-ss="760,1280" alt="" aria-hidden="true" width="1280" height="720" loading="lazy" decoding="async"><noscript><img src="thumbs/iZWtNLFaC-U.jpg" srcset="thumbs/iZWtNLFaC-U-760.jpg 760w, thumbs/iZWtNLFaC-U.jpg 1280w" sizes="(max-width: 768px) calc(100vw - 48px), 504px" alt="" aria-hidden="true" width="1280" height="720" loading="lazy"></noscript></div>
             <div class="dialogue-body">
                 <div class="meta" lang="en-GB">Right Livelihood Lecture &middot; Zurich &middot; December 2025</div>
                 <div class="meta" lang="zh-TW">正命獎演講&#x30FB;蘇黎世&#x30FB;2025 年 12 月</div>
@@ -1386,7 +1387,7 @@ footer .footer-name {
             </div>
         </a>
         <a href="https://www.youtube.com/watch?v=OcpF2yXj3b0" target="_blank" rel="noopener noreferrer" class="dialogue-card" lang="en-GB">
-            <div class="thumb"><img data-src="thumbs/OcpF2yXj3b0" data-ss="1280" alt="" aria-hidden="true" width="1280" height="720" loading="lazy" decoding="async"></div>
+            <div class="thumb"><img data-src="thumbs/OcpF2yXj3b0" data-ss="1280" alt="" aria-hidden="true" width="1280" height="720" loading="lazy" decoding="async"><noscript><img src="thumbs/OcpF2yXj3b0.jpg" alt="" aria-hidden="true" width="1280" height="720" loading="lazy"></noscript></div>
             <div class="dialogue-body">
                 <div class="meta">Firing Line with Margaret Hoover &middot; PBS &middot; October 2025</div>
                 <h3>Technology, Democracy &amp; AI</h3>
@@ -1394,7 +1395,7 @@ footer .footer-name {
             </div>
         </a>
         <a href="https://www.youtube.com/watch?v=q3PuX1JztKI" target="_blank" rel="noopener noreferrer" class="dialogue-card" lang="zh-TW">
-            <div class="thumb"><img data-src="thumbs/q3PuX1JztKI" data-sz="(max-width: 768px) calc(100vw - 48px), 504px" data-ss="760,1280" alt="" aria-hidden="true" width="1280" height="720" loading="lazy" decoding="async"></div>
+            <div class="thumb"><img data-src="thumbs/q3PuX1JztKI" data-sz="(max-width: 768px) calc(100vw - 48px), 504px" data-ss="760,1280" alt="" aria-hidden="true" width="1280" height="720" loading="lazy" decoding="async"><noscript><img src="thumbs/q3PuX1JztKI.jpg" srcset="thumbs/q3PuX1JztKI-760.jpg 760w, thumbs/q3PuX1JztKI.jpg 1280w" sizes="(max-width: 768px) calc(100vw - 48px), 504px" alt="" aria-hidden="true" width="1280" height="720" loading="lazy"></noscript></div>
             <div class="dialogue-body">
                 <div class="meta">教育廣播電台《新聞真假掰》&#x30FB; 2025 年 12 月</div>
                 <h3>數位遷徙自由</h3>
@@ -1543,7 +1544,7 @@ footer .footer-name {
         <p class="film-subtitle" id="film-desc-en" lang="en-GB">Oscar &amp; Emmy-winning director Cynthia Wade's documentary on democracy, mortality, and the courage to leave a wider canvas for future generations. <strong>Best Professional Documentary Short</strong>, SCAD Savannah Film Festival. Screened at the Woodstock Film Festival and Athena Film Festival. 21 min.</p>
         <p class="film-subtitle" id="film-desc-zh" lang="zh-TW">奧斯卡與艾美獎得主導演 Cynthia Wade 執導的紀錄片，探討民主、生死，以及留給後代更寬廣舞台的勇氣。獲得 <strong>SCAD 薩凡納電影節最佳專業紀錄短片獎</strong>，於伍德斯托克電影節與雅典娜電影節放映。片長 21 分鐘。</p>
         <div class="film-video">
-            <video controls preload="none" data-poster="assets/GEA-poster" playsinline width="900" height="506" aria-label="Good Enough Ancestor — short documentary directed by Cynthia Wade, 21 min." aria-describedby="film-desc-en film-desc-zh">
+            <video controls preload="none" poster="assets/GEA-poster.jpg" data-poster="assets/GEA-poster" playsinline width="900" height="506" aria-label="Good Enough Ancestor — short documentary directed by Cynthia Wade, 21 min." aria-describedby="film-desc-en film-desc-zh">
                 <source src="assets/GEA.av1.mp4" type="video/mp4; codecs=av01">
                 <source src="assets/GEA.webm" type="video/webm; codecs=vp9">
                 <source src="assets/GEA.mp4" type="video/mp4">
@@ -1569,14 +1570,17 @@ footer .footer-name {
     <div class="gallery-inner">
         <figure>
             <img data-src="assets/au-ey" data-sz="(max-width: 768px) 100vw, (max-width: 1024px) calc(50vw - 36px), calc(33vw - 16px)" data-ss="400,800" alt="Audrey Tang in a dark blazer standing by a wood-framed window, greenery visible outside, with a calm gentle expression" width="800" height="600" loading="lazy">
+            <noscript><img src="assets/au-ey.jpg" srcset="assets/au-ey-400.jpg 400w, assets/au-ey.jpg 800w" sizes="(max-width: 768px) 100vw, (max-width: 1024px) calc(50vw - 36px), calc(33vw - 16px)" alt="Audrey Tang in a dark blazer standing by a wood-framed window, greenery visible outside, with a calm gentle expression" width="800" height="600" loading="lazy"></noscript>
             <figcaption>Revista Poder · CC0</figcaption>
         </figure>
         <figure>
             <img data-src="assets/kaii-chiang" data-sz="(max-width: 768px) 100vw, (max-width: 1024px) calc(50vw - 36px), calc(33vw - 16px)" data-ss="400,800" alt="Audrey Tang in round glasses and a patchwork hat, one hand raised over their left eye, lit by moody studio light" width="800" height="600" loading="lazy">
+            <noscript><img src="assets/kaii-chiang.jpg" srcset="assets/kaii-chiang-400.jpg 400w, assets/kaii-chiang.jpg 800w" sizes="(max-width: 768px) 100vw, (max-width: 1024px) calc(50vw - 36px), calc(33vw - 16px)" alt="Audrey Tang in round glasses and a patchwork hat, one hand raised over their left eye, lit by moody studio light" width="800" height="600" loading="lazy"></noscript>
             <figcaption>Kaii Chiang · CC BY-NC-SA 4.0</figcaption>
         </figure>
         <figure>
             <img data-src="assets/au" data-sz="(max-width: 768px) 100vw, (max-width: 1024px) calc(50vw - 36px), calc(33vw - 16px)" data-ss="400,800" alt="Audrey Tang gazing upward, wearing rimless glasses and a dark striped blazer, in a close-up portrait with soft lighting" width="800" height="600" loading="lazy">
+            <noscript><img src="assets/au.jpg" srcset="assets/au-400.jpg 400w, assets/au.jpg 800w" sizes="(max-width: 768px) 100vw, (max-width: 1024px) calc(50vw - 36px), calc(33vw - 16px)" alt="Audrey Tang gazing upward, wearing rimless glasses and a dark striped blazer, in a close-up portrait with soft lighting" width="800" height="600" loading="lazy"></noscript>
             <figcaption>Camille McOuat · CC BY 4.0</figcaption>
         </figure>
     </div>
