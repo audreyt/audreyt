@@ -1,0 +1,11 @@
+{
+  "name": "audreyt",
+  "private": true,
+  "dependencies": {
+    "colorthief": "^2.4.0",
+    "sharp": "^0.34.1"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  }
+}
