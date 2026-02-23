@@ -25,7 +25,7 @@
 <meta name="theme-color" content="#0f1923" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#faf8f5" media="(prefers-color-scheme: light)">
 <meta name="color-scheme" content="light dark">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-uuoz5TQ6x7Soce1tzIb0Z2db7jLBjb7qhVerELB8ywk=' 'sha256-4G7wnwQc6qvKDvB+Quf3SC5N+0WcBvc/riHtQRDvDX4=' 'sha256-5Z9hVp+U/VRYe1/AttWNk2M67NH8+fFA7U00RK9Hgy8='; style-src 'sha256-nyob/IY7tCn3HAZ7JXSWM7CnC0Hou6ZgELSCjgvzBZM=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-kTULIk1LNNTuREciBeliE5aA3crzF37/I9L8WOTrbcw=' 'sha256-NLW4yiQuIy9g5kLSPZ7mOtdvxdTH6pXivuiJrW5DmrQ='; img-src 'self'; font-src 'self' data:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-uuoz5TQ6x7Soce1tzIb0Z2db7jLBjb7qhVerELB8ywk=' 'sha256-4G7wnwQc6qvKDvB+Quf3SC5N+0WcBvc/riHtQRDvDX4=' 'sha256-5Z9hVp+U/VRYe1/AttWNk2M67NH8+fFA7U00RK9Hgy8='; style-src 'sha256-mPKyd2bZ2C6/35qa+5uqDFFSFw3WVxsp5SOihxs/dPM=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-kTULIk1LNNTuREciBeliE5aA3crzF37/I9L8WOTrbcw=' 'sha256-NLW4yiQuIy9g5kLSPZ7mOtdvxdTH6pXivuiJrW5DmrQ='; img-src 'self'; font-src 'self' data:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
 <link rel="canonical" href="https://audreyt.org/">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon.ico" sizes="any">
@@ -58,6 +58,8 @@ html:has(#lang-zh:checked) blockquote { font-style: normal; font-family: 'Kaiti 
     --sans: 'Outfit', 'Noto Sans TC', system-ui, sans-serif;
     --cjk: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
 }
+
+// Two-stage font loading: this is just the subset for .nav-logo
 @font-face {
     font-family: 'Cormorant Garamond';
     font-style: normal;
@@ -280,7 +282,6 @@ picture { display: block; }
     </div>
 </nav>
 
-<!-- Two-stage font loading: see AGENTS.md -->
 <style>
 @font-face {
     font-family: 'Cormorant Garamond';
