@@ -25,7 +25,7 @@
 <meta name="theme-color" content="#0f1923" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#faf8f5" media="(prefers-color-scheme: light)">
 <meta name="color-scheme" content="light dark">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-uuoz5TQ6x7Soce1tzIb0Z2db7jLBjb7qhVerELB8ywk=' 'sha256-4G7wnwQc6qvKDvB+Quf3SC5N+0WcBvc/riHtQRDvDX4=' 'sha256-BdHnI1N4mnEQvcAprzveyFU77hrnaM676kuK+RfJsuw='; style-src 'sha256-fpk1gzC/E/nqlDWNzFoWF6ORYfWTwwy5xTbZtviepv0=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-kTULIk1LNNTuREciBeliE5aA3crzF37/I9L8WOTrbcw=' 'sha256-6GD6DK8mFdYn0F4l6+06xB/l9jVlQt7Lu0NsCadrKRk='; img-src 'self'; font-src 'self' data:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-uuoz5TQ6x7Soce1tzIb0Z2db7jLBjb7qhVerELB8ywk=' 'sha256-4G7wnwQc6qvKDvB+Quf3SC5N+0WcBvc/riHtQRDvDX4=' 'sha256-o1Bygs6GAeg52weYwgL4V3pLOxifzX0vHCdlDgcKNcw='; style-src 'sha256-wQ14vJWunkCLMZ+4MG/LlS+R2WIfjO4OjLLMjUxzWfg=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-kTULIk1LNNTuREciBeliE5aA3crzF37/I9L8WOTrbcw=' 'sha256-D5o6GjfUGa6wEjzIEHNyeOCQ2Jw3gdWCqncmyVhhKi4='; img-src 'self'; font-src 'self' data:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
 <link rel="canonical" href="https://audreyt.org/">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon.ico" sizes="any">
@@ -132,6 +132,8 @@ nav.scrolled {
     margin-left: 6px;
 }
 
+.nav-check { display: none; }
+
 .nav-links {
     display: flex;
     gap: 2rem;
@@ -173,9 +175,12 @@ nav.scrolled {
 .lang-toggle [lang="zh-TW"] { font-family: var(--cjk); font-weight: 700; }
 
 .hamburger .icon-close { display: none; }
-.hamburger[aria-expanded="true"] .icon-menu { display: none; }
-.hamburger[aria-expanded="true"] .icon-close { display: block; }
+.hamburger[aria-expanded="true"] .icon-menu,
+#nav-check:checked ~ .hamburger .icon-menu { display: none; }
+.hamburger[aria-expanded="true"] .icon-close,
+#nav-check:checked ~ .hamburger .icon-close { display: block; }
 
+#nav-check:checked ~ .nav-links,
 .nav-links.open {
     display: flex;
     flex-direction: column;
@@ -243,8 +248,8 @@ picture { display: block; }
 
 @media (max-width: 768px) {
     .nav-content { padding: 14px 24px; }
-    .js .nav-links:not(.open) { display: none; }
-    .js .hamburger { display: block; }
+    .nav-links { display: none; }
+    .hamburger { display: block; }
     .lang-toggle { margin-left: auto; }
 }
 </style>
@@ -260,6 +265,7 @@ picture { display: block; }
 <nav id="nav">
     <div class="nav-content">
         <a href="#" class="nav-logo active">Audrey Tang<span class="cjk" lang="zh-TW">唐鳳</span></a>
+        <input type="checkbox" id="nav-check" class="nav-check" aria-hidden="true">
         <div class="nav-links" id="nav-links">
             <a href="#dialogue"><span lang="en-GB">Talks</span><span lang="zh-TW">演講</span></a>
             <a href="#recognition"><span lang="en-GB">Recognition</span><span lang="zh-TW">獲獎</span></a>
@@ -268,7 +274,7 @@ picture { display: block; }
             <a href="#connect"><span lang="en-GB">Connect</span><span lang="zh-TW">聯絡</span></a>
         </div>
         <label for="lang-zh" class="lang-toggle" role="button" tabindex="0" aria-label="切換語言 / Switch language"><span lang="zh-TW">EN</span><span lang="en-GB">華文</span></label>
-        <button type="button" class="hamburger" aria-label="Menu" aria-expanded="false" aria-controls="nav-links"><svg aria-hidden="true" class="icon-menu" width="20" height="14" viewBox="0 0 20 14" fill="currentColor"><rect width="20" height="2" rx="1"/><rect y="6" width="20" height="2" rx="1"/><rect y="12" width="20" height="2" rx="1"/></svg><svg aria-hidden="true" class="icon-close" width="20" height="14" viewBox="0 0 20 14" fill="currentColor"><rect x="0" width="8" height="2" rx="1"/><rect x="12" width="8" height="2" rx="1"/><rect x="0" y="6" width="8" height="2" rx="1"/><rect x="12" y="6" width="8" height="2" rx="1"/><rect x="0" y="12" width="8" height="2" rx="1"/><rect x="12" y="12" width="8" height="2" rx="1"/></svg></button>
+        <label for="nav-check" class="hamburger" role="button" tabindex="0" aria-label="Menu"><svg aria-hidden="true" class="icon-menu" width="20" height="14" viewBox="0 0 20 14" fill="currentColor"><rect width="20" height="2" rx="1"/><rect y="6" width="20" height="2" rx="1"/><rect y="12" width="20" height="2" rx="1"/></svg><svg aria-hidden="true" class="icon-close" width="20" height="14" viewBox="0 0 20 14" fill="currentColor"><rect x="0" width="8" height="2" rx="1"/><rect x="12" width="8" height="2" rx="1"/><rect x="0" y="6" width="8" height="2" rx="1"/><rect x="12" y="6" width="8" height="2" rx="1"/><rect x="0" y="12" width="8" height="2" rx="1"/><rect x="12" y="12" width="8" height="2" rx="1"/></svg></label>
     </div>
 </nav>
 
@@ -1166,8 +1172,8 @@ footer .footer-name {
 
 @media (max-width: 768px) {
     .nav-content { padding: 14px 24px; }
-    .js .nav-links:not(.open) { display: none; }
-    .js .hamburger { display: block; }
+    .nav-links { display: none; }
+    .hamburger { display: block; }
     .lang-toggle { margin-left: auto; }
     .dialogue-grid { grid-template-columns: 1fr; }
     .hero-content {
@@ -1721,22 +1727,32 @@ window.addEventListener('scroll', () => {
 // Hamburger menu
 const hamburger = document.querySelector('.hamburger');
 const navLinks = document.querySelector('.nav-links');
+const navCheck = document.getElementById('nav-check');
 
 const isMobileMenu = () => getComputedStyle(hamburger).display !== 'none';
 
 const closeMenu = () => {
-    navLinks.classList.remove('open');
+    navCheck.checked = false;
     hamburger.setAttribute('aria-expanded', 'false');
     if (isMobileMenu()) navLinks.setAttribute('aria-hidden', 'true');
 };
 
-hamburger.addEventListener('click', () => {
-    const open = navLinks.classList.toggle('open');
+navCheck.addEventListener('change', () => {
+    const open = navCheck.checked;
     hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
     navLinks.setAttribute('aria-hidden', open ? 'false' : 'true');
     if (open) {
         const firstLink = navLinks.querySelector('a');
         if (firstLink) firstLink.focus();
+    }
+});
+
+// Keyboard support for label
+hamburger.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        navCheck.checked = !navCheck.checked;
+        navCheck.dispatchEvent(new Event('change'));
     }
 });
 
@@ -1746,13 +1762,13 @@ navLinks.querySelectorAll('a').forEach(a => {
 
 // Close mobile menu on Escape or click outside
 document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+    if (e.key === 'Escape' && navCheck.checked) {
         closeMenu();
         hamburger.focus();
     }
 });
 document.addEventListener('click', (e) => {
-    if (navLinks.classList.contains('open') && !navLinks.contains(e.target) && !hamburger.contains(e.target)) {
+    if (navCheck.checked && !navLinks.contains(e.target) && !hamburger.contains(e.target) && e.target !== navCheck) {
         closeMenu();
     }
 });
