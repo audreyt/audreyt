@@ -25,17 +25,18 @@
 <meta name="theme-color" content="#0f1923" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#faf8f5" media="(prefers-color-scheme: light)">
 <meta name="color-scheme" content="light dark">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-VMCdcVmbDhlVY6UrOgsjopnoijam046Vt25jLsQJ2pA=' 'sha256-4G7wnwQc6qvKDvB+Quf3SC5N+0WcBvc/riHtQRDvDX4=' 'sha256-U11ICWaYPkLESDTx8Dae/9XKufVBH6td3+C00uDFbTw='; style-src 'sha256-FSDXiZOZu2cPo3EcU0eLvJeBsnp8hRDhmpvxL21XnVQ=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-kTULIk1LNNTuREciBeliE5aA3crzF37/I9L8WOTrbcw=' 'sha256-j4/00Y/LHlC11N6CFUbUmMAXtxIuBkVAAUdVGkER35A='; img-src 'self'; font-src 'self' data:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-uuoz5TQ6x7Soce1tzIb0Z2db7jLBjb7qhVerELB8ywk=' 'sha256-4G7wnwQc6qvKDvB+Quf3SC5N+0WcBvc/riHtQRDvDX4=' 'sha256-BdHnI1N4mnEQvcAprzveyFU77hrnaM676kuK+RfJsuw='; style-src 'sha256-fpk1gzC/E/nqlDWNzFoWF6ORYfWTwwy5xTbZtviepv0=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-kTULIk1LNNTuREciBeliE5aA3crzF37/I9L8WOTrbcw=' 'sha256-6GD6DK8mFdYn0F4l6+06xB/l9jVlQt7Lu0NsCadrKRk='; img-src 'self'; font-src 'self' data:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
 <link rel="canonical" href="https://audreyt.org/">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon.ico" sizes="any">
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html[lang="zh-TW"] [lang="en-GB"], html[lang="en-GB"] [lang="zh-TW"]:not(.cjk) { display: none; }
+html:not(:has(#lang-zh:checked)) [lang="zh-TW"]:not(.cjk) { display: none; }
+html:has(#lang-zh:checked) [lang="en-GB"] { display: none; }
 .nowrap { white-space: nowrap; }
-html.lang-zh-TW body { font-weight: 500; }
-html.lang-zh-TW em,
-html.lang-zh-TW blockquote { font-style: normal; font-family: 'Kaiti TC', 'DFKai-SB', 'BiauKai', 'STKaiti', cursive; }
+html:has(#lang-zh:checked) body { font-weight: 500; }
+html:has(#lang-zh:checked) em,
+html:has(#lang-zh:checked) blockquote { font-style: normal; font-family: 'Kaiti TC', 'DFKai-SB', 'BiauKai', 'STKaiti', cursive; }
 
 :root {
     scroll-padding-top: 90px;
@@ -152,9 +153,7 @@ nav.scrolled {
     padding: 4px;
 }
 
-.lang-toggle { display: none; }
-.js .lang-toggle {
-    display: revert;
+.lang-toggle {
     background: none;
     border: 1px solid var(--border);
     border-radius: 3px;
@@ -166,6 +165,9 @@ nav.scrolled {
     cursor: pointer;
     transition: color 0.2s, border-color 0.2s;
     line-height: 1;
+    user-select: none;
+    flex-shrink: 0;
+    white-space: nowrap;
 }
 .lang-toggle:hover { color: var(--gold); border-color: var(--gold); }
 .lang-toggle [lang="zh-TW"] { font-family: var(--cjk); font-weight: 700; }
@@ -243,13 +245,14 @@ picture { display: block; }
     .nav-content { padding: 14px 24px; }
     .js .nav-links:not(.open) { display: none; }
     .js .hamburger { display: block; }
-    .js .lang-toggle { margin-left: auto; }
+    .lang-toggle { margin-left: auto; }
 }
 </style>
 <noscript><style>.reveal { opacity: 1 !important; transform: none !important; }</style></noscript>
 </head>
 <body>
-<script>document.documentElement.classList.add('js');(function(){var r=document.documentElement,s=null,z;try{s=localStorage.getItem('lang');}catch(e){}z=s?s==='zh-TW':/^zh\b/i.test(navigator.language);r.classList.add(z?'lang-zh-TW':'lang-en-GB');if(z){r.setAttribute('lang','zh-TW');document.title='\u5510\u9cf3 \u00b7 \u6578\u4f4d\u6cbb\u7406\u5927\u4f7f';}})();</script>
+<input type="checkbox" id="lang-zh" hidden>
+<script>document.documentElement.classList.add('js');(function(){var r=document.documentElement,c=document.getElementById('lang-zh'),s=null,z;try{s=localStorage.getItem('lang');}catch(e){}z=s?s==='zh-TW':/^zh\b/i.test(navigator.language);if(z){c.checked=true;r.setAttribute('lang','zh-TW');document.title='\u5510\u9cf3 \u00b7 \u6578\u4f4d\u6cbb\u7406\u5927\u4f7f';}})();</script>
 
 <a class="skip-link" href="#main"><span lang="en-GB">Skip to content</span><span lang="zh-TW">跳至內容</span></a>
 
@@ -264,7 +267,7 @@ picture { display: block; }
             <a href="#publications"><span lang="en-GB">Publications</span><span lang="zh-TW">著作</span></a>
             <a href="#connect"><span lang="en-GB">Connect</span><span lang="zh-TW">聯絡</span></a>
         </div>
-        <button type="button" class="lang-toggle" aria-label="切換語言 / Switch language"><span lang="zh-TW">EN</span><span lang="en-GB">華文</span></button>
+        <label for="lang-zh" class="lang-toggle" role="button" tabindex="0" aria-label="切換語言 / Switch language"><span lang="zh-TW">EN</span><span lang="en-GB">華文</span></label>
         <button type="button" class="hamburger" aria-label="Menu" aria-expanded="false" aria-controls="nav-links"><svg aria-hidden="true" class="icon-menu" width="20" height="14" viewBox="0 0 20 14" fill="currentColor"><rect width="20" height="2" rx="1"/><rect y="6" width="20" height="2" rx="1"/><rect y="12" width="20" height="2" rx="1"/></svg><svg aria-hidden="true" class="icon-close" width="20" height="14" viewBox="0 0 20 14" fill="currentColor"><rect x="0" width="8" height="2" rx="1"/><rect x="12" width="8" height="2" rx="1"/><rect x="0" y="6" width="8" height="2" rx="1"/><rect x="12" y="6" width="8" height="2" rx="1"/><rect x="0" y="12" width="8" height="2" rx="1"/><rect x="12" y="12" width="8" height="2" rx="1"/></svg></button>
     </div>
 </nav>
@@ -1165,7 +1168,7 @@ footer .footer-name {
     .nav-content { padding: 14px 24px; }
     .js .nav-links:not(.open) { display: none; }
     .js .hamburger { display: block; }
-    .js .lang-toggle { margin-left: auto; }
+    .lang-toggle { margin-left: auto; }
     .dialogue-grid { grid-template-columns: 1fr; }
     .hero-content {
         padding: 100px 32px 80px;
@@ -1791,15 +1794,16 @@ const heroObserver = new IntersectionObserver((entries) => {
 }, { rootMargin: '-20% 0px -60% 0px' });
 heroObserver.observe(heroEl);
 
-// Language toggle
-document.querySelector('.lang-toggle').addEventListener('click', () => {
-    const root = document.documentElement;
-    const isZh = root.classList.contains('lang-zh-TW');
-    root.classList.toggle('lang-zh-TW', !isZh);
-    root.classList.toggle('lang-en-GB', isZh);
-    root.setAttribute('lang', isZh ? 'en-GB' : 'zh-TW');
-    document.title = isZh ? 'Audrey Tang \u00b7 Cyber Ambassador' : '\u5510\u9cf3 \u00b7 \u6578\u4f4d\u6cbb\u7406\u5927\u4f7f';
-    try { localStorage.setItem('lang', isZh ? 'en-GB' : 'zh-TW'); } catch (e) {}
+// Language toggle – checkbox drives CSS via :has(#lang-zh:checked); JS syncs lang attr + localStorage
+const langCb = document.getElementById('lang-zh');
+langCb.addEventListener('change', () => {
+    const isZh = langCb.checked;
+    document.documentElement.setAttribute('lang', isZh ? 'zh-TW' : 'en-GB');
+    document.title = isZh ? '\u5510\u9cf3 \u00b7 \u6578\u4f4d\u6cbb\u7406\u5927\u4f7f' : 'Audrey Tang \u00b7 Cyber Ambassador';
+    try { localStorage.setItem('lang', isZh ? 'zh-TW' : 'en-GB'); } catch (e) {}
+});
+document.querySelector('.lang-toggle').addEventListener('keydown', (e) => {
+    if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); langCb.click(); }
 });
 </script>
 
