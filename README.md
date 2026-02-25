@@ -14,7 +14,7 @@ Audrey Tang is a civic hacker, co-author of [*Plurality: The Future of Collabora
 
 Taiwan's first Digital Minister and the world's first nonbinary cabinet minister, Tang was awarded the 2025 [Right Livelihood Award](https://rightlivelihood.org/the-change-makers/find-a-laureate/audrey-tang/) for *“advancing the social use of digital technology to empower citizens, renew democracy and heal divides.”*
 
-A child prodigy who practiced Taoism to manage a congenital heart condition, Tang left formal schooling at 14 to pursue entrepreneurship. By 24, Tang was already a leader in the free and open-source software communities, revitalising the Haskell and Perl languages.
+A child prodigy who practiced Taoism to manage a congenital heart condition, Tang opted for homeschooling and entrepreneurship at 14. A decade later, Tang was a leader in the free and open-source software communities, revitalising the Haskell and Perl languages.
 
 ## Roles
 
@@ -43,7 +43,7 @@ The hamster runs faster in the wheel — but goes nowhere. On moving from “hum
 
 ### 2025 — [Right Livelihood Award](https://rightlivelihood.org/the-change-makers/find-a-laureate/audrey-tang/)
 
-Often called the “Alternative Nobel Prize,” honouring work in Civic AI that channels conflict into co-creation.
+The “alternative Nobel Prize” is in recognition of civic AI work that channels conflict into co-creation.
 
 ### 2025 — [AI World Society World Leader Award](https://bostonglobalforum.org/news/honoring-audrey-tang-2025-world-leader-in-ai-world-society-award-2/)
 
@@ -64,7 +64,7 @@ Recognised for contributions to digital democracy alongside heads of state and i
 
 ## Current Work · Oxford Institute for Ethics in AI
 
-### Civic AI & the 6-Pack of Care
+### Civic AI and the 6-Pack of Care
 
 The dominant AI safety narrative is vertical: one superintelligent system, aligned once and for all to human values. But no amount of what is produces what ought to be. The [6-Pack of Care](https://6pack.care), developed with Caroline Green at Oxford, offers a horizontal alternative — many bounded, purpose-specific AI agents, each devoted to one community’s relational health.
 
@@ -78,7 +78,7 @@ These agents are modelled on **local Kami**: guardian spirits bound to a specifi
 
 **Responsiveness** — Can those affected correct the system — and does correction actually change it? Community-designed rewards, clear appeals with timers, and public repair logs.
 
-**Solidarity** — Does the ecosystem reward cooperation over lock-in? Data portability, federated trust & safety, and bridging metrics that make bad-faith factionalism mathematically visible.
+**Solidarity** — Does the ecosystem reward cooperation over lock-in? Data portability, federated trust and safety, and bridging metrics that make bad-faith factionalism mathematically visible.
 
 **Symbiosis** — Is the system bounded, sunset-ready, and incapable of imperial creep? Resource caps, non-expansion pacts, and succession plans. Complete the work and step back.
 
@@ -102,7 +102,7 @@ Short Film · Directed by Cynthia Wade. Oscar and Emmy-winning director Cynthia 
 
 ---
 
-## Selected Publications
+## Deep Thinking
 
 | Title | Co-authors | Venue | Year |
 |-------|------------|-------|------|
@@ -122,7 +122,7 @@ Short Film · Directed by Cynthia Wade. Oscar and Emmy-winning director Cynthia 
 
 Tang is the driving force behind the creation of **g0v** (gov-zero), now one of the largest civic technology communities in East Asia, and played a pivotal role in the **2014 Sunflower Movement**, facilitating digital consensus-building during the occupation of Taiwan's legislature. By bringing live streaming and civic tech into the movement, Tang proved that radical transparency could transform governance from the bottom up.
 
-As digital minister in 2016, Tang implemented radical transparency and participatory democracy platforms, including **Join.gov.tw** with millions of users. Tang's tenure saw public trust in Taiwan's government rise from single digits to over 70 percent, driven by innovations such as the real-time **Mask Map** and **1922 SMS** during COVID-19 and pioneering **prebunking** defenses against cyber interference in national elections. Tang took on the ambassadorial role in 2024; the platforms, the methodology, and the legislation outlasted the tenure — which is what “complete the work and step back” was designed to mean in practice.
+As minister without portfolio responsible for Taiwan's digital affairs, Tang implemented radical transparency and participatory democracy platforms, including **Join.gov.tw** with millions of users. Tang's tenure saw public trust in Taiwan's government rise from single digits to over 70 percent, driven by innovations such as the real-time **Mask Map** and **1922 SMS** during COVID-19 and pioneering **prebunking** defenses against cyber interference in national elections. Tang took on the ambassadorial role in 2024; the platforms, the methodology, and the legislation outlasted the tenure — which is what “complete the work and step back” was designed to mean in practice.
 
 Before government, Tang made foundational contributions to open-source software — initiating over 100 projects on CPAN, leading the first working implementation of Perl 6 (now Raku) in Haskell, and creating EtherCalc with Dan Bricklin, the inventor of the electronic spreadsheet. Tang also served as a computational linguistics consultant to Apple (2010–2016), developing software used in Siri.
 
