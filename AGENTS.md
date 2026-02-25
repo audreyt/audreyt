@@ -1,5 +1,14 @@
 # Agent Notes
 
+## Syncing to audreyt.org
+
+**Never** copy files directly to `../audreyt.org/`. Always cherry-pick commits instead:
+
+```bash
+cd ../audreyt.org
+git cherry-pick <commit-hash>
+```
+
 Woven site: `index.html` is assembled from `src/` skeleton + README content by `bun weave.ts`. No frameworks, strict Content Security Policy (all inline scripts and styles are SHA-256 hashed).
 
 **Data flow**: `README.md` (en-GB) + `README.zh-TW.md` (zh-TW) are the **source of truth** for bilingual content. `weave.ts` parses `<!-- section:X -->` markers in both READMEs, renders HTML fragments, and inserts them into the `src/index.template.html` skeleton via `{{content:SECTION_NAME}}` markers.

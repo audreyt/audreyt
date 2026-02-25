@@ -394,7 +394,7 @@ function renderDialogue(): string {
 
   // Section labels
   lines.push(
-    `${I}<div class="section-label" lang="en-GB">${enP.label ?? "Featured Talks"}</div>`,
+    `${I}<div class="section-label" lang="en-GB">${enP.label ?? "Spotlight Addresses"}</div>`,
   );
   lines.push(
     `${I}<div class="section-label" lang="zh-TW">${zhP.label ?? "精選演講"}</div>`,
@@ -512,7 +512,7 @@ function renderRecognition(): string {
 
   // Section labels
   lines.push(
-    `${I}<div class="section-label" lang="en-GB">${enP.label ?? "Recognition"}</div>`,
+    `${I}<div class="section-label" lang="en-GB">${enP.label ?? "Honours"}</div>`,
   );
   lines.push(
     `${I}<div class="section-label" lang="zh-TW">${zhP.label ?? "獲獎肯定"}</div>`,
