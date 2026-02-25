@@ -7,6 +7,7 @@ Woven site: `index.html` is assembled from `src/` parts by `bun weave.ts`. No fr
 ```
 src/
 ├── index.template.html    ← authoring target: HTML structure + content sections
+├── svg/                   ← inline SVG markup (one .svg file per icon, e.g. featured-in logos)
 ├── fonts/                 ← base64-encoded WOFF2 font data (one .b64 file per font)
 │   ├── cormorant-garamond-bold-subset.woff2.b64   (~3 KB, nav-logo "Audrey Tang" only)
 │   ├── cormorant-garamond-normal.woff2.b64        (full Latin)
@@ -47,6 +48,7 @@ The template `src/index.template.html` uses these inclusion markers:
 | `{{script:NAME}}` | Content of `src/scripts/NAME.js` |
 | `{{json-ld:NAME}}` | Content of `src/scripts/NAME.json` |
 | `{{font:NAME}}` | Raw base64 string from `src/fonts/NAME.woff2.b64` |
+| `{{svg:NAME}}` | Content of `src/svg/NAME.svg` |
 
 Font placeholders appear inside CSS `@font-face` rules:
 ```css

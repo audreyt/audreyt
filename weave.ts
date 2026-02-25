@@ -47,6 +47,12 @@ html = await replaceAsync(html, /\{\{font:([^}]+)\}\}/g, async (_, name) => {
   return content.trim();
 });
 
+// {{svg:NAME}} → content of src/svg/NAME.svg
+html = await replaceAsync(html, /\{\{svg:([^}]+)\}\}/g, async (_, name) => {
+  const content = await readSrc(`svg/${name}.svg`);
+  return content.trimEnd();
+});
+
 // ─── CSP hash update ─────────────────────────────────────────────────
 
 function computeHashes(tag: string): string[] {
