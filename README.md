@@ -151,7 +151,7 @@ Currently, Tang is developing **techno-communitarianism** — a synthesis of the
 - [SayIt Transcripts](https://sayit.archive.tw)
 - Email: au@cyberambassador.tw
 
-For appearances and engagements, contact [ProjectSpeaker](https://www.projectspeaker.com/audrey-tang/).
+Contact [ProjectSpeaker](https://www.projectspeaker.com/audrey-tang/) for appearances and engagements.
 
 ---
 
