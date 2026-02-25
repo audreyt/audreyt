@@ -4,7 +4,8 @@
 
 > "I want to be a good enough ancestor for future generations."
 
-2025 Right Livelihood Laureate Senior Accelerator Fellow, Oxford Institute for Ethics in AI
+Right Livelihood Laureate
+Senior Accelerator Fellow, Oxford Institute for Ethics in AI
 
 ---
 
