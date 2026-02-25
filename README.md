@@ -35,7 +35,7 @@ A child prodigy who practiced Taoism to manage a congenital heart condition, Tan
 ---
 
 <!-- section:DIALOGUE -->
-## Featured Talks: We the People are Truly the Superintelligence
+## Spotlight Addresses: We the People are Truly the Superintelligence
 
 [Geothermal Democracy](https://www.youtube.com/watch?v=iZWtNLFaC-U&t=8m46s) — Right Livelihood Lecture · Zurich · December 2025
 The hamster runs faster in the wheel — but goes nowhere. On moving from “human in the loop of AI” to “AI in the loop of humanity,” and why democracy cannot be delegated.
@@ -46,7 +46,7 @@ The hamster runs faster in the wheel — but goes nowhere. On moving from “hum
 ---
 
 <!-- section:RECOGNITION -->
-## Recognition: Free the Future — Together!
+## Honours: Free the Future — Together!
 
 ### 2025 — [Right Livelihood Award](https://rightlivelihood.org/the-change-makers/find-a-laureate/audrey-tang/)
 
@@ -132,9 +132,9 @@ Oscar and Emmy-winning director Cynthia Wade's documentary on democracy, mortali
 <!-- section:BACKGROUND -->
 ## Background: From Open Source to Open Government
 
-Tang is the driving force behind the creation of **g0v** (gov-zero), now one of the largest civic technology communities in East Asia, and played a pivotal role in the **2014 Sunflower Movement**, facilitating digital consensus-building during the occupation of Taiwan's legislature. By bringing live streaming and civic tech into the movement, Tang proved that radical transparency could transform governance from the bottom up.
+Tang is the driving force behind the creation of **g0v** (gov-zero), one of the largest civic technology communities in East Asia, and played a pivotal role in the **2014 Sunflower Movement**, facilitating digital consensus-building during the occupation of Taiwan's Legislature. By bringing live streaming and civic tech into the movement, Tang proved that radical transparency could transform governance from the bottom up.
 
-As minister without portfolio responsible for Taiwan's digital affairs, Tang implemented radical transparency and participatory democracy platforms, including **Join.gov.tw** with millions of users. Tang's tenure saw public trust in Taiwan's government rise from single digits to over 70 percent, driven by innovations such as the real-time **Mask Map** and **1922 SMS** during COVID-19 and pioneering **prebunking** defenses against cyber interference in national elections. Tang took on the ambassadorial role in 2024; the platforms, the methodology, and the legislation outlasted the tenure — which is what “complete the work and step back” was designed to mean in practice.
+As minister without portfolio responsible for Taiwan's digital affairs, Tang implemented radical transparency and participatory democracy platforms, including **Join.gov.tw** with millions of users. Tang's tenure saw public trust in Taiwan's government rise from single digits to over 70 percent, driven by innovations such as the real-time **Mask Map** and **1922 SMS** during COVID-19 and pioneering **prebunking** defenses against cyber interference in national elections. Tang took on the ambassadorial role in 2024; the platforms, the methodology, and the legislation outlasted the tenure, which is what “complete the work and step back” was designed to mean in practice.
 
 Before government, Tang made foundational contributions to open-source software — initiating over 100 projects on CPAN, leading the first working implementation of Perl 6 (now Raku) in Haskell, and creating EtherCalc with Dan Bricklin, the inventor of the electronic spreadsheet. Tang also served as a computational linguistics consultant to Apple (2010–2016), developing software used in Siri.
 
