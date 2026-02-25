@@ -29,12 +29,12 @@ A child prodigy who practiced Taoism to manage a congenital heart condition, Tan
 
 ---
 
-## Featured Talks: We the People are the True Superintelligence
+## Featured Talks: We the People are Truly the Superintelligence
 
 [Geothermal Democracy](https://www.youtube.com/watch?v=iZWtNLFaC-U&t=8m46s) — Right Livelihood Lecture · Zurich · December 2025
 The hamster runs faster in the wheel — but goes nowhere. On moving from “human in the loop of AI” to “AI in the loop of humanity,” and why democracy cannot be delegated.
 
-[Technology, Democracy & AI](https://www.youtube.com/watch?v=OcpF2yXj3b0) — Firing Line with Margaret Hoover · PBS · October 2025
+[Technology, Democracy and AI](https://www.youtube.com/watch?v=OcpF2yXj3b0) — Firing Line with Margaret Hoover · PBS · October 2025
 “To give no trust is to get no trust.” On Taiwan’s citizens’ assemblies, the illusion of polarisation, and how Civic AI built inside the occupied parliament became today’s Community Notes.
 
 ---
@@ -66,9 +66,9 @@ Recognised for contributions to digital democracy alongside heads of state and i
 
 ### Civic AI & the 6-Pack of Care
 
-The dominant AI safety narrative is vertical: one superintelligent system, aligned once and for all to human values. But no amount of *what is* produces *what ought to be*. The [6-Pack of Care](https://6pack.care), developed with Caroline Green at Oxford, offers a horizontal alternative — many bounded, purpose-specific AI agents, each devoted to one community’s relational health.
+The dominant AI safety narrative is vertical: one superintelligent system, aligned once and for all to human values. But no amount of what is produces what ought to be. The [6-Pack of Care](https://6pack.care), developed with Caroline Green at Oxford, offers a horizontal alternative — many bounded, purpose-specific AI agents, each devoted to one community’s relational health.
 
-These agents are modelled on **local kami**: guardian spirits bound to a specific place. A kami that knows “enough is enough” won’t cling to power or expand beyond its purpose. Instead of coding the “perfect” values once, the framework builds continuous governance rooted in care ethics — alignment by process, not by fiat. Six packs, drawn from Joan Tronto’s political ethics of care, make this concrete:
+These agents are modelled on **local Kami**: guardian spirits bound to a specific place. A Kami that knows “enough is enough” will not cling to power or expand beyond its purpose. Instead of coding the “perfect” values once, the framework builds continuous governance rooted in care ethics — alignment by process, not by fiat. Six packs, drawn from Joan Tronto’s political ethics of care, make this concrete:
 
 **Attentiveness** — What do the people closest to pain notice that we’re missing? Bridging algorithms surface cross-cutting concerns and amplify unheard voices — not the loudest ones.
 
@@ -94,9 +94,9 @@ Read the full framework at 6pack.care →
 
 ## Good Enough Ancestor
 
-Short Film · Directed by Cynthia Wade. Oscar & Emmy-winning director Cynthia Wade's documentary on democracy, mortality, and the courage to leave a wider canvas for future generations. **Best Professional Documentary Short**, SCAD Savannah Film Festival. Screened at the Woodstock Film Festival and Athena Film Festival. 21 min.
+Short Film · Directed by Cynthia Wade. Oscar and Emmy-winning director Cynthia Wade's documentary on democracy, mortality, and the courage to leave a wider canvas for future generations. **Best Professional Documentary Short**, SCAD Savannah Film Festival. Screened at the Woodstock Film Festival and Athena Film Festival. 21 min.
 
-> "I insist on relinquishing copyright because if I disappear tomorrow, the future generations can make use of the materials that I have."
+> "I insist on relinquishing copyright because if I disappear tomorrow, future generations can make use of the materials that I have."
 
 — from *Good Enough Ancestor* · [Watch on YouTube](https://www.youtube.com/watch?v=idudNrLy8ek)
 
@@ -107,38 +107,38 @@ Short Film · Directed by Cynthia Wade. Oscar & Emmy-winning director Cynthia Wa
 | Title | Co-authors | Venue | Year |
 |-------|------------|-------|------|
 | [How Malicious AI Swarms Can Threaten Democracy](https://www.science.org/doi/10.1126/science.adz1697) | With Maria Ressa, Nick Bostrom, Nicholas Christakis, et al. | Science | 2026 |
-| [Sunset Section 230 and Unleash the First Amendment](https://cacm.acm.org/opinion/sunset-section-230-and-unleash-the-first-amendment/) | With Jaron Lanier & Allison Stanger | CACM | 2026 |
-| [Conversation Networks](https://www.mediatechdemocracy.com/conversation-networks) | With Deb Roy & Lawrence Lessig | McGill | 2025 |
+| [Sunset Section 230 and Unleash the First Amendment](https://cacm.acm.org/opinion/sunset-section-230-and-unleash-the-first-amendment/) | With Jaron Lanier and Allison Stanger | CACM | 2026 |
+| [Conversation Networks](https://www.mediatechdemocracy.com/conversation-networks) | With Deb Roy and Lawrence Lessig | McGill | 2025 |
 | [A Different Approach to AI Safety](https://arxiv.org/abs/2506.22183) | With Camille François, Ludovic Péran et al. · Columbia University convening proceedings | arXiv | 2025 |
 | [Community by Design](https://arxiv.org/abs/2502.10834) | With E. Glen Weyl et al. | arXiv | 2025 |
 | [AI and the Future of Digital Public Squares](https://arxiv.org/abs/2412.09988) | With Beth Goldberg, Divya Siddarth, Hélène Landemore et al. | arXiv | 2024 |
 | [Democracy in the Age of AI](https://www.thersa.org/rsa-journal/democracy-in-the-age-of-ai/) | Cover article · Issue 2, 2024 | RSA Journal | 2024 |
-| [A Vision of Democratic AI](https://www.digitalistpapers.com/essays/a-vision-of-democratic-ai) | With Divya Siddarth & Saffron Huang | Digitalist | 2024 |
-| [*Plurality: The Future of Collaborative Technology and Democracy*](https://plurality.net) | With E. Glen Weyl & the Plurality community · Endorsed by the Dalai Lama, Vitalik Buterin, Danielle Allen | Book | 2024 |
+| [A Vision of Democratic AI](https://www.digitalistpapers.com/essays/a-vision-of-democratic-ai) | With Divya Siddarth and Saffron Huang | Digitalist | 2024 |
+| [*Plurality: The Future of Collaborative Technology and Democracy*](https://plurality.net) | With E. Glen Weyl and the Plurality community · Endorsed by the Dalai Lama, Vitalik Buterin, Danielle Allen | Book | 2024 |
 
 ---
 
 ## Background: From Open Source to Open Government
 
-Tang was instrumental in the creation of **g0v** (gov-zero), now one of the largest civic technology communities in East Asia, and played a pivotal role in the **2014 Sunflower Movement**, facilitating digital consensus-building during the occupation of Taiwan's legislature. By bringing live streaming and civic tech into the movement, Tang proved that radical transparency could transform governance from the bottom up.
+Tang is the driving force behind the creation of **g0v** (gov-zero), now one of the largest civic technology communities in East Asia, and played a pivotal role in the **2014 Sunflower Movement**, facilitating digital consensus-building during the occupation of Taiwan's legislature. By bringing live streaming and civic tech into the movement, Tang proved that radical transparency could transform governance from the bottom up.
 
-As digital minister in 2016, Tang implemented radical transparency and participatory democracy platforms, including **Join.gov.tw** with millions of users. Tang's tenure saw public trust in Taiwan's government rise from single digits to over 70%, driven by innovations such as the real-time **Mask Map** and **1922 SMS** during COVID-19 and pioneering **prebunking** defenses against cyber interference in national elections. Tang transitioned to the ambassadorial role in 2024; the platforms, the methodology, and the legislation outlasted the tenure — which is what “complete the work and step back” was designed to mean in practice.
+As digital minister in 2016, Tang implemented radical transparency and participatory democracy platforms, including **Join.gov.tw** with millions of users. Tang's tenure saw public trust in Taiwan's government rise from single digits to over 70 percent, driven by innovations such as the real-time **Mask Map** and **1922 SMS** during COVID-19 and pioneering **prebunking** defenses against cyber interference in national elections. Tang took on the ambassadorial role in 2024; the platforms, the methodology, and the legislation outlasted the tenure — which is what “complete the work and step back” was designed to mean in practice.
 
 Before government, Tang made foundational contributions to open-source software — initiating over 100 projects on CPAN, leading the first working implementation of Perl 6 (now Raku) in Haskell, and creating EtherCalc with Dan Bricklin, the inventor of the electronic spreadsheet. Tang also served as a computational linguistics consultant to Apple (2010–2016), developing software used in Siri.
 
-Currently, Tang is developing **techno-communitarianism** — a synthesis of her Plurality framework with Glen Weyl, and Patrick Deneen’s communitarian critique of liberalism — as a theory of Civic AI that fosters community rather than atomising it.
+Currently, Tang is developing **techno-communitarianism** — a synthesis of Tang's Plurality framework with Glen Weyl, and Patrick Deneen’s communitarian critique of liberalism — as a theory of Civic AI that fosters rather than atomises community.
 
 ---
 
 ## Connect
 
 - [LinkedIn](https://www.linkedin.com/in/tangaudrey/)
-- [Bluesky](https://bsky.app/profile/audreyt.org)
 - [X / Twitter](https://x.com/audreyt)
+- [Bluesky](https://bsky.app/profile/audreyt.org)
 - [SayIt Transcripts](https://sayit.archive.tw)
 - Email: au@cyberambassador.tw
 
-For speaking engagements, contact [ProjectSpeaker](https://www.projectspeaker.com/audrey-tang/).
+For appearances and engagements, contact [ProjectSpeaker](https://www.projectspeaker.com/audrey-tang/).
 
 ---
 
