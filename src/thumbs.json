@@ -1,0 +1,21 @@
+{
+  "iZWtNLFaC-U": {
+    "alt": "Audrey Tang speaking at the Universität Zürich podium",
+    "srcset": "thumbs/iZWtNLFaC-U-760.jpg 760w, thumbs/iZWtNLFaC-U.jpg 1280w",
+    "sizes": "(max-width: 768px) calc(100vw - 48px), 504px",
+    "width": 1280,
+    "height": 720
+  },
+  "OcpF2yXj3b0": {
+    "alt": "Audrey Tang gesturing during a TV interview",
+    "width": 1280,
+    "height": 720
+  },
+  "q3PuX1JztKI": {
+    "alt": "Two podcast hosts at microphones with large Chinese text overlay",
+    "srcset": "thumbs/q3PuX1JztKI-760.jpg 760w, thumbs/q3PuX1JztKI.jpg 1280w",
+    "sizes": "(max-width: 768px) calc(100vw - 48px), 504px",
+    "width": 1280,
+    "height": 720
+  }
+}

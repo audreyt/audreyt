@@ -1,11 +1,10 @@
 #!/usr/bin/env bun
 /**
- * Pre-commit hook: weave index.html from src/ parts, recompute LQIP, update READMEs.
+ * Pre-commit hook: weave index.html from src/ parts + READMEs, recompute LQIP.
  *
  * Pipeline:
  *   Phase 1 — LQIP: recompute --lqip values in src/styles/base.css for changed images
- *   Phase 2 — Weave: assemble index.html from src/index.template.html + src/ parts (includes CSP)
- *   Phase 3 — README: regenerate README.md and README.zh-TW.md from index.html
+ *   Phase 2 — Weave: assemble index.html from src/ skeleton + README content (includes CSP)
  *
  * Run manually (./pre-commit) to force a full rebuild without staging.
  * Auto-detected: if invoked outside .git/hooks/, force mode activates.
@@ -215,20 +214,14 @@ staged = (await $`git diff --cached --name-only`.text())
 const needsWeave =
   FORCE ||
   staged.some((f) => f.startsWith("src/")) ||
-  staged.includes("weave.ts");
+  staged.includes("weave.ts") ||
+  staged.includes("README.md") ||
+  staged.includes("README.zh-TW.md");
 
 if (needsWeave) {
   console.log("pre-commit: weaving index.html from src/ ...");
   await $`bun weave.ts`;
   await $`git add index.html`;
-}
-
-// ─── Phase 3: Regenerate READMEs ────────────────────────────────────
-
-if (needsWeave || FORCE) {
-  console.log("pre-commit: regenerating READMEs ...");
-  await $`bun generate-readme.ts`;
-  await $`git add README.md README.zh-TW.md`;
 }
 
 process.exit(0);

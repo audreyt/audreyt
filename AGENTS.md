@@ -1,12 +1,17 @@
 # Agent Notes
 
-Woven site: `index.html` is assembled from `src/` parts by `bun weave.ts`. No frameworks, strict Content Security Policy (all inline scripts and styles are SHA-256 hashed).
+Woven site: `index.html` is assembled from `src/` skeleton + README content by `bun weave.ts`. No frameworks, strict Content Security Policy (all inline scripts and styles are SHA-256 hashed).
+
+**Data flow**: `README.md` (en-GB) + `README.zh-TW.md` (zh-TW) are the **source of truth** for bilingual content. `weave.ts` parses `<!-- section:X -->` markers in both READMEs, renders HTML fragments, and inserts them into the `src/index.template.html` skeleton via `{{content:SECTION_NAME}}` markers.
 
 ## Source Layout
 
 ```
+README.md              ← content source of truth (en-GB), with <!-- section:X --> markers
+README.zh-TW.md        ← content source of truth (zh-TW), with <!-- section:X --> markers
 src/
-├── index.template.html    ← authoring target: HTML structure + content sections
+├── index.template.html    ← structural skeleton with {{content:X}} markers
+├── thumbs.json            ← dialogue thumbnail metadata (alt, srcset, sizes, dimensions)
 ├── svg/                   ← inline SVG markup (one .svg file per icon, e.g. featured-in logos)
 ├── fonts/                 ← base64-encoded WOFF2 font data (one .b64 file per font)
 │   ├── cormorant-garamond-bold-subset.woff2.b64   (~3 KB, nav-logo "Audrey Tang" only)
@@ -28,15 +33,13 @@ src/
 ## Build Pipeline
 
 ```bash
-bun weave.ts              # assemble index.html from src/ parts + compute CSP hashes
-bun generate-readme.ts    # extract README.md and README.zh-TW.md from index.html
-bun pre-commit.ts --force # full pipeline: LQIP + weave + README
+bun weave.ts              # assemble index.html from READMEs + src/ skeleton + compute CSP hashes
+bun pre-commit.ts --force # full pipeline: LQIP + weave
 ```
 
 The pre-commit hook (`pre-commit.ts`, symlinked from `.git/hooks/pre-commit`) runs automatically on commit:
 1. **Phase 1 — LQIP**: recomputes `--lqip` values in `src/styles/base.css` for any changed images
-2. **Phase 2 — Weave**: runs `bun weave.ts` to assemble `index.html` (includes CSP hash update)
-3. **Phase 3 — README**: runs `bun generate-readme.ts` to sync READMEs from assembled HTML
+2. **Phase 2 — Weave**: runs `bun weave.ts` to assemble `index.html` (includes CSP hash update). Triggered by changes to `src/`, `weave.ts`, `README.md`, or `README.zh-TW.md`
 
 ## Weave Template Markers
 
@@ -49,6 +52,7 @@ The template `src/index.template.html` uses these inclusion markers:
 | `{{json-ld:NAME}}` | Content of `src/scripts/NAME.json` |
 | `{{font:NAME}}` | Raw base64 string from `src/fonts/NAME.woff2.b64` |
 | `{{svg:NAME}}` | Content of `src/svg/NAME.svg` |
+| `{{content:NAME}}` | Rendered bilingual HTML from README section `<!-- section:NAME -->` |
 
 Font placeholders appear inside CSS `@font-face` rules:
 ```css
@@ -57,11 +61,13 @@ src: url('data:font/woff2;base64,{{font:cormorant-garamond-normal}}') format('wo
 
 ## Editing Workflow
 
-- **Content changes**: edit `src/index.template.html` (section content is inline in the template)
+- **Content changes**: edit `README.md` (en-GB) and/or `README.zh-TW.md` (zh-TW). Sections delimited by `<!-- section:X -->` markers. Uses standard Markdown (tables, bold, links, blockquotes). `weave.ts` renders each section into bilingual HTML.
+- **Structural changes**: edit `src/index.template.html` (the skeleton with `{{content:X}}` markers, images, video, nav, gallery)
 - **Style changes**: edit files in `src/styles/` — the font data placeholder stays, only CSS changes
 - **Script changes**: edit files in `src/scripts/`
 - **Font updates**: replace the `.woff2.b64` file in `src/fonts/`
 - **New images**: follow the image workflow below, then commit — LQIP + weave runs automatically
+- **Dialogue thumbnails**: edit `src/thumbs.json` (keyed by YouTube video ID)
 - **Do not edit `index.html` directly** — it is a generated artefact
 
 ## Image Format Negotiation

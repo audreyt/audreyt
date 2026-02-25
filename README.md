@@ -1,13 +1,18 @@
+<!-- section:HERO -->
 # Audrey Tang
 
 ****
 
-> "I want to be a good enough ancestor for future generations."
+> "I want to be a good enough ancestor
+> for future generations."
 
-Right Livelihood Laureate Senior Accelerator Fellow, Oxford Institute for Ethics in AI
+Right Livelihood Laureate
+Senior Accelerator Fellow,
+Oxford Institute for Ethics in AI
 
 ---
 
+<!-- section:BIO -->
 ## About
 
 Audrey Tang is a civic hacker, co-author of [*Plurality: The Future of Collaborative Technology and Democracy*](https://plurality.net), and an inaugural Senior Accelerator Fellow at the Oxford Institute for Ethics in AI.
@@ -29,6 +34,7 @@ A child prodigy who practiced Taoism to manage a congenital heart condition, Tan
 
 ---
 
+<!-- section:DIALOGUE -->
 ## Featured Talks: We the People are Truly the Superintelligence
 
 [Geothermal Democracy](https://www.youtube.com/watch?v=iZWtNLFaC-U&t=8m46s) — Right Livelihood Lecture · Zurich · December 2025
@@ -39,7 +45,8 @@ The hamster runs faster in the wheel — but goes nowhere. On moving from “hum
 
 ---
 
-## Recognition
+<!-- section:RECOGNITION -->
+## Recognition: Free the Future — Together!
 
 ### 2025 — [Right Livelihood Award](https://rightlivelihood.org/the-change-makers/find-a-laureate/audrey-tang/)
 
@@ -57,14 +64,16 @@ Named among the 100 Most Influential People in Artificial Intelligence for pione
 
 Recognised for contributions to digital democracy alongside heads of state and internationally prominent policy leaders.
 
-> "We built a geothermal democracy — the crashing plates turned into positive energy for renewal."
+<!-- section:PULLQUOTE -->
+> "We built a geothermal democracy —
+> the crashing plates turned
+> into positive energy for renewal."
 > — Right Livelihood Award [acceptance speech](https://www.youtube.com/watch?v=bjIrBmKXAOA), Stockholm, December 2025
 
 ---
 
-## Current Work · Oxford Institute for Ethics in AI
-
-### Civic AI and the 6-Pack of Care
+<!-- section:CIVIC_AI -->
+## Current Work · Oxford Institute for Ethics in AI: Civic AI and the 6-Pack of Care
 
 The dominant AI safety narrative is vertical: one superintelligent system, aligned once and for all to human values. But no amount of what is produces what ought to be. The [6-Pack of Care](https://6pack.care), developed with Caroline Green at Oxford, offers a horizontal alternative — many bounded, purpose-specific AI agents, each devoted to one community’s relational health.
 
@@ -92,9 +101,10 @@ Read the full framework at 6pack.care →
 
 ---
 
-## Good Enough Ancestor
+<!-- section:FILM -->
+## Short Film · Directed by Cynthia Wade: Good Enough Ancestor
 
-Short Film · Directed by Cynthia Wade. Oscar and Emmy-winning director Cynthia Wade's documentary on democracy, mortality, and the courage to leave a wider canvas for future generations. **Best Professional Documentary Short**, SCAD Savannah Film Festival. Screened at the Woodstock Film Festival and Athena Film Festival. 21 min.
+Oscar and Emmy-winning director Cynthia Wade's documentary on democracy, mortality, and the courage to leave a wider canvas for future generations. **Best Professional Documentary Short**, SCAD Savannah Film Festival. Screened at the Woodstock Film Festival and Athena Film Festival. 21 min.
 
 > "I insist on relinquishing copyright because if I disappear tomorrow, future generations can make use of the materials that I have."
 
@@ -102,7 +112,8 @@ Short Film · Directed by Cynthia Wade. Oscar and Emmy-winning director Cynthia 
 
 ---
 
-## Published
+<!-- section:PUBLICATIONS -->
+## Published: Deep Thinking
 
 | Title | Co-authors | Venue | Year |
 |-------|------------|-------|------|
@@ -118,6 +129,7 @@ Short Film · Directed by Cynthia Wade. Oscar and Emmy-winning director Cynthia 
 
 ---
 
+<!-- section:BACKGROUND -->
 ## Background: From Open Source to Open Government
 
 Tang is the driving force behind the creation of **g0v** (gov-zero), now one of the largest civic technology communities in East Asia, and played a pivotal role in the **2014 Sunflower Movement**, facilitating digital consensus-building during the occupation of Taiwan's legislature. By bringing live streaming and civic tech into the movement, Tang proved that radical transparency could transform governance from the bottom up.
@@ -130,6 +142,7 @@ Currently, Tang is developing **techno-communitarianism** — a synthesis of the
 
 ---
 
+<!-- section:CONNECT -->
 ## Connect
 
 - [LinkedIn](https://www.linkedin.com/in/tangaudrey/)
@@ -142,4 +155,5 @@ For appearances and engagements, contact [ProjectSpeaker](https://www.projectspe
 
 ---
 
+<!-- section:FOOTER -->
 [Site text and code](https://github.com/audreyt/audreyt) are [CC0 1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/) — no rights reserved.
