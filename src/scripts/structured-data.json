@@ -1,0 +1,51 @@
+{
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Audrey Tang",
+    "alternateName": "唐鳳",
+    "url": "https://cyberambassador.tw",
+    "image": "https://cyberambassador.tw/og-image.jpg",
+    "jobTitle": ["Cyber Ambassador", "Senior Accelerator Fellow, Oxford Institute for Ethics in AI", "Co-Curator, TED 2026"],
+    "description": "Civic hacker, 2025 Right Livelihood Laureate, co-author of Plurality, Senior Accelerator Fellow at Oxford Institute for Ethics in AI. Former Digital Minister of Taiwan.",
+    "sameAs": [
+        "https://bsky.app/profile/audreyt.org",
+        "https://www.linkedin.com/in/tangaudrey/",
+        "https://x.com/audreyt",
+        "https://en.wikipedia.org/wiki/Audrey_Tang"
+    ],
+    "award": [
+        "Right Livelihood Award (2025)",
+        "AI World Society World Leader Award (2025)",
+        "TIME 100 Most Influential People in AI (2023)",
+        "Foreign Policy 100 Global Thinkers (2019)"
+    ],
+    "affiliation": [
+        {
+            "@type": "Organization",
+            "name": "Oxford Institute for Ethics in AI",
+            "url": "https://www.oxford-aiethics.ox.ac.uk/"
+        },
+        {
+            "@type": "Organization",
+            "name": "TED Conferences"
+        },
+        {
+            "@type": "Organization",
+            "name": "Mozilla Foundation"
+        },
+        {
+            "@type": "Organization",
+            "name": "Project Liberty"
+        },
+        {
+            "@type": "Organization",
+            "name": "Ethereum Foundation"
+        }
+    ],
+    "knowsAbout": ["Digital Democracy", "Civic Technology", "AI Governance", "Plurality", "Open Source Software"],
+    "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "au@cyberambassador.tw",
+        "contactType": "personal"
+    }
+}

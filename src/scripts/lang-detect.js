@@ -1,0 +1,1 @@
+document.documentElement.classList.add('js');(function(){var r=document.documentElement,c=document.getElementById('lang-zh'),s=null,z;try{s=localStorage.getItem('lang');}catch(e){}z=s?s==='zh-TW':/^zh\b/i.test(navigator.language);if(z){c.checked=true;r.setAttribute('lang','zh-TW');document.title='\u5510\u9cf3 \u00b7 \u6578\u4f4d\u6cbb\u7406\u5927\u4f7f';}})();
