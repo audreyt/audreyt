@@ -1,6 +1,66 @@
 # Agent Notes
 
-Single-file site (`index.html`) with no build step, no frameworks, and a strict Content Security Policy (all inline scripts and styles are SHA-256 hashed).
+Woven site: `index.html` is assembled from `src/` parts by `bun weave.ts`. No frameworks, strict Content Security Policy (all inline scripts and styles are SHA-256 hashed).
+
+## Source Layout
+
+```
+src/
+├── index.template.html    ← authoring target: HTML structure + content sections
+├── fonts/                 ← base64-encoded WOFF2 font data (one .b64 file per font)
+│   ├── cormorant-garamond-bold-subset.woff2.b64   (~3 KB, nav-logo "Audrey Tang" only)
+│   ├── cormorant-garamond-normal.woff2.b64        (full Latin)
+│   ├── outfit.woff2.b64                           (body/nav-link)
+│   └── cormorant-garamond-italic.woff2.b64        (pullquote)
+├── styles/
+│   ├── base.css           ← CSS reset, variables, LQIP rules, layout, Stage 1 font-face
+│   ├── fonts-stage2.css   ← @font-face for full Cormorant Garamond normal weight
+│   ├── components.css     ← all component styles, typography, Outfit + italic font-faces
+│   └── noscript-reveal.css
+└── scripts/
+    ├── lang-detect.js     ← language detection (minified, runs in <head>)
+    ├── image-probe.js     ← AVIF/WebP decode probe
+    ├── image-upgrade.js   ← noscript → real <img> upgrade, video poster, lang toggle
+    └── structured-data.json  ← JSON-LD (schema.org Person)
+```
+
+## Build Pipeline
+
+```bash
+bun weave.ts              # assemble index.html from src/ parts + compute CSP hashes
+bun generate-readme.ts    # extract README.md and README.zh-TW.md from index.html
+bun pre-commit.ts --force # full pipeline: LQIP + weave + README
+```
+
+The pre-commit hook (`pre-commit.ts`, symlinked from `.git/hooks/pre-commit`) runs automatically on commit:
+1. **Phase 1 — LQIP**: recomputes `--lqip` values in `src/styles/base.css` for any changed images
+2. **Phase 2 — Weave**: runs `bun weave.ts` to assemble `index.html` (includes CSP hash update)
+3. **Phase 3 — README**: runs `bun generate-readme.ts` to sync READMEs from assembled HTML
+
+## Weave Template Markers
+
+The template `src/index.template.html` uses these inclusion markers:
+
+| Marker | Resolves to |
+|--------|-------------|
+| `{{style:NAME}}` | Content of `src/styles/NAME.css` |
+| `{{script:NAME}}` | Content of `src/scripts/NAME.js` |
+| `{{json-ld:NAME}}` | Content of `src/scripts/NAME.json` |
+| `{{font:NAME}}` | Raw base64 string from `src/fonts/NAME.woff2.b64` |
+
+Font placeholders appear inside CSS `@font-face` rules:
+```css
+src: url('data:font/woff2;base64,{{font:cormorant-garamond-normal}}') format('woff2');
+```
+
+## Editing Workflow
+
+- **Content changes**: edit `src/index.template.html` (section content is inline in the template)
+- **Style changes**: edit files in `src/styles/` — the font data placeholder stays, only CSS changes
+- **Script changes**: edit files in `src/scripts/`
+- **Font updates**: replace the `.woff2.b64` file in `src/fonts/`
+- **New images**: follow the image workflow below, then commit — LQIP + weave runs automatically
+- **Do not edit `index.html` directly** — it is a generated artefact
 
 ## Image Format Negotiation
 
@@ -21,7 +81,7 @@ No duplicate markup. The `<noscript>` tag is the single source of truth.
 
 ## CSS-Only LQIP
 
-Low-Quality Image Placeholders using pure CSS, based on [leanrada.com/notes/css-only-lqip/](https://leanrada.com/notes/css-only-lqip/). Each image stores a single `--lqip` integer in its CSS rule:
+Low-Quality Image Placeholders using pure CSS, based on [leanrada.com/notes/css-only-lqip/](https://leanrada.com/notes/css-only-lqip/). Each image stores a single `--lqip` integer in its CSS rule (in `src/styles/base.css`):
 
 ```css
 .hero-portrait                                       { --lqip: -174493; }
@@ -51,7 +111,7 @@ The `<video>` element carries both `poster="...jpg"` (works without JS) and `dat
 
 ## CSP Hashes
 
-The `<meta http-equiv="Content-Security-Policy">` on line 28 contains SHA-256 hashes for every inline `<script>` and `<style>`. When editing any inline script or style block, recompute its hash and update the CSP meta tag. A pre-commit hook (`auto-rehashed by pre-commit book`) may do this automatically.
+The `<meta http-equiv="Content-Security-Policy">` contains SHA-256 hashes for every inline `<script>` and `<style>`. These are automatically recomputed by `weave.ts` during assembly. The comment `<!-- auto-rehashed by pre-commit book -->` marks the CSP meta tag.
 
 ## Adding a New Image
 
@@ -59,4 +119,4 @@ The `<meta http-equiv="Content-Security-Policy">` on line 28 contains SHA-256 ha
 2. Generate AVIF: `avifenc -q 50 -s 4 assets/foo.jpg assets/foo.avif`
 3. Generate WebP: `cwebp -q 75 assets/foo.jpg -o assets/foo.webp`
 4. Repeat for each size variant
-5. Add a `<noscript><img src="assets/foo.jpg" srcset="..." sizes="..." ...></noscript>` in the HTML — the upgrade script handles the rest
+5. Add a `<noscript><img src="assets/foo.jpg" srcset="..." sizes="..." ...></noscript>` in `src/index.template.html` — the upgrade script handles the rest

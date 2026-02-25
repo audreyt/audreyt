@@ -1,11 +1,10 @@
 # Audrey Tang
 
-**Cyber Ambassador 🇹🇼 Taiwan**
+****
 
 > "I want to be a good enough ancestor for future generations."
 
-Right Livelihood Laureate
-Senior Accelerator Fellow, Oxford Institute for Ethics in AI
+Right Livelihood Laureate Senior Accelerator Fellow, Oxford Institute for Ethics in AI
 
 ---
 
@@ -103,7 +102,7 @@ Short Film · Directed by Cynthia Wade. Oscar and Emmy-winning director Cynthia 
 
 ---
 
-## Deep Thinking
+## Published
 
 | Title | Co-authors | Venue | Year |
 |-------|------------|-------|------|
@@ -127,7 +126,7 @@ As minister without portfolio responsible for Taiwan's digital affairs, Tang imp
 
 Before government, Tang made foundational contributions to open-source software — initiating over 100 projects on CPAN, leading the first working implementation of Perl 6 (now Raku) in Haskell, and creating EtherCalc with Dan Bricklin, the inventor of the electronic spreadsheet. Tang also served as a computational linguistics consultant to Apple (2010–2016), developing software used in Siri.
 
-Currently, Tang is developing **techno-communitarianism** — a synthesis of Tang's Plurality framework with Glen Weyl, and Patrick Deneen’s communitarian critique of liberalism — as a theory of Civic AI that fosters rather than atomises community.
+Currently, Tang is developing **techno-communitarianism** — a synthesis of the Plurality framework with Glen Weyl, and Patrick Deneen’s communitarian critique of liberalism — as a theory of Civic AI that fosters rather than atomises community.
 
 ---
 

@@ -1,17 +1,20 @@
 #!/usr/bin/env bun
 /**
- * Pre-commit hook: recompute LQIP for changed images, then update CSP hashes.
+ * Pre-commit hook: weave index.html from src/ parts, recompute LQIP, update READMEs.
  *
- * Run manually (./pre-commit) to force-rehash CSP without staging.
+ * Pipeline:
+ *   Phase 1 — LQIP: recompute --lqip values in src/styles/base.css for changed images
+ *   Phase 2 — Weave: assemble index.html from src/index.template.html + src/ parts (includes CSP)
+ *   Phase 3 — README: regenerate README.md and README.zh-TW.md from index.html
+ *
+ * Run manually (./pre-commit) to force a full rebuild without staging.
  * Auto-detected: if invoked outside .git/hooks/, force mode activates.
  * Also accepts --force / -f explicitly.
  */
 
 import { $ } from "bun";
-import { createHash } from "crypto";
 import { resolve } from "path";
 
-const FILE = "index.html";
 const FORCE =
   process.argv.includes("--force") ||
   process.argv.includes("-f") ||
@@ -22,24 +25,32 @@ let staged = (await $`git diff --cached --name-only`.text())
   .split("\n")
   .filter(Boolean);
 
+const hasSrcChanges = staged.some((f) => f.startsWith("src/"));
+const hasImageChanges = staged.some(
+  (f) => f.startsWith("assets/") || f.startsWith("thumbs/"),
+);
+
 // ─── Phase 1: LQIP for changed images ───────────────────────────────
+
+// LQIP values live in src/styles/base.css (not index.html directly)
+const LQIP_FILE = "src/styles/base.css";
 
 // image path → unique fragment on the --lqip CSS line
 const IMAGE_LQIP: Record<string, string> = {
   "assets/at-fallback.jpg": ".hero-portrait",
-  "assets/at-480.jpg":      ".hero-portrait",
-  "assets/at-800.jpg":      ".hero-portrait",
-  "assets/at-1200.jpg":     ".hero-portrait",
-  "assets/at-1920.jpg":     ".hero-portrait",
+  "assets/at-480.jpg": ".hero-portrait",
+  "assets/at-800.jpg": ".hero-portrait",
+  "assets/at-1200.jpg": ".hero-portrait",
+  "assets/at-1920.jpg": ".hero-portrait",
   "thumbs/iZWtNLFaC-U.jpg": "nth-child(1) .thumb",
   "thumbs/OcpF2yXj3b0.jpg": "nth-child(2) .thumb",
   "thumbs/q3PuX1JztKI.jpg": "nth-child(3) .thumb",
-  "assets/au-ey.jpg":       "figure:nth-child(1)",
-  "assets/kaii-chiang.jpg":  "figure:nth-child(2)",
-  "assets/au.jpg":           "figure:nth-child(3)",
+  "assets/au-ey.jpg": "figure:nth-child(1)",
+  "assets/kaii-chiang.jpg": "figure:nth-child(2)",
+  "assets/au.jpg": "figure:nth-child(3)",
 };
 
-const lqipUpdates = new Map<string, string>(); // selector-fragment → image path (first match wins)
+const lqipUpdates = new Map<string, string>();
 for (const p of staged) {
   if (p in IMAGE_LQIP) {
     const frag = IMAGE_LQIP[p];
@@ -104,7 +115,6 @@ if (lqipUpdates.size > 0) {
     ta: number,
     tb: number,
   ): [number, number, number] {
-    /** Brute-force best 8-bit OKLab quantisation (matches leanrada encoder). */
     const tc = Math.hypot(ta, tb);
     const sta = ta / (1e-6 + tc ** 0.5);
     const stb = tb / (1e-6 + tc ** 0.5);
@@ -130,18 +140,15 @@ if (lqipUpdates.size > 0) {
     return best;
   }
 
-  // ── encoder ──
-
   async function computeLqip(imagePath: string): Promise<number> {
-    // dominant colour → OKLab base
     const palette = await ColorThief.getPalette(imagePath, 4, 10);
-    if (!palette) throw new Error(`Could not extract palette from ${imagePath}`);
+    if (!palette)
+      throw new Error(`Could not extract palette from ${imagePath}`);
     const [r, g, b] = palette[0];
     const [rawL, rawA, rawB] = rgbToOklab(r, g, b);
     const [ll, aaa, bbb] = findOklabBits(rawL, rawA, rawB);
     const [baseL] = bitsToLab(ll, aaa, bbb);
 
-    // 3×2 preview → relative grayscale
     const { data } = await sharp(imagePath)
       .resize(3, 2, { kernel: "lanczos3" })
       .removeAlpha()
@@ -169,14 +176,14 @@ if (lqipUpdates.size > 0) {
     return unsigned - (1 << 19);
   }
 
-  // ── patch index.html ──
+  // ── patch src/styles/base.css ──
 
-  let content = await Bun.file(FILE).text();
+  let cssContent = await Bun.file(LQIP_FILE).text();
   let lqipChanged = false;
 
   for (const [frag, imagePath] of lqipUpdates) {
     const newVal = await computeLqip(imagePath);
-    const lines = content.split("\n");
+    const lines = cssContent.split("\n");
     for (let i = 0; i < lines.length; i++) {
       if (lines[i].includes(frag) && /--lqip:\s*-?\d+/.test(lines[i])) {
         lines[i] = lines[i].replace(
@@ -188,73 +195,40 @@ if (lqipUpdates.size > 0) {
         break;
       }
     }
-    content = lines.join("\n");
+    cssContent = lines.join("\n");
   }
 
   if (lqipChanged) {
-    await Bun.write(FILE, content);
-    await $`git add ${FILE}`;
+    await Bun.write(LQIP_FILE, cssContent);
+    await $`git add ${LQIP_FILE}`;
   }
 }
 
-// ─── Phase 2: CSP hashes ────────────────────────────────────────────
+// ─── Phase 2: Weave index.html ──────────────────────────────────────
 
-// Re-check staged (index.html may have been added by phase 1)
+// Re-check staged (base.css may have been added by phase 1)
 staged = (await $`git diff --cached --name-only`.text())
   .trim()
   .split("\n")
   .filter(Boolean);
 
-if (!staged.includes(FILE) && !FORCE) process.exit(0);
+const needsWeave =
+  FORCE ||
+  staged.some((f) => f.startsWith("src/")) ||
+  staged.includes("weave.ts");
 
-const content = await Bun.file(FILE).text();
-
-function hashes(tag: string): string[] {
-  const re = new RegExp(`<${tag}>(.*?)</${tag}>`, "gs");
-  const blocks: string[] = [];
-  let match;
-  while ((match = re.exec(content)) !== null) blocks.push(match[1]);
-  return blocks.map(
-    (b) => `'sha256-${createHash("sha256").update(b).digest("base64")}'`,
-  );
+if (needsWeave) {
+  console.log("pre-commit: weaving index.html from src/ ...");
+  await $`bun weave.ts`;
+  await $`git add index.html`;
 }
 
-const scriptHashes = hashes("script").join(" ");
-const styleHashes = hashes("style").join(" ");
+// ─── Phase 3: Regenerate READMEs ────────────────────────────────────
 
-function replaceDirective(
-  csp: string,
-  directive: string,
-  newHashes: string,
-): string {
-  return csp.replace(
-    new RegExp(`${directive} [^;]+`),
-    `${directive} ${newHashes}`,
-  );
-}
-
-function updateCsp(text: string): [string, boolean] {
-  const m = text.match(/(content=")(default-src[^"]+)(")/);
-  if (!m) {
-    console.error(`pre-commit: CSP meta tag not found in ${FILE}`);
-    process.exit(1);
-  }
-  let newCsp = replaceDirective(m[2], "script-src", scriptHashes);
-  newCsp = replaceDirective(newCsp, "style-src", styleHashes);
-  if (m[2] === newCsp) return [text, false];
-  return [text.replace(m[0], m[1] + newCsp + m[3]), true];
-}
-
-const [updated, changed] = updateCsp(content);
-
-if (changed) {
-  await Bun.write(FILE, updated);
-  if (!FORCE) await $`git add ${FILE}`;
-  console.log(`pre-commit: updated CSP hashes in ${FILE}`);
-  console.log(`  script-src ${scriptHashes}`);
-  console.log(`  style-src  ${styleHashes}`);
-} else if (FORCE) {
-  console.log("pre-commit: CSP hashes already up to date");
+if (needsWeave || FORCE) {
+  console.log("pre-commit: regenerating READMEs ...");
+  await $`bun generate-readme.ts`;
+  await $`git add README.md README.zh-TW.md`;
 }
 
 process.exit(0);

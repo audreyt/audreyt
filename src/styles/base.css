@@ -1,0 +1,226 @@
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html:not(:has(#lang-zh:checked)) [lang="zh-TW"]:not(.cjk) { display: none; }
+html:has(#lang-zh:checked) [lang="en-GB"] { display: none; }
+.nowrap { white-space: nowrap; }
+html:has(#lang-zh:checked) body { font-weight: 500; }
+html:has(#lang-zh:checked) em,
+html:has(#lang-zh:checked) blockquote { font-style: normal; font-family: 'Kaiti TC', 'DFKai-SB', 'BiauKai', 'STKaiti', cursive; }
+
+:root {
+    scroll-padding-top: 90px;
+    --ink: #0f1923;
+    --paper: #faf8f5;
+    --warm: #f4f1ec;
+    --surface: #fff;
+    --heading: #0f1923;
+    --gold: #7d6430;
+    --gold-light: #c9a961;
+    --teal: #2a7f8a;
+    --slate: #5a6577;
+    --text: #2c3e50;
+    --muted: #5f6a7d;
+    --border: #e0ddd7;
+    --nav-bg: rgba(250,248,245,0.96);
+    --nav-open-bg: rgba(250,248,245,0.98);
+    --serif: 'Cormorant Garamond', 'Noto Serif TC', Georgia, serif;
+    --sans: 'Outfit', 'Noto Sans TC', system-ui, sans-serif;
+    --cjk: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+}
+
+// Two-stage font loading: this is just the subset for .nav-logo
+@font-face {
+    font-family: 'Cormorant Garamond';
+    font-style: normal;
+    font-weight: 700;
+    font-display: block;
+    src: url('data:font/woff2;base64,{{font:cormorant-garamond-bold-subset}}') format('woff2');
+    unicode-range: U+0020, U+0041, U+0054, U+0061, U+0064, U+0065, U+0067, U+006E, U+0072, U+0075, U+0079;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: var(--sans);
+    color: var(--text);
+    background: var(--paper);
+    line-height: 1.7;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--teal); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; text-decoration-color: color-mix(in srgb, currentColor 35%, transparent); transition: color 0.2s; }
+a:hover { color: var(--gold); }
+
+@keyframes navSlideDown {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── STICKY NAV ─── */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: var(--nav-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+nav.scrolled {
+    border-bottom-color: var(--border);
+    box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+}
+
+.nav-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 16px 80px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.nav-logo {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--heading);
+    text-decoration: none;
+}
+
+.nav-logo:hover, .nav-logo.active { color: var(--gold); }
+
+.nav-logo .cjk {
+    font-family: var(--cjk);
+    font-size: 0.7em;
+    font-weight: 500;
+    opacity: 0.8;
+    margin-left: 6px;
+}
+
+.nav-check { display: none; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-left: auto;
+}
+
+.nav-links a { color: var(--text); text-decoration: none; transition: color 0.3s; }
+.nav-links a:hover, .nav-links a.active { color: var(--gold); }
+
+.hamburger {
+    display: none;
+    cursor: pointer;
+    font-size: 1.4rem;
+    color: var(--heading);
+    background: none;
+    border: none;
+    padding: 4px;
+}
+
+.lang-toggle {
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--muted);
+    padding: 4px 10px;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+    line-height: 1;
+    user-select: none;
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+.lang-toggle:hover { color: var(--gold); border-color: var(--gold); }
+.lang-toggle [lang="zh-TW"] { font-family: var(--cjk); font-weight: 700; }
+
+.hamburger .icon-close { display: none; }
+.hamburger[aria-expanded="true"] .icon-menu,
+#nav-check:checked ~ .hamburger .icon-menu { display: none; }
+.hamburger[aria-expanded="true"] .icon-close,
+#nav-check:checked ~ .hamburger .icon-close { display: block; }
+
+#nav-check:checked ~ .nav-links,
+.nav-links.open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--nav-open-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    padding: 16px 24px;
+    gap: 16px;
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    animation: navSlideDown 0.18s ease;
+}
+
+picture { display: block; }
+
+/* ─── A11Y ─── */
+:focus-visible {
+    outline: 2px solid var(--teal);
+    outline-offset: 3px;
+}
+
+.skip-link {
+    position: absolute;
+    left: -999px;
+    top: 8px;
+    z-index: 9999;
+    padding: 8px 16px;
+    background: var(--surface);
+    color: var(--heading);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-size: 0.9rem;
+    text-decoration: none;
+}
+
+.skip-link:focus {
+    left: 8px;
+}
+
+/* ─── DARK MODE ─── */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --paper: #111820;
+        --warm: #161e28;
+        --surface: #1c2535;
+        --heading: #e8e4dc;
+        --text: #b8b4ac;
+        --muted: #8a96a8;
+        --border: rgba(255,255,255,0.1);
+        --gold: #c9a961;
+        --teal: #4bc3d4;
+        --nav-bg: rgba(17,24,32,0.96);
+        --nav-open-bg: rgba(17,24,32,0.98);
+    }
+    .work-item { border-top-color: rgba(255,255,255,0.15); }
+}
+
+@media (max-width: 1024px) {
+    .nav-content { padding: 16px 48px; }
+}
+
+@media (max-width: 768px) {
+    .nav-content { padding: 14px 24px; }
+    .nav-links { display: none; }
+    .hamburger { display: block; }
+    .lang-toggle { margin-left: auto; }
+}
+.flag-tw { height: 1.1em; width: auto; vertical-align: -0.15em; }
