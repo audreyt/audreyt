@@ -15,9 +15,9 @@ Oxford Institute for Ethics in AI
 <!-- section:BIO -->
 ## About
 
-Audrey Tang is a civic hacker, co-author of [*Plurality: The Future of Collaborative Technology and Democracy*](https://plurality.net), and an inaugural Senior Accelerator Fellow at the Oxford Institute for Ethics in AI.
+Audrey Tang is a civic hacker, co-author of [*Plurality: The Future of Collaborative Technology and Democracy*](https://plurality.net), and an inaugural senior accelerator fellow at the Oxford Institute for Ethics in AI.
 
-Taiwan's first Digital Minister and the world's first nonbinary cabinet minister, Tang was awarded the 2025 [Right Livelihood Award](https://rightlivelihood.org/the-change-makers/find-a-laureate/audrey-tang/) for *“advancing the social use of digital technology to empower citizens, renew democracy and heal divides.”*
+Taiwan's 1st digital minister and the world's first nonbinary cabinet minister, Tang was awarded the 2025 [Right Livelihood Award](https://rightlivelihood.org/the-change-makers/find-a-laureate/audrey-tang/) for *“advancing the social use of digital technology to empower citizens, renew democracy and heal divides.”*
 
 A child prodigy who practiced Taoism to manage a congenital heart condition, Tang opted for homeschooling and entrepreneurship at 14. A decade later, Tang was a leader in the free and open-source software communities, revitalising the Haskell and Perl languages.
 
