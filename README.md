@@ -7,6 +7,7 @@
 > for future generations."
 
 Right Livelihood Laureate
+
 Senior Accelerator Fellow,
 Oxford Institute for Ethics in AI
 
