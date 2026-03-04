@@ -133,7 +133,7 @@ Oscar and Emmy-winning director Cynthia Wade's documentary on democracy, mortali
 <!-- section:BACKGROUND -->
 ## Background: From Open Source to Open Government
 
-Tang is the driving force behind the creation of **g0v** (gov-zero), one of the largest civic technology communities in East Asia, and played a pivotal role in the **2014 Sunflower Movement**, facilitating digital consensus-building during the occupation of Taiwan's Legislature. By bringing live streaming and civic tech into the movement, Tang proved that radical transparency could transform governance from the bottom up.
+Tang is a driving force behind the creation of **g0v** (gov-zero), one of the largest civic technology communities in East Asia, and played a pivotal role in the **2014 Sunflower Movement**, facilitating digital consensus-building during the occupation of Taiwan's Legislature. By bringing live streaming and civic tech into the movement, Tang proved that radical transparency could transform governance from the bottom up.
 
 As minister without portfolio responsible for Taiwan's digital affairs, Tang implemented radical transparency and participatory democracy platforms, including **Join.gov.tw** with millions of users. Tang's tenure saw public trust in Taiwan's government rise from single digits to over 70 percent, driven by innovations such as the real-time **Mask Map** and **1922 SMS** during COVID-19 and pioneering **prebunking** defenses against cyber interference in national elections. Tang took on the ambassadorial role in 2024; the platforms, the methodology, and the legislation outlasted the tenure, which is what “complete the work and step back” was designed to mean in practice.
 
