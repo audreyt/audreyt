@@ -25,7 +25,7 @@
 <meta name="theme-color" content="#0f1923" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#faf8f5" media="(prefers-color-scheme: light)">
 <meta name="color-scheme" content="light dark">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-uuoz5TQ6x7Soce1tzIb0Z2db7jLBjb7qhVerELB8ywk=' 'sha256-4G7wnwQc6qvKDvB+Quf3SC5N+0WcBvc/riHtQRDvDX4=' 'sha256-PBIbXpxoZq+dGJKBjiohe0A6iJvI1eJGI9eoqhVuI+Q='; style-src 'sha256-bDY6FZoeTf6q1OFKAm9VbOuUPcTtgmyHFqO238fjg8E=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-kTULIk1LNNTuREciBeliE5aA3crzF37/I9L8WOTrbcw=' 'sha256-zfm4ggmv/GMvJ2k1fofOkCqWxBI6c2Tr7qd8nHqDpYw='; img-src 'self'; font-src 'self' data:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-uuoz5TQ6x7Soce1tzIb0Z2db7jLBjb7qhVerELB8ywk=' 'sha256-4G7wnwQc6qvKDvB+Quf3SC5N+0WcBvc/riHtQRDvDX4=' 'sha256-PBIbXpxoZq+dGJKBjiohe0A6iJvI1eJGI9eoqhVuI+Q='; style-src 'sha256-bDY6FZoeTf6q1OFKAm9VbOuUPcTtgmyHFqO238fjg8E=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-kTULIk1LNNTuREciBeliE5aA3crzF37/I9L8WOTrbcw=' 'sha256-homZe+Nj40R45hjyAu3+Rn+JtrENQzfsjEy2sJ8SSzk='; img-src 'self'; font-src 'self' data:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
 <link rel="canonical" href="https://cyberambassador.tw/">
 <link rel="alternate" hreflang="zh-TW" href="https://audreyt.org/">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -1768,6 +1768,14 @@ footer .footer-name {
         color: var(--print-ink) !important;
     }
 
+    footer p {
+        margin-bottom: 0 !important;
+        font-size: 7.2pt !important;
+        line-height: 1.15 !important;
+        white-space: nowrap !important;
+        letter-spacing: -0.01em;
+    }
+
     html:not(:has(#lang-en:checked)) #publications {
         break-before: page;
         page-break-before: always;
@@ -1864,6 +1872,10 @@ footer .footer-name {
     html:has(#lang-en:checked) footer .footer-name {
         margin-bottom: 1mm !important;
         font-size: 9.2pt !important;
+    }
+
+    html:has(#lang-en:checked) footer p {
+        font-size: 7pt !important;
     }
 }
 </style>

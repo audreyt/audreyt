@@ -1464,6 +1464,14 @@ footer .footer-name {
         color: var(--print-ink) !important;
     }
 
+    footer p {
+        margin-bottom: 0 !important;
+        font-size: 7.2pt !important;
+        line-height: 1.15 !important;
+        white-space: nowrap !important;
+        letter-spacing: -0.01em;
+    }
+
     html:not(:has(#lang-en:checked)) #publications {
         break-before: page;
         page-break-before: always;
@@ -1560,5 +1568,9 @@ footer .footer-name {
     html:has(#lang-en:checked) footer .footer-name {
         margin-bottom: 1mm !important;
         font-size: 9.2pt !important;
+    }
+
+    html:has(#lang-en:checked) footer p {
+        font-size: 7pt !important;
     }
 }
