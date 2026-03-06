@@ -979,28 +979,586 @@ footer .footer-name {
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
+@page {
+    margin: 14mm 16mm 18mm;
+}
+
 @media print {
+    :root {
+        --print-ink: #1f2430;
+        --print-muted: #59606d;
+        --print-line: #c7b9a6;
+        --print-soft: #f3ede4;
+        --print-panel: #fbf8f3;
+        --print-accent: #7b5f34;
+        --print-accent-soft: #dfd2bf;
+    }
+
+    *, *::before, *::after {
+        box-shadow: none !important;
+        text-shadow: none !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    html,
+    body {
+        background: #fff !important;
+    }
+
+    body {
+        font-size: 10.5pt;
+        line-height: 1.55;
+        color: var(--print-ink);
+        margin: 0;
+        padding: 0;
+    }
+
     nav, .skip-link, .hamburger, .lang-toggle, .film, .gallery, .lightbox,
-    #connect, .pullquote, .featured-in, footer, .hero::after, .hero-scroll,
-    .thumb, video, .sr-only { display: none !important; }
-    * { color: #000 !important; background: #fff !important; box-shadow: none !important; text-shadow: none !important; }
-    body { font-size: 11pt; line-height: 1.4; margin: 0; padding: 0; }
-    .hero { min-height: 0 !important; height: auto !important; display: flex !important; flex-direction: row-reverse !important; align-items: flex-start !important; padding: 0 !important; gap: 18pt; }
-    .hero-portrait-picture { position: static !important; width: auto !important; height: auto !important; flex-shrink: 0; }
-    .hero-portrait { position: static !important; width: 120pt !important; height: auto !important; opacity: 1 !important; object-fit: cover; border-radius: 4px; }
-    .hero-content { position: static !important; padding: 0 !important; max-width: none !important; flex: 1; }
-    .hero h1 { font-size: 22pt !important; color: #000 !important; margin: 0 0 4pt !important; }
-    .hero h1 .cjk { color: #333 !important; }
-    .hero-label { color: #333 !important; }
-    .hero-subtitle { color: #000 !important; margin: 2pt 0 !important; font-size: 10pt !important; }
-    .hero-quote { color: #333 !important; border-color: #999 !important; margin: 6pt 0 !important; font-size: 10pt !important; }
-    .section { padding: 10pt 0 !important; }
-    #dialogue { break-before: page; }
-    .dialogue-card, .award-card { border: none !important; padding: 6pt 0 !important; break-inside: avoid; }
-    .dialogue-card .body { padding: 6pt 0 !important; }
-    .dialogue-grid, .awards-grid { gap: 6pt !important; margin-top: 12pt !important; }
-    .section-label { margin-bottom: 4pt !important; }
-    .reveal { opacity: 1 !important; transform: none !important; }
-    a[href]::after { content: " (" attr(href) ")"; font-size: 0.85em; }
-    a[href^="#"]::after, a[href^="javascript"]::after { content: none; }
+    .pullquote, .featured-in, .hero::after, .hero-scroll, .thumb, video,
+    .sr-only { display: none !important; }
+
+    main { display: block; }
+
+    a {
+        color: inherit !important;
+        text-decoration: underline;
+        text-decoration-thickness: 0.75pt;
+        text-underline-offset: 2pt;
+        text-decoration-color: var(--print-line);
+    }
+
+    a[href]::after { content: none !important; }
+
+    img {
+        max-width: 100%;
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+
+    p {
+        orphans: 3;
+        widows: 3;
+    }
+
+    .reveal {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    .hero {
+        min-height: 0 !important;
+        height: auto !important;
+        display: grid !important;
+        grid-template-columns: minmax(0, 1fr) 44mm;
+        align-items: end !important;
+        gap: 8mm;
+        padding: 0 0 8mm !important;
+        margin: 0 0 8mm;
+        background: none !important;
+        border-bottom: 1.25pt solid var(--print-line);
+        overflow: visible !important;
+        break-inside: avoid;
+    }
+
+    .hero-portrait-picture {
+        position: static !important;
+        width: 100% !important;
+        height: auto !important;
+        align-self: start;
+    }
+
+    .hero-portrait {
+        position: static !important;
+        display: block !important;
+        width: 100% !important;
+        height: auto !important;
+        opacity: 1 !important;
+        object-fit: cover;
+        object-position: center top;
+        border-radius: 10pt;
+        border: 1pt solid var(--print-accent-soft);
+        background: var(--print-soft) !important;
+    }
+
+    .hero-content {
+        position: static !important;
+        display: grid;
+        gap: 2.5mm;
+        align-self: stretch;
+        padding: 0 !important;
+        max-width: none !important;
+        color: inherit !important;
+    }
+
+    .hero-label,
+    .hero h1,
+    .hero-subtitle,
+    .hero-quote {
+        opacity: 1 !important;
+        animation: none !important;
+        transform: none !important;
+    }
+
+    .hero-label {
+        width: fit-content;
+        margin: 0 !important;
+        padding-top: 3mm;
+        border-top: 2pt solid var(--print-accent);
+        font-size: 7pt !important;
+        letter-spacing: 0.28em;
+        color: var(--print-accent) !important;
+    }
+
+    .hero h1 {
+        margin: 0 !important;
+        font-size: 28pt !important;
+        line-height: 0.95 !important;
+        color: var(--print-ink) !important;
+    }
+
+    .hero h1 .cjk {
+        color: var(--print-muted) !important;
+    }
+
+    .hero-subtitle {
+        margin: 0 !important;
+        max-width: 20em;
+        font-size: 11.5pt !important;
+        line-height: 1.35 !important;
+        color: var(--print-muted) !important;
+    }
+
+    .hero-quote {
+        margin: 3mm 0 0 !important;
+        padding: 2mm 0 0 5mm !important;
+        max-width: 22em;
+        border-left: 1.5pt solid var(--print-accent);
+        font-size: 11pt !important;
+        color: var(--print-ink) !important;
+    }
+
+    .bio,
+    .section,
+    footer {
+        max-width: none !important;
+        margin: 0 0 7mm;
+        padding: 0 !important;
+        background: none !important;
+        border: 0 !important;
+    }
+
+    .bio > .section {
+        padding: 6mm !important;
+        background: linear-gradient(180deg, var(--print-panel), #fff) !important;
+        border: 1pt solid var(--print-accent-soft) !important;
+        border-radius: 12pt;
+    }
+
+    .section + .section,
+    .bio + .section,
+    #connect,
+    footer {
+        padding-top: 6mm !important;
+        border-top: 0.8pt solid var(--print-accent-soft) !important;
+    }
+
+    .section-label {
+        margin: 0 0 2mm !important;
+        font-size: 7pt !important;
+        font-weight: 600;
+        letter-spacing: 0.28em !important;
+        color: var(--print-accent) !important;
+        break-after: avoid;
+        page-break-after: avoid;
+    }
+
+    .section h2,
+    #connect h2 {
+        margin: 0 0 5mm !important;
+        font-size: 21pt !important;
+        line-height: 1.08 !important;
+        color: var(--print-ink) !important;
+        break-after: avoid;
+        page-break-after: avoid;
+    }
+
+    .section p,
+    #connect p,
+    footer p {
+        margin-bottom: 2.4mm !important;
+        font-size: 9.7pt !important;
+        color: var(--print-ink) !important;
+    }
+
+    .bio-grid {
+        grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr) !important;
+        gap: 8mm !important;
+    }
+
+    .bio-text {
+        font-size: 10.2pt !important;
+        line-height: 1.62 !important;
+    }
+
+    .bio-roles li {
+        padding: 3mm 0 !important;
+        border: 0 !important;
+        border-top: 0.65pt solid var(--print-accent-soft) !important;
+        gap: 10pt;
+    }
+
+    .bio-roles li:first-child {
+        border-top-width: 1pt !important;
+    }
+
+    .role-title {
+        font-size: 12pt !important;
+        color: var(--print-ink) !important;
+    }
+
+    .role-org {
+        font-size: 8.4pt !important;
+        color: var(--print-muted) !important;
+    }
+
+    .dialogue-grid,
+    .awards-grid {
+        margin-top: 0 !important;
+        gap: 5mm !important;
+    }
+
+    .dialogue-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+
+    .awards-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        grid-template-rows: repeat(2, auto) !important;
+        grid-auto-flow: column !important;
+    }
+
+    .dialogue-card,
+    .award-card,
+    .work-item,
+    .case-study,
+    .pub-list li,
+    .connect-link {
+        page-break-inside: avoid;
+        break-inside: avoid;
+    }
+
+    .dialogue-card,
+    .award-card {
+        display: block;
+        background: var(--print-panel) !important;
+        border: 1pt solid var(--print-accent-soft) !important;
+        border-top: 2pt solid var(--print-accent) !important;
+        border-radius: 0 0 10pt 10pt !important;
+        color: inherit !important;
+        transform: none !important;
+    }
+
+    .dialogue-body {
+        padding: 4.5mm !important;
+    }
+
+    .dialogue-body .meta {
+        margin-bottom: 2mm !important;
+        font-size: 7pt !important;
+        letter-spacing: 0.12em !important;
+        color: var(--print-accent) !important;
+    }
+
+    .dialogue-body h3 {
+        margin-bottom: 1.5mm !important;
+        font-size: 14pt !important;
+        color: var(--print-ink) !important;
+    }
+
+    .dialogue-body p {
+        margin: 0 !important;
+        font-size: 9.5pt !important;
+        line-height: 1.55 !important;
+        color: var(--print-ink) !important;
+    }
+
+    .award-card {
+        padding: 4.5mm !important;
+    }
+
+    .award-year {
+        margin-bottom: 1mm !important;
+        font-size: 19pt !important;
+        color: var(--print-accent) !important;
+    }
+
+    .award-name {
+        margin-bottom: 1.25mm !important;
+        font-size: 12.5pt !important;
+        color: var(--print-ink) !important;
+    }
+
+    .award-desc {
+        font-size: 9.2pt !important;
+        line-height: 1.55 !important;
+        color: var(--print-ink) !important;
+    }
+
+    .work-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 5mm !important;
+        margin-top: 0 !important;
+    }
+
+    .work-item {
+        padding: 4mm 4.5mm !important;
+        background: var(--print-panel) !important;
+        border: 1pt solid var(--print-accent-soft) !important;
+        border-top: 2pt solid var(--print-ink) !important;
+        border-radius: 8pt !important;
+    }
+
+    .work-item h3 {
+        margin-bottom: 1.5mm !important;
+        font-size: 13pt !important;
+        color: var(--print-ink) !important;
+    }
+
+    .work-item p {
+        margin: 0 !important;
+        font-size: 9.4pt !important;
+        line-height: 1.55 !important;
+        color: var(--print-ink) !important;
+    }
+
+    .work-item--spaced {
+        margin-top: 2mm !important;
+        padding: 0 !important;
+        background: none !important;
+        border: 0 !important;
+    }
+
+    .work-item .work-link {
+        margin-top: 0 !important;
+        color: var(--print-accent) !important;
+        border-bottom-color: var(--print-accent) !important;
+        font-size: 8pt !important;
+        letter-spacing: 0.12em !important;
+    }
+
+    .case-study {
+        margin-top: 5mm !important;
+        padding: 6mm !important;
+        background: linear-gradient(180deg, var(--print-panel), #fff) !important;
+        border: 1pt solid var(--print-accent-soft) !important;
+        border-left: 3pt solid var(--print-accent) !important;
+        border-radius: 12pt !important;
+    }
+
+    .case-study h3 {
+        margin: 1.5mm 0 2mm !important;
+        font-size: 15pt !important;
+        color: var(--print-ink) !important;
+    }
+
+    .case-study p {
+        margin-bottom: 2mm !important;
+        font-size: 9.3pt !important;
+        line-height: 1.5 !important;
+    }
+
+    .pub-list {
+        margin-top: 0 !important;
+        columns: 3;
+        column-gap: 5mm;
+    }
+
+    .pub-list li {
+        display: block !important;
+        margin: 0 0 2.6mm !important;
+        padding: 0 0 2.6mm !important;
+        border-bottom: 0.5pt solid var(--print-accent-soft) !important;
+    }
+
+    .pub-venue {
+        display: block;
+        min-width: 0 !important;
+        margin-bottom: 0.65mm;
+        font-size: 6.2pt !important;
+        letter-spacing: 0.14em !important;
+        color: var(--print-accent) !important;
+    }
+
+    .pub-title {
+        font-size: 9.1pt !important;
+        line-height: 1.26 !important;
+        color: var(--print-ink) !important;
+    }
+
+    .pub-coauthors {
+        margin-top: 0.5mm !important;
+        font-size: 7.1pt !important;
+        line-height: 1.3 !important;
+        color: var(--print-muted) !important;
+    }
+
+    .pub-year {
+        display: block;
+        margin-top: 0.6mm;
+        font-size: 6.8pt !important;
+        color: var(--print-accent) !important;
+    }
+
+    .section.section-narrow {
+        max-width: none !important;
+        columns: 2;
+        column-gap: 6mm;
+    }
+
+    .section.section-narrow .section-label,
+    .section.section-narrow h2 {
+        column-span: all;
+    }
+
+    .connect-grid {
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        align-items: flex-start !important;
+        gap: 3mm !important;
+        margin-top: 1mm !important;
+    }
+
+    .connect-link {
+        gap: 0 !important;
+        width: auto !important;
+        padding: 1.8mm 3.2mm !important;
+        background: var(--print-panel) !important;
+        border: 1pt solid var(--print-accent-soft) !important;
+        border-radius: 999px !important;
+        font-size: 8.2pt !important;
+        color: var(--print-ink) !important;
+    }
+
+    .connect-icon {
+        display: none !important;
+    }
+
+    .connect-note {
+        margin-top: 1.8mm !important;
+        font-size: 8.1pt !important;
+        color: var(--print-muted) !important;
+    }
+
+    footer {
+        margin-bottom: 0 !important;
+        text-align: left !important;
+        font-size: 8pt !important;
+        line-height: 1.45 !important;
+        color: var(--print-muted) !important;
+    }
+
+    footer .footer-name {
+        margin-bottom: 1.4mm !important;
+        font-size: 10.2pt !important;
+        color: var(--print-ink) !important;
+    }
+
+    html:not(:has(#lang-en:checked)) #publications {
+        break-before: page;
+        page-break-before: always;
+    }
+
+    html:has(#lang-en:checked) .hero {
+        grid-template-columns: minmax(0, 1fr) 40mm;
+        gap: 6mm;
+        padding-bottom: 6mm !important;
+        margin-bottom: 6mm;
+    }
+
+    html:has(#lang-en:checked) .hero h1 {
+        font-size: 25pt !important;
+    }
+
+    html:has(#lang-en:checked) .hero-subtitle {
+        font-size: 10.5pt !important;
+        line-height: 1.3 !important;
+    }
+
+    html:has(#lang-en:checked) .hero-quote {
+        font-size: 10pt !important;
+        max-width: 20em;
+    }
+
+    html:has(#lang-en:checked) .bio > .section {
+        padding: 5mm !important;
+    }
+
+    html:has(#lang-en:checked) .bio-grid {
+        gap: 6mm !important;
+    }
+
+    html:has(#lang-en:checked) .bio-text {
+        font-size: 9.7pt !important;
+        line-height: 1.54 !important;
+    }
+
+    html:has(#lang-en:checked) .bio-roles li {
+        padding: 2.2mm 0 !important;
+    }
+
+    html:has(#lang-en:checked) .role-title {
+        font-size: 11.2pt !important;
+    }
+
+    html:has(#lang-en:checked) .role-org {
+        font-size: 7.8pt !important;
+    }
+
+    html:has(#lang-en:checked) .section.section-narrow {
+        column-gap: 5mm;
+    }
+
+    html:has(#lang-en:checked) .section.section-narrow p {
+        margin-bottom: 2mm !important;
+        font-size: 9.2pt !important;
+        line-height: 1.42 !important;
+    }
+
+    html:has(#lang-en:checked) #connect {
+        padding-top: 3mm !important;
+        margin-bottom: 3mm;
+    }
+
+    html:has(#lang-en:checked) #connect h2 {
+        margin-bottom: 2mm !important;
+        font-size: 17pt !important;
+    }
+
+    html:has(#lang-en:checked) .connect-grid {
+        flex-direction: row !important;
+        gap: 1.5mm !important;
+        margin-top: 0 !important;
+    }
+
+    html:has(#lang-en:checked) .connect-link {
+        padding: 1.2mm 2.6mm !important;
+        font-size: 7.5pt !important;
+    }
+
+    html:has(#lang-en:checked) .connect-note {
+        margin-top: 1mm !important;
+        font-size: 7.5pt !important;
+    }
+
+    html:has(#lang-en:checked) footer {
+        padding-top: 3mm !important;
+        font-size: 7.5pt !important;
+        line-height: 1.32 !important;
+    }
+
+    html:has(#lang-en:checked) footer .footer-name {
+        margin-bottom: 1mm !important;
+        font-size: 9.2pt !important;
+    }
 }
