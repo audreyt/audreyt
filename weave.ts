@@ -670,7 +670,7 @@ function renderCivicAI(): string {
       const boldMatch = p.match(/^\*\*([^*]+)\*\*\s*\u2014\s*(.+)$/s);
       if (boldMatch) {
         workItems.push({ name: boldMatch[1], desc: boldMatch[2] });
-      } else if (p.includes("6pack.care") && p.includes("\u2192")) {
+      } else if (p.includes("civic.ai") && p.includes("\u2192")) {
         trailingLink = p;
       } else if (workItems.length === 0 && !trailingLink) {
         introParagraphs.push(p);
@@ -692,7 +692,7 @@ function renderCivicAI(): string {
       }
       const csBody = caseStudyRaw.slice(csFirstLine.length).trim();
       csParagraphs = parseParagraphs(csBody).filter((p) => {
-        if (p.includes("6pack.care") && p.includes("\u2192")) {
+        if (p.includes("civic.ai") && p.includes("\u2192")) {
           trailingLink = p;
           return false;
         }
@@ -768,7 +768,7 @@ function renderCivicAI(): string {
   // Trailing link
   if (enC.trailingLink || zhC.trailingLink) {
     lines.push(
-      `${I}<div class="work-item work-item--spaced"><a href="https://6pack.care" class="work-link" lang="en-GB">${entEn(enC.trailingLink)}</a><a href="https://6pack.care" class="work-link" lang="zh-TW">${entZh(zhC.trailingLink)}</a></div>`,
+      `${I}<div class="work-item work-item--spaced"><a href="https://civic.ai" class="work-link" lang="en-GB">${entEn(enC.trailingLink)}</a><a href="https://civic.ai" class="work-link" lang="zh-TW">${entZh(zhC.trailingLink)}</a></div>`,
     );
   }
 

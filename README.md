@@ -76,7 +76,7 @@ Recognised for contributions to digital democracy alongside heads of state and i
 <!-- section:CIVIC_AI -->
 ## Current Work · Oxford Institute for Ethics in AI: Civic AI and the 6-Pack of Care
 
-The dominant AI safety narrative is vertical: one superintelligent system, aligned once and for all to human values. But no amount of what is produces what ought to be. The [6-Pack of Care](https://6pack.care), developed with Caroline Green at Oxford, offers a horizontal alternative — many bounded, purpose-specific AI agents, each devoted to one community’s relational health.
+The dominant AI safety narrative is vertical: one superintelligent system, aligned once and for all to human values. But no amount of what is produces what ought to be. [Civic AI](https://civic.ai), developed with Caroline Green at Oxford, offers a horizontal alternative — many bounded, purpose-specific AI agents, each devoted to one community’s relational health.
 
 These agents are modelled on **local Kami**: guardian spirits bound to a specific place. A Kami that knows “enough is enough” will not cling to power or expand beyond its purpose. Instead of coding the “perfect” values once, the framework builds continuous governance rooted in care ethics — alignment by process, not by fiat. Six packs, drawn from Joan Tronto’s political ethics of care, make this concrete:
 
@@ -98,7 +98,7 @@ AI-generated scam ads impersonating Jensen Huang were costing Taiwanese citizens
 
 Three measures emerged — label unsigned ads as probable scams; hold platforms liable for losses from unsolicited deepfakes; slow down non-compliant services until they comply — actor-and-behavior regulation, not content moderation. 85% of the assembly agreed. The law passed with multiparty support. By 2025, impersonation ads on Taiwanese social media fell by 94%.
 
-Read the full framework at 6pack.care →
+Read the full framework at civic.ai →
 
 ---
 
