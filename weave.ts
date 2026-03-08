@@ -90,6 +90,10 @@ function entZh(s: string): string {
 
 type EntFn = (s: string) => string;
 
+function escapeAttr(s: string): string {
+  return s.replace(/&/g, "&amp;").replace(/"/g, "&quot;");
+}
+
 // ─── Inline Markdown → HTML ─────────────────────────────────────────
 
 /**
@@ -189,6 +193,35 @@ function parseParagraphs(text: string): string[] {
 function videoId(url: string): string {
   const m = url.match(/[?&]v=([^&]+)/);
   return m?.[1] ?? "";
+}
+
+function parseCivicTrailingLink(text: string): {
+  label: string;
+  href: string;
+} | null {
+  if (!text.includes("\u2192")) return null;
+
+  const markdownMatch = text.match(/\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/);
+  if (markdownMatch) {
+    return {
+      label: text.replace(markdownMatch[0], markdownMatch[1]),
+      href: markdownMatch[2],
+    };
+  }
+
+  const absoluteMatch = text.match(/\bhttps?:\/\/(?:www\.)?civic\.[^\s<)\]]+/i);
+  if (absoluteMatch) {
+    return { label: text, href: absoluteMatch[0] };
+  }
+
+  const bareDomainMatch = text.match(
+    /\b(civic\.[a-z0-9.-]+(?:\/[^\s<)\]]*)?)\b/i,
+  );
+  if (bareDomainMatch) {
+    return { label: text, href: `https://${bareDomainMatch[1]}` };
+  }
+
+  return null;
 }
 
 // ─── Section renderers ──────────────────────────────────────────────
@@ -665,13 +698,16 @@ function renderCivicAI(): string {
     const introParagraphs: string[] = [];
     const workItems: { name: string; desc: string }[] = [];
     let trailingLink = "";
+    let trailingHref = "";
 
     for (const p of paras) {
       const boldMatch = p.match(/^\*\*([^*]+)\*\*\s*\u2014\s*(.+)$/s);
+      const trailing = parseCivicTrailingLink(p);
       if (boldMatch) {
         workItems.push({ name: boldMatch[1], desc: boldMatch[2] });
-      } else if (p.includes("civic.ai") && p.includes("\u2192")) {
-        trailingLink = p;
+      } else if (trailing) {
+        trailingLink = trailing.label;
+        trailingHref = trailing.href;
       } else if (workItems.length === 0 && !trailingLink) {
         introParagraphs.push(p);
       }
@@ -692,8 +728,10 @@ function renderCivicAI(): string {
       }
       const csBody = caseStudyRaw.slice(csFirstLine.length).trim();
       csParagraphs = parseParagraphs(csBody).filter((p) => {
-        if (p.includes("civic.ai") && p.includes("\u2192")) {
-          trailingLink = p;
+        const trailing = parseCivicTrailingLink(p);
+        if (trailing) {
+          trailingLink = trailing.label;
+          trailingHref = trailing.href;
           return false;
         }
         return true;
@@ -707,6 +745,7 @@ function renderCivicAI(): string {
       csHeading,
       csParagraphs,
       trailingLink,
+      trailingHref,
     };
   }
 
@@ -767,9 +806,21 @@ function renderCivicAI(): string {
 
   // Trailing link
   if (enC.trailingLink || zhC.trailingLink) {
-    lines.push(
-      `${I}<div class="work-item work-item--spaced"><a href="https://civic.ai" class="work-link" lang="en-GB">${entEn(enC.trailingLink)}</a><a href="https://civic.ai" class="work-link" lang="zh-TW">${entZh(zhC.trailingLink)}</a></div>`,
-    );
+    const enHref = enC.trailingHref || zhC.trailingHref;
+    const zhHref = zhC.trailingHref || enC.trailingHref;
+
+    lines.push(`${I}<div class="work-item work-item--spaced">`);
+    if (enC.trailingLink && enHref) {
+      lines.push(
+        `${I}    <a href="${escapeAttr(enHref)}" class="work-link" lang="en-GB">${entEn(enC.trailingLink)}</a>`,
+      );
+    }
+    if (zhC.trailingLink && zhHref) {
+      lines.push(
+        `${I}    <a href="${escapeAttr(zhHref)}" class="work-link" lang="zh-TW">${entZh(zhC.trailingLink)}</a>`,
+      );
+    }
+    lines.push(`${I}</div>`);
   }
 
   return lines.join("\n");
