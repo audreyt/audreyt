@@ -45,7 +45,7 @@
     "knowsAbout": ["Digital Democracy", "Civic Technology", "AI Governance", "Plurality", "Open Source Software"],
     "contactPoint": {
         "@type": "ContactPoint",
-        "email": "au@cyberambassador.tw",
+        "email": "au@civic.ai",
         "contactType": "personal"
     }
 }
