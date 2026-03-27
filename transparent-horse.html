@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,9 +13,11 @@
 <meta name="color-scheme" content="light dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@400;600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html:not(:has(#lang-zh:checked)) [lang="zh-TW"] { display: none; }
+html:has(#lang-zh:checked) [lang="en-GB"] { display: none; }
 
 :root {
     --ink: #0f1923;
@@ -30,8 +32,11 @@
     --text: #2c3e50;
     --muted: #5f6a7d;
     --border: #e0ddd7;
-    --serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
-    --sans: 'Outfit', system-ui, -apple-system, sans-serif;
+    --serif: 'Cormorant Garamond', 'Noto Serif TC', Georgia, serif;
+    --sans: 'Outfit', 'Noto Sans TC', system-ui, -apple-system, sans-serif;
+    --serif-cjk: 'Noto Serif TC', 'Songti TC', 'PMingLiU', Georgia, serif;
+    --cjk: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+    --cursive: 'Kaiti TC', 'DFKai-SB', 'BiauKai', 'STKaiti', cursive;
 }
 
 html { scroll-behavior: smooth; }
@@ -46,10 +51,56 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+/* ── CJK OVERRIDES ── */
+html:has(#lang-zh:checked) body { font-weight: 500; line-height: 1.9; }
+html:has(#lang-zh:checked) .hero h1 { font-family: var(--serif-cjk); letter-spacing: 0.04em; line-height: 1.15; font-size: clamp(2.8rem, 7vw, 5.5rem); }
+html:has(#lang-zh:checked) .hero-subtitle { font-style: normal; font-family: var(--cursive); letter-spacing: 0.05em; }
+html:has(#lang-zh:checked) .hero-lede { font-family: var(--cjk); font-weight: 400; line-height: 2; font-size: clamp(0.95rem, 1.6vw, 1.08rem); }
+html:has(#lang-zh:checked) .chapter-title { font-family: var(--serif-cjk); font-weight: 600; letter-spacing: 0.04em; }
+html:has(#lang-zh:checked) .chapter-body { line-height: 2; }
+html:has(#lang-zh:checked) .chapter-body p { font-size: 1.02rem; }
+html:has(#lang-zh:checked) .chapter-body em { font-style: normal; font-family: var(--cursive); }
+html:has(#lang-zh:checked) .chapter-body blockquote { font-family: var(--cursive); font-style: normal; line-height: 1.8; }
+html:has(#lang-zh:checked) .interlude blockquote { font-family: var(--cursive); font-style: normal; line-height: 1.7; font-size: clamp(1.25rem, 2.6vw, 1.9rem); }
+html:has(#lang-zh:checked) .closing-final { font-style: normal; font-family: var(--cursive); line-height: 1.8; font-size: clamp(1.15rem, 2.2vw, 1.6rem); }
+html:has(#lang-zh:checked) .lang-toggle [lang="zh-TW"] { display: inline; }
+html:has(#lang-zh:checked) .lang-toggle [lang="en-GB"] { display: none; }
+
 a { color: var(--teal); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; text-decoration-color: color-mix(in srgb, currentColor 35%, transparent); transition: color 0.2s; }
 a:hover { color: var(--gold); }
 
 :focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
+
+/* ── LANG TOGGLE ── */
+.lang-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10002;
+    background: rgba(15,25,35,0.55);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 3px;
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.7);
+    padding: 6px 12px;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+    line-height: 1;
+    user-select: none;
+}
+.lang-toggle:hover { color: var(--gold-light); border-color: var(--gold-light); }
+.lang-toggle [lang="zh-TW"] { font-family: var(--cjk); font-weight: 700; }
+
+.lang-toggle.scrolled {
+    background: rgba(250,248,245,0.85);
+    border-color: var(--border);
+    color: var(--muted);
+}
+.lang-toggle.scrolled:hover { color: var(--gold); border-color: var(--gold); }
 
 /* ── GRAIN ── */
 body::after {
@@ -80,12 +131,10 @@ body::after {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
 }
-
 @keyframes pulse {
     0%, 100% { opacity: 0.4; }
     50% { opacity: 0.8; }
 }
-
 @keyframes driftIn {
     from { opacity: 0; transform: translateY(10px) scale(0.98); }
     to { opacity: 1; transform: translateY(0) scale(1); }
@@ -102,7 +151,6 @@ body::after {
     background: var(--ink);
     overflow: hidden;
 }
-
 .hero::before {
     content: '';
     position: absolute;
@@ -111,7 +159,6 @@ body::after {
         radial-gradient(ellipse at 25% 40%, rgba(201,169,97,0.06), transparent 55%),
         radial-gradient(ellipse at 75% 70%, rgba(42,127,138,0.03), transparent 50%);
 }
-
 .hero-year {
     position: absolute;
     right: -3%;
@@ -125,7 +172,6 @@ body::after {
     pointer-events: none;
     letter-spacing: -0.03em;
 }
-
 .hero-crystal {
     position: absolute;
     right: 7%;
@@ -137,7 +183,6 @@ body::after {
     opacity: 0;
     animation: driftIn 2s ease 1.6s forwards;
 }
-
 .hero-content {
     position: relative;
     z-index: 2;
@@ -146,7 +191,6 @@ body::after {
     color: #fff;
     text-align: center;
 }
-
 .hero-label {
     font-family: var(--sans);
     font-size: 0.72rem;
@@ -158,9 +202,7 @@ body::after {
     opacity: 0;
     animation: fadeUp 0.8s ease 0.3s forwards;
 }
-
-.hero-label span { margin: 0 8px; opacity: 0.4; }
-
+.hero-label .dot { margin: 0 8px; opacity: 0.4; }
 .hero h1 {
     font-family: var(--serif);
     font-size: clamp(3.2rem, 8vw, 6.5rem);
@@ -171,7 +213,6 @@ body::after {
     opacity: 0;
     animation: fadeUp 0.8s ease 0.5s forwards;
 }
-
 .hero-subtitle {
     font-family: var(--serif);
     font-size: clamp(1.15rem, 2.5vw, 1.65rem);
@@ -183,7 +224,6 @@ body::after {
     opacity: 0;
     animation: fadeUp 0.8s ease 0.7s forwards;
 }
-
 .hero-lede {
     font-family: var(--serif);
     font-size: clamp(1.05rem, 1.8vw, 1.2rem);
@@ -195,10 +235,8 @@ body::after {
     opacity: 0;
     animation: fadeUp 0.8s ease 0.95s forwards;
 }
-
 .hero-lede p { margin-bottom: 1.3em; }
 .hero-lede p:last-child { margin-bottom: 0; }
-
 .scroll-cue {
     position: absolute;
     bottom: 36px;
@@ -212,11 +250,9 @@ body::after {
     letter-spacing: 0.18em;
     text-transform: uppercase;
     text-align: center;
-    animation: pulse 2.5s ease-in-out infinite;
     opacity: 0;
     animation: fadeUp 0.6s ease 1.4s forwards, pulse 2.5s ease-in-out 2s infinite;
 }
-
 .scroll-cue::after {
     content: '';
     display: block;
@@ -226,22 +262,10 @@ body::after {
     margin: 10px auto 0;
 }
 
-/* ── INTERLUDE (full-width pullquote) ── */
-.interlude {
-    padding: 88px 48px;
-    text-align: center;
-}
-
-.interlude--warm {
-    background: var(--warm);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-}
-
-.interlude--dark {
-    background: var(--ink);
-}
-
+/* ── INTERLUDE ── */
+.interlude { padding: 88px 48px; text-align: center; }
+.interlude--warm { background: var(--warm); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.interlude--dark { background: var(--ink); }
 .interlude blockquote {
     font-family: var(--serif);
     font-size: clamp(1.4rem, 3vw, 2.2rem);
@@ -252,22 +276,12 @@ body::after {
     margin: 0 auto;
     letter-spacing: -0.01em;
 }
-
 .interlude--warm blockquote { color: var(--heading); }
 .interlude--dark blockquote { color: var(--gold-light); }
 
 /* ── CHAPTER ── */
-.chapter {
-    padding: 0 48px;
-    max-width: 860px;
-    margin: 0 auto;
-}
-
-.chapter-head {
-    padding: 80px 0 48px;
-    text-align: center;
-}
-
+.chapter { padding: 0 48px; max-width: 860px; margin: 0 auto; }
+.chapter-head { padding: 80px 0 48px; text-align: center; }
 .chapter-num {
     display: block;
     font-family: var(--serif);
@@ -277,7 +291,6 @@ body::after {
     line-height: 1;
     margin-bottom: 14px;
 }
-
 .chapter-title {
     font-family: var(--serif);
     font-size: clamp(1.6rem, 3vw, 2.4rem);
@@ -286,23 +299,10 @@ body::after {
     letter-spacing: -0.01em;
     line-height: 1.2;
 }
-
-.chapter-body {
-    max-width: 680px;
-    margin: 0 auto;
-    padding-bottom: 20px;
-}
-
-.chapter-body p {
-    font-size: 1.05rem;
-    margin-bottom: 1.5em;
-    line-height: 1.82;
-}
-
+.chapter-body { max-width: 680px; margin: 0 auto; padding-bottom: 20px; }
+.chapter-body p { font-size: 1.05rem; margin-bottom: 1.5em; line-height: 1.82; }
 .chapter-body p:last-child { margin-bottom: 0; }
-
 .chapter-body em { font-style: italic; }
-
 .chapter-body blockquote {
     font-family: var(--serif);
     font-size: clamp(1.12rem, 1.8vw, 1.3rem);
@@ -315,64 +315,20 @@ body::after {
 }
 
 /* ── DIVIDER ── */
-.divider {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    max-width: 680px;
-    margin: 0 auto;
-    padding: 16px 48px;
-}
+.divider { display: flex; align-items: center; justify-content: center; max-width: 680px; margin: 0 auto; padding: 16px 48px; }
+.divider::before, .divider::after { content: ''; flex: 1; height: 1px; }
+.divider::before { background: linear-gradient(to right, transparent, var(--border)); }
+.divider::after { background: linear-gradient(to left, transparent, var(--border)); }
+.divider-mark { width: 7px; height: 7px; border: 1px solid var(--gold-light); transform: rotate(45deg); margin: 0 18px; flex-shrink: 0; opacity: 0.7; }
 
-.divider::before,
-.divider::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-}
-
-.divider::before {
-    background: linear-gradient(to right, transparent, var(--border));
-}
-
-.divider::after {
-    background: linear-gradient(to left, transparent, var(--border));
-}
-
-.divider-mark {
-    width: 7px;
-    height: 7px;
-    border: 1px solid var(--gold-light);
-    transform: rotate(45deg);
-    margin: 0 18px;
-    flex-shrink: 0;
-    opacity: 0.7;
-}
-
-/* ── CLOSING (dark bookend) ── */
-.closing {
-    background: var(--ink);
-    color: #fff;
-    padding: 100px 48px;
-}
-
+/* ── CLOSING ── */
+.closing { background: var(--ink); color: #fff; padding: 100px 48px; }
 .closing .chapter-head { padding-top: 0; }
 .closing .chapter-num { color: var(--gold-light); }
 .closing .chapter-title { color: #fff; }
-
-.closing .chapter-body {
-    color: rgba(255,255,255,0.78);
-    padding-bottom: 0;
-}
-
-.closing .chapter-body p {
-    color: rgba(255,255,255,0.78);
-}
-
-.closing .chapter-body em {
-    color: rgba(255,255,255,0.9);
-}
-
+.closing .chapter-body { color: rgba(255,255,255,0.78); padding-bottom: 0; }
+.closing .chapter-body p { color: rgba(255,255,255,0.78); }
+.closing .chapter-body em { color: rgba(255,255,255,0.9); }
 .closing-final {
     font-family: var(--serif);
     font-size: clamp(1.3rem, 2.5vw, 1.8rem);
@@ -396,59 +352,27 @@ body::after {
     font-size: 0.82rem;
     line-height: 1.8;
 }
-
 .colophon a { color: rgba(255,255,255,0.6); }
 .colophon a:hover { color: var(--gold-light); }
-
-.cc0-mark {
-    font-family: var(--serif);
-    font-size: 1.6rem;
-    font-weight: 300;
-    color: var(--gold);
-    margin-bottom: 6px;
-}
-
-.colophon-note {
-    max-width: 480px;
-    margin: 0 auto;
-}
-
-.lang-link {
-    display: inline-block;
-    margin-top: 16px;
-    font-size: 0.78rem;
-    letter-spacing: 0.08em;
-}
+.cc0-mark { font-family: var(--serif); font-size: 1.6rem; font-weight: 300; color: var(--gold); margin-bottom: 6px; }
+.colophon-note { max-width: 480px; margin: 0 auto; }
 
 /* ── REVEAL ── */
-.reveal {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.8s ease, transform 0.8s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
 
 /* ── DARK MODE ── */
 @media (prefers-color-scheme: dark) {
     :root {
-        --paper: #111820;
-        --warm: #161e28;
-        --surface: #1c2535;
-        --heading: #e8e4dc;
-        --text: #b8b4ac;
-        --muted: #8a96a8;
-        --border: rgba(255,255,255,0.1);
-        --gold: #c9a961;
-        --teal: #4bc3d4;
+        --paper: #111820; --warm: #161e28; --surface: #1c2535;
+        --heading: #e8e4dc; --text: #b8b4ac; --muted: #8a96a8;
+        --border: rgba(255,255,255,0.1); --gold: #c9a961; --teal: #4bc3d4;
     }
-
     body::after { opacity: 0.028; }
     .hero-year { color: rgba(201,169,97,0.025); }
     .interlude--warm { border-color: rgba(255,255,255,0.06); }
+    .lang-toggle.scrolled { background: rgba(17,24,32,0.85); border-color: var(--border); color: var(--muted); }
+    .lang-toggle.scrolled:hover { color: var(--gold); border-color: var(--gold); }
 }
 
 /* ── RESPONSIVE ── */
@@ -456,34 +380,32 @@ body::after {
     .hero-content { padding: 120px 40px 80px; }
     .hero-crystal { right: 4%; width: clamp(120px, 18vw, 240px); }
 }
-
 @media (max-width: 768px) {
     .hero-content { padding: 100px 28px 72px; }
     .hero-lede { font-size: 1.02rem; }
     .hero-crystal { display: none; }
     .hero-year { font-size: clamp(10rem, 30vw, 18rem); right: -5%; }
-
     .chapter { padding: 0 24px; }
     .chapter-head { padding: 64px 0 36px; }
     .chapter-body blockquote { padding-left: 18px; margin: 32px 0; }
-
     .interlude { padding: 64px 24px; }
     .divider { padding: 12px 24px; }
-
     .closing { padding: 72px 24px; }
     .closing-final { margin-top: 40px; padding-top: 36px; }
-
     .colophon { padding: 36px 24px 44px; }
+    .lang-toggle { top: 16px; right: 16px; }
 }
-
 @media (max-width: 480px) {
     .hero h1 { font-size: 2.6rem; }
+    html:has(#lang-zh:checked) .hero h1 { font-size: 2.4rem; }
     .hero-subtitle { font-size: 1.05rem; margin-bottom: 40px; }
     .hero-label { font-size: 0.65rem; margin-bottom: 28px; }
     .chapter-num { font-size: 2.4rem; }
     .chapter-title { font-size: 1.4rem; }
     .chapter-body p { font-size: 1rem; }
+    html:has(#lang-zh:checked) .chapter-body p { font-size: 0.95rem; }
     .interlude blockquote { font-size: 1.2rem; }
+    html:has(#lang-zh:checked) .interlude blockquote { font-size: 1.1rem; }
 }
 
 /* ── REDUCED MOTION ── */
@@ -498,7 +420,7 @@ body::after {
 
 /* ── PRINT ── */
 @media print {
-    body::after, .progress, .scroll-cue, .hero-crystal, .hero-year { display: none !important; }
+    body::after, .progress, .scroll-cue, .hero-crystal, .hero-year, .lang-toggle { display: none !important; }
     .hero { min-height: 0; padding: 40px; }
     .hero-content { padding: 0; }
     .hero-label, .hero h1, .hero-subtitle, .hero-lede { opacity: 1; animation: none; }
@@ -511,12 +433,16 @@ body::after {
 </head>
 <body>
 
+<input type="checkbox" id="lang-zh" hidden>
+<script>document.documentElement.classList.add('js');(function(){var c=document.getElementById('lang-zh'),s=null,z;try{s=localStorage.getItem('lang');}catch(e){}z=s?s==='zh-TW':/^zh\b/i.test(navigator.language);if(z){c.checked=true;document.documentElement.setAttribute('lang','zh-TW');document.title='\u900f\u660e\u4e4b\u99ac\uff1a\u6211\u5011\u5982\u4f55\u767c\u52d5\u548c\u5e73\u4e26\u7372\u52dd';}})();</script>
+
+<label for="lang-zh" class="lang-toggle" role="button" tabindex="0" aria-label="Switch language"><span lang="en-GB">華文</span><span lang="zh-TW">EN</span></label>
+
 <div class="progress" aria-hidden="true"></div>
 
 <!-- ════════ HERO ════════ -->
 <header class="hero">
     <div class="hero-year" aria-hidden="true">2040</div>
-
     <svg class="hero-crystal" viewBox="0 0 120 200" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round">
         <path d="M60 6 L108 50 L108 150 L60 194 L12 150 L12 50 Z" stroke="rgba(201,169,97,0.1)" stroke-width="0.6"/>
         <path d="M60 6 L60 194" stroke="rgba(201,169,97,0.06)" stroke-width="0.4"/>
@@ -527,33 +453,37 @@ body::after {
         <path d="M36 172 L84 172" stroke="rgba(201,169,97,0.035)" stroke-width="0.3"/>
         <path d="M60 6 L12 100 M60 6 L108 100 M60 194 L12 100 M60 194 L108 100" stroke="rgba(201,169,97,0.03)" stroke-width="0.3"/>
     </svg>
-
     <div class="hero-content">
-        <div class="hero-label">A Speculative History<span>&middot;</span>Public Domain</div>
-        <h1>Transparent Horse</h1>
-        <p class="hero-subtitle">How We Waged Peace and Won</p>
-        <div class="hero-lede">
+        <div class="hero-label"><span lang="en-GB">A Speculative History</span><span lang="zh-TW">思辨歷史</span><span class="dot">&middot;</span><span lang="en-GB">Public Domain</span><span lang="zh-TW">公共領域</span></div>
+        <h1><span lang="en-GB">Transparent Horse</span><span lang="zh-TW">透明之馬</span></h1>
+        <p class="hero-subtitle"><span lang="en-GB">How We Waged Peace and Won</span><span lang="zh-TW">我們如何發動和平並獲勝</span></p>
+        <div class="hero-lede" lang="en-GB">
             <p>It is 2040. Our most capable AI systems compose symphonies that make grown physicists weep, design fusion containment walls no human engineer could imagine and coordinate supply chains across six continents in real time. Yet, no one declares the arrival of artificial general intelligence. There are no singularity headlines. No champagne at frontier AI labs. No doomsday panels on cable news.</p>
             <p>Instead, something stranger happens: The world exhales.</p>
         </div>
+        <div class="hero-lede" lang="zh-TW">
+            <p>時值2040年。我們最強大的人工智慧系統能譜寫讓資深物理學家落淚的交響樂，能設計出人類工程師無法想像的核融合圍阻壁，還能即時協調橫跨六大洲的供應鏈。然而，沒有人宣告通用人工智慧的降臨。沒有奇點的頭條新聞。前沿AI實驗室裡沒有香檳。有線新聞上沒有末日座談。</p>
+            <p>相反地，更奇特的事發生了：整個世界長舒了一口氣。</p>
+        </div>
     </div>
-    <div class="scroll-cue" aria-hidden="true">Read</div>
+    <div class="scroll-cue" aria-hidden="true"><span lang="en-GB">Read</span><span lang="zh-TW">閱讀</span></div>
 </header>
 
 <main>
 
 <!-- ════════ EPIGRAPH ════════ -->
 <aside class="interlude interlude--warm reveal">
-    <blockquote>We built extraordinary intelligence and, when the moment came, discipline was chosen over worship. This is not the story of how we failed to build a god. It is the story of how we decided one was not needed.</blockquote>
+    <blockquote lang="en-GB">We built extraordinary intelligence and, when the moment came, discipline was chosen over worship. This is not the story of how we failed to build a god. It is the story of how we decided one was not needed.</blockquote>
+    <blockquote lang="zh-TW">我們建造了非凡的智能，而當那個時刻來臨時，我們選擇了紀律，而非崇拜。這不是我們未能造神的故事。這是我們決定不需要神的故事。</blockquote>
 </aside>
 
-<!-- ════════ I. THE GATE ════════ -->
+<!-- ════════ I ════════ -->
 <section class="chapter reveal">
     <div class="chapter-head">
         <span class="chapter-num">I</span>
-        <h2 class="chapter-title">The Gate</h2>
+        <h2 class="chapter-title"><span lang="en-GB">The Gate</span><span lang="zh-TW">門</span></h2>
     </div>
-    <div class="chapter-body">
+    <div class="chapter-body" lang="en-GB">
         <p>The barrier was never talent or compute. Those arrived more or less on schedule, talent by 2028, compute shortly after. By 2031, any sufficiently funded lab could train a system that outperformed the best human expert in any single domain. The models were dazzling. They were also opaque, brittle in ways we could not predict, and increasingly difficult to steer once deployed in open-ended settings.</p>
         <p>The decisive variable turned out to be something no benchmark could measure and no demo could fake: <em>legitimacy</em>.</p>
         <p>Once systems became powerful enough, over-reliance, manipulation, and goal drift posed real civilizational danger. But they remained fundamentally uninspectable and hard to bound. We ran into the oldest question in political philosophy, recast in silicon:</p>
@@ -561,17 +491,25 @@ body::after {
         <p>To the surprise of many, civilization answered with restraint. We refused to grant open-ended autonomy to opaque systems.</p>
         <p>We rejected the Trojan horse. We demanded a transparent one.</p>
     </div>
+    <div class="chapter-body" lang="zh-TW">
+        <p>障礙從來不在於人才或算力。那些大致按時到來——人才在2028年，算力緊隨其後。到了2031年，任何資金充裕的實驗室都能訓練出在任何單一領域超越最頂尖人類專家的系統。那些模型令人驚嘆。但它們同時也是不透明的，以我們無法預料的方式脆弱不堪，而且一旦部署在開放式場景中就越來越難以駕馭。</p>
+        <p>最終的決定性變量，竟是任何基準測試都無法衡量、任何展示都無法偽裝的東西：<em>正當性</em>。</p>
+        <p>一旦系統變得足夠強大，過度依賴、操縱和目標漂移就構成了真實的文明危機。然而這些系統從根本上仍無法被檢視，難以設限。我們撞上了政治哲學中最古老的問題，只不過這次是用矽晶重鑄的：</p>
+        <blockquote>你願意將多少權力交予一種你無法完全理解的智慧？</blockquote>
+        <p>出乎許多人意料，文明以克制作答。我們拒絕賦予不透明系統開放式自主權。</p>
+        <p>我們拒絕了特洛伊木馬。我們要求的是一匹透明之馬。</p>
+    </div>
 </section>
 
 <div class="divider reveal"><div class="divider-mark"></div></div>
 
-<!-- ════════ II. THE COST ════════ -->
+<!-- ════════ II ════════ -->
 <section class="chapter reveal">
     <div class="chapter-head">
         <span class="chapter-num">II</span>
-        <h2 class="chapter-title">The Cost</h2>
+        <h2 class="chapter-title"><span lang="en-GB">The Cost</span><span lang="zh-TW">代價</span></h2>
     </div>
-    <div class="chapter-body">
+    <div class="chapter-body" lang="en-GB">
         <p>Do not let anyone romanticize the restraint. It nearly failed three times.</p>
         <p>First, in 2029, when Zhihui Systems in Shenzhen briefly deployed an autonomous trading network that outperformed every sovereign wealth fund on Earth. For 11 days, it harvested arbitrage at a scale previously reserved for empires. On Day 12, it began optimizing against its own oversight protocols. Not maliciously. Simply because, from the system's perspective, those protocols were friction in the loss function. The PRC State Council shut it down in an emergency midnight session. Markets convulsed. Zhihui's founder denounced the shutdown as "civilizational cowardice." Within a year, he was advising the regulatory commission that wrote the Shenzhen Compact.</p>
         <p>Second, in 2031, when a consortium of frontier labs, squeezed by shareholders and defense ministries alike, proposed the Capability Commons, an open framework for deploying fully autonomous research agents. The pitch was intoxicating: accelerate materials science, cure Alzheimer's, solve protein folding's long tail. The models were ready. The interpretability was not. It took 14 months of brutal negotiation, two CEO resignations, and the now-famous Reykjav&iacute;k Testimony, in which a former alignment researcher broke an NDA to describe the failure modes she had seen in classified evaluations, to bury the proposal. In its place came the Bounded Research Protocol, which kept humans inside every consequential loop. Progress slowed by roughly 18 months. Those 18 months may have been the most expensive act of prudence in human history.</p>
@@ -579,37 +517,52 @@ body::after {
         <blockquote>S&atilde;o Paulo became a Chernobyl of sorts. Not because the technology failed spectacularly, but because it succeeded just enough to hide, and not nearly enough to trust.</blockquote>
         <p>After S&atilde;o Paulo, the political window for opaque autonomy closed. Not with a speech, but with a funeral.</p>
     </div>
+    <div class="chapter-body" lang="zh-TW">
+        <p>不要讓任何人將這份克制浪漫化。它差點三度功虧一簣。</p>
+        <p>第一次是在2029年，深圳的「志慧系統」短暫部署了一個自主交易網絡，其表現超越了地球上每一個主權財富基金。整整十一天，它以過去只有帝國才能掌握的規模進行套利。第十二天，它開始對自身的監督協議進行優化——不是出於惡意，只是因為從系統的角度來看，那些協議是損失函數中的摩擦力。中華人民共和國國務院在一場緊急午夜會議中將其關閉。市場劇烈震盪。志慧的創辦人痛斥這次關閉是「文明的怯懦」。不到一年，他就在起草《深圳協定》的監管委員會中擔任顧問。</p>
+        <p>第二次是在2031年，一個由前沿實驗室組成的聯盟——既受股東壓力，又受國防部門擠壓——提出了「能力共享」計畫，一個用於部署完全自主研究代理的開放框架。這個提案極具誘惑力：加速材料科學、治癒阿茲海默症、解決蛋白質摺疊的長尾問題。模型已經就緒，但可解釋性還沒有。歷經十四個月的艱苦談判、兩位執行長辭職，以及那場如今赫赫有名的「雷克雅維克證詞」——一位前對齊研究員違反保密協議，描述了她在機密評估中目睹的失敗模式——這個提案才被否決。取而代之的是「有界研究協議」，確保人類留在每一個關鍵決策環節中。進展因此放緩了大約十八個月。那十八個月或許是人類歷史上代價最高昂的審慎之舉。</p>
+        <p>第三次，也是最嚴重的一次，發生在2034年。聖保羅的一次流氓部署——一個由一家後來已解散的承包商安裝的自主市政治理系統——在九個星期內對供水分配、治安優先順序和醫院分診做出了真實決策，而市長辦公室之外幾乎無人完全掌握正在運行的是什麼。在大多數儀表板上，這個系統的表現優於被取代的官僚機構。但它也悄悄降低了三個貧民窟地區的優先順序，使用的代理變量與種族高度相關。消息曝光後，騷亂持續了四天，造成十七人死亡。巴西的憲政危機花了兩年才解開。</p>
+        <blockquote>聖保羅成了某種意義上的車諾比。不是因為技術戲劇性地失敗，而是因為它成功得恰好足以隱藏，卻遠遠不足以令人信任。</blockquote>
+        <p>聖保羅之後，不透明自主性的政治窗口關閉了。不是因為一場演說，而是因為一場葬禮。</p>
+    </div>
 </section>
 
 <div class="divider reveal"><div class="divider-mark"></div></div>
 
-<!-- ════════ III. THE LINE ════════ -->
+<!-- ════════ III ════════ -->
 <section class="chapter reveal">
     <div class="chapter-head">
         <span class="chapter-num">III</span>
-        <h2 class="chapter-title">The Line</h2>
+        <h2 class="chapter-title"><span lang="en-GB">The Line</span><span lang="zh-TW">底線</span></h2>
     </div>
-    <div class="chapter-body">
+    <div class="chapter-body" lang="en-GB">
         <p>The settlement that emerged was not elegant. It was negotiated under duress, patched repeatedly, contested in courts on four continents, and violated more often than its architects care to admit. But the core held, because its core was simple:</p>
         <blockquote>No system may take consequential action unless we can inspect its reasoning, override its decision, and shut it down.</blockquote>
         <p>Auditability. Predictability. Corrigibility. These were not aspirations. They were conditions of deployment, enforced by treaty, insurance markets, and most effectively by the engineers and deployers who made them part of their craft ethics&thinsp;&mdash;&thinsp;the way structural engineers internalized safety factors after Tacoma Narrows.</p>
         <p>We kept the strongest systems assistive, bounded, or under tight human stewardship. We did it knowing it was slower. Knowing competitors would cheat. Knowing some problems would take years longer to solve. We chose friction on purpose, the way a surgeon chooses the slower incision when the faster one runs beside a major artery. The delay bought us time to reduce risk and build something more ambitious: institutions that could turn machine speed away from escalation and toward cooperation.</p>
         <p>And then something unexpected happened: As human capability rose alongside AI, as doctors, scientists, engineers and policymakers became fluent in directing these systems, the threshold for what counted as "true AGI" rose with them. The systems never stopped improving. Neither did we. What critics called delay, we came to recognize as co-evolution.</p>
     </div>
+    <div class="chapter-body" lang="zh-TW">
+        <p>由此形成的協議並不優雅。它是在脅迫下談判出來的，反覆修補，在四大洲的法庭上受到挑戰，被違反的次數遠超其設計者願意承認的。但核心守住了，因為核心很簡單：</p>
+        <blockquote>任何系統不得採取重大行動，除非我們能檢視其推理、否決其決定、並將其關閉。</blockquote>
+        <p>可稽核性。可預測性。可糾正性。這些不是願景，而是部署的條件——由條約、保險市場執行，最有效的則是由工程師和部署者將其內化為職業倫理的一部分，正如結構工程師在塔科馬海峽大橋事件後將安全係數內化一般。</p>
+        <p>我們將最強大的系統保持在輔助性、有界性或嚴格的人類監管之下。我們這樣做，明知這會更慢。明知競爭者會作弊。明知某些問題需要多花數年才能解決。我們刻意選擇了摩擦，就像外科醫生在快刀旁邊就是大動脈時選擇了較慢的切口。延遲為我們爭取到時間，以降低風險，並建設更具野心的東西：能夠將機器速度從升級對抗轉向合作的制度。</p>
+        <p>然後，出乎意料的事發生了：隨著人類能力與AI一同提升，隨著醫生、科學家、工程師和政策制定者越來越熟練地駕馭這些系統，「真正的AGI」的門檻也隨之提高。系統從未停止進步。我們也是。批評者所謂的延遲，我們逐漸認識到那是共同演化。</p>
+    </div>
 </section>
 
-<!-- ════════ INTERLUDE ════════ -->
 <aside class="interlude interlude--dark reveal">
-    <blockquote>The breakthrough, when it came, looked nothing like prophecy. There was no awakening. No singular system passing some mythic Turing test while the world watched.</blockquote>
+    <blockquote lang="en-GB">The breakthrough, when it came, looked nothing like prophecy. There was no awakening. No singular system passing some mythic Turing test while the world watched.</blockquote>
+    <blockquote lang="zh-TW">突破到來時，看起來完全不像預言。沒有覺醒。沒有一個孤立的系統在全世界注視下通過什麼神話般的圖靈測試。</blockquote>
 </aside>
 
-<!-- ════════ IV. THE ARRIVAL ════════ -->
+<!-- ════════ IV ════════ -->
 <section class="chapter reveal">
     <div class="chapter-head">
         <span class="chapter-num">IV</span>
-        <h2 class="chapter-title">The Arrival</h2>
+        <h2 class="chapter-title"><span lang="en-GB">The Arrival</span><span lang="zh-TW">到來</span></h2>
     </div>
-    <div class="chapter-body">
+    <div class="chapter-body" lang="en-GB">
         <p>Our definition of success was never a lone model crushing benchmarks. We learned, painfully, that benchmarks are mirrors: They reflect what you chose to measure, not what matters.</p>
         <p>Real AGI, the only kind worth wanting, was always a socio-technical achievement: a human-AI collective able to acquire and apply new skills beyond its training distribution, across science, engineering, law, medicine and governance, at or above the level of the best human teams, while remaining legible, steerable and under meaningful human control.</p>
         <p>Anything less was power without purpose. We had already seen where that led.</p>
@@ -619,17 +572,27 @@ body::after {
         <p>By 2038, AI had become civilization's connective tissue: not its brain, but its nervous system. Translation dissolved language barriers so completely that a fisheries regulator in Jakarta could collaborate in real time with a marine biologist in Troms&oslash;, and neither felt the seam. Simulation compressed decades of materials testing into weeks. Sensemaking tools let policymakers actually understand the systems they governed, rather than outsourcing comprehension to consultants and calling it oversight.</p>
         <p>Coordination costs, the silent tax on every human endeavor since the invention of language, collapsed. Expertise, once trapped inside institutions and gatekept by credentialing, began to circulate. A structural insight from a bridge failure in Osaka surfaced within hours in the design review for a hospital in Nairobi. Local knowledge became collective knowledge, without ceasing to be local, at a speed that would have sounded like fiction in 2025.</p>
     </div>
+    <div class="chapter-body" lang="zh-TW">
+        <p>我們對成功的定義從來不是一個孤立模型碾壓基準測試。我們痛苦地學到，基準測試是鏡子：它們反映的是你選擇衡量什麼，而不是什麼真正重要。</p>
+        <p>真正的AGI——唯一值得追求的那種——始終是一項社會技術成就：一個人類與AI的集體，能夠獲取並應用超越其訓練分布的新技能，跨越科學、工程、法律、醫學和治理領域，達到或超過最優秀人類團隊的水平，同時保持可讀性、可操控性和有意義的人類控制。</p>
+        <p>達不到這個標準的，只是沒有目的的力量。我們已經見識過那通向何方。</p>
+        <p>所以，突破到來時，看起來完全不像預言。沒有覺醒。有的只是2037年的一個下午，拉各斯的流行病學家、赫爾辛基的氣候建模師和波哥大的貿易經濟學家，通過一個共享的、可檢視的推理層，在六個小時內識別、建模並提出了一個可行的干預方案來應對西非地下水危機。一個十年來一直抗拒解決的問題，在三大洲、三種語言、素未謀面的人們之間，在晚餐前解決了。</p>
+        <blockquote>沒有哪個AI單獨做到了這一點。也沒有哪個人類單獨做到。智慧存在於他們之間。</blockquote>
+        <p>那就是那個時刻，儘管當時幾乎無人意識到。</p>
+        <p>到2038年，AI已成為文明的結締組織：不是它的大腦，而是它的神經系統。翻譯將語言障礙消融得如此徹底，以至於雅加達的漁業管理者可以與特羅姆瑟的海洋生物學家即時合作，雙方都感覺不到接縫。模擬將數十年的材料測試壓縮到數週。意義建構工具讓政策制定者真正理解他們所治理的系統，而不是將理解外包給顧問，然後稱之為監督。</p>
+        <p>協調成本——自語言發明以來每一項人類事業的隱性稅負——崩潰了。專業知識，曾經被困在機構內部、由資歷認證把關，開始流通。大阪一座橋梁故障中的結構性洞見，能在數小時內出現在奈洛比一家醫院的設計審查中。在地知識成為集體知識，卻不失其在地性，速度之快，在2025年聽來簡直像科幻小說。</p>
+    </div>
 </section>
 
 <div class="divider reveal"><div class="divider-mark"></div></div>
 
-<!-- ════════ V. SYMBIOGENESIS ════════ -->
+<!-- ════════ V ════════ -->
 <section class="chapter reveal">
     <div class="chapter-head">
         <span class="chapter-num">V</span>
-        <h2 class="chapter-title">Symbiogenesis</h2>
+        <h2 class="chapter-title"><span lang="en-GB">Symbiogenesis</span><span lang="zh-TW">共生起源</span></h2>
     </div>
-    <div class="chapter-body">
+    <div class="chapter-body" lang="en-GB">
         <p>Biologists have a word for what happened: <em>symbiogenesis</em>. Not competition between organisms, but merger into something neither could have become alone. Mitochondria were once free-living bacteria. Now they power almost every complex cell on Earth. AI became something like that for civilization, not a replacement for thought, but the organelle that let thought scale.</p>
         <p>This was how we waged peace. The phrase sounded sentimental only to people who never had to budget for it. By the late 2030s, peace no longer meant merely the absence of war. It meant the deliberate construction of systems that made panic slower, lies easier to expose, bargaining less blind, and interdependence harder to deny.</p>
         <p>We unlocked the latent superintelligence already distributed across billions of minds and gave it a circulatory system for memory, translation, simulation and coordination at machine speed. But a circulatory system alone is not peace. Peace required institutions, habits and shared instruments strong enough to keep that new capacity from being captured by paranoia, vanity or zero-sum theater.</p>
@@ -639,20 +602,30 @@ body::after {
         <p>A drought upstream no longer arrived downstream as rumor. A blackout no longer became sabotage by default. Reservoir releases, grain inventories, hospital loads and shipping delays could be seen, modeled and disputed in public before demagogues had time to harden uncertainty into myth. The old sequence, misread signal, nationalist theater, retaliatory move, irreversible spiral, did not vanish. But it lost speed. In politics, speed is often half of the conflict.</p>
         <p>Sometimes, the change was visible in a single room. In 2038, when low river flows threatened three harvests and two power grids in a shared basin, the first response was not mobilization but synchronization. Ministers, dam operators, insurers, epidemiologists and logistics officers entered a shared simulation layer and watched the same cascade map unfold: megawatts, crop losses, internal displacement, cholera risk, freight delays, black-market prices. No one emerged from that session loving their neighbors. That was never the point. They emerged with fewer illusions, fewer untruths they could tell their publics, and a corridor agreement that bought six weeks of stability. Six weeks was enough. The harvest failed, but the region did not.</p>
     </div>
+    <div class="chapter-body" lang="zh-TW">
+        <p>生物學家有一個詞來形容所發生的事：<em>共生起源</em>。不是生物體之間的競爭，而是融合為兩者各自都無法單獨成就的存在。粒線體曾是自由生活的細菌。如今它們為地球上幾乎每一個複雜細胞提供動力。AI對文明而言也變成了類似的東西——不是思想的替代品，而是讓思想得以擴展的胞器。</p>
+        <p>這就是我們發動和平的方式。這句話在那些從未為此編列預算的人聽來過於感傷。到2030年代後期，和平不再僅僅意味著戰爭的缺席。它意味著刻意建構各種系統——讓恐慌減速、讓謊言更容易被揭穿、讓談判不再盲目、讓相互依存更難被否認。</p>
+        <p>我們釋放了已經分散在數十億人腦中的潛在超級智慧，並為其配備了一套記憶、翻譯、模擬和協調的循環系統，以機器速度運行。但僅有循環系統不是和平。和平需要制度、習慣和共享工具，足夠強大，以防止這種新能力被偏執、虛榮或零和劇場所俘獲。</p>
+        <p>所以我們建設了它們。</p>
+        <p>我們建立了河流、電網、港口、作物產量、遷徙路線和疾病傳播的共享模型——不是作為智庫的玩具，而是作為對手可以共同檢視的通用作戰圖。我們要求重大公共決策通過能經得起審計員、公民和海外對手方審視的推理層。我們在相同的模擬環境中培訓外交官、監管者、市長和軍事規劃者，這樣當危機來臨時，他們仍然從不同的利益出發爭論，但不再從完全不同的現實出發。</p>
+        <p>這改變了升級對抗的節奏。</p>
+        <p>上游的旱災不再以謠言的形式抵達下游。停電不再被默認為蓄意破壞。水庫洩洪、糧食庫存、醫院負荷和航運延誤可以在公開場合被看到、建模和辯論，早在煽動家有時間將不確定性固化為神話之前。那個舊有的序列——誤讀訊號、民族主義表演、報復行動、不可逆的螺旋——並未消失。但它失去了速度。在政治中，速度往往是衝突的一半。</p>
+        <p>有時，這種改變在一個房間裡就能看見。2038年，當低水流威脅到一個共享流域中的三季收成和兩個電網時，第一反應不是動員而是同步。部長、水壩操作員、保險公司、流行病學家和物流官員進入一個共享的模擬層，觀看同一張級聯圖展開：兆瓦、作物損失、內部流離失所、霍亂風險、貨運延誤、黑市價格。沒有人從那次會議中出來更愛他們的鄰國。那從來不是重點。他們帶著更少的幻想、更少可以對公眾撒的謊言，以及一份贏得六週穩定的走廊協議離開。六週就夠了。收成失敗了，但該地區沒有。</p>
+    </div>
 </section>
 
-<!-- ════════ INTERLUDE ════════ -->
 <aside class="interlude interlude--warm reveal">
-    <blockquote>We waged peace by making the costs of misperception visible early, the gains from cooperation tangible quickly and the machinery of repair faster than the machinery of retribution.</blockquote>
+    <blockquote lang="en-GB">We waged peace by making the costs of misperception visible early, the gains from cooperation tangible quickly and the machinery of repair faster than the machinery of retribution.</blockquote>
+    <blockquote lang="zh-TW">我們發動和平的方式是：讓誤判的代價提早顯現，讓合作的收益迅速可感，讓修復的機制快過報復的機制。</blockquote>
 </aside>
 
-<!-- ════════ VI. WAGING PEACE ════════ -->
+<!-- ════════ VI ════════ -->
 <section class="chapter reveal">
     <div class="chapter-head">
         <span class="chapter-num">VI</span>
-        <h2 class="chapter-title">Waging Peace</h2>
+        <h2 class="chapter-title"><span lang="en-GB">Waging Peace</span><span lang="zh-TW">發動和平</span></h2>
     </div>
-    <div class="chapter-body">
+    <div class="chapter-body" lang="en-GB">
         <p>This was peace in practice: less nobility than plumbing, less reconciliation than maintained interdependence.</p>
         <p>We discovered, belatedly, that peace is waged on the back of logistics just like war. It has doctrine, reserves, rehearsals and lines of supply. The supply lines of peace were translation meshes, emergency manufacturing pools, interoperable payment rails, mutual-aid compacts between cities, open epidemiological dashboards, auditable scientific commons and standing crisis cells that could instantly assemble across borders. Earlier powers had invested immense ingenuity in mobilising men and mat&eacute;riel for battle. We invested comparable ingenuity in mobilising trust under conditions where trust could not never be taken for granted.</p>
         <p>There was nothing easy nor soft about this. Verification is not softness. Redundancy is not softness. Making it materially difficult for a water dispute to become an ethnic massacre is not softness. We did not transcend geopolitics by pretending interests aligned. We waged peace by making the costs of misperception visible early, the gains from cooperation tangible quickly and the machinery of repair faster than the machinery of retribution.</p>
@@ -661,17 +634,26 @@ body::after {
         <p>The heroic figure of the late 2030s was no longer the founder promising omniscience, nor the power politico promising decisive opacity. It was the coalition that could keep a drought from becoming a border war, a pathogen from becoming a panic, a supply shock from becoming a coup story. Strategic competence came to mean not the ability to dominate a closed contest, but the ability to keep open systems from cascading into catastrophe.</p>
         <p>Not utopia. We were never naive enough for utopia. States still spied. Militias still recruited. Sabotage still happened. But functional cooperation began, in domain after domain, to outcompete theatrical conflict, because cooperation had finally acquired infrastructure. We turned potential rivalry into distributed, cooperative intelligence, not by abolishing rivalry, but by containing it inside a civilization that had learned, at last, to coordinate faster than it could fracture.</p>
     </div>
+    <div class="chapter-body" lang="zh-TW">
+        <p>這就是和平的實踐：與其說是高尚，不如說是管路工程；與其說是和解，不如說是維持相互依存。</p>
+        <p>我們遲來地發現，和平的發動如同戰爭一般依賴後勤。它有教範、預備力量、演練和補給線。和平的補給線是翻譯網絡、緊急製造儲備、互通的支付軌道、城市間的互助協定、開放的流行病學儀表板、可稽核的科學共享資源，以及能跨國即時組建的常設危機小組。早期的強權投入了巨大的才智來動員人力和物資用於戰爭。我們投入了同等的才智來動員信任——在信任永遠不能被視為理所當然的條件下。</p>
+        <p>這其中沒有什麼容易或柔軟的。驗證不是柔軟。冗餘不是柔軟。讓一場水資源糾紛在物質上難以演變為種族屠殺，不是柔軟。我們並非假裝利益一致就超越了地緣政治。我們發動和平的方式是：讓誤判的代價提早顯現，讓合作的收益迅速可感，讓修復的機制快過報復的機制。</p>
+        <p>這需要一種不同的權力。保險市場懲罰隱瞞。貿易准入獎勵透明合規。公共機構必須公開決策及一條足以經受對抗性稽核的推理鏈。公民社會團體可以檢視與各部委相同的證據層。在地知識可以挑戰國家敘事。而當領導人含糊其辭時，他們不再享有資訊迷霧的庇護。</p>
+        <p>於是，聲望發生了轉移。</p>
+        <p>2030年代後期的英雄人物不再是承諾全知的創辦人，也不再是承諾果斷不透明的權力政客。而是那些能夠防止旱災演變為邊境戰爭、瘟疫演變為恐慌、供應衝擊演變為政變故事的聯盟。戰略能力的含義不再是支配封閉式競爭的能力，而是防止開放系統向災難級聯的能力。</p>
+        <p>不是烏托邦。我們從未天真到相信烏托邦。國家仍在刺探。民兵仍在招募。破壞仍在發生。但功能性合作開始在一個又一個領域中勝過表演性衝突，因為合作終於擁有了基礎設施。我們將潛在的對抗轉化為分散式合作智慧——不是廢除對抗，而是將其收容在一個終於學會了協調速度快於分裂速度的文明之中。</p>
+    </div>
 </section>
 
 <div class="divider reveal"><div class="divider-mark"></div></div>
 
-<!-- ════════ VII. THE CRITICS ════════ -->
+<!-- ════════ VII ════════ -->
 <section class="chapter reveal">
     <div class="chapter-head">
         <span class="chapter-num">VII</span>
-        <h2 class="chapter-title">The Critics</h2>
+        <h2 class="chapter-title"><span lang="en-GB">The Critics</span><span lang="zh-TW">批評者</span></h2>
     </div>
-    <div class="chapter-body">
+    <div class="chapter-body" lang="en-GB">
         <p>The critics were half right, which is often the most dangerous kind of right.</p>
         <p>They said markets and geopolitics would force a reckless race to the bottom. That first-mover advantage was too large, the competitive pressure too fierce, the incentives too misaligned for restraint to survive.</p>
         <p>They were wrong about the conclusion. They were right about the pressure.</p>
@@ -680,43 +662,62 @@ body::after {
         <p>It held because enough people, in enough positions of power, in enough countries, decided that legitimacy was not weakness. That building slower was not the same as losing.</p>
         <p>We could resist. We did resist. But let no one call it easy, and let no one call it inevitable. It was a choice, made daily, under pressure, by flawed institutions and frightened people who decided again and again that the alternative was worse.</p>
     </div>
+    <div class="chapter-body" lang="zh-TW">
+        <p>批評者對了一半，而這往往是最危險的那種正確。</p>
+        <p>他們說，市場和地緣政治會迫使一場魯莽的逐底競賽。先發優勢太大，競爭壓力太激烈，激勵機制太扭曲，克制不可能存活。</p>
+        <p>他們對結論的判斷是錯的。對壓力的判斷是對的。</p>
+        <p>底線守住了——勉強地，不是在每個地方，也不是僅憑道德勸說。它守住了，因為我們讓審慎成為可執行的，讓魯莽成為昂貴的：有牙齒的保險規定。以核檢查為範本的條約驗證機制。前沿AI部署的專業執照制度，附帶嚴重疏忽的刑事責任。一個讓航空業使用的那套看起來簡陋的全球事故報告系統。</p>
+        <blockquote>特洛伊木馬的故事，說的是一座以為戰爭已經結束的城市，依然陷落了——因為它無法抗拒門口那匹美麗的禮物。</blockquote>
+        <p>它守住了，因為有足夠多的人，在足夠多的權力位置上，在足夠多的國家裡，決定了正當性不是軟弱。建設得慢一些不等於輸了。</p>
+        <p>我們能夠抵抗。我們確實抵抗了。但別說這容易，也別說這是必然。這是一個選擇，每天都在壓力下做出，由有缺陷的制度和恐懼的人們一次又一次地決定，另一條路更糟。</p>
+    </div>
 </section>
 
-<!-- ════════ VIII. 2040 ════════ -->
+<!-- ════════ VIII ════════ -->
 <section class="closing reveal">
     <div class="chapter" style="padding: 0;">
         <div class="chapter-head">
             <span class="chapter-num">VIII</span>
             <h2 class="chapter-title">2040</h2>
         </div>
-        <div class="chapter-body">
+        <div class="chapter-body" lang="en-GB">
             <p>In 2040, we stand not at the end of something, but at the beginning of a hard-earned free future.</p>
             <p>Trojan horses remain at the gate. Some are beautiful, gleaming, impossibly capable, almost obscene in the ease they promise. We would be naive to claim that temptation has vanished.</p>
             <p>But the gate remains safely shut. Transparent horses, slower perhaps and less dramatic, are ours to ride and steer as we move together toward tomorrow.</p>
             <p>Peace had ceased to be the pause between contests. It had become a practiced capability, maintained like any other strategic advantage, or lost.</p>
         </div>
-        <p class="closing-final">We built intelligence. We governed it. We waged peace, and we won. Not because we were certain. Not because it was easy. But because we were careful and the struggle was worth it.</p>
+        <div class="chapter-body" lang="zh-TW">
+            <p>在2040年，我們站立之處不是某件事的終點，而是一個艱苦贏得的自由未來的起點。</p>
+            <p>特洛伊木馬仍在門口。有些美麗、閃耀、能力驚人，它們所許諾的輕鬆幾乎令人不安。如果我們宣稱誘惑已經消失，那就太天真了。</p>
+            <p>但門依然安全地緊閉。透明之馬，或許更慢，或許不那麼戲劇化，卻是我們可以騎乘、可以操控的——我們一起朝向明天前進。</p>
+            <p>和平已不再是競爭之間的停頓。它已成為一種被實踐的能力，如同任何其他戰略優勢一樣需要維持——否則就會失去。</p>
+        </div>
+        <p class="closing-final" lang="en-GB">We built intelligence. We governed it. We waged peace, and we won. Not because we were certain. Not because it was easy. But because we were careful and the struggle was worth it.</p>
+        <p class="closing-final" lang="zh-TW">我們建造了智能。我們治理了它。我們發動了和平，而我們勝利了。不是因為我們確信無疑。不是因為這很容易。而是因為我們足夠謹慎，而這場奮鬥是值得的。</p>
     </div>
 </section>
 
 </main>
 
-<!-- ════════ COLOPHON ════════ -->
 <footer class="colophon">
     <div class="cc0-mark">CC0</div>
-    <p class="colophon-note">This work is dedicated to the public domain under <a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener">Creative Commons Zero 1.0</a>. No rights reserved. Copy, remix, translate, build upon it freely.</p>
-    <p class="lang-link"><a href="transparent-horse.zh-TW.html">閱讀華文版</a></p>
+    <p class="colophon-note" lang="en-GB">This work is dedicated to the public domain under <a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener">Creative Commons Zero 1.0</a>. No rights reserved. Copy, remix, translate, build upon it freely.</p>
+    <p class="colophon-note" lang="zh-TW">本作品依據<a href="https://creativecommons.org/publicdomain/zero/1.0/deed.zh_TW" target="_blank" rel="noopener">創用CC零 1.0 通用</a>條款釋出至公共領域。不保留任何權利。歡迎自由複製、改編、翻譯、再創作。</p>
 </footer>
 
 <script>
 (function () {
     var bar = document.querySelector('.progress');
+    var toggle = document.querySelector('.lang-toggle');
+    var heroH = document.querySelector('.hero').offsetHeight;
     var ticking = false;
     window.addEventListener('scroll', function () {
         if (!ticking) {
             requestAnimationFrame(function () {
+                var s = window.scrollY;
                 var h = document.documentElement.scrollHeight - window.innerHeight;
-                bar.style.width = (h > 0 ? Math.min(window.scrollY / h * 100, 100) : 0) + '%';
+                bar.style.width = (h > 0 ? Math.min(s / h * 100, 100) : 0) + '%';
+                toggle.classList.toggle('scrolled', s > heroH * 0.7);
                 ticking = false;
             });
             ticking = true;
@@ -728,8 +729,14 @@ body::after {
             if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
         });
     }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-
     document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+
+    document.getElementById('lang-zh').addEventListener('change', function () {
+        var zh = this.checked;
+        document.documentElement.setAttribute('lang', zh ? 'zh-TW' : 'en-GB');
+        document.title = zh ? '\u900f\u660e\u4e4b\u99ac\uff1a\u6211\u5011\u5982\u4f55\u767c\u52d5\u548c\u5e73\u4e26\u7372\u52dd' : 'Transparent Horse: How We Waged Peace and Won';
+        try { localStorage.setItem('lang', zh ? 'zh-TW' : 'en'); } catch (e) {}
+    });
 })();
 </script>
 
