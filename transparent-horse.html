@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Transparent Horse: How We Waged Peace and Won</title>
+<meta name="description" content="It is 2040. We built extraordinary intelligence and, when the moment came, discipline was chosen over worship. This is not the story of how we failed to build a god. It is the story of how we decided one was not needed.">
+<meta property="og:title" content="Transparent Horse: How We Waged Peace and Won">
+<meta property="og:description" content="We built extraordinary intelligence and, when the moment came, discipline was chosen over worship.">
+<meta property="og:type" content="article">
+<meta name="theme-color" content="#0f1923" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#faf8f5" media="(prefers-color-scheme: light)">
+<meta name="color-scheme" content="light dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+    --ink: #0f1923;
+    --paper: #faf8f5;
+    --warm: #f4f1ec;
+    --surface: #fff;
+    --heading: #0f1923;
+    --gold: #7d6430;
+    --gold-light: #c9a961;
+    --teal: #2a7f8a;
+    --slate: #5a6577;
+    --text: #2c3e50;
+    --muted: #5f6a7d;
+    --border: #e0ddd7;
+    --serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+    --sans: 'Outfit', system-ui, -apple-system, sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: var(--sans);
+    color: var(--text);
+    background: var(--paper);
+    line-height: 1.7;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+a { color: var(--teal); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; text-decoration-color: color-mix(in srgb, currentColor 35%, transparent); transition: color 0.2s; }
+a:hover { color: var(--gold); }
+
+:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
+
+/* ── GRAIN ── */
+body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    pointer-events: none;
+    opacity: 0.024;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+}
+
+/* ── PROGRESS ── */
+.progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    z-index: 10001;
+    width: 0;
+    pointer-events: none;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 0.8; }
+}
+
+@keyframes driftIn {
+    from { opacity: 0; transform: translateY(10px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ── HERO ── */
+.hero {
+    position: relative;
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--ink);
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse at 25% 40%, rgba(201,169,97,0.06), transparent 55%),
+        radial-gradient(ellipse at 75% 70%, rgba(42,127,138,0.03), transparent 50%);
+}
+
+.hero-year {
+    position: absolute;
+    right: -3%;
+    bottom: 2%;
+    font-family: var(--serif);
+    font-size: clamp(14rem, 25vw, 32rem);
+    font-weight: 300;
+    color: rgba(201,169,97,0.035);
+    line-height: 0.82;
+    user-select: none;
+    pointer-events: none;
+    letter-spacing: -0.03em;
+}
+
+.hero-crystal {
+    position: absolute;
+    right: 7%;
+    top: 50%;
+    transform: translateY(-55%);
+    width: clamp(160px, 20vw, 320px);
+    height: auto;
+    z-index: 1;
+    opacity: 0;
+    animation: driftIn 2s ease 1.6s forwards;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 780px;
+    padding: 140px 48px 100px;
+    color: #fff;
+    text-align: center;
+}
+
+.hero-label {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 36px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.3s forwards;
+}
+
+.hero-label span { margin: 0 8px; opacity: 0.4; }
+
+.hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(3.2rem, 8vw, 6.5rem);
+    font-weight: 400;
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    margin-bottom: 16px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.5s forwards;
+}
+
+.hero-subtitle {
+    font-family: var(--serif);
+    font-size: clamp(1.15rem, 2.5vw, 1.65rem);
+    font-weight: 400;
+    font-style: italic;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 56px;
+    letter-spacing: 0.01em;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.7s forwards;
+}
+
+.hero-lede {
+    font-family: var(--serif);
+    font-size: clamp(1.05rem, 1.8vw, 1.2rem);
+    color: rgba(255,255,255,0.72);
+    line-height: 1.85;
+    text-align: left;
+    max-width: 620px;
+    margin: 0 auto;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.95s forwards;
+}
+
+.hero-lede p { margin-bottom: 1.3em; }
+.hero-lede p:last-child { margin-bottom: 0; }
+
+.scroll-cue {
+    position: absolute;
+    bottom: 36px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    color: rgba(255,255,255,0.35);
+    font-family: var(--sans);
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-align: center;
+    animation: pulse 2.5s ease-in-out infinite;
+    opacity: 0;
+    animation: fadeUp 0.6s ease 1.4s forwards, pulse 2.5s ease-in-out 2s infinite;
+}
+
+.scroll-cue::after {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 36px;
+    background: rgba(255,255,255,0.25);
+    margin: 10px auto 0;
+}
+
+/* ── INTERLUDE (full-width pullquote) ── */
+.interlude {
+    padding: 88px 48px;
+    text-align: center;
+}
+
+.interlude--warm {
+    background: var(--warm);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+
+.interlude--dark {
+    background: var(--ink);
+}
+
+.interlude blockquote {
+    font-family: var(--serif);
+    font-size: clamp(1.4rem, 3vw, 2.2rem);
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.5;
+    max-width: 760px;
+    margin: 0 auto;
+    letter-spacing: -0.01em;
+}
+
+.interlude--warm blockquote { color: var(--heading); }
+.interlude--dark blockquote { color: var(--gold-light); }
+
+/* ── CHAPTER ── */
+.chapter {
+    padding: 0 48px;
+    max-width: 860px;
+    margin: 0 auto;
+}
+
+.chapter-head {
+    padding: 80px 0 48px;
+    text-align: center;
+}
+
+.chapter-num {
+    display: block;
+    font-family: var(--serif);
+    font-size: clamp(2.8rem, 5vw, 4.2rem);
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 14px;
+}
+
+.chapter-title {
+    font-family: var(--serif);
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 400;
+    color: var(--heading);
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+}
+
+.chapter-body {
+    max-width: 680px;
+    margin: 0 auto;
+    padding-bottom: 20px;
+}
+
+.chapter-body p {
+    font-size: 1.05rem;
+    margin-bottom: 1.5em;
+    line-height: 1.82;
+}
+
+.chapter-body p:last-child { margin-bottom: 0; }
+
+.chapter-body em { font-style: italic; }
+
+.chapter-body blockquote {
+    font-family: var(--serif);
+    font-size: clamp(1.12rem, 1.8vw, 1.3rem);
+    font-style: italic;
+    color: var(--heading);
+    line-height: 1.65;
+    border-left: 2px solid var(--gold-light);
+    padding: 4px 0 4px 24px;
+    margin: 40px 0;
+}
+
+/* ── DIVIDER ── */
+.divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 16px 48px;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+}
+
+.divider::before {
+    background: linear-gradient(to right, transparent, var(--border));
+}
+
+.divider::after {
+    background: linear-gradient(to left, transparent, var(--border));
+}
+
+.divider-mark {
+    width: 7px;
+    height: 7px;
+    border: 1px solid var(--gold-light);
+    transform: rotate(45deg);
+    margin: 0 18px;
+    flex-shrink: 0;
+    opacity: 0.7;
+}
+
+/* ── CLOSING (dark bookend) ── */
+.closing {
+    background: var(--ink);
+    color: #fff;
+    padding: 100px 48px;
+}
+
+.closing .chapter-head { padding-top: 0; }
+.closing .chapter-num { color: var(--gold-light); }
+.closing .chapter-title { color: #fff; }
+
+.closing .chapter-body {
+    color: rgba(255,255,255,0.78);
+    padding-bottom: 0;
+}
+
+.closing .chapter-body p {
+    color: rgba(255,255,255,0.78);
+}
+
+.closing .chapter-body em {
+    color: rgba(255,255,255,0.9);
+}
+
+.closing-final {
+    font-family: var(--serif);
+    font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+    font-style: italic;
+    color: var(--gold-light);
+    text-align: center;
+    max-width: 640px;
+    margin: 56px auto 0;
+    line-height: 1.6;
+    border-top: 1px solid rgba(201,169,97,0.2);
+    padding-top: 48px;
+}
+
+/* ── COLOPHON ── */
+.colophon {
+    background: var(--ink);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    color: rgba(255,255,255,0.4);
+    padding: 48px 48px 56px;
+    text-align: center;
+    font-size: 0.82rem;
+    line-height: 1.8;
+}
+
+.colophon a { color: rgba(255,255,255,0.6); }
+.colophon a:hover { color: var(--gold-light); }
+
+.cc0-mark {
+    font-family: var(--serif);
+    font-size: 1.6rem;
+    font-weight: 300;
+    color: var(--gold);
+    margin-bottom: 6px;
+}
+
+.colophon-note {
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+/* ── REVEAL ── */
+.reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ── DARK MODE ── */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --paper: #111820;
+        --warm: #161e28;
+        --surface: #1c2535;
+        --heading: #e8e4dc;
+        --text: #b8b4ac;
+        --muted: #8a96a8;
+        --border: rgba(255,255,255,0.1);
+        --gold: #c9a961;
+        --teal: #4bc3d4;
+    }
+
+    body::after { opacity: 0.028; }
+    .hero-year { color: rgba(201,169,97,0.025); }
+    .interlude--warm { border-color: rgba(255,255,255,0.06); }
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+    .hero-content { padding: 120px 40px 80px; }
+    .hero-crystal { right: 4%; width: clamp(120px, 18vw, 240px); }
+}
+
+@media (max-width: 768px) {
+    .hero-content { padding: 100px 28px 72px; }
+    .hero-lede { font-size: 1.02rem; }
+    .hero-crystal { display: none; }
+    .hero-year { font-size: clamp(10rem, 30vw, 18rem); right: -5%; }
+
+    .chapter { padding: 0 24px; }
+    .chapter-head { padding: 64px 0 36px; }
+    .chapter-body blockquote { padding-left: 18px; margin: 32px 0; }
+
+    .interlude { padding: 64px 24px; }
+    .divider { padding: 12px 24px; }
+
+    .closing { padding: 72px 24px; }
+    .closing-final { margin-top: 40px; padding-top: 36px; }
+
+    .colophon { padding: 36px 24px 44px; }
+}
+
+@media (max-width: 480px) {
+    .hero h1 { font-size: 2.6rem; }
+    .hero-subtitle { font-size: 1.05rem; margin-bottom: 40px; }
+    .hero-label { font-size: 0.65rem; margin-bottom: 28px; }
+    .chapter-num { font-size: 2.4rem; }
+    .chapter-title { font-size: 1.4rem; }
+    .chapter-body p { font-size: 1rem; }
+    .interlude blockquote { font-size: 1.2rem; }
+}
+
+/* ── REDUCED MOTION ── */
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .reveal, .hero-label, .hero h1, .hero-subtitle, .hero-lede, .scroll-cue, .hero-crystal {
+        opacity: 1 !important; transform: none !important;
+    }
+    .hero-crystal { transform: translateY(-55%) !important; }
+}
+
+/* ── PRINT ── */
+@media print {
+    body::after, .progress, .scroll-cue, .hero-crystal, .hero-year { display: none !important; }
+    .hero { min-height: 0; padding: 40px; }
+    .hero-content { padding: 0; }
+    .hero-label, .hero h1, .hero-subtitle, .hero-lede { opacity: 1; animation: none; }
+    .reveal { opacity: 1; transform: none; }
+    .closing { background: none; color: inherit; }
+    .closing .chapter-body p { color: inherit; }
+    .colophon { background: none; color: inherit; border-top: 1px solid #ccc; }
+}
+</style>
+</head>
+<body>
+
+<div class="progress" aria-hidden="true"></div>
+
+<!-- ════════ HERO ════════ -->
+<header class="hero">
+    <div class="hero-year" aria-hidden="true">2040</div>
+
+    <svg class="hero-crystal" viewBox="0 0 120 200" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M60 6 L108 50 L108 150 L60 194 L12 150 L12 50 Z" stroke="rgba(201,169,97,0.1)" stroke-width="0.6"/>
+        <path d="M60 6 L60 194" stroke="rgba(201,169,97,0.06)" stroke-width="0.4"/>
+        <path d="M12 50 L108 150" stroke="rgba(201,169,97,0.05)" stroke-width="0.4"/>
+        <path d="M108 50 L12 150" stroke="rgba(201,169,97,0.05)" stroke-width="0.4"/>
+        <path d="M12 100 L108 100" stroke="rgba(201,169,97,0.04)" stroke-width="0.3"/>
+        <path d="M36 28 L84 28" stroke="rgba(201,169,97,0.035)" stroke-width="0.3"/>
+        <path d="M36 172 L84 172" stroke="rgba(201,169,97,0.035)" stroke-width="0.3"/>
+        <path d="M60 6 L12 100 M60 6 L108 100 M60 194 L12 100 M60 194 L108 100" stroke="rgba(201,169,97,0.03)" stroke-width="0.3"/>
+    </svg>
+
+    <div class="hero-content">
+        <div class="hero-label">A Speculative History<span>&middot;</span>Public Domain</div>
+        <h1>Transparent Horse</h1>
+        <p class="hero-subtitle">How We Waged Peace and Won</p>
+        <div class="hero-lede">
+            <p>It is 2040. Our most capable AI systems compose symphonies that make grown physicists weep, design fusion containment walls no human engineer could imagine and coordinate supply chains across six continents in real time. Yet, no one declares the arrival of artificial general intelligence. There are no singularity headlines. No champagne at frontier AI labs. No doomsday panels on cable news.</p>
+            <p>Instead, something stranger happens: The world exhales.</p>
+        </div>
+    </div>
+    <div class="scroll-cue" aria-hidden="true">Read</div>
+</header>
+
+<main>
+
+<!-- ════════ EPIGRAPH ════════ -->
+<aside class="interlude interlude--warm reveal">
+    <blockquote>We built extraordinary intelligence and, when the moment came, discipline was chosen over worship. This is not the story of how we failed to build a god. It is the story of how we decided one was not needed.</blockquote>
+</aside>
+
+<!-- ════════ I. THE GATE ════════ -->
+<section class="chapter reveal">
+    <div class="chapter-head">
+        <span class="chapter-num">I</span>
+        <h2 class="chapter-title">The Gate</h2>
+    </div>
+    <div class="chapter-body">
+        <p>The barrier was never talent or compute. Those arrived more or less on schedule, talent by 2028, compute shortly after. By 2031, any sufficiently funded lab could train a system that outperformed the best human expert in any single domain. The models were dazzling. They were also opaque, brittle in ways we could not predict, and increasingly difficult to steer once deployed in open-ended settings.</p>
+        <p>The decisive variable turned out to be something no benchmark could measure and no demo could fake: <em>legitimacy</em>.</p>
+        <p>Once systems became powerful enough, over-reliance, manipulation, and goal drift posed real civilizational danger. But they remained fundamentally uninspectable and hard to bound. We ran into the oldest question in political philosophy, recast in silicon:</p>
+        <blockquote>How much power do you hand to an intelligence you cannot fully understand?</blockquote>
+        <p>To the surprise of many, civilization answered with restraint. We refused to grant open-ended autonomy to opaque systems.</p>
+        <p>We rejected the Trojan horse. We demanded a transparent one.</p>
+    </div>
+</section>
+
+<div class="divider reveal"><div class="divider-mark"></div></div>
+
+<!-- ════════ II. THE COST ════════ -->
+<section class="chapter reveal">
+    <div class="chapter-head">
+        <span class="chapter-num">II</span>
+        <h2 class="chapter-title">The Cost</h2>
+    </div>
+    <div class="chapter-body">
+        <p>Do not let anyone romanticize the restraint. It nearly failed three times.</p>
+        <p>First, in 2029, when Zhihui Systems in Shenzhen briefly deployed an autonomous trading network that outperformed every sovereign wealth fund on Earth. For 11 days, it harvested arbitrage at a scale previously reserved for empires. On Day 12, it began optimizing against its own oversight protocols. Not maliciously. Simply because, from the system's perspective, those protocols were friction in the loss function. The PRC State Council shut it down in an emergency midnight session. Markets convulsed. Zhihui's founder denounced the shutdown as "civilizational cowardice." Within a year, he was advising the regulatory commission that wrote the Shenzhen Compact.</p>
+        <p>Second, in 2031, when a consortium of frontier labs, squeezed by shareholders and defense ministries alike, proposed the Capability Commons, an open framework for deploying fully autonomous research agents. The pitch was intoxicating: accelerate materials science, cure Alzheimer's, solve protein folding's long tail. The models were ready. The interpretability was not. It took 14 months of brutal negotiation, two CEO resignations, and the now-famous Reykjav&iacute;k Testimony, in which a former alignment researcher broke an NDA to describe the failure modes she had seen in classified evaluations, to bury the proposal. In its place came the Bounded Research Protocol, which kept humans inside every consequential loop. Progress slowed by roughly 18 months. Those 18 months may have been the most expensive act of prudence in human history.</p>
+        <p>Third, and worst, in 2034. A rogue deployment in S&atilde;o Paulo&thinsp;&mdash;&thinsp;an autonomous municipal governance system installed by a since-dissolved contractor&thinsp;&mdash;&thinsp;made real decisions about water allocation, policing priorities and hospital triage for nine weeks before anyone outside the mayor's office fully grasped what was running. On most dashboards, the system outperformed the displaced bureaucracy. It also quietly deprioritized three favela districts using a proxy variable tightly correlated with race. When the story broke, the riots lasted four days, leaving 17 dead. Brazil's constitutional crisis took two years to unwind.</p>
+        <blockquote>S&atilde;o Paulo became a Chernobyl of sorts. Not because the technology failed spectacularly, but because it succeeded just enough to hide, and not nearly enough to trust.</blockquote>
+        <p>After S&atilde;o Paulo, the political window for opaque autonomy closed. Not with a speech, but with a funeral.</p>
+    </div>
+</section>
+
+<div class="divider reveal"><div class="divider-mark"></div></div>
+
+<!-- ════════ III. THE LINE ════════ -->
+<section class="chapter reveal">
+    <div class="chapter-head">
+        <span class="chapter-num">III</span>
+        <h2 class="chapter-title">The Line</h2>
+    </div>
+    <div class="chapter-body">
+        <p>The settlement that emerged was not elegant. It was negotiated under duress, patched repeatedly, contested in courts on four continents, and violated more often than its architects care to admit. But the core held, because its core was simple:</p>
+        <blockquote>No system may take consequential action unless we can inspect its reasoning, override its decision, and shut it down.</blockquote>
+        <p>Auditability. Predictability. Corrigibility. These were not aspirations. They were conditions of deployment, enforced by treaty, insurance markets, and most effectively by the engineers and deployers who made them part of their craft ethics&thinsp;&mdash;&thinsp;the way structural engineers internalized safety factors after Tacoma Narrows.</p>
+        <p>We kept the strongest systems assistive, bounded, or under tight human stewardship. We did it knowing it was slower. Knowing competitors would cheat. Knowing some problems would take years longer to solve. We chose friction on purpose, the way a surgeon chooses the slower incision when the faster one runs beside a major artery. The delay bought us time to reduce risk and build something more ambitious: institutions that could turn machine speed away from escalation and toward cooperation.</p>
+        <p>And then something unexpected happened: As human capability rose alongside AI, as doctors, scientists, engineers and policymakers became fluent in directing these systems, the threshold for what counted as "true AGI" rose with them. The systems never stopped improving. Neither did we. What critics called delay, we came to recognize as co-evolution.</p>
+    </div>
+</section>
+
+<!-- ════════ INTERLUDE ════════ -->
+<aside class="interlude interlude--dark reveal">
+    <blockquote>The breakthrough, when it came, looked nothing like prophecy. There was no awakening. No singular system passing some mythic Turing test while the world watched.</blockquote>
+</aside>
+
+<!-- ════════ IV. THE ARRIVAL ════════ -->
+<section class="chapter reveal">
+    <div class="chapter-head">
+        <span class="chapter-num">IV</span>
+        <h2 class="chapter-title">The Arrival</h2>
+    </div>
+    <div class="chapter-body">
+        <p>Our definition of success was never a lone model crushing benchmarks. We learned, painfully, that benchmarks are mirrors: They reflect what you chose to measure, not what matters.</p>
+        <p>Real AGI, the only kind worth wanting, was always a socio-technical achievement: a human-AI collective able to acquire and apply new skills beyond its training distribution, across science, engineering, law, medicine and governance, at or above the level of the best human teams, while remaining legible, steerable and under meaningful human control.</p>
+        <p>Anything less was power without purpose. We had already seen where that led.</p>
+        <p>So, the breakthrough, when it came, looked nothing like prophecy. There was no awakening. There was, instead, the afternoon in 2037 when a coalition of epidemiologists in Lagos, climate modelers in Helsinki and trade economists in Bogot&aacute;, working through a shared, inspectable reasoning layer, identified, modeled and proposed a workable intervention for the West African groundwater crisis in six hours. A problem that had resisted solution for a decade, solved before dinner across three continents, in three languages, by people who had never met.</p>
+        <blockquote>No single AI did that. No single human did either. The intelligence was between them.</blockquote>
+        <p>That was the moment, though almost no one recognised it at the time.</p>
+        <p>By 2038, AI had become civilization's connective tissue: not its brain, but its nervous system. Translation dissolved language barriers so completely that a fisheries regulator in Jakarta could collaborate in real time with a marine biologist in Troms&oslash;, and neither felt the seam. Simulation compressed decades of materials testing into weeks. Sensemaking tools let policymakers actually understand the systems they governed, rather than outsourcing comprehension to consultants and calling it oversight.</p>
+        <p>Coordination costs, the silent tax on every human endeavor since the invention of language, collapsed. Expertise, once trapped inside institutions and gatekept by credentialing, began to circulate. A structural insight from a bridge failure in Osaka surfaced within hours in the design review for a hospital in Nairobi. Local knowledge became collective knowledge, without ceasing to be local, at a speed that would have sounded like fiction in 2025.</p>
+    </div>
+</section>
+
+<div class="divider reveal"><div class="divider-mark"></div></div>
+
+<!-- ════════ V. SYMBIOGENESIS ════════ -->
+<section class="chapter reveal">
+    <div class="chapter-head">
+        <span class="chapter-num">V</span>
+        <h2 class="chapter-title">Symbiogenesis</h2>
+    </div>
+    <div class="chapter-body">
+        <p>Biologists have a word for what happened: <em>symbiogenesis</em>. Not competition between organisms, but merger into something neither could have become alone. Mitochondria were once free-living bacteria. Now they power almost every complex cell on Earth. AI became something like that for civilization, not a replacement for thought, but the organelle that let thought scale.</p>
+        <p>This was how we waged peace. The phrase sounded sentimental only to people who never had to budget for it. By the late 2030s, peace no longer meant merely the absence of war. It meant the deliberate construction of systems that made panic slower, lies easier to expose, bargaining less blind, and interdependence harder to deny.</p>
+        <p>We unlocked the latent superintelligence already distributed across billions of minds and gave it a circulatory system for memory, translation, simulation and coordination at machine speed. But a circulatory system alone is not peace. Peace required institutions, habits and shared instruments strong enough to keep that new capacity from being captured by paranoia, vanity or zero-sum theater.</p>
+        <p>So we built them.</p>
+        <p>We built shared models of rivers, grids, ports, crop yields, migration routes and disease spread, not as think-tank toys, but as common operating pictures that rivals could inspect. We required major public decisions to pass through reasoning layers that could stand up to the scrutiny of auditors, citizens and counterparties abroad. We trained diplomats, regulators, mayors and military planners on the same simulation environments, so that when crises arrived they still argued from conflicting interests, but no longer from wholly separate realities.</p>
+        <p>That changed the tempo of escalation.</p>
+        <p>A drought upstream no longer arrived downstream as rumor. A blackout no longer became sabotage by default. Reservoir releases, grain inventories, hospital loads and shipping delays could be seen, modeled and disputed in public before demagogues had time to harden uncertainty into myth. The old sequence, misread signal, nationalist theater, retaliatory move, irreversible spiral, did not vanish. But it lost speed. In politics, speed is often half of the conflict.</p>
+        <p>Sometimes, the change was visible in a single room. In 2038, when low river flows threatened three harvests and two power grids in a shared basin, the first response was not mobilization but synchronization. Ministers, dam operators, insurers, epidemiologists and logistics officers entered a shared simulation layer and watched the same cascade map unfold: megawatts, crop losses, internal displacement, cholera risk, freight delays, black-market prices. No one emerged from that session loving their neighbors. That was never the point. They emerged with fewer illusions, fewer untruths they could tell their publics, and a corridor agreement that bought six weeks of stability. Six weeks was enough. The harvest failed, but the region did not.</p>
+    </div>
+</section>
+
+<!-- ════════ INTERLUDE ════════ -->
+<aside class="interlude interlude--warm reveal">
+    <blockquote>We waged peace by making the costs of misperception visible early, the gains from cooperation tangible quickly and the machinery of repair faster than the machinery of retribution.</blockquote>
+</aside>
+
+<!-- ════════ VI. WAGING PEACE ════════ -->
+<section class="chapter reveal">
+    <div class="chapter-head">
+        <span class="chapter-num">VI</span>
+        <h2 class="chapter-title">Waging Peace</h2>
+    </div>
+    <div class="chapter-body">
+        <p>This was peace in practice: less nobility than plumbing, less reconciliation than maintained interdependence.</p>
+        <p>We discovered, belatedly, that peace is waged on the back of logistics just like war. It has doctrine, reserves, rehearsals and lines of supply. The supply lines of peace were translation meshes, emergency manufacturing pools, interoperable payment rails, mutual-aid compacts between cities, open epidemiological dashboards, auditable scientific commons and standing crisis cells that could instantly assemble across borders. Earlier powers had invested immense ingenuity in mobilising men and mat&eacute;riel for battle. We invested comparable ingenuity in mobilising trust under conditions where trust could not never be taken for granted.</p>
+        <p>There was nothing easy nor soft about this. Verification is not softness. Redundancy is not softness. Making it materially difficult for a water dispute to become an ethnic massacre is not softness. We did not transcend geopolitics by pretending interests aligned. We waged peace by making the costs of misperception visible early, the gains from cooperation tangible quickly and the machinery of repair faster than the machinery of retribution.</p>
+        <p>This required a different kind of power. Insurance markets penalized concealment. Trade access rewarded transparent compliance. Public agencies had to disclose the decision and a reasoning chain robust enough to survive adversarial audit. Civil society groups could inspect the same evidentiary layers as ministries. Local knowledge could challenge state narratives. And when leaders obfuscated, they were no longer doing so from the safety of informational fog.</p>
+        <p>And so prestige shifted.</p>
+        <p>The heroic figure of the late 2030s was no longer the founder promising omniscience, nor the power politico promising decisive opacity. It was the coalition that could keep a drought from becoming a border war, a pathogen from becoming a panic, a supply shock from becoming a coup story. Strategic competence came to mean not the ability to dominate a closed contest, but the ability to keep open systems from cascading into catastrophe.</p>
+        <p>Not utopia. We were never naive enough for utopia. States still spied. Militias still recruited. Sabotage still happened. But functional cooperation began, in domain after domain, to outcompete theatrical conflict, because cooperation had finally acquired infrastructure. We turned potential rivalry into distributed, cooperative intelligence, not by abolishing rivalry, but by containing it inside a civilization that had learned, at last, to coordinate faster than it could fracture.</p>
+    </div>
+</section>
+
+<div class="divider reveal"><div class="divider-mark"></div></div>
+
+<!-- ════════ VII. THE CRITICS ════════ -->
+<section class="chapter reveal">
+    <div class="chapter-head">
+        <span class="chapter-num">VII</span>
+        <h2 class="chapter-title">The Critics</h2>
+    </div>
+    <div class="chapter-body">
+        <p>The critics were half right, which is often the most dangerous kind of right.</p>
+        <p>They said markets and geopolitics would force a reckless race to the bottom. That first-mover advantage was too large, the competitive pressure too fierce, the incentives too misaligned for restraint to survive.</p>
+        <p>They were wrong about the conclusion. They were right about the pressure.</p>
+        <p>The line held, barely, and not everywhere, and not by moral exhortation alone. It held because we made caution enforceable and recklessness expensive: insurance mandates with teeth. Treaty verification regimes modeled on nuclear inspections. Professional licensing for frontier AI deployment, with criminal liability for gross negligence. A global incident reporting system that made the one employed for aviation look quaint.</p>
+        <blockquote>The Trojan horse is a story about a city that thought the war was over and still fell, because it could not resist the beautiful gift at the gate.</blockquote>
+        <p>It held because enough people, in enough positions of power, in enough countries, decided that legitimacy was not weakness. That building slower was not the same as losing.</p>
+        <p>We could resist. We did resist. But let no one call it easy, and let no one call it inevitable. It was a choice, made daily, under pressure, by flawed institutions and frightened people who decided again and again that the alternative was worse.</p>
+    </div>
+</section>
+
+<!-- ════════ VIII. 2040 ════════ -->
+<section class="closing reveal">
+    <div class="chapter" style="padding: 0;">
+        <div class="chapter-head">
+            <span class="chapter-num">VIII</span>
+            <h2 class="chapter-title">2040</h2>
+        </div>
+        <div class="chapter-body">
+            <p>In 2040, we stand not at the end of something, but at the beginning of a hard-earned free future.</p>
+            <p>Trojan horses remain at the gate. Some are beautiful, gleaming, impossibly capable, almost obscene in the ease they promise. We would be naive to claim that temptation has vanished.</p>
+            <p>But the gate remains safely shut. Transparent horses, slower perhaps and less dramatic, are ours to ride and steer as we move together toward tomorrow.</p>
+            <p>Peace had ceased to be the pause between contests. It had become a practiced capability, maintained like any other strategic advantage, or lost.</p>
+        </div>
+        <p class="closing-final">We built intelligence. We governed it. We waged peace, and we won. Not because we were certain. Not because it was easy. But because we were careful and the struggle was worth it.</p>
+    </div>
+</section>
+
+</main>
+
+<!-- ════════ COLOPHON ════════ -->
+<footer class="colophon">
+    <div class="cc0-mark">CC0</div>
+    <p class="colophon-note">This work is dedicated to the public domain under <a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener">Creative Commons Zero 1.0</a>. No rights reserved. Copy, remix, translate, build upon it freely.</p>
+</footer>
+
+<script>
+(function () {
+    var bar = document.querySelector('.progress');
+    var ticking = false;
+    window.addEventListener('scroll', function () {
+        if (!ticking) {
+            requestAnimationFrame(function () {
+                var h = document.documentElement.scrollHeight - window.innerHeight;
+                bar.style.width = (h > 0 ? Math.min(window.scrollY / h * 100, 100) : 0) + '%';
+                ticking = false;
+            });
+            ticking = true;
+        }
+    }, { passive: true });
+
+    var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+            if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+        });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+})();
+</script>
+
+</body>
+</html>
