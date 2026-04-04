@@ -51,6 +51,24 @@
     animation: heroReveal 1.8s cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards;
 }
 
+.hero-portrait-credit {
+    position: absolute;
+    right: clamp(12px, 2vw, 24px);
+    bottom: clamp(14px, 2vw, 24px);
+    z-index: 2;
+    max-width: calc(65% - 24px);
+    font-family: var(--sans);
+    font-size: clamp(0.34rem, 0.5vw, 0.48rem);
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.16);
+    text-align: right;
+    text-shadow: 0 0 10px rgba(0,0,0,0.18);
+    pointer-events: none;
+    user-select: none;
+    white-space: nowrap;
+}
+
 @keyframes heroReveal {
     from { opacity: 0; transform: scale(1.05); }
     to { opacity: 1; transform: scale(1); }
@@ -923,6 +941,12 @@ footer .footer-name {
         animation: none;
         transform: none;
     }
+    .hero-portrait-credit {
+        right: 12px;
+        bottom: 16px;
+        max-width: calc(100% - 24px);
+        font-size: 0.33rem;
+    }
 
     .hero::after {
         background: linear-gradient(
@@ -1089,6 +1113,10 @@ footer .footer-name {
         padding: 0 !important;
         max-width: none !important;
         color: inherit !important;
+    }
+
+    .hero-portrait-credit {
+        display: none !important;
     }
 
     .hero-label,

@@ -25,7 +25,7 @@
 <meta name="theme-color" content="#0f1923" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#faf8f5" media="(prefers-color-scheme: light)">
 <meta name="color-scheme" content="light dark">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-uuoz5TQ6x7Soce1tzIb0Z2db7jLBjb7qhVerELB8ywk=' 'sha256-4G7wnwQc6qvKDvB+Quf3SC5N+0WcBvc/riHtQRDvDX4=' 'sha256-PBIbXpxoZq+dGJKBjiohe0A6iJvI1eJGI9eoqhVuI+Q='; style-src 'sha256-bDY6FZoeTf6q1OFKAm9VbOuUPcTtgmyHFqO238fjg8E=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-kTULIk1LNNTuREciBeliE5aA3crzF37/I9L8WOTrbcw=' 'sha256-homZe+Nj40R45hjyAu3+Rn+JtrENQzfsjEy2sJ8SSzk='; img-src 'self'; font-src 'self' data:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-uuoz5TQ6x7Soce1tzIb0Z2db7jLBjb7qhVerELB8ywk=' 'sha256-4G7wnwQc6qvKDvB+Quf3SC5N+0WcBvc/riHtQRDvDX4=' 'sha256-PBIbXpxoZq+dGJKBjiohe0A6iJvI1eJGI9eoqhVuI+Q='; style-src 'sha256-bDY6FZoeTf6q1OFKAm9VbOuUPcTtgmyHFqO238fjg8E=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-kTULIk1LNNTuREciBeliE5aA3crzF37/I9L8WOTrbcw=' 'sha256-HTigsLEB6+JAJ9mfJfQe6BT53r4YGCx1+4LYTG7wWtw='; img-src 'self'; font-src 'self' data:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
 <link rel="canonical" href="https://cyberambassador.tw/">
 <link rel="alternate" hreflang="zh-TW" href="https://audreyt.org/">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -353,6 +353,24 @@ window.__webp=__imgProbe('assets/probe.webp');
     object-position: center top;
     opacity: 0;
     animation: heroReveal 1.8s cubic-bezier(0.22, 1, 0.36, 1) 0.3s forwards;
+}
+
+.hero-portrait-credit {
+    position: absolute;
+    right: clamp(12px, 2vw, 24px);
+    bottom: clamp(14px, 2vw, 24px);
+    z-index: 2;
+    max-width: calc(65% - 24px);
+    font-family: var(--sans);
+    font-size: clamp(0.34rem, 0.5vw, 0.48rem);
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.16);
+    text-align: right;
+    text-shadow: 0 0 10px rgba(0,0,0,0.18);
+    pointer-events: none;
+    user-select: none;
+    white-space: nowrap;
 }
 
 @keyframes heroReveal {
@@ -1227,6 +1245,12 @@ footer .footer-name {
         animation: none;
         transform: none;
     }
+    .hero-portrait-credit {
+        right: 12px;
+        bottom: 16px;
+        max-width: calc(100% - 24px);
+        font-size: 0.33rem;
+    }
 
     .hero::after {
         background: linear-gradient(
@@ -1393,6 +1417,10 @@ footer .footer-name {
         padding: 0 !important;
         max-width: none !important;
         color: inherit !important;
+    }
+
+    .hero-portrait-credit {
+        display: none !important;
     }
 
     .hero-label,
@@ -1888,6 +1916,7 @@ footer .footer-name {
              sizes="(max-width: 768px) 100vw, 65vw"
              alt="Audrey Tang, arms crossed, gazing thoughtfully to the side, wearing rimless glasses and a jacket printed with an ink-wash mountain landscape, against a dark textured background" title="Audrey Tang portrait by Kaii Chiang, CC BY-NC-SA 4.0" width="1200" height="1200" fetchpriority="high" decoding="async"></noscript>
     </div>
+    <span class="hero-portrait-credit" aria-hidden="true">Kaii Chiang · CC BY-NC-SA 4.0</span>
     <div class="hero-content">
         <div class="hero-label"><span lang="en-GB">Cyber Ambassador </span><svg class="flag-tw" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 80" role="img" aria-label="Taiwan flag"><title>Taiwan</title><defs><clipPath id="tw-c"><rect width="120" height="80" rx="13"/></clipPath><linearGradient id="tw-l" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".13"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/></linearGradient><radialGradient id="tw-v" cx="50%" cy="50%" r="70%"><stop offset="55%" stop-color="#000" stop-opacity="0"/><stop offset="100%" stop-color="#000" stop-opacity=".18"/></radialGradient></defs><g clip-path="url(#tw-c)"><rect width="120" height="80" fill="#CF152D"/><rect width="60" height="40" fill="#003F87"/><path id="tw-a" fill="#fff" d="M30 5l4 15-4 15-4-15zM15 20l15 4 15-4-15-4z"/><use href="#tw-a" transform="rotate(30,30,20)"/><use href="#tw-a" transform="rotate(60,30,20)"/><circle cx="30" cy="20" r="8" fill="#fff" stroke="#003F87" stroke-width="1"/><rect width="120" height="80" fill="url(#tw-l)"/><rect width="120" height="80" fill="url(#tw-v)"/><rect x=".5" y=".5" width="119" height="79" rx="12.5" fill="none" stroke="#fff" stroke-opacity=".22" stroke-width=".8"/></g></svg><span lang="en-GB"> Taiwan</span><span lang="zh-TW"> 數位治理大使</span></div>
         <h1 lang="en-GB">Audrey Tang</h1>
@@ -1939,7 +1968,7 @@ footer .footer-name {
                     <span class="role-org">Oxford Institute for Ethics in AI</span>
                 </li>
                 <li>
-                    <span class="role-title">Co-Curator, TED 2026</span>
+                    <span class="role-title">Guest Curator, TED 2026</span>
                     <span class="role-org">TED Conferences</span>
                 </li>
                 <li>
@@ -1966,7 +1995,7 @@ footer .footer-name {
                 </li>
                 <li>
                     <span class="role-org">TED 大會</span>
-                    <span class="role-title">TED 2026 共同策展人</span>
+                    <span class="role-title">TED 2026 客座策展人</span>
                 </li>
                 <li>
                     <span class="role-org">Mozilla 基金會</span>
@@ -2357,9 +2386,9 @@ footer .footer-name {
             <svg class="connect-icon" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M12 10.8c-1.087-2.114-4.046-6.053-6.798-7.995C2.566.944 1.561 1.266.902 1.565.139 1.908 0 3.08 0 3.768c0 .69.378 5.65.624 6.479.815 2.736 3.713 3.66 6.383 3.364.136-.02.275-.039.415-.056-.138.022-.276.04-.415.056-3.912.58-7.387 2.005-2.83 7.078 5.013 5.19 6.87-1.113 7.823-4.308.953 3.195 2.05 9.271 7.733 4.308 4.267-4.308 1.172-6.498-2.74-7.078a8.741 8.741 0 0 1-.415-.056c.14.017.279.036.415.056 2.67.297 5.568-.628 6.383-3.364.246-.828.624-5.79.624-6.478 0-.69-.139-1.861-.902-2.206-.659-.298-1.664-.62-4.3 1.24C16.046 4.748 13.087 8.687 12 10.8z"/></svg>
             Bluesky
         </a>
-        <a href="https://sayit.archive.tw" class="connect-link" target="_blank" rel="me noopener noreferrer">
+        <a href="https://archive.tw" class="connect-link" target="_blank" rel="me noopener noreferrer">
             <svg class="connect-icon" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M12.04 3.08H7.29C4.33 3.08 1.74 5.77 1.74 9.04v.03c0 2.73 1.8 5.12 4.6 5.72v2.47c0 .68.82.99 1.32.52l2.92-2.89h1.46c3.04 0 5.49-2.74 5.49-5.81v-.09c0-3.02-2.32-5.91-5.49-5.91zM6.58 11.11c.89-.41 1.37-1.05 1.41-1.97-.88.08-1.4-.55-1.4-1.2 0-.71.54-1.28 1.2-1.28.94 0 1.46.68 1.46 1.89v.14c0 1.46-.77 2.59-2.15 3.22l-.52-.8zM10.22 11.11c.89-.41 1.35-1.05 1.38-1.97-.85.08-1.35-.55-1.35-1.2 0-.71.5-1.28 1.2-1.28.94 0 1.41.71 1.41 1.89v.14c0 1.43-.77 2.59-2.12 3.22l-.52-.8z"/><path opacity=".6" d="M18.56 9.6c-.25 3.37-2.8 6.49-6.82 6.49h-.85l-.07.07c.79 1.38 1.94 2.25 3.82 2.25h.84l2.12 2.15c.47.48 1.16.07 1.01-.6v-1.58c1.94-.45 3.53-2.31 3.53-4.39 0-2.08-1.34-3.85-3.58-4.39z"/></svg>
-            SayIt
+            Archive / 逐字稿
         </a>
         <a href="mailto:au@civic.ai" class="connect-link">
             <svg class="connect-icon" aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
@@ -2527,7 +2556,7 @@ document.querySelector('.lang-toggle').addEventListener('keydown', (e) => {
     "alternateName": "唐鳳",
     "url": "https://cyberambassador.tw",
     "image": "https://cyberambassador.tw/og-image.jpg",
-    "jobTitle": ["Cyber Ambassador", "Senior Accelerator Fellow, Oxford Institute for Ethics in AI", "Co-Curator, TED 2026"],
+    "jobTitle": ["Cyber Ambassador", "Senior Accelerator Fellow, Oxford Institute for Ethics in AI", "Guest Curator, TED 2026"],
     "description": "Civic hacker, 2025 Right Livelihood Laureate, co-author of Plurality, Senior Accelerator Fellow at Oxford Institute for Ethics in AI. Former Digital Minister of Taiwan.",
     "sameAs": [
         "https://bsky.app/profile/audreyt.org",

@@ -28,7 +28,7 @@ A child prodigy who practiced Taoism to manage a congenital heart condition, Tan
 |------|-------------|
 | Cyber Ambassador | Taiwan |
 | Senior Accelerator Fellow | Oxford Institute for Ethics in AI |
-| Co-Curator, TED 2026 | TED Conferences |
+| Guest Curator, TED 2026 | TED Conferences |
 | Omidyar Senior Advisor | Mozilla Foundation |
 | Senior Fellow | Project Liberty Institute |
 | Plurality Initiative Advisor | Ethereum Foundation |
@@ -150,7 +150,7 @@ Currently, Tang is developing **techno-communitarianism** — a synthesis of the
 - [LinkedIn](https://www.linkedin.com/in/tangaudrey/)
 - [X](https://x.com/audreyt)
 - [Bluesky](https://bsky.app/profile/audreyt.org)
-- [SayIt](https://sayit.archive.tw)
+- [Archive / 逐字稿](https://archive.tw)
 - Email: au@civic.ai
 
 Contact [ProjectSpeaker](https://www.projectspeaker.com/audrey-tang/) for appearances and engagements.

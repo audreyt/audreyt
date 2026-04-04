@@ -1077,7 +1077,9 @@ function renderConnect(): string {
     if (url.includes("linkedin.com")) return CONNECT_ICONS.linkedin;
     if (url.includes("x.com")) return CONNECT_ICONS["x.com"];
     if (url.includes("bsky.app")) return CONNECT_ICONS.bsky;
-    if (url.includes("sayit.archive")) return CONNECT_ICONS.sayit;
+    if (url.includes("sayit.archive") || url.includes("archive.tw")) {
+      return CONNECT_ICONS.sayit;
+    }
     if (url.startsWith("mailto:")) return CONNECT_ICONS.email;
     return "";
   }
