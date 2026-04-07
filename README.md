@@ -121,6 +121,7 @@ Oscar and Emmy-winning director Cynthia Wade's documentary on democracy, mortali
 | [How Malicious AI Swarms Can Threaten Democracy](https://www.science.org/doi/10.1126/science.adz1697) | With Maria Ressa, Nick Bostrom, Nicholas Christakis, et al. | Science | 2026 |
 | [Sunset Section 230 and Unleash the First Amendment](https://cacm.acm.org/opinion/sunset-section-230-and-unleash-the-first-amendment/) | With Jaron Lanier and Allison Stanger | CACM | 2026 |
 | [AI Poses Risks to Democratic and Social Systems](https://zhijing-jin.com/d/2026-ai-risk.pdf) | With Yoshua Bengio, Stuart Russell, Zhijing Jin et al. | Preprint | 2026 |
+| [Symbiotic Alignment via Collective Predictive Coding](https://doi.org/10.5281/zenodo.19029736) | With Tadahiro Taniguchi, Yusuke Hayashi, Olaf Witkowski, et al. | Preprint | 2026 |
 | [Conversation Networks](https://www.mediatechdemocracy.com/conversation-networks) | With Deb Roy and Lawrence Lessig | McGill | 2025 |
 | [A Different Approach to AI Safety](https://arxiv.org/abs/2506.22183) | With Camille François, Ludovic Péran et al. · Columbia University convening proceedings | arXiv | 2025 |
 | [Community by Design](https://arxiv.org/abs/2502.10834) | With E. Glen Weyl et al. | arXiv | 2025 |
