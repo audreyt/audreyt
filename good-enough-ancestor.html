@@ -348,6 +348,86 @@ body::after {
     margin: 14px auto;
 }
 
+/* -- WORDLESS CHAPTER ILLUSTRATIONS -- */
+.chapter-illustration {
+    --illustration-node: var(--paper);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: clamp(84px, 13vw, 122px);
+    margin: -30px auto 42px;
+    color: var(--gold);
+    pointer-events: none;
+}
+.chapter-illustration svg {
+    width: clamp(148px, 24vw, 230px);
+    max-width: 72%;
+    height: auto;
+    overflow: visible;
+    filter: drop-shadow(0 18px 28px rgba(125,100,48,0.08));
+}
+.chapter-illustration .line,
+.chapter-illustration .fine,
+.chapter-illustration .node,
+.chapter-illustration .ghost,
+.chapter-illustration .veil {
+    vector-effect: non-scaling-stroke;
+}
+.chapter-illustration .line {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.35;
+    opacity: 0.68;
+}
+.chapter-illustration .fine {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 0.65;
+    opacity: 0.34;
+}
+.chapter-illustration .node {
+    fill: var(--illustration-node);
+    stroke: currentColor;
+    stroke-width: 1.2;
+    opacity: 0.86;
+}
+.chapter-illustration .ghost {
+    fill: currentColor;
+    stroke: currentColor;
+    stroke-width: 0.45;
+    opacity: 0.08;
+}
+.chapter-illustration .veil {
+    fill: color-mix(in srgb, var(--paper) 78%, transparent);
+    stroke: currentColor;
+    stroke-width: 0.7;
+    opacity: 0.34;
+}
+.chapter-illustration .teal {
+    fill: var(--teal);
+    stroke: none;
+    opacity: 0.58;
+}
+.chapter-illustration .ember {
+    fill: var(--gold-light);
+    stroke: none;
+    opacity: 0.2;
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: pulse 5.6s ease-in-out infinite;
+}
+.chapter-illustration .thread {
+    stroke-dasharray: 2.5 4.5;
+}
+.closing .chapter-illustration {
+    --illustration-node: var(--ink);
+    color: var(--gold-light);
+    margin-bottom: 34px;
+}
+.closing .chapter-illustration .veil {
+    fill: rgba(15,25,35,0.65);
+}
+
 /* ── DIVIDER ── */
 .divider { display: flex; align-items: center; justify-content: center; max-width: 680px; margin: 0 auto; padding: 16px 48px; }
 .divider::before, .divider::after { content: ''; flex: 1; height: 1px; }
@@ -435,6 +515,8 @@ body::after {
     .colophon { padding: 36px 24px 44px; }
     .lang-toggle { top: 16px; right: 16px; }
     .ask { margin-bottom: 28px; }
+    .chapter-illustration { margin: -20px auto 32px; height: 86px; }
+    .chapter-illustration svg { width: 156px; max-width: 78%; }
 }
 @media (max-width: 480px) {
     .hero h1 { font-size: 2.5rem; }
@@ -447,6 +529,7 @@ body::after {
     html:has(#lang-zh:checked) .chapter-body p { font-size: 0.95rem; }
     .interlude blockquote { font-size: 1.2rem; }
     html:has(#lang-zh:checked) .interlude blockquote { font-size: 1.1rem; }
+    .chapter-illustration { margin-bottom: 28px; }
 }
 
 /* ── REDUCED MOTION ── */
@@ -555,6 +638,19 @@ body::after {
         <span class="chapter-num">I</span>
         <h2 class="chapter-title"><span lang="en-GB">Worthy of Trust</span><span lang="zh-TW">值得信賴</span></h2>
     </div>
+    <figure class="chapter-illustration" aria-hidden="true">
+        <svg viewBox="0 0 180 120" focusable="false">
+            <path class="ghost" d="M90 12c30 0 54 18 54 41 0 31-31 48-54 57-23-9-54-26-54-57 0-23 24-41 54-41z"/>
+            <path class="fine thread" d="M28 88c25-28 43-34 62-40 19 6 37 12 62 40"/>
+            <path class="fine" d="M50 42c13 14 25 22 40 25 15-3 27-11 40-25"/>
+            <path class="line" d="M90 28l24 13v22c0 18-10 31-24 39-14-8-24-21-24-39V41z"/>
+            <path class="line" d="M73 61l12 12 24-28"/>
+            <circle class="node" cx="34" cy="88" r="5"/>
+            <circle class="node" cx="90" cy="45" r="5"/>
+            <circle class="node" cx="146" cy="88" r="5"/>
+            <circle class="ember" cx="90" cy="72" r="13"/>
+        </svg>
+    </figure>
     <div class="chapter-body" lang="en-GB">
         <p>Your study asks how AI affects human rights, economic security, vulnerable groups, and the international right to work. I would like to offer one frame.</p>
         <p>Taiwan&rsquo;s success against AI&#8209;generated scam ads showed that democracies need not choose between technocratic control and platform inaction. Citizens deliberated on the balance between fraud prevention and freedom of expression. The same principle applies to work: <em>affected people should help set the rules before systems harden into infrastructure</em>.</p>
@@ -581,6 +677,22 @@ body::after {
         <span class="chapter-num">II</span>
         <h2 class="chapter-title"><span lang="en-GB">Ethics of Care</span><span lang="zh-TW">關懷倫理</span></h2>
     </div>
+    <figure class="chapter-illustration" aria-hidden="true">
+        <svg viewBox="0 0 180 120" focusable="false">
+            <circle class="ghost" cx="90" cy="62" r="40"/>
+            <circle class="fine" cx="90" cy="62" r="24"/>
+            <path class="fine" d="M90 22v80M50 42l80 40M130 42L50 82"/>
+            <path class="line" d="M73 62c0-10 7-18 17-18s17 8 17 18-7 18-17 18-17-8-17-18z"/>
+            <path class="line" d="M83 66c4 5 10 5 14 0"/>
+            <circle class="node" cx="90" cy="22" r="4.8"/>
+            <circle class="node" cx="124" cy="42" r="4.8"/>
+            <circle class="node" cx="124" cy="82" r="4.8"/>
+            <circle class="node" cx="90" cy="102" r="4.8"/>
+            <circle class="node" cx="56" cy="82" r="4.8"/>
+            <circle class="node" cx="56" cy="42" r="4.8"/>
+            <circle class="teal" cx="90" cy="62" r="3.2"/>
+        </svg>
+    </figure>
     <div class="chapter-body" lang="en-GB">
         <p>This matters most for those already made vulnerable by existing systems. I am thinking of Indigenous communities, migrant workers, people with physical and mental challenges, children, seniors, racialised communities, and those underrepresented in labour and skills data.</p>
         <p>AI must not become a new way to extract knowledge without consent, to score people without context, or to make exclusion more efficient.</p>
@@ -614,6 +726,24 @@ body::after {
         <span class="chapter-num">III</span>
         <h2 class="chapter-title"><span lang="en-GB">Bigger Table</span><span lang="zh-TW">一張更大的桌子</span></h2>
     </div>
+    <figure class="chapter-illustration" aria-hidden="true">
+        <svg viewBox="0 0 180 120" focusable="false">
+            <ellipse class="ghost" cx="90" cy="62" rx="64" ry="38"/>
+            <ellipse class="line" cx="90" cy="62" rx="36" ry="20"/>
+            <ellipse class="fine" cx="90" cy="62" rx="56" ry="32"/>
+            <path class="fine thread" d="M33 62c16-27 36-40 57-40s41 13 57 40c-16 27-36 40-57 40S49 89 33 62z"/>
+            <circle class="node" cx="90" cy="22" r="4.6"/>
+            <circle class="node" cx="124" cy="32" r="4.6"/>
+            <circle class="node" cx="146" cy="58" r="4.6"/>
+            <circle class="node" cx="136" cy="88" r="4.6"/>
+            <circle class="node" cx="106" cy="102" r="4.6"/>
+            <circle class="node" cx="74" cy="102" r="4.6"/>
+            <circle class="node" cx="44" cy="88" r="4.6"/>
+            <circle class="node" cx="34" cy="58" r="4.6"/>
+            <circle class="node" cx="56" cy="32" r="4.6"/>
+            <circle class="teal" cx="90" cy="62" r="3.5"/>
+        </svg>
+    </figure>
     <p class="ask" lang="en-GB">Could you give a concrete example of co&#8209;governing AI in Taiwan?</p>
     <p class="ask" lang="zh-TW">能否舉一個你在臺灣實施的具體例子，說明如何圍繞 AI 進行真正的共同治理？</p>
     <div class="chapter-body" lang="en-GB">
@@ -642,6 +772,23 @@ body::after {
         <span class="chapter-num">IV</span>
         <h2 class="chapter-title"><span lang="en-GB">Data as Soil</span><span lang="zh-TW">資料如土壤</span></h2>
     </div>
+    <figure class="chapter-illustration" aria-hidden="true">
+        <svg viewBox="0 0 180 120" focusable="false">
+            <path class="fine" d="M30 68h120"/>
+            <path class="ghost" d="M46 70c12 26 75 36 88 0H46z"/>
+            <path class="line" d="M90 70c0-17 10-29 27-35"/>
+            <path class="line" d="M90 70c-2-19-13-29-31-33"/>
+            <path class="line" d="M90 70c0-16 2-29 0-46"/>
+            <path class="fine" d="M90 70c-12 11-27 18-45 20M90 70c11 13 27 21 47 22M90 72c-5 16-5 27 1 35"/>
+            <path class="fine thread" d="M61 88c11 2 20 7 29 19M119 90c-11 3-19 8-28 17"/>
+            <ellipse class="node" cx="72" cy="40" rx="10" ry="5" transform="rotate(26 72 40)"/>
+            <ellipse class="node" cx="106" cy="38" rx="11" ry="5" transform="rotate(-28 106 38)"/>
+            <circle class="node" cx="45" cy="90" r="4"/>
+            <circle class="node" cx="137" cy="92" r="4"/>
+            <circle class="teal" cx="91" cy="106" r="3.2"/>
+            <circle class="ember" cx="90" cy="68" r="11"/>
+        </svg>
+    </figure>
     <p class="ask" lang="en-GB">From an energy&#8209;use perspective, what is the difference between general&#8209;purpose AI and domain&#8209;specific models?</p>
     <p class="ask" lang="zh-TW">從能源使用的角度，能否說明通用 AI 與領域特定模型有什麼不同？</p>
     <div class="chapter-body" lang="en-GB">
@@ -676,6 +823,22 @@ body::after {
         <span class="chapter-num">V</span>
         <h2 class="chapter-title"><span lang="en-GB">Without Revealing</span><span lang="zh-TW">不需揭露</span></h2>
     </div>
+    <figure class="chapter-illustration" aria-hidden="true">
+        <svg viewBox="0 0 180 120" focusable="false">
+            <path class="fine thread" d="M22 62c25-20 45-20 68 0s43 20 68 0"/>
+            <path class="fine thread" d="M22 82c25-20 45-20 68 0s43 20 68 0"/>
+            <path class="veil" d="M90 24l34 13v27c0 23-14 39-34 49-20-10-34-26-34-49V37z"/>
+            <path class="line" d="M90 38l18 8v17c0 14-7 24-18 31-11-7-18-17-18-31V46z"/>
+            <rect class="node" x="41" y="38" width="8" height="8" rx="1.4"/>
+            <rect class="node" x="53" y="51" width="7" height="7" rx="1.4"/>
+            <rect class="node" x="38" y="68" width="7" height="7" rx="1.4"/>
+            <rect class="node" x="132" y="42" width="8" height="8" rx="1.4"/>
+            <rect class="node" x="121" y="65" width="7" height="7" rx="1.4"/>
+            <rect class="node" x="139" y="78" width="7" height="7" rx="1.4"/>
+            <path class="line" d="M81 66l7 7 14-18"/>
+            <circle class="ember" cx="90" cy="64" r="12"/>
+        </svg>
+    </figure>
     <p class="ask" lang="en-GB">How do you protect human&#8209;rights information while sharing it across jurisdictions?</p>
     <p class="ask" lang="zh-TW">如何在強調透明與民主參與的同時，也保護人權資訊？</p>
     <div class="chapter-body" lang="en-GB">
@@ -705,6 +868,24 @@ body::after {
         <span class="chapter-num">VI</span>
         <h2 class="chapter-title"><span lang="en-GB">Campfires, Not Wildfires</span><span lang="zh-TW">營火，而非野火</span></h2>
     </div>
+    <figure class="chapter-illustration" aria-hidden="true">
+        <svg viewBox="0 0 180 120" focusable="false">
+            <circle class="ghost" cx="90" cy="62" r="44"/>
+            <circle class="fine thread" cx="90" cy="62" r="56"/>
+            <path class="fine" d="M54 88c20-10 52-10 72 0"/>
+            <path class="line" d="M85 76c-9-10-6-20 6-31 1 10 13 14 13 27 0 9-7 16-14 16-6 0-11-4-13-9"/>
+            <path class="line" d="M95 84c7-8 6-15-1-25"/>
+            <circle class="node" cx="90" cy="16" r="4.5"/>
+            <circle class="node" cx="126" cy="31" r="4.5"/>
+            <circle class="node" cx="144" cy="66" r="4.5"/>
+            <circle class="node" cx="119" cy="101" r="4.5"/>
+            <circle class="node" cx="61" cy="101" r="4.5"/>
+            <circle class="node" cx="36" cy="66" r="4.5"/>
+            <circle class="node" cx="54" cy="31" r="4.5"/>
+            <circle class="ember" cx="90" cy="72" r="18"/>
+            <circle class="teal" cx="90" cy="93" r="3"/>
+        </svg>
+    </figure>
     <p class="ask" lang="en-GB">Can AI be used to help us relate to one another rather than replace us?</p>
     <p class="ask" lang="zh-TW">AI 能否用來幫助我們彼此連結、彼此協助，而不是取代我們？</p>
     <div class="chapter-body" lang="en-GB">
@@ -735,6 +916,22 @@ body::after {
         <span class="chapter-num">VII</span>
         <h2 class="chapter-title"><span lang="en-GB">Interoperable Governance</span><span lang="zh-TW">互通的治理</span></h2>
     </div>
+    <figure class="chapter-illustration" aria-hidden="true">
+        <svg viewBox="0 0 180 120" focusable="false">
+            <rect class="ghost" x="35" y="34" width="36" height="48" rx="8"/>
+            <rect class="ghost" x="72" y="20" width="36" height="48" rx="8"/>
+            <rect class="ghost" x="109" y="45" width="36" height="48" rx="8"/>
+            <rect class="line" x="35" y="34" width="36" height="48" rx="8"/>
+            <rect class="line" x="72" y="20" width="36" height="48" rx="8"/>
+            <rect class="line" x="109" y="45" width="36" height="48" rx="8"/>
+            <path class="fine" d="M53 46h18M53 58h18M90 32h18M90 44h18M127 57h18M127 69h18"/>
+            <path class="line" d="M71 58c14 0 15-14 29-14M108 54c14 0 15 15 29 15"/>
+            <path class="fine thread" d="M32 96c37-11 78-11 116 0"/>
+            <circle class="node" cx="71" cy="58" r="4"/>
+            <circle class="node" cx="108" cy="54" r="4"/>
+            <circle class="teal" cx="90" cy="44" r="3"/>
+        </svg>
+    </figure>
     <p class="ask" lang="en-GB">The UN&rsquo;s 2024 report on governing AI for humanity points to a global governance deficit. How do we close it?</p>
     <p class="ask" lang="zh-TW">聯合國 2024 年《為人類治理 AI》指出全球治理赤字。我們要如何填補？</p>
     <div class="chapter-body" lang="en-GB">
@@ -756,6 +953,29 @@ body::after {
             <span class="chapter-num">VIII</span>
             <h2 class="chapter-title"><span lang="en-GB">Sovereignty Is Not Solitude</span><span lang="zh-TW">主權不是孤立獨行</span></h2>
         </div>
+        <figure class="chapter-illustration" aria-hidden="true">
+            <svg viewBox="0 0 180 120" focusable="false">
+                <circle class="ghost" cx="55" cy="58" r="30"/>
+                <circle class="ghost" cx="125" cy="62" r="32"/>
+                <path class="line" d="M36 55l17-15 18 9 3 23-22 13-18-10z"/>
+                <path class="line" d="M108 39l27 5 13 23-19 23-28-7-9-25z"/>
+                <path class="fine thread" d="M73 63c13-11 26-11 39 0"/>
+                <path class="fine" d="M53 40l19 32M36 55l38 17M52 85l21-13M135 44l-34 39M148 67l-47 16M108 39l21 51"/>
+                <circle class="node" cx="36" cy="55" r="4"/>
+                <circle class="node" cx="53" cy="40" r="4"/>
+                <circle class="node" cx="71" cy="49" r="4"/>
+                <circle class="node" cx="74" cy="72" r="4"/>
+                <circle class="node" cx="52" cy="85" r="4"/>
+                <circle class="node" cx="34" cy="75" r="4"/>
+                <circle class="node" cx="108" cy="39" r="4"/>
+                <circle class="node" cx="135" cy="44" r="4"/>
+                <circle class="node" cx="148" cy="67" r="4"/>
+                <circle class="node" cx="129" cy="90" r="4"/>
+                <circle class="node" cx="101" cy="83" r="4"/>
+                <circle class="node" cx="92" cy="58" r="4"/>
+                <circle class="teal" cx="90" cy="63" r="3.2"/>
+            </svg>
+        </figure>
         <p class="ask" lang="en-GB" style="color: rgba(255,255,255,0.55);">How can the federal government best support Indigenous data sovereignty?</p>
         <p class="ask" lang="zh-TW" style="color: rgba(255,255,255,0.55);">聯邦政府如何能最好地支持原住民族資料主權？</p>
         <div class="chapter-body" lang="en-GB">
