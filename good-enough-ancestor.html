@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A Good Enough Ancestor: Testimony Before the Senate of Canada</title>
+<meta name="description" content="Audrey Tang's testimony before the Standing Senate Committee on Human Rights on 27 April 2026. AI is more than automation. It redistributes attention, authority, and bargaining power. In a democracy, such redistribution must be visible, contestable, and co-governed.">
+<meta property="og:title" content="A Good Enough Ancestor: Testimony Before the Senate of Canada">
+<meta property="og:description" content="No one should be automated out of agency. No community's knowledge, language or labour should be treated as raw material without consent. No worker should have to negotiate alone with a black box.">
+<meta property="og:image" content="https://cyberambassador.tw/og-senate-human-rights.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:type" content="article">
+<meta name="theme-color" content="#0f1923" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#faf8f5" media="(prefers-color-scheme: light)">
+<meta name="color-scheme" content="light dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@400;600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html:not(:has(#lang-zh:checked)) [lang="zh-TW"] { display: none; }
+html:has(#lang-zh:checked) [lang="en-GB"] { display: none; }
+
+:root {
+    --ink: #0f1923;
+    --paper: #faf8f5;
+    --warm: #f4f1ec;
+    --surface: #fff;
+    --heading: #0f1923;
+    --gold: #7d6430;
+    --gold-light: #c9a961;
+    --teal: #2a7f8a;
+    --slate: #5a6577;
+    --text: #2c3e50;
+    --muted: #5f6a7d;
+    --border: #e0ddd7;
+    --serif: 'Cormorant Garamond', 'Noto Serif TC', Georgia, serif;
+    --sans: 'Outfit', 'Noto Sans TC', system-ui, -apple-system, sans-serif;
+    --serif-cjk: 'Noto Serif TC', 'Songti TC', 'PMingLiU', Georgia, serif;
+    --cjk: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+    --cursive: 'Kaiti TC', 'DFKai-SB', 'BiauKai', 'STKaiti', cursive;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: var(--sans);
+    color: var(--text);
+    background: var(--paper);
+    line-height: 1.7;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── CJK OVERRIDES ── */
+html:has(#lang-zh:checked) body { font-weight: 500; line-height: 1.9; }
+html:has(#lang-zh:checked) .hero h1 { font-family: var(--serif-cjk); letter-spacing: 0.04em; line-height: 1.15; font-size: clamp(2.8rem, 7vw, 5.5rem); }
+html:has(#lang-zh:checked) .hero-subtitle { font-style: normal; font-family: var(--cursive); letter-spacing: 0.05em; }
+html:has(#lang-zh:checked) .hero-lede { font-family: var(--cjk); font-weight: 400; line-height: 2; font-size: clamp(0.95rem, 1.6vw, 1.08rem); }
+html:has(#lang-zh:checked) .chapter-title { font-family: var(--serif-cjk); font-weight: 600; letter-spacing: 0.04em; }
+html:has(#lang-zh:checked) .chapter-body { line-height: 2; }
+html:has(#lang-zh:checked) .chapter-body p { font-size: 1.02rem; }
+html:has(#lang-zh:checked) .chapter-body em { font-style: normal; font-family: var(--cursive); }
+html:has(#lang-zh:checked) .chapter-body blockquote { font-family: var(--cursive); font-style: normal; line-height: 1.8; }
+html:has(#lang-zh:checked) .interlude blockquote { font-family: var(--cursive); font-style: normal; line-height: 1.7; font-size: clamp(1.25rem, 2.6vw, 1.9rem); }
+html:has(#lang-zh:checked) .closing-final { font-style: normal; font-family: var(--cursive); line-height: 1.8; font-size: clamp(1.15rem, 2.2vw, 1.6rem); }
+html:has(#lang-zh:checked) .ask { font-family: var(--cjk); font-style: normal; }
+html:has(#lang-zh:checked) .lang-toggle [lang="zh-TW"] { display: inline; }
+html:has(#lang-zh:checked) .lang-toggle [lang="en-GB"] { display: none; }
+
+a { color: var(--teal); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; text-decoration-color: color-mix(in srgb, currentColor 35%, transparent); transition: color 0.2s; }
+a:hover { color: var(--gold); }
+
+:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
+
+/* ── LANG TOGGLE ── */
+.lang-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10002;
+    background: rgba(15,25,35,0.55);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 3px;
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.7);
+    padding: 6px 12px;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+    line-height: 1;
+    user-select: none;
+}
+.lang-toggle:hover { color: var(--gold-light); border-color: var(--gold-light); }
+.lang-toggle [lang="zh-TW"] { font-family: var(--cjk); font-weight: 700; }
+
+.lang-toggle.scrolled {
+    background: rgba(250,248,245,0.85);
+    border-color: var(--border);
+    color: var(--muted);
+}
+.lang-toggle.scrolled:hover { color: var(--gold); border-color: var(--gold); }
+
+/* ── GRAIN ── */
+body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    pointer-events: none;
+    opacity: 0.024;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+}
+
+/* ── PROGRESS ── */
+.progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    z-index: 10001;
+    width: 0;
+    pointer-events: none;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 0.8; }
+}
+@keyframes driftIn {
+    from { opacity: 0; transform: translateY(10px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes orbit {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* ── HERO ── */
+.hero {
+    position: relative;
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--ink);
+    overflow: hidden;
+}
+.hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse at 25% 40%, rgba(201,169,97,0.06), transparent 55%),
+        radial-gradient(ellipse at 75% 70%, rgba(42,127,138,0.03), transparent 50%);
+}
+.hero-year {
+    position: absolute;
+    right: -3%;
+    bottom: 2%;
+    font-family: var(--serif);
+    font-size: clamp(14rem, 25vw, 32rem);
+    font-weight: 300;
+    color: rgba(201,169,97,0.035);
+    line-height: 0.82;
+    user-select: none;
+    pointer-events: none;
+    letter-spacing: -0.03em;
+}
+.hero-emblem {
+    position: absolute;
+    right: 7%;
+    top: 50%;
+    transform: translateY(-55%);
+    width: clamp(180px, 22vw, 360px);
+    height: auto;
+    z-index: 1;
+    opacity: 0;
+    animation: driftIn 2s ease 1.6s forwards;
+}
+.hero-emblem .ring-orbit {
+    transform-origin: 100px 100px;
+    animation: orbit 240s linear infinite;
+}
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 820px;
+    padding: 140px 48px 100px;
+    color: #fff;
+    text-align: center;
+}
+.hero-label {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 36px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.3s forwards;
+}
+.hero-label .dot { margin: 0 8px; opacity: 0.4; }
+.hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(3rem, 7.6vw, 6rem);
+    font-weight: 400;
+    line-height: 1.04;
+    letter-spacing: -0.025em;
+    margin-bottom: 16px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.5s forwards;
+}
+.hero-subtitle {
+    font-family: var(--serif);
+    font-size: clamp(1.1rem, 2.4vw, 1.55rem);
+    font-weight: 400;
+    font-style: italic;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 56px;
+    letter-spacing: 0.01em;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.7s forwards;
+}
+.hero-lede {
+    font-family: var(--serif);
+    font-size: clamp(1.05rem, 1.8vw, 1.2rem);
+    color: rgba(255,255,255,0.72);
+    line-height: 1.85;
+    text-align: left;
+    max-width: 640px;
+    margin: 0 auto;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.95s forwards;
+}
+.hero-lede p { margin-bottom: 1.3em; }
+.hero-lede p:last-child { margin-bottom: 0; }
+.scroll-cue {
+    position: absolute;
+    bottom: 36px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    color: rgba(255,255,255,0.35);
+    font-family: var(--sans);
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-align: center;
+    opacity: 0;
+    animation: fadeUp 0.6s ease 1.4s forwards, pulse 2.5s ease-in-out 2s infinite;
+}
+.scroll-cue::after {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 36px;
+    background: rgba(255,255,255,0.25);
+    margin: 10px auto 0;
+}
+
+/* ── INTERLUDE ── */
+.interlude { padding: 88px 48px; text-align: center; }
+.interlude--warm { background: var(--warm); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.interlude--dark { background: var(--ink); }
+.interlude blockquote {
+    font-family: var(--serif);
+    font-size: clamp(1.4rem, 3vw, 2.2rem);
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.5;
+    max-width: 800px;
+    margin: 0 auto;
+    letter-spacing: -0.01em;
+}
+.interlude--warm blockquote { color: var(--heading); }
+.interlude--dark blockquote { color: var(--gold-light); }
+
+/* ── CHAPTER ── */
+.chapter { padding: 0 48px; max-width: 860px; margin: 0 auto; }
+.chapter-head { padding: 80px 0 48px; text-align: center; }
+.chapter-num {
+    display: block;
+    font-family: var(--serif);
+    font-size: clamp(2.8rem, 5vw, 4.2rem);
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 14px;
+}
+.chapter-title {
+    font-family: var(--serif);
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 400;
+    color: var(--heading);
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+}
+.chapter-body { max-width: 680px; margin: 0 auto; padding-bottom: 20px; }
+.chapter-body p { font-size: 1.05rem; margin-bottom: 1.5em; line-height: 1.82; }
+.chapter-body p:last-child { margin-bottom: 0; }
+.chapter-body em { font-style: italic; }
+.chapter-body blockquote {
+    font-family: var(--serif);
+    font-size: clamp(1.12rem, 1.8vw, 1.3rem);
+    font-style: italic;
+    color: var(--heading);
+    line-height: 1.65;
+    border-left: 2px solid var(--gold-light);
+    padding: 4px 0 4px 24px;
+    margin: 40px 0;
+}
+
+/* ── ASK (the senator's framing question) ── */
+.ask {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(1.02rem, 1.7vw, 1.2rem);
+    color: var(--muted);
+    text-align: center;
+    max-width: 580px;
+    margin: 0 auto 36px;
+    line-height: 1.55;
+    letter-spacing: 0.005em;
+}
+.ask::before, .ask::after {
+    content: '';
+    display: block;
+    width: 28px;
+    height: 1px;
+    background: var(--gold-light);
+    opacity: 0.5;
+    margin: 14px auto;
+}
+
+/* ── DIVIDER ── */
+.divider { display: flex; align-items: center; justify-content: center; max-width: 680px; margin: 0 auto; padding: 16px 48px; }
+.divider::before, .divider::after { content: ''; flex: 1; height: 1px; }
+.divider::before { background: linear-gradient(to right, transparent, var(--border)); }
+.divider::after { background: linear-gradient(to left, transparent, var(--border)); }
+.divider-mark { width: 7px; height: 7px; border: 1px solid var(--gold-light); transform: rotate(45deg); margin: 0 18px; flex-shrink: 0; opacity: 0.7; }
+
+/* ── CLOSING ── */
+.closing { background: var(--ink); color: #fff; padding: 100px 48px; }
+.closing .chapter-head { padding-top: 0; }
+.closing .chapter-num { color: var(--gold-light); }
+.closing .chapter-title { color: #fff; }
+.closing .chapter-body { color: rgba(255,255,255,0.78); padding-bottom: 0; }
+.closing .chapter-body p { color: rgba(255,255,255,0.78); }
+.closing .chapter-body em { color: rgba(255,255,255,0.9); }
+.closing-final {
+    font-family: var(--serif);
+    font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+    font-style: italic;
+    color: var(--gold-light);
+    text-align: center;
+    max-width: 680px;
+    margin: 56px auto 0;
+    line-height: 1.6;
+    border-top: 1px solid rgba(201,169,97,0.2);
+    padding-top: 48px;
+}
+
+/* ── COLOPHON ── */
+.colophon {
+    background: var(--ink);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    color: rgba(255,255,255,0.4);
+    padding: 48px 48px 56px;
+    text-align: center;
+    font-size: 0.82rem;
+    line-height: 1.8;
+}
+.colophon a { color: rgba(255,255,255,0.6); }
+.colophon a:hover { color: var(--gold-light); }
+.cc0-mark { font-family: var(--serif); font-size: 1.6rem; font-weight: 300; color: var(--gold); margin-bottom: 6px; }
+.colophon-note { max-width: 540px; margin: 0 auto; }
+.colophon-meta {
+    margin-top: 18px;
+    font-size: 0.74rem;
+    letter-spacing: 0.06em;
+    color: rgba(255,255,255,0.3);
+}
+
+/* ── REVEAL ── */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.8s ease, transform 0.8s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ── DARK MODE ── */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --paper: #111820; --warm: #161e28; --surface: #1c2535;
+        --heading: #e8e4dc; --text: #b8b4ac; --muted: #8a96a8;
+        --border: rgba(255,255,255,0.1); --gold: #c9a961; --teal: #4bc3d4;
+    }
+    body::after { opacity: 0.028; }
+    .hero-year { color: rgba(201,169,97,0.025); }
+    .interlude--warm { border-color: rgba(255,255,255,0.06); }
+    .lang-toggle.scrolled { background: rgba(17,24,32,0.85); border-color: var(--border); color: var(--muted); }
+    .lang-toggle.scrolled:hover { color: var(--gold); border-color: var(--gold); }
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 1024px) {
+    .hero-content { padding: 120px 40px 80px; }
+    .hero-emblem { right: 4%; width: clamp(140px, 20vw, 260px); }
+}
+@media (max-width: 768px) {
+    .hero-content { padding: 100px 28px 72px; }
+    .hero-lede { font-size: 1.02rem; }
+    .hero-emblem { display: none; }
+    .hero-year { font-size: clamp(10rem, 30vw, 18rem); right: -5%; }
+    .chapter { padding: 0 24px; }
+    .chapter-head { padding: 64px 0 36px; }
+    .chapter-body blockquote { padding-left: 18px; margin: 32px 0; }
+    .interlude { padding: 64px 24px; }
+    .divider { padding: 12px 24px; }
+    .closing { padding: 72px 24px; }
+    .closing-final { margin-top: 40px; padding-top: 36px; }
+    .colophon { padding: 36px 24px 44px; }
+    .lang-toggle { top: 16px; right: 16px; }
+    .ask { margin-bottom: 28px; }
+}
+@media (max-width: 480px) {
+    .hero h1 { font-size: 2.5rem; }
+    html:has(#lang-zh:checked) .hero h1 { font-size: 2.3rem; }
+    .hero-subtitle { font-size: 1.02rem; margin-bottom: 40px; }
+    .hero-label { font-size: 0.65rem; margin-bottom: 28px; letter-spacing: 0.18em; }
+    .chapter-num { font-size: 2.4rem; }
+    .chapter-title { font-size: 1.4rem; }
+    .chapter-body p { font-size: 1rem; }
+    html:has(#lang-zh:checked) .chapter-body p { font-size: 0.95rem; }
+    .interlude blockquote { font-size: 1.2rem; }
+    html:has(#lang-zh:checked) .interlude blockquote { font-size: 1.1rem; }
+}
+
+/* ── REDUCED MOTION ── */
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .reveal, .hero-label, .hero h1, .hero-subtitle, .hero-lede, .scroll-cue, .hero-emblem {
+        opacity: 1 !important; transform: none !important;
+    }
+    .hero-emblem { transform: translateY(-55%) !important; }
+}
+
+/* ── PRINT ── */
+@media print {
+    body::after, .progress, .scroll-cue, .hero-emblem, .hero-year, .lang-toggle { display: none !important; }
+    .hero { min-height: 0; padding: 40px; }
+    .hero-content { padding: 0; }
+    .hero-label, .hero h1, .hero-subtitle, .hero-lede { opacity: 1; animation: none; }
+    .reveal { opacity: 1; transform: none; }
+    .closing { background: none; color: inherit; }
+    .closing .chapter-body p { color: inherit; }
+    .colophon { background: none; color: inherit; border-top: 1px solid #ccc; }
+}
+</style>
+</head>
+<body>
+
+<input type="checkbox" id="lang-zh" hidden>
+<script>document.documentElement.classList.add('js');(function(){var c=document.getElementById('lang-zh'),s=null,z;try{s=localStorage.getItem('lang');}catch(e){}z=s==='zh-TW';if(z){c.checked=true;document.documentElement.setAttribute('lang','zh-TW');document.title='夠好的祖先：加拿大參議院證詞';}})();</script>
+
+<label for="lang-zh" class="lang-toggle" role="button" tabindex="0" aria-label="Switch language"><span lang="en-GB">華文</span><span lang="zh-TW">EN</span></label>
+
+<div class="progress" aria-hidden="true"></div>
+
+<!-- ════════ HERO ════════ -->
+<header class="hero">
+    <div class="hero-year" aria-hidden="true">2026</div>
+    <svg class="hero-emblem" viewBox="0 0 200 200" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <!-- concentric ripple rings -->
+        <circle cx="100" cy="100" r="94" stroke="rgba(201,169,97,0.04)" stroke-width="0.4"/>
+        <circle cx="100" cy="100" r="74" stroke="rgba(201,169,97,0.05)" stroke-width="0.4"/>
+        <circle cx="100" cy="100" r="54" stroke="rgba(201,169,97,0.06)" stroke-width="0.4"/>
+        <!-- central campfire -->
+        <circle cx="100" cy="100" r="4.5" stroke="rgba(201,169,97,0.22)" stroke-width="0.9"/>
+        <circle cx="100" cy="100" r="9" stroke="rgba(201,169,97,0.10)" stroke-width="0.5"/>
+        <!-- the table of ten, sitting around -->
+        <g class="ring-orbit" stroke="rgba(201,169,97,0.12)" stroke-width="0.7" fill="rgba(201,169,97,0.04)">
+            <circle cx="100" cy="20" r="3.6"/>
+            <circle cx="146" cy="36" r="3.6"/>
+            <circle cx="174" cy="74" r="3.6"/>
+            <circle cx="180" cy="124" r="3.6"/>
+            <circle cx="155" cy="164" r="3.6"/>
+            <circle cx="110" cy="180" r="3.6"/>
+            <circle cx="62" cy="174" r="3.6"/>
+            <circle cx="28" cy="142" r="3.6"/>
+            <circle cx="20" cy="92" r="3.6"/>
+            <circle cx="46" cy="50" r="3.6"/>
+        </g>
+        <!-- faint connections -->
+        <g stroke="rgba(201,169,97,0.045)" stroke-width="0.3">
+            <line x1="100" y1="100" x2="100" y2="22"/>
+            <line x1="100" y1="100" x2="144" y2="38"/>
+            <line x1="100" y1="100" x2="172" y2="76"/>
+            <line x1="100" y1="100" x2="178" y2="124"/>
+            <line x1="100" y1="100" x2="153" y2="162"/>
+            <line x1="100" y1="100" x2="110" y2="178"/>
+            <line x1="100" y1="100" x2="64" y2="172"/>
+            <line x1="100" y1="100" x2="30" y2="140"/>
+            <line x1="100" y1="100" x2="22" y2="92"/>
+            <line x1="100" y1="100" x2="48" y2="52"/>
+        </g>
+    </svg>
+    <div class="hero-content">
+        <div class="hero-label">
+            <span lang="en-GB">Senate of Canada</span><span lang="zh-TW">加拿大參議院</span>
+            <span class="dot">&middot;</span>
+            <span lang="en-GB">Standing Committee on Human Rights</span><span lang="zh-TW">人權常設委員會</span>
+            <span class="dot">&middot;</span>
+            <span lang="en-GB">27 April 2026</span><span lang="zh-TW">2026 年 4 月 27 日</span>
+        </div>
+        <h1><span lang="en-GB">A Good Enough Ancestor</span><span lang="zh-TW">夠好的祖先</span></h1>
+        <p class="hero-subtitle"><span lang="en-GB">Testimony on AI, Human Rights, and the Right to Work</span><span lang="zh-TW">關於人工智慧、人權與工作權的證詞</span></p>
+        <div class="hero-lede" lang="en-GB">
+            <p>Chair, deputy chair, honourable senators &mdash; thank you for inviting me to appear before you in my individual capacity. My perspective today is shaped by my current work as Taiwan&rsquo;s cyber ambassador, my fellowship at Oxford&rsquo;s Institute for Ethics in AI, and my experience as Taiwan&rsquo;s first digital minister.</p>
+            <p>During my tenure in day&#8209;to&#8209;day government, our mandate was not just to make people trust technology. It was to make digital institutions worthy of people&rsquo;s trust.</p>
+        </div>
+        <div class="hero-lede" lang="zh-TW">
+            <p>主席、副主席，諸位尊敬的參議員——感謝你們邀請我以個人身分出席。我今日的觀點，源自我目前擔任臺灣網路大使的工作、我在牛津大學人工智慧倫理研究所的研究員身分，以及我擔任臺灣首任數位發展部長的經歷。</p>
+            <p>在我任職政府的日子裡，我們的職責不僅是讓人們信任技術，而是讓數位機構值得人們信任。</p>
+        </div>
+    </div>
+    <div class="scroll-cue" aria-hidden="true"><span lang="en-GB">Read</span><span lang="zh-TW">閱讀</span></div>
+</header>
+
+<main>
+
+<!-- ════════ EPIGRAPH ════════ -->
+<aside class="interlude interlude--warm reveal">
+    <blockquote lang="en-GB">AI is more than automation. It redistributes attention, authority, and bargaining power. In a democracy, such redistribution must be visible, contestable, and co&#8209;governed.</blockquote>
+    <blockquote lang="zh-TW">人工智慧不只是自動化。它重新分配注意力、權威與議價能力。在民主社會中，這樣的重新分配必須是可見的、可被質疑的、共同治理的。</blockquote>
+</aside>
+
+<!-- ════════ I. TRUST ════════ -->
+<section class="chapter reveal">
+    <div class="chapter-head">
+        <span class="chapter-num">I</span>
+        <h2 class="chapter-title"><span lang="en-GB">Worthy of Trust</span><span lang="zh-TW">值得信賴</span></h2>
+    </div>
+    <div class="chapter-body" lang="en-GB">
+        <p>Your study asks how AI affects human rights, economic security, vulnerable groups, and the international right to work. I would like to offer one frame.</p>
+        <p>Taiwan&rsquo;s success against AI&#8209;generated scam ads showed that democracies need not choose between technocratic control and platform inaction. Citizens deliberated on the balance between fraud prevention and freedom of expression. The same principle applies to work: <em>affected people should help set the rules before systems harden into infrastructure</em>.</p>
+        <p>The right to work in the age of AI must include three practical rights: the right to learn, the right to know, and the right to contest.</p>
+        <blockquote>The right to learn means training before displacement, not after. Work is more than income. It is apprenticeship. It is belonging, care, and dignity.</blockquote>
+        <p>The right to know means that when AI affects hiring, scheduling, promotion, benefits, education, or public services, the people should know it is being used, who is accountable, and whose data is shaping the decision. A black&#8209;box outcome should not be treated as due process.</p>
+        <p>The right to contest means those affected can challenge outcomes without needing a degree in computer science. Appeals must lead to repair &mdash; correction, compensation, policy change, or retiring the system altogether.</p>
+    </div>
+    <div class="chapter-body" lang="zh-TW">
+        <p>諸位的研究在問：人工智慧如何影響人權、經濟安全、弱勢群體與國際工作權。我想提出一個視角。</p>
+        <p>臺灣在對抗人工智慧生成詐騙廣告上的成功顯示，民主國家無需在技術官僚式管控與平台無作為之間作出選擇。公民們審議了詐騙預防與言論自由之間的平衡。同樣的原則也適用於工作：<em>受影響的人應在系統硬化為基礎設施之前，協助制定規則</em>。</p>
+        <p>在人工智慧時代，工作權必須包含三項實踐的權利：學習權、知情權與申訴權。</p>
+        <blockquote>學習權意味著在被取代之前先接受培訓，而非事後彌補。工作不只是收入。它是學徒之路。它是歸屬、照護與尊嚴。</blockquote>
+        <p>知情權意味著：當人工智慧影響聘僱、排班、晉升、福利、教育或公共服務時，人們應當知道它正在被使用、由誰負責、又是誰的資料正在塑造這個決定。黑盒子的結果，不應被視為正當程序。</p>
+        <p>申訴權意味著受影響者無需具備電腦科學的學位，便能挑戰結果。申訴必須導向修復——更正、補償、政策變革，或徹底退役這個系統。</p>
+    </div>
+</section>
+
+<div class="divider reveal"><div class="divider-mark"></div></div>
+
+<!-- ════════ II. CARE ════════ -->
+<section class="chapter reveal">
+    <div class="chapter-head">
+        <span class="chapter-num">II</span>
+        <h2 class="chapter-title"><span lang="en-GB">The Ethics of Care</span><span lang="zh-TW">照護倫理</span></h2>
+    </div>
+    <div class="chapter-body" lang="en-GB">
+        <p>This matters most for those already made vulnerable by existing systems. I am thinking of Indigenous communities, migrant workers, people with physical and mental challenges, children, seniors, racialised communities, and those underrepresented in labour and skills data.</p>
+        <p>AI must not become a new way to extract knowledge without consent, to score people without context, or to make exclusion more efficient.</p>
+        <p>At Oxford, my work in Civic AI translates the ethics of care into six governance questions:</p>
+        <blockquote>Are we hearing those closest to harm? Is someone named and accountable? Does the system work in context? Do those affected have recourse? Does it build solidarity rather than vendor lock&#8209;in? And does it know when to stop?</blockquote>
+        <p>For high&#8209;impact AI, democracies should require decision traces, independent audits, accessible appeals, public incident reporting, worker and community co&#8209;governance, sunset clauses, and procurement rules that avoid lock&#8209;in.</p>
+        <p>A democratic system must be <em>interruptible</em>: possible to pause, override, or retire without disrupting essential services people depend on.</p>
+        <p>Inclusive prosperity is also democratic security. To the familiar agenda of <em>protecting</em>, <em>empowering</em>, and <em>building</em>, I would like to add one verb: <em>co&#8209;governing</em>.</p>
+        <p>Protect people from harm. Empower them with skills and rights. Build trustworthy public infrastructure. And co&#8209;govern AI with the workers, families, communities, and future generations who will live with these consequences.</p>
+    </div>
+    <div class="chapter-body" lang="zh-TW">
+        <p>這對於已被既有制度推向弱勢的人最為重要。我想到的是原住民族社群、移工、身心障礙者、兒童、長者、種族化社群，以及在勞動與技能資料中代表不足的群體。</p>
+        <p>人工智慧不應成為一種未經同意便擷取知識的新方式，不應在缺乏脈絡的情況下評分人們，更不應使排除變得更有效率。</p>
+        <p>在牛津大學，我的公民人工智慧研究，將照護倫理轉化為六個治理問題：</p>
+        <blockquote>我們是否聆聽了距離傷害最近的人？是否有具名且可問責的對象？這個系統是否在脈絡中運作？受影響者是否有救濟途徑？它是否建立團結而非廠商鎖定？以及，它是否知道何時該停下？</blockquote>
+        <p>對於高影響的人工智慧，民主國家應要求決策軌跡、獨立稽核、可近用的申訴、公開的事故通報、勞工與社區的共同治理、落日條款，以及避免鎖定的採購規則。</p>
+        <p>民主系統必須是<em>可中斷的</em>：可以暫停、覆寫，或退役，而不擾亂人們所仰賴的基本服務。</p>
+        <p>包容性的繁榮也是民主的安全。在「<em>保護</em>、<em>賦能</em>、<em>建設</em>」這份熟悉的議程之外，我想加上一個動詞：<em>共同治理</em>。</p>
+        <p>保護人們免受傷害。以技能與權利賦能他們。建設值得信賴的公共基礎設施。並與將與這些後果共處的勞工、家庭、社群與未來世代，共同治理人工智慧。</p>
+    </div>
+</section>
+
+<aside class="interlude interlude--dark reveal">
+    <blockquote lang="en-GB">A good enough ancestor does not ask, &ldquo;Are the machines ready to replace humans?&rdquo; A good enough ancestor asks how machines can help humans better care for one another, deliberate together, and keep faith with those not yet born.</blockquote>
+    <blockquote lang="zh-TW">夠好的祖先不會問：「機器準備好取代人類了嗎？」夠好的祖先會問：機器如何幫助人類更好地彼此照顧、共同思辨，並對尚未出生者守信。</blockquote>
+</aside>
+
+<!-- ════════ III. ALIGNMENT ASSEMBLY ════════ -->
+<section class="chapter reveal">
+    <div class="chapter-head">
+        <span class="chapter-num">III</span>
+        <h2 class="chapter-title"><span lang="en-GB">A Bigger Table</span><span lang="zh-TW">一張更大的桌子</span></h2>
+    </div>
+    <p class="ask" lang="en-GB">Could you give a concrete example of co&#8209;governing AI in Taiwan?</p>
+    <p class="ask" lang="zh-TW">能否舉一個臺灣共同治理人工智慧的具體例子？</p>
+    <div class="chapter-body" lang="en-GB">
+        <p>In 2024, we convened what is called an <em>alignment assembly</em> to respond to the harms of generative AI in scam and fraud ads online.</p>
+        <p>Deepfakes that year were prevalent in every democracy. But as Asia&rsquo;s most internet&#8209;free country, Taiwan simply could not do top&#8209;down censorship. So we sent SMS text messages to 200,000 random numbers around the island, asking: <em>What should we do together?</em></p>
+        <p>We chose 447 people &mdash; a mini&#8209;public statistically similar to the wider polity. In tables of ten, they deliberated. The only simple rule was that AI <em>only facilitates</em>, and participants have to convince the nine other people at the same table before their idea bubbles up.</p>
+        <p>Long story short, we implemented a set of ideas that more than 85% of the mini&#8209;public agreed with &mdash; and the other 15% could live with. That included joint liability, know&#8209;your&#8209;customer rules, and slowing down connections by foreign platforms that did not adhere to our liability rules.</p>
+        <blockquote>Throughout 2025, impersonation and deepfake ads were down by more than 90%.</blockquote>
+        <p>When people want to show up at the table, the idea is not to do top&#8209;down control. It is to invent a bigger table.</p>
+    </div>
+    <div class="chapter-body" lang="zh-TW">
+        <p>在 2024 年，我們召開了所謂的<em>對齊大會</em>，以回應生成式人工智慧在線上詐騙與假冒廣告中所造成的危害。</p>
+        <p>那一年，深偽影片在每個民主社會都極為普遍。但作為亞洲網路自由度最高的國家，臺灣根本無法採取由上而下的審查。於是，我們向全島二十萬個隨機號碼發送簡訊，問：<em>我們該一起做什麼？</em></p>
+        <p>我們選出 447 位市民——一個在統計上與整體政體相似的迷你公眾。他們以十人為一桌進行審議。唯一的簡單規則是：人工智慧<em>僅從旁協助</em>，參與者必須先說服同桌的另外九人，他們的想法才能向上浮現。</p>
+        <p>長話短說，我們實施了一組獲得 85% 以上迷你公眾同意的方案——其餘 15% 也能接受。包括連帶責任、實名認證規則，以及對不遵守責任規範的境外平台減速連線。</p>
+        <blockquote>整個 2025 年，假冒與深偽廣告下降超過 90%。</blockquote>
+        <p>當人們願意走到桌邊，重點不是由上而下的控制。而是發明一張更大的桌子。</p>
+    </div>
+</section>
+
+<div class="divider reveal"><div class="divider-mark"></div></div>
+
+<!-- ════════ IV. DATA AS SOIL ════════ -->
+<section class="chapter reveal">
+    <div class="chapter-head">
+        <span class="chapter-num">IV</span>
+        <h2 class="chapter-title"><span lang="en-GB">Data as Soil</span><span lang="zh-TW">數據如土壤</span></h2>
+    </div>
+    <p class="ask" lang="en-GB">From an energy&#8209;use perspective, what is the difference between general&#8209;purpose AI and domain&#8209;specific models?</p>
+    <p class="ask" lang="zh-TW">從能源使用的角度看，通用人工智慧與領域特定模型有何不同？</p>
+    <div class="chapter-body" lang="en-GB">
+        <p>Currently, in AI training, general&#8209;purpose large models need to anticipate pretty much every use, from folding proteins to folding laundry, in the same model. In doing so, they are incredibly energy&#8209;inefficient to train.</p>
+        <p>But when we know what we want the model to do &mdash; folding proteins, or folding laundry &mdash; we can train what are called domain&#8209;specific models, or local models. These can incorporate the community&rsquo;s input in a way that also protects its data from extraction to the cloud, to big tech companies.</p>
+        <blockquote>The extractive, very energy&#8209;consuming part can be thought of as &ldquo;data as oil.&rdquo; This kind of extraction goes to some large refinery somewhere. But the local way to train small models can be thought of as &ldquo;data as soil&rdquo; &mdash; the local community tends to these data together.</blockquote>
+        <p>They fine&#8209;tune it. They continuously train it. Whenever there is bias or an error, the course correction is immediate, instead of waiting for an energy&#8209;consuming run that might take half a year.</p>
+        <p>In Taiwan, our drone agricultural service platform brings together around 90 small operators who share equipment, certify pilots, and share compliance records. None of them could individually afford the equipment or meet the regulatory burden, but together they reach a horizontal scale previously available only to large agribusiness.</p>
+        <p>The state&rsquo;s role is not to pick a national champion. It is to subsidise the freedom to choose.</p>
+    </div>
+    <div class="chapter-body" lang="zh-TW">
+        <p>目前在人工智慧訓練上，通用型大型模型必須在同一個模型中預測幾乎每一種用途，從折疊蛋白到折疊衣物。如此一來，它們訓練起來極度耗能。</p>
+        <p>但當我們知道想讓模型做什麼——折疊蛋白，或折疊衣物——我們可以訓練所謂的領域特定模型或在地模型。這些模型可以納入社群的意見，同時保護其資料不被擷取至雲端、流向科技巨擘。</p>
+        <blockquote>那種掠取式、極度耗能的部分，可以想像為「數據如石油」——擷取送往遠方某個大型煉油廠。而在地訓練小模型的方式，則可想像為「數據如土壤」——在地社群共同照料這些資料。</blockquote>
+        <p>他們微調它。他們持續訓練它。每當出現偏差或錯誤，修正是即時的，無需等待可能耗時半年的耗能運算。</p>
+        <p>在臺灣，我們的無人機農業服務平台匯集了約 90 家小型業者，共享設備、認證飛手、共享合規紀錄。他們沒有任何一家能獨立負擔設備或滿足法規負擔，但合在一起，便達到了過去只有大型農企業才能擁有的水平規模。</p>
+        <p>國家的角色，不是挑選國家隊冠軍。而是補貼選擇的自由。</p>
+    </div>
+</section>
+
+<div class="divider reveal"><div class="divider-mark"></div></div>
+
+<!-- ════════ V. ZERO-KNOWLEDGE ════════ -->
+<section class="chapter reveal">
+    <div class="chapter-head">
+        <span class="chapter-num">V</span>
+        <h2 class="chapter-title"><span lang="en-GB">Without Revealing</span><span lang="zh-TW">不需揭露</span></h2>
+    </div>
+    <p class="ask" lang="en-GB">How do you protect human&#8209;rights information while sharing it across jurisdictions?</p>
+    <p class="ask" lang="zh-TW">在跨司法管轄區共享資訊時，如何保護人權相關資料？</p>
+    <div class="chapter-body" lang="en-GB">
+        <p>I would like to make the distinction between data <em>coalitions</em>, where people pool data in a way useful to all members, and the <em>aggregation</em> of data.</p>
+        <p>It is possible for multiple players, stakeholders, and communities to join a data coalition without sharing any of the raw data. There exists a kind of technology called <em>zero&#8209;knowledge technology</em> that allows people to prove they can do something, that they possess certain knowledge, or that a community can respond to a certain kind of query &mdash; without revealing any personally identifiable information underneath.</p>
+        <p>During the pandemic in Taiwan, we used a privacy&#8209;preserving contact&#8209;tracing method. A venue printed a random number in a QR code at the front door. A person scanned it and sent it to the trusted number 1922 through their telecom.</p>
+        <blockquote>The telecom knew nothing about what the random number meant. The venue learned nothing &mdash; not even the phone number of the visitor. The state learned nothing whatsoever.</blockquote>
+        <p>But if an infection happened, we could do contact tracing and recursive notification &mdash; again, without sacrificing the privacy of people who were not in the affected area.</p>
+    </div>
+    <div class="chapter-body" lang="zh-TW">
+        <p>我想先區分兩件事：所謂資料<em>聯盟</em>，是讓人們以對所有成員都有用的方式共享資料；而資料的<em>彙整</em>則是另一回事。</p>
+        <p>多個參與者、利害關係人與社群可以加入資料聯盟，而不分享任何原始資料。有一種技術稱為<em>零知識技術</em>，能讓人們證明自己能做某件事、擁有某項知識，或一個社群能回應某種查詢——卻完全不揭露底下任何可識別個人的資訊。</p>
+        <p>疫情期間，臺灣採用了一種保護隱私的接觸者追蹤方式。場所在大門口印出一張內含隨機號碼的 QR Code。民眾掃描後，透過電信業者傳送至受信任的 1922 號碼。</p>
+        <blockquote>電信業者不知道那組隨機號碼代表什麼。場所什麼也不知道——連訪客的電話號碼都不知道。國家更是一無所知。</blockquote>
+        <p>但若有感染發生，我們仍可進行接觸者追蹤與遞迴通知——同樣不犧牲未受影響地區人們的隱私。</p>
+    </div>
+</section>
+
+<aside class="interlude interlude--warm reveal">
+    <blockquote lang="en-GB">Instead of a wildfire that consumes the oxygen between people, think of it as a campfire that people sit around, illuminating the different faces.</blockquote>
+    <blockquote lang="zh-TW">與其是一場吞噬人與人之間氧氣的野火，不如想像它是一團營火，人們圍坐其旁，照亮彼此的臉龐。</blockquote>
+</aside>
+
+<!-- ════════ VI. BRIDGES ════════ -->
+<section class="chapter reveal">
+    <div class="chapter-head">
+        <span class="chapter-num">VI</span>
+        <h2 class="chapter-title"><span lang="en-GB">Bridges, Not Wildfires</span><span lang="zh-TW">橋，而非野火</span></h2>
+    </div>
+    <p class="ask" lang="en-GB">Can AI be used to help us relate to one another rather than replace us?</p>
+    <p class="ask" lang="zh-TW">人工智慧能否被用來幫助我們彼此聯繫，而非取代我們？</p>
+    <div class="chapter-body" lang="en-GB">
+        <p>I would like to make a distinction between AI that automates intelligence &mdash; what I sometimes call <em>authoritarian intelligence</em>, making decisions on behalf of people &mdash; and a different kind of AI.</p>
+        <p>Ten years ago on social media, many felt their agency had been taken away. Previously, when we followed the same people, we saw the same feed. But this was replaced by a very judgmental AI that personalised our feed and encouraged engagement through enragement. That is very authoritarian.</p>
+        <p>In Taiwan, we call the other kind <em>assistive intelligence</em>, which assists cross&#8209;conversation between those who would otherwise not agree.</p>
+        <p>Each campfire is tended by a bounded set of people: ten, a hundred, or a larger bonfire. We have designed prosocial media such as Polis, an open&#8209;source technology used by more than a dozen countries worldwide, including Canada.</p>
+        <blockquote>Instead of making outrage viral, Polis makes overlap viral. Only ideas that people who otherwise would never agree can both support gain virality. Only bridge&#8209;makers gain virality. In doing so, people heal polarisation and division.</blockquote>
+        <p>Our demonstration was successful enough that even traditional social media platforms such as X, formerly Twitter, have now adopted a very similar algorithm called Community Notes. It lets people who bridge across ideologies write notes to clarify or add context next to viral misinformation, disinformation, or simply contentious information.</p>
+        <p>Now we work with all the major social media companies on Community Notes implementation, and on collaborative notes &mdash; drafted by AI and instantly corrected by humans, so AI can learn what can translate across communities. For example, between the climate&#8209;justice community on one side and biblical creation care on the other, so they can translate across their vocabularies.</p>
+    </div>
+    <div class="chapter-body" lang="zh-TW">
+        <p>我想區分兩種人工智慧。一種是自動化智慧——我有時稱之為<em>威權式智慧</em>，代替人們做決定。另一種則完全不同。</p>
+        <p>十年前的社群媒體上，許多人感到主體性被奪走。過去，當我們追蹤同一批人時，我們看到的是同一個動態。但這被一種極具評判性的人工智慧所取代——它個人化了我們的動態，透過激怒來鼓勵互動。那是非常威權的。</p>
+        <p>在臺灣，我們稱另一種為<em>輔助式智慧</em>，它協助那些原本無法達成共識的人們之間的對話。</p>
+        <p>每一團營火都由有限的人來照看：十人、一百人，或更大一點的篝火。我們設計了一些利社群媒體，如 Polis ——一款開放原始碼技術，已被全球十餘個國家採用，包括加拿大。</p>
+        <blockquote>Polis 不讓憤怒病毒式擴散，而讓共識病毒式擴散。只有那些原本永不會認同彼此的人都能支持的想法，才會獲得擴散。只有架橋者才能病毒式擴散。如此，人們得以療癒兩極化與分裂。</blockquote>
+        <p>我們的示範成功到連傳統社群媒體平台，如 X（前身為 Twitter），如今也採用了一個非常相似的演算法，稱為「社群備註」（Community Notes）。它讓跨越意識型態的架橋者，能在病毒式錯誤資訊、虛假資訊或具爭議的資訊旁，撰寫澄清或補充脈絡的註記。</p>
+        <p>如今，我們與所有主要社群媒體公司合作推行「社群備註」，並推動「協作備註」——由人工智慧草擬，由人類即時修訂——讓人工智慧得以學習什麼能在不同社群間翻譯。例如，在氣候正義社群與《聖經》中的「受造照護」社群之間，使他們能跨越各自的語彙互相翻譯。</p>
+    </div>
+</section>
+
+<div class="divider reveal"><div class="divider-mark"></div></div>
+
+<!-- ════════ VII. INTEROPERABLE GOVERNANCE ════════ -->
+<section class="chapter reveal">
+    <div class="chapter-head">
+        <span class="chapter-num">VII</span>
+        <h2 class="chapter-title"><span lang="en-GB">Interoperable Governance</span><span lang="zh-TW">互通的治理</span></h2>
+    </div>
+    <p class="ask" lang="en-GB">The UN&rsquo;s 2024 report on governing AI for humanity points to a global governance deficit. How do we close it?</p>
+    <p class="ask" lang="zh-TW">聯合國 2024 年人工智慧治理報告指出全球治理赤字。我們如何填補它？</p>
+    <div class="chapter-body" lang="en-GB">
+        <p>I think the report&rsquo;s diagnosis is correct: a patchwork of principles without enforceable duties will not govern AI, which is intrinsically a global phenomenon and technology.</p>
+        <p>Democracies, especially including middle powers, should build interoperable governance. That does not mean identical governance applied everywhere in the same way around the globe. It means auditing standards, incident&#8209;reporting standards, provenance for synthetic media, procurement requirements that avoid vendor lock&#8209;in, and similar stacks that can be made to work across jurisdictions without harmonising every domestic rule.</p>
+        <blockquote>Canada, Taiwan, and other free and open societies can be peers in this work. The global governance deficit will not be closed by another universal principle, but by enforceable duties that make principles contestable in each and every domain.</blockquote>
+    </div>
+    <div class="chapter-body" lang="zh-TW">
+        <p>我認為這份報告的診斷是正確的：缺乏可執行義務的原則拼貼，無法治理人工智慧——後者本質上是一種全球性的現象與技術。</p>
+        <p>民主國家——尤其包括中等強權——應建立互通的治理。這不代表把相同的治理以相同方式套用於全球各地。它意味著稽核標準、事故通報標準、合成媒體的來源溯源、避免廠商鎖定的採購要求，以及類似的堆疊——能跨司法管轄區運作，而毋須一致化每一條國內規則。</p>
+        <blockquote>加拿大、臺灣，以及其他自由開放的社會，可以在這項工作中成為夥伴。全球治理的赤字，不會被又一個普世原則所填補，而會被使原則在每一個領域都可被質疑的可執行義務所填補。</blockquote>
+    </div>
+</section>
+
+<!-- ════════ VIII. SOVEREIGNTY ════════ -->
+<section class="closing reveal">
+    <div class="chapter" style="padding: 0;">
+        <div class="chapter-head">
+            <span class="chapter-num">VIII</span>
+            <h2 class="chapter-title"><span lang="en-GB">Sovereignty Is Not Solitude</span><span lang="zh-TW">主權不是孤立</span></h2>
+        </div>
+        <p class="ask" lang="en-GB" style="color: rgba(255,255,255,0.55);">How can the federal government best support Indigenous data sovereignty?</p>
+        <p class="ask" lang="zh-TW" style="color: rgba(255,255,255,0.55);">聯邦政府如何最好地支持原住民族的資料主權？</p>
+        <div class="chapter-body" lang="en-GB">
+            <p>Taiwan has 16 Indigenous nations and more than 42 language variations. We see cultural sovereignty &mdash; and also <em>transcultural</em> sovereignty, the ability to translate across cultures &mdash; as very important.</p>
+            <p>When we say &ldquo;sovereign AI&rdquo; in Taiwan, we do not mean just a national AI model that speaks Mandarin, Taigi, Hakka, and Indigenous languages. We mean a reproducible process for language communities to <em>own</em> the social and cultural composition of the data curated within those language communities.</p>
+            <p>It also includes alignment assemblies &mdash; ways for people to draw boundaries around how AI should enter their community, almost like a code of conduct for AI agents.</p>
+            <p>These two together enable each community not only to feel that it owns its social and cultural determination when it comes to language&#8209;model training, but also to incorporate transcultural translation capabilities. When one language or culture gains a certain capability, a community can choose to bring it into its own context if it so chooses.</p>
+            <p>But the agency, the sovereignty, is held by the Indigenous nation or community &mdash; not by a top&#8209;down national commission.</p>
+            <p>No one should be automated out of agency. No community&rsquo;s knowledge, language, or labour should be treated as raw material without consent. No worker should have to negotiate alone with a black box.</p>
+            <p>Inclusive prosperity is also democratic security. Canada and Taiwan are both free and open societies, and we know our adversaries are testing our seams of trust.</p>
+        </div>
+        <div class="chapter-body" lang="zh-TW">
+            <p>臺灣有 16 個原住民族與 42 種以上的語言變體。我們將文化主權——以及<em>跨文化</em>主權，亦即跨越文化進行翻譯的能力——視為極其重要。</p>
+            <p>當我們在臺灣談「主權人工智慧」，並非僅指一個會說華語、台語、客語與原住民語的國家級人工智慧模型；而是指一個可被複現的流程，讓語言社群<em>擁有</em>其語言社群內所策展之資料的社會與文化組成。</p>
+            <p>它也包括對齊大會——一種讓人們對人工智慧該如何進入其社群劃下界線的方式，幾乎像是給人工智慧代理人的行為準則。</p>
+            <p>這兩者結合，使每一個社群不僅在語言模型訓練上感到擁有自身的社會與文化自決，也能納入跨文化的翻譯能力。當一種語言或文化獲得某項能力時，一個社群若願意，便能將其帶入自己的脈絡。</p>
+            <p>但能動性、主權，是由原住民族或社群所掌握——而不是由由上而下的國家委員會所掌握。</p>
+            <p>沒有人應被自動化排除於能動性之外。沒有任何社群的知識、語言或勞動，應未經同意便被視為原料。沒有任何勞工，應獨自與一個黑盒子協商。</p>
+            <p>包容的繁榮也是民主的安全。加拿大與臺灣都是自由開放的社會，而我們知道，我們的對手正在測試我們信任的縫隙。</p>
+        </div>
+        <p class="closing-final" lang="en-GB">But sovereignty is not solitude. It is the way to protect people, and to cooperate, without surrendering public judgment.</p>
+        <p class="closing-final" lang="zh-TW">但主權並非孤立。主權是保護人們、進行合作，卻不放棄公共判斷的方式。</p>
+    </div>
+</section>
+
+</main>
+
+<footer class="colophon">
+    <div class="cc0-mark">CC0</div>
+    <p class="colophon-note" lang="en-GB">Adapted from public testimony before the Standing Senate Committee on Human Rights, Senate of Canada, 27 April 2026. Dedicated to the public domain under <a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener">Creative Commons Zero 1.0</a>. No rights reserved. Copy, remix, translate, build upon it freely.</p>
+    <p class="colophon-note" lang="zh-TW">改編自 2026 年 4 月 27 日於加拿大參議院人權常設委員會的公開證詞。依據<a href="https://creativecommons.org/publicdomain/zero/1.0/deed.zh_TW" target="_blank" rel="noopener">創用 CC0 1.0 通用</a>條款釋出至公共領域。不保留任何權利。歡迎自由複製、改編、翻譯、再創作。</p>
+    <p class="colophon-meta"><span lang="en-GB">Audrey Tang &middot; Cyber Ambassador, Taiwan</span><span lang="zh-TW">唐鳳　&middot;　臺灣網路大使</span></p>
+</footer>
+
+<script>
+(function () {
+    var bar = document.querySelector('.progress');
+    var toggle = document.querySelector('.lang-toggle');
+    var heroH = document.querySelector('.hero').offsetHeight;
+    var ticking = false;
+    window.addEventListener('scroll', function () {
+        if (!ticking) {
+            requestAnimationFrame(function () {
+                var s = window.scrollY;
+                var h = document.documentElement.scrollHeight - window.innerHeight;
+                bar.style.width = (h > 0 ? Math.min(s / h * 100, 100) : 0) + '%';
+                toggle.classList.toggle('scrolled', s > heroH * 0.7);
+                ticking = false;
+            });
+            ticking = true;
+        }
+    }, { passive: true });
+
+    var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+            if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+        });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+
+    document.getElementById('lang-zh').addEventListener('change', function () {
+        var zh = this.checked;
+        document.documentElement.setAttribute('lang', zh ? 'zh-TW' : 'en-GB');
+        document.title = zh ? '夠好的祖先：加拿大參議院證詞' : 'A Good Enough Ancestor: Testimony Before the Senate of Canada';
+        try { localStorage.setItem('lang', zh ? 'zh-TW' : 'en'); } catch (e) {}
+    });
+})();
+</script>
+
+</body>
+</html>
