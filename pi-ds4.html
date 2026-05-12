@@ -2509,8 +2509,8 @@ responding in text.
       <div class="dl-row">
         <dt>DS4_READY_TIMEOUT_MS<span class="default"><span lang="zh-TW">預設 · 600000（10 分鐘）</span><span lang="en-GB">default &middot; 600000 (10 minutes)</span></span></dt>
         <dd>
-          <p lang="zh-TW">等 <code>ds4-server</code> 啟動就緒的最長時間。模型載入加上第一次 KV cache 預熱需要時間，首次冷啟動可能逼近上限；若你的硬碟較慢，可調高。</p>
-          <p lang="en-GB">The maximum wait for <code>ds4-server</code> to reach readiness. Model load plus the first KV-cache warm-up takes time; a first cold start can approach this limit, so raise it if your disk is slow.</p>
+          <p lang="zh-TW">等 <code>ds4-server</code> 啟動就緒的最長時間。內建 SSD 上模型載入加 KV cache 預熱通常幾秒就結束，預設 10 分鐘只是寬鬆的安全邊界；若 GGUF 放在外接磁碟或硬碟特別慢，可以再調高。</p>
+          <p lang="en-GB">The maximum wait for <code>ds4-server</code> to reach readiness. Model load plus the first KV-cache warm-up usually finishes in a few seconds on an internal SSD; the 10-minute default is just a generous safety margin. Raise it only if your disk is unusually slow or the GGUF lives on an external drive.</p>
         </dd>
       </div>
     </dl>
@@ -2761,13 +2761,13 @@ responding in text.
     <h3>7.4<span lang="zh-TW">　啟動成本 vs. 持續成本</span><span lang="en-GB">　Start-up cost vs. running cost</span></h3>
 
     <p lang="zh-TW">
-      首次冷啟動需要載入約 99 GB 權重到 unified memory，依硬碟速度約需 1～5 分鐘。
+      首次冷啟動需要把約 99 GB 權重讀進 unified memory；在 Mac 內建 SSD 上通常只要幾秒，重啟若還在系統 page cache 裡更是不到一秒。
       一旦 server 跑起來，後續所有請求都是即時的（無冷啟動延遲）。所以：
       <em>少數幾次長對話</em>比<em>多次短互動</em>對體驗友善，
       因為前者可以反覆受惠於同一個 warm server。
     </p>
     <p lang="en-GB">
-      The first cold start loads roughly 99 GB of weights into unified memory &mdash; about 1 to 5 minutes depending on disk speed.
+      The first cold start loads roughly 99 GB of weights into unified memory &mdash; on a Mac&rsquo;s internal SSD this typically takes only a few seconds, and a restart while the file is still in the OS page cache comes up in well under a second.
       Once the server is running, every subsequent request is instant (no cold-start latency). So:
       <em>a few long conversations</em> are kinder to the experience than <em>many short interactions</em>,
       because the former keeps benefiting from one warm server.
@@ -3395,14 +3395,17 @@ mkdir -p /var/cache/ds4-kv
 
     <h4><span lang="zh-TW">「server 卡在啟動中超過 10 分鐘」</span><span lang="en-GB">&ldquo;The server is stuck starting up for more than 10 minutes&rdquo;</span></h4>
     <p lang="zh-TW">
-      看 <code>log</code> 的最後幾百行——通常是模型仍在從磁碟載入。
-      SSD 慢的 Mac 首次冷啟動可能要超過預設的 600 秒，把
-      <code>DS4_READY_TIMEOUT_MS</code> 調高即可。
+      看 <code>log</code> 的最後幾百行。內建 SSD 上模型載入通常只要幾秒，
+      卡 10 分鐘以上多半不是磁碟速度本身的問題——更可能是 GGUF 放在慢速外接磁碟，
+      或啟動流程其他環節卡住。先讀 log 找原因；真有必要再把
+      <code>DS4_READY_TIMEOUT_MS</code> 調高。
     </p>
     <p lang="en-GB">
-      Read the last few hundred lines of <code>log</code> &mdash; usually the model is still loading from disk.
-      A Mac with a slow SSD can take longer than the default 600 seconds on first cold start; just raise
-      <code>DS4_READY_TIMEOUT_MS</code>.
+      Read the last few hundred lines of <code>log</code>. Normal model load takes only a few seconds
+      on an internal SSD, so anything stuck past 10 minutes is rarely a pure disk-speed issue &mdash;
+      more likely the GGUF sits on a slow external drive, or some other step in startup is wedged.
+      Diagnose from the log first; raise <code>DS4_READY_TIMEOUT_MS</code> only if there&rsquo;s a real
+      reason to wait longer.
     </p>
 
     <h4><span lang="zh-TW">「pi 顯示 ds4-server startup failed」</span><span lang="en-GB">&ldquo;pi reports ds4-server startup failed&rdquo;</span></h4>
