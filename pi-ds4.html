@@ -2700,7 +2700,7 @@ responding in text.
 
     <div class="codeblock">
       <div class="codeblock-bar">
-        <span class="codeblock-label"><span lang="zh-TW">用 curl 直接呼叫</span><span lang="en-GB">Call it directly with curl</span></span>
+        <span class="codeblock-label"><span lang="zh-TW">用 curl 直接呼叫（Chat Completions）</span><span lang="en-GB">Call it directly with curl (Chat Completions)</span></span>
         <button class="copy-btn" data-copy="curl http://127.0.0.1:8000/v1/chat/completions \
   -H 'Content-Type: application/json' \
   -d '{
@@ -2708,7 +2708,7 @@ responding in text.
     &quot;messages&quot;: [
       {&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;你好，請自我介紹&quot;}
     ]
-  }'" aria-label="Copy curl example call">Copy</button>
+  }'" aria-label="Copy chat-completions curl example">Copy</button>
       </div>
       <pre>curl http://127.0.0.1:8000/v1/chat/completions \
   -H <span class="s">"Content-Type: application/json"</span> \
@@ -2718,6 +2718,74 @@ responding in text.
       {"role": "user", "content": "你好，請自我介紹"}
     ]
   }'</span></pre>
+    </div>
+
+    <p lang="zh-TW">
+      新版 Codex CLI 等 client 走 OpenAI Responses 端點——同一個 server，同一個 base URL，
+      只是請求 JSON 結構不同：
+    </p>
+    <p lang="en-GB">
+      Newer clients (e.g. Codex CLI) speak the OpenAI Responses endpoint &mdash; same server, same base URL,
+      just a different request JSON shape:
+    </p>
+
+    <div class="codeblock">
+      <div class="codeblock-bar">
+        <span class="codeblock-label"><span lang="zh-TW">用 curl 直接呼叫（Responses）</span><span lang="en-GB">Call it directly with curl (Responses)</span></span>
+        <button class="copy-btn" data-copy="curl http://127.0.0.1:8000/v1/responses \
+  -H 'Content-Type: application/json' \
+  -d '{
+    &quot;model&quot;: &quot;deepseek-v4-flash&quot;,
+    &quot;input&quot;: [
+      {&quot;type&quot;: &quot;message&quot;, &quot;role&quot;: &quot;user&quot;,
+       &quot;content&quot;: [{&quot;type&quot;: &quot;input_text&quot;, &quot;text&quot;: &quot;你好，請自我介紹&quot;}]}
+    ]
+  }'" aria-label="Copy responses curl example">Copy</button>
+      </div>
+      <pre>curl http://127.0.0.1:8000/v1/responses \
+  -H <span class="s">"Content-Type: application/json"</span> \
+  -d <span class="s">'{
+    "model": "deepseek-v4-flash",
+    "input": [
+      {"type": "message", "role": "user",
+       "content": [{"type": "input_text", "text": "你好，請自我介紹"}]}
+    ]
+  }'</span></pre>
+    </div>
+
+    <p lang="zh-TW">
+      Anthropic 風格的 client 則打 <code>/v1/messages</code>；只是想<em>數 token、不真的生成</em>的話，
+      把路徑換成 <code>/v1/messages/count_tokens</code> 就會立刻回傳 <code>{"input_tokens": N}</code>，不啟動推論。
+    </p>
+    <p lang="en-GB">
+      Anthropic-style clients hit <code>/v1/messages</code> instead; if you just want to <em>count tokens
+      without actually generating</em>, swap the path for <code>/v1/messages/count_tokens</code> and the
+      server returns <code>{"input_tokens": N}</code> immediately, without spinning up inference.
+    </p>
+
+    <div class="codeblock">
+      <div class="codeblock-bar">
+        <span class="codeblock-label"><span lang="zh-TW">只數 token（不生成）</span><span lang="en-GB">Count tokens only (no generation)</span></span>
+        <button class="copy-btn" data-copy="curl http://127.0.0.1:8000/v1/messages/count_tokens \
+  -H 'Content-Type: application/json' \
+  -H 'anthropic-version: 2023-06-01' \
+  -d '{
+    &quot;model&quot;: &quot;deepseek-v4-flash&quot;,
+    &quot;messages&quot;: [
+      {&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;Count me&quot;}
+    ]
+  }'" aria-label="Copy count_tokens curl example">Copy</button>
+      </div>
+      <pre>curl http://127.0.0.1:8000/v1/messages/count_tokens \
+  -H <span class="s">"Content-Type: application/json"</span> \
+  -H <span class="s">"anthropic-version: 2023-06-01"</span> \
+  -d <span class="s">'{
+    "model": "deepseek-v4-flash",
+    "messages": [
+      {"role": "user", "content": "Count me"}
+    ]
+  }'
+<span class="c"># -&gt; {"input_tokens": 6}</span></span></pre>
     </div>
 
     <h3>7.2<span lang="zh-TW">　在 pi 裡查看 server log</span><span lang="en-GB">　Viewing the server log inside pi</span></h3>
@@ -2797,14 +2865,16 @@ responding in text.
 
     <p class="lede" lang="zh-TW">
       pi 只是一個前端。<code>ds4-server</code> 在 <code>127.0.0.1:8000</code> 上
-      <em>同時</em>提供 OpenAI <code>/v1/chat/completions</code> 與 Anthropic
-      <code>/v1/messages</code>——你已經習慣的 coding agent，幾乎都可以直接接過來，
+      <em>同時</em>提供 OpenAI <code>/v1/chat/completions</code>、OpenAI
+      <code>/v1/responses</code>，以及 Anthropic <code>/v1/messages</code>——
+      你已經習慣的 coding agent，幾乎都可以直接接過來，
       把 pi-ds4 當成一台本機、零成本、無速率限制的推論伺服器使用。
     </p>
     <p class="lede" lang="en-GB">
       pi is just one frontend. <code>ds4-server</code> at <code>127.0.0.1:8000</code>
-      <em>simultaneously</em> serves OpenAI <code>/v1/chat/completions</code> and Anthropic
-      <code>/v1/messages</code> &mdash; almost any coding agent you are already used to can connect directly,
+      <em>simultaneously</em> serves OpenAI <code>/v1/chat/completions</code>,
+      OpenAI <code>/v1/responses</code>, and Anthropic <code>/v1/messages</code> &mdash;
+      almost any coding agent you are already used to can connect directly,
       using pi-ds4 as a local, zero-cost, rate-limit-free inference server.
     </p>
 
@@ -2900,6 +2970,24 @@ wire_api = <span class="s">"responses"</span>
       If you only want occasional local inference and otherwise stay on cloud, keep cloud as the default
       and switch on the fly with <code>codex --config model_provider=ds4 --config model=deepseek-v4-flash</code>.
     </p>
+
+    <div class="callout">
+      <div class="callout-label"><span lang="zh-TW">啟動時的一行 <code>/v1/models</code> 警告</span><span lang="en-GB">A one-line <code>/v1/models</code> warning on startup</span></div>
+      <p lang="zh-TW">
+        Codex 0.128 連上來時，會記一行非致命的 error：
+        <code>failed to refresh available models: ... missing field <q>models</q></code>。
+        原因是 Codex 的 model-refresher 期望 ollama 風格 <code>{&quot;models&quot;: [...]}</code>，
+        ds4-server 回的是 OpenAI 風格 <code>{&quot;object&quot;:&quot;list&quot;,&quot;data&quot;:[...]}</code>——
+        實際推論不受影響，因為 Codex 直接用你 config 裡填的 <code>model</code> 名稱。可以放心忽略。
+      </p>
+      <p lang="en-GB">
+        On connect, Codex 0.128 logs one non-fatal error:
+        <code>failed to refresh available models: &hellip; missing field <q>models</q></code>.
+        The cause: Codex's model-refresher expects ollama-style <code>{&quot;models&quot;: [...]}</code>
+        while ds4-server returns the OpenAI-style <code>{&quot;object&quot;:&quot;list&quot;,&quot;data&quot;:[...]}</code> &mdash;
+        inference is unaffected because Codex uses the <code>model</code> name from your config directly. Safe to ignore.
+      </p>
+    </div>
 
     <div class="callout">
       <div class="callout-label"><span lang="zh-TW">關於 <code>--oss</code> 旗標</span><span lang="en-GB">On the <code>--oss</code> flag</span></div>
@@ -3072,8 +3160,8 @@ model:
 
     <div class="codeblock">
       <div class="codeblock-bar">
-        <span class="codeblock-label">Python OpenAI SDK</span>
-        <button class="copy-btn" aria-label="Copy Python SDK example">Copy</button>
+        <span class="codeblock-label">Python OpenAI SDK (Chat Completions)</span>
+        <button class="copy-btn" aria-label="Copy Python SDK chat-completions example">Copy</button>
       </div>
       <pre><span class="k">from</span> openai <span class="k">import</span> OpenAI
 
@@ -3087,6 +3175,34 @@ resp = client.chat.completions.create(
     messages=[{<span class="s">"role"</span>: <span class="s">"user"</span>, <span class="s">"content"</span>: <span class="s">"自我介紹"</span>}],
 )
 <span class="k">print</span>(resp.choices[<span class="k">0</span>].message.content)</pre>
+    </div>
+
+    <p lang="zh-TW">
+      若你的 pipeline 已經切到 OpenAI Responses API（Codex CLI 用的那個），
+      <code>client.responses.create()</code> 直接呼叫同一個 server：
+    </p>
+    <p lang="en-GB">
+      If your pipeline already uses the OpenAI Responses API (the one Codex CLI speaks),
+      <code>client.responses.create()</code> hits the same server:
+    </p>
+
+    <div class="codeblock">
+      <div class="codeblock-bar">
+        <span class="codeblock-label">Python OpenAI SDK (Responses)</span>
+        <button class="copy-btn" aria-label="Copy Python SDK responses example">Copy</button>
+      </div>
+      <pre><span class="k">from</span> openai <span class="k">import</span> OpenAI
+
+client = OpenAI(
+    base_url=<span class="s">"http://127.0.0.1:8000/v1"</span>,
+    api_key=<span class="s">"sk-local"</span>,
+)
+
+resp = client.responses.create(
+    model=<span class="s">"deepseek-v4-flash"</span>,
+    input=[{<span class="s">"role"</span>: <span class="s">"user"</span>, <span class="s">"content"</span>: <span class="s">"自我介紹"</span>}],
+)
+<span class="k">print</span>(resp.output_text)</pre>
     </div>
 
     <h3>8.6<span lang="zh-TW">　ds4-server 何時跑？</span><span lang="en-GB">　When does ds4-server run?</span></h3>
