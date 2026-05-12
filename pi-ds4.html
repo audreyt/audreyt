@@ -1807,6 +1807,47 @@ document.documentElement.classList.add('js');
       <li><strong>Network:</strong> the first 99 GB GGUF download benefits from good bandwidth. If your HuggingFace download benefits from auth, set <code>HF_TOKEN</code>.</li>
     </ul>
 
+    <div class="callout" id="ram96">
+      <div class="callout-label"><span lang="zh-TW">只有 96 GB？</span><span lang="en-GB">Only 96 GB?</span></div>
+      <p lang="zh-TW">
+        上游 antirez/ds4 的工作者已驗證：在 96 GB Mac Studio 上，Q2_K 跑得動 250k context、約 27 t/s
+        （<a href="https://github.com/antirez/ds4/issues/46">issue #46</a>，已併入上游 README）。
+        值得注意的是：apple.com 目前甚至沒有賣 96 GB 以上的 Mac Studio——這是現役高階 Mac Studio 買家的常態。
+      </p>
+      <p lang="en-GB">
+        Upstream antirez/ds4 contributors have validated that Q2_K runs on a 96 GB Mac Studio at 250k context
+        and around 27 t/s (<a href="https://github.com/antirez/ds4/issues/46">issue #46</a>, since merged into upstream README).
+        Worth knowing: apple.com does not currently ship a Mac Studio above 96 GB &mdash; this is the standard configuration
+        for fresh high-end Mac Studio buyers.
+      </p>
+      <p lang="zh-TW">
+        但本擴充的 <code>index.ts</code> 對 RAM 做硬性檢查：偵測到 &lt; 128 GB 會直接拋錯。
+        想在 96 GB 上跑，請<em>跳過 pi-ds4 wrapper</em>，走 <a href="#shells">8.6 節（C）</a>的手動 ds4-server 路徑：
+      </p>
+      <p lang="en-GB">
+        But this wrapper&rsquo;s <code>index.ts</code> hard-checks RAM and throws on anything below 128 GB.
+        To run on 96 GB, <em>skip the pi-ds4 wrapper</em> and use the manual ds4-server path in <a href="#shells">§8.6 (C)</a>:
+      </p>
+      <ol lang="zh-TW">
+        <li>先把 Metal 的 wired memory ceiling 拉高，留 6 GB 給 macOS：<br><code>sudo sysctl iogpu.wired_limit_mb=92000</code></li>
+        <li>clone <code>audreyt/ds4</code>、<code>make ds4-server</code>、抓 Q2_K GGUF（用本擴充的 <code>download_model.sh</code>）、symlink 為 <code>ds4flash.gguf</code>。</li>
+        <li>跑 <code>./ds4-server --ctx 250000 …</code>（其餘旗標見 <a href="#shells">8.6 節</a>）。</li>
+      </ol>
+      <ol lang="en-GB">
+        <li>Raise the Metal wired-memory ceiling, leaving 6 GB for macOS:<br><code>sudo sysctl iogpu.wired_limit_mb=92000</code></li>
+        <li>Clone <code>audreyt/ds4</code>, run <code>make ds4-server</code>, fetch the Q2_K GGUF (with this extension&rsquo;s <code>download_model.sh</code>), symlink it as <code>ds4flash.gguf</code>.</li>
+        <li>Run <code>./ds4-server --ctx 250000 &hellip;</code> (rest of the flags in <a href="#shells">§8.6</a>).</li>
+      </ol>
+      <p lang="zh-TW">
+        <strong>注意：</strong>把 <code>iogpu.wired_limit_mb</code> 拉到 92000 後留給系統的餘裕很小，
+        同時開太多其他大型應用可能會把 OS 擠到當機。只有願意自己手動管理記憶體的使用者再嘗試。
+      </p>
+      <p lang="en-GB">
+        <strong>Caveat:</strong> setting <code>iogpu.wired_limit_mb</code> to 92000 leaves very little headroom for the OS;
+        running other heavyweight applications alongside it can wedge macOS. Only attempt this if you are happy to manage memory by hand.
+      </p>
+    </div>
+
     <div class="callout">
       <div class="callout-label"><span lang="zh-TW">記憶體足、想試 Q8_0？</span><span lang="en-GB">Plenty of RAM, want to try Q8_0?</span></div>
       <p lang="zh-TW">
@@ -3956,11 +3997,13 @@ STATE=~/.pi/ds4/server.json
         <p lang="zh-TW">有幾條路：</p>
         <p lang="en-GB">A few options:</p>
         <ul lang="zh-TW">
+          <li><strong>96 GB Mac：</strong>上游已驗證 Q2_K 在 96 GB 上跑得動 250k context、約 27 t/s。本擴充本身硬性檢查 ≥ 128 GB 不會接受這台機器，但可以走 <a href="#ram96">§1.1 末尾「只有 96 GB？」</a>的 bypass 路徑（先 <code>sudo sysctl iogpu.wired_limit_mb=92000</code>，再手動跑 ds4-server）。</li>
           <li><strong>更小的模型本機跑：</strong>用 <code>llama.cpp</code>、<code>MLX</code>、<code>Ollama</code> 跑較小的開放權重模型（Llama、Mistral、Qwen、Gemma 系列等），64 GB Mac 可跑得動 70 B 量級。ds4 引擎本身是專為 DeepSeek V4 Flash 設計的，不適用於其他模型。</li>
           <li><strong>租用雲端 Mac：</strong>例如 MacStadium、Scaleway 提供按小時計費的 M-series 機器。</li>
           <li><strong>直接用 DeepSeek 官方 API：</strong>沒有方向性引導，但有完整能力；費用以 token 計。</li>
         </ul>
         <ul lang="en-GB">
+          <li><strong>96 GB Mac:</strong> upstream has validated that Q2_K runs on 96 GB at 250k context and around 27 t/s. This wrapper hard-checks for ≥ 128 GB and will not accept the machine, but you can take the bypass path described in <a href="#ram96">&ldquo;Only 96 GB?&rdquo; at the end of §1.1</a> (run <code>sudo sysctl iogpu.wired_limit_mb=92000</code>, then drive ds4-server by hand).</li>
           <li><strong>Run a smaller model locally:</strong> use <code>llama.cpp</code>, <code>MLX</code>, or <code>Ollama</code> for smaller open-weight models (Llama, Mistral, Qwen, Gemma families); a 64 GB Mac can drive 70 B-class models. The ds4 engine itself is built specifically for DeepSeek V4 Flash and does not apply to other models.</li>
           <li><strong>Rent a cloud Mac:</strong> services like MacStadium or Scaleway offer per-hour M-series machines.</li>
           <li><strong>Use the DeepSeek official API directly:</strong> no directional steering but full capability; billed per token.</li>
