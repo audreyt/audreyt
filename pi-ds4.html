@@ -2092,26 +2092,15 @@ ln -sfn gguf/...gguf <span class="gold">ds4flash.gguf</span></code>
     <p lang="zh-TW">
       antirez 的 <a href="https://github.com/antirez/ds4">ds4</a> 用純 C 撰寫了一個高效能 inference engine
       （和 Redis 同一個傳統），把這顆模型壓進 Apple Silicon。
-      本擴充使用的是 <a href="https://github.com/audreyt/ds4">audreyt/ds4</a> 分支的 <code>main</code>，
-      它額外帶了：
+      本擴充使用 <a href="https://github.com/audreyt/ds4">audreyt/ds4</a> 分支的 <code>main</code>，
+      它在 antirez/ds4 main 之上多帶了 ivanfioravanti 的 M5 prefill 優化（antirez/ds4#15）以及搭配的相容性修正——這也是 pi-ds4 還沒直接指到 antirez upstream 的唯一原因，等 PR #15 合併後就會收斂。早期為了載入 stock-recipe Q8_0 token-embed 而存在的 loader patch（<code>support-q8_0-token-embd</code>）已不再需要：cyberneurova 的權重現已用 ds4 main 原生支援的 IQ2XXS-w2Q2K imatrix 配方重新量化發佈（見 <a href="#model">3.3 節</a>）。
     </p>
     <p lang="en-GB">
       antirez's <a href="https://github.com/antirez/ds4">ds4</a> is a high-performance inference engine written in pure C
       (the same tradition as Redis), squeezing this model onto Apple Silicon.
-      This extension uses the <code>main</code> branch of the <a href="https://github.com/audreyt/ds4">audreyt/ds4</a> fork,
-      which additionally carries:
+      This extension uses the <code>main</code> branch of the <a href="https://github.com/audreyt/ds4">audreyt/ds4</a> fork, which carries
+      ivanfioravanti's M5 prefill optimisation (antirez/ds4#15) plus its companion compatibility fix on top of antirez/ds4 main &mdash; the only reason pi-ds4 hasn't pointed straight at antirez upstream yet, and something that will converge once PR #15 lands. The earlier loader patch (<code>support-q8_0-token-embd</code>) that handled stock-recipe Q8_0 token embeddings is no longer needed: cyberneurova's weights are now re-quantised into the IQ2XXS-w2Q2K imatrix recipe that ds4 main loads natively (see <a href="#model">&sect;3.3</a>).
     </p>
-
-    <ol lang="zh-TW">
-      <li>（a）<code>support-q8_0-token-embd</code> loader 工作——讓 Q8_0 token embedding／output 與 IQ2XXS routed expert 並存的權重可以正確載入；</li>
-      <li>（b）ivanfioravanti 的 M5 prefill 優化（antirez/ds4#15）；</li>
-      <li>（c）讓上述兩者得以共存的 M5／cyber compressor 相容性修正。</li>
-    </ol>
-    <ol lang="en-GB">
-      <li>(a) the <code>support-q8_0-token-embd</code> loader work &mdash; so the mixed-quant recipe (Q8_0 token-embedding / output alongside IQ2XXS routed experts) loads correctly;</li>
-      <li>(b) ivanfioravanti's M5 prefill optimisation (antirez/ds4#15);</li>
-      <li>(c) the M5 / cyber compressor compatibility fixes that let the two coexist.</li>
-    </ol>
 
     <h3>3.2<span lang="zh-TW">　什麼是 abliteration</span><span lang="en-GB">　What abliteration is</span></h3>
 
@@ -2452,8 +2441,8 @@ Write your response as visual HTML and `open` the file in browser instead of res
       <div class="dl-row">
         <dt>DS4_SUPPORT_BRANCH<span class="default"><span lang="zh-TW">預設 · main</span><span lang="en-GB">default &middot; main</span></span></dt>
         <dd>
-          <p lang="zh-TW">要 clone 的 branch。設成 <code>support-q8_0-token-embd</code> 可獲得 loader PR + compressor 修正、但不含 PR #15 的 M5 效能提升。</p>
-          <p lang="en-GB">The branch to clone. Setting it to <code>support-q8_0-token-embd</code> gives you the loader PR and compressor fixes but not the M5 performance gains from PR #15.</p>
+          <p lang="zh-TW">要 clone 的 branch。預設 <code>main</code> 已包含 audreyt/ds4 目前所有相關修正；要釘到別的修訂自行覆寫即可。</p>
+          <p lang="en-GB">The branch to clone. The default <code>main</code> already carries every relevant fix in audreyt/ds4; override it only if you want to pin a specific revision.</p>
         </dd>
       </div>
       <div class="dl-row">
