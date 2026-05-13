@@ -1552,11 +1552,11 @@ document.documentElement.classList.add('js');
         <div class="label"><span lang="zh-TW">IQ2XXS aligned-imatrix GGUF 權重檔大小</span><span lang="en-GB">IQ2XXS aligned-imatrix GGUF weights file size</span></div>
       </div>
       <div class="ledger-item">
-        <div class="num">440<small>t/s</small></div>
+        <div class="num">370<small>t/s</small></div>
         <div class="label"><span lang="zh-TW">M5 上 prefill 吞吐參考值</span><span lang="en-GB">Reference prefill throughput on M5</span></div>
       </div>
       <div class="ledger-item">
-        <div class="num">35<small>t/s</small></div>
+        <div class="num">32<small>t/s</small></div>
         <div class="label"><span lang="zh-TW">M5 上 decode（逐 token 推論）吞吐</span><span lang="en-GB">Decode (per-token inference) throughput on M5</span></div>
       </div>
       <div class="ledger-item">
@@ -1727,7 +1727,7 @@ document.documentElement.classList.add('js');
       <li><a href="#model"><span lang="zh-TW">這顆模型：abliteration 與 IQ2XXS imatrix</span><span lang="en-GB">The model: abliteration and IQ2XXS imatrix</span></a></li>
       <li><a href="#steering"><span lang="zh-TW">方向性引導：本分支的靈魂</span><span lang="en-GB">Directional steering: the soul of this fork</span></a></li>
       <li><a href="#config"><span lang="zh-TW">環境變數全表</span><span lang="en-GB">Full environment-variable reference</span></a></li>
-      <li><a href="#tuning"><span lang="zh-TW">硬體調校：M5 與 MPP</span><span lang="en-GB">Hardware tuning: M5 and MPP</span></a></li>
+      <li><a href="#tuning"><span lang="zh-TW">硬體調校：M5 與 Metal Tensor</span><span lang="en-GB">Hardware tuning: M5 and Metal Tensor</span></a></li>
       <li><a href="#daily"><span lang="zh-TW">日常使用：API、log、context</span><span lang="en-GB">Day-to-day use: API, logs, context</span></a></li>
       <li><a href="#shells"><span lang="zh-TW">當作 Codex／Claude Code／OpenClaw／Hermes 的後端</span><span lang="en-GB">As a backend for Codex / Claude Code / OpenClaw / Hermes</span></a></li>
       <li><a href="#debug"><span lang="zh-TW">故障排除：lease 與 watchdog</span><span lang="en-GB">Troubleshooting: leases and the watchdog</span></a></li>
@@ -1767,7 +1767,7 @@ document.documentElement.classList.add('js');
     <ul lang="zh-TW">
       <li><strong>第一～二章</strong>：硬體門檻、一行安裝、首次啟動會發生什麼事。</li>
       <li><strong>第三～四章</strong>：模型本身（abliteration、IQ2XXS imatrix）與本分支的核心特色「方向性引導」。</li>
-      <li><strong>第五～六章</strong>：環境變數全表、Metal 4 / MPP 硬體調校。</li>
+      <li><strong>第五～六章</strong>：環境變數全表、Metal 4 / Metal Tensor 硬體調校。</li>
       <li><strong>第七章</strong>：日常使用（API、log、lease 機制）。</li>
       <li><strong>第八章</strong>：把 pi-ds4 當作 Codex CLI／Claude Code／OpenClaw／Hermes Agent 的後端；含 DGX Spark 等非 Mac 硬體路徑。</li>
       <li><strong>第九～十一章</strong>：故障排除、本機開發安裝、進階自訂引導方向。</li>
@@ -1775,7 +1775,7 @@ document.documentElement.classList.add('js');
     <ul lang="en-GB">
       <li><strong>Chapters 1&ndash;2:</strong> the hardware bar, the one-line install, and what happens on first launch.</li>
       <li><strong>Chapters 3&ndash;4:</strong> the model itself (abliteration, IQ2XXS imatrix) and the fork&rsquo;s signature feature, directional steering.</li>
-      <li><strong>Chapters 5&ndash;6:</strong> full env-var reference and Metal 4 / MPP hardware tuning.</li>
+      <li><strong>Chapters 5&ndash;6:</strong> full env-var reference and Metal 4 / Metal Tensor hardware tuning.</li>
       <li><strong>Chapter 7:</strong> day-to-day use &mdash; API, logs, lease mechanics.</li>
       <li><strong>Chapter 8:</strong> using pi-ds4 as a backend for Codex CLI / Claude Code / OpenClaw / Hermes Agent; includes the non-Mac (DGX Spark) hardware path.</li>
       <li><strong>Chapters 9&ndash;11:</strong> troubleshooting, local development install, and building your own steering direction.</li>
@@ -1828,15 +1828,15 @@ document.documentElement.classList.add('js');
     <ul lang="zh-TW">
       <li><strong>RAM：</strong>至少 128 GB。低於這個數字，本擴充會直接拋出錯誤，
         因為連 IQ2XXS imatrix 都塞不下。</li>
-      <li><strong>磁碟：</strong>約 87 GB 給權重，另外保留約 10 GB 給 KV disk cache、ds4 source、log。建議至少留 120 GB 空間。</li>
+      <li><strong>磁碟：</strong>約 87 GB 給權重，另外保留約 10 GB 給 100k 預設 context 的 KV disk cache、ds4 source、log。建議至少留 120 GB 空間；1M context 實驗需要更大的 KV 磁碟預算。</li>
       <li><strong>晶片：</strong>任何 Apple Silicon 都可以；
-        但 M5 級別的 Metal 4 tensor API 可以額外吃到約 1.5 倍的 prefill 速度提升（透過 <code>--mpp auto</code> 自動啟用）。</li>
+        但 M5 級別的 Metal 4 Tensor API 可透過 <code>--mt auto</code> 自動啟用；目前預設 profile 在 2k&ndash;8k sweep 的幾何平均約有 2.09 倍 prefill、1.54 倍 decode 提升。</li>
       <li><strong>網路：</strong>首次下載 87 GB GGUF 需要良好頻寬。若你的 HuggingFace 下載受惠於授權，請設定 <code>HF_TOKEN</code>。</li>
     </ul>
     <ul lang="en-GB">
       <li><strong>RAM:</strong> at least 128 GB. Below that, the extension errors out at startup &mdash; even the IQ2XXS imatrix variant won&rsquo;t fit.</li>
-      <li><strong>Disk:</strong> ~87 GB for the weights and another ~10 GB for the KV disk cache, the ds4 source tree and logs. Plan on ≥ 120 GB free.</li>
-      <li><strong>Chip:</strong> any Apple Silicon works, but M5-class Metal 4 tensor APIs add roughly a 1.5&times; prefill speed-up (auto-enabled via <code>--mpp auto</code>).</li>
+      <li><strong>Disk:</strong> ~87 GB for the weights and another ~10 GB for the default 100k-context KV disk cache, the ds4 source tree and logs. Plan on ≥ 120 GB free; 1M-context experiments need a larger KV disk budget.</li>
+      <li><strong>Chip:</strong> any Apple Silicon works, but M5-class Metal 4 Tensor APIs are auto-enabled via <code>--mt auto</code>. The current default profile measures about 2.09&times; geometric prefill and 1.54&times; decode over the 2k&ndash;8k sweep.</li>
       <li><strong>Network:</strong> the first 87 GB GGUF download benefits from good bandwidth. If your HuggingFace download benefits from auth, set <code>HF_TOKEN</code>.</li>
     </ul>
 
@@ -2034,7 +2034,7 @@ ln -sfn gguf/...gguf <span class="gold">ds4flash.gguf</span></code>
   --ctx <span class="gold">100000</span> \
   --kv-disk-dir   ~/.pi/ds4/kv \
   --kv-disk-space-mb <span class="gold">8192</span> \
-  --mpp <span class="gold">auto</span> \
+  --mt <span class="gold">auto</span> \
   --dir-steering-file <span class="teal">dir-steering/out/uncertainty_ablit_imatrix.f32</span> \
   --dir-steering-ffn  <span class="teal">-2</span> \
   --dir-steering-attn <span class="teal">-0.5</span></code>
@@ -2543,19 +2543,19 @@ Write your response as visual HTML and `open` the file in browser instead of res
 
     <dl class="dl">
       <div class="dl-row">
-        <dt>DS4_MPP<span class="default"><span lang="zh-TW">預設 · auto</span><span lang="en-GB">default &middot; auto</span></span></dt>
+        <dt>DS4_MT<span class="default"><span lang="zh-TW">預設 · auto</span><span lang="en-GB">default &middot; auto</span></span></dt>
         <dd>
-          <p lang="zh-TW">Metal 4 MPP 策略，會傳給 <code>ds4-server --mpp</code>：</p>
-          <p lang="en-GB">The Metal 4 MPP strategy, passed through to <code>ds4-server --mpp</code>:</p>
+          <p lang="zh-TW">Metal 4 Tensor 策略，會傳給 <code>ds4-server --mt</code>（舊的 <code>DS4_MPP</code> 仍可作相容 alias）：</p>
+          <p lang="en-GB">The Metal 4 Tensor strategy, passed through to <code>ds4-server --mt</code> (the old <code>DS4_MPP</code> remains a compatibility alias):</p>
           <ul lang="zh-TW">
-            <li><code>auto</code>：在 M5 級晶片上啟用已驗證的 late-layer-safe MPP 路徑（約 1.5 倍 prefill），舊機型則自動降級到 legacy Metal。</li>
-            <li><code>off</code>：強制走 legacy Metal，跳過 MPP。</li>
-            <li><code>on</code>：完整 MPP profile，可能會在某些長 prompt 上 drift——僅做診斷用。</li>
+            <li><code>auto</code>：在 M5 級晶片上啟用已驗證的 Metal Tensor profile；目前 2k&ndash;8k sweep 對 antirez/main 約 2.09 倍 prefill、1.54 倍 decode。</li>
+            <li><code>off</code>：強制走 legacy Metal，跳過 Metal Tensor。</li>
+            <li><code>on</code>：強制 Tensor 診斷 profile，可能會在某些長 prompt 上 drift——僅做除錯用。</li>
           </ul>
           <ul lang="en-GB">
-            <li><code>auto</code>: enables the validated late-layer-safe MPP path on M5-class silicon (roughly 1.5&times; prefill); older chips fall back to legacy Metal automatically.</li>
-            <li><code>off</code>: forces legacy Metal, skipping MPP.</li>
-            <li><code>on</code>: full MPP profile, which may drift on some long prompts &mdash; for diagnostics only.</li>
+            <li><code>auto</code>: enables the validated Metal Tensor profile on M5-class silicon; the current 2k&ndash;8k sweep measures about 2.09&times; prefill and 1.54&times; decode versus antirez/main.</li>
+            <li><code>off</code>: forces legacy Metal, skipping Metal Tensor.</li>
+            <li><code>on</code>: forces the Tensor diagnostic profile, which may drift on some long prompts &mdash; for debugging only.</li>
           </ul>
         </dd>
       </div>
@@ -2612,51 +2612,51 @@ Write your response as visual HTML and `open` the file in browser instead of res
   <!-- ═══════════  CHAPTER 6 — TUNING  ═══════════ -->
   <section class="chapter" id="tuning">
     <div class="chapter-eyebrow"><span class="cjk-num"><span lang="zh-TW">第　六　章</span><span lang="en-GB">Chapter 6</span></span></div>
-    <h2><span lang="zh-TW">硬體調校：<em>M5 與 MPP</em></span><span lang="en-GB">Hardware tuning: <em>M5 and MPP</em></span></h2>
+    <h2><span lang="zh-TW">硬體調校：<em>M5 與 Metal Tensor</em></span><span lang="en-GB">Hardware tuning: <em>M5 and Metal Tensor</em></span></h2>
 
     <p class="lede" lang="zh-TW">
       如果你恰好擁有 M5 級的晶片，那麼這一章告訴你怎麼把
-      Metal 4 的新 MPP（Multi-Pass Pipeline）路徑吃滿，
+      Metal 4 的 Tensor 路徑吃滿，
       以及在較舊的機型上該如何驗證自己沒被拖慢。
     </p>
     <p class="lede" lang="en-GB">
       If you happen to have M5-class silicon, this chapter explains how to saturate
-      the new MPP (Multi-Pass Pipeline) path in Metal 4,
+      the new Tensor path in Metal 4,
       and how to verify on older hardware that nothing is slowing you down.
     </p>
 
-    <h3>6.1<span lang="zh-TW">　MPP 是什麼</span><span lang="en-GB">　What MPP is</span></h3>
+    <h3>6.1<span lang="zh-TW">　Metal Tensor 是什麼</span><span lang="en-GB">　What Metal Tensor is</span></h3>
 
     <p lang="zh-TW">
-      MPP 是 Apple Silicon GPU 在 Metal 4 起新增的 tensor compute pipeline，
-      允許單一 command buffer 內進行多階段運算而不必反覆 commit／await。
+      Metal Tensor 是 Apple Silicon GPU 在 Metal 4 起新增的 tensor compute API，
+      讓 ds4 能把大型矩陣乘法改走更適合 M5 的 kernel。
       對 prefill（一次性處理整段輸入 prompt 的階段）特別有利——
-      DS4 的 prefill 吞吐在 M5 上可達約 <strong>440 t/s</strong>，比 legacy Metal 快約 1.5 倍。
-      Decode（逐 token 產生回應）階段不依賴 MPP，吞吐穩定在約
-      <strong>35 t/s</strong>——大致是「比你閱讀稍快」的速度，
-      也是長對話實際感受到的回應速度。
+      這次重新測得的預設 profile 在 4k context 約 <strong>370 t/s</strong> prefill，
+      2k&ndash;8k sweep 幾何平均比 antirez/main 快約 2.09 倍。
+      Decode（逐 token 產生回應）吞吐約
+      <strong>32 t/s</strong>，幾何平均約 1.54 倍提升——這仍是長對話實際感受到的回應速度。
     </p>
     <p lang="en-GB">
-      MPP is the tensor compute pipeline added to the Apple Silicon GPU starting with Metal 4,
-      allowing multi-stage compute within a single command buffer without repeated commit/await round-trips.
+      Metal Tensor is the tensor compute API added to the Apple Silicon GPU starting with Metal 4,
+      letting ds4 route large matrix multiplies through kernels better matched to M5.
       It is especially helpful for prefill (the stage that processes the whole input prompt in one go) &mdash;
-      DS4's prefill throughput on M5 reaches roughly <strong>440 t/s</strong>, about 1.5&times; faster than legacy Metal.
-      Decode (per-token generation) doesn't depend on MPP and settles at roughly
-      <strong>35 t/s</strong> &mdash; about &ldquo;slightly faster than you can read&rdquo;,
-      and the figure you actually feel during a long conversation.
+      the retested default profile reaches about <strong>370 t/s</strong> prefill at 4k context,
+      with a 2.09&times; geometric prefill gain versus antirez/main across the 2k&ndash;8k sweep.
+      Decode (per-token generation) settles around
+      <strong>32 t/s</strong>, a 1.54&times; geometric gain, and remains the figure you actually feel during a long conversation.
     </p>
 
     <h3>6.2<span lang="zh-TW">　預設 <code>auto</code> 已是最佳選擇</span><span lang="en-GB">　The default <code>auto</code> is already the best choice</span></h3>
 
-    <p lang="zh-TW">擴充預設用 <code>--mpp auto</code>，由 ds4-server 自己偵測晶片世代並選擇路徑：</p>
-    <p lang="en-GB">The extension defaults to <code>--mpp auto</code>, letting ds4-server detect the silicon generation and pick the path:</p>
+    <p lang="zh-TW">擴充預設用 <code>--mt auto</code>，由 ds4-server 自己偵測晶片世代並選擇路徑：</p>
+    <p lang="en-GB">The extension defaults to <code>--mt auto</code>, letting ds4-server detect the silicon generation and pick the path:</p>
 
     <ul lang="zh-TW">
-      <li>M5：啟用<em>已驗證</em>的 late-layer-safe MPP——已知會 drift 的 layer 自動 fallback。</li>
+      <li>M5：啟用<em>已驗證</em>的 Metal Tensor profile——已知會 drift 的 route 自動 fallback。</li>
       <li>M2／M3／M4：legacy Metal 路徑，跟上游 ds4 完全相同。</li>
     </ul>
     <ul lang="en-GB">
-      <li>M5: enables the <em>validated</em> late-layer-safe MPP &mdash; known-drifting layers fall back automatically.</li>
+      <li>M5: enables the <em>validated</em> Metal Tensor profile &mdash; known-drifting routes fall back automatically.</li>
       <li>M2 / M3 / M4: the legacy Metal path, identical to upstream ds4.</li>
     </ul>
 
@@ -2666,12 +2666,12 @@ Write your response as visual HTML and `open` the file in browser instead of res
     <h3>6.3<span lang="zh-TW">　什麼時候該調 <code>off</code> 或 <code>on</code></span><span lang="en-GB">　When to switch to <code>off</code> or <code>on</code></span></h3>
 
     <ul lang="zh-TW">
-      <li><strong><code>off</code></strong>：你在 M5 上遇到 long-context drift（極長 prompt 末段出現異常 token），先用 <code>DS4_MPP=off</code> 確認是否為 MPP 引起。</li>
-      <li><strong><code>on</code></strong>：診斷用——強制走完整 MPP profile，包括尚未驗證的 layer。可能會 drift，不建議日常使用。</li>
+      <li><strong><code>off</code></strong>：你在 M5 上遇到 long-context drift（極長 prompt 末段出現異常 token），先用 <code>DS4_MT=off</code> 確認是否為 Tensor 路徑引起。</li>
+      <li><strong><code>on</code></strong>：診斷用——強制走 Tensor profile，包括尚未驗證的 route。可能會 drift，不建議日常使用。</li>
     </ul>
     <ul lang="en-GB">
-      <li><strong><code>off</code></strong>: if you hit long-context drift on M5 (anomalous tokens at the tail of a very long prompt), first set <code>DS4_MPP=off</code> to confirm whether MPP is the cause.</li>
-      <li><strong><code>on</code></strong>: for diagnostics &mdash; forces the full MPP profile, including unvalidated layers. It may drift, so not recommended for everyday use.</li>
+      <li><strong><code>off</code></strong>: if you hit long-context drift on M5 (anomalous tokens at the tail of a very long prompt), first set <code>DS4_MT=off</code> to confirm whether the Tensor path is the cause.</li>
+      <li><strong><code>on</code></strong>: for diagnostics &mdash; forces the Tensor profile, including unvalidated routes. It may drift, so not recommended for everyday use.</li>
     </ul>
 
     <h3>6.4<span lang="zh-TW">　context、KV cache 與磁碟</span><span lang="en-GB">　Context, KV cache, and disk</span></h3>
@@ -2682,13 +2682,25 @@ Write your response as visual HTML and `open` the file in browser instead of res
     <ul lang="zh-TW">
       <li>單次對話上限 100,000 tokens；</li>
       <li>KV cache 會在記憶體不足時 spill 到 <code>~/.pi/ds4/kv</code>；</li>
-      <li>磁碟 KV 上限 8 GB——多輪長對話的暫存空間。</li>
+      <li>磁碟 KV 上限 8 GB——適合 100k 預設 context 的多輪長對話暫存空間。</li>
     </ul>
     <ul lang="en-GB">
       <li>a single conversation is capped at 100,000 tokens;</li>
       <li>the KV cache spills to <code>~/.pi/ds4/kv</code> when memory runs low;</li>
-      <li>the on-disk KV limit is 8 GB &mdash; scratch space for long multi-turn conversations.</li>
+      <li>the on-disk KV limit is 8 GB &mdash; scratch space sized for long multi-turn conversations at the default 100k context.</li>
     </ul>
+
+    <div class="callout callout-teal">
+      <div class="callout-label"><span lang="zh-TW">100k 與 1M context 不是同一種運行 profile</span><span lang="en-GB">100k and 1M context are different operating profiles</span></div>
+      <p lang="zh-TW">
+        ds4 的 Metal context estimator 顯示：100k 預設大約配置 2.4 GiB KV／context buffer；250k 約 5.5 GiB、300k 約 6.5 GiB；1M 會跳到約 20.8 GiB，這還沒算 87 GB 權重與推論暫存。
+        磁碟也會跟著變：完整 checkpoint 約從 100k 的 1.4 GB 放大到 1M 的 14 GB，所以內建的 8 GB KV disk budget 不適合 1M。
+      </p>
+      <p lang="en-GB">
+        ds4's Metal context estimator shows roughly 2.4 GiB of KV/context buffers at the 100k default; 250k is about 5.5 GiB, 300k about 6.5 GiB, and 1M jumps to about 20.8 GiB before the 87 GB weights and transient inference buffers.
+        Disk use scales too: a full checkpoint grows from roughly 1.4 GB at 100k to roughly 14 GB at 1M, so the built-in 8 GB KV disk budget is not a 1M-context setting.
+      </p>
+    </div>
 
     <div class="callout">
       <div class="callout-label"><span lang="zh-TW">超過 32k tokens 的長文輸入：請當實驗看待</span><span lang="en-GB">Inputs longer than 32k tokens: treat as experimental</span></div>
@@ -3392,7 +3404,7 @@ resp = client.responses.create(
 ./ds4-server \
   --ctx 100000 \
   --kv-disk-dir ~/.pi/ds4/kv --kv-disk-space-mb 8192 \
-  --mpp auto \
+  --mt auto \
   --dir-steering-file dir-steering/out/uncertainty_ablit_imatrix.f32 \
   --dir-steering-ffn -2</pre>
         </div>
@@ -3423,7 +3435,7 @@ chmod +x download_cyberneurova.sh
 ./ds4-server \
   --ctx 100000 \
   --kv-disk-dir ./kv --kv-disk-space-mb 8192 \
-  --mpp auto \
+  --mt auto \
   --dir-steering-file dir-steering/out/uncertainty_ablit_imatrix.f32 \
   --dir-steering-ffn -2</pre>
         </div>
@@ -3448,7 +3460,7 @@ chmod +x download_cyberneurova.sh
 ./ds4-server \
   --ctx 100000 \
   --kv-disk-dir ~/.pi/ds4/kv --kv-disk-space-mb 8192 \
-  --mpp auto \
+  --mt auto \
   --dir-steering-file dir-steering/out/uncertainty_ablit_imatrix.f32 \
   --dir-steering-ffn -2</pre>
         </div>
@@ -3479,7 +3491,7 @@ chmod +x download_cyberneurova.sh
 ./ds4-server \
   --ctx 100000 \
   --kv-disk-dir ./kv --kv-disk-space-mb 8192 \
-  --mpp auto \
+  --mt auto \
   --dir-steering-file dir-steering/out/uncertainty_ablit_imatrix.f32 \
   --dir-steering-ffn -2</pre>
         </div>
@@ -3540,7 +3552,7 @@ chmod +x download_cyberneurova.sh
 ./download_cyberneurova.sh q2
 
 <span class="c"># <span lang="zh-TW">起 server。bind 127.0.0.1：要對 LAN 開放，自己加 firewall/Tailscale/reverse-proxy。</span><span lang="en-GB">Start the server. It binds 127.0.0.1: to open it to the LAN, add your own firewall / Tailscale / reverse proxy.</span></span>
-<span class="c"># <span lang="zh-TW">引導參數一字不改，與 Mac 路徑一致。--mpp 是 Mac 專屬，CUDA 路徑會忽略。</span><span lang="en-GB">Steering parameters are identical to the Mac path. --mpp is Mac-only and is ignored on the CUDA path.</span></span>
+<span class="c"># <span lang="zh-TW">引導參數一字不改，與 Mac 路徑一致。Metal Tensor 是 Mac 專屬，CUDA 範例不加 --mt。</span><span lang="en-GB">Steering parameters are identical to the Mac path. Metal Tensor is Mac-only, so this CUDA example omits --mt.</span></span>
 mkdir -p /var/cache/ds4-kv
 ./ds4-server \
   --ctx 32768 \
@@ -3572,7 +3584,7 @@ mkdir -p /var/cache/ds4-kv
         Linux 上自己寫 systemd unit、或留個 tmux session 跑著即可。
       </li>
       <li>
-        <strong>沒有 M5 Metal MPP 那條最快曲線：</strong>本指南 440 t/s 是 M5 Max 上的數字；
+        <strong>沒有 M5 Metal Tensor 那條曲線：</strong>本指南約 370 t/s 的預設 profile 是 M5 Max 上的數字；
         DGX Spark 走 CUDA／GB10 tensor core，吞吐量看 NVIDIA 路徑的調校
         （<code>CUDA_ARCH=native</code> 已是預設，不必再調）。
       </li>
@@ -3595,7 +3607,7 @@ mkdir -p /var/cache/ds4-kv
         on Linux, write a systemd unit yourself or keep a tmux session running.
       </li>
       <li>
-        <strong>No M5 Metal MPP fast curve:</strong> the 440 t/s figure in this guide is from M5 Max;
+        <strong>No M5 Metal Tensor curve:</strong> the roughly 370 t/s default-profile figure in this guide is from M5 Max;
         DGX Spark goes through CUDA / GB10 tensor cores, with throughput depending on NVIDIA-path tuning
         (<code>CUDA_ARCH=native</code> is already the default, no further tuning needed).
       </li>
@@ -3687,11 +3699,11 @@ mkdir -p /var/cache/ds4-kv
     <h4><span lang="zh-TW">「pi 顯示 ds4-server startup failed」</span><span lang="en-GB">&ldquo;pi reports ds4-server startup failed&rdquo;</span></h4>
     <p lang="zh-TW">
       log 會明確指出失敗點：可能是 <code>make ds4-server</code> 失敗（缺 Xcode CLI tools？）、
-      GGUF 下載中斷（網路？磁碟滿？）、或者 <code>--mpp</code> 在不支援的晶片上 panic。
+      GGUF 下載中斷（網路？磁碟滿？）、或者 <code>--mt</code> 在不支援的晶片上 panic。
     </p>
     <p lang="en-GB">
       The log will point clearly to the failure: <code>make ds4-server</code> failing (missing Xcode CLI tools?),
-      a broken GGUF download (network? disk full?), or <code>--mpp</code> panicking on unsupported silicon.
+      a broken GGUF download (network? disk full?), or <code>--mt</code> panicking on unsupported silicon.
     </p>
 
     <h4><span lang="zh-TW">「想強制重啟一切」</span><span lang="en-GB">&ldquo;I want to force-restart everything&rdquo;</span></h4>
@@ -4321,8 +4333,8 @@ STATE=~/.pi/ds4/server.json
       </div>
       <div>
         <dt>prefill / decode<span class="cjk-aside">預填／逐字產生</span></dt>
-        <dd lang="zh-TW">推論的兩個階段。Prefill：一次性吃下整段輸入 prompt；Decode：逐 token 產生回應。Prefill 通常快得多，本指南 M5 上的參考值是 prefill ≈ 440 t/s、decode ≈ 35 t/s——後者才是你在長對話中實際感受到的回應速度。</dd>
-        <dd lang="en-GB">The two stages of inference. Prefill: ingest the whole input prompt at once. Decode: produce a response one token at a time. Prefill is typically far faster; this guide&rsquo;s M5 reference figures are prefill ≈ 440 t/s and decode ≈ 35 t/s &mdash; the latter is what you actually feel during a long conversation.</dd>
+        <dd lang="zh-TW">推論的兩個階段。Prefill：一次性吃下整段輸入 prompt；Decode：逐 token 產生回應。這次 M5 預設 profile 的參考值約是 prefill ≈ 370 t/s、decode ≈ 32 t/s；後者才是你在長對話中實際感受到的回應速度。</dd>
+        <dd lang="en-GB">The two stages of inference. Prefill: ingest the whole input prompt at once. Decode: produce a response one token at a time. This guide&rsquo;s retested M5 default-profile figures are about prefill ≈ 370 t/s and decode ≈ 32 t/s; the latter is what you actually feel during a long conversation.</dd>
       </div>
       <div>
         <dt>context window<span class="cjk-aside">上下文視窗</span></dt>
@@ -4340,9 +4352,9 @@ STATE=~/.pi/ds4/server.json
         <dd lang="en-GB">Apple Silicon shares one block of RAM between CPU and GPU, unlike NVIDIA cards where data has to move from RAM to VRAM. This is the key reason Macs can run large models.</dd>
       </div>
       <div>
-        <dt>Metal 4 / MPP<span class="cjk-aside">Apple GPU API</span></dt>
-        <dd lang="zh-TW">Metal 是 Apple 的 GPU 程式介面；Metal 4 引入 MPP（Multi-Pass Pipeline），允許 GPU 在單一 command buffer 內做多階段運算，提升大型模型 prefill 吞吐。</dd>
-        <dd lang="en-GB">Metal is Apple's GPU programming interface; Metal 4 introduces MPP (Multi-Pass Pipeline), letting the GPU perform multi-stage compute within a single command buffer and lifting prefill throughput on large models.</dd>
+        <dt>Metal 4 / Metal Tensor<span class="cjk-aside">Apple GPU API</span></dt>
+        <dd lang="zh-TW">Metal 是 Apple 的 GPU 程式介面；Metal 4 引入 Tensor API，讓 M5 上的大型矩陣乘法走更高吞吐的 kernel，提升大型模型 prefill。</dd>
+        <dd lang="en-GB">Metal is Apple's GPU programming interface; Metal 4 introduces Tensor APIs that let large M5 matrix multiplies use higher-throughput kernels, lifting prefill on large models.</dd>
       </div>
     </dl>
 
@@ -4402,13 +4414,13 @@ STATE=~/.pi/ds4/server.json
     <ul lang="zh-TW">
       <li><strong><a href="https://github.com/mitsuhiko/pi-ds4">mitsuhiko/pi-ds4</a></strong>——本擴充所基於的上游版本。Armin Ronacher 寫了所有 lifecycle、watchdog、lease 機制。</li>
       <li><strong><a href="https://github.com/antirez/ds4">antirez/ds4</a></strong>——Salvatore Sanfilippo 用純 C 寫的 DeepSeek V4 Flash inference engine，延續他寫 Redis 的風格。GGUF 由同專案的 <a href="https://github.com/antirez/llama.cpp-deepseek-v4-flash">llama.cpp-deepseek-v4-flash</a> 轉換而來。</li>
-      <li><strong><a href="https://github.com/antirez/ds4/pull/15">ivanfioravanti 的 PR #15</a></strong>——M5 Metal 4 / MPP 優化的關鍵 patch。</li>
+      <li><strong><a href="https://github.com/antirez/ds4/pull/15">ivanfioravanti 的 PR #15</a></strong>——M5 Metal 4 / Metal Tensor 優化的關鍵 patch。</li>
       <li><strong>cyberneurova 研究專案</strong>——發布了讓本機運行可行的 abliterated GGUF。</li>
     </ul>
     <ul lang="en-GB">
       <li><strong><a href="https://github.com/mitsuhiko/pi-ds4">mitsuhiko/pi-ds4</a></strong> &mdash; the upstream this extension is based on. Armin Ronacher wrote all the lifecycle, watchdog, and lease machinery.</li>
       <li><strong><a href="https://github.com/antirez/ds4">antirez/ds4</a></strong> &mdash; Salvatore Sanfilippo's DeepSeek V4 Flash inference engine written in pure C, in the same tradition as Redis. The GGUF was converted by the sibling project <a href="https://github.com/antirez/llama.cpp-deepseek-v4-flash">llama.cpp-deepseek-v4-flash</a>.</li>
-      <li><strong><a href="https://github.com/antirez/ds4/pull/15">ivanfioravanti's PR #15</a></strong> &mdash; the key patch for M5 Metal 4 / MPP optimisation.</li>
+      <li><strong><a href="https://github.com/antirez/ds4/pull/15">ivanfioravanti's PR #15</a></strong> &mdash; the key patch for M5 Metal 4 / Metal Tensor optimisation.</li>
       <li><strong>The cyberneurova research project</strong> &mdash; published the abliterated GGUF that makes local execution viable.</li>
     </ul>
 
