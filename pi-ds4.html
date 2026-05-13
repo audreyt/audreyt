@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>pi-ds4 — Driving DeepSeek V4 Flash on your own Mac</title>
-<meta name="description" content="The full pi-ds4 guide: run the 284-B-parameter DeepSeek V4 Flash locally on a 128-GB Apple Silicon Mac, from one-line install through directional steering, hardware tuning, and day-to-day use.">
+<meta name="description" content="The full pi-ds4 guide: run the 284-B-parameter DeepSeek V4 Flash locally on a 128-GB Apple Silicon Mac, with reproducible decision traces, directional steering, hardware tuning, and day-to-day use.">
 <meta property="og:title" content="pi-ds4 · Audrey Tang">
-<meta property="og:description" content="Run a frontier model on your own machine and take the steering wheel back. Full install, steering, and tuning guide.">
+<meta property="og:description" content="Run a frontier model on your own machine with stable, contestable decision traces. Full install, steering, reproducibility, and tuning guide.">
 <meta property="og:type" content="article">
 <meta property="og:locale" content="en_GB">
 <meta property="og:locale:alternate" content="zh_TW">
@@ -1526,12 +1526,14 @@ document.documentElement.classList.add('js');
       在一台 128 GB 以上的 Apple Silicon Mac 上本機運行 284 B 參數的
       DeepSeek V4 Flash——沒有雲端呼叫、沒有 API 費用、沒有逐 token 計價、
       沒有頻率限制；模型的「方向性引導」轉盤，握在你自己手上。
+      預設固定 seed 與工具呼叫 ID，讓決策軌跡可以重跑、比對、質疑。
     </p>
     <p class="standfirst" lang="en-GB">
       Run the 284&#8209;billion-parameter DeepSeek V4 Flash on your own
       128&#8209;GB Apple Silicon Mac &mdash; no cloud calls, no API fees, no
       per&#8209;token billing, no rate limits. The model&rsquo;s directional
-      steering dial stays in your hands.
+      steering dial stays in your hands. Stable seeds and tool-call IDs make
+      decision traces repeatable, comparable, and contestable.
     </p>
     <div class="byline">
       <span><b>Audrey Tang</b> <span lang="zh-TW">唐鳳</span><span lang="en-GB">唐鳳</span></span>
@@ -1554,8 +1556,12 @@ document.documentElement.classList.add('js');
         <div class="label"><span lang="zh-TW">M5 上 prefill 吞吐參考值</span><span lang="en-GB">Reference prefill throughput on M5</span></div>
       </div>
       <div class="ledger-item">
-        <div class="num">30<small>t/s</small></div>
+        <div class="num">35<small>t/s</small></div>
         <div class="label"><span lang="zh-TW">M5 上 decode（逐 token 推論）吞吐</span><span lang="en-GB">Decode (per-token inference) throughput on M5</span></div>
+      </div>
+      <div class="ledger-item">
+        <div class="num">42<small>seed</small></div>
+        <div class="label"><span lang="zh-TW">預設可重現：seed 與工具呼叫 ID 都穩定</span><span lang="en-GB">Reproducible by default: stable seed and tool-call IDs</span></div>
       </div>
     </div>
   </section>
@@ -1594,6 +1600,33 @@ document.documentElement.classList.add('js');
       <strong>Codex CLI</strong>, <strong>Claude Code</strong>, <strong>OpenClaw</strong> or
       <strong>Hermes Agent</strong>, you can point any of them at this local server and use pi-ds4 as your local backend &mdash;
       all four shells are just an env-var or config-section change away. See <a href="#shells">Chapter 8</a>.
+    </p>
+
+    <h3><span lang="zh-TW">為什麼「單機單流」很重要？</span><span lang="en-GB">Why the single-machine, single-stream shape matters</span></h3>
+    <p lang="zh-TW">
+      多數雲端模型把高吞吐建立在 batch size &gt; 1：同一顆加速器同時服務許多人的請求。
+      這很有效率，但對需要事後檢驗的決策軌跡並不友善——路由、排程、隱含 seed、甚至工具呼叫 ID
+      都可能不是你可以固定下來的東西。pi-ds4 反過來選擇一條單機、單使用者、單串流的路：
+      預設以 <code>DS4_REPRODUCIBLE=1</code> 注入 seed <code>42</code>，而 seeded 的
+      ds4 請求也會產生穩定的 <code>call_…</code>／<code>toolu_…</code> 工具 ID。
+    </p>
+    <p lang="en-GB">
+      Most hosted inference gets its throughput from batch size &gt; 1: one accelerator serving many people&rsquo;s requests at once.
+      That is efficient, but awkward for decision traces that must be inspected later &mdash; routing, scheduling, hidden seeds,
+      and even tool-call IDs are often not things you can pin down. pi-ds4 takes the opposite trade: one machine, one user,
+      one stream. By default <code>DS4_REPRODUCIBLE=1</code> injects seed <code>42</code>, and seeded ds4 requests also produce
+      stable <code>call_…</code> / <code>toolu_…</code> tool IDs.
+    </p>
+    <p lang="zh-TW">
+      這不是為了把模型變成「永遠正確」；而是為了讓回答、思考片段、工具呼叫與工具結果能形成可重跑的紀錄。
+      對公共決策、研究訪談、採購評估、或任何需要 contestability（可爭辯性）與 auditability（可稽核性）的場景，
+      這個小小的形狀差異很關鍵：同一個輸入可以重跑，同一段差異可以 diff，同一次工具呼叫可以被精確指認。
+    </p>
+    <p lang="en-GB">
+      This does not make the model &ldquo;always right&rdquo;. It makes the answer, reasoning fragments, tool calls, and tool results
+      form a replayable record. For public decisions, research interviews, procurement evaluation, or any setting that needs
+      contestability and auditability, that shape matters: the same input can be rerun, a changed trace can be diffed, and a
+      specific tool call can be named precisely.
     </p>
     <p lang="zh-TW">
       它包成一行 pi 指令：<code class="nowrap">pi install github.com/audreyt/pi-ds4</code>。
@@ -2488,7 +2521,28 @@ Write your response as visual HTML and `open` the file in browser instead of res
       </div>
     </dl>
 
-    <h3>5.2<span lang="zh-TW">　Metal 與效能</span><span lang="en-GB">　Metal and performance</span></h3>
+    <h3>5.2<span lang="zh-TW">　可重現性與決策軌跡</span><span lang="en-GB">　Reproducibility and decision traces</span></h3>
+
+    <dl class="dl">
+      <div class="dl-row">
+        <dt>DS4_REPRODUCIBLE<span class="default"><span lang="zh-TW">預設 · 1</span><span lang="en-GB">default &middot; 1</span></span></dt>
+        <dd>
+          <p lang="zh-TW">pi-ds4 的可重現性開關。預設啟用：若 Pi 沒有明確提供正整數 seed，擴充會在送往 ds4-server 的請求裡加入穩定 seed。搭配 audreyt/ds4 的 seeded tool-id 產生器，缺省的工具呼叫 ID 也會固定，讓同一個決策軌跡可以重跑與 diff。</p>
+          <p lang="en-GB">pi-ds4&rsquo;s reproducibility switch. Enabled by default: if Pi does not provide a positive integer seed, the extension adds a stable seed to the ds4-server request. Together with audreyt/ds4&rsquo;s seeded tool-ID generator, missing tool-call IDs also become stable, so the same decision trace can be replayed and diffed.</p>
+          <p lang="zh-TW">設為 <code>0</code> 會關閉 seed 注入；ds4-server 便回到一般 time-based sampling，未指定的工具 ID 也回到隨機產生。</p>
+          <p lang="en-GB">Set it to <code>0</code> to disable seed injection; ds4-server then returns to normal time-based sampling, and unspecified tool IDs return to random generation.</p>
+        </dd>
+      </div>
+      <div class="dl-row">
+        <dt>DS4_REPRODUCIBLE_SEED<span class="default"><span lang="zh-TW">預設 · 42</span><span lang="en-GB">default &middot; 42</span></span></dt>
+        <dd>
+          <p lang="zh-TW">可重現模式下使用的穩定 seed。必須是正整數；<code>0</code> 在 ds4-server 的 wire protocol 裡代表「未設定／使用時間亂數」，所以這裡刻意不接受。若你要為某次評估釘住不同軌跡，改成另一個正整數即可。</p>
+          <p lang="en-GB">The stable seed used in reproducible mode. It must be a positive integer; in ds4-server&rsquo;s wire protocol <code>0</code> means &ldquo;unset / use time entropy&rdquo;, so this layer intentionally refuses it. To pin a different evaluation trace, choose another positive integer.</p>
+        </dd>
+      </div>
+    </dl>
+
+    <h3>5.3<span lang="zh-TW">　Metal 與效能</span><span lang="en-GB">　Metal and performance</span></h3>
 
     <dl class="dl">
       <div class="dl-row">
@@ -2517,7 +2571,7 @@ Write your response as visual HTML and `open` the file in browser instead of res
       </div>
     </dl>
 
-    <h3>5.3<span lang="zh-TW">　方向性引導</span><span lang="en-GB">　Directional steering</span></h3>
+    <h3>5.4<span lang="zh-TW">　方向性引導</span><span lang="en-GB">　Directional steering</span></h3>
 
     <dl class="dl">
       <div class="dl-row">
@@ -2582,7 +2636,7 @@ Write your response as visual HTML and `open` the file in browser instead of res
       對 prefill（一次性處理整段輸入 prompt 的階段）特別有利——
       DS4 的 prefill 吞吐在 M5 上可達約 <strong>440 t/s</strong>，比 legacy Metal 快約 1.5 倍。
       Decode（逐 token 產生回應）階段不依賴 MPP，吞吐穩定在約
-      <strong>30 t/s</strong>——大致是「比你閱讀稍快」的速度，
+      <strong>35 t/s</strong>——大致是「比你閱讀稍快」的速度，
       也是長對話實際感受到的回應速度。
     </p>
     <p lang="en-GB">
@@ -2591,7 +2645,7 @@ Write your response as visual HTML and `open` the file in browser instead of res
       It is especially helpful for prefill (the stage that processes the whole input prompt in one go) &mdash;
       DS4's prefill throughput on M5 reaches roughly <strong>440 t/s</strong>, about 1.5&times; faster than legacy Metal.
       Decode (per-token generation) doesn't depend on MPP and settles at roughly
-      <strong>30 t/s</strong> &mdash; about &ldquo;slightly faster than you can read&rdquo;,
+      <strong>35 t/s</strong> &mdash; about &ldquo;slightly faster than you can read&rdquo;,
       and the figure you actually feel during a long conversation.
     </p>
 
