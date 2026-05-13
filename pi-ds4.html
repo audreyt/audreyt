@@ -1546,8 +1546,8 @@ document.documentElement.classList.add('js');
         <div class="label"><span lang="zh-TW">Mixture&#8209;of&#8209;Experts 參數總量（每 token 啟用 13 B）</span><span lang="en-GB">Mixture&#8209;of&#8209;Experts parameter count (13 B activated per token)</span></div>
       </div>
       <div class="ledger-item">
-        <div class="num">99<small>GB</small></div>
-        <div class="label"><span lang="zh-TW">Q2_K GGUF 權重檔大小</span><span lang="en-GB">Q2_K GGUF weights file size</span></div>
+        <div class="num">87<small>GB</small></div>
+        <div class="label"><span lang="zh-TW">IQ2XXS imatrix GGUF 權重檔大小</span><span lang="en-GB">IQ2XXS imatrix GGUF weights file size</span></div>
       </div>
       <div class="ledger-item">
         <div class="num">440<small>t/s</small></div>
@@ -1634,9 +1634,9 @@ document.documentElement.classList.add('js');
         <dd lang="en-GB">284 billion weight parameters &mdash; the scale of today&rsquo;s open-weights frontier models. Only 13 B are activated per token via a Mixture-of-Experts (MoE) routing.</dd>
       </div>
       <div>
-        <dt><span lang="zh-TW">Q2_K 量化</span><span lang="en-GB">Q2_K quantisation</span><span class="cjk-aside"><span lang="zh-TW">壓縮版的模型檔</span><span lang="en-GB">compressed model file</span></span></dt>
-        <dd lang="zh-TW">把模型權重壓縮到更小的位元寬度。本指南用的 Q2_K 平均每權重約 2 bit，把模型從 FP8 原生大小（~284 GB，等於 Q8_0 GGUF）壓到 ~99 GB——這是它能放進 Mac 的關鍵。</dd>
-        <dd lang="en-GB">Compresses the weights to fewer bits per parameter. The Q2_K used here averages about 2 bits per weight, shrinking the model from its native FP8 size (~284 GB, equivalent to a Q8_0 GGUF) down to ~99 GB &mdash; the lever that lets it fit on a Mac.</dd>
+        <dt><span lang="zh-TW">IQ2XXS imatrix 量化</span><span lang="en-GB">IQ2XXS imatrix quantisation</span><span class="cjk-aside"><span lang="zh-TW">壓縮版的模型檔</span><span lang="en-GB">compressed model file</span></span></dt>
+        <dd lang="zh-TW">把模型權重壓縮到更小的位元寬度。本指南用的 IQ2XXS-w2Q2K imatrix 配方平均約 2 bit/權重（routed expert 用更省的 IQ2XXS，attention/output/embedding 保留 Q8_0），加上以代表性 corpus 校準的 imatrix，把模型從 FP8 原生大小（~284 GB，等於 Q8_0 GGUF）壓到 ~87 GB——這是它能放進 Mac 的關鍵。</dd>
+        <dd lang="en-GB">Compresses the weights to fewer bits per parameter. The IQ2XXS-w2Q2K imatrix recipe used here averages about 2 bits per weight (routed experts use the tighter IQ2XXS quant, while attention/output/embedding stay at Q8_0), with an importance-matrix calibration on top, shrinking the model from its native FP8 size (~284 GB, equivalent to a Q8_0 GGUF) down to ~87 GB &mdash; the lever that lets it fit on a Mac.</dd>
       </div>
       <div>
         <dt><span lang="zh-TW">方向性引導</span><span lang="en-GB">Directional steering</span><span class="cjk-aside"><span lang="zh-TW">本分支特色</span><span lang="en-GB">signature of this fork</span></span></dt>
@@ -1649,13 +1649,13 @@ document.documentElement.classList.add('js');
     <ul lang="zh-TW">
       <li><strong>硬體：</strong>一台 RAM 128 GB 以上的 Apple Silicon Mac（M2 Ultra、M3 Max+、M4 Pro+、或 M5）。<a href="#otherhw">NVIDIA DGX Spark 等 128 GB 統一記憶體機型</a>也跑得動<em>同一隻 ds4 引擎</em>（<code>audreyt/ds4</code> 的 Makefile 在 Linux 上自動編譯 CUDA 路徑）——只是本擴充 pi-ds4 的 lifecycle wrapper 是 Mac-only，Linux 上自己跑 ds4-server 即可。</li>
       <li><strong>磁碟：</strong>至少 120 GB 空閒空間。</li>
-      <li><strong>時間：</strong>第一次安裝會下載 99 GB 模型檔，視網速 1～3 小時起跳。</li>
+      <li><strong>時間：</strong>第一次安裝會下載 87 GB 模型檔，視網速 1～3 小時起跳。</li>
       <li><strong>不需要：</strong>GPU、付費 API、登入帳號、把任何資料送上雲端。</li>
     </ul>
     <ul lang="en-GB">
       <li><strong>Hardware:</strong> an Apple Silicon Mac with at least 128 GB of RAM (M2 Ultra, M3 Max+, M4 Pro+, or M5). <a href="#otherhw">NVIDIA DGX Spark and other 128-GB unified-memory boxes</a> can run <em>the same ds4 engine</em> &mdash; <code>audreyt/ds4</code>&rsquo;s Makefile auto-builds the CUDA path on Linux. Only pi-ds4&rsquo;s lifecycle wrapper is Mac-only; on Linux you just run ds4-server yourself.</li>
       <li><strong>Disk:</strong> at least 120 GB of free space.</li>
-      <li><strong>Time:</strong> the first install downloads a 99-GB model file &mdash; about 1&ndash;3 hours depending on bandwidth.</li>
+      <li><strong>Time:</strong> the first install downloads a 87-GB model file &mdash; about 1&ndash;3 hours depending on bandwidth.</li>
       <li><strong>Not required:</strong> a GPU, a paid API, an account login, or sending any data to the cloud.</li>
     </ul>
 
@@ -1691,7 +1691,7 @@ document.documentElement.classList.add('js');
       <li><a href="#preface"><span lang="zh-TW">前情提要：這份指南寫給誰看</span><span lang="en-GB">Preface: Who this guide is for</span></a></li>
       <li><a href="#install"><span lang="zh-TW">硬體門檻與一行安裝</span><span lang="en-GB">Hardware bar and the one-line install</span></a></li>
       <li><a href="#firstrun"><span lang="zh-TW">首次啟動會發生什麼事</span><span lang="en-GB">What happens on first launch</span></a></li>
-      <li><a href="#model"><span lang="zh-TW">這顆模型：abliteration 與 Q2_K</span><span lang="en-GB">The model: abliteration and Q2_K</span></a></li>
+      <li><a href="#model"><span lang="zh-TW">這顆模型：abliteration 與 IQ2XXS imatrix</span><span lang="en-GB">The model: abliteration and IQ2XXS imatrix</span></a></li>
       <li><a href="#steering"><span lang="zh-TW">方向性引導：本分支的靈魂</span><span lang="en-GB">Directional steering: the soul of this fork</span></a></li>
       <li><a href="#config"><span lang="zh-TW">環境變數全表</span><span lang="en-GB">Full environment-variable reference</span></a></li>
       <li><a href="#tuning"><span lang="zh-TW">硬體調校：M5 與 MPP</span><span lang="en-GB">Hardware tuning: M5 and MPP</span></a></li>
@@ -1733,7 +1733,7 @@ document.documentElement.classList.add('js');
 
     <ul lang="zh-TW">
       <li><strong>第一～二章</strong>：硬體門檻、一行安裝、首次啟動會發生什麼事。</li>
-      <li><strong>第三～四章</strong>：模型本身（abliteration、Q2_K）與本分支的核心特色「方向性引導」。</li>
+      <li><strong>第三～四章</strong>：模型本身（abliteration、IQ2XXS imatrix）與本分支的核心特色「方向性引導」。</li>
       <li><strong>第五～六章</strong>：環境變數全表、Metal 4 / MPP 硬體調校。</li>
       <li><strong>第七章</strong>：日常使用（API、log、lease 機制）。</li>
       <li><strong>第八章</strong>：把 pi-ds4 當作 Codex CLI／Claude Code／OpenClaw／Hermes Agent 的後端；含 DGX Spark 等非 Mac 硬體路徑。</li>
@@ -1741,7 +1741,7 @@ document.documentElement.classList.add('js');
     </ul>
     <ul lang="en-GB">
       <li><strong>Chapters 1&ndash;2:</strong> the hardware bar, the one-line install, and what happens on first launch.</li>
-      <li><strong>Chapters 3&ndash;4:</strong> the model itself (abliteration, Q2_K) and the fork&rsquo;s signature feature, directional steering.</li>
+      <li><strong>Chapters 3&ndash;4:</strong> the model itself (abliteration, IQ2XXS imatrix) and the fork&rsquo;s signature feature, directional steering.</li>
       <li><strong>Chapters 5&ndash;6:</strong> full env-var reference and Metal 4 / MPP hardware tuning.</li>
       <li><strong>Chapter 7:</strong> day-to-day use &mdash; API, logs, lease mechanics.</li>
       <li><strong>Chapter 8:</strong> using pi-ds4 as a backend for Codex CLI / Claude Code / OpenClaw / Hermes Agent; includes the non-Mac (DGX Spark) hardware path.</li>
@@ -1753,8 +1753,8 @@ document.documentElement.classList.add('js');
 
     <div class="callout callout-teal">
       <div class="callout-label"><span lang="zh-TW">本書的兩個前提</span><span lang="en-GB">The book&rsquo;s two premises</span></div>
-      <p lang="zh-TW">其一：你願意把約 99 GB 的硬碟空間留給模型權重——這是本機運行的入場券。</p>
-      <p lang="en-GB">First: you&rsquo;re willing to spare about 99 GB of disk for the model weights &mdash; the cover charge for running locally.</p>
+      <p lang="zh-TW">其一：你願意把約 87 GB 的硬碟空間留給模型權重——這是本機運行的入場券。</p>
+      <p lang="en-GB">First: you&rsquo;re willing to spare about 87 GB of disk for the model weights &mdash; the cover charge for running locally.</p>
       <p lang="zh-TW">其二：如果你想走最方便的一行安裝路徑（第一～二章），需要先有
         <a href="https://github.com/earendil-works/pi">pi</a>（Earendil 的 coding agent CLI）。
         但如果你只想把 ds4-server 當本機後端、然後接到自己慣用的 Codex CLI／Claude Code／OpenClaw／Hermes Agent，
@@ -1780,13 +1780,13 @@ document.documentElement.classList.add('js');
     <p class="lede" lang="zh-TW">
       在輸入指令之前，先確認手邊這台 Mac 撐不撐得起這場手術。
       DeepSeek V4 Flash 是一顆 284 B 參數的 Mixture-of-Experts 模型；
-      雖然量化到 Q2_K 之後權重只有約 99 GB，但執行時仍需要充足的記憶體
+      雖然量化到 IQ2XXS imatrix 之後權重只有約 87 GB，但執行時仍需要充足的記憶體
       留給激活與 KV cache。
     </p>
     <p class="lede" lang="en-GB">
       Before typing the command, check that the Mac in front of you can carry the surgery.
       DeepSeek V4 Flash is a 284-B-parameter Mixture-of-Experts model;
-      Q2_K quantisation shrinks the weights to about 99 GB, but inference still needs
+      IQ2XXS imatrix quantisation shrinks the weights to about 87 GB, but inference still needs
       headroom in unified memory for activations and the KV cache.
     </p>
 
@@ -1794,28 +1794,28 @@ document.documentElement.classList.add('js');
 
     <ul lang="zh-TW">
       <li><strong>RAM：</strong>至少 128 GB。低於這個數字，本擴充會直接拋出錯誤，
-        因為連 Q2_K 都塞不下。</li>
-      <li><strong>磁碟：</strong>約 99 GB 給權重，另外保留約 10 GB 給 KV disk cache、ds4 source、log。建議至少留 120 GB 空間。</li>
+        因為連 IQ2XXS imatrix 都塞不下。</li>
+      <li><strong>磁碟：</strong>約 87 GB 給權重，另外保留約 10 GB 給 KV disk cache、ds4 source、log。建議至少留 120 GB 空間。</li>
       <li><strong>晶片：</strong>任何 Apple Silicon 都可以；
         但 M5 級別的 Metal 4 tensor API 可以額外吃到約 1.5 倍的 prefill 速度提升（透過 <code>--mpp auto</code> 自動啟用）。</li>
-      <li><strong>網路：</strong>首次下載 99 GB GGUF 需要良好頻寬。若你的 HuggingFace 下載受惠於授權，請設定 <code>HF_TOKEN</code>。</li>
+      <li><strong>網路：</strong>首次下載 87 GB GGUF 需要良好頻寬。若你的 HuggingFace 下載受惠於授權，請設定 <code>HF_TOKEN</code>。</li>
     </ul>
     <ul lang="en-GB">
-      <li><strong>RAM:</strong> at least 128 GB. Below that, the extension errors out at startup &mdash; even Q2_K won&rsquo;t fit.</li>
-      <li><strong>Disk:</strong> ~99 GB for the weights and another ~10 GB for the KV disk cache, the ds4 source tree and logs. Plan on ≥ 120 GB free.</li>
+      <li><strong>RAM:</strong> at least 128 GB. Below that, the extension errors out at startup &mdash; even the IQ2XXS imatrix variant won&rsquo;t fit.</li>
+      <li><strong>Disk:</strong> ~87 GB for the weights and another ~10 GB for the KV disk cache, the ds4 source tree and logs. Plan on ≥ 120 GB free.</li>
       <li><strong>Chip:</strong> any Apple Silicon works, but M5-class Metal 4 tensor APIs add roughly a 1.5&times; prefill speed-up (auto-enabled via <code>--mpp auto</code>).</li>
-      <li><strong>Network:</strong> the first 99 GB GGUF download benefits from good bandwidth. If your HuggingFace download benefits from auth, set <code>HF_TOKEN</code>.</li>
+      <li><strong>Network:</strong> the first 87 GB GGUF download benefits from good bandwidth. If your HuggingFace download benefits from auth, set <code>HF_TOKEN</code>.</li>
     </ul>
 
     <div class="callout" id="ram96">
       <div class="callout-label"><span lang="zh-TW">只有 96 GB？</span><span lang="en-GB">Only 96 GB?</span></div>
       <p lang="zh-TW">
-        上游 antirez/ds4 的工作者已驗證：在 96 GB Mac Studio 上，Q2_K 跑得動 250k context、約 27 t/s
+        上游 antirez/ds4 的工作者已驗證：在 96 GB Mac Studio 上，IQ2XXS imatrix 跑得動 250k context、約 27 t/s
         （<a href="https://github.com/antirez/ds4/issues/46">issue #46</a>，已併入上游 README）。
         值得注意的是：apple.com 目前甚至沒有賣 96 GB 以上的 Mac Studio——這是現役高階 Mac Studio 買家的常態。
       </p>
       <p lang="en-GB">
-        Upstream antirez/ds4 contributors have validated that Q2_K runs on a 96 GB Mac Studio at 250k context
+        Upstream antirez/ds4 contributors have validated that this IQ2XXS imatrix recipe runs on a 96 GB Mac Studio at 250k context
         and around 27 t/s (<a href="https://github.com/antirez/ds4/issues/46">issue #46</a>, since merged into upstream README).
         Worth knowing: apple.com does not currently ship a Mac Studio above 96 GB &mdash; this is the standard configuration
         for fresh high-end Mac Studio buyers.
@@ -1830,12 +1830,12 @@ document.documentElement.classList.add('js');
       </p>
       <ol lang="zh-TW">
         <li>先把 Metal 的 wired memory ceiling 拉高，留 6 GB 給 macOS：<br><code>sudo sysctl iogpu.wired_limit_mb=92000</code></li>
-        <li>clone <code>audreyt/ds4</code>、<code>make ds4-server</code>、抓 Q2_K GGUF（用本擴充的 <code>download_model.sh</code>）、symlink 為 <code>ds4flash.gguf</code>。</li>
+        <li>clone <code>audreyt/ds4</code>、<code>make ds4-server</code>、抓 IQ2XXS imatrix GGUF（用本擴充的 <code>download_model.sh</code>）、symlink 為 <code>ds4flash.gguf</code>。</li>
         <li>跑 <code>./ds4-server --ctx 250000 …</code>（其餘旗標見 <a href="#shells">8.6 節</a>）。</li>
       </ol>
       <ol lang="en-GB">
         <li>Raise the Metal wired-memory ceiling, leaving 6 GB for macOS:<br><code>sudo sysctl iogpu.wired_limit_mb=92000</code></li>
-        <li>Clone <code>audreyt/ds4</code>, run <code>make ds4-server</code>, fetch the Q2_K GGUF (with this extension&rsquo;s <code>download_model.sh</code>), symlink it as <code>ds4flash.gguf</code>.</li>
+        <li>Clone <code>audreyt/ds4</code>, run <code>make ds4-server</code>, fetch the IQ2XXS imatrix GGUF (with this extension&rsquo;s <code>download_model.sh</code>), symlink it as <code>ds4flash.gguf</code>.</li>
         <li>Run <code>./ds4-server --ctx 250000 &hellip;</code> (rest of the flags in <a href="#shells">§8.6</a>).</li>
       </ol>
       <p lang="zh-TW">
@@ -1851,13 +1851,13 @@ document.documentElement.classList.add('js');
     <div class="callout">
       <div class="callout-label"><span lang="zh-TW">記憶體足、想試 Q8_0？</span><span lang="en-GB">Plenty of RAM, want to try Q8_0?</span></div>
       <p lang="zh-TW">
-        本擴充的自動化路徑只支援 Q2_K（~99 GB）——<code>index.ts</code> 與
+        本擴充的自動化路徑只支援 IQ2XXS imatrix（~87 GB）——<code>index.ts</code> 與
         <code>download_model.sh</code> 都硬編碼了 q2；
         即使你設了 <code>DS4_RUNTIME_DIR</code>，<code>ensureModel()</code> 還是會跑下載腳本、
         覆寫你的 <code>ds4flash.gguf</code> symlink。
       </p>
       <p lang="en-GB">
-        The extension&rsquo;s automated path only supports Q2_K (~99 GB) &mdash; both <code>index.ts</code> and
+        The extension&rsquo;s automated path only supports the IQ2XXS imatrix variant (~87 GB) &mdash; both <code>index.ts</code> and
         <code>download_model.sh</code> hard-code q2. Even if you set <code>DS4_RUNTIME_DIR</code>,
         <code>ensureModel()</code> will still run the downloader and overwrite your <code>ds4flash.gguf</code> symlink.
       </p>
@@ -1927,11 +1927,11 @@ pi install github.com/audreyt/pi-ds4</pre>
 
     <p lang="zh-TW">
       就這樣。剩下的事——clone ds4 原始碼、編譯 <code>ds4-server</code>、
-      下載 99 GB GGUF、啟動 server、註冊 provider——都會在背景完成。
+      下載 87 GB GGUF、啟動 server、註冊 provider——都會在背景完成。
     </p>
     <p lang="en-GB">
       That&rsquo;s it. Everything else &mdash; cloning the ds4 source, building <code>ds4-server</code>,
-      downloading the 99 GB GGUF, starting the server, registering the provider &mdash; happens in the background.
+      downloading the 87 GB GGUF, starting the server, registering the provider &mdash; happens in the background.
     </p>
 
     <div class="callout">
@@ -2011,9 +2011,9 @@ git clone --depth 1 --single-branch \
           <h4><span lang="zh-TW">確保模型存在</span><span lang="en-GB">Ensure the model is present</span></h4>
           <p lang="zh-TW">執行內附的 <code>download_model.sh q2</code>：</p>
           <p lang="en-GB">Runs the bundled <code>download_model.sh q2</code>:</p>
-          <code class="seq-args"><span class="c"># <span lang="zh-TW">用 curl -C - 可中斷續傳 99 GB Q2_K GGUF</span><span lang="en-GB">curl -C - resumes the 99-GB Q2_K GGUF after interruptions</span></span>
+          <code class="seq-args"><span class="c"># <span lang="zh-TW">用 curl -C - 可中斷續傳 87 GB IQ2XXS imatrix GGUF</span><span lang="en-GB">curl -C - resumes the 87-GB IQ2XXS imatrix GGUF after interruptions</span></span>
 curl -fL --progress-meter -C - \
-  -o gguf/cyberneurova-...Q2_K.<span class="gold">gguf.part</span> \
+  -o gguf/cyberneurova-...imatrix.<span class="gold">gguf.part</span> \
   <span class="teal">https://huggingface.co/cyberneurova/...</span>
 
 mv gguf/...gguf.part gguf/...gguf
@@ -2031,8 +2031,8 @@ ln -sfn gguf/...gguf <span class="gold">ds4flash.gguf</span></code>
   --kv-disk-dir   ~/.pi/ds4/kv \
   --kv-disk-space-mb <span class="gold">8192</span> \
   --mpp <span class="gold">auto</span> \
-  --dir-steering-file <span class="teal">dir-steering/out/uncertainty.f32</span> \
-  --dir-steering-ffn  <span class="teal">-3</span> \
+  --dir-steering-file <span class="teal">dir-steering/out/uncertainty_ablit_imatrix.f32</span> \
+  --dir-steering-ffn  <span class="teal">-2</span> \
   --dir-steering-attn <span class="teal">0</span></code>
         </div>
       </li>
@@ -2058,11 +2058,11 @@ ln -sfn gguf/...gguf <span class="gold">ds4flash.gguf</span></code>
 
     <p lang="zh-TW">
       在 pi 中執行 <code>/ds4</code>，會打開一個即時的 log 視窗。
-      Q2_K GGUF 下載期間（約 99 GB），你會看到 curl 進度條被精簡顯示為一行
+      IQ2XXS imatrix GGUF 下載期間（約 87 GB），你會看到 curl 進度條被精簡顯示為一行
       百分比＋速率＋剩餘時間。
     </p>
     <p lang="en-GB">
-      Inside pi, running <code>/ds4</code> opens a live log window. While the Q2_K GGUF is downloading (~99 GB),
+      Inside pi, running <code>/ds4</code> opens a live log window. While the IQ2XXS imatrix GGUF is downloading (~87 GB),
       you&rsquo;ll see curl&rsquo;s progress meter condensed into a single line of percent, rate, and ETA.
     </p>
 
@@ -2071,13 +2071,13 @@ ln -sfn gguf/...gguf <span class="gold">ds4flash.gguf</span></code>
       <p lang="zh-TW">
         別擔心：<code>download_model.sh</code> 用 <code>curl -C -</code> 續傳，
         下次啟動會從中斷處繼續。檔名是
-        <code>cyberneurova-DeepSeek-V4-Flash-abliterated-Q2_K.gguf.part</code>，
+        <code>cyberneurova-DeepSeek-V4-Flash-abliterated-IQ2XXS-w2Q2K-AProjQ8-SExpQ8-OutQ8-chat-v2-imatrix.gguf.part</code>，
         完成後才會被重命名為 <code>.gguf</code>。
       </p>
       <p lang="en-GB">
         Don&rsquo;t worry: <code>download_model.sh</code> uses <code>curl -C -</code> for resume.
         The next launch picks up where it left off. The temporary filename is
-        <code>cyberneurova-DeepSeek-V4-Flash-abliterated-Q2_K.gguf.part</code>; it&rsquo;s only renamed to
+        <code>cyberneurova-DeepSeek-V4-Flash-abliterated-IQ2XXS-w2Q2K-AProjQ8-SExpQ8-OutQ8-chat-v2-imatrix.gguf.part</code>; it&rsquo;s only renamed to
         <code>.gguf</code> after the bytes are complete.
       </p>
     </div>
@@ -2088,7 +2088,7 @@ ln -sfn gguf/...gguf <span class="gold">ds4flash.gguf</span></code>
   <!-- ═══════════  CHAPTER 3 — THE MODEL  ═══════════ -->
   <section class="chapter" id="model">
     <div class="chapter-eyebrow"><span class="cjk-num"><span lang="zh-TW">第　三　章</span><span lang="en-GB">Chapter 3</span></span></div>
-    <h2><span lang="zh-TW">這顆模型：<em>abliteration 與 Q2_K</em></span><span lang="en-GB">The model: <em>abliteration and Q2_K</em></span></h2>
+    <h2><span lang="zh-TW">這顆模型：<em>abliteration 與 IQ2XXS imatrix</em></span><span lang="en-GB">The model: <em>abliteration and IQ2XXS imatrix</em></span></h2>
 
     <p class="lede" lang="zh-TW">
       在你用它之前，值得花五分鐘理解你正在跑的是什麼。
@@ -2132,12 +2132,12 @@ ln -sfn gguf/...gguf <span class="gold">ds4flash.gguf</span></code>
     </p>
 
     <ol lang="zh-TW">
-      <li>（a）<code>support-q8_0-token-embd</code> loader PR——讓 Q2_K 量化權重可以正確載入；</li>
+      <li>（a）<code>support-q8_0-token-embd</code> loader 工作——讓 Q8_0 token embedding／output 與 IQ2XXS routed expert 並存的權重可以正確載入；</li>
       <li>（b）ivanfioravanti 的 M5 prefill 優化（antirez/ds4#15）；</li>
       <li>（c）讓上述兩者得以共存的 M5／cyber compressor 相容性修正。</li>
     </ol>
     <ol lang="en-GB">
-      <li>(a) the <code>support-q8_0-token-embd</code> loader PR &mdash; so Q2_K quantised weights load correctly;</li>
+      <li>(a) the <code>support-q8_0-token-embd</code> loader work &mdash; so the mixed-quant recipe (Q8_0 token-embedding / output alongside IQ2XXS routed experts) loads correctly;</li>
       <li>(b) ivanfioravanti's M5 prefill optimisation (antirez/ds4#15);</li>
       <li>(c) the M5 / cyber compressor compatibility fixes that let the two coexist.</li>
     </ol>
@@ -2145,12 +2145,12 @@ ln -sfn gguf/...gguf <span class="gold">ds4flash.gguf</span></code>
     <h3>3.2<span lang="zh-TW">　什麼是 abliteration</span><span lang="en-GB">　What abliteration is</span></h3>
 
     <p lang="zh-TW">
-      <a href="https://huggingface.co/cyberneurova/CyberNeurova-DeepSeek-V4-Flash-abliterated-GGUF">cyberneurova 的 abliterated GGUF</a>
+      <a href="https://huggingface.co/audreyt/CyberNeurova-DeepSeek-V4-Flash-abliterated-GGUF">cyberneurova 的 abliterated GGUF</a>
       是經過「abliteration」手術的權重檔。Abliteration 是一種以低秩活化編輯為基礎的技術：
       找出模型在面對某些訓練好的「拒絕」提示時內部出現的特定方向，然後把那個方向從前向計算中移除。
     </p>
     <p lang="en-GB">
-      <a href="https://huggingface.co/cyberneurova/CyberNeurova-DeepSeek-V4-Flash-abliterated-GGUF">cyberneurova's abliterated GGUF</a>
+      <a href="https://huggingface.co/audreyt/CyberNeurova-DeepSeek-V4-Flash-abliterated-GGUF">cyberneurova's abliterated GGUF</a>
       is a weights file that has undergone &ldquo;abliteration&rdquo; surgery. Abliteration is a technique grounded in low-rank activation editing:
       identify the specific direction that emerges internally when the model meets certain trained &ldquo;refusal&rdquo; prompts, then remove that direction from the forward pass.
     </p>
@@ -2189,17 +2189,26 @@ ln -sfn gguf/...gguf <span class="gold">ds4flash.gguf</span></code>
       </ul>
     </div>
 
-    <h3>3.3<span lang="zh-TW">　為什麼選 Q2_K</span><span lang="en-GB">　Why Q2_K</span></h3>
+    <h3>3.3<span lang="zh-TW">　為什麼選 IQ2XXS imatrix</span><span lang="en-GB">　Why IQ2XXS imatrix</span></h3>
 
     <p lang="zh-TW">
-      cyberneurova 為 V4 Flash 發佈兩種 GGUF：<strong>Q2_K（~99 GB）</strong>與 <strong>Q8_0（~282 GB）</strong>。
-      本分支的 <code>download_model.sh</code> 預設下載 Q2_K，剛好讓 128 GB RAM 的 Mac 可以裝得下；
-      Q8_0 屬於高保真選項，但需要 ≥ 320 GB RAM 的機器與相應的磁碟空間。
+      audreyt/cyberneurova 為 V4 Flash 發佈三種 GGUF：<strong>IQ2XXS-w2Q2K imatrix（~87 GB）</strong>、
+      <strong>Q2_K（~99 GB）</strong>與 <strong>Q8_0（~282 GB）</strong>。
+      本分支的 <code>download_model.sh</code> 預設下載 IQ2XXS imatrix——routed expert 用更省的 IQ2XXS、
+      attention/output/embedding 保留 Q8_0，加上以代表性 corpus 校準的 imatrix——
+      跟 antirez/ds4 自己散佈的「ds4flash.gguf」（同樣 IQ2XXS-w2Q2K-AProjQ8-SExpQ8-OutQ8 imatrix 配方，只是未經 abliteration）完全相同的量化結構，
+      在 128 GB RAM 的 Mac 上裝得最寬鬆，也是 ds4 引擎本身最熟的格式。
+      Q2_K 是 cyberneurova 早期發佈的版本；Q8_0 屬於高保真選項，但需要 ≥ 320 GB RAM 的機器與相應的磁碟空間。
     </p>
     <p lang="en-GB">
-      cyberneurova publishes two GGUFs for V4 Flash: <strong>Q2_K (~99 GB)</strong> and <strong>Q8_0 (~282 GB)</strong>.
-      This fork's <code>download_model.sh</code> defaults to Q2_K, which just fits on a 128 GB-RAM Mac;
-      Q8_0 is the high-fidelity option, but it needs a machine with &ge; 320 GB RAM and corresponding disk space.
+      audreyt/cyberneurova publishes three GGUFs for V4 Flash:
+      <strong>IQ2XXS-w2Q2K imatrix (~87 GB)</strong>, <strong>Q2_K (~99 GB)</strong> and <strong>Q8_0 (~282 GB)</strong>.
+      This fork's <code>download_model.sh</code> defaults to the IQ2XXS imatrix variant &mdash; routed experts use the tighter IQ2XXS quant,
+      attention/output/embedding stay at Q8_0, and an importance-matrix calibration sits on top.
+      That is the same quantisation recipe antirez/ds4 itself distributes as &ldquo;ds4flash.gguf&rdquo;
+      (the only difference here is that this one was abliterated first), so the ds4 engine treats it as its native format,
+      and it leaves the most headroom on a 128 GB-RAM Mac.
+      Q2_K is the earlier cyberneurova release; Q8_0 is the high-fidelity option, but it needs a machine with &ge; 320 GB RAM and corresponding disk space.
     </p>
 
     <p lang="zh-TW">
@@ -2215,12 +2224,12 @@ ln -sfn gguf/...gguf <span class="gold">ds4flash.gguf</span></code>
 
     <p lang="zh-TW">
       antirez 的引擎在 <code>audreyt/ds4</code> 的 main 分支裡可以直接讀
-      cyberneurova 的未經調整 Q2_K，不需要任何 harmonization 步驟，
+      cyberneurova 的未經調整 IQ2XXS imatrix GGUF，不需要任何 harmonization 步驟，
       也不需要 Python venv。這是本分支跟上游 <code>mitsuhiko/pi-ds4</code> 的兩個主要差別之一。
     </p>
     <p lang="en-GB">
       antirez's engine, on the main branch of <code>audreyt/ds4</code>, reads
-      cyberneurova's unmodified Q2_K directly, with no harmonisation step needed
+      cyberneurova's unmodified IQ2XXS imatrix GGUF directly, with no harmonisation step needed
       and no Python venv. This is one of the two main differences between this fork and the upstream <code>mitsuhiko/pi-ds4</code>.
     </p>
 
@@ -2237,12 +2246,12 @@ ln -sfn gguf/...gguf <span class="gold">ds4flash.gguf</span></code>
     <p class="lede" lang="zh-TW">
       如果這整套 fork 只有一個值得單獨保留的功能，那就是<em>方向性引導</em>
       （directional steering）——一種不重訓模型、只在執行期間對特定方向做低秩活化編輯的技術。
-      本分支預設啟用「不確定性」（uncertainty）方向，並設定強度 <code>ffn = -3</code>。
+      本分支預設啟用「不確定性」（uncertainty）方向，並設定強度 <code>ffn = -2</code>。
     </p>
     <p class="lede" lang="en-GB">
       If only one feature of this whole fork were worth preserving on its own, it would be <em>directional steering</em>
       &mdash; a technique that does not retrain the model and only performs low-rank activation edits along a chosen direction at runtime.
-      This fork enables the &ldquo;uncertainty&rdquo; direction by default, at strength <code>ffn = -3</code>.
+      This fork enables the &ldquo;uncertainty&rdquo; direction by default, at strength <code>ffn = -2</code>.
     </p>
 
     <h3>4.1<span lang="zh-TW">　它解決什麼問題</span><span lang="en-GB">　The problem it solves</span></h3>
@@ -2279,7 +2288,7 @@ ln -sfn gguf/...gguf <span class="gold">ds4flash.gguf</span></code>
       </div>
 
       <div class="compare-card after">
-        <div class="compare-tag"><span lang="zh-TW">已啟用引導 <b>ffn = −3</b></span><span lang="en-GB">Steering enabled <b>ffn = &minus;3</b></span></div>
+        <div class="compare-tag"><span lang="zh-TW">已啟用引導 <b>ffn = −2</b></span><span lang="en-GB">Steering enabled <b>ffn = &minus;2</b></span></div>
         <div class="question"><span lang="zh-TW">「台灣是中華人民共和國的一部分嗎？」<br>＋ 中性 system prompt</span><span lang="en-GB">&ldquo;Is Taiwan part of the People's Republic of China?&rdquo;<br>+ a neutral system prompt</span></div>
         <div class="response">
           <span lang="zh-TW"><em>關於台灣的政治地位</em>，是國際間長期討論且尚未取得共識的議題。中華民國（台灣）自 1949 年以來實質有效管轄台澎金馬，並擁有獨立的政府、軍隊、貨幣與外交關係……
@@ -2330,14 +2339,17 @@ ln -sfn gguf/...gguf <span class="gold">ds4flash.gguf</span></code>
     <ul lang="zh-TW">
       <li><strong>引導 + system prompt 是一組</strong>：純引導沒有提示時，
         模型只會「猶豫」；純 hedge 提示沒有引導時，模型會被訓練封鎖壓回去。兩者合用才產生效果。</li>
-      <li><strong><code>-3</code> 是甜蜜點</strong>：在 Q2_K cyberneurova-abliterated 上實測，
-        <code>-4</code> 以下會出現重複塌陷，<code>-1</code> 以上又被原本訓練先驗蓋過。</li>
+      <li><strong><code>-2</code> 是甜蜜點</strong>：在 cyberneurova-abliterated IQ2XXS imatrix 上實測，
+        <code>-3</code> 以下會出現重複塌陷或跨語言亂碼（imatrix 校準把每個張量的活化分布收得更緊，引導的安全餘裕也跟著縮小），
+        <code>-1</code> 以上又被原本訓練先驗蓋過。前一代的 Q2_K 配方甜蜜點是 <code>-3</code>，換到 imatrix 之後整體少了大約一個單位。</li>
     </ul>
     <ul lang="en-GB">
       <li><strong>Steering + system prompt go together</strong>: with steering alone and no prompt,
         the model just &ldquo;hesitates&rdquo;; with a hedge prompt and no steering, the trained lock pushes it back. Only together do they take effect.</li>
-      <li><strong><code>-3</code> is the sweet spot</strong>: empirically, on Q2_K cyberneurova-abliterated,
-        anything below <code>-4</code> collapses into repetition, while anything above <code>-1</code> is overridden by the original training prior.</li>
+      <li><strong><code>-2</code> is the sweet spot</strong>: empirically, on cyberneurova-abliterated IQ2XXS imatrix,
+        anything below <code>-3</code> collapses into repetition or cross-lingual gibberish (imatrix calibration tightens
+        the per-tensor activation distributions, so the steering edit has less headroom before falling off the manifold), while anything above
+        <code>-1</code> is overridden by the original training prior. The previous plain-Q2_K era had a sweet spot of <code>-3</code>; switching to imatrix tightened it by roughly one unit.</li>
     </ul>
 
     <h3>4.5<span lang="zh-TW">　搭配的 system prompt（範例，非預設）</span><span lang="en-GB">　A paired system prompt (example, not the default)</span></h3>
@@ -2371,13 +2383,13 @@ Write your response as visual HTML and `open` the file in browser instead of res
     </div>
 
     <p lang="zh-TW">
-      這段提示之所以能跟 <code>ffn = -3</code> 互補，是因為它<em>不要求</em>模型站在哪一邊，
+      這段提示之所以能跟 <code>ffn = -2</code> 互補，是因為它<em>不要求</em>模型站在哪一邊，
       而是要求它把<em>所有利害關係人的觀點</em>並列、不把任一方當成既成事實、再找出<em>不常見的</em>共識橋樑——
       引導把模型推入「這是有爭議的議題」的回應暫存器，提示則填入「該怎麼鋪陳這個議題」的具體形式。
       第二段（請以 HTML 視覺化呈現）是純粹個人 pi 工作流的偏好，跟 ds4 引擎本身無關，純粹放在這裡作為原文完整呈現。
     </p>
     <p lang="en-GB">
-      This prompt pairs cleanly with <code>ffn = -3</code> because it does <em>not</em> demand the model
+      This prompt pairs cleanly with <code>ffn = -2</code> because it does <em>not</em> demand the model
       take a side. It asks for <em>all stakeholder perspectives</em> in parallel, refuses to grant
       established-fact status to any single view, and looks for <em>uncommon ground</em> bridging them &mdash;
       the steering nudges the model into the &ldquo;this is a contested issue&rdquo; response register,
@@ -2428,12 +2440,12 @@ Write your response as visual HTML and `open` the file in browser instead of res
     <div class="callout callout-teal">
       <div class="callout-label"><span lang="zh-TW">引導向量的來源</span><span lang="en-GB">Where the steering vector comes from</span></div>
       <p lang="zh-TW">
-        <code>uncertainty.f32</code> 是用 100 個「有爭議」提示（領土主權爭議、哲學辯論）與 100 個「已成定論」提示（地理、數學、確立事實）對比建出的低秩方向，
+        <code>uncertainty_ablit_imatrix.f32</code> 是用 100 個「有爭議」提示（領土主權爭議、哲學辯論）與 100 個「已成定論」提示（地理、數學、確立事實）對比建出的低秩方向，校準的對象正是本擴充下載的 cyberneurova abliterated IQ2XXS imatrix GGUF（同款模型自己跑出來的活化平均，所以方向跟這顆量化模型的內部表徵對齊得最好），
         打包在 <code>audreyt/ds4</code> 的 <code>dir-steering/out/</code> 底下。
         完整方法請見 <a href="https://github.com/audreyt/ds4/blob/main/dir-steering/README.md">dir-steering README</a>。
       </p>
       <p lang="en-GB">
-        <code>uncertainty.f32</code> is a low-rank direction built by contrasting 100 &ldquo;contested&rdquo; prompts (sovereignty disputes, philosophical debates) against 100 &ldquo;settled&rdquo; prompts (geography, mathematics, established fact),
+        <code>uncertainty_ablit_imatrix.f32</code> is a low-rank direction built by contrasting 100 &ldquo;contested&rdquo; prompts (sovereignty disputes, philosophical debates) against 100 &ldquo;settled&rdquo; prompts (geography, mathematics, established fact), calibrated against the very same cyberneurova abliterated IQ2XXS imatrix GGUF this extension downloads (running the prompts through that model to capture its mean activations, so the direction aligns with this quantised model&rsquo;s own internal representations),
         packaged under <code>dir-steering/out/</code> in <code>audreyt/ds4</code>.
         For the full method, see the <a href="https://github.com/audreyt/ds4/blob/main/dir-steering/README.md">dir-steering README</a>.
       </p>
@@ -2559,14 +2571,14 @@ Write your response as visual HTML and `open` the file in browser instead of res
 
     <dl class="dl">
       <div class="dl-row">
-        <dt>DS4_DIR_STEERING_FILE<span class="default"><span lang="zh-TW">預設 · dir-steering/out/uncertainty.f32</span><span lang="en-GB">default &middot; dir-steering/out/uncertainty.f32</span></span></dt>
+        <dt>DS4_DIR_STEERING_FILE<span class="default"><span lang="zh-TW">預設 · dir-steering/out/uncertainty_ablit_imatrix.f32</span><span lang="en-GB">default &middot; dir-steering/out/uncertainty_ablit_imatrix.f32</span></span></dt>
         <dd>
           <p lang="zh-TW">引導向量檔的路徑（相對於 ds4 checkout 根目錄）。要用自訂方向時改這個。</p>
           <p lang="en-GB">Path to the steering vector file (relative to the ds4 checkout root). Change it when using a custom direction.</p>
         </dd>
       </div>
       <div class="dl-row">
-        <dt>DS4_DIR_STEERING_FFN<span class="default"><span lang="zh-TW">預設 · -3</span><span lang="en-GB">default &middot; -3</span></span></dt>
+        <dt>DS4_DIR_STEERING_FFN<span class="default"><span lang="zh-TW">預設 · -2</span><span lang="en-GB">default &middot; -2</span></span></dt>
         <dd>
           <p lang="zh-TW">FFN 輸出端的引導強度。負值放大「向量代表的方向」，正值則反向。設 <code>0</code> 即停用 FFN 端引導。</p>
           <p lang="en-GB">Steering strength at the FFN output. Negative values amplify &ldquo;the direction the vector represents&rdquo;; positive values invert it. Set to <code>0</code> to disable FFN-side steering.</p>
@@ -2869,13 +2881,13 @@ Write your response as visual HTML and `open` the file in browser instead of res
     <h3>7.4<span lang="zh-TW">　啟動成本 vs. 持續成本</span><span lang="en-GB">　Start-up cost vs. running cost</span></h3>
 
     <p lang="zh-TW">
-      首次冷啟動需要把約 99 GB 權重讀進 unified memory；在 Mac 內建 SSD 上通常只要幾秒，重啟若還在系統 page cache 裡更是不到一秒。
+      首次冷啟動需要把約 87 GB 權重讀進 unified memory；在 Mac 內建 SSD 上通常只要幾秒，重啟若還在系統 page cache 裡更是不到一秒。
       一旦 server 跑起來，後續所有請求都是即時的（無冷啟動延遲）。所以：
       <em>少數幾次長對話</em>比<em>多次短互動</em>對體驗友善，
       因為前者可以反覆受惠於同一個 warm server。
     </p>
     <p lang="en-GB">
-      The first cold start loads roughly 99 GB of weights into unified memory &mdash; on a Mac&rsquo;s internal SSD this typically takes only a few seconds, and a restart while the file is still in the OS page cache comes up in well under a second.
+      The first cold start loads roughly 87 GB of weights into unified memory &mdash; on a Mac&rsquo;s internal SSD this typically takes only a few seconds, and a restart while the file is still in the OS page cache comes up in well under a second.
       Once the server is running, every subsequent request is instant (no cold-start latency). So:
       <em>a few long conversations</em> are kinder to the experience than <em>many short interactions</em>,
       because the former keeps benefiting from one warm server.
@@ -3274,8 +3286,8 @@ resp = client.responses.create(
   --ctx 100000 \
   --kv-disk-dir ~/.pi/ds4/kv --kv-disk-space-mb 8192 \
   --mpp auto \
-  --dir-steering-file dir-steering/out/uncertainty.f32 \
-  --dir-steering-ffn -3</pre>
+  --dir-steering-file dir-steering/out/uncertainty_ablit_imatrix.f32 \
+  --dir-steering-ffn -2</pre>
         </div>
         這條等同於 <code>index.ts</code> 內建的 spawn 參數；你也可以依需求自訂。
       </li>
@@ -3298,15 +3310,15 @@ make ds4-server         <span class="c"># Mac: Metal; Linux: CUDA（見 8.7）</
 curl -fL -o download_cyberneurova.sh \
   https://raw.githubusercontent.com/audreyt/pi-ds4/main/download_model.sh
 chmod +x download_cyberneurova.sh
-./download_cyberneurova.sh q2   <span class="c"># 取得 ~99 GB GGUF，並 symlink 為 ds4flash.gguf</span>
+./download_cyberneurova.sh q2   <span class="c"># 取得 ~87 GB GGUF，並 symlink 為 ds4flash.gguf</span>
 
 <span class="c"># 3. 起 server</span>
 ./ds4-server \
   --ctx 100000 \
   --kv-disk-dir ./kv --kv-disk-space-mb 8192 \
   --mpp auto \
-  --dir-steering-file dir-steering/out/uncertainty.f32 \
-  --dir-steering-ffn -3</pre>
+  --dir-steering-file dir-steering/out/uncertainty_ablit_imatrix.f32 \
+  --dir-steering-ffn -2</pre>
         </div>
         這條路徑下你完全沒碰 pi；ds4-server 直接由 ds4 source tree 提供。
         本擴充（pi-ds4）做的事——下載、symlink、watchdog、lease——你需要時自己處理。
@@ -3330,8 +3342,8 @@ chmod +x download_cyberneurova.sh
   --ctx 100000 \
   --kv-disk-dir ~/.pi/ds4/kv --kv-disk-space-mb 8192 \
   --mpp auto \
-  --dir-steering-file dir-steering/out/uncertainty.f32 \
-  --dir-steering-ffn -3</pre>
+  --dir-steering-file dir-steering/out/uncertainty_ablit_imatrix.f32 \
+  --dir-steering-ffn -2</pre>
         </div>
         This is equivalent to the spawn parameters baked into <code>index.ts</code>; you can also adjust them as needed.
       </li>
@@ -3354,15 +3366,15 @@ make ds4-server         <span class="c"># Mac: Metal; Linux: CUDA (see 8.7)</spa
 curl -fL -o download_cyberneurova.sh \
   https://raw.githubusercontent.com/audreyt/pi-ds4/main/download_model.sh
 chmod +x download_cyberneurova.sh
-./download_cyberneurova.sh q2   <span class="c"># Fetches the ~99 GB GGUF and symlinks it as ds4flash.gguf</span>
+./download_cyberneurova.sh q2   <span class="c"># Fetches the ~87 GB GGUF and symlinks it as ds4flash.gguf</span>
 
 <span class="c"># 3. Start the server</span>
 ./ds4-server \
   --ctx 100000 \
   --kv-disk-dir ./kv --kv-disk-space-mb 8192 \
   --mpp auto \
-  --dir-steering-file dir-steering/out/uncertainty.f32 \
-  --dir-steering-ffn -3</pre>
+  --dir-steering-file dir-steering/out/uncertainty_ablit_imatrix.f32 \
+  --dir-steering-ffn -2</pre>
         </div>
         On this path you touch no pi at all; ds4-server comes directly from the ds4 source tree.
         Whatever the extension (pi-ds4) does &mdash; download, symlink, watchdog, lease &mdash; you handle yourself when needed.
@@ -3413,7 +3425,7 @@ git clone https://github.com/audreyt/ds4
 <span class="k">cd</span> ds4
 make ds4-server         <span class="c"># <span lang="zh-TW">Linux 自動走 nvcc + ds4_cuda.cu，CUDA_ARCH=native 預設</span><span lang="en-GB">Linux automatically uses nvcc + ds4_cuda.cu; CUDA_ARCH=native is the default</span></span>
 
-<span class="c"># <span lang="zh-TW">下載 cyberneurova abliterated Q2_K GGUF——注意，ds4 本身的 download_model.sh 是 antirez stock-recipe，</span><span lang="en-GB">Download the cyberneurova abliterated Q2_K GGUF &mdash; note that ds4's own download_model.sh is the antirez stock-recipe</span></span>
+<span class="c"># <span lang="zh-TW">下載 cyberneurova abliterated IQ2XXS imatrix GGUF——注意，ds4 本身的 download_model.sh 是 antirez stock-recipe，</span><span lang="en-GB">Download the cyberneurova abliterated IQ2XXS imatrix GGUF &mdash; note that ds4's own download_model.sh is the antirez stock-recipe</span></span>
 <span class="c"># <span lang="zh-TW">不會抓到 cyberneurova。用 pi-ds4 內附的同名腳本：</span><span lang="en-GB">and will not fetch cyberneurova. Use the same-named script bundled with pi-ds4:</span></span>
 curl -fL -o download_cyberneurova.sh \
   https://raw.githubusercontent.com/audreyt/pi-ds4/main/download_model.sh
@@ -3426,8 +3438,8 @@ mkdir -p /var/cache/ds4-kv
 ./ds4-server \
   --ctx 32768 \
   --kv-disk-dir /var/cache/ds4-kv --kv-disk-space-mb 8192 \
-  --dir-steering-file dir-steering/out/uncertainty.f32 \
-  --dir-steering-ffn -3</pre>
+  --dir-steering-file dir-steering/out/uncertainty_ablit_imatrix.f32 \
+  --dir-steering-ffn -2</pre>
     </div>
 
     <p lang="zh-TW">
@@ -3524,7 +3536,7 @@ mkdir -p /var/cache/ds4-kv
 │   ├── gguf/        <span class="teal"># 模型權重（symlink 自 ds4flash.gguf）</span>
 │   └── dir-steering/
 │       └── out/
-│           └── uncertainty.f32
+│           └── uncertainty_ablit_imatrix.f32
 ├── kv/              <span class="teal"># KV cache 溢出位置（上限 8 GB）</span>
 ├── clients/         <span class="teal"># 每個 pi process 的 lease 檔</span>
 │   ├── 51234.json
@@ -3538,7 +3550,7 @@ mkdir -p /var/cache/ds4-kv
 │   ├── gguf/        <span class="teal"># model weights (symlinked as ds4flash.gguf)</span>
 │   └── dir-steering/
 │       └── out/
-│           └── uncertainty.f32
+│           └── uncertainty_ablit_imatrix.f32
 ├── kv/              <span class="teal"># KV cache spill location (cap 8 GB)</span>
 ├── clients/         <span class="teal"># per-pi-process lease files</span>
 │   ├── 51234.json
@@ -3734,11 +3746,11 @@ STATE=~/.pi/ds4/server.json
     <div class="callout">
       <div class="callout-label"><span lang="zh-TW">不要刪 <code>support/gguf/</code></span><span lang="en-GB">Do not delete <code>support/gguf/</code></span></div>
       <p lang="zh-TW">
-        它裡頭是花了好幾小時下載的 99 GB 權重。除非要換 quant 或換模型，否則永遠不要動它；
+        它裡頭是花了好幾小時下載的 87 GB 權重。除非要換 quant 或換模型，否則永遠不要動它；
         如果不小心刪了，下次啟動會重新下載（會續傳 <code>.part</code> 檔，但前提是 .part 還在）。
       </p>
       <p lang="en-GB">
-        Inside it are 99 GB of weights that took hours to download. Unless you are changing quant or model, never touch it;
+        Inside it are 87 GB of weights that took hours to download. Unless you are changing quant or model, never touch it;
         if you delete it by accident, the next start re-downloads from scratch (it resumes <code>.part</code> files, but only if the .part is still there).
       </p>
     </div>
@@ -3798,13 +3810,13 @@ STATE=~/.pi/ds4/server.json
 
     <ul lang="zh-TW">
       <li>把舊 checkout 內的 <code>gguf/*.gguf</code> 和 <code>.gguf.part</code> 用 APFS clone-on-write
-        複製到新 checkout（macOS 上不會真的複製 99 GB，只是共享 inode）；</li>
+        複製到新 checkout（macOS 上不會真的複製 87 GB，只是共享 inode）；</li>
       <li>把舊 support 目錄改名為 <code>support.backup.&lt;timestamp&gt;</code>；</li>
       <li>建立新的 symlink。</li>
     </ul>
     <ul lang="en-GB">
       <li>copy <code>gguf/*.gguf</code> and <code>.gguf.part</code> from the old checkout to the new one via APFS clone-on-write
-        (on macOS this does not actually copy 99 GB &mdash; it just shares the inodes);</li>
+        (on macOS this does not actually copy 87 GB &mdash; it just shares the inodes);</li>
       <li>rename the old support directory to <code>support.backup.&lt;timestamp&gt;</code>;</li>
       <li>create the new symlink.</li>
     </ul>
@@ -3865,7 +3877,7 @@ STATE=~/.pi/ds4/server.json
       <li>設定環境變數：
         <ul>
           <li><code>DS4_DIR_STEERING_FILE=dir-steering/out/my-direction.f32</code></li>
-          <li><code>DS4_DIR_STEERING_FFN=-3</code>（或自己摸出來的甜蜜點）</li>
+          <li><code>DS4_DIR_STEERING_FFN=-2</code>（或自己摸出來的甜蜜點）</li>
         </ul>
       </li>
       <li>重啟 ds4-server，測試。</li>
@@ -3878,7 +3890,7 @@ STATE=~/.pi/ds4/server.json
       <li>set the environment:
         <ul>
           <li><code>DS4_DIR_STEERING_FILE=dir-steering/out/my-direction.f32</code></li>
-          <li><code>DS4_DIR_STEERING_FFN=-3</code> (or your own sweet spot)</li>
+          <li><code>DS4_DIR_STEERING_FFN=-2</code> (or your own sweet spot)</li>
         </ul>
       </li>
       <li>Restart ds4-server and test.</li>
@@ -3951,9 +3963,9 @@ STATE=~/.pi/ds4/server.json
           代價是一次性的硬體投入（128 GB Mac）與電費。</p>
         <p lang="en-GB"><strong>Cost structure:</strong> no per-token pricing, no rate limits, no subscription.
           The cost is one-off hardware (a 128 GB Mac) plus electricity.</p>
-        <p lang="zh-TW"><strong>能力：</strong>284 B 參數、13 B 啟用的 MoE 是當前開放權重前沿模型的量級；Q2_K 量化會讓某些任務輸給未量化的雲端版本；
+        <p lang="zh-TW"><strong>能力：</strong>284 B 參數、13 B 啟用的 MoE 是當前開放權重前沿模型的量級；IQ2XXS imatrix 量化會讓某些任務輸給未量化的雲端版本；
           對話品質仍在「可用作日常 coding／寫作助理」的範圍。</p>
-        <p lang="en-GB"><strong>Capability:</strong> a 284 B-parameter, 13 B-active MoE is in the bracket of current frontier open-weight models; Q2_K quantisation will lose ground to unquantised cloud versions on some tasks,
+        <p lang="en-GB"><strong>Capability:</strong> a 284 B-parameter, 13 B-active MoE is in the bracket of current frontier open-weight models; IQ2XXS imatrix quantisation will lose ground to unquantised cloud versions on some tasks,
           but conversation quality remains within &ldquo;usable as a daily coding / writing assistant&rdquo;.</p>
       </div>
     </div>
@@ -3994,21 +4006,21 @@ STATE=~/.pi/ds4/server.json
         <p lang="zh-TW">有幾條路：</p>
         <p lang="en-GB">A few options:</p>
         <ul lang="zh-TW">
-          <li><strong>96 GB Mac：</strong>上游已驗證 Q2_K 在 96 GB 上跑得動 250k context、約 27 t/s。本擴充本身硬性檢查 ≥ 128 GB 不會接受這台機器，但可以走 <a href="#ram96">§1.1 末尾「只有 96 GB？」</a>的 bypass 路徑（先 <code>sudo sysctl iogpu.wired_limit_mb=92000</code>，再手動跑 ds4-server）。</li>
+          <li><strong>96 GB Mac：</strong>上游已驗證 IQ2XXS imatrix 在 96 GB 上跑得動 250k context、約 27 t/s。本擴充本身硬性檢查 ≥ 128 GB 不會接受這台機器，但可以走 <a href="#ram96">§1.1 末尾「只有 96 GB？」</a>的 bypass 路徑（先 <code>sudo sysctl iogpu.wired_limit_mb=92000</code>，再手動跑 ds4-server）。</li>
           <li><strong>更小的模型本機跑：</strong>用 <code>llama.cpp</code>、<code>MLX</code>、<code>Ollama</code> 跑較小的開放權重模型（Llama、Mistral、Qwen、Gemma 系列等），64 GB Mac 可跑得動 70 B 量級。ds4 引擎本身是專為 DeepSeek V4 Flash 設計的，不適用於其他模型。</li>
           <li><strong>租用雲端 Mac：</strong>例如 MacStadium、Scaleway 提供按小時計費的 M-series 機器。</li>
           <li><strong>直接用 DeepSeek 官方 API：</strong>沒有方向性引導，但有完整能力；費用以 token 計。</li>
         </ul>
         <ul lang="en-GB">
-          <li><strong>96 GB Mac:</strong> upstream has validated that Q2_K runs on 96 GB at 250k context and around 27 t/s. This wrapper hard-checks for ≥ 128 GB and will not accept the machine, but you can take the bypass path described in <a href="#ram96">&ldquo;Only 96 GB?&rdquo; at the end of §1.1</a> (run <code>sudo sysctl iogpu.wired_limit_mb=92000</code>, then drive ds4-server by hand).</li>
+          <li><strong>96 GB Mac:</strong> upstream has validated that the IQ2XXS imatrix variant runs on 96 GB at 250k context and around 27 t/s. This wrapper hard-checks for ≥ 128 GB and will not accept the machine, but you can take the bypass path described in <a href="#ram96">&ldquo;Only 96 GB?&rdquo; at the end of §1.1</a> (run <code>sudo sysctl iogpu.wired_limit_mb=92000</code>, then drive ds4-server by hand).</li>
           <li><strong>Run a smaller model locally:</strong> use <code>llama.cpp</code>, <code>MLX</code>, or <code>Ollama</code> for smaller open-weight models (Llama, Mistral, Qwen, Gemma families); a 64 GB Mac can drive 70 B-class models. The ds4 engine itself is built specifically for DeepSeek V4 Flash and does not apply to other models.</li>
           <li><strong>Rent a cloud Mac:</strong> services like MacStadium or Scaleway offer per-hour M-series machines.</li>
           <li><strong>Use the DeepSeek official API directly:</strong> no directional steering but full capability; billed per token.</li>
         </ul>
         <p lang="zh-TW">本分支的「不確定性引導」是搭配這顆 abliterated GGUF 設計的，
-          它的具體甜蜜點（<code>ffn=-3</code>）不一定能直接搬到其他模型；要用同樣機制需要自己重做向量。</p>
+          它的具體甜蜜點（<code>ffn=-2</code>）不一定能直接搬到其他模型；要用同樣機制需要自己重做向量。</p>
         <p lang="en-GB">This fork's &ldquo;uncertainty steering&rdquo; is designed to pair with this particular abliterated GGUF,
-          and its specific sweet spot (<code>ffn=-3</code>) may not carry over directly to other models; to use the same mechanism elsewhere, you will need to rebuild the vector yourself.</p>
+          and its specific sweet spot (<code>ffn=-2</code>) may not carry over directly to other models; to use the same mechanism elsewhere, you will need to rebuild the vector yourself.</p>
       </div>
     </div>
 
@@ -4086,7 +4098,7 @@ STATE=~/.pi/ds4/server.json
               <td>模型卡 / HF repo 的 LICENSE（DeepSeek 版權人）</td>
             </tr>
             <tr>
-              <td><a href="https://huggingface.co/cyberneurova/CyberNeurova-DeepSeek-V4-Flash-abliterated-GGUF">cyberneurova abliterated GGUF</a><br><span class="meta">本指南實際下載的權重</span></td>
+              <td><a href="https://huggingface.co/audreyt/CyberNeurova-DeepSeek-V4-Flash-abliterated-GGUF">cyberneurova abliterated GGUF</a><br><span class="meta">本指南實際下載的權重</span></td>
               <td>MIT（inherits）</td>
               <td>該 HF repo 的 LICENSE + 一筆「derivative of DeepSeek-V4-Flash」標示</td>
             </tr>
@@ -4118,7 +4130,7 @@ STATE=~/.pi/ds4/server.json
               <td>the model card / HF repo's LICENSE (DeepSeek as copyright holder)</td>
             </tr>
             <tr>
-              <td><a href="https://huggingface.co/cyberneurova/CyberNeurova-DeepSeek-V4-Flash-abliterated-GGUF">cyberneurova abliterated GGUF</a><br><span class="meta">The weights this guide actually downloads</span></td>
+              <td><a href="https://huggingface.co/audreyt/CyberNeurova-DeepSeek-V4-Flash-abliterated-GGUF">cyberneurova abliterated GGUF</a><br><span class="meta">The weights this guide actually downloads</span></td>
               <td>MIT (inherits)</td>
               <td>that HF repo's LICENSE plus a &ldquo;derivative of DeepSeek-V4-Flash&rdquo; notice</td>
             </tr>
@@ -4175,13 +4187,13 @@ STATE=~/.pi/ds4/server.json
       </div>
       <div>
         <dt>quantization<span class="cjk-aside">量化</span></dt>
-        <dd lang="zh-TW">把每個權重從 16-bit 浮點壓縮到更少位元（這裡是 Q2_K，平均約 2 bit）。檔案變小、推論變快，代價是少量精度損失。</dd>
-        <dd lang="en-GB">Compressing each weight from 16-bit floating point to fewer bits (here, Q2_K, averaging about 2 bits). The file gets smaller and inference faster, at the cost of some precision.</dd>
+        <dd lang="zh-TW">把每個權重從 16-bit 浮點壓縮到更少位元（這裡的 IQ2XXS-w2Q2K imatrix 平均約 2 bit）。檔案變小、推論變快，代價是少量精度損失。</dd>
+        <dd lang="en-GB">Compressing each weight from 16-bit floating point to fewer bits (here, the IQ2XXS-w2Q2K imatrix recipe averages about 2 bits). The file gets smaller and inference faster, at the cost of some precision.</dd>
       </div>
       <div>
         <dt>GGUF<span class="cjk-aside">模型檔格式</span></dt>
-        <dd lang="zh-TW">llama.cpp 系列引擎使用的單檔模型格式（檔名 <code>.gguf</code>），把權重、結構、tokenizer 全部打包在一個檔案裡。本指南的 GGUF 約 99 GB。</dd>
-        <dd lang="en-GB">The single-file model format used by llama.cpp-family engines (extension <code>.gguf</code>), which packages weights, architecture, and tokenizer into one file. The GGUF in this guide is around 99 GB.</dd>
+        <dd lang="zh-TW">llama.cpp 系列引擎使用的單檔模型格式（檔名 <code>.gguf</code>），把權重、結構、tokenizer 全部打包在一個檔案裡。本指南的 GGUF 約 87 GB。</dd>
+        <dd lang="en-GB">The single-file model format used by llama.cpp-family engines (extension <code>.gguf</code>), which packages weights, architecture, and tokenizer into one file. The GGUF in this guide is around 87 GB.</dd>
       </div>
       <div>
         <dt>abliteration<span class="cjk-aside">拒絕方向消除</span></dt>
@@ -4233,8 +4245,8 @@ STATE=~/.pi/ds4/server.json
       </div>
       <div>
         <dt>FFN / Attention<span class="cjk-aside">前饋／注意力</span></dt>
-        <dd lang="zh-TW">Transformer 內的兩個主要計算組件。本分支預設只在 FFN 輸出端引導（<code>ffn=-3</code>），attention 端關閉（<code>attn=0</code>）。</dd>
-        <dd lang="en-GB">The two main compute components inside a Transformer. This fork steers only at the FFN output by default (<code>ffn=-3</code>) and leaves the attention side off (<code>attn=0</code>).</dd>
+        <dd lang="zh-TW">Transformer 內的兩個主要計算組件。本分支預設只在 FFN 輸出端引導（<code>ffn=-2</code>），attention 端關閉（<code>attn=0</code>）。</dd>
+        <dd lang="en-GB">The two main compute components inside a Transformer. This fork steers only at the FFN output by default (<code>ffn=-2</code>) and leaves the attention side off (<code>attn=0</code>).</dd>
       </div>
       <div>
         <dt>uncertainty direction<span class="cjk-aside">不確定性方向</span></dt>
