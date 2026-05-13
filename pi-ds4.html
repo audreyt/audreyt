@@ -2538,6 +2538,8 @@ Write your response as visual HTML and `open` the file in browser instead of res
         <dd>
           <p lang="zh-TW">可重現模式下使用的穩定 seed。必須是正整數；<code>0</code> 在 ds4-server 的 wire protocol 裡代表「未設定／使用時間亂數」，所以這裡刻意不接受。若你要為某次評估釘住不同軌跡，改成另一個正整數即可。</p>
           <p lang="en-GB">The stable seed used in reproducible mode. It must be a positive integer; in ds4-server&rsquo;s wire protocol <code>0</code> means &ldquo;unset / use time entropy&rdquo;, so this layer intentionally refuses it. To pin a different evaluation trace, choose another positive integer.</p>
+          <p lang="zh-TW">一個可見的 smoke test 是 <code>pi --system-prompt '' -ns -p 'give me a number'</code>：在預設路徑上，模型會回到經典的 <code>42</code>。這不是把 seed 偷塞進 prompt，而是固定 seed 讓同一個短 prompt 走回同一條、可再次檢查的 sampling 路徑。</p>
+          <p lang="en-GB">A visible smoke test is <code>pi --system-prompt '' -ns -p 'give me a number'</code>: on the default path, the model lands on the classic <code>42</code>. That does not mean the seed was smuggled into the prompt; it means the stable seed makes the same short prompt follow the same replayable sampling path.</p>
         </dd>
       </div>
     </dl>
