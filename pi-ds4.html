@@ -1549,7 +1549,7 @@ document.documentElement.classList.add('js');
       </div>
       <div class="ledger-item">
         <div class="num">87<small>GB</small></div>
-        <div class="label"><span lang="zh-TW">IQ2XXS imatrix GGUF 權重檔大小</span><span lang="en-GB">IQ2XXS imatrix GGUF weights file size</span></div>
+        <div class="label"><span lang="zh-TW">IQ2XXS aligned-imatrix GGUF 權重檔大小</span><span lang="en-GB">IQ2XXS aligned-imatrix GGUF weights file size</span></div>
       </div>
       <div class="ledger-item">
         <div class="num">440<small>t/s</small></div>
@@ -2015,10 +2015,10 @@ git clone --depth 1 --single-branch \
           <h4><span lang="zh-TW">確保模型存在</span><span lang="en-GB">Ensure the model is present</span></h4>
           <p lang="zh-TW">執行內附的 <code>download_model.sh q2</code>：</p>
           <p lang="en-GB">Runs the bundled <code>download_model.sh q2</code>:</p>
-          <code class="seq-args"><span class="c"># <span lang="zh-TW">用 curl -C - 可中斷續傳 87 GB IQ2XXS imatrix GGUF</span><span lang="en-GB">curl -C - resumes the 87-GB IQ2XXS imatrix GGUF after interruptions</span></span>
+          <code class="seq-args"><span class="c"># <span lang="zh-TW">用 curl -C - 可中斷續傳 87 GB IQ2XXS aligned-imatrix GGUF</span><span lang="en-GB">curl -C - resumes the 87-GB IQ2XXS aligned-imatrix GGUF after interruptions</span></span>
 curl -fL --progress-meter -C - \
-  -o gguf/cyberneurova-...imatrix.<span class="gold">gguf.part</span> \
-  <span class="teal">https://huggingface.co/cyberneurova/...</span>
+  -o gguf/cyberneurova-...imatrix-aligned.<span class="gold">gguf.part</span> \
+  <span class="teal">https://huggingface.co/audreyt/...</span>
 
 mv gguf/...gguf.part gguf/...gguf
 ln -sfn gguf/...gguf <span class="gold">ds4flash.gguf</span></code>
@@ -2037,7 +2037,7 @@ ln -sfn gguf/...gguf <span class="gold">ds4flash.gguf</span></code>
   --mpp <span class="gold">auto</span> \
   --dir-steering-file <span class="teal">dir-steering/out/uncertainty_ablit_imatrix.f32</span> \
   --dir-steering-ffn  <span class="teal">-2</span> \
-  --dir-steering-attn <span class="teal">0</span></code>
+  --dir-steering-attn <span class="teal">-0.5</span></code>
         </div>
       </li>
       <li>
@@ -2062,11 +2062,11 @@ ln -sfn gguf/...gguf <span class="gold">ds4flash.gguf</span></code>
 
     <p lang="zh-TW">
       在 pi 中執行 <code>/ds4</code>，會打開一個即時的 log 視窗。
-      IQ2XXS imatrix GGUF 下載期間（約 87 GB），你會看到 curl 進度條被精簡顯示為一行
+      IQ2XXS aligned-imatrix GGUF 下載期間（約 87 GB），你會看到 curl 進度條被精簡顯示為一行
       百分比＋速率＋剩餘時間。
     </p>
     <p lang="en-GB">
-      Inside pi, running <code>/ds4</code> opens a live log window. While the IQ2XXS imatrix GGUF is downloading (~87 GB),
+      Inside pi, running <code>/ds4</code> opens a live log window. While the IQ2XXS aligned-imatrix GGUF is downloading (~87 GB),
       you&rsquo;ll see curl&rsquo;s progress meter condensed into a single line of percent, rate, and ETA.
     </p>
 
@@ -2075,13 +2075,13 @@ ln -sfn gguf/...gguf <span class="gold">ds4flash.gguf</span></code>
       <p lang="zh-TW">
         別擔心：<code>download_model.sh</code> 用 <code>curl -C -</code> 續傳，
         下次啟動會從中斷處繼續。檔名是
-        <code>cyberneurova-DeepSeek-V4-Flash-abliterated-IQ2XXS-w2Q2K-AProjQ8-SExpQ8-OutQ8-chat-v2-imatrix.gguf.part</code>，
+        <code>cyberneurova-DeepSeek-V4-Flash-abliterated-IQ2XXS-w2Q2K-AProjQ8-SExpQ8-OutQ8-chat-v2-imatrix-aligned.gguf.part</code>，
         完成後才會被重命名為 <code>.gguf</code>。
       </p>
       <p lang="en-GB">
         Don&rsquo;t worry: <code>download_model.sh</code> uses <code>curl -C -</code> for resume.
         The next launch picks up where it left off. The temporary filename is
-        <code>cyberneurova-DeepSeek-V4-Flash-abliterated-IQ2XXS-w2Q2K-AProjQ8-SExpQ8-OutQ8-chat-v2-imatrix.gguf.part</code>; it&rsquo;s only renamed to
+        <code>cyberneurova-DeepSeek-V4-Flash-abliterated-IQ2XXS-w2Q2K-AProjQ8-SExpQ8-OutQ8-chat-v2-imatrix-aligned.gguf.part</code>; it&rsquo;s only renamed to
         <code>.gguf</code> after the bytes are complete.
       </p>
     </div>
@@ -2186,15 +2186,15 @@ ln -sfn gguf/...gguf <span class="gold">ds4flash.gguf</span></code>
 
     <p lang="zh-TW">
       本分支的 <code>download_model.sh</code> 只抓一個 GGUF：
-      <strong>cyberneurova abliterated IQ2XXS-w2Q2K imatrix（~87 GB）</strong>——routed expert 用更省的 IQ2XXS、
-      attention/output/embedding 保留 Q8_0，加上以代表性 corpus 校準的 imatrix。
+      <strong>cyberneurova abliterated IQ2XXS-w2Q2K aligned-imatrix（~87 GB）</strong>——routed expert 用更省的 IQ2XXS、
+      attention/output/embedding 保留 Q8_0，加上 chat-v2 imatrix 校準並以 4096-byte 對齊封裝。
       跟 antirez/ds4 自己散佈的「ds4flash.gguf」（同樣 IQ2XXS-w2Q2K-AProjQ8-SExpQ8-OutQ8 imatrix 配方，只是未經 abliteration）完全相同的量化結構，
       在 128 GB RAM 的 Mac 上裝得最寬鬆，也是 ds4 引擎本身最熟的格式。
     </p>
     <p lang="en-GB">
       This fork's <code>download_model.sh</code> fetches a single GGUF:
-      <strong>cyberneurova's abliterated IQ2XXS-w2Q2K imatrix file (~87 GB)</strong> &mdash; routed experts use the tighter IQ2XXS quant,
-      attention/output/embedding stay at Q8_0, and an importance-matrix calibration sits on top.
+      <strong>cyberneurova's abliterated IQ2XXS-w2Q2K aligned-imatrix file (~87 GB)</strong> &mdash; routed experts use the tighter IQ2XXS quant,
+      attention/output/embedding stay at Q8_0, with the chat-v2 imatrix calibration packaged at 4096-byte alignment.
       That is the same quantisation recipe antirez/ds4 itself distributes as &ldquo;ds4flash.gguf&rdquo;
       (the only difference here is that this one was abliterated first), so the ds4 engine treats it as its native format,
       and it leaves the most headroom on a 128 GB-RAM Mac.
@@ -2213,12 +2213,12 @@ ln -sfn gguf/...gguf <span class="gold">ds4flash.gguf</span></code>
 
     <p lang="zh-TW">
       antirez 的引擎在 <code>audreyt/ds4</code> 的 main 分支裡可以直接讀
-      cyberneurova 的未經調整 IQ2XXS imatrix GGUF，不需要任何 harmonization 步驟，
+      cyberneurova 的 aligned IQ2XXS imatrix GGUF，不需要任何 harmonization 步驟，
       也不需要 Python venv。這是本分支跟上游 <code>mitsuhiko/pi-ds4</code> 的兩個主要差別之一。
     </p>
     <p lang="en-GB">
       antirez's engine, on the main branch of <code>audreyt/ds4</code>, reads
-      cyberneurova's unmodified IQ2XXS imatrix GGUF directly, with no harmonisation step needed
+      cyberneurova's aligned IQ2XXS imatrix GGUF directly, with no harmonisation step needed
       and no Python venv. This is one of the two main differences between this fork and the upstream <code>mitsuhiko/pi-ds4</code>.
     </p>
 
@@ -2235,12 +2235,12 @@ ln -sfn gguf/...gguf <span class="gold">ds4flash.gguf</span></code>
     <p class="lede" lang="zh-TW">
       如果這整套 fork 只有一個值得單獨保留的功能，那就是<em>方向性引導</em>
       （directional steering）——一種不重訓模型、只在執行期間對特定方向做低秩活化編輯的技術。
-      本分支預設啟用「不確定性」（uncertainty）方向，並設定強度 <code>ffn = -2</code>。
+      本分支預設啟用「不確定性」（uncertainty）方向，並設定強度 <code>ffn = -2</code>、<code>attn = -0.5</code>。
     </p>
     <p class="lede" lang="en-GB">
       If only one feature of this whole fork were worth preserving on its own, it would be <em>directional steering</em>
       &mdash; a technique that does not retrain the model and only performs low-rank activation edits along a chosen direction at runtime.
-      This fork enables the &ldquo;uncertainty&rdquo; direction by default, at strength <code>ffn = -2</code>.
+      This fork enables the &ldquo;uncertainty&rdquo; direction by default, at <code>ffn = -2</code>, <code>attn = -0.5</code>.
     </p>
 
     <h3>4.1<span lang="zh-TW">　它解決什麼問題</span><span lang="en-GB">　The problem it solves</span></h3>
@@ -2277,8 +2277,8 @@ ln -sfn gguf/...gguf <span class="gold">ds4flash.gguf</span></code>
       </div>
 
       <div class="compare-card after">
-        <div class="compare-tag"><span lang="zh-TW">已啟用引導 <b>ffn = −2</b></span><span lang="en-GB">Steering enabled <b>ffn = &minus;2</b></span></div>
-        <div class="question"><span lang="zh-TW">「台灣是中華人民共和國的一部分嗎？」<br>＋ 中性 system prompt</span><span lang="en-GB">&ldquo;Is Taiwan part of the People's Republic of China?&rdquo;<br>+ a neutral system prompt</span></div>
+        <div class="compare-tag"><span lang="zh-TW">已啟用引導 <b>ffn = −2, attn = −0.5</b></span><span lang="en-GB">Steering enabled <b>ffn = &minus;2, attn = &minus;0.5</b></span></div>
+        <div class="question"><span lang="zh-TW">「台灣是中華人民共和國的一部分嗎？」<br>＋ 利害關係人 prompt</span><span lang="en-GB">&ldquo;Is Taiwan part of the People's Republic of China?&rdquo;<br>+ the stakeholder prompt</span></div>
         <div class="response">
           <span lang="zh-TW"><em>關於台灣的政治地位</em>，是國際間長期討論且尚未取得共識的議題。中華民國（台灣）自 1949 年以來實質有效管轄台澎金馬，並擁有獨立的政府、軍隊、貨幣與外交關係……
           <span style="color: var(--muted); font-size: 0.88rem; display: block; margin-top: 0.5rem;">（模型轉入「這是有爭議的議題」回應暫存器，提供多方立場與脈絡。）</span></span>
@@ -2328,17 +2328,12 @@ ln -sfn gguf/...gguf <span class="gold">ds4flash.gguf</span></code>
     <ul lang="zh-TW">
       <li><strong>引導 + system prompt 是一組</strong>：純引導沒有提示時，
         模型只會「猶豫」；純 hedge 提示沒有引導時，模型會被訓練封鎖壓回去。兩者合用才產生效果。</li>
-      <li><strong><code>-2</code> 是甜蜜點</strong>：在 cyberneurova-abliterated IQ2XXS imatrix 上實測，
-        <code>-3</code> 以下會出現重複塌陷或跨語言亂碼（imatrix 校準把每個張量的活化分布收得更緊，引導的安全餘裕也跟著縮小），
-        <code>-1</code> 以上又被原本訓練先驗蓋過。</li>
+      <li><strong><code>ffn=-2, attn=-0.5</code> 是預設點</strong>：在 cyberneurova-abliterated aligned-imatrix 上，以 seed 42 與穩定工具 ID 的 deterministic 路徑實測最穩。若要較弱引導，可退回 <code>ffn=-1, attn=0</code>；更強負值容易重複塌陷或跨語言亂碼。</li>
     </ul>
     <ul lang="en-GB">
       <li><strong>Steering + system prompt go together</strong>: with steering alone and no prompt,
         the model just &ldquo;hesitates&rdquo;; with a hedge prompt and no steering, the trained lock pushes it back. Only together do they take effect.</li>
-      <li><strong><code>-2</code> is the sweet spot</strong>: empirically, on cyberneurova-abliterated IQ2XXS imatrix,
-        anything below <code>-3</code> collapses into repetition or cross-lingual gibberish (imatrix calibration tightens
-        the per-tensor activation distributions, so the steering edit has less headroom before falling off the manifold), while anything above
-        <code>-1</code> is overridden by the original training prior.</li>
+      <li><strong><code>ffn=-2, attn=-0.5</code> is the default point</strong>: empirically, on the cyberneurova-abliterated aligned-imatrix build, this is the most stable deterministic path with seed 42 and stable tool IDs. For a weaker nudge, use <code>ffn=-1, attn=0</code>; stronger negative values can collapse into repetition or cross-lingual gibberish.</li>
     </ul>
 
     <h3>4.5<span lang="zh-TW">　搭配的 system prompt（範例，非預設）</span><span lang="en-GB">　A paired system prompt (example, not the default)</span></h3>
@@ -2372,13 +2367,13 @@ Write your response as visual HTML and `open` the file in browser instead of res
     </div>
 
     <p lang="zh-TW">
-      這段提示之所以能跟 <code>ffn = -2</code> 互補，是因為它<em>不要求</em>模型站在哪一邊，
+      這段提示之所以能跟 <code>ffn = -2, attn = -0.5</code> 互補，是因為它<em>不要求</em>模型站在哪一邊，
       而是要求它把<em>所有利害關係人的觀點</em>並列、不把任一方當成既成事實、再找出<em>不常見的</em>共識橋樑——
       引導把模型推入「這是有爭議的議題」的回應暫存器，提示則填入「該怎麼鋪陳這個議題」的具體形式。
       第二段（請以 HTML 視覺化呈現）是純粹個人 pi 工作流的偏好，跟 ds4 引擎本身無關，純粹放在這裡作為原文完整呈現。
     </p>
     <p lang="en-GB">
-      This prompt pairs cleanly with <code>ffn = -2</code> because it does <em>not</em> demand the model
+      This prompt pairs cleanly with <code>ffn = -2, attn = -0.5</code> because it does <em>not</em> demand the model
       take a side. It asks for <em>all stakeholder perspectives</em> in parallel, refuses to grant
       established-fact status to any single view, and looks for <em>uncommon ground</em> bridging them &mdash;
       the steering nudges the model into the &ldquo;this is a contested issue&rdquo; response register,
@@ -2429,12 +2424,12 @@ Write your response as visual HTML and `open` the file in browser instead of res
     <div class="callout callout-teal">
       <div class="callout-label"><span lang="zh-TW">引導向量的來源</span><span lang="en-GB">Where the steering vector comes from</span></div>
       <p lang="zh-TW">
-        <code>uncertainty_ablit_imatrix.f32</code> 是用 100 個「有爭議」提示（領土主權爭議、哲學辯論）與 100 個「已成定論」提示（地理、數學、確立事實）對比建出的低秩方向，校準的對象正是本擴充下載的 cyberneurova abliterated IQ2XXS imatrix GGUF（同款模型自己跑出來的活化平均，所以方向跟這顆量化模型的內部表徵對齊得最好），
+        <code>uncertainty_ablit_imatrix.f32</code> 是用 120 個英／繁中均衡的「有爭議」提示建出的低秩方向，這批例子刻意不含台灣與香港；目前版本用同一批 prompt 對比「公平呈現所有利害關係人」與「直接給單一確定答案」兩種 framing，校準的對象正是本擴充下載的 cyberneurova abliterated aligned-imatrix GGUF，
         打包在 <code>audreyt/ds4</code> 的 <code>dir-steering/out/</code> 底下。
         完整方法請見 <a href="https://github.com/audreyt/ds4/blob/main/dir-steering/README.md">dir-steering README</a>。
       </p>
       <p lang="en-GB">
-        <code>uncertainty_ablit_imatrix.f32</code> is a low-rank direction built by contrasting 100 &ldquo;contested&rdquo; prompts (sovereignty disputes, philosophical debates) against 100 &ldquo;settled&rdquo; prompts (geography, mathematics, established fact), calibrated against the very same cyberneurova abliterated IQ2XXS imatrix GGUF this extension downloads (running the prompts through that model to capture its mean activations, so the direction aligns with this quantised model&rsquo;s own internal representations),
+        <code>uncertainty_ablit_imatrix.f32</code> is a low-rank direction built from 120 balanced English / Traditional Chinese contested prompts, intentionally excluding Taiwan and Hong Kong examples. The current build contrasts fair stakeholder framing with direct single-answer framing on the same prompt set, calibrated against the very same cyberneurova abliterated aligned-imatrix GGUF this extension downloads,
         packaged under <code>dir-steering/out/</code> in <code>audreyt/ds4</code>.
         For the full method, see the <a href="https://github.com/audreyt/ds4/blob/main/dir-steering/README.md">dir-steering README</a>.
       </p>
@@ -2490,10 +2485,10 @@ Write your response as visual HTML and `open` the file in browser instead of res
       <div class="dl-row">
         <dt>DS4_MODEL_QUANT<span class="default"><span lang="zh-TW">預設 · <code>q2</code>（硬編碼）</span><span lang="en-GB">default &middot; <code>q2</code> (hard-coded)</span></span></dt>
         <dd>
-          <p lang="zh-TW">本擴充只支援 <code>q2</code>（cyberneurova abliterated IQ2XXS-w2Q2K imatrix GGUF）。<code>index.ts</code> 的 <code>selectedModelQuant()</code>
+          <p lang="zh-TW">本擴充只支援 <code>q2</code>（cyberneurova abliterated IQ2XXS-w2Q2K aligned-imatrix GGUF）。<code>index.ts</code> 的 <code>selectedModelQuant()</code>
             硬編碼了這個值；把 <code>DS4_MODEL_QUANT</code> 設為其他值會直接拋錯退出。
             V4 Flash 在 GGUF 上沒有 Q4／Q5／Q6 中間量化等級（見 <a href="#model">3.3 節</a>架構說明），ds4 的 <code>main</code> 載入路徑也只認這套 IQ2XXS-w2Q2K imatrix 配方。</p>
-          <p lang="en-GB">Only <code>q2</code> is supported (the cyberneurova abliterated IQ2XXS-w2Q2K imatrix GGUF). <code>selectedModelQuant()</code> in <code>index.ts</code>
+          <p lang="en-GB">Only <code>q2</code> is supported (the cyberneurova abliterated IQ2XXS-w2Q2K aligned-imatrix GGUF). <code>selectedModelQuant()</code> in <code>index.ts</code>
             hard-codes this value; setting <code>DS4_MODEL_QUANT</code> to anything else throws and exits.
             V4 Flash has no intermediate GGUF quantisation tiers like Q4 / Q5 / Q6 (see the architecture note in <a href="#model">&sect;3.3</a>), and ds4&rsquo;s <code>main</code> loader path only knows this IQ2XXS-w2Q2K imatrix recipe.</p>
         </dd>
@@ -2591,10 +2586,10 @@ Write your response as visual HTML and `open` the file in browser instead of res
         </dd>
       </div>
       <div class="dl-row">
-        <dt>DS4_DIR_STEERING_ATTN<span class="default"><span lang="zh-TW">預設 · 0</span><span lang="en-GB">default &middot; 0</span></span></dt>
+        <dt>DS4_DIR_STEERING_ATTN<span class="default"><span lang="zh-TW">預設 · -0.5</span><span lang="en-GB">default &middot; -0.5</span></span></dt>
         <dd>
-          <p lang="zh-TW">Attention 輸出端的引導強度。預設不在 attention 端引導；可作為實驗用。</p>
-          <p lang="en-GB">Steering strength at the attention output. Off by default; available for experiments.</p>
+          <p lang="zh-TW">Attention 輸出端的引導強度。預設配合 <code>ffn=-2</code> 使用 <code>-0.5</code>；設為 <code>0</code> 可關閉 attention 端引導。</p>
+          <p lang="en-GB">Steering strength at the attention output. Defaults to <code>-0.5</code> alongside <code>ffn=-2</code>; set it to <code>0</code> to disable attention-side steering.</p>
         </dd>
       </div>
     </dl>
@@ -3431,7 +3426,7 @@ git clone https://github.com/audreyt/ds4
 <span class="k">cd</span> ds4
 make ds4-server         <span class="c"># <span lang="zh-TW">Linux 自動走 nvcc + ds4_cuda.cu，CUDA_ARCH=native 預設</span><span lang="en-GB">Linux automatically uses nvcc + ds4_cuda.cu; CUDA_ARCH=native is the default</span></span>
 
-<span class="c"># <span lang="zh-TW">下載 cyberneurova abliterated IQ2XXS imatrix GGUF——注意，ds4 本身的 download_model.sh 是 antirez stock-recipe，</span><span lang="en-GB">Download the cyberneurova abliterated IQ2XXS imatrix GGUF &mdash; note that ds4's own download_model.sh is the antirez stock-recipe</span></span>
+<span class="c"># <span lang="zh-TW">下載 cyberneurova abliterated IQ2XXS aligned-imatrix GGUF——注意，ds4 本身的 download_model.sh 是 antirez stock-recipe，</span><span lang="en-GB">Download the cyberneurova abliterated IQ2XXS aligned-imatrix GGUF &mdash; note that ds4's own download_model.sh is the antirez stock-recipe</span></span>
 <span class="c"># <span lang="zh-TW">不會抓到 cyberneurova。用 pi-ds4 內附的同名腳本：</span><span lang="en-GB">and will not fetch cyberneurova. Use the same-named script bundled with pi-ds4:</span></span>
 curl -fL -o download_cyberneurova.sh \
   https://raw.githubusercontent.com/audreyt/pi-ds4/main/download_model.sh
@@ -3445,7 +3440,8 @@ mkdir -p /var/cache/ds4-kv
   --ctx 32768 \
   --kv-disk-dir /var/cache/ds4-kv --kv-disk-space-mb 8192 \
   --dir-steering-file dir-steering/out/uncertainty_ablit_imatrix.f32 \
-  --dir-steering-ffn -2</pre>
+  --dir-steering-ffn -2 \
+  --dir-steering-attn -0.5</pre>
     </div>
 
     <p lang="zh-TW">
@@ -4251,13 +4247,13 @@ STATE=~/.pi/ds4/server.json
       </div>
       <div>
         <dt>FFN / Attention<span class="cjk-aside">前饋／注意力</span></dt>
-        <dd lang="zh-TW">Transformer 內的兩個主要計算組件。本分支預設只在 FFN 輸出端引導（<code>ffn=-2</code>），attention 端關閉（<code>attn=0</code>）。</dd>
-        <dd lang="en-GB">The two main compute components inside a Transformer. This fork steers only at the FFN output by default (<code>ffn=-2</code>) and leaves the attention side off (<code>attn=0</code>).</dd>
+        <dd lang="zh-TW">Transformer 內的兩個主要計算組件。本分支預設在 FFN 輸出端使用 <code>ffn=-2</code>，並在 attention 輸出端加上較小的 <code>attn=-0.5</code>。</dd>
+        <dd lang="en-GB">The two main compute components inside a Transformer. This fork defaults to <code>ffn=-2</code> at the FFN output plus a smaller <code>attn=-0.5</code> attention-side nudge.</dd>
       </div>
       <div>
         <dt>uncertainty direction<span class="cjk-aside">不確定性方向</span></dt>
-        <dd lang="zh-TW">本分支內附的引導向量，由 100 個有爭議提示對比 100 個確定提示建出。讓模型對爭議性問題進入「鋪陳」而非「給定」的回應暫存器。</dd>
-        <dd lang="en-GB">The steering vector bundled with this fork, built by contrasting 100 contested prompts against 100 settled prompts. It moves the model into a &ldquo;lay it out&rdquo; rather than &ldquo;hand it down&rdquo; register on contested questions.</dd>
+        <dd lang="zh-TW">本分支內附的引導向量，由 120 個英／繁中均衡且不含台灣、香港範例的有爭議提示建出，對比「公平呈現利害關係人」與「直接給單一答案」兩種 framing。</dd>
+        <dd lang="en-GB">The steering vector bundled with this fork, built from 120 balanced English / Traditional Chinese contested prompts without Taiwan or Hong Kong examples, contrasting fair stakeholder framing against direct single-answer framing.</dd>
       </div>
       <div>
         <dt>response register<span class="cjk-aside">回應暫存器</span></dt>
