@@ -3113,35 +3113,39 @@ claude</pre>
     <h3>8.3<span lang="zh-TW">　OpenClaw</span><span lang="en-GB">　OpenClaw</span></h3>
 
     <p lang="zh-TW">
-      OpenClaw 把所有 provider 都看成 OpenAI-compatible，loopback 位址自動信任。
-      編輯 <code>openclaw.json</code>，新增一個 provider：
+      OpenClaw 有兩條實用路徑。一般文字 agent turn 可以直接把 OpenClaw provider
+      指到 ds4-server 的 OpenAI Responses 端點；如果你要保留 Codex runtime 的 plugin
+      與 Computer Use，則建議走下一段的 <em>Codex harness</em> 路徑。
     </p>
     <p lang="en-GB">
-      OpenClaw treats all providers as OpenAI-compatible and trusts loopback addresses automatically.
-      Edit <code>openclaw.json</code> and add a provider:
+      OpenClaw has two practical routes. For ordinary text agent turns, point an OpenClaw provider
+      straight at ds4-server's OpenAI Responses endpoint; if you want to keep Codex-runtime plugins
+      and Computer Use, use the <em>Codex harness</em> route in the following subsection.
     </p>
 
     <div class="codeblock">
       <div class="codeblock-bar">
-        <span class="codeblock-label">openclaw.json</span>
-        <button class="copy-btn" aria-label="Copy OpenClaw configuration">Copy</button>
+        <span class="codeblock-label"><span lang="zh-TW">openclaw.json（直接 Responses provider）</span><span lang="en-GB">openclaw.json (direct Responses provider)</span></span>
+        <button class="copy-btn" aria-label="Copy direct OpenClaw Responses configuration">Copy</button>
       </div>
       <pre>{
-  <span class="s">"agents"</span>: { <span class="s">"defaults"</span>: { <span class="s">"model"</span>: { <span class="s">"primary"</span>: <span class="s">"ds4/deepseek-v4-flash"</span> } } },
+  <span class="s">"agents"</span>: { <span class="s">"defaults"</span>: { <span class="s">"model"</span>: { <span class="s">"primary"</span>: <span class="s">"ds4/deepseek-v4-flash"</span>, <span class="s">"fallbacks"</span>: [] } } },
   <span class="s">"models"</span>: {
     <span class="s">"mode"</span>: <span class="s">"merge"</span>,
     <span class="s">"providers"</span>: {
       <span class="s">"ds4"</span>: {
         <span class="s">"baseUrl"</span>: <span class="s">"http://127.0.0.1:8000/v1"</span>,
         <span class="s">"apiKey"</span>: <span class="s">"sk-local"</span>,
-        <span class="s">"api"</span>: <span class="s">"openai-completions"</span>,
+        <span class="s">"api"</span>: <span class="s">"openai-responses"</span>,
         <span class="s">"timeoutSeconds"</span>: 600,
         <span class="s">"models"</span>: [{
           <span class="s">"id"</span>: <span class="s">"deepseek-v4-flash"</span>,
-          <span class="s">"name"</span>: <span class="s">"DeepSeek V4 Flash (local)"</span>,
-          <span class="s">"reasoning"</span>: false,
+          <span class="s">"name"</span>: <span class="s">"DeepSeek V4 Flash (local Responses)"</span>,
+          <span class="s">"api"</span>: <span class="s">"openai-responses"</span>,
+          <span class="s">"reasoning"</span>: true,
+          <span class="s">"input"</span>: [<span class="s">"text"</span>],
           <span class="s">"contextWindow"</span>: 100000,
-          <span class="s">"maxTokens"</span>: 8192
+          <span class="s">"maxTokens"</span>: 100000
         }]
       }
     }
@@ -3161,6 +3165,108 @@ claude</pre>
       otherwise OpenClaw will push an over-long prompt through and the server will reject it. Writing the whole provider
       block at once is safer &mdash; doing it key by key with <code>openclaw config set &hellip;</code> easily misses fields like <code>models[]</code>,
       <code>agents.defaults.model.primary</code>, or <code>api</code>, leaving the session connected to the old provider.
+    </p>
+
+    <div class="callout">
+      <div class="callout-label"><span lang="zh-TW">Codex harness 路徑：Computer Use 優先</span><span lang="en-GB">Codex harness route: prefer this for Computer Use</span></div>
+      <p lang="zh-TW">
+        OpenClaw 的 Codex runtime 會啟動自己的 Codex app-server；Computer Use、瀏覽器桌面控制等 plugin
+        是掛在這一層。因此要「OpenClaw + Codex 工具 + ds4 本機模型」，需要同時設定兩層：
+        OpenClaw 仍負責 routing／model registry，Codex 自己的 <code>config.toml</code>
+        則負責實際打 <code>/v1/responses</code>。
+      </p>
+      <p lang="en-GB">
+        OpenClaw's Codex runtime starts its own Codex app server, and plugins such as Computer Use
+        and desktop browser control live at that layer. So for &ldquo;OpenClaw + Codex tools + local ds4 model&rdquo;,
+        configure both layers: OpenClaw still owns routing and the model registry, while Codex's own
+        <code>config.toml</code> owns the actual <code>/v1/responses</code> call.
+      </p>
+    </div>
+
+    <div class="codeblock">
+      <div class="codeblock-bar">
+        <span class="codeblock-label"><span lang="zh-TW">openclaw.json（Codex runtime + ds4 registry）</span><span lang="en-GB">openclaw.json (Codex runtime + ds4 registry)</span></span>
+        <button class="copy-btn" aria-label="Copy OpenClaw Codex harness ds4 configuration">Copy</button>
+      </div>
+      <pre>{
+  <span class="s">"agents"</span>: {
+    <span class="s">"defaults"</span>: {
+      <span class="s">"model"</span>: { <span class="s">"primary"</span>: <span class="s">"ds4-local/deepseek-v4-flash"</span>, <span class="s">"fallbacks"</span>: [] },
+      <span class="s">"agentRuntime"</span>: { <span class="s">"id"</span>: <span class="s">"codex"</span>, <span class="s">"fallback"</span>: <span class="s">"none"</span> }
+    }
+  },
+  <span class="s">"plugins"</span>: {
+    <span class="s">"entries"</span>: {
+      <span class="s">"codex"</span>: {
+        <span class="s">"enabled"</span>: true,
+        <span class="s">"config"</span>: {
+          <span class="s">"appServer"</span>: {
+            <span class="s">"command"</span>: <span class="s">"/usr/local/bin/codex"</span>,
+            <span class="s">"transport"</span>: <span class="s">"stdio"</span>,
+            <span class="s">"approvalPolicy"</span>: <span class="s">"never"</span>,
+            <span class="s">"sandbox"</span>: <span class="s">"danger-full-access"</span>
+          },
+          <span class="s">"computerUse"</span>: { <span class="s">"enabled"</span>: true, <span class="s">"autoInstall"</span>: true }
+        }
+      }
+    }
+  },
+  <span class="s">"models"</span>: {
+    <span class="s">"providers"</span>: {
+      <span class="s">"ds4-local"</span>: {
+        <span class="s">"baseUrl"</span>: <span class="s">"http://api-proxy:1234/v1"</span>,
+        <span class="s">"apiKey"</span>: <span class="s">"dsv4-local"</span>,
+        <span class="s">"api"</span>: <span class="s">"openai-responses"</span>,
+        <span class="s">"models"</span>: [{
+          <span class="s">"id"</span>: <span class="s">"deepseek-v4-flash"</span>,
+          <span class="s">"name"</span>: <span class="s">"DeepSeek V4 Flash (ds4.c local)"</span>,
+          <span class="s">"api"</span>: <span class="s">"openai-responses"</span>,
+          <span class="s">"reasoning"</span>: true,
+          <span class="s">"input"</span>: [<span class="s">"text"</span>],
+          <span class="s">"contextWindow"</span>: 100000,
+          <span class="s">"maxTokens"</span>: 100000
+        }]
+      }
+    }
+  }
+}</pre>
+    </div>
+
+    <div class="codeblock">
+      <div class="codeblock-bar">
+        <span class="codeblock-label"><span lang="zh-TW">Codex app-server 的 config.toml</span><span lang="en-GB">Codex app-server config.toml</span></span>
+        <button class="copy-btn" aria-label="Copy Codex app-server ds4 configuration">Copy</button>
+      </div>
+      <pre>model = <span class="s">"deepseek-v4-flash"</span>
+model_provider = <span class="s">"ds4-local"</span>
+model_context_window = 100000
+model_auto_compact_token_limit = 90000
+model_reasoning_effort = <span class="s">"high"</span>
+
+[model_providers.ds4-local]
+name = <span class="s">"ds4-local"</span>
+base_url = <span class="s">"http://api-proxy:1234/v1"</span>
+env_key = <span class="s">"DS4_API_KEY"</span>
+wire_api = <span class="s">"responses"</span>
+requires_openai_auth = false
+
+[plugins.<span class="s">"computer-use@openai-bundled"</span>]
+enabled = true</pre>
+    </div>
+
+    <p lang="zh-TW">
+      如果 OpenClaw 跑在 Docker／OrbStack 裡，容器內的 <code>127.0.0.1</code> 是容器自己；
+      請用 <code>host.docker.internal:8000</code>，或像上例一樣放一個 passthrough
+      <code>api-proxy</code>，把 <code>http://api-proxy:1234/v1</code>
+      轉到 host 的 <code>http://127.0.0.1:8000/v1</code>。首次 Codex harness
+      turn 常會帶 50k+ tokens 的工具 prompt；打開 ds4-server 的 disk KV cache 會讓後續重試與相近 session 快很多。
+    </p>
+    <p lang="en-GB">
+      If OpenClaw runs inside Docker / OrbStack, <code>127.0.0.1</code> inside the container is the container itself.
+      Use <code>host.docker.internal:8000</code>, or put a passthrough <code>api-proxy</code> in front as above, so
+      <code>http://api-proxy:1234/v1</code> forwards to the host's <code>http://127.0.0.1:8000/v1</code>.
+      The first Codex-harness turn often carries a 50k+ token tool prompt; enabling ds4-server's disk KV cache
+      makes retries and nearby sessions much faster.
     </p>
 
     <h3>8.4<span lang="zh-TW">　Hermes Agent</span><span lang="en-GB">　Hermes Agent</span></h3>
@@ -3979,12 +4085,14 @@ STATE=~/.pi/ds4/server.json
         <p lang="en-GB">As a daily shell &mdash; no. <a href="#shells">Chapter 8</a> shows how to wire up four common frontends:</p>
         <ul lang="zh-TW">
           <li><strong>Claude Code：</strong>直連，<code>export ANTHROPIC_BASE_URL=http://127.0.0.1:8000</code> 就走——ds4-server 本身就實作 Anthropic Messages 端點。</li>
-          <li><strong>OpenClaw／Hermes Agent：</strong>改一個 <code>base_url</code> 就連得上。</li>
+          <li><strong>OpenClaw：</strong>一般 agent turn 走 direct Responses provider；要保留 Computer Use 則走 Codex harness，並同時設定 Codex 的 <code>config.toml</code>。</li>
+          <li><strong>Hermes Agent：</strong>改一個 <code>base_url</code> 就連得上。</li>
           <li><strong>Codex CLI：</strong>在 <code>~/.codex/config.toml</code> 加一段 <code>[model_providers.ds4]</code>，指到 ds4-server——完整可貼可用的 TOML 在 <a href="#shells">8.1 節</a>。</li>
         </ul>
         <ul lang="en-GB">
           <li><strong>Claude Code:</strong> direct connection &mdash; <code>export ANTHROPIC_BASE_URL=http://127.0.0.1:8000</code> and you are off; ds4-server itself implements the Anthropic Messages endpoint.</li>
-          <li><strong>OpenClaw / Hermes Agent:</strong> just change a single <code>base_url</code>.</li>
+          <li><strong>OpenClaw:</strong> use a direct Responses provider for ordinary agent turns; for Computer Use, use the Codex harness and also configure Codex's <code>config.toml</code>.</li>
+          <li><strong>Hermes Agent:</strong> just change a single <code>base_url</code>.</li>
           <li><strong>Codex CLI:</strong> add a <code>[model_providers.ds4]</code> block in <code>~/.codex/config.toml</code> pointing at ds4-server &mdash; the full paste-and-go TOML is in <a href="#shells">section 8.1</a>.</li>
         </ul>
         <p lang="zh-TW">但你還是會在背後<em>某個地方</em>需要 ds4-server 跑起來。三條路：</p>
