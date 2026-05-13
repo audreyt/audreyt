@@ -1848,35 +1848,6 @@ document.documentElement.classList.add('js');
       </p>
     </div>
 
-    <div class="callout">
-      <div class="callout-label"><span lang="zh-TW">記憶體足、想試 Q8_0？</span><span lang="en-GB">Plenty of RAM, want to try Q8_0?</span></div>
-      <p lang="zh-TW">
-        本擴充的自動化路徑只支援 IQ2XXS imatrix（~87 GB）——<code>index.ts</code> 與
-        <code>download_model.sh</code> 都硬編碼了 q2；
-        即使你設了 <code>DS4_RUNTIME_DIR</code>，<code>ensureModel()</code> 還是會跑下載腳本、
-        覆寫你的 <code>ds4flash.gguf</code> symlink。
-      </p>
-      <p lang="en-GB">
-        The extension&rsquo;s automated path only supports the IQ2XXS imatrix variant (~87 GB) &mdash; both <code>index.ts</code> and
-        <code>download_model.sh</code> hard-code q2. Even if you set <code>DS4_RUNTIME_DIR</code>,
-        <code>ensureModel()</code> will still run the downloader and overwrite your <code>ds4flash.gguf</code> symlink.
-      </p>
-      <p lang="zh-TW">
-        cyberneurova 的 HF repo 另外有 Q8_0（~282 GB，較高保真）。
-        若你有 ≥ 320 GB RAM、想試 Q8_0：<em>跳過 pi-ds4 這層 wrapper</em>，
-        改用 <a href="#shells">8.6 節（C）</a>手動跑 ds4-server 的路徑——
-        clone <code>audreyt/ds4</code>、<code>make ds4-server</code>，自己 <code>huggingface-cli</code> 下載 Q8_0、
-        symlink 為 <code>ds4flash.gguf</code>，然後直接 <code>./ds4-server …</code> 帶你自選的旗標。
-      </p>
-      <p lang="en-GB">
-        cyberneurova&rsquo;s HF repo also publishes Q8_0 (~282 GB, higher fidelity).
-        If you have ≥ 320 GB of RAM and want Q8_0, <em>skip the pi-ds4 wrapper</em> and use the
-        manual ds4-server path in <a href="#shells">§8.6 (C)</a>: clone <code>audreyt/ds4</code>,
-        <code>make ds4-server</code>, <code>huggingface-cli download</code> the Q8_0 GGUF, symlink it as
-        <code>ds4flash.gguf</code>, then run <code>./ds4-server …</code> with the flags you want.
-      </p>
-    </div>
-
     <h3>1.2<span lang="zh-TW">　如果你之前裝過上游版本</span><span lang="en-GB">　If you previously installed the upstream version</span></h3>
 
     <p lang="zh-TW">
@@ -2189,26 +2160,22 @@ ln -sfn gguf/...gguf <span class="gold">ds4flash.gguf</span></code>
       </ul>
     </div>
 
-    <h3>3.3<span lang="zh-TW">　為什麼選 IQ2XXS imatrix</span><span lang="en-GB">　Why IQ2XXS imatrix</span></h3>
+    <h3>3.3<span lang="zh-TW">　IQ2XXS-w2Q2K imatrix 配方</span><span lang="en-GB">　The IQ2XXS-w2Q2K imatrix recipe</span></h3>
 
     <p lang="zh-TW">
-      audreyt/cyberneurova 為 V4 Flash 發佈三種 GGUF：<strong>IQ2XXS-w2Q2K imatrix（~87 GB）</strong>、
-      <strong>Q2_K（~99 GB）</strong>與 <strong>Q8_0（~282 GB）</strong>。
-      本分支的 <code>download_model.sh</code> 預設下載 IQ2XXS imatrix——routed expert 用更省的 IQ2XXS、
-      attention/output/embedding 保留 Q8_0，加上以代表性 corpus 校準的 imatrix——
+      本分支的 <code>download_model.sh</code> 只抓一個 GGUF：
+      <strong>cyberneurova abliterated IQ2XXS-w2Q2K imatrix（~87 GB）</strong>——routed expert 用更省的 IQ2XXS、
+      attention/output/embedding 保留 Q8_0，加上以代表性 corpus 校準的 imatrix。
       跟 antirez/ds4 自己散佈的「ds4flash.gguf」（同樣 IQ2XXS-w2Q2K-AProjQ8-SExpQ8-OutQ8 imatrix 配方，只是未經 abliteration）完全相同的量化結構，
       在 128 GB RAM 的 Mac 上裝得最寬鬆，也是 ds4 引擎本身最熟的格式。
-      Q2_K 是 cyberneurova 早期發佈的版本；Q8_0 屬於高保真選項，但需要 ≥ 320 GB RAM 的機器與相應的磁碟空間。
     </p>
     <p lang="en-GB">
-      audreyt/cyberneurova publishes three GGUFs for V4 Flash:
-      <strong>IQ2XXS-w2Q2K imatrix (~87 GB)</strong>, <strong>Q2_K (~99 GB)</strong> and <strong>Q8_0 (~282 GB)</strong>.
-      This fork's <code>download_model.sh</code> defaults to the IQ2XXS imatrix variant &mdash; routed experts use the tighter IQ2XXS quant,
+      This fork's <code>download_model.sh</code> fetches a single GGUF:
+      <strong>cyberneurova's abliterated IQ2XXS-w2Q2K imatrix file (~87 GB)</strong> &mdash; routed experts use the tighter IQ2XXS quant,
       attention/output/embedding stay at Q8_0, and an importance-matrix calibration sits on top.
       That is the same quantisation recipe antirez/ds4 itself distributes as &ldquo;ds4flash.gguf&rdquo;
       (the only difference here is that this one was abliterated first), so the ds4 engine treats it as its native format,
       and it leaves the most headroom on a 128 GB-RAM Mac.
-      Q2_K is the earlier cyberneurova release; Q8_0 is the high-fidelity option, but it needs a machine with &ge; 320 GB RAM and corresponding disk space.
     </p>
 
     <p lang="zh-TW">
@@ -2341,7 +2308,7 @@ ln -sfn gguf/...gguf <span class="gold">ds4flash.gguf</span></code>
         模型只會「猶豫」；純 hedge 提示沒有引導時，模型會被訓練封鎖壓回去。兩者合用才產生效果。</li>
       <li><strong><code>-2</code> 是甜蜜點</strong>：在 cyberneurova-abliterated IQ2XXS imatrix 上實測，
         <code>-3</code> 以下會出現重複塌陷或跨語言亂碼（imatrix 校準把每個張量的活化分布收得更緊，引導的安全餘裕也跟著縮小），
-        <code>-1</code> 以上又被原本訓練先驗蓋過。前一代的 Q2_K 配方甜蜜點是 <code>-3</code>，換到 imatrix 之後整體少了大約一個單位。</li>
+        <code>-1</code> 以上又被原本訓練先驗蓋過。</li>
     </ul>
     <ul lang="en-GB">
       <li><strong>Steering + system prompt go together</strong>: with steering alone and no prompt,
@@ -2349,7 +2316,7 @@ ln -sfn gguf/...gguf <span class="gold">ds4flash.gguf</span></code>
       <li><strong><code>-2</code> is the sweet spot</strong>: empirically, on cyberneurova-abliterated IQ2XXS imatrix,
         anything below <code>-3</code> collapses into repetition or cross-lingual gibberish (imatrix calibration tightens
         the per-tensor activation distributions, so the steering edit has less headroom before falling off the manifold), while anything above
-        <code>-1</code> is overridden by the original training prior. The previous plain-Q2_K era had a sweet spot of <code>-3</code>; switching to imatrix tightened it by roughly one unit.</li>
+        <code>-1</code> is overridden by the original training prior.</li>
     </ul>
 
     <h3>4.5<span lang="zh-TW">　搭配的 system prompt（範例，非預設）</span><span lang="en-GB">　A paired system prompt (example, not the default)</span></h3>
@@ -2501,18 +2468,12 @@ Write your response as visual HTML and `open` the file in browser instead of res
       <div class="dl-row">
         <dt>DS4_MODEL_QUANT<span class="default"><span lang="zh-TW">預設 · <code>q2</code>（硬編碼）</span><span lang="en-GB">default &middot; <code>q2</code> (hard-coded)</span></span></dt>
         <dd>
-          <p lang="zh-TW">本擴充只支援 <code>q2</code>。<code>index.ts</code> 的 <code>selectedModelQuant()</code>
-            硬編碼了這個值；把 <code>DS4_MODEL_QUANT</code> 設為其他值（例如 <code>q4</code>）會直接拋錯退出。
-            cyberneurova 該 HF repo 沒有提供 Q4／Q5／Q6 中間量化。</p>
-          <p lang="en-GB">Only <code>q2</code> is supported. <code>selectedModelQuant()</code> in <code>index.ts</code>
-            hard-codes this value; setting <code>DS4_MODEL_QUANT</code> to anything else (e.g. <code>q4</code>) throws and exits.
-            cyberneurova's HF repo does not publish Q4 / Q5 / Q6 intermediate quantisations.</p>
-          <p lang="zh-TW">cyberneurova 另外有 Q8_0（~282 GB），但<em>無法</em>透過 <code>DS4_RUNTIME_DIR</code> 或本變數啟用——
-            <code>ensureModel()</code> 總是會跑下載腳本、覆寫 <code>ds4flash.gguf</code> symlink。
-            要試 Q8_0 請完全繞過本擴充，走 <a href="#shells">8.6 節（C）</a>手動跑 ds4-server 的路徑。</p>
-          <p lang="en-GB">cyberneurova does publish Q8_0 (~282 GB), but it <em>cannot</em> be activated via <code>DS4_RUNTIME_DIR</code> or this variable &mdash;
-            <code>ensureModel()</code> always runs the download script and overwrites the <code>ds4flash.gguf</code> symlink.
-            To try Q8_0, bypass this extension entirely and run ds4-server by hand via the path in <a href="#shells">section 8.6 (C)</a>.</p>
+          <p lang="zh-TW">本擴充只支援 <code>q2</code>（cyberneurova abliterated IQ2XXS-w2Q2K imatrix GGUF）。<code>index.ts</code> 的 <code>selectedModelQuant()</code>
+            硬編碼了這個值；把 <code>DS4_MODEL_QUANT</code> 設為其他值會直接拋錯退出。
+            V4 Flash 在 GGUF 上沒有 Q4／Q5／Q6 中間量化等級（見 <a href="#model">3.3 節</a>架構說明），ds4 的 <code>main</code> 載入路徑也只認這套 IQ2XXS-w2Q2K imatrix 配方。</p>
+          <p lang="en-GB">Only <code>q2</code> is supported (the cyberneurova abliterated IQ2XXS-w2Q2K imatrix GGUF). <code>selectedModelQuant()</code> in <code>index.ts</code>
+            hard-codes this value; setting <code>DS4_MODEL_QUANT</code> to anything else throws and exits.
+            V4 Flash has no intermediate GGUF quantisation tiers like Q4 / Q5 / Q6 (see the architecture note in <a href="#model">&sect;3.3</a>), and ds4&rsquo;s <code>main</code> loader path only knows this IQ2XXS-w2Q2K imatrix recipe.</p>
         </dd>
       </div>
       <div class="dl-row">
