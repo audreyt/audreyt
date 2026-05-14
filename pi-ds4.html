@@ -2038,7 +2038,8 @@ ln -sfn gguf/...gguf <span class="gold">ds4flash.gguf</span></code>
   --mt <span class="gold">auto</span> \
   --dir-steering-file <span class="teal">dir-steering/out/uncertainty_ablit_imatrix.f32</span> \
   --dir-steering-ffn  <span class="teal">-0.75</span> \
-  --dir-steering-attn <span class="teal">0</span></code>
+  --dir-steering-attn <span class="teal">0</span> \
+  --dir-steering-policy <span class="teal">final-answer</span></code>
         </div>
       </li>
       <li>
@@ -2588,6 +2589,13 @@ ln -sfn gguf/...gguf <span class="gold">ds4flash.gguf</span></code>
           <p lang="en-GB">Steering strength at the attention output. Tool-enabled agent paths keep this at <code>0</code> by default; reserve nonzero attention steering for isolated evaluation sweeps.</p>
         </dd>
       </div>
+      <div class="dl-row">
+        <dt>DS4_DIR_STEERING_POLICY<span class="default"><span lang="zh-TW">預設 · final-answer</span><span lang="en-GB">default &middot; final-answer</span></span></dt>
+        <dd>
+          <p lang="zh-TW">傳給 <code>ds4-server --dir-steering-policy</code> 的套用範圍。pi-ds4 預設 <code>final-answer</code>：prefill、thinking、DSML/tool-call 語法不引導，只在最後自然語言回答套用；ds4-server 自身的內建預設仍是 <code>always</code>。</p>
+          <p lang="en-GB">Scope passed to <code>ds4-server --dir-steering-policy</code>. pi-ds4 defaults to <code>final-answer</code>: prefill, thinking, and DSML/tool-call grammar stay unsteered, while final natural-language prose is steered. ds4-server itself still defaults to <code>always</code>.</p>
+        </dd>
+      </div>
     </dl>
 
     <div class="callout">
@@ -2600,6 +2608,8 @@ ln -sfn gguf/...gguf <span class="gold">ds4flash.gguf</span></code>
         With both <code>DS4_DIR_STEERING_FFN=0</code> and <code>DS4_DIR_STEERING_ATTN=0</code>,
         the extension omits the <code>--dir-steering-*</code> arguments entirely, which is equivalent to returning to the unsteered raw model.
       </p>
+      <p lang="zh-TW">若想保留檔案與 scale 設定、但暫時不套用引導，也可以設 <code>DS4_DIR_STEERING_POLICY=off</code>。</p>
+      <p lang="en-GB">If you want to keep the file and scale settings but suppress the edit temporarily, set <code>DS4_DIR_STEERING_POLICY=off</code>.</p>
     </div>
   </section>
 
@@ -3268,7 +3278,8 @@ enabled = true</pre>
       <code>api-proxy</code>，把 <code>http://api-proxy:1234/v1</code>
       轉到 host 的 <code>http://127.0.0.1:8000/v1</code>。首次 Codex harness
       turn 常會帶 50k+ tokens 的工具 prompt；打開 ds4-server 的 disk KV cache 會讓後續重試與相近 session 快很多。
-      這條路徑請保留預設 FFN-only 引導（<code>DS4_DIR_STEERING_FFN=-0.75</code>、<code>DS4_DIR_STEERING_ATTN=0</code>）；
+      這條路徑請保留預設 FFN-only 引導（<code>DS4_DIR_STEERING_FFN=-0.75</code>、<code>DS4_DIR_STEERING_ATTN=0</code>）
+      與 <code>DS4_DIR_STEERING_POLICY=final-answer</code>；
       舊的 <code>ffn=-2, attn=-0.5</code> 酸測設定在長工具 prompt 上可能滲進 DSML／tool-call 語法。
     </p>
     <p lang="en-GB">
@@ -3277,7 +3288,8 @@ enabled = true</pre>
       <code>http://api-proxy:1234/v1</code> forwards to the host's <code>http://127.0.0.1:8000/v1</code>.
       The first Codex-harness turn often carries a 50k+ token tool prompt; enabling ds4-server's disk KV cache
       makes retries and nearby sessions much faster. Keep directional steering on the default FFN-only setting
-      (<code>DS4_DIR_STEERING_FFN=-0.75</code>, <code>DS4_DIR_STEERING_ATTN=0</code>) for this route; the older
+      (<code>DS4_DIR_STEERING_FFN=-0.75</code>, <code>DS4_DIR_STEERING_ATTN=0</code>)
+      and <code>DS4_DIR_STEERING_POLICY=final-answer</code> for this route; the older
       <code>ffn=-2, attn=-0.5</code> acid-test setting can leak into DSML/tool-call syntax on long harness prompts.
     </p>
 
@@ -3407,7 +3419,8 @@ resp = client.responses.create(
   --mt auto \
   --dir-steering-file dir-steering/out/uncertainty_ablit_imatrix.f32 \
   --dir-steering-ffn -0.75 \
-  --dir-steering-attn 0</pre>
+  --dir-steering-attn 0 \
+  --dir-steering-policy final-answer</pre>
         </div>
         這條等同於 <code>index.ts</code> 內建的 spawn 參數；你也可以依需求自訂。
       </li>
@@ -3439,7 +3452,8 @@ chmod +x download_cyberneurova.sh
   --mt auto \
   --dir-steering-file dir-steering/out/uncertainty_ablit_imatrix.f32 \
   --dir-steering-ffn -0.75 \
-  --dir-steering-attn 0</pre>
+  --dir-steering-attn 0 \
+  --dir-steering-policy final-answer</pre>
         </div>
         這條路徑下你完全沒碰 pi；ds4-server 直接由 ds4 source tree 提供。
         本擴充（pi-ds4）做的事——下載、symlink、watchdog、lease——你需要時自己處理。
@@ -3465,7 +3479,8 @@ chmod +x download_cyberneurova.sh
   --mt auto \
   --dir-steering-file dir-steering/out/uncertainty_ablit_imatrix.f32 \
   --dir-steering-ffn -0.75 \
-  --dir-steering-attn 0</pre>
+  --dir-steering-attn 0 \
+  --dir-steering-policy final-answer</pre>
         </div>
         This is equivalent to the spawn parameters baked into <code>index.ts</code>; you can also adjust them as needed.
       </li>
@@ -3497,7 +3512,8 @@ chmod +x download_cyberneurova.sh
   --mt auto \
   --dir-steering-file dir-steering/out/uncertainty_ablit_imatrix.f32 \
   --dir-steering-ffn -0.75 \
-  --dir-steering-attn 0</pre>
+  --dir-steering-attn 0 \
+  --dir-steering-policy final-answer</pre>
         </div>
         On this path you touch no pi at all; ds4-server comes directly from the ds4 source tree.
         Whatever the extension (pi-ds4) does &mdash; download, symlink, watchdog, lease &mdash; you handle yourself when needed.
@@ -3994,6 +4010,7 @@ STATE=~/.pi/ds4/server.json
           <li><code>DS4_DIR_STEERING_FILE=dir-steering/out/my-direction.f32</code></li>
           <li><code>DS4_DIR_STEERING_FFN=-0.75</code>（或自己摸出來的甜蜜點）</li>
           <li><code>DS4_DIR_STEERING_ATTN=0</code>（工具啟用時建議保持 0）</li>
+          <li><code>DS4_DIR_STEERING_POLICY=final-answer</code>（工具啟用時建議保持預設）</li>
         </ul>
       </li>
       <li>重啟 ds4-server，測試。</li>
@@ -4008,6 +4025,7 @@ STATE=~/.pi/ds4/server.json
           <li><code>DS4_DIR_STEERING_FILE=dir-steering/out/my-direction.f32</code></li>
           <li><code>DS4_DIR_STEERING_FFN=-0.75</code> (or your own sweet spot)</li>
           <li><code>DS4_DIR_STEERING_ATTN=0</code> (keep this at 0 when tools are enabled)</li>
+          <li><code>DS4_DIR_STEERING_POLICY=final-answer</code> (keep the default when tools are enabled)</li>
         </ul>
       </li>
       <li>Restart ds4-server and test.</li>
