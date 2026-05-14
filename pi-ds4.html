@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>pi-ds4 — Driving DeepSeek V4 Flash on your own Mac</title>
-<meta name="description" content="The full pi-ds4 guide: run the 284-B-parameter DeepSeek V4 Flash locally on a 128-GB Apple Silicon Mac, with reproducible decision traces, directional steering, hardware tuning, and day-to-day use.">
+<meta name="description" content="The full pi-ds4 guide: run the 284-B-parameter DeepSeek V4 Flash locally on a 96-GB Apple Silicon Mac, with reproducible decision traces, directional steering, hardware tuning, and day-to-day use.">
 <meta property="og:title" content="pi-ds4 · Audrey Tang">
 <meta property="og:description" content="Run a frontier model on your own machine with stable, contestable decision traces. Full install, steering, reproducibility, and tuning guide.">
 <meta property="og:type" content="article">
@@ -1523,14 +1523,14 @@ document.documentElement.classList.add('js');
       <span lang="en-GB">Invite the <em>frontier model</em> onto your MacBook</span>
     </h1>
     <p class="standfirst" lang="zh-TW">
-      在一台 128 GB 以上的 Apple Silicon Mac 上本機運行 284 B 參數的
+      在一台 96 GB 以上的 Apple Silicon Mac 上本機運行 284 B 參數的
       DeepSeek V4 Flash——沒有雲端呼叫、沒有 API 費用、沒有逐 token 計價、
       沒有頻率限制；模型的「方向性引導」轉盤，握在你自己手上。
       預設固定 seed 與工具呼叫 ID，讓決策軌跡可以重跑、比對、質疑。
     </p>
     <p class="standfirst" lang="en-GB">
       Run the 284&#8209;billion-parameter DeepSeek V4 Flash on your own
-      128&#8209;GB Apple Silicon Mac &mdash; no cloud calls, no API fees, no
+      96&#8209;GB Apple Silicon Mac &mdash; no cloud calls, no API fees, no
       per&#8209;token billing, no rate limits. The model&rsquo;s directional
       steering dial stays in your hands. Stable seeds and tool-call IDs make
       decision traces repeatable, comparable, and contestable.
@@ -1680,13 +1680,13 @@ document.documentElement.classList.add('js');
 
     <h3><span lang="zh-TW">我需要付出什麼？</span><span lang="en-GB">What does it cost me?</span></h3>
     <ul lang="zh-TW">
-      <li><strong>硬體：</strong>一台 RAM 128 GB 以上的 Apple Silicon Mac（M2 Ultra、M3 Max+、M4 Pro+、或 M5）。<a href="#otherhw">NVIDIA DGX Spark 等 128 GB 統一記憶體機型</a>也跑得動<em>同一隻 ds4 引擎</em>（<code>audreyt/ds4</code> 的 Makefile 在 Linux 上自動編譯 CUDA 路徑），而且 pi-ds4 的 lifecycle wrapper（<code>ds4-watchdog.sh</code>）現在 BSD／GNU 雙路徑都吃，DGX Spark 上 <code>pi install</code> 一樣 work；想跳過 wrapper 自己跑 ds4-server 也可以。</li>
+      <li><strong>硬體：</strong>一台 RAM 96 GB 以上的 Apple Silicon Mac（M2 Ultra、M3 Max+、M4 Pro+、或 M5）。96–127 GB 的 Mac 需先把 Metal wired memory 拉高（見 <a href="#ram96">§1.1 callout</a>）；128 GB 以上可直接安裝，並保有同時開更多其他應用的餘裕。<a href="#otherhw">NVIDIA DGX Spark 等 128 GB 統一記憶體機型</a>也跑得動<em>同一隻 ds4 引擎</em>（<code>audreyt/ds4</code> 的 Makefile 在 Linux 上自動編譯 CUDA 路徑），而且 pi-ds4 的 lifecycle wrapper（<code>ds4-watchdog.sh</code>）現在 BSD／GNU 雙路徑都吃，DGX Spark 上 <code>pi install</code> 一樣 work；想跳過 wrapper 自己跑 ds4-server 也可以。</li>
       <li><strong>磁碟：</strong>至少 120 GB 空閒空間。</li>
       <li><strong>時間：</strong>第一次安裝會下載 87 GB 模型檔，視網速 1～3 小時起跳。</li>
       <li><strong>不需要：</strong>GPU、付費 API、登入帳號、把任何資料送上雲端。</li>
     </ul>
     <ul lang="en-GB">
-      <li><strong>Hardware:</strong> an Apple Silicon Mac with at least 128 GB of RAM (M2 Ultra, M3 Max+, M4 Pro+, or M5). <a href="#otherhw">NVIDIA DGX Spark and other 128-GB unified-memory boxes</a> can run <em>the same ds4 engine</em> &mdash; <code>audreyt/ds4</code>&rsquo;s Makefile auto-builds the CUDA path on Linux, and pi-ds4&rsquo;s lifecycle wrapper (<code>ds4-watchdog.sh</code>) now handles both BSD and GNU userlands, so <code>pi install</code> works on DGX Spark too; you can still run ds4-server by hand if you&rsquo;d rather skip the wrapper.</li>
+      <li><strong>Hardware:</strong> an Apple Silicon Mac with at least 96 GB of RAM (M2 Ultra, M3 Max+, M4 Pro+, or M5). Macs in the 96&ndash;127 GB range need to raise Metal wired memory first (see the <a href="#ram96">§1.1 callout</a>); 128 GB+ Macs install directly and have headroom to run more apps alongside ds4-server. <a href="#otherhw">NVIDIA DGX Spark and other 128-GB unified-memory boxes</a> can run <em>the same ds4 engine</em> &mdash; <code>audreyt/ds4</code>&rsquo;s Makefile auto-builds the CUDA path on Linux, and pi-ds4&rsquo;s lifecycle wrapper (<code>ds4-watchdog.sh</code>) now handles both BSD and GNU userlands, so <code>pi install</code> works on DGX Spark too; you can still run ds4-server by hand if you&rsquo;d rather skip the wrapper.</li>
       <li><strong>Disk:</strong> at least 120 GB of free space.</li>
       <li><strong>Time:</strong> the first install downloads a 87-GB model file &mdash; about 1&ndash;3 hours depending on bandwidth.</li>
       <li><strong>Not required:</strong> a GPU, a paid API, an account login, or sending any data to the cloud.</li>
@@ -1826,58 +1826,59 @@ document.documentElement.classList.add('js');
     <h3>1.1<span lang="zh-TW">　硬體最低需求</span><span lang="en-GB">　Minimum hardware</span></h3>
 
     <ul lang="zh-TW">
-      <li><strong>RAM：</strong>至少 128 GB。低於這個數字，本擴充會直接拋出錯誤，
-        因為連 IQ2XXS imatrix 都塞不下。</li>
+      <li><strong>RAM：</strong>至少 96 GB。低於這個數字，本擴充會直接拋出錯誤，因為連 IQ2XXS imatrix 都塞不下。
+        96&ndash;127 GB 的 Mac 需先依下方 callout 把 Metal wired memory 拉高；128 GB 以上可直接安裝，並保有同時開更多其他應用的餘裕。</li>
       <li><strong>磁碟：</strong>約 87 GB 給權重，另外保留約 10 GB 給 100k 預設 context 的 KV disk cache、ds4 source、log。建議至少留 120 GB 空間；1M context 實驗需要更大的 KV 磁碟預算。</li>
       <li><strong>晶片：</strong>任何 Apple Silicon 都可以；
         但 M5 級別的 Metal 4 Tensor API 可透過 <code>--mt auto</code> 自動啟用；目前預設 profile 在 2k&ndash;8k sweep 的幾何平均約有 2.09 倍 prefill、1.54 倍 decode 提升。</li>
       <li><strong>網路：</strong>首次下載 87 GB GGUF 需要良好頻寬。若你的 HuggingFace 下載受惠於授權，請設定 <code>HF_TOKEN</code>。</li>
     </ul>
     <ul lang="en-GB">
-      <li><strong>RAM:</strong> at least 128 GB. Below that, the extension errors out at startup &mdash; even the IQ2XXS imatrix variant won&rsquo;t fit.</li>
+      <li><strong>RAM:</strong> at least 96 GB. Below that, the extension errors out at startup &mdash; even the IQ2XXS imatrix variant won&rsquo;t fit.
+        Macs in the 96&ndash;127 GB range need to raise Metal wired memory per the callout below; 128 GB+ machines install directly and have headroom to run more apps alongside ds4-server.</li>
       <li><strong>Disk:</strong> ~87 GB for the weights and another ~10 GB for the default 100k-context KV disk cache, the ds4 source tree and logs. Plan on ≥ 120 GB free; 1M-context experiments need a larger KV disk budget.</li>
       <li><strong>Chip:</strong> any Apple Silicon works, but M5-class Metal 4 Tensor APIs are auto-enabled via <code>--mt auto</code>. The current default profile measures about 2.09&times; geometric prefill and 1.54&times; decode over the 2k&ndash;8k sweep.</li>
       <li><strong>Network:</strong> the first 87 GB GGUF download benefits from good bandwidth. If your HuggingFace download benefits from auth, set <code>HF_TOKEN</code>.</li>
     </ul>
 
     <div class="callout" id="ram96">
-      <div class="callout-label"><span lang="zh-TW">只有 96 GB？</span><span lang="en-GB">Only 96 GB?</span></div>
+      <div class="callout-label"><span lang="zh-TW">96 GB Mac：先把 Metal wired memory 拉高</span><span lang="en-GB">On a 96 GB Mac: raise Metal wired memory first</span></div>
       <p lang="zh-TW">
-        上游 antirez/ds4 的工作者已驗證：在 96 GB Mac Studio 上，IQ2XXS imatrix 跑得動 250k context、約 27 t/s
-        （<a href="https://github.com/antirez/ds4/issues/46">issue #46</a>，已併入上游 README）。
+        上游 antirez/ds4 與本擴充使用者已驗證：在 96 GB Mac Studio 上，IQ2XXS imatrix 跑得動 250k context、約 25&ndash;27 t/s
+        （<a href="https://github.com/antirez/ds4/issues/46">issue #46</a>，已併入上游 README；近期社群也有 47chan / SHMK47 等使用者回報相同數字）。
         值得注意的是：apple.com 目前甚至沒有賣 96 GB 以上的 Mac Studio——這是現役高階 Mac Studio 買家的常態。
       </p>
       <p lang="en-GB">
-        Upstream antirez/ds4 contributors have validated that this IQ2XXS imatrix recipe runs on a 96 GB Mac Studio at 250k context
-        and around 27 t/s (<a href="https://github.com/antirez/ds4/issues/46">issue #46</a>, since merged into upstream README).
+        Upstream antirez/ds4 contributors and this extension&rsquo;s users have validated that the IQ2XXS imatrix recipe runs on a 96 GB Mac Studio at 250k context
+        and around 25&ndash;27 t/s (<a href="https://github.com/antirez/ds4/issues/46">issue #46</a>, since merged into upstream README; the SHMK47 / 47chan community has independently reported the same figures).
         Worth knowing: apple.com does not currently ship a Mac Studio above 96 GB &mdash; this is the standard configuration
         for fresh high-end Mac Studio buyers.
       </p>
       <p lang="zh-TW">
-        但本擴充的 <code>index.ts</code> 對 RAM 做硬性檢查：偵測到 &lt; 128 GB 會直接拋錯。
-        想在 96 GB 上跑，請<em>跳過 pi-ds4 wrapper</em>，走 <a href="#shells">8.6 節（C）</a>的手動 ds4-server 路徑：
+        96&ndash;127 GB 的 Mac 必須先把 Metal 的 wired memory ceiling 拉高，讓 87 GB GGUF 裝得下。
+        本擴充的 <code>index.ts</code> 偵測到 RAM &lt; 128 GB 而 <code>iogpu.wired_limit_mb</code> 未拉高時，會直接印出該執行的指令並停下來，等你跑完再重試。手動執行：
       </p>
       <p lang="en-GB">
-        But this wrapper&rsquo;s <code>index.ts</code> hard-checks RAM and throws on anything below 128 GB.
-        To run on 96 GB, <em>skip the pi-ds4 wrapper</em> and use the manual ds4-server path in <a href="#shells">§8.6 (C)</a>:
+        Macs in the 96&ndash;127 GB range must raise the Metal wired-memory ceiling first so the 87 GB GGUF fits.
+        When this wrapper&rsquo;s <code>index.ts</code> sees RAM &lt; 128 GB and <code>iogpu.wired_limit_mb</code> still unset/low, it prints the exact command and stops, leaving you to run it once and retry. Manually:
       </p>
       <ol lang="zh-TW">
-        <li>先把 Metal 的 wired memory ceiling 拉高，留 6 GB 給 macOS：<br><code>sudo sysctl iogpu.wired_limit_mb=92000</code></li>
-        <li>clone <code>audreyt/ds4</code>、<code>make ds4-server</code>、抓 IQ2XXS imatrix GGUF（用本擴充的 <code>download_model.sh</code>）、symlink 為 <code>ds4flash.gguf</code>。</li>
-        <li>跑 <code>./ds4-server --ctx 250000 …</code>（其餘旗標見 <a href="#shells">8.6 節</a>）。</li>
+        <li>本次開機立刻生效，留 6 GB 給 macOS：<br><code>sudo sysctl iogpu.wired_limit_mb=92000</code></li>
+        <li>讓設定跨 reboot 保留：<br><code>echo 'iogpu.wired_limit_mb=92000' | sudo tee -a /etc/sysctl.conf</code></li>
+        <li>之後正常 <code>pi install github.com/audreyt/pi-ds4</code> 即可，跟 128 GB 機器流程一致。</li>
       </ol>
       <ol lang="en-GB">
-        <li>Raise the Metal wired-memory ceiling, leaving 6 GB for macOS:<br><code>sudo sysctl iogpu.wired_limit_mb=92000</code></li>
-        <li>Clone <code>audreyt/ds4</code>, run <code>make ds4-server</code>, fetch the IQ2XXS imatrix GGUF (with this extension&rsquo;s <code>download_model.sh</code>), symlink it as <code>ds4flash.gguf</code>.</li>
-        <li>Run <code>./ds4-server --ctx 250000 &hellip;</code> (rest of the flags in <a href="#shells">§8.6</a>).</li>
+        <li>Take effect for this boot, leaving 6 GB for macOS:<br><code>sudo sysctl iogpu.wired_limit_mb=92000</code></li>
+        <li>Persist across reboots:<br><code>echo 'iogpu.wired_limit_mb=92000' | sudo tee -a /etc/sysctl.conf</code></li>
+        <li>Then proceed with the normal <code>pi install github.com/audreyt/pi-ds4</code>, same flow as a 128 GB machine.</li>
       </ol>
       <p lang="zh-TW">
         <strong>注意：</strong>把 <code>iogpu.wired_limit_mb</code> 拉到 92000 後留給系統的餘裕很小，
-        同時開太多其他大型應用可能會把 OS 擠到當機。只有願意自己手動管理記憶體的使用者再嘗試。
+        同時開太多其他大型應用可能會把 OS 擠到當機。若你常常需要在跑 ds4-server 的同時開很多重型應用（IDE、瀏覽器、視訊會議、虛擬機），128 GB 以上的 Mac 會更穩。
       </p>
       <p lang="en-GB">
         <strong>Caveat:</strong> setting <code>iogpu.wired_limit_mb</code> to 92000 leaves very little headroom for the OS;
-        running other heavyweight applications alongside it can wedge macOS. Only attempt this if you are happy to manage memory by hand.
+        running too many other heavyweight applications alongside it can wedge macOS. If you regularly need to run ds4-server alongside many heavy apps (IDE, browser, video calls, VMs), a Mac with 128 GB or more is more stable.
       </p>
     </div>
 
@@ -2189,15 +2190,15 @@ ln -sfn gguf/...gguf <span class="gold">ds4flash.gguf</span></code>
       <strong>cyberneurova abliterated IQ2XXS-w2Q2K aligned-imatrix（~87 GB）</strong>——routed expert 用更省的 IQ2XXS、
       attention/output/embedding 保留 Q8_0，加上 chat-v2 imatrix 校準並以 4096-byte 對齊封裝。
       跟 antirez/ds4 自己散佈的「ds4flash.gguf」（同樣 IQ2XXS-w2Q2K-AProjQ8-SExpQ8-OutQ8 imatrix 配方，只是未經 abliteration）完全相同的量化結構，
-      在 128 GB RAM 的 Mac 上裝得最寬鬆，也是 ds4 引擎本身最熟的格式。
+      在 96 GB Mac 上配合本指南的 sysctl 步驟也跑得動，128 GB 以上 RAM 則裝得最寬鬆；也是 ds4 引擎本身最熟的格式。
     </p>
     <p lang="en-GB">
       This fork's <code>download_model.sh</code> fetches a single GGUF:
       <strong>cyberneurova's abliterated IQ2XXS-w2Q2K aligned-imatrix file (~87 GB)</strong> &mdash; routed experts use the tighter IQ2XXS quant,
       attention/output/embedding stay at Q8_0, with the chat-v2 imatrix calibration packaged at 4096-byte alignment.
       That is the same quantisation recipe antirez/ds4 itself distributes as &ldquo;ds4flash.gguf&rdquo;
-      (the only difference here is that this one was abliterated first), so the ds4 engine treats it as its native format,
-      and it leaves the most headroom on a 128 GB-RAM Mac.
+      (the only difference here is that this one was abliterated first), so the ds4 engine treats it as its native format;
+      it runs on a 96 GB Mac with the sysctl step from §1.1 and leaves the most headroom on a 128 GB+ Mac.
     </p>
 
     <p lang="zh-TW">
@@ -4065,9 +4066,9 @@ STATE=~/.pi/ds4/server.json
         <p lang="zh-TW"><strong>資料主權：</strong>對話不離開你的機器，也不會進入任何訓練資料集。</p>
         <p lang="en-GB"><strong>Data sovereignty:</strong> conversations do not leave your machine and do not enter any training set.</p>
         <p lang="zh-TW"><strong>成本結構：</strong>沒有逐 token 計價、沒有速率限制、沒有訂閱費。
-          代價是一次性的硬體投入（128 GB Mac）與電費。</p>
+          代價是一次性的硬體投入（96 GB 起的 Mac）與電費。</p>
         <p lang="en-GB"><strong>Cost structure:</strong> no per-token pricing, no rate limits, no subscription.
-          The cost is one-off hardware (a 128 GB Mac) plus electricity.</p>
+          The cost is one-off hardware (a 96 GB-or-more Mac) plus electricity.</p>
         <p lang="zh-TW"><strong>能力：</strong>284 B 參數、13 B 啟用的 MoE 是當前開放權重前沿模型的量級；IQ2XXS imatrix 量化會讓某些任務輸給未量化的雲端版本；
           對話品質仍在「可用作日常 coding／寫作助理」的範圍。</p>
         <p lang="en-GB"><strong>Capability:</strong> a 284 B-parameter, 13 B-active MoE is in the bracket of current frontier open-weight models; IQ2XXS imatrix quantisation will lose ground to unquantised cloud versions on some tasks,
@@ -4108,18 +4109,16 @@ STATE=~/.pi/ds4/server.json
     </div>
 
     <div class="faq-item">
-      <div class="faq-q"><span lang="zh-TW">我沒有 128 GB Mac，有沒有替代？</span><span lang="en-GB">I do not have a 128 GB Mac &mdash; are there alternatives?</span></div>
+      <div class="faq-q"><span lang="zh-TW">我沒有 96 GB Mac，有沒有替代？</span><span lang="en-GB">I do not have a 96 GB Mac &mdash; are there alternatives?</span></div>
       <div class="faq-a">
         <p lang="zh-TW">有幾條路：</p>
         <p lang="en-GB">A few options:</p>
         <ul lang="zh-TW">
-          <li><strong>96 GB Mac：</strong>上游已驗證 IQ2XXS imatrix 在 96 GB 上跑得動 250k context、約 27 t/s。本擴充本身硬性檢查 ≥ 128 GB 不會接受這台機器，但可以走 <a href="#ram96">§1.1 末尾「只有 96 GB？」</a>的 bypass 路徑（先 <code>sudo sysctl iogpu.wired_limit_mb=92000</code>，再手動跑 ds4-server）。</li>
           <li><strong>更小的模型本機跑：</strong>用 <code>llama.cpp</code>、<code>MLX</code>、<code>Ollama</code> 跑較小的開放權重模型（Llama、Mistral、Qwen、Gemma 系列等），64 GB Mac 可跑得動 70 B 量級。ds4 引擎本身是專為 DeepSeek V4 Flash 設計的，不適用於其他模型。</li>
           <li><strong>租用雲端 Mac：</strong>例如 MacStadium、Scaleway 提供按小時計費的 M-series 機器。</li>
           <li><strong>直接用 DeepSeek 官方 API：</strong>沒有方向性引導，但有完整能力；費用以 token 計。</li>
         </ul>
         <ul lang="en-GB">
-          <li><strong>96 GB Mac:</strong> upstream has validated that the IQ2XXS imatrix variant runs on 96 GB at 250k context and around 27 t/s. This wrapper hard-checks for ≥ 128 GB and will not accept the machine, but you can take the bypass path described in <a href="#ram96">&ldquo;Only 96 GB?&rdquo; at the end of §1.1</a> (run <code>sudo sysctl iogpu.wired_limit_mb=92000</code>, then drive ds4-server by hand).</li>
           <li><strong>Run a smaller model locally:</strong> use <code>llama.cpp</code>, <code>MLX</code>, or <code>Ollama</code> for smaller open-weight models (Llama, Mistral, Qwen, Gemma families); a 64 GB Mac can drive 70 B-class models. The ds4 engine itself is built specifically for DeepSeek V4 Flash and does not apply to other models.</li>
           <li><strong>Rent a cloud Mac:</strong> services like MacStadium or Scaleway offer per-hour M-series machines.</li>
           <li><strong>Use the DeepSeek official API directly:</strong> no directional steering but full capability; billed per token.</li>
