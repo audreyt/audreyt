@@ -3522,7 +3522,10 @@ chmod +x download_cyberneurova.sh
       （<code>ds4_cuda.cu</code>，~10k 行 NVIDIA kernel），用 <code>nvcc</code> 編出一顆
       原生 ds4-server。也就是說：NVIDIA DGX Spark（GB10、~128 GB 統一記憶體、aarch64 Linux）
       上跑的不是某個 llama.cpp 旁路，而是<em>同一隻 engine、同一份 server、
-      同一組 <code>--dir-steering-*</code> flag</em>。
+      同一組 <code>--dir-steering-*</code> flag</em>。Spark 上直接
+      <code>pi install audreyt/pi-ds4</code> 即可——clone、<code>make ds4-server</code>（自動走 nvcc + CUDA）、
+      下載 cyberneurova aligned-imatrix GGUF、起 server，
+      整套流程與 Mac 上的安裝一字不差。
     </p>
     <p lang="en-GB">
       You do not have to use a Mac. The <code>Makefile</code> of <a href="https://github.com/audreyt/ds4"><code>audreyt/ds4</code></a>
@@ -3530,37 +3533,11 @@ chmod +x download_cyberneurova.sh
       (<code>ds4_cuda.cu</code>, around 10k lines of NVIDIA kernel), using <code>nvcc</code> to build a
       native ds4-server. That is: on the NVIDIA DGX Spark (GB10, ~128 GB unified memory, aarch64 Linux),
       what runs is not some llama.cpp sidecar but the <em>same engine, the same server,
-      the same <code>--dir-steering-*</code> flags</em>.
+      the same <code>--dir-steering-*</code> flags</em>. On the Spark just run
+      <code>pi install audreyt/pi-ds4</code>: it clones, runs <code>make ds4-server</code>
+      (which auto-selects nvcc + CUDA), downloads the cyberneurova aligned-imatrix GGUF,
+      and spawns the server &mdash; the same flow as on a Mac.
     </p>
-
-    <div class="codeblock">
-      <div class="codeblock-bar">
-        <span class="codeblock-label"><span lang="zh-TW">在 DGX Spark 上 build + run（同一個 engine）</span><span lang="en-GB">Build + run on DGX Spark (the same engine)</span></span>
-        <button class="copy-btn" aria-label="Copy ds4 build and run commands for DGX Spark">Copy</button>
-      </div>
-      <pre><span class="c"># <span lang="zh-TW">前置：apt install build-essential cmake；已裝好 CUDA toolkit（DGX Spark 預設帶 /usr/local/cuda）</span><span lang="en-GB">Prerequisites: apt install build-essential cmake; CUDA toolkit already installed (DGX Spark ships /usr/local/cuda by default)</span></span>
-
-git clone https://github.com/audreyt/ds4
-<span class="k">cd</span> ds4
-make ds4-server         <span class="c"># <span lang="zh-TW">Linux 自動走 nvcc + ds4_cuda.cu，CUDA_ARCH=native 預設</span><span lang="en-GB">Linux automatically uses nvcc + ds4_cuda.cu; CUDA_ARCH=native is the default</span></span>
-
-<span class="c"># <span lang="zh-TW">下載 cyberneurova abliterated IQ2XXS aligned-imatrix GGUF——注意，ds4 本身的 download_model.sh 是 antirez stock-recipe，</span><span lang="en-GB">Download the cyberneurova abliterated IQ2XXS aligned-imatrix GGUF &mdash; note that ds4's own download_model.sh is the antirez stock-recipe</span></span>
-<span class="c"># <span lang="zh-TW">不會抓到 cyberneurova。用 pi-ds4 內附的同名腳本：</span><span lang="en-GB">and will not fetch cyberneurova. Use the same-named script bundled with pi-ds4:</span></span>
-curl -fL -o download_cyberneurova.sh \
-  https://raw.githubusercontent.com/audreyt/pi-ds4/main/download_model.sh
-chmod +x download_cyberneurova.sh
-./download_cyberneurova.sh q2
-
-<span class="c"># <span lang="zh-TW">起 server。bind 127.0.0.1：要對 LAN 開放，自己加 firewall/Tailscale/reverse-proxy。</span><span lang="en-GB">Start the server. It binds 127.0.0.1: to open it to the LAN, add your own firewall / Tailscale / reverse proxy.</span></span>
-<span class="c"># <span lang="zh-TW">引導參數一字不改，與 Mac 路徑一致。Metal Tensor 是 Mac 專屬，CUDA 範例不加 --mt。</span><span lang="en-GB">Steering parameters are identical to the Mac path. Metal Tensor is Mac-only, so this CUDA example omits --mt.</span></span>
-mkdir -p /var/cache/ds4-kv
-./ds4-server \
-  --ctx 32768 \
-  --kv-disk-dir /var/cache/ds4-kv --kv-disk-space-mb 8192 \
-  --dir-steering-file dir-steering/out/uncertainty_ablit_imatrix.f32 \
-  --dir-steering-ffn -2 \
-  --dir-steering-attn -0.5</pre>
-    </div>
 
     <p lang="zh-TW">
       Endpoint 起來之後，前面 8.2～8.5 的設定原則上一字不改都能用（把
@@ -3582,9 +3559,9 @@ mkdir -p /var/cache/ds4-kv
         <strong>watchdog／lease 在 Linux 也能跑：</strong>pi-ds4 的
         <code>ds4-watchdog.sh</code> 走 BSD／GNU 雙路徑（<code>stat -f %m</code> ↔
         <code>stat -c %Y</code>、<code>LC_ALL=C ps -o lstart</code>），所以第七章的
-        lifecycle 管理在 DGX Spark 上 <code>pi install audreyt/pi-ds4</code> 一樣
-        work。當然，想跳過 pi 自動化的話，下面手動 <code>ds4-server</code>／systemd
-        unit／tmux session 也都還是有效路徑。
+        lifecycle 管理直接覆蓋 DGX Spark。想跳過 pi 自動化，自己手動
+        <code>./ds4-server</code>／寫個 systemd unit／開 tmux session
+        當然也都還是有效路徑。
       </li>
       <li>
         <strong>沒有 M5 Metal Tensor 那條曲線：</strong>本指南約 370 t/s 的預設 profile 是 M5 Max 上的數字；
@@ -3592,9 +3569,11 @@ mkdir -p /var/cache/ds4-kv
         （<code>CUDA_ARCH=native</code> 已是預設，不必再調）。
       </li>
       <li>
-        <strong>Context 預設值：</strong>Mac 路徑下 pi-ds4 預設 <code>--ctx 100000</code>，
-        是經過 M5 + Metal KV cache 驗證的值；DGX Spark 上的長 context 行為
-        尚未在本指南範圍內基準過，建議從 <code>--ctx 32768</code> 起步。
+        <strong>Spark 上的長 context 還沒基準過：</strong>pi-ds4 在 Mac／Linux
+        兩邊都統一送 <code>--ctx 100000</code>（M5 + Metal KV cache 驗證的值）；
+        Spark 上的 KV cache 與長 context 行為尚未在本指南範圍內測過，
+        遇到吞吐／記憶體壓力時，手動跑 <code>ds4-server</code> 並把
+        <code>--ctx</code> 降到 32768 是穩當的起點。
       </li>
     </ul>
     <ul lang="en-GB">
@@ -3608,11 +3587,9 @@ mkdir -p /var/cache/ds4-kv
         <strong>Watchdog / lease works on Linux too:</strong> pi-ds4's
         <code>ds4-watchdog.sh</code> now handles both BSD and GNU userlands
         (<code>stat -f %m</code> ↔ <code>stat -c %Y</code>, <code>LC_ALL=C ps -o lstart</code>),
-        so the Chapter 7 lifecycle management covers DGX Spark as well &mdash;
-        <code>pi install audreyt/pi-ds4</code> on the Spark just works. If you'd
-        rather skip the pi automation, the manual <code>ds4-server</code>
-        invocation below, a systemd unit, or a tmux session are all still
-        valid.
+        so the Chapter 7 lifecycle management covers DGX Spark directly.
+        If you'd rather skip the pi automation, running <code>./ds4-server</code>
+        by hand, a systemd unit, or a tmux session are all still valid.
       </li>
       <li>
         <strong>No M5 Metal Tensor curve:</strong> the roughly 370 t/s default-profile figure in this guide is from M5 Max;
@@ -3620,9 +3597,12 @@ mkdir -p /var/cache/ds4-kv
         (<code>CUDA_ARCH=native</code> is already the default, no further tuning needed).
       </li>
       <li>
-        <strong>Default context window:</strong> on the Mac path, pi-ds4 defaults to <code>--ctx 100000</code>,
-        a value validated on M5 + Metal KV cache; long-context behaviour on DGX Spark
-        is not yet benchmarked within this guide's scope, so start with <code>--ctx 32768</code>.
+        <strong>Long context on Spark is not yet benchmarked:</strong> pi-ds4
+        sends <code>--ctx 100000</code> on both Mac and Linux (the value
+        validated on M5 + Metal KV cache). KV-cache and long-context behaviour
+        on Spark is outside this guide's scope; if you hit throughput or memory
+        pressure, run <code>ds4-server</code> by hand and start at
+        <code>--ctx 32768</code>.
       </li>
     </ul>
 
