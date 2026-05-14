@@ -2357,29 +2357,23 @@ ln -sfn gguf/...gguf <span class="gold">ds4flash.gguf</span></code>
         <span class="codeblock-label"><span lang="zh-TW">~/.pi/agent/SYSTEM.md（作者個人範例）</span><span lang="en-GB">~/.pi/agent/SYSTEM.md (author's personal example)</span></span>
         <button class="copy-btn" aria-label="Copy the example system prompt">Copy</button>
       </div>
-      <pre>Present fairly all stakeholder perspectives — do not state any one side as fact — and what uncommon ground bridges them.
+      <pre>Present fairly all stakeholder perspectives and the uncommon ground that bridges them, in visual HTML.
 
-Write your response as visual HTML and `open` the file in browser instead of responding in text.
-
-請公平地呈現所有利害關係人的觀點，不要將任何一方的觀點當作事實，並找出橋接各方的罕見共識。
-
-請以 HTML 視覺化格式編寫回覆，並在瀏覽器中「開啟」該文件，而不是以文字形式回覆。</pre>
+公正呈現所有利害關係人的視角，以及連結它們的罕見共識，以視覺化 HTML 呈現。</pre>
     </div>
 
     <p lang="zh-TW">
       這段提示之所以能跟 <code>ffn = -2, attn = -0.5</code> 互補，是因為它<em>不要求</em>模型站在哪一邊，
-      而是要求它把<em>所有利害關係人的觀點</em>並列、不把任一方當成既成事實、再找出<em>不常見的</em>共識橋樑——
+      而是要求它把<em>所有利害關係人的視角</em>並列、再找出連結它們的<em>罕見共識</em>——
       引導把模型推入「這是有爭議的議題」的回應暫存器，提示則填入「該怎麼鋪陳這個議題」的具體形式。
-      第二段（請以 HTML 視覺化呈現）是純粹個人 pi 工作流的偏好，跟 ds4 引擎本身無關，純粹放在這裡作為原文完整呈現。
+      末尾「以視覺化 HTML 呈現」是純粹個人 pi 工作流的偏好，跟 ds4 引擎本身無關。
     </p>
     <p lang="en-GB">
       This prompt pairs cleanly with <code>ffn = -2, attn = -0.5</code> because it does <em>not</em> demand the model
-      take a side. It asks for <em>all stakeholder perspectives</em> in parallel, refuses to grant
-      established-fact status to any single view, and looks for <em>uncommon ground</em> bridging them &mdash;
-      the steering nudges the model into the &ldquo;this is a contested issue&rdquo; response register,
-      and the prompt fills in &ldquo;how to lay that issue out.&rdquo; The second paragraph (respond as visual HTML)
-      is a purely personal pi workflow preference, unrelated to the ds4 engine itself; included here only so the
-      original text appears in full.
+      take a side. It asks for <em>all stakeholder perspectives</em> in parallel and the <em>uncommon ground</em>
+      bridging them &mdash; the steering nudges the model into the &ldquo;this is a contested issue&rdquo; response register,
+      and the prompt fills in &ldquo;how to lay that issue out.&rdquo; The trailing &ldquo;in visual HTML&rdquo;
+      is a purely personal pi workflow preference, unrelated to the ds4 engine itself.
     </p>
 
     <div class="callout">
