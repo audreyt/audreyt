@@ -2037,8 +2037,8 @@ ln -sfn gguf/...gguf <span class="gold">ds4flash.gguf</span></code>
   --kv-disk-space-mb <span class="gold">8192</span> \
   --mt <span class="gold">auto</span> \
   --dir-steering-file <span class="teal">dir-steering/out/uncertainty_ablit_imatrix.f32</span> \
-  --dir-steering-ffn  <span class="teal">-2</span> \
-  --dir-steering-attn <span class="teal">-0.5</span></code>
+  --dir-steering-ffn  <span class="teal">-0.75</span> \
+  --dir-steering-attn <span class="teal">0</span></code>
         </div>
       </li>
       <li>
@@ -2236,12 +2236,12 @@ ln -sfn gguf/...gguf <span class="gold">ds4flash.gguf</span></code>
     <p class="lede" lang="zh-TW">
       如果這整套 fork 只有一個值得單獨保留的功能，那就是<em>方向性引導</em>
       （directional steering）——一種不重訓模型、只在執行期間對特定方向做低秩活化編輯的技術。
-      本分支預設啟用「不確定性」（uncertainty）方向，並設定強度 <code>ffn = -2</code>、<code>attn = -0.5</code>。
+      本分支預設啟用「不確定性」（uncertainty）方向，並設定成工具友善的 FFN-only 強度 <code>ffn = -0.75</code>、<code>attn = 0</code>。
     </p>
     <p class="lede" lang="en-GB">
       If only one feature of this whole fork were worth preserving on its own, it would be <em>directional steering</em>
       &mdash; a technique that does not retrain the model and only performs low-rank activation edits along a chosen direction at runtime.
-      This fork enables the &ldquo;uncertainty&rdquo; direction by default, at <code>ffn = -2</code>, <code>attn = -0.5</code>.
+      This fork enables the &ldquo;uncertainty&rdquo; direction by default at a tool-friendly FFN-only strength: <code>ffn = -0.75</code>, <code>attn = 0</code>.
     </p>
 
     <h3>4.1<span lang="zh-TW">　它解決什麼問題</span><span lang="en-GB">　The problem it solves</span></h3>
@@ -2329,12 +2329,12 @@ ln -sfn gguf/...gguf <span class="gold">ds4flash.gguf</span></code>
     <ul lang="zh-TW">
       <li><strong>引導 + system prompt 是一組</strong>：純引導沒有提示時，
         模型只會「猶豫」；純 hedge 提示沒有引導時，模型會被訓練封鎖壓回去。兩者合用才產生效果。</li>
-      <li><strong><code>ffn=-2, attn=-0.5</code> 是預設點</strong>：在 cyberneurova-abliterated aligned-imatrix 上，以 seed 42 與穩定工具 ID 的 deterministic 路徑實測最穩。若要較弱引導，可退回 <code>ffn=-1, attn=0</code>；更強負值容易重複塌陷或跨語言亂碼。</li>
+      <li><strong><code>ffn=-0.75, attn=0</code> 是預設點</strong>：在 cyberneurova-abliterated aligned-imatrix 上，以 seed 42、穩定工具 ID、50k+ token Codex harness prompt 實測能保留 stakeholder-framing nudge，同時不干擾 DSML／tool-call grammar。若還看到工具怪異，可退回 <code>ffn=-0.5, attn=0</code>；舊的 <code>ffn=-2, attn=-0.5</code> 酸測設定只適合隔離評估，容易重複塌陷或跨語言亂碼。</li>
     </ul>
     <ul lang="en-GB">
       <li><strong>Steering + system prompt go together</strong>: with steering alone and no prompt,
         the model just &ldquo;hesitates&rdquo;; with a hedge prompt and no steering, the trained lock pushes it back. Only together do they take effect.</li>
-      <li><strong><code>ffn=-2, attn=-0.5</code> is the default point</strong>: empirically, on the cyberneurova-abliterated aligned-imatrix build, this is the most stable deterministic path with seed 42 and stable tool IDs. For a weaker nudge, use <code>ffn=-1, attn=0</code>; stronger negative values can collapse into repetition or cross-lingual gibberish.</li>
+      <li><strong><code>ffn=-0.75, attn=0</code> is the default point</strong>: empirically, on the cyberneurova-abliterated aligned-imatrix build, this preserves the stakeholder-framing nudge on the seed-42 stable-tool-ID path while keeping 50k+ token Codex harness prompts and DSML/tool-call grammar intact. If tool weirdness returns, fall back to <code>ffn=-0.5, attn=0</code>; the older <code>ffn=-2, attn=-0.5</code> acid-test setting is for isolated evaluation and can collapse into repetition or cross-lingual gibberish.</li>
     </ul>
 
     <h3>4.5<span lang="zh-TW">　搭配的 system prompt（範例，非預設）</span><span lang="en-GB">　A paired system prompt (example, not the default)</span></h3>
@@ -2364,13 +2364,13 @@ ln -sfn gguf/...gguf <span class="gold">ds4flash.gguf</span></code>
     </div>
 
     <p lang="zh-TW">
-      這段提示之所以能跟 <code>ffn = -2, attn = -0.5</code> 互補，是因為它<em>不要求</em>模型站在哪一邊，
+      這段提示之所以能跟 <code>ffn = -0.75, attn = 0</code> 互補，是因為它<em>不要求</em>模型站在哪一邊，
       而是要求它把<em>所有利害關係人的視角</em>並列、再找出連結它們的<em>罕見共識</em>——
       引導把模型推入「這是有爭議的議題」的回應暫存器，提示則填入「該怎麼鋪陳這個議題」的具體形式。
       末尾「以視覺化 HTML 呈現」是純粹個人 pi 工作流的偏好，跟 ds4 引擎本身無關。
     </p>
     <p lang="en-GB">
-      This prompt pairs cleanly with <code>ffn = -2, attn = -0.5</code> because it does <em>not</em> demand the model
+      This prompt pairs cleanly with <code>ffn = -0.75, attn = 0</code> because it does <em>not</em> demand the model
       take a side. It asks for <em>all stakeholder perspectives</em> in parallel and the <em>uncommon ground</em>
       bridging them &mdash; the steering nudges the model into the &ldquo;this is a contested issue&rdquo; response register,
       and the prompt fills in &ldquo;how to lay that issue out.&rdquo; The trailing &ldquo;in visual HTML&rdquo;
@@ -2393,20 +2393,21 @@ ln -sfn gguf/...gguf <span class="gold">ds4flash.gguf</span></code>
 
     <p lang="zh-TW">
       若你寧可看模型未經引導的原樣回答（例如做評估或 benchmark），
-      把 <code>DS4_DIR_STEERING_FFN</code> 設成 <code>0</code> 即可：
+      把 <code>DS4_DIR_STEERING_FFN</code> 與 <code>DS4_DIR_STEERING_ATTN</code> 都設成 <code>0</code> 即可：
     </p>
     <p lang="en-GB">
       If you would rather see the model's unsteered raw answer (for evaluation or benchmarking, say),
-      just set <code>DS4_DIR_STEERING_FFN</code> to <code>0</code>:
+      set both <code>DS4_DIR_STEERING_FFN</code> and <code>DS4_DIR_STEERING_ATTN</code> to <code>0</code>:
     </p>
 
     <div class="codeblock">
       <div class="codeblock-bar">
         <span class="codeblock-label"><span lang="zh-TW">完全停用引導</span><span lang="en-GB">Disable steering entirely</span></span>
-        <button class="copy-btn" data-copy="export DS4_DIR_STEERING_FFN=0" aria-label="Copy command to disable directional steering">Copy</button>
+        <button class="copy-btn" data-copy="export DS4_DIR_STEERING_FFN=0&#10;export DS4_DIR_STEERING_ATTN=0" aria-label="Copy command to disable directional steering">Copy</button>
       </div>
       <pre><span class="c"># <span lang="zh-TW">在啟動 pi 之前的 shell 加入：</span><span lang="en-GB">Add to the shell before launching pi:</span></span>
-<span class="k">export</span> DS4_DIR_STEERING_FFN<span class="k">=</span><span class="v">0</span></pre>
+<span class="k">export</span> DS4_DIR_STEERING_FFN<span class="k">=</span><span class="v">0</span>
+<span class="k">export</span> DS4_DIR_STEERING_ATTN<span class="k">=</span><span class="v">0</span></pre>
     </div>
 
     <p lang="zh-TW">
@@ -2574,17 +2575,17 @@ ln -sfn gguf/...gguf <span class="gold">ds4flash.gguf</span></code>
         </dd>
       </div>
       <div class="dl-row">
-        <dt>DS4_DIR_STEERING_FFN<span class="default"><span lang="zh-TW">預設 · -2</span><span lang="en-GB">default &middot; -2</span></span></dt>
+        <dt>DS4_DIR_STEERING_FFN<span class="default"><span lang="zh-TW">預設 · -0.75</span><span lang="en-GB">default &middot; -0.75</span></span></dt>
         <dd>
           <p lang="zh-TW">FFN 輸出端的引導強度。負值放大「向量代表的方向」，正值則反向。設 <code>0</code> 即停用 FFN 端引導。</p>
           <p lang="en-GB">Steering strength at the FFN output. Negative values amplify &ldquo;the direction the vector represents&rdquo;; positive values invert it. Set to <code>0</code> to disable FFN-side steering.</p>
         </dd>
       </div>
       <div class="dl-row">
-        <dt>DS4_DIR_STEERING_ATTN<span class="default"><span lang="zh-TW">預設 · -0.5</span><span lang="en-GB">default &middot; -0.5</span></span></dt>
+        <dt>DS4_DIR_STEERING_ATTN<span class="default"><span lang="zh-TW">預設 · 0</span><span lang="en-GB">default &middot; 0</span></span></dt>
         <dd>
-          <p lang="zh-TW">Attention 輸出端的引導強度。預設配合 <code>ffn=-2</code> 使用 <code>-0.5</code>；設為 <code>0</code> 可關閉 attention 端引導。</p>
-          <p lang="en-GB">Steering strength at the attention output. Defaults to <code>-0.5</code> alongside <code>ffn=-2</code>; set it to <code>0</code> to disable attention-side steering.</p>
+          <p lang="zh-TW">Attention 輸出端的引導強度。工具啟用的 agent 路徑預設保持 <code>0</code>；非零 attention 引導建議只留給隔離評估 sweep。</p>
+          <p lang="en-GB">Steering strength at the attention output. Tool-enabled agent paths keep this at <code>0</code> by default; reserve nonzero attention steering for isolated evaluation sweeps.</p>
         </dd>
       </div>
     </dl>
@@ -3267,13 +3268,17 @@ enabled = true</pre>
       <code>api-proxy</code>，把 <code>http://api-proxy:1234/v1</code>
       轉到 host 的 <code>http://127.0.0.1:8000/v1</code>。首次 Codex harness
       turn 常會帶 50k+ tokens 的工具 prompt；打開 ds4-server 的 disk KV cache 會讓後續重試與相近 session 快很多。
+      這條路徑請保留預設 FFN-only 引導（<code>DS4_DIR_STEERING_FFN=-0.75</code>、<code>DS4_DIR_STEERING_ATTN=0</code>）；
+      舊的 <code>ffn=-2, attn=-0.5</code> 酸測設定在長工具 prompt 上可能滲進 DSML／tool-call 語法。
     </p>
     <p lang="en-GB">
       If OpenClaw runs inside Docker / OrbStack, <code>127.0.0.1</code> inside the container is the container itself.
       Use <code>host.docker.internal:8000</code>, or put a passthrough <code>api-proxy</code> in front as above, so
       <code>http://api-proxy:1234/v1</code> forwards to the host's <code>http://127.0.0.1:8000/v1</code>.
       The first Codex-harness turn often carries a 50k+ token tool prompt; enabling ds4-server's disk KV cache
-      makes retries and nearby sessions much faster.
+      makes retries and nearby sessions much faster. Keep directional steering on the default FFN-only setting
+      (<code>DS4_DIR_STEERING_FFN=-0.75</code>, <code>DS4_DIR_STEERING_ATTN=0</code>) for this route; the older
+      <code>ffn=-2, attn=-0.5</code> acid-test setting can leak into DSML/tool-call syntax on long harness prompts.
     </p>
 
     <h3>8.4<span lang="zh-TW">　Hermes Agent</span><span lang="en-GB">　Hermes Agent</span></h3>
@@ -3401,7 +3406,8 @@ resp = client.responses.create(
   --kv-disk-dir ~/.pi/ds4/kv --kv-disk-space-mb 8192 \
   --mt auto \
   --dir-steering-file dir-steering/out/uncertainty_ablit_imatrix.f32 \
-  --dir-steering-ffn -2</pre>
+  --dir-steering-ffn -0.75 \
+  --dir-steering-attn 0</pre>
         </div>
         這條等同於 <code>index.ts</code> 內建的 spawn 參數；你也可以依需求自訂。
       </li>
@@ -3432,7 +3438,8 @@ chmod +x download_cyberneurova.sh
   --kv-disk-dir ./kv --kv-disk-space-mb 8192 \
   --mt auto \
   --dir-steering-file dir-steering/out/uncertainty_ablit_imatrix.f32 \
-  --dir-steering-ffn -2</pre>
+  --dir-steering-ffn -0.75 \
+  --dir-steering-attn 0</pre>
         </div>
         這條路徑下你完全沒碰 pi；ds4-server 直接由 ds4 source tree 提供。
         本擴充（pi-ds4）做的事——下載、symlink、watchdog、lease——你需要時自己處理。
@@ -3457,7 +3464,8 @@ chmod +x download_cyberneurova.sh
   --kv-disk-dir ~/.pi/ds4/kv --kv-disk-space-mb 8192 \
   --mt auto \
   --dir-steering-file dir-steering/out/uncertainty_ablit_imatrix.f32 \
-  --dir-steering-ffn -2</pre>
+  --dir-steering-ffn -0.75 \
+  --dir-steering-attn 0</pre>
         </div>
         This is equivalent to the spawn parameters baked into <code>index.ts</code>; you can also adjust them as needed.
       </li>
@@ -3488,7 +3496,8 @@ chmod +x download_cyberneurova.sh
   --kv-disk-dir ./kv --kv-disk-space-mb 8192 \
   --mt auto \
   --dir-steering-file dir-steering/out/uncertainty_ablit_imatrix.f32 \
-  --dir-steering-ffn -2</pre>
+  --dir-steering-ffn -0.75 \
+  --dir-steering-attn 0</pre>
         </div>
         On this path you touch no pi at all; ds4-server comes directly from the ds4 source tree.
         Whatever the extension (pi-ds4) does &mdash; download, symlink, watchdog, lease &mdash; you handle yourself when needed.
@@ -3983,7 +3992,8 @@ STATE=~/.pi/ds4/server.json
       <li>設定環境變數：
         <ul>
           <li><code>DS4_DIR_STEERING_FILE=dir-steering/out/my-direction.f32</code></li>
-          <li><code>DS4_DIR_STEERING_FFN=-2</code>（或自己摸出來的甜蜜點）</li>
+          <li><code>DS4_DIR_STEERING_FFN=-0.75</code>（或自己摸出來的甜蜜點）</li>
+          <li><code>DS4_DIR_STEERING_ATTN=0</code>（工具啟用時建議保持 0）</li>
         </ul>
       </li>
       <li>重啟 ds4-server，測試。</li>
@@ -3996,7 +4006,8 @@ STATE=~/.pi/ds4/server.json
       <li>set the environment:
         <ul>
           <li><code>DS4_DIR_STEERING_FILE=dir-steering/out/my-direction.f32</code></li>
-          <li><code>DS4_DIR_STEERING_FFN=-2</code> (or your own sweet spot)</li>
+          <li><code>DS4_DIR_STEERING_FFN=-0.75</code> (or your own sweet spot)</li>
+          <li><code>DS4_DIR_STEERING_ATTN=0</code> (keep this at 0 when tools are enabled)</li>
         </ul>
       </li>
       <li>Restart ds4-server and test.</li>
@@ -4124,9 +4135,9 @@ STATE=~/.pi/ds4/server.json
           <li><strong>Use the DeepSeek official API directly:</strong> no directional steering but full capability; billed per token.</li>
         </ul>
         <p lang="zh-TW">本分支的「不確定性引導」是搭配這顆 abliterated GGUF 設計的，
-          它的具體甜蜜點（<code>ffn=-2</code>）不一定能直接搬到其他模型；要用同樣機制需要自己重做向量。</p>
+          它的具體甜蜜點（工具路徑預設 <code>ffn=-0.75, attn=0</code>）不一定能直接搬到其他模型；要用同樣機制需要自己重做向量。</p>
         <p lang="en-GB">This fork's &ldquo;uncertainty steering&rdquo; is designed to pair with this particular abliterated GGUF,
-          and its specific sweet spot (<code>ffn=-2</code>) may not carry over directly to other models; to use the same mechanism elsewhere, you will need to rebuild the vector yourself.</p>
+          and its specific sweet spot (tool-path default <code>ffn=-0.75, attn=0</code>) may not carry over directly to other models; to use the same mechanism elsewhere, you will need to rebuild the vector yourself.</p>
       </div>
     </div>
 
@@ -4162,9 +4173,9 @@ STATE=~/.pi/ds4/server.json
           which means modifying the model itself. The two work in different directions &mdash; jailbreaks bypass on the input side, abliteration adjusts the model side.
           This fork's directional steering is yet another layer (runtime low-rank activation editing), distinct from both.</p>
         <p lang="zh-TW">如果你想看原始未動過的 DeepSeek V4 Flash 行為，用上游 antirez/ds4 的 stock-recipe GGUF；
-          要關掉本分支的方向性引導，設 <code>DS4_DIR_STEERING_FFN=0</code>。</p>
+          要關掉本分支的方向性引導，設 <code>DS4_DIR_STEERING_FFN=0</code> 與 <code>DS4_DIR_STEERING_ATTN=0</code>。</p>
         <p lang="en-GB">If you want the original untouched DeepSeek V4 Flash behaviour, use the upstream stock-recipe GGUF from antirez/ds4;
-          to turn off this fork's directional steering, set <code>DS4_DIR_STEERING_FFN=0</code>.</p>
+          to turn off this fork's directional steering, set <code>DS4_DIR_STEERING_FFN=0</code> and <code>DS4_DIR_STEERING_ATTN=0</code>.</p>
       </div>
     </div>
 
@@ -4351,8 +4362,8 @@ STATE=~/.pi/ds4/server.json
       </div>
       <div>
         <dt>FFN / Attention<span class="cjk-aside">前饋／注意力</span></dt>
-        <dd lang="zh-TW">Transformer 內的兩個主要計算組件。本分支預設在 FFN 輸出端使用 <code>ffn=-2</code>，並在 attention 輸出端加上較小的 <code>attn=-0.5</code>。</dd>
-        <dd lang="en-GB">The two main compute components inside a Transformer. This fork defaults to <code>ffn=-2</code> at the FFN output plus a smaller <code>attn=-0.5</code> attention-side nudge.</dd>
+        <dd lang="zh-TW">Transformer 內的兩個主要計算組件。本分支預設只在 FFN 輸出端使用 <code>ffn=-0.75</code>，並保持 attention 端 <code>attn=0</code>，避免干擾工具呼叫語法。</dd>
+        <dd lang="en-GB">The two main compute components inside a Transformer. This fork defaults to an FFN-only <code>ffn=-0.75</code> nudge and keeps attention at <code>attn=0</code> to avoid disturbing tool-call syntax.</dd>
       </div>
       <div>
         <dt>uncertainty direction<span class="cjk-aside">不確定性方向</span></dt>
