@@ -1680,13 +1680,13 @@ document.documentElement.classList.add('js');
 
     <h3><span lang="zh-TW">我需要付出什麼？</span><span lang="en-GB">What does it cost me?</span></h3>
     <ul lang="zh-TW">
-      <li><strong>硬體：</strong>一台 RAM 128 GB 以上的 Apple Silicon Mac（M2 Ultra、M3 Max+、M4 Pro+、或 M5）。<a href="#otherhw">NVIDIA DGX Spark 等 128 GB 統一記憶體機型</a>也跑得動<em>同一隻 ds4 引擎</em>（<code>audreyt/ds4</code> 的 Makefile 在 Linux 上自動編譯 CUDA 路徑）——只是本擴充 pi-ds4 的 lifecycle wrapper 是 Mac-only，Linux 上自己跑 ds4-server 即可。</li>
+      <li><strong>硬體：</strong>一台 RAM 128 GB 以上的 Apple Silicon Mac（M2 Ultra、M3 Max+、M4 Pro+、或 M5）。<a href="#otherhw">NVIDIA DGX Spark 等 128 GB 統一記憶體機型</a>也跑得動<em>同一隻 ds4 引擎</em>（<code>audreyt/ds4</code> 的 Makefile 在 Linux 上自動編譯 CUDA 路徑），而且 pi-ds4 的 lifecycle wrapper（<code>ds4-watchdog.sh</code>）現在 BSD／GNU 雙路徑都吃，DGX Spark 上 <code>pi install</code> 一樣 work；想跳過 wrapper 自己跑 ds4-server 也可以。</li>
       <li><strong>磁碟：</strong>至少 120 GB 空閒空間。</li>
       <li><strong>時間：</strong>第一次安裝會下載 87 GB 模型檔，視網速 1～3 小時起跳。</li>
       <li><strong>不需要：</strong>GPU、付費 API、登入帳號、把任何資料送上雲端。</li>
     </ul>
     <ul lang="en-GB">
-      <li><strong>Hardware:</strong> an Apple Silicon Mac with at least 128 GB of RAM (M2 Ultra, M3 Max+, M4 Pro+, or M5). <a href="#otherhw">NVIDIA DGX Spark and other 128-GB unified-memory boxes</a> can run <em>the same ds4 engine</em> &mdash; <code>audreyt/ds4</code>&rsquo;s Makefile auto-builds the CUDA path on Linux. Only pi-ds4&rsquo;s lifecycle wrapper is Mac-only; on Linux you just run ds4-server yourself.</li>
+      <li><strong>Hardware:</strong> an Apple Silicon Mac with at least 128 GB of RAM (M2 Ultra, M3 Max+, M4 Pro+, or M5). <a href="#otherhw">NVIDIA DGX Spark and other 128-GB unified-memory boxes</a> can run <em>the same ds4 engine</em> &mdash; <code>audreyt/ds4</code>&rsquo;s Makefile auto-builds the CUDA path on Linux, and pi-ds4&rsquo;s lifecycle wrapper (<code>ds4-watchdog.sh</code>) now handles both BSD and GNU userlands, so <code>pi install</code> works on DGX Spark too; you can still run ds4-server by hand if you&rsquo;d rather skip the wrapper.</li>
       <li><strong>Disk:</strong> at least 120 GB of free space.</li>
       <li><strong>Time:</strong> the first install downloads a 87-GB model file &mdash; about 1&ndash;3 hours depending on bandwidth.</li>
       <li><strong>Not required:</strong> a GPU, a paid API, an account login, or sending any data to the cloud.</li>
@@ -3579,9 +3579,12 @@ mkdir -p /var/cache/ds4-kv
         改成 <code>0.0.0.0</code> 暴露在區網。
       </li>
       <li>
-        <strong>沒有 pi-ds4 的 watchdog／lease：</strong>pi-ds4 的 lifecycle
-        管理（<a href="#daily">第七章</a>）是 macOS 路徑下的擴充——
-        Linux 上自己寫 systemd unit、或留個 tmux session 跑著即可。
+        <strong>watchdog／lease 在 Linux 也能跑：</strong>pi-ds4 的
+        <code>ds4-watchdog.sh</code> 走 BSD／GNU 雙路徑（<code>stat -f %m</code> ↔
+        <code>stat -c %Y</code>、<code>LC_ALL=C ps -o lstart</code>），所以第七章的
+        lifecycle 管理在 DGX Spark 上 <code>pi install audreyt/pi-ds4</code> 一樣
+        work。當然，想跳過 pi 自動化的話，下面手動 <code>ds4-server</code>／systemd
+        unit／tmux session 也都還是有效路徑。
       </li>
       <li>
         <strong>沒有 M5 Metal Tensor 那條曲線：</strong>本指南約 370 t/s 的預設 profile 是 M5 Max 上的數字；
@@ -3602,9 +3605,14 @@ mkdir -p /var/cache/ds4-kv
         to <code>0.0.0.0</code> and exposing it on the LAN directly.
       </li>
       <li>
-        <strong>No pi-ds4 watchdog / lease:</strong> pi-ds4's lifecycle management
-        (<a href="#daily">Chapter 7</a>) is the macOS-path extension &mdash;
-        on Linux, write a systemd unit yourself or keep a tmux session running.
+        <strong>Watchdog / lease works on Linux too:</strong> pi-ds4's
+        <code>ds4-watchdog.sh</code> now handles both BSD and GNU userlands
+        (<code>stat -f %m</code> ↔ <code>stat -c %Y</code>, <code>LC_ALL=C ps -o lstart</code>),
+        so the Chapter 7 lifecycle management covers DGX Spark as well &mdash;
+        <code>pi install audreyt/pi-ds4</code> on the Spark just works. If you'd
+        rather skip the pi automation, the manual <code>ds4-server</code>
+        invocation below, a systemd unit, or a tmux session are all still
+        valid.
       </li>
       <li>
         <strong>No M5 Metal Tensor curve:</strong> the roughly 370 t/s default-profile figure in this guide is from M5 Max;
@@ -3621,14 +3629,17 @@ mkdir -p /var/cache/ds4-kv
     <p lang="zh-TW">
       換句話說，這不是「同一份 GGUF、不同 runtime」的勉強相容，而是
       <em>同一隻引擎、同一支二進位、同一組旗標</em>跨平台。
-      pi-ds4 那一層 wrapper 只是 macOS 上的安裝／lifecycle 自動化，
-      在 Linux 上手動跑 ds4-server 已經涵蓋所有功能。
+      pi-ds4 的 lifecycle wrapper 現在也跨平台——macOS 與 Linux 共用同一支
+      <code>ds4-watchdog.sh</code>，<code>pi install</code> 在 DGX Spark
+      上一樣 work；想略過 wrapper、直接手動跑 ds4-server 也始終可以。
     </p>
     <p lang="en-GB">
       In other words, this is not a strained &ldquo;same GGUF, different runtime&rdquo; compatibility, but
       <em>the same engine, the same binary, the same flags</em> across platforms.
-      The pi-ds4 wrapper is just install / lifecycle automation on macOS;
-      running ds4-server by hand on Linux already covers all the same functionality.
+      The pi-ds4 wrapper is now cross-platform too &mdash; macOS and Linux share
+      the same <code>ds4-watchdog.sh</code>, and <code>pi install</code> on a
+      DGX Spark works the same way; bypassing the wrapper and running
+      ds4-server by hand remains an option.
     </p>
   </section>
 
