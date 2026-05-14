@@ -863,6 +863,25 @@ header.site {
   border-bottom: 1px solid var(--line);
 }
 
+.anchor-link {
+  display: inline-block;
+  margin-left: 0.4em;
+  opacity: 0;
+  text-decoration: none;
+  color: var(--muted);
+  font-weight: 400;
+  font-size: 0.8em;
+  vertical-align: 0.08em;
+  transition: opacity 0.15s ease, color 0.15s ease;
+}
+.chapter h3:hover .anchor-link,
+.chapter h3:focus-within .anchor-link { opacity: 0.55; }
+.anchor-link:hover,
+.anchor-link:focus-visible { opacity: 1; color: var(--gold); }
+@media (hover: none) {
+  .anchor-link { opacity: 0.4; }
+}
+
 .chapter h4 {
   font-family: var(--serif-cjk);
   font-size: 1.08rem;
@@ -4574,6 +4593,21 @@ STATE=~/.pi/ds4/server.json
         else flash(btn, '複製失敗', 'fail');
       }
     });
+  });
+
+  // §x.y permalinks: id from the leading number, pilcrow appears on hover
+  document.querySelectorAll('.chapter h3').forEach(function(h){
+    const m = /^\s*(\d+\.\d+)/.exec(h.textContent);
+    if (!m) return;
+    const id = m[1];
+    if (!h.id) h.id = id;
+    if (h.querySelector('.anchor-link')) return;
+    const a = document.createElement('a');
+    a.className = 'anchor-link';
+    a.href = '#' + id;
+    a.setAttribute('aria-label', 'Permalink to §' + id);
+    a.textContent = '¶';
+    h.appendChild(a);
   });
 })();
 </script>
