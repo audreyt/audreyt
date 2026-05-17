@@ -432,6 +432,16 @@ a.featured-outlet:hover {
 
 .work-item--spaced { margin-top: 32px; }
 
+.work-item--paired {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    column-gap: 40px;
+    row-gap: 14px;
+}
+
+.work-item--paired .work-link { margin-top: 0; }
+
 .case-study {
     margin-top: 56px;
     padding: 40px;

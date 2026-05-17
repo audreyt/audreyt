@@ -100,6 +100,8 @@ Three measures emerged — label unsigned ads as probable scams; hold platforms 
 
 Read the full framework at civic.ai →
 
+Run a contestable model locally at pi.audreyt.org →
+
 ---
 
 <!-- section:FILM -->

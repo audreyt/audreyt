@@ -195,6 +195,8 @@ function videoId(url: string): string {
   return m?.[1] ?? "";
 }
 
+const CIVIC_TRAILING_DOMAINS = /(?:civic\.[a-z0-9.-]+|pi\.audreyt\.org)/i;
+
 function parseCivicTrailingLink(text: string): {
   label: string;
   href: string;
@@ -209,13 +211,15 @@ function parseCivicTrailingLink(text: string): {
     };
   }
 
-  const absoluteMatch = text.match(/\bhttps?:\/\/(?:www\.)?civic\.[^\s<)\]]+/i);
+  const absoluteMatch = text.match(
+    new RegExp(`\\bhttps?:\\/\\/(?:www\\.)?${CIVIC_TRAILING_DOMAINS.source}[^\\s<)\\]]*`, "i"),
+  );
   if (absoluteMatch) {
     return { label: text, href: absoluteMatch[0] };
   }
 
   const bareDomainMatch = text.match(
-    /\b(civic\.[a-z0-9.-]+(?:\/[^\s<)\]]*)?)\b/i,
+    new RegExp(`\\b(${CIVIC_TRAILING_DOMAINS.source}(?:\\/[^\\s<)\\]]*)?)\\b`, "i"),
   );
   if (bareDomainMatch) {
     return { label: text, href: `https://${bareDomainMatch[1]}` };
@@ -697,8 +701,7 @@ function renderCivicAI(): string {
     const paras = parseParagraphs(mainPart);
     const introParagraphs: string[] = [];
     const workItems: { name: string; desc: string }[] = [];
-    let trailingLink = "";
-    let trailingHref = "";
+    const trailingLinks: { label: string; href: string }[] = [];
 
     for (const p of paras) {
       const boldMatch = p.match(/^\*\*([^*]+)\*\*\s*\u2014\s*(.+)$/s);
@@ -706,9 +709,8 @@ function renderCivicAI(): string {
       if (boldMatch) {
         workItems.push({ name: boldMatch[1], desc: boldMatch[2] });
       } else if (trailing) {
-        trailingLink = trailing.label;
-        trailingHref = trailing.href;
-      } else if (workItems.length === 0 && !trailingLink) {
+        trailingLinks.push(trailing);
+      } else if (workItems.length === 0 && trailingLinks.length === 0) {
         introParagraphs.push(p);
       }
     }
@@ -730,8 +732,7 @@ function renderCivicAI(): string {
       csParagraphs = parseParagraphs(csBody).filter((p) => {
         const trailing = parseCivicTrailingLink(p);
         if (trailing) {
-          trailingLink = trailing.label;
-          trailingHref = trailing.href;
+          trailingLinks.push(trailing);
           return false;
         }
         return true;
@@ -744,8 +745,7 @@ function renderCivicAI(): string {
       csLabel,
       csHeading,
       csParagraphs,
-      trailingLink,
-      trailingHref,
+      trailingLinks,
     };
   }
 
@@ -804,21 +804,28 @@ function renderCivicAI(): string {
     lines.push(`${I}</div>`);
   }
 
-  // Trailing link
-  if (enC.trailingLink || zhC.trailingLink) {
-    const enHref = enC.trailingHref || zhC.trailingHref;
-    const zhHref = zhC.trailingHref || enC.trailingHref;
-
-    lines.push(`${I}<div class="work-item work-item--spaced">`);
-    if (enC.trailingLink && enHref) {
-      lines.push(
-        `${I}    <a href="${escapeAttr(enHref)}" class="work-link" lang="en-GB">${entEn(enC.trailingLink)}</a>`,
-      );
-    }
-    if (zhC.trailingLink && zhHref) {
-      lines.push(
-        `${I}    <a href="${escapeAttr(zhHref)}" class="work-link" lang="zh-TW">${entZh(zhC.trailingLink)}</a>`,
-      );
+  // Trailing links — pair en/zh pairs side by side when there are 2+
+  const trailingPairs = Math.max(
+    enC.trailingLinks.length,
+    zhC.trailingLinks.length,
+  );
+  if (trailingPairs > 0) {
+    const pairedClass =
+      trailingPairs > 1 ? "work-item--spaced work-item--paired" : "work-item--spaced";
+    lines.push(`${I}<div class="work-item ${pairedClass}">`);
+    for (let i = 0; i < trailingPairs; i++) {
+      const enLink = enC.trailingLinks[i] ?? zhC.trailingLinks[i];
+      const zhLink = zhC.trailingLinks[i] ?? enC.trailingLinks[i];
+      if (enLink && enC.trailingLinks[i]) {
+        lines.push(
+          `${I}    <a href="${escapeAttr(enLink.href)}" class="work-link" lang="en-GB">${entEn(enC.trailingLinks[i].label)}</a>`,
+        );
+      }
+      if (zhLink && zhC.trailingLinks[i]) {
+        lines.push(
+          `${I}    <a href="${escapeAttr(zhLink.href)}" class="work-link" lang="zh-TW">${entZh(zhC.trailingLinks[i].label)}</a>`,
+        );
+      }
     }
     lines.push(`${I}</div>`);
   }
