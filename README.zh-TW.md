@@ -151,7 +151,7 @@ AI 生成的黃仁勳詐騙廣告讓臺灣民眾損失數百萬元。唐鳳發�
 - [LinkedIn](https://www.linkedin.com/in/tangaudrey/)
 - [X](https://x.com/audreyt)
 - [Bluesky](https://bsky.app/profile/audreyt.org)
-- [Archive / 逐字稿](https://archive.tw)
+- [逐字稿](https://archive.tw)
 - 電子郵件: au@civic.ai
 
 演講邀約請聯繫 [ProjectSpeaker](https://www.projectspeaker.com/audrey-tang/)。
