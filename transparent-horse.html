@@ -397,6 +397,8 @@ body::after {
     .closing-final { margin-top: 40px; padding-top: 36px; }
     .colophon { padding: 36px 24px 44px; }
     .lang-toggle { top: 16px; right: 16px; }
+    header.site { padding: 14px 24px 4px; }
+    .crumbs { gap: 0.7rem; font-size: 0.62rem; }
 }
 @media (max-width: 480px) {
     .hero h1 { font-size: 2.6rem; }
@@ -421,9 +423,55 @@ body::after {
     .hero-crystal { transform: translateY(-55%) !important; }
 }
 
+/* ── SITE HEADER (links back to homepage, matching pi.audreyt.org / audreyt.box) ── */
+header.site {
+  max-width: 860px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 48px 6px;
+  opacity: 0;
+  animation: fadeUp 0.6s ease 0.2s forwards;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.name {
+  font-family: var(--serif);
+  font-size: 1.02rem;
+  font-weight: 600;
+  color: var(--heading);
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+.name:hover { color: var(--gold); text-decoration: none; }
+.name .cjk {
+  font-family: var(--cjk);
+  font-size: 0.72em;
+  font-weight: 500;
+  opacity: 0.82;
+  margin-left: 4px;
+}
+.crumbs {
+  font-family: var(--sans);
+  font-size: 0.66rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  display: flex;
+  gap: 0.9rem;
+  align-items: center;
+  white-space: nowrap;
+}
+.crumbs .cjk-tag { font-family: var(--cjk); letter-spacing: 0.05em; }
+
 /* ── PRINT ── */
 @media print {
-    body::after, .progress, .scroll-cue, .hero-crystal, .hero-year, .lang-toggle { display: none !important; }
+    body::after, .progress, .scroll-cue, .hero-crystal, .hero-year, .lang-toggle, header.site { display: none !important; }
     .hero { min-height: 0; padding: 40px; }
     .hero-content { padding: 0; }
     .hero-label, .hero h1, .hero-subtitle, .hero-lede { opacity: 1; animation: none; }
@@ -442,6 +490,14 @@ body::after {
 <label for="lang-zh" class="lang-toggle" role="button" tabindex="0" aria-label="Switch language"><span lang="en-GB">華文</span><span lang="zh-TW">EN</span></label>
 
 <div class="progress" aria-hidden="true"></div>
+
+<header class="site">
+  <a class="name" href="/">Audrey&nbsp;Tang <span class="cjk">唐鳳</span></a>
+  <div class="crumbs">
+    <span>Transparent Horse</span>
+    <span class="cjk-tag"><span lang="zh-TW">故事</span><span lang="en-GB">Story</span></span>
+  </div>
+</header>
 
 <!-- ════════ HERO ════════ -->
 <header class="hero">
