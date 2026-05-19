@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Collaborative Immune System: From Digital Deliberation to Precision Legislation</title>
+<meta name="description" content="Audrey Tang's address before the LDP Headquarters on December 16, 2025. Rules written by citizen collaboration, transformed into precise legal obligations.">
+<meta property="og:title" content="Collaborative Immune System: From Digital Deliberation to Precision Legislation">
+<meta property="og:description" content="In a democracy, the strongest anti-fraud technology is not a filter. It is legitimacy. How citizen collaboration and precision legislation build a digital immune system against deepfakes and AI scams.">
+<meta property="og:image" content="https://cyberambassador.tw/assets/og-collaborative-immune-system.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:type" content="article">
+<meta name="theme-color" content="#0f1923" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#faf8f5" media="(prefers-color-scheme: light)">
+<meta name="color-scheme" content="light dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+JP:wght@400;600&family=Noto+Serif+TC:wght@400;600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* ── 3-WAY LANGUAGE TOGGLE MECHANICS ── */
+html:not(:has(#lang-zh:checked)):not(:has(#lang-ja:checked)) [lang="zh-TW"],
+html:not(:has(#lang-zh:checked)):not(:has(#lang-ja:checked)) [lang="ja"] {
+    display: none !important;
+}
+html:has(#lang-zh:checked) [lang="en-GB"],
+html:has(#lang-zh:checked) [lang="ja"] {
+    display: none !important;
+}
+html:has(#lang-ja:checked) [lang="en-GB"],
+html:has(#lang-ja:checked) [lang="zh-TW"] {
+    display: none !important;
+}
+
+:root {
+    --ink: #0f1923;
+    --paper: #faf8f5;
+    --warm: #f4f1ec;
+    --surface: #fff;
+    --heading: #0f1923;
+    --gold: #7d6430;
+    --gold-light: #c9a961;
+    --teal: #2a7f8a;
+    --slate: #5a6577;
+    --text: #2c3e50;
+    --muted: #5f6a7d;
+    --border: #e0ddd7;
+    --serif: 'Cormorant Garamond', 'Noto Serif TC', Georgia, serif;
+    --sans: 'Outfit', 'Noto Sans TC', system-ui, -apple-system, sans-serif;
+    --serif-cjk: 'Noto Serif TC', 'Songti TC', 'PMingLiU', Georgia, serif;
+    --cjk: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+    --cursive: 'Kaiti TC', 'DFKai-SB', 'BiauKai', 'STKaiti', cursive;
+    --serif-ja: 'Noto Serif JP', 'Noto Serif TC', Georgia, serif;
+    --sans-ja: 'Noto Sans JP', 'Noto Sans TC', system-ui, -apple-system, sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: var(--sans);
+    color: var(--text);
+    background: var(--paper);
+    line-height: 1.7;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── CJK LANGUAGE SPECIFIC OVERRIDES ── */
+html:has(#lang-zh:checked) body { font-weight: 500; line-height: 1.9; }
+html:has(#lang-zh:checked) .hero h1 { font-family: var(--serif-cjk); letter-spacing: 0.04em; line-height: 1.15; font-size: clamp(2.8rem, 7vw, 5.5rem); }
+html:has(#lang-zh:checked) .hero-subtitle { font-style: normal; font-family: var(--cursive); letter-spacing: 0.05em; }
+html:has(#lang-zh:checked) .hero-lede { font-family: var(--cjk); font-weight: 400; line-height: 2; font-size: clamp(0.95rem, 1.6vw, 1.08rem); }
+html:has(#lang-zh:checked) .chapter-title { font-family: var(--serif-cjk); font-weight: 600; letter-spacing: 0.04em; }
+html:has(#lang-zh:checked) .chapter-body { line-height: 2; }
+html:has(#lang-zh:checked) .chapter-body p { font-size: 1.02rem; }
+html:has(#lang-zh:checked) .chapter-body em { font-style: normal; font-family: var(--cursive); }
+html:has(#lang-zh:checked) .chapter-body blockquote { font-family: var(--cursive); font-style: normal; line-height: 1.8; }
+html:has(#lang-zh:checked) .interlude blockquote { font-family: var(--cursive); font-style: normal; line-height: 1.7; font-size: clamp(1.25rem, 2.6vw, 1.9rem); }
+html:has(#lang-zh:checked) .closing-final { font-style: normal; font-family: var(--cursive); line-height: 1.8; font-size: clamp(1.15rem, 2.2vw, 1.6rem); }
+html:has(#lang-zh:checked) .lang-toggle [for="lang-zh"] { font-weight: 700; color: var(--gold-light); }
+
+html:has(#lang-ja:checked) body { font-weight: 400; line-height: 1.85; }
+html:has(#lang-ja:checked) .hero h1 { font-family: var(--serif-ja); letter-spacing: 0.03em; line-height: 1.2; font-size: clamp(2.8rem, 7vw, 5.2rem); }
+html:has(#lang-ja:checked) .hero-subtitle { font-style: normal; font-family: var(--serif-ja); letter-spacing: 0.04em; }
+html:has(#lang-ja:checked) .hero-lede { font-family: var(--sans-ja); font-weight: 400; line-height: 1.95; font-size: clamp(0.95rem, 1.6vw, 1.05rem); }
+html:has(#lang-ja:checked) .chapter-title { font-family: var(--serif-ja); font-weight: 600; letter-spacing: 0.03em; }
+html:has(#lang-ja:checked) .chapter-body { line-height: 1.95; }
+html:has(#lang-ja:checked) .chapter-body p { font-size: 1rem; }
+html:has(#lang-ja:checked) .chapter-body em { font-style: normal; font-weight: 700; }
+html:has(#lang-ja:checked) .chapter-body blockquote { font-family: var(--serif-ja); font-style: normal; line-height: 1.8; }
+html:has(#lang-ja:checked) .interlude blockquote { font-family: var(--serif-ja); font-style: normal; line-height: 1.7; font-size: clamp(1.25rem, 2.6vw, 1.9rem); }
+html:has(#lang-ja:checked) .closing-final { font-style: normal; font-family: var(--serif-ja); line-height: 1.8; font-size: clamp(1.15rem, 2.2vw, 1.6rem); }
+html:has(#lang-ja:checked) .lang-toggle [for="lang-ja"] { font-weight: 700; color: var(--gold-light); }
+
+a { color: var(--teal); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; text-decoration-color: color-mix(in srgb, currentColor 35%, transparent); transition: color 0.2s; }
+a:hover { color: var(--gold); }
+
+:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
+
+/* ── LANG TOGGLE CONTROLS ── */
+.lang-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10002;
+    background: rgba(15,25,35,0.65);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 4px;
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.65);
+    padding: 3px;
+    display: flex;
+    gap: 3px;
+    user-select: none;
+    transition: background 0.3s, border-color 0.3s, color 0.3s;
+}
+.lang-btn {
+    padding: 6px 12px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: color 0.2s, background 0.2s;
+    line-height: 1;
+}
+.lang-btn:hover { color: #fff; }
+
+/* Active buttons visually highlighted */
+html:has(#lang-en:checked) .lang-btn[for="lang-en"] { background: rgba(255,255,255,0.15); color: var(--gold-light); font-weight: 600; }
+html:has(#lang-zh:checked) .lang-btn[for="lang-zh"] { background: rgba(255,255,255,0.15); color: var(--gold-light); font-weight: 600; }
+html:has(#lang-ja:checked) .lang-btn[for="lang-ja"] { background: rgba(255,255,255,0.15); color: var(--gold-light); font-weight: 600; }
+
+.lang-toggle.scrolled {
+    background: rgba(250,248,245,0.9);
+    border-color: var(--border);
+    color: var(--muted);
+}
+.lang-toggle.scrolled .lang-btn:hover { color: var(--ink); }
+
+html:has(#lang-en:checked) .lang-toggle.scrolled .lang-btn[for="lang-en"] { background: rgba(0,0,0,0.06); color: var(--gold); }
+html:has(#lang-zh:checked) .lang-toggle.scrolled .lang-btn[for="lang-zh"] { background: rgba(0,0,0,0.06); color: var(--gold); }
+html:has(#lang-ja:checked) .lang-toggle.scrolled .lang-btn[for="lang-ja"] { background: rgba(0,0,0,0.06); color: var(--gold); }
+
+/* ── GRAIN ── */
+body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    pointer-events: none;
+    opacity: 0.024;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+}
+
+/* ── PROGRESS ── */
+.progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    z-index: 10001;
+    width: 0;
+    pointer-events: none;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 0.8; }
+}
+@keyframes driftIn {
+    from { opacity: 0; transform: translateY(10px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes orbit {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* ── HERO ── */
+.hero {
+    position: relative;
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--ink);
+    overflow: hidden;
+}
+.hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse at 25% 40%, rgba(201,169,97,0.06), transparent 55%),
+        radial-gradient(ellipse at 75% 70%, rgba(42,127,138,0.03), transparent 50%);
+}
+.hero-year {
+    position: absolute;
+    right: -3%;
+    bottom: 2%;
+    font-family: var(--serif);
+    font-size: clamp(14rem, 25vw, 32rem);
+    font-weight: 300;
+    color: rgba(201,169,97,0.035);
+    line-height: 0.82;
+    user-select: none;
+    pointer-events: none;
+    letter-spacing: -0.03em;
+}
+.hero-emblem {
+    position: absolute;
+    right: 7%;
+    top: 50%;
+    transform: translateY(-55%);
+    width: clamp(180px, 22vw, 360px);
+    height: auto;
+    z-index: 1;
+    opacity: 0;
+    animation: driftIn 2s ease 1.6s forwards;
+}
+.hero-emblem .ring-orbit {
+    transform-origin: 100px 100px;
+    animation: orbit 240s linear infinite;
+}
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 820px;
+    padding: 140px 48px 100px;
+    color: #fff;
+    text-align: center;
+}
+.hero-label {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 36px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.3s forwards;
+}
+.hero-label .dot { margin: 0 8px; opacity: 0.4; }
+.hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(3rem, 7.6vw, 6rem);
+    font-weight: 400;
+    line-height: 1.04;
+    letter-spacing: -0.025em;
+    margin-bottom: 16px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.5s forwards;
+}
+.hero-subtitle {
+    font-family: var(--serif);
+    font-size: clamp(1.1rem, 2.4vw, 1.55rem);
+    font-weight: 400;
+    font-style: italic;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 56px;
+    letter-spacing: 0.01em;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.7s forwards;
+}
+.hero-lede {
+    font-family: var(--serif);
+    font-size: clamp(1.05rem, 1.8vw, 1.2rem);
+    color: rgba(255,255,255,0.72);
+    line-height: 1.85;
+    text-align: left;
+    max-width: 640px;
+    margin: 0 auto;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.95s forwards;
+}
+.hero-lede p { margin-bottom: 1.3em; }
+.hero-lede p:last-child { margin-bottom: 0; }
+.scroll-cue {
+    position: absolute;
+    bottom: 36px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    color: rgba(255,255,255,0.35);
+    font-family: var(--sans);
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-align: center;
+    opacity: 0;
+    animation: fadeUp 0.6s ease 1.4s forwards, pulse 2.5s ease-in-out 2s infinite;
+}
+.scroll-cue::after {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 36px;
+    background: rgba(255,255,255,0.25);
+    margin: 10px auto 0;
+}
+
+/* ── INTERLUDE ── */
+.interlude { padding: 88px 48px; text-align: center; }
+.interlude--warm { background: var(--warm); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.interlude--dark { background: var(--ink); }
+.interlude blockquote {
+    font-family: var(--serif);
+    font-size: clamp(1.4rem, 3vw, 2.2rem);
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.5;
+    max-width: 800px;
+    margin: 0 auto;
+    letter-spacing: -0.01em;
+}
+.interlude--warm blockquote { color: var(--heading); }
+.interlude--dark blockquote { color: var(--gold-light); }
+
+/* ── CHAPTER ── */
+.chapter { padding: 0 48px; max-width: 860px; margin: 0 auto; }
+.chapter-head { padding: 80px 0 48px; text-align: center; }
+.chapter-num {
+    display: block;
+    font-family: var(--serif);
+    font-size: clamp(2.8rem, 5vw, 4.2rem);
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 14px;
+}
+.chapter-title {
+    font-family: var(--serif);
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 400;
+    color: var(--heading);
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+}
+.chapter-body { max-width: 680px; margin: 0 auto; padding-bottom: 20px; }
+.chapter-body p { font-size: 1.05rem; margin-bottom: 1.5em; line-height: 1.82; }
+.chapter-body p:last-child { margin-bottom: 0; }
+.chapter-body em { font-style: italic; }
+.chapter-body strong { font-weight: 600; color: var(--heading); }
+.chapter-body ul, .chapter-body ol { margin: 24px 0 24px 28px; }
+.chapter-body li { font-size: 1.05rem; margin-bottom: 0.8em; line-height: 1.75; }
+.chapter-body li:last-child { margin-bottom: 0; }
+.chapter-body blockquote {
+    font-family: var(--serif);
+    font-size: clamp(1.12rem, 1.8vw, 1.3rem);
+    font-style: italic;
+    color: var(--heading);
+    line-height: 1.65;
+    border-left: 2px solid var(--gold-light);
+    padding: 4px 0 4px 24px;
+    margin: 40px 0;
+}
+.chapter-body code {
+    font-family: monospace;
+    background: rgba(0,0,0,0.04);
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 0.9em;
+}
+html:has(#lang-ja:checked) .chapter-body strong { font-weight: 700; }
+
+.defense-heading {
+    font-family: var(--serif);
+    font-size: clamp(1.2rem, 2vw, 1.45rem);
+    font-weight: 600;
+    color: var(--gold);
+    margin: 44px 0 16px;
+    line-height: 1.3;
+}
+html:has(#lang-zh:checked) .defense-heading { font-family: var(--serif-cjk); }
+html:has(#lang-ja:checked) .defense-heading { font-family: var(--serif-ja); }
+
+/* ── IMAGE ILLUSTRATIONS ── */
+.image-illustration {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+    margin: 40px auto;
+    height: auto !important; /* overrides standard illustration height constraints */
+}
+.image-illustration img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+    border: 1px solid var(--border);
+}
+
+/* ── DIVIDER ── */
+.divider { display: flex; align-items: center; justify-content: center; max-width: 680px; margin: 0 auto; padding: 16px 48px; }
+.divider::before, .divider::after { content: ''; flex: 1; height: 1px; }
+.divider::before { background: linear-gradient(to right, transparent, var(--border)); }
+.divider::after { background: linear-gradient(to left, transparent, var(--border)); }
+.divider-mark { width: 7px; height: 7px; border: 1px solid var(--gold-light); transform: rotate(45deg); margin: 0 18px; flex-shrink: 0; opacity: 0.7; }
+
+/* ── CLOSING ── */
+.closing { background: var(--ink); color: #fff; padding: 100px 48px; }
+.closing .chapter-head { padding-top: 0; }
+.closing .chapter-num { color: var(--gold-light); }
+.closing .chapter-title { color: #fff; }
+.closing .chapter-body { color: rgba(255,255,255,0.78); padding-bottom: 0; }
+.closing .chapter-body p { color: rgba(255,255,255,0.78); }
+.closing .chapter-body em { color: rgba(255,255,255,0.9); }
+.closing-final {
+    font-family: var(--serif);
+    font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+    font-style: italic;
+    color: var(--gold-light);
+    text-align: center;
+    max-width: 680px;
+    margin: 56px auto 0;
+    line-height: 1.45;
+    letter-spacing: 0.01em;
+}
+.closing-final::before {
+    content: '';
+    display: block;
+    width: 36px;
+    height: 1px;
+    background: var(--gold-light);
+    opacity: 0.5;
+    margin: 0 auto 28px;
+}
+
+/* ── COLOPHON / FOOTER ── */
+.colophon {
+    padding: 72px 48px;
+    text-align: center;
+    background: var(--warm);
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-family: var(--sans);
+}
+.cc0-mark {
+    font-family: var(--sans);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid var(--gold-light);
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 3px;
+    margin-bottom: 24px;
+}
+.colophon-note {
+    font-size: 0.85rem;
+    max-width: 620px;
+    margin: 0 auto 24px;
+    line-height: 1.6;
+}
+.colophon-meta {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--heading);
+}
+
+/* ── DARK SCHEME ── */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --paper: #090e14;
+        --ink: #faf8f5;
+        --warm: #111820;
+        --surface: #0f1722;
+        --heading: #faf8f5;
+        --text: #a0aec0;
+        --muted: #718096;
+        --border: #1e293b;
+    }
+    
+    .lang-toggle.scrolled {
+        background: rgba(17,24,32,0.9);
+        border-color: var(--border);
+        color: var(--muted);
+    }
+    .lang-toggle.scrolled .lang-btn:hover { color: #fff; }
+    
+    html:has(#lang-en:checked) .lang-toggle.scrolled .lang-btn[for="lang-en"] { background: rgba(255,255,255,0.08); color: var(--gold-light); }
+    html:has(#lang-zh:checked) .lang-toggle.scrolled .lang-btn[for="lang-zh"] { background: rgba(255,255,255,0.08); color: var(--gold-light); }
+    html:has(#lang-ja:checked) .lang-toggle.scrolled .lang-btn[for="lang-ja"] { background: rgba(255,255,255,0.08); color: var(--gold-light); }
+    
+    .image-illustration img {
+        border-color: rgba(255,255,255,0.08);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+    }
+}
+
+/* ── REVEAL SCROLL EFFECTS ── */
+.reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ── PRINT ── */
+@media print {
+    .lang-toggle, .progress, .scroll-cue { display: none !important; }
+    .hero { min-height: auto; background: none; color: #000; padding: 40px 0; }
+    .hero::before { display: none; }
+    .hero-year, .hero-emblem { display: none; }
+    .hero-content { padding: 0; color: #000; text-align: left; }
+    .hero h1 { font-size: 3rem; color: #000; }
+    .hero-subtitle { color: #333; margin-bottom: 24px; }
+    .hero-lede { color: #222; font-size: 1.05rem; }
+    .hero-label, .hero h1, .hero-subtitle, .hero-lede { opacity: 1; animation: none; }
+    .reveal { opacity: 1; transform: none; }
+    .closing { background: none; color: inherit; }
+    .closing .chapter-body p { color: inherit; }
+    .colophon { background: none; color: inherit; border-top: 1px solid #ccc; }
+}
+</style>
+</head>
+<body>
+
+<!-- Hidden Inputs driving pure CSS language toggling -->
+<input type="radio" name="lang" id="lang-en" checked hidden>
+<input type="radio" name="lang" id="lang-zh" hidden>
+<input type="radio" name="lang" id="lang-ja" hidden>
+
+<script>
+document.documentElement.classList.add('js');
+(function(){
+    var s = null;
+    try { s = localStorage.getItem('lang'); } catch(e) {}
+    if (s === 'zh-TW') {
+        document.getElementById('lang-zh').checked = true;
+        document.documentElement.setAttribute('lang', 'zh-TW');
+        document.title = '協作式免疫系統：從數位審議到精準立法';
+    } else if (s === 'ja') {
+        document.getElementById('lang-ja').checked = true;
+        document.documentElement.setAttribute('lang', 'ja');
+        document.title = '協働する免疫システム：デジタル熟議から精密な立法へ';
+    }
+})();
+</script>
+
+<div class="lang-toggle" role="group" aria-label="Language selection">
+    <label for="lang-en" class="lang-btn" tabindex="0" aria-label="Switch to English">EN</label>
+    <label for="lang-zh" class="lang-btn" tabindex="0" aria-label="切換為華文">華文</label>
+    <label for="lang-ja" class="lang-btn" tabindex="0" aria-label="日本語に切り替え">日本語</label>
+</div>
+
+<div class="progress" aria-hidden="true"></div>
+
+<!-- ════════ HERO ════════ -->
+<header class="hero">
+    <div class="hero-year" aria-hidden="true">2025</div>
+    
+    <!-- Pulse-linked animated SVG emblem representing a connected digital immune network -->
+    <svg class="hero-emblem" viewBox="0 0 200 200" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="100" cy="100" r="92" stroke="rgba(201,169,97,0.03)" stroke-width="0.5" stroke-dasharray="3 3"/>
+        <circle cx="100" cy="100" r="76" stroke="rgba(201,169,97,0.05)" stroke-width="0.6"/>
+        <circle cx="100" cy="100" r="54" stroke="rgba(201,169,97,0.08)" stroke-width="0.5" stroke-dasharray="6 4"/>
+        <circle cx="100" cy="100" r="32" stroke="rgba(201,169,97,0.12)" stroke-width="0.7"/>
+        
+        <circle cx="100" cy="100" r="7" stroke="rgba(201,169,97,0.3)" stroke-width="1.2" fill="rgba(201,169,97,0.06)"/>
+        
+        <g class="ring-orbit" stroke="rgba(201,169,97,0.15)" stroke-width="0.8" fill="rgba(201,169,97,0.05)">
+            <circle cx="100" cy="24" r="4.2"/>
+            <circle cx="172" cy="76" r="4.2"/>
+            <circle cx="144" cy="160" r="4.2"/>
+            <circle cx="56" cy="160" r="4.2"/>
+            <circle cx="28" cy="76" r="4.2"/>
+            
+            <line x1="100" y1="100" x2="100" y2="24" stroke="rgba(201,169,97,0.08)" stroke-width="0.5" stroke-dasharray="2 2"/>
+            <line x1="100" y1="100" x2="172" y2="76" stroke="rgba(201,169,97,0.08)" stroke-width="0.5" stroke-dasharray="2 2"/>
+            <line x1="100" y1="100" x2="144" y2="160" stroke="rgba(201,169,97,0.08)" stroke-width="0.5" stroke-dasharray="2 2"/>
+            <line x1="100" y1="100" x2="56" y2="160" stroke="rgba(201,169,97,0.08)" stroke-width="0.5" stroke-dasharray="2 2"/>
+            <line x1="100" y1="100" x2="28" y2="76" stroke="rgba(201,169,97,0.08)" stroke-width="0.5" stroke-dasharray="2 2"/>
+        </g>
+    </svg>
+    
+    <div class="hero-content">
+        <div class="hero-label">
+            <span lang="en-GB">Liberal Democratic Party HQ</span><span lang="zh-TW">自由民主黨總部</span><span lang="ja">自由民主党本部</span>
+            <span class="dot">&middot;</span>
+            <span lang="en-GB">Dec. 16, 2025</span><span lang="zh-TW">2025 年 12 月 16 日</span><span lang="ja">2025年12月16日</span>
+        </div>
+        
+        <h1>
+            <span lang="en-GB">Collaborative Immune System</span>
+            <span lang="zh-TW">協作式免疫系統</span>
+            <span lang="ja">協働する免疫システム</span>
+        </h1>
+        
+        <p class="hero-subtitle">
+            <span lang="en-GB">From Digital Deliberation to Precision Legislation</span>
+            <span lang="zh-TW">從數位審議到精準立法</span>
+            <span lang="ja">デジタル熟議から精密な立法へ</span>
+        </p>
+        
+        <div class="hero-lede" lang="en-GB">
+            <p>Honorable members of the LDP, Mr. Ken Suzuki, distinguished guests, good morning. I am Audrey Tang, Taiwan’s Cyber Ambassador.</p>
+            <p>Today, I wish to share a practical lesson from Taiwan’s response to AI-enabled fraud, including deepfakes.</p>
+        </div>
+        <div class="hero-lede" lang="zh-TW">
+            <p>自由民主黨的各位議員先進、鈴木健先生、各位貴賓，大家早安，我是臺灣數位治理大使唐鳳。</p>
+            <p>今天，我想分享臺灣在應對 AI 詐騙（包含深偽技術 deepfakes）時，所獲得的實務經驗。</p>
+        </div>
+        <div class="hero-lede" lang="ja">
+            <p>自由民主党の先生方、鈴木健さん、ご列席の皆さま、おはようございます。台湾のサイバー大使、オードリー・タンです。</p>
+            <p>本日は、ディープフェイクを含むAI詐欺への台湾の対応から得た、実務的な教訓を共有したいと思います。</p>
+        </div>
+    </div>
+    
+    <div class="scroll-cue" aria-hidden="true">
+        <span lang="en-GB">Read</span>
+        <span lang="zh-TW">閱讀</span>
+        <span lang="ja">閲覧</span>
+    </div>
+</header>
+
+<main>
+
+<!-- ════════ EPIGRAPH ════════ -->
+<aside class="interlude interlude--warm reveal">
+    <blockquote lang="en-GB">In a democracy, the strongest anti-fraud technology is not a filter. It is legitimacy.</blockquote>
+    <blockquote lang="zh-TW">在民主社會中，最重要的防詐技術不是過濾器，而是「正當性」。</blockquote>
+    <blockquote lang="ja">民主主義において、最強の詐欺対策テクノロジーはフィルターではないと私は信じています。それは「正統性」です。</blockquote>
+</aside>
+
+<!-- ════════ I. THE MANDATE ════════ -->
+<section id="the-mandate" class="chapter reveal">
+    <div class="chapter-head">
+        <span class="chapter-num">I</span>
+        <h2 class="chapter-title">
+            <span lang="en-GB">85% Consensus</span>
+            <span lang="zh-TW">85% 的共識</span>
+            <span lang="ja">85%のコンセンサス</span>
+        </h2>
+    </div>
+    
+    <div class="chapter-body" lang="en-GB">
+        <p>As many of you know, I advocate for Open Government—drafting laws not behind closed doors, but starting with "broad listening" (as Mr. Suzuki will detail shortly).</p>
+        <p>In March 2024, the Ministry of Digital Affairs (moda) convened an "Alignment Assembly" of 447 citizens, statistically representative of Taiwan's demographics. We asked them to brainstorm on the very difficult issue of platform responsibility.</p>
+        <p>After a day of deliberation via video, they delivered a result—a mandate that no lobbyist could dispute:</p>
+        <ul>
+            <li><strong>89%</strong> supported requiring platforms to detect and label AI-generated content.</li>
+            <li><strong>85%</strong> supported platform joint liability—if a platform fails to remove a scam ad, causing someone to believe it, the platform should be jointly liable for damages.</li>
+            <li><strong>Regarding enforcement:</strong> Citizens agreed that if a foreign platform persistently refuses to comply, we should slow down their connection speed—traffic throttling.</li>
+        </ul>
+        <p>This consensus became the foundation of our legislation. When the law passed last year, there was no public backlash, because the public had written the rules themselves.</p>
+    </div>
+    
+    <div class="chapter-body" lang="zh-TW">
+        <p>正如各位所熟知的，我主張開放政府，比如起草法律不是關起門來寫字，而是從「廣泛傾聽」開始（稍後鈴木健先生將補充）。</p>
+        <p>2024 年 3 月，數位發展部（moda）召集了由 447 位公民組成的「對齊大會」，這些公民在統計學上能夠代表臺灣的人口結構。我們針對平台責任這個非常困難的問題，邀請大家集思廣益。</p>
+        <p>經過一天的視訊審議，他們給出了結果——這是一個任何遊說團體都無法反駁的民意基礎：</p>
+        <ul>
+            <li><strong>89%</strong> 支持要求平台必須偵測並標示 AI 生成內容。</li>
+            <li><strong>85%</strong> 支持平台連帶責任——如果平台不配合下架詐騙廣告，導致有人誤信，平台應該對損害負連帶賠償責任。</li>
+            <li><strong>關於執法：</strong>公民們同意，如果境外平台持續拒絕配合，我們應該降低其連線速度，也就是流量管制。</li>
+        </ul>
+        <p>以上共識成為了我們立法的基礎。去年在法律通過時，沒有引起公眾的反彈，因為這些規則本就是大眾共同制定的。</p>
+    </div>
+    
+    <div class="chapter-body" lang="ja">
+        <p>ご存知の方も多いと思いますが、私は「オープンガバメント」を提唱しています。法律を密室で起草するのではなく、まずは「広く耳を傾ける」ことから始めるのです（これについては後ほど鈴木さんが詳しく触れられます）。</p>
+        <p>2024年3月、デジタル発展部（moda）は、台湾の人口構成を統計的に代表する447人の市民による「アライメント大会（対齊大會）」を招集しました。私たちはプラットフォームの責任という非常に難しい問題について、皆で知恵を出し合いました。</p>
+        <p>1日のビデオ熟議を経て、彼らはある結果を出しました。それは、どんなロビイストも覆せない「民意の負託」でした。</p>
+        <ul>
+            <li><strong>89%</strong> が、プラットフォームにAI生成コンテンツの検知と表示を求めることを支持。</li>
+            <li><strong>85%</strong> が、プラットフォームの<strong>連帯責任</strong>を支持。もしプラットフォームが詐欺広告を削除せず、誰かがそれを信じてしまった場合、プラットフォームは損害に対して連帯して賠償責任を負うべきだというものです。</li>
+            <li><strong>執行に関して：</strong>市民は「もし海外プラットフォームが法令遵守を拒み続けるなら、接続速度を落とすべきだ」と合意しました。すなわち<strong>「通信帯域制御（トラフィック・スロットリング）」</strong>です。</li>
+        </ul>
+        <p>このコンセンサスが、私たちの立法の土台になりました。昨年法律が成立したとき、市民からの反発が起きなかったのは、そのルールが大衆によって共同で書かれたものだったからです。</p>
+    </div>
+</section>
+
+<div class="divider"><span class="divider-mark"></span></div>
+
+<!-- ════════ II. THE SHIELD ════════ -->
+<section id="the-shield" class="chapter reveal">
+    <div class="chapter-head">
+        <span class="chapter-num">II</span>
+        <h2 class="chapter-title">
+            <span lang="en-GB">New Anti-Fraud Laws</span>
+            <span lang="zh-TW">新的防詐法制</span>
+            <span lang="ja">新たな詐欺対策法制</span>
+        </h2>
+    </div>
+    
+    <div class="chapter-body" lang="en-GB">
+        <p>Armed with this legitimacy, we proposed the draft in May 2024, and our Legislature passed the four new anti-fraud laws in July. The centerpiece is the <em>Fraud Crime Hazard Prevention Act</em>.</p>
+        <p>Today, I will focus on Chapter 3: Articles 27 through 42, which specifically regulate Internet Advertising Platforms. Note that this applies to advertising platforms, not general speech platforms.</p>
+        <p>We transformed the moral expectations of the people into four lines of legal defense.</p>
+    </div>
+    
+    <div class="chapter-body" lang="zh-TW">
+        <p>有了這份正當性，我們在 2024 年 5 月提出草案，立法院 7 月通過了「打詐新四法」。其中的核心是<strong>《詐欺犯罪危害防制條例》</strong>。</p>
+        <p>今天，我將聚焦在第三章：第 27 條到第 42 條，專門規範「網路廣告平台」。注意，不是一般的言論平台，而是僅針對廣告平台。</p>
+        <p>我們將人民的道德期待，轉化為四道法律防線。</p>
+    </div>
+    
+    <div class="chapter-body" lang="ja">
+        <p>この正統性を背景に、私たちは2024年5月に草案を提出し、立法院は7月に「詐欺対策新4法」を可決しました。その中核となるのが<strong>『詐欺犯罪危害防制條例』（Fraud Crime Hazard Prevention Act）</strong>です。</p>
+        <p>本日は、その第3章、第27条から第42条、すなわち「インターネット広告プラットフォーム」を具体的に規制する部分に焦点を当てます。一般的な言論プラットフォームではなく、広告プラットフォームだけが対象である点にご注意ください。</p>
+        <p>私たちは人々の道徳的な期待を、4本の法的防衛線に変えました。</p>
+    </div>
+</section>
+
+<div class="divider"><span class="divider-mark"></span></div>
+
+<!-- ════════ III. THE DEFENSES ════════ -->
+<section id="the-defenses" class="chapter reveal">
+    <div class="chapter-head">
+        <span class="chapter-num">III</span>
+        <h2 class="chapter-title">
+            <span lang="en-GB">Four Lines of Defense</span>
+            <span lang="zh-TW">四道法律防線</span>
+            <span lang="ja">四つの法的防衛線</span>
+        </h2>
+    </div>
+    
+    <div class="chapter-body" lang="en-GB">
+        <h3 class="defense-heading">1. Verification at Source (Article 30)</h3>
+        <p>The first line of defense is changing the "default setting." Under Article 30, platforms must implement <strong>KYA (Know Your Advertiser)</strong>—like KYC in finance, but for advertisers.</p>
+        <p>Before any ad can run—not just investment ads, but any ad—the platform must verify the advertiser's identity using digital signatures, biometrics, or equivalent technology. If the platform cannot verify the identity, they cannot take the advertiser's money. It is that simple.</p>
+        
+        <h3 class="defense-heading">2. Radical Transparency (Article 31)</h3>
+        <p>The second line of defense is opening the black box. Once identity is verified, all ads must be clearly labeled for all viewers, disclosing:</p>
+        <ul>
+            <li>The name of the advertiser / commissioner (who ordered the ad).</li>
+            <li>The funder (who paid for it).</li>
+            <li>If deepfake technology or AI generation was used to portray a person, it must be explicitly disclosed.</li>
+        </ul>
+        <p>We are stripping away the anonymity that scam syndicates rely on.</p>
+        
+        <h3 class="defense-heading">3. Notice & Takedown (Article 32)</h3>
+        <p>The third line of defense is active action. Article 32 mandates a "Notice and Takedown" mechanism. If a platform knows or is notified of scam content, they must remove it within <strong>24 hours</strong>.</p>
+        <p>But a rule without a consequence is just a suggestion. So, Article 32 includes a powerful lever: <strong>Joint Liability</strong>. If a platform fails to remove a scam ad after notification, and a citizen suffers financial loss, the platform is jointly liable for damages alongside the scammer. This shifted the platforms’ ROI calculation overnight. Compliance became cheaper than negligence.</p>
+        <p>Conversely, under Article 38, we offer a <strong>Safe Harbor</strong>. If a platform acts in good faith to remove content based on our laws but makes a mistake, they are exempted from liability for damages to the user. We punish non-compliance, but explicitly protect cooperation.</p>
+        <p>Again, this applies only to advertising—paid pushed content. This is about <em>Reach</em>, not Freedom of Speech.</p>
+        
+        <h3 class="defense-heading">4. Last Line of Defense: Enforcement (Article 39)</h3>
+        <p>What if a global giant refuses to comply? Article 29 requires platforms to appoint a <strong>Legal Representative</strong> in Taiwan. No more excuses like "we have no local office."</p>
+        <p>If they still refuse to comply, Article 39 authorizes our expert commission to deploy the citizen-mandated penalties:</p>
+        <ol>
+            <li><strong>Heavy Fines:</strong> Up to NT$100 million (approx. 460 million yen) per violation.</li>
+            <li><strong>Traffic Throttling:</strong> We can order ISPs to slow down access to the platform. This degrades the user experience, making the platform commercially unviable for advertising, while freedom of speech remains protected.</li>
+            <li><strong>Blocking:</strong> If they persist in non-correction, we can ultimately stop resolving the platform's domain (DNS blocking).</li>
+        </ol>
+    </div>
+    
+    <div class="chapter-body" lang="zh-TW">
+        <h3 class="defense-heading">一、 源頭驗證（第 30 條）</h3>
+        <p>第一道防線是改變「預設值」。根據第 30 條，平台必須實施 <strong>KYA (Know Your Advertiser，認識你的廣告客戶)</strong>——就像金融業的 KYC，但這是針對廣告商。</p>
+        <p>在任何廣告刊登之前——不只是投資廣告，是任何廣告——平台必須使用數位簽章、生物辨識或同等技術來驗證廣告主的身分。如果平台無法驗證身分，就不能收廣告主的錢。就這麼簡單。</p>
+        
+        <h3 class="defense-heading">二、 徹底透明（第 31 條）</h3>
+        <p>第二道防線是打開黑盒子。一旦身分確認，所有廣告都必須向所有觀看者清楚標示：</p>
+        <ul>
+            <li>委託刊播者的姓名</li>
+            <li>出資購買廣告的人是誰</li>
+            <li>如果使用了深偽技術或 AI 生成來描繪某人，必須明確揭露</li>
+        </ul>
+        <p>我們正在剝去詐騙集團賴以生存的匿名面紗。</p>
+        
+        <h3 class="defense-heading">三、 通知機制（第 32 條）</h3>
+        <p>第三道防線是最積極的行動。第 32 條規定了「通知即下架」機制。如果平台知悉或被通知有詐騙內容，必須在 <strong>24 小時內</strong> 將其下架。</p>
+        <p>但沒有後果的規則阻礙了自律。因此，第 32 條包含了一個強大的槓桿：<strong>連帶賠償責任</strong>。如果平台在接獲通知後未能移除詐騙廣告，導致公民遭受財產損失，平台必須與詐騙者共同負擔損害賠償責任。這在一夜之間翻轉了平台的投資報酬率（ROI）計算。合規變得比疏忽更便宜。</p>
+        <p>相對地，根據第 38 條，我們提供<strong>避風港條款</strong>。如果平台基於我們的法律善意移除內容但發生錯誤，他們可以免除對用戶的損害賠償責任。我們懲罰不合規，但明確保護合作行為。</p>
+        <p>再次強調，這僅適用於廣告——也就是付費推播的內容。這是關於觸及率（Reach），而非言論自由（Freedom of Speech）。</p>
+        
+        <h3 class="defense-heading">四、 最後防線：執法（第 39 條）</h3>
+        <p>如果跨國巨頭拒絕配合怎麼辦？第 29 條要求平台必須在臺灣指定<strong>法律代理人</strong>。不再接受「我們沒有在地辦公室」這種藉口。</p>
+        <p>如果他們仍然拒絕配合，第 39 條授權我們的專家審議委員會執行公民授權的處罰：</p>
+        <ol>
+            <li><strong>高額罰款：</strong>每次違規最高可達新台幣 1 億元。</li>
+            <li><strong>流量管制：</strong>我們可以命令網際網路服務供應商（ISP）降低對該平台的存取速度。這會降低使用者體驗，讓平台在商業廣告上無利可圖，但言論自由依然受到保障。</li>
+            <li><strong>限制接取：</strong>如果持續未改正，最後可以對平台網域停止解析。</li>
+        </ol>
+    </div>
+    
+    <div class="chapter-body" lang="ja">
+        <h3 class="defense-heading">1. 入口での検証（第30条）</h3>
+        <p>第一の防衛線は、「初期設定（デフォルト）」を変えることです。第30条により、プラットフォームは <strong>KYA（Know Your Advertiser：広告主確認）</strong> を実装しなければなりません。金融業界のKYCのようなものですが、これは広告主向けです。</p>
+        <p>投資広告に限らず、あらゆる広告が配信される前に、プラットフォームはデジタル署名や生体認証、あるいは同等の技術を用いて広告主の身元を確認する必要があります。身元確認ができないなら、広告主からお金を受け取れません。シンプルです。</p>
+        
+        <h3 class="defense-heading">2. 徹底した透明性（第31条）</h3>
+        <p>第二の防衛線は、ブラックボックスを開くことです。身元が確認されたら、すべての広告は視聴者に対して明確にラベル付けされ、以下を開示しなければなりません：</p>
+        <ul>
+            <li>委託者（誰が広告を依頼したか）の氏名</li>
+            <li>出資者（誰がお金を払ったか）</li>
+            <li>もし人物を描写するためにディープフェイク技術やAI生成が使用された場合は、その旨を明示的に開示する</li>
+        </ul>
+        <p>私たちは、詐欺グループが頼りにしている「匿名性」というベールを剥ぎ取るのです。</p>
+        
+        <h3 class="defense-heading">3. 通知・削除メカニズム（第32条）</h3>
+        <p>第三の防衛線は、最も能動的な行動です。第32条は<strong>「通知・削除（Notice and Takedown）」</strong>メカニズムを義務付けています。プラットフォームが詐欺コンテンツを「知った」または「通知された」場合、<strong>24時間以内</strong>に削除しなければなりません。</p>
+        <p>しかし、結果の伴わないルールは、単なる「提案」に過ぎません。そこで第32条には、強力なレバーが組み込まれています。<strong>連帯損害賠償責任</strong>です。通知後もプラットフォームが詐欺広告を削除せず、市民が金銭的損害を被った場合、プラットフォームは詐欺師と並んで連帯して損害賠償責任を負います。これにより、プラットフォームのROI（投資対効果）の計算は一夜にして変わりました。無視するよりも、遵守する方が安上がりになったのです。</p>
+        <p>一方で、第38条は<strong>セーフハーバー（Safe Harbor）</strong>を用意しています。法に基づき誠実に削除対応を行ったが、もし間違いがあった場合、プラットフォームはユーザーに対する損害賠償責任を免除されます。私たちは不履行を罰しますが、協力は明確に保護します。</p>
+        <p>繰り返しますが、これは広告（有料でプッシュされるコンテンツ）にのみ適用されます。これは「到達（Reach）」に関するものであり、「言論の自由（Freedom of Speech）」に関するものではありません。</p>
+        
+        <h3 class="defense-heading">4. 最後の防衛線：執行（第39条）</h3>
+        <p>もし巨大グローバル企業が遵守を拒む場合、どうなるのか。第29条は、プラットフォームに台湾国内の<strong>法律代表者（Legal Representative）</strong>を置くことを求めています。「現地拠点がない」という言い訳はもう通用しません。</p>
+        <p>それでも遵守を拒むなら、第39条により、専門家委員会が市民の負託に基づくペナルティを発動できます：</p>
+        <ol>
+            <li><strong>高額な罰金：</strong>違反ごとに最大 <strong>1億台湾ドル</strong>（約4億6000万円）。</li>
+            <li><strong>トラフィック管理（帯域制御）：</strong>ISPに命じて、当該プラットフォームへのアクセス速度を低下させることができます。これによりユーザー体験を劣化させ、広告ビジネスとして成立しにくい状態にしますが、言論の自由は保護されたままです。</li>
+            <li><strong>接続遮断：</strong>是正されない状態が続く場合、最終的にはプラットフォームのドメイン解決を停止（DNSブロッキング）できます。</li>
+        </ol>
+    </div>
+</section>
+
+<div class="divider"><span class="divider-mark"></span></div>
+
+<!-- ════════ IV. THE LOOP (DIAGRAMS) ════════ -->
+<section id="the-loop" class="chapter reveal">
+    <div class="chapter-head">
+        <span class="chapter-num">IV</span>
+        <h2 class="chapter-title">
+            <span lang="en-GB">The Shield in Action</span>
+            <span lang="zh-TW">聯動防禦機制</span>
+            <span lang="ja">連携プロセスの実像</span>
+        </h2>
+    </div>
+    
+    <div class="chapter-body" lang="en-GB">
+        <p>In practice, this is an automated process connecting citizens, government agencies, and platforms.</p>
+        
+        <figure class="chapter-illustration image-illustration">
+            <img src="assets/LDP.002.png" alt="Fraud Buster Work Flow Diagram" width="800" height="450" loading="lazy">
+        </figure>
+        
+        <p>Citizens are active participants. When they spot a scam ad, they report it to our <strong>"Fraud Buster"</strong> database query network.</p>
+        <p>We train AI models to detect common patterns. When citizens flag a new type of scam and it is confirmed, the AI model takes over auto-detection.</p>
+        <p>Reports flow automatically to relevant ministries: investment scams to the Financial Supervisory Commission (FSC), medical scams to the Ministry of Health and Welfare (MOHW), and so on. If someone is being impersonated, the network directly contacts them: "Did you authorize this ad?" People building their personal brands shouldn't have their legitimate content mistakenly taken down. Once the authority confirms it is indeed a scam, it is sent to the platform, starting the 24-hour countdown to takedown.</p>
+    </div>
+    
+    <div class="chapter-body" lang="zh-TW">
+        <p>這在實務上如何運作？這是自動化的流程，連結了公民、政府和平台。</p>
+        
+        <figure class="chapter-illustration image-illustration">
+            <img src="assets/LDP.001_2.png" alt="網詐通報查詢網運作流程圖" width="800" height="450" loading="lazy">
+        </figure>
+        
+        <p>公民不是被動的受害者，而是主動的參與者。公民在平台上看到任何詐騙廣告，都可以在我們的<strong>《網詐通報查詢網》（Fraud Buster）</strong>上通報。</p>
+        <p>我們也訓練 AI 模型來偵測常見模式。公民標記新型態的詐騙後，一旦該類型被確認為詐騙，AI 就會接手進行自動偵測。</p>
+        <p>這些通報會透過查詢網流向各個部會：投資詐騙流向金管會，醫藥詐騙流向衛福部，以此類推。有時，如果有人被冒充，通報網會發電子郵件給當事人：「你有授權這個影像嗎？」因為有時候人們也會建立自己的個人品牌——我們不想誤刪那些內容。一旦主管機關確認這確實是詐騙，就會發送給平台。通知發出後開始計時，平台必須在 24 小時內下架。</p>
+    </div>
+    
+    <div class="chapter-body" lang="ja">
+        <p>現場ではどう機能するのか。これは市民、政府、プラットフォームを結ぶ、自動化されたプロセスです。</p>
+        
+        <figure class="chapter-illustration image-illustration">
+            <img src="assets/LDP.003.png" alt="詐欺通報照会ネット運用プロセス図" width="800" height="450" loading="lazy">
+        </figure>
+        
+        <p>市民は、受動的な被害者ではなく、能動的な参加者です。市民は、プラットフォーム上で詐欺広告を見つけたら、<strong>「詐欺通報照会ネット（Fraud Buster）」</strong>で通報できます。</p>
+        <p>また、私たちはAIモデルを訓練して一般的なパターンを検知させています。市民が新しいタイプの詐欺をフラグ付けし、それが詐欺だと確認されれば、AIが引き継いで自動検知を行います。</p>
+        <p>これらの通報は、ネットワークを通じて各担当省庁に流れます：投資詐欺は金融監督管理委員会（金管会）へ、医療詐欺は衛生福利部（衛福部）へ、といった具合です。時には、誰かがなりすまされている場合、ネットワークはその本人に直接メールを送ります。「この画像を許可しましたか？」と。人々は自分のパーソナルブランドを構築していることもあるため、誤って削除したくないからです。所管官庁が「これは確かに詐欺だ」と確認すると、プラットフォームに送信されます。そこから時計が動き出し、プラットフォームは24時間以内に削除しなければなりません。</p>
+    </div>
+</section>
+
+<div class="divider"><span class="divider-mark"></span></div>
+
+<!-- ════════ V. TRUST RESTORED ════════ -->
+<section id="trust-restored" class="chapter reveal">
+    <div class="chapter-head">
+        <span class="chapter-num">V</span>
+        <h2 class="chapter-title">
+            <span lang="en-GB">Result: Trust Restored</span>
+            <span lang="zh-TW">結果：信任的重建</span>
+            <span lang="ja">結果：信頼の回復</span>
+        </h2>
+    </div>
+    
+    <div class="chapter-body" lang="en-GB">
+        <p>Does this system work? The numbers speak for themselves. According to reports from the Ministry of Digital Affairs:</p>
+        <ul>
+            <li>Impersonation scam ads of public figures decreased by <strong>over 95%</strong>.</li>
+            <li>Investment scam ads decreased by <strong>nearly 90%</strong>.</li>
+        </ul>
+        <p>Our active AI scanning shows what this means in daily life: public figure impersonation ads went from over 30,000 per week in May 2024 to under 1,000 per week after the law took effect. They are now rarely seen. In terms of public safety outcomes, comparing November 2025 with November 2024, the number of accepted fraud cases decreased by 25%, and financial losses reported by citizens decreased by over 50%. This refers to all cases—not just investment or advertising fraud.</p>
+        <p>Major platforms like Meta have turned from adversaries ignoring us into allies, integrating their systems with our notification network. The antibody against this scam virus is collective vigilance. When citizens report, the system responds, and the defense scales.</p>
+        <p>From August 2024 to November 2025, a total of 112,054 suspected scam ads on Meta were flagged (by AI or human) and taken down through our cooperative channel. The fake investment ads that flooded Facebook last March are now hard to find.</p>
+    </div>
+    
+    <div class="chapter-body" lang="zh-TW">
+        <p>這套系統有效嗎？數據會說話。數位發展部的報告顯示：</p>
+        <ul>
+            <li>名人冒充詐騙廣告下降了 <strong>超過 95%</strong>。</li>
+            <li>投資詐騙廣告下降了 <strong>近 90%</strong>。</li>
+        </ul>
+        <p>我們的 AI 主動掃描，顯示這對日常生活的意義：名人冒充詐騙廣告的數量，從 2024 年 5 月的 每週超過 30,000 則，在法律生效後崩跌至 每週低於 1,000 則，現在已經非常罕見。在公共安全成果方面，從 2024 年 11 月到 2025 年 11 月，受理詐欺案件數下降了 25%，公民通報的財損金額下降了 超過 50%。這是指所有案件——不僅僅是投資詐騙或廣告詐騙。</p>
+        <p>像 Meta 這樣的大型平台，已經從原本忽視我們的對立面轉變為盟友，將他們的系統與通報網整合。對抗這場詐騙病毒的抗體，是集體防護。當公民通報時，系統現在能做出回應並大規模地放大防禦效果。</p>
+        <p>從 2024 年 8 月到 2025 年 11 月，Meta 上共有 112,054 則疑似詐騙廣告被標記（由 AI 或人工）並透過合作管道下架。去年三月曾經充斥 Facebook 的假投資廣告，現在已難得一見。</p>
+    </div>
+    
+    <div class="chapter-body" lang="ja">
+        <p>このシステムは機能しているのでしょうか？ 数字が物語っています。デジタル発展部の報告によれば：</p>
+        <ul>
+            <li>著名人なりすまし詐欺広告は <strong>95%以上</strong> 減少。</li>
+            <li>投資詐欺広告は <strong>90%近く</strong> 減少。</li>
+        </ul>
+        <p>私たちのAIによる能動的スキャンは、これが日常生活において何を意味するかを示しています。2024年5月には 週3万件以上 あった著名人なりすまし詐欺広告は、法律の施行後、週1,000件未満 へと激減しました。今ではめったに見かけません。治安上の成果として、2025年11月と2024年11月を比較すると、受理された詐欺件数は 25% 減少、市民から報告された金銭的被害額は 50%以上 減少しました。これは投資詐欺や広告詐欺に限らず、すべての詐欺案件を含んだ数字です。</p>
+        <p>Metaのような主要プラットフォームは、対立相手から盟友へと変わり、自社のシステムを私たちの通報ネットワークと統合しています。このウイルスに対する抗体は、集団的な見守りです。市民が通報すれば、システムは応答し、防御を大規模に拡大できるようになりました。</p>
+        <p>2024年8月から2025年11月までに、Meta上の詐欺疑い広告、合計 112,054件 が（AIまたは人間によって）フラグ付けされ、私たちの協力チャネルを通じて削除されました。かつてFacebookを埋め尽くしていた偽の投資広告は、今では探すのが難しいほどです。</p>
+    </div>
+</section>
+
+<div class="divider"><span class="divider-mark"></span></div>
+
+<!-- ════════ VI. FIGHTING AI WITH AI ════════ -->
+<section id="ai-with-ai" class="chapter reveal">
+    <div class="chapter-head">
+        <span class="chapter-num">VI</span>
+        <h2 class="chapter-title">
+            <span lang="en-GB">Countering AI with AI</span>
+            <span lang="zh-TW">以 AI 治 AI</span>
+            <span lang="ja">AIをもってAIを制す</span>
+        </h2>
+    </div>
+    
+    <div class="chapter-body" lang="en-GB">
+        <p>According to V-Dem, Taiwan has been the number one target of foreign disinformation attacks for the past 12 years. Usually, other countries have to pay for penetration tests—we get ours for free.</p>
+        <p>Why can attackers endlessly supply this "service"? Because most attacks today are AI-assisted, consuming minimal human resources. In the past, bot-generated scams looked fake. But since last year, they pass the so-called Turing Test—people cannot tell the difference between machine-generated and human-generated content.</p>
+        <blockquote>It is impossible to defeat the attackers’ AI with human defenders; we must fight AI with AI (以AI治AI).</blockquote>
+        <p>In the future, humans will still train the AI defenders, but the actual defense will be conducted by AI systems.</p>
+        <p>I currently serve on the board of <strong>ROOST (Robust Open Online Safety Tools)</strong>. We work with OpenAI, Discord, Bluesky, etc., to provide the <code>gpt-oss-safeguard</code> model, which can cite its sources: "We acted on this because it violates this rule."</p>
+        <p>This AI model is:</p>
+        <ul>
+            <li><strong>Deliberative:</strong> It thinks about the rules.</li>
+            <li><strong>Open:</strong> You can fine-tune it based on local culture.</li>
+            <li><strong>Steerable:</strong> People can co-write the rules—it is just a text file; you don't need a GPU to retrain it.</li>
+        </ul>
+        <p>You just change the rules, and the AI automatically enforces them.</p>
+    </div>
+    
+    <div class="chapter-body" lang="zh-TW">
+        <p>根據 V-Dem，臺灣在過去 12 年來一直是全球境外干預攻擊的首要目標。通常，其他國家需要付費進行滲透測試——我們則是免費享有。</p>
+        <p>為什麼攻擊者能源源不絕提供這種「服務」？因為現在大多數攻擊都是 AI 協力的，對人力的消耗有限。過去，機器人生成的詐騙看起來很假，不像真人。但從去年開始，它們通過了所謂的圖靈測試——人們無法分辨機器生成和人類生成內容的差異。</p>
+        <blockquote>不可能用人類防禦者來戰勝攻擊者的 AI，必須要以 AI 治 AI。</blockquote>
+        <p>未來的人類，仍然會擔任 AI 防禦者的訓練師，但實際進行防禦的將是 AI 系統。</p>
+        <p>我目前擔任 <strong>ROOST (Robust Open Online Safety Tools)</strong> 的董事。這個組織與 OpenAI、Discord、Bluesky 等合作，提供可以給出引用的 <code>gpt-oss-safeguard</code> 模型：「我們對此採取行動，是因為它違反了這條規則。」</p>
+        <p>這個 AI 模型是：</p>
+        <ul>
+            <li><strong>審慎的（Deliberative）：</strong>它會思考規則。</li>
+            <li><strong>開放的（Open）：</strong>你可以根據在地文化進行微調。</li>
+            <li><strong>可駕馭的（Steerable）：</strong>人們可以共同編寫規則——這只是一個文字檔，你不需要 GPU 來重新訓練。</li>
+        </ul>
+        <p>你只需要更改規則，它就會自動執行規則。</p>
+    </div>
+    
+    <div class="chapter-body" lang="ja">
+        <p>V-Dem（民主主義多様性研究所）によると、台湾は過去12年間、外国からの情報操作攻撃の世界最大の標的とされています。通常、他国はペネトレーションテスト（侵入テスト）にお金を払う必要がありますが、私たちは無料でそれを受けているようなものです。</p>
+        <p>なぜ攻撃者はこの「サービス」を延々と提供できるのでしょうか？ それは、現在の攻撃のほとんどがAI支援によるものであり、人的リソースをほとんど消費しないからです。以前は、ボットが生成した詐欺は偽物だとすぐにわかりました。しかし昨年から、それらはいわゆる「チューリングテスト」に合格しており、人間は機械生成コンテンツと人間生成コンテンツを見分けることができません。</p>
+        <blockquote>人間の防御者が攻撃者のAIに勝つことは不可能です。AIをもってAIを制する（以AI治AI）必要があります。</blockquote>
+        <p>防御の自動化に向けた未来の人間は、防御AIのトレーナーとしての役割を担いますが、実際の防御はAIシステムによって行われます。</p>
+        <p>私は現在、<strong>ROOST（Robust Open Online Safety Tools）</strong>の理事を務めています。この組織はOpenAI、Discord、Blueskyなどと協力し、引用元を提示できる <code>gpt-oss-safeguard</code> モデルを提供しています。「これがこの特定のルールに違反しているため、対処しました」と説明できるのです。</p>
+        <p>このAIモデルは：</p>
+        <ul>
+            <li><strong>熟議的（Deliberative）：</strong>ルールについて思考します。</li>
+            <li><strong>開放的（Open）：</strong>地域の文化に基づいて微調整（ファインチューニング）できます。</li>
+            <li><strong>操舵可能（Steerable）：</strong>人々がルールを共同で記述できます。それは単なるテキストファイルであり、再トレーニングのためにGPUを必要としません。</li>
+        </ul>
+        <p>ルールを変更すれば、AIが自動的にそのルールを実行します。</p>
+    </div>
+</section>
+
+<!-- ════════ CLOSING ════════ -->
+<section class="closing">
+    <div class="chapter reveal">
+        <div class="chapter-head">
+            <span class="chapter-num">&bull;</span>
+            <h2 class="chapter-title">
+                <span lang="en-GB">Free the Future</span>
+                <span lang="zh-TW">共創無限未來</span>
+                <span lang="ja">未来を解放する</span>
+            </h2>
+        </div>
+        
+        <div class="chapter-body" lang="en-GB">
+            <p>We have learned that to govern in the digital age, we do not need to choose between freedom and safety.</p>
+            <p>Find the "Will" through citizen deliberation, and execute the "Way" through precision legislation—where there is a will, there is a way.</p>
+            <p>We built a system that global giants respect and citizens trust. This is not just a Taiwan model; I believe it is a blueprint for the world's open societies.</p>
+            <p>Japan has the power to evolve this model further. Japan has a deep tradition of the Rule of Law. Combining it with Taiwan’s agile social implementation, I am confident we can Free the Future together.</p>
+            <p>Thank you.</p>
+        </div>
+        
+        <div class="chapter-body" lang="zh-TW">
+            <p>我們學到，要在數位時代進行治理，我們不需要在自由與安全之間做選擇。</p>
+            <p>透過結合公民審議凝聚意志，與精準立法執行意志——有志者，事竟成。</p>
+            <p>我們建立了讓全球巨頭尊重、公民相互協力的系統。這不僅僅是臺灣模式。我認為這是全球開放社會的藍圖。</p>
+            <p>日本擁有進一步演化這個模式的力量。日本擁有深厚的法治傳統。結合臺灣靈活的社會實踐，我深信我們可以攜手共創無限未來。</p>
+            <p>謝謝大家。</p>
+        </div>
+        
+        <div class="chapter-body" lang="ja">
+            <p>デジタル時代を統治するために、私たちは「自由」か「安全」かの二者択一を迫られる必要はないと学びました。</p>
+            <p>市民熟議によって「意志（Will）」を見出し、精密立法によって「道筋（Way）」を実行する。「意志あるところに、道は開ける（Where there is a will, there is a way）」のです。</p>
+            <p>私たちは、巨大グローバル企業が尊重し、市民が信頼できるシステムを構築しました。これは単なる台湾モデルではありません。世界の開かれた社会のための設計図だと信じています。</p>
+            <p>日本には、このモデルをさらに進化させる力があります。日本には重厚な「法治」の伝統があります。台湾の「アジャイルな社会実装」と組み合わせることで、私たちは共に <strong>未来を解放する（Free the Future）</strong> ことができると確信しています。</p>
+            <p>ありがとうございました。</p>
+        </div>
+        
+        <p class="closing-final" lang="en-GB">Where there is a will, there is a way.</p>
+        <p class="closing-final" lang="zh-TW">有志者，事竟成。</p>
+        <p class="closing-final" lang="ja">意志あるところに、道は開ける。</p>
+    </div>
+</section>
+
+</main>
+
+<footer class="colophon">
+    <div class="cc0-mark">CC0</div>
+    
+    <p class="colophon-note" lang="en-GB">Adapted from public testimony before the Liberal Democratic Party Headquarters, Tokyo, December 16, 2025. Dedicated to the public domain under <a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener">Creative Commons Zero 1.0</a>. No rights reserved. Copy, remix, translate, build upon it freely.</p>
+    <p class="colophon-note" lang="zh-TW">改編自 2025 年 12 月 16 日於東京自由民主黨總部的公開證詞。依據<a href="https://creativecommons.org/publicdomain/zero/1.0/deed.zh_TW" target="_blank" rel="noopener">創用 CC0 1.0 通用</a>條款釋出至公共領域。不保留任何權利。歡迎自由複製、改編、翻譯、再創作。</p>
+    <p class="colophon-note" lang="ja">2025年12月16日、東京の自由民主党本部における公開証言より改編。クリエイティブ・コモンズ ゼロ 1.0 のもとで<a href="https://creativecommons.org/publicdomain/zero/1.0/deed.ja" target="_blank" rel="noopener">パブリックドメイン</a>に捧げられています。いかなる権利も保留されていません。自由に複製、改変、翻訳、再構成してください。</p>
+    
+    <p class="colophon-meta">
+        <span lang="en-GB">Audrey Tang &middot; Cyber Ambassador, Taiwan</span>
+        <span lang="zh-TW">唐鳳 &middot; 臺灣數位治理大使</span>
+        <span lang="ja">オードリー・タン &middot; 台湾サイバー大使</span>
+    </p>
+</footer>
+
+<script>
+(function () {
+    var bar = document.querySelector('.progress');
+    var toggles = document.querySelectorAll('input[name="lang"]');
+    var heroEl = document.querySelector('.hero');
+    var langToggle = document.querySelector('.lang-toggle');
+    var ticking = false;
+    
+    // Smooth progress bar scroll updates
+    window.addEventListener('scroll', function () {
+        if (!ticking) {
+            requestAnimationFrame(function () {
+                var s = window.scrollY;
+                var h = document.documentElement.scrollHeight - window.innerHeight;
+                bar.style.width = (h > 0 ? Math.min(s / h * 100, 100) : 0) + '%';
+                
+                var heroH = heroEl ? heroEl.offsetHeight : 500;
+                langToggle.classList.toggle('scrolled', s > heroH * 0.7);
+                ticking = false;
+            });
+            ticking = true;
+        }
+    }, { passive: true });
+
+    // Scroll reveal observers
+    var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+            if (e.isIntersecting) {
+                e.target.classList.add('visible');
+                io.unobserve(e.target);
+            }
+        });
+    }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
+    
+    document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+
+    // Multi-language sync logic
+    function setLanguage(lang) {
+        document.documentElement.setAttribute('lang', lang);
+        
+        var title = "Collaborative Immune System: From Digital Deliberation to Precision Legislation";
+        if (lang === 'zh-TW') {
+            title = "協作式免疫系統：從數位審議到精準立法";
+        } else if (lang === 'ja') {
+            title = "協働する免疫システム：デジタル熟議から精密な立法へ";
+        }
+        document.title = title;
+        
+        try { localStorage.setItem('lang', lang); } catch (e) {}
+    }
+
+    toggles.forEach(function (radio) {
+        radio.addEventListener('change', function () {
+            if (radio.checked) {
+                var lang = 'en-GB';
+                if (radio.id === 'lang-zh') lang = 'zh-TW';
+                if (radio.id === 'lang-ja') lang = 'ja';
+                setLanguage(lang);
+            }
+        });
+    });
+    
+    // Listen to space/enter key on custom labels
+    document.querySelectorAll('.lang-btn').forEach(function (lbl) {
+        lbl.addEventListener('keydown', function (e) {
+            if (e.key === ' ' || e.key === 'Enter') {
+                e.preventDefault();
+                var targetId = lbl.getAttribute('for');
+                var radio = document.getElementById(targetId);
+                if (radio) {
+                    radio.checked = true;
+                    radio.dispatchEvent(new Event('change'));
+                }
+            }
+        });
+    });
+})();
+</script>
+
+</body>
+</html>
