@@ -105,7 +105,7 @@ Run a contestable model locally at pi.audreyt.org →
 ---
 
 <!-- section:FILM -->
-## Short Film · Directed by Cynthia Wade: Good Enough Ancestor
+## Short Film · Directed by Cynthia Wade: Good Enough Ancestor — A Documentary
 
 Oscar and Emmy-winning director Cynthia Wade's documentary on democracy, mortality, and the courage to leave a wider canvas for future generations. **Best Professional Documentary Short**, SCAD Savannah Film Festival. Screened at the Woodstock Film Festival and Athena Film Festival. 21 min.
 
