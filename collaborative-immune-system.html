@@ -523,13 +523,15 @@ header.site {
 /* ── DARK SCHEME ── */
 @media (prefers-color-scheme: dark) {
     :root {
-        --paper: #090e14;
-        --warm: #111820;
-        --surface: #0f1722;
-        --heading: #faf8f5;
-        --text: #a0aec0;
-        --muted: #718096;
-        --border: #1e293b;
+        --paper: #111820;
+        --warm: #161e28;
+        --surface: #1c2535;
+        --heading: #e8e4dc;
+        --text: #b8b4ac;
+        --muted: #8a96a8;
+        --border: rgba(255,255,255,0.1);
+        --gold: #c9a961;
+        --teal: #4bc3d4;
     }
     /* --ink stays #0f1923 so .hero / .interlude--dark / .closing remain
        on a dark surface (their text is hard-coded #fff). */
@@ -564,7 +566,7 @@ header.site {
 
 /* ── PRINT ── */
 @media print {
-    .lang-toggle, .progress, .scroll-cue, header.site { display: none !important; }
+    body::after, .lang-toggle, .progress, .scroll-cue, .hero-year, .hero-emblem, header.site { display: none !important; }
     .hero { min-height: auto; background: none; color: #000; padding: 40px 0; }
     .hero::before { display: none; }
     .hero-year, .hero-emblem { display: none; }
@@ -902,7 +904,7 @@ document.documentElement.classList.add('js');
         <p>In practice, this is an automated process connecting citizens, government agencies, and platforms.</p>
         
         <figure class="chapter-illustration image-illustration">
-            <img src="assets/LDP.002.png" alt="Fraud Buster Work Flow Diagram" width="800" height="450" loading="lazy">
+            <noscript><img src="assets/LDP.002.png" alt="Fraud Buster Work Flow Diagram" width="800" height="450" loading="lazy"></noscript>
         </figure>
         
         <p>Citizens are active participants. When they spot a scam ad, they report it to our <strong>"Fraud Buster"</strong> database query network.</p>
@@ -914,7 +916,7 @@ document.documentElement.classList.add('js');
         <p>這在實務上如何運作？這是自動化的流程，連結了公民、政府和平台。</p>
         
         <figure class="chapter-illustration image-illustration">
-            <img src="assets/LDP.001_2.png" alt="網詐通報查詢網運作流程圖" width="800" height="450" loading="lazy">
+            <noscript><img src="assets/LDP.001_2.png" alt="網詐通報查詢網運作流程圖" width="800" height="450" loading="lazy"></noscript>
         </figure>
         
         <p>公民不是被動的受害者，而是主動的參與者。公民在平台上看到任何詐騙廣告，都可以在我們的<strong>《網詐通報查詢網》（Fraud Buster）</strong>上通報。</p>
@@ -926,7 +928,7 @@ document.documentElement.classList.add('js');
         <p>現場ではどう機能するのか。これは市民、政府、プラットフォームを結ぶ、自動化されたプロセスです。</p>
         
         <figure class="chapter-illustration image-illustration">
-            <img src="assets/LDP.003.png" alt="詐欺通報照会ネット運用プロセス図" width="800" height="450" loading="lazy">
+            <noscript><img src="assets/LDP.003.png" alt="詐欺通報照会ネット運用プロセス図" width="800" height="450" loading="lazy"></noscript>
         </figure>
         
         <p>市民は、受動的な被害者ではなく、能動的な参加者です。市民は、プラットフォーム上で詐欺広告を見つけたら、<strong>「詐欺通報照会ネット（Fraud Buster）」</strong>で通報できます。</p>
@@ -1173,6 +1175,25 @@ document.documentElement.classList.add('js');
                     radio.dispatchEvent(new Event('change'));
                 }
             }
+        });
+    });
+})();
+</script>
+
+<script>
+// AVIF/WebP probe + <noscript><img> upgrade (mirrors src/scripts/image-probe.js + image-upgrade.js).
+// For PNG sources rather than JPG, so the regex matches .png.
+(function(){
+    function probe(s){return new Promise(function(r){var i=new Image;i.onload=function(){r(i.width>0)};i.onerror=function(){r(!1)};i.src=s})}
+    Promise.all([probe('assets/probe.avif'),probe('assets/probe.webp')]).then(function(r){
+        var ext=r[0]?'.avif':r[1]?'.webp':'.png';
+        document.querySelectorAll('noscript').forEach(function(ns){
+            var html=ns.textContent;
+            if(html.indexOf('<img ')===-1)return;
+            if(ext!=='.png')html=html.replace(/\.png(?=["'\s])/g,ext);
+            var tmp=document.createElement('div');tmp.innerHTML=html;
+            var img=tmp.querySelector('img');
+            if(img)ns.parentNode.insertBefore(img,ns);
         });
     });
 })();
