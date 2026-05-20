@@ -1,10 +1,13 @@
 #!/usr/bin/env bun
 /**
- * Pre-commit hook: weave index.html from src/ parts + READMEs, recompute LQIP.
+ * Pre-commit hook: weave index.html from src/ parts + READMEs, recompute LQIP,
+ * and inline src/styles/essay.css into stand-alone essay pages.
  *
  * Pipeline:
- *   Phase 1 — LQIP: recompute --lqip values in src/styles/base.css for changed images
- *   Phase 2 — Weave: assemble index.html from src/ skeleton + README content (includes CSP)
+ *   Phase 1 — LQIP:         recompute --lqip values in src/styles/base.css for changed images
+ *   Phase 2 — Weave:        assemble index.html from src/ skeleton + README content (includes CSP)
+ *   Phase 3 — Essay weave:  inline src/styles/essay.css into each essay HTML
+ *                           between essay:base sentinel comments
  *
  * Run manually (./pre-commit) to force a full rebuild without staging.
  * Auto-detected: if invoked outside .git/hooks/, force mode activates.
@@ -222,6 +225,46 @@ if (needsWeave) {
   console.log("pre-commit: weaving index.html from src/ ...");
   await $`bun weave.ts`;
   await $`git add index.html`;
+}
+
+// ─── Phase 3: Inline essay.css into stand-alone essays ──────────────
+
+const ESSAY_FILES = [
+  "transparent-horse.html",
+  "good-enough-ancestor.html",
+  "collaborative-immune-system.html",
+];
+const ESSAY_CSS_FILE = "src/styles/essay.css";
+const BEGIN_MARK = "/* essay:base */";
+const END_MARK = "/* /essay:base */";
+
+const needsEssayWeave =
+  FORCE ||
+  staged.includes(ESSAY_CSS_FILE) ||
+  staged.some((f) => ESSAY_FILES.includes(f));
+
+if (needsEssayWeave) {
+  const essayCss = (await Bun.file(ESSAY_CSS_FILE).text()).trimEnd();
+
+  for (const essay of ESSAY_FILES) {
+    const html = await Bun.file(essay).text();
+    const beginIdx = html.indexOf(BEGIN_MARK);
+    const endIdx = html.indexOf(END_MARK);
+    if (beginIdx === -1 || endIdx === -1 || endIdx < beginIdx) {
+      console.warn(
+        `pre-commit: ${essay} missing ${BEGIN_MARK} ... ${END_MARK} markers — skipped`,
+      );
+      continue;
+    }
+    const before = html.slice(0, beginIdx + BEGIN_MARK.length);
+    const after = html.slice(endIdx);
+    const replaced = `${before}\n${essayCss}\n${after}`;
+    if (replaced !== html) {
+      await Bun.write(essay, replaced);
+      await $`git add ${essay}`;
+      console.log(`pre-commit: essay-weave ${essay}`);
+    }
+  }
 }
 
 process.exit(0);

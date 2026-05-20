@@ -437,9 +437,10 @@ src/
 ├── svg/                          ← inline SVG markup
 ├── fonts/                        ← base64-encoded WOFF2 (one .b64 per face)
 ├── styles/
-│   ├── base.css                  ← reset, :root tokens, LQIP rules, nav, Stage 1 font-face
+│   ├── base.css                  ← index reset, :root tokens, LQIP rules, nav, Stage 1 font-face
 │   ├── fonts-stage2.css          ← @font-face for full Cormorant Garamond normal
-│   ├── components.css            ← all component styles, typography, Outfit + italic font-faces
+│   ├── components.css            ← all index component styles, typography, Outfit + italic font-faces
+│   ├── essay.css                 ← shared baseline for stand-alone essays (inlined by pre-commit Phase 3)
 │   └── noscript-reveal.css
 └── scripts/
     ├── lang-detect.js            ← language detection (minified, runs in <head>)
@@ -455,7 +456,7 @@ weave.ts                          ← homepage build script
 pre-commit.ts                     ← LQIP + weave pipeline (symlinked to .git/hooks/pre-commit)
 ```
 
-The **index** is woven from `README.md` + `src/`; the **essays** are single-file HTML documents that are hand-edited directly. The two architectures coexist deliberately — essays are reading documents that benefit from being one self-contained `.html` per piece (easy to mirror, archive, port).
+The **index** is woven from `README.md` + `src/`; the **essays** are single-file HTML documents that are hand-edited directly. The two architectures coexist deliberately — essays are reading documents that benefit from being one self-contained `.html` per piece (easy to mirror, archive, port). The pre-commit hook does inline `src/styles/essay.css` into each essay (between `essay:base` sentinel comments) so the shared color/typography/header baseline lives in one source-of-truth file, but the deployed essay is still a single self-contained HTML.
 
 ## Build Pipeline
 
@@ -468,6 +469,7 @@ The pre-commit hook (`pre-commit.ts`, symlinked from `.git/hooks/pre-commit`) ru
 
 1. **Phase 1 — LQIP**: recomputes `--lqip` values in `src/styles/base.css` for any changed image (one integer per image, encoding a 3×2 luminance grid + oklab base colour, unpacked by CSS `mod()`/`pow()` into six composited radial gradients — zero network requests).
 2. **Phase 2 — Weave**: runs `bun weave.ts` to assemble `index.html`. Triggered by changes to `src/`, `weave.ts`, `README.md`, or `README.zh-TW.md`. Recomputes every inline `<script>` / `<style>` SHA-256 and rewrites the CSP `<meta>` (marked by `<!-- auto-rehashed by pre-commit book -->`).
+3. **Phase 3 — Essay weave**: inlines `src/styles/essay.css` into each stand-alone essay HTML, between the `/* essay:base */` and `/* /essay:base */` sentinel comments. Triggered by changes to `src/styles/essay.css` or any essay HTML. Means the shared color tokens, dark-mode block, typography stack, `@keyframes fadeUp`, `.reveal`, and `header.site` lockup all live in one source file rather than three. Per-essay specifics (lang-toggle UI, CJK / ja overrides, hero decorations, print hide list) stay inline in each essay file *after* the closing sentinel.
 
 ### Weave template markers
 
@@ -493,7 +495,8 @@ Font markers appear *inside* `@font-face` rules: `src: url('data:font/woff2;base
 | Index font | `src/fonts/*.woff2.b64` (replace the encoded file) |
 | Dialogue thumbnails | `src/thumbs.json` (keyed by YouTube video ID) |
 | Essay content | The essay's `.html` directly (single source of truth, multilingual via `<span lang="…">`) |
-| Essay style | The essay's inline `<style>` |
+| Essay style (shared) | `src/styles/essay.css` — color tokens, dark-mode block, typography, `@keyframes fadeUp`, `.reveal`, `header.site`. Inlined into each essay by pre-commit Phase 3. |
+| Essay style (per-page) | The essay's inline `<style>` *after* the `/* /essay:base */` sentinel — lang-toggle UI, CJK/ja overrides, hero decorations, chapter/interlude/closing tweaks, print rules. |
 | New image | Add to `assets/`, generate AVIF and WebP variants, reference inside `<noscript><img …></noscript>` — pre-commit LQIP + weave handles the rest |
 
 ### Image format negotiation

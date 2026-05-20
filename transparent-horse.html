@@ -18,9 +18,24 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@400;600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
+/* essay:base */
+/* ── essay.css ──────────────────────────────────────────────────────────
+ * Shared baseline for stand-alone essay pages
+ * (transparent-horse.html, collaborative-immune-system.html,
+ *  good-enough-ancestor.html, and any future essay).
+ *
+ * Inlined into each essay's <style> block by pre-commit.ts on commit,
+ * between the "essay:base" and "/essay:base" sentinel comments.
+ * Do not hand-edit the inlined copy in each essay; edit this file,
+ * then `bun pre-commit.ts --force` (or just commit) to re-inline.
+ *
+ * Per-essay specifics stay inline AFTER the closing sentinel:
+ * lang-toggle mechanics + UI (2-lang checkbox vs 3-lang radio),
+ * CJK & ja overrides, hero decorations (year, emblem, crystal),
+ * chapter/interlude/closing padding tweaks, print hide list.
+ * ──────────────────────────────────────────────────────────────────── */
+
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html:not(:has(#lang-zh:checked)) [lang="zh-TW"] { display: none; }
-html:has(#lang-zh:checked) [lang="en-GB"] { display: none; }
 
 :root {
     --ink: #0f1923;
@@ -42,6 +57,20 @@ html:has(#lang-zh:checked) [lang="en-GB"] { display: none; }
     --cursive: 'Kaiti TC', 'DFKai-SB', 'BiauKai', 'STKaiti', cursive;
 }
 
+@media (prefers-color-scheme: dark) {
+    :root {
+        --paper: #111820;
+        --warm: #161e28;
+        --surface: #1c2535;
+        --heading: #e8e4dc;
+        --text: #b8b4ac;
+        --muted: #8a96a8;
+        --border: rgba(255,255,255,0.1);
+        --gold: #c9a961;
+        --teal: #4bc3d4;
+    }
+}
+
 html { scroll-behavior: smooth; }
 
 body {
@@ -53,6 +82,80 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+
+a { color: var(--teal); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; text-decoration-color: color-mix(in srgb, currentColor 35%, transparent); transition: color 0.2s; }
+a:hover { color: var(--gold); }
+
+:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ── SITE HEADER (links back to homepage, matching pi.audreyt.org / audreyt.box) ── */
+header.site {
+    max-width: 860px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 48px 6px;
+    opacity: 0;
+    animation: fadeUp 0.6s ease 0.2s forwards;
+}
+.name {
+    font-family: var(--serif);
+    font-size: 1.02rem;
+    font-weight: 600;
+    color: var(--heading);
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+}
+.name:hover { color: var(--gold); text-decoration: none; }
+.name .cjk {
+    font-family: var(--cjk);
+    font-size: 0.72em;
+    font-weight: 500;
+    opacity: 0.82;
+    margin-left: 4px;
+}
+.crumbs {
+    font-family: var(--sans);
+    font-size: 0.66rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex;
+    gap: 0.9rem;
+    align-items: center;
+    white-space: nowrap;
+}
+.crumbs .cjk-tag { font-family: var(--cjk); letter-spacing: 0.05em; }
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .reveal { opacity: 1 !important; transform: none !important; }
+    header.site { opacity: 1 !important; }
+}
+/* /essay:base */
+
+/* ── 2-LANG TOGGLE MECHANICS ── */
+html:not(:has(#lang-zh:checked)) [lang="zh-TW"] { display: none; }
+html:has(#lang-zh:checked) [lang="en-GB"] { display: none; }
 
 /* ── CJK OVERRIDES ── */
 html:has(#lang-zh:checked) body { font-weight: 500; line-height: 1.9; }
@@ -69,12 +172,7 @@ html:has(#lang-zh:checked) .closing-final { font-style: normal; font-family: var
 html:has(#lang-zh:checked) .lang-toggle [lang="zh-TW"] { display: inline; }
 html:has(#lang-zh:checked) .lang-toggle [lang="en-GB"] { display: none; }
 
-a { color: var(--teal); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; text-decoration-color: color-mix(in srgb, currentColor 35%, transparent); transition: color 0.2s; }
-a:hover { color: var(--gold); }
-
-:focus-visible { outline: 2px solid var(--teal); outline-offset: 3px; }
-
-/* ── LANG TOGGLE ── */
+/* ── LANG TOGGLE UI ── */
 .lang-toggle {
     position: fixed;
     top: 20px;
@@ -129,11 +227,7 @@ body::after {
     pointer-events: none;
 }
 
-/* ── ANIMATIONS ── */
-@keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
+/* ── ANIMATIONS (per-essay decorations) ── */
 @keyframes pulse {
     0%, 100% { opacity: 0.4; }
     50% { opacity: 0.8; }
@@ -360,17 +454,8 @@ body::after {
 .cc0-mark { font-family: var(--serif); font-size: 1.6rem; font-weight: 300; color: var(--gold); margin-bottom: 6px; }
 .colophon-note { max-width: 480px; margin: 0 auto; }
 
-/* ── REVEAL ── */
-.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.8s ease, transform 0.8s ease; }
-.reveal.visible { opacity: 1; transform: translateY(0); }
-
-/* ── DARK MODE ── */
+/* ── DARK MODE (per-essay decoration overrides) ── */
 @media (prefers-color-scheme: dark) {
-    :root {
-        --paper: #111820; --warm: #161e28; --surface: #1c2535;
-        --heading: #e8e4dc; --text: #b8b4ac; --muted: #8a96a8;
-        --border: rgba(255,255,255,0.1); --gold: #c9a961; --teal: #4bc3d4;
-    }
     body::after { opacity: 0.028; }
     .hero-year { color: rgba(201,169,97,0.025); }
     .interlude--warm { border-color: rgba(255,255,255,0.06); }
@@ -413,61 +498,13 @@ body::after {
     html:has(#lang-zh:checked) .interlude blockquote { font-size: 1.1rem; }
 }
 
-/* ── REDUCED MOTION ── */
+/* ── REDUCED MOTION (per-essay decoration overrides) ── */
 @media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
-    *, *::before, *::after { animation: none !important; transition: none !important; }
-    .reveal, .hero-label, .hero h1, .hero-subtitle, .hero-lede, .scroll-cue, .hero-crystal {
+    .hero-label, .hero h1, .hero-subtitle, .hero-lede, .scroll-cue, .hero-crystal {
         opacity: 1 !important; transform: none !important;
     }
     .hero-crystal { transform: translateY(-55%) !important; }
 }
-
-/* ── SITE HEADER (links back to homepage, matching pi.audreyt.org / audreyt.box) ── */
-header.site {
-  max-width: 860px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 18px 48px 6px;
-  opacity: 0;
-  animation: fadeUp 0.6s ease 0.2s forwards;
-}
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(6px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.name {
-  font-family: var(--serif);
-  font-size: 1.02rem;
-  font-weight: 600;
-  color: var(--heading);
-  text-decoration: none;
-  letter-spacing: 0.01em;
-  white-space: nowrap;
-}
-.name:hover { color: var(--gold); text-decoration: none; }
-.name .cjk {
-  font-family: var(--cjk);
-  font-size: 0.72em;
-  font-weight: 500;
-  opacity: 0.82;
-  margin-left: 4px;
-}
-.crumbs {
-  font-family: var(--sans);
-  font-size: 0.66rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--muted);
-  display: flex;
-  gap: 0.9rem;
-  align-items: center;
-  white-space: nowrap;
-}
-.crumbs .cjk-tag { font-family: var(--cjk); letter-spacing: 0.05em; }
 
 /* ── PRINT ── */
 @media print {
