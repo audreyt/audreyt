@@ -482,6 +482,48 @@ body::after {
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
 /* ── DARK MODE ── */
+/* ── SITE HEADER (links back to homepage, matching pi.audreyt.org / audreyt.box) ── */
+header.site {
+  max-width: 860px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 48px 6px;
+  opacity: 0;
+  animation: fadeUp 0.6s ease 0.2s forwards;
+}
+.name {
+  font-family: var(--serif);
+  font-size: 1.02rem;
+  font-weight: 600;
+  color: var(--heading);
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+.name:hover { color: var(--gold); text-decoration: none; }
+.name .cjk {
+  font-family: var(--cjk);
+  font-size: 0.72em;
+  font-weight: 500;
+  opacity: 0.82;
+  margin-left: 4px;
+}
+.crumbs {
+  font-family: var(--sans);
+  font-size: 0.66rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  display: flex;
+  gap: 0.9rem;
+  align-items: center;
+  white-space: nowrap;
+}
+.crumbs .cjk-tag { font-family: var(--cjk); letter-spacing: 0.05em; }
+
 @media (prefers-color-scheme: dark) {
     :root {
         --paper: #111820; --warm: #161e28; --surface: #1c2535;
@@ -514,6 +556,8 @@ body::after {
     .closing-final { margin-top: 40px; padding-top: 36px; }
     .colophon { padding: 36px 24px 44px; }
     .lang-toggle { top: 16px; right: 16px; }
+    header.site { padding: 14px 24px 4px; }
+    .crumbs { gap: 0.7rem; font-size: 0.62rem; }
     .ask { margin-bottom: 28px; }
     .chapter-illustration { margin: -20px auto 32px; height: 86px; }
     .chapter-illustration svg { width: 156px; max-width: 78%; }
@@ -544,7 +588,7 @@ body::after {
 
 /* ── PRINT ── */
 @media print {
-    body::after, .progress, .scroll-cue, .hero-emblem, .hero-year, .lang-toggle { display: none !important; }
+    body::after, .progress, .scroll-cue, .hero-emblem, .hero-year, .lang-toggle, header.site { display: none !important; }
     .hero { min-height: 0; padding: 40px; }
     .hero-content { padding: 0; }
     .hero-label, .hero h1, .hero-subtitle, .hero-lede { opacity: 1; animation: none; }
@@ -563,6 +607,14 @@ body::after {
 <label for="lang-zh" class="lang-toggle" role="button" tabindex="0" aria-label="Switch language"><span lang="en-GB">華文</span><span lang="zh-TW">EN</span></label>
 
 <div class="progress" aria-hidden="true"></div>
+
+<header class="site">
+  <a class="name" href="/">Audrey&nbsp;Tang <span class="cjk">唐鳳</span></a>
+  <div class="crumbs">
+    <span>Good Enough Ancestor</span>
+    <span class="cjk-tag"><span lang="en-GB">Testimony</span><span lang="zh-TW">證詞</span></span>
+  </div>
+</header>
 
 <!-- ════════ HERO ════════ -->
 <header class="hero">
