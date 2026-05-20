@@ -482,7 +482,6 @@ html:has(#lang-ja:checked) .defense-heading { font-family: var(--serif-ja); }
 @media (prefers-color-scheme: dark) {
     :root {
         --paper: #090e14;
-        --ink: #faf8f5;
         --warm: #111820;
         --surface: #0f1722;
         --heading: #faf8f5;
@@ -490,6 +489,8 @@ html:has(#lang-ja:checked) .defense-heading { font-family: var(--serif-ja); }
         --muted: #718096;
         --border: #1e293b;
     }
+    /* --ink stays #0f1923 so .hero / .interlude--dark / .closing remain
+       on a dark surface (their text is hard-coded #fff). */
     
     .lang-toggle.scrolled {
         background: rgba(17,24,32,0.9);
