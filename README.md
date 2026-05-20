@@ -115,6 +115,20 @@ Oscar and Emmy-winning director Cynthia Wade's documentary on democracy, mortali
 
 ---
 
+<!-- section:ESSAYS -->
+## Essays & Testimonies: The Long Read
+
+[Collaborative Immune System](/collaborative-immune-system) — LDP Headquarters · Tokyo · December 2025
+How citizen collaboration and precision legislation build a digital immune system against deepfakes and AI scams. In a democracy, the strongest anti-fraud technology is not a filter — it is legitimacy.
+
+[A Good Enough Ancestor: Senate Testimony](/good-enough-ancestor) — Standing Committee on Human Rights · Senate of Canada · April 2026
+AI is more than automation. It redistributes attention, authority, and bargaining power. In a democracy, such redistribution must be visible, contestable, and co-governed.
+
+[Transparent Horse](/transparent-horse) — A 2040 Retrospective · 2025
+A retrospective from 2040 on how we waged peace and won. Not the story of how we failed to build a god — the story of how we decided one was not needed.
+
+---
+
 <!-- section:PUBLICATIONS -->
 ## Published: Deep Thinking
 

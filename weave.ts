@@ -923,6 +923,92 @@ function renderFilmQuotes(): string {
   return lines.join("\n");
 }
 
+interface Essay {
+  title: string;
+  url: string;
+  meta: string;
+  desc: string;
+}
+
+function renderEssays(): string {
+  const lines: string[] = [];
+  const I = "    "; // 4 spaces
+
+  function parseEssays(content: string): Essay[] {
+    const essays: Essay[] = [];
+    const { body } = parseHeading(content);
+    const blocks = body.split(/\n\n+/).filter(Boolean);
+    let current: Partial<Essay> | null = null;
+    for (const block of blocks) {
+      const m = block.match(/^\[([^\]]+)\]\(([^)]+)\)\s*—\s*(.+)$/m);
+      if (m) {
+        if (current?.title) essays.push(current as Essay);
+        const descLines = block.split("\n").slice(1).join(" ").trim();
+        current = { title: m[1], url: m[2], meta: m[3], desc: descLines || "" };
+      } else if (current && !current.desc) {
+        current.desc = block.trim();
+      }
+    }
+    if (current?.title) essays.push(current as Essay);
+    return essays;
+  }
+
+  const enP = parseHeading(en.ESSAYS);
+  const zhP = parseHeading(zh.ESSAYS);
+  const enEssays = parseEssays(en.ESSAYS);
+  const zhEssays = parseEssays(zh.ESSAYS);
+
+  lines.push(
+    `${I}<div class="section-label" lang="en-GB">${entEn(enP.label ?? "Essays & Testimonies")}</div>`,
+  );
+  lines.push(
+    `${I}<div class="section-label" lang="zh-TW">${entZh(zhP.label ?? "文集與證詞")}</div>`,
+  );
+  lines.push(
+    `${I}<h2 lang="en-GB">${applyNowrap(entEn(enP.heading ?? ""))}</h2>`,
+  );
+  lines.push(
+    `${I}<h2 lang="zh-TW">${applyNowrap(entZh(zhP.heading ?? ""))}</h2>`,
+  );
+
+  lines.push(`${I}<div class="essay-grid">`);
+  for (let i = 0; i < enEssays.length; i++) {
+    const enE = enEssays[i];
+    const zhE = zhEssays[i];
+    lines.push(`${I}    <a href="${enE.url}" class="essay-card">`);
+    lines.push(`${I}        <div class="essay-body">`);
+    lines.push(
+      `${I}            <div class="meta" lang="en-GB">${entEn(enE.meta)}</div>`,
+    );
+    if (zhE) {
+      lines.push(
+        `${I}            <div class="meta" lang="zh-TW">${entZh(zhE.meta)}</div>`,
+      );
+    }
+    lines.push(
+      `${I}            <h3 lang="en-GB">${entEn(enE.title)}</h3>`,
+    );
+    if (zhE) {
+      lines.push(
+        `${I}            <h3 lang="zh-TW">${entZh(zhE.title)}</h3>`,
+      );
+    }
+    lines.push(
+      `${I}            <p lang="en-GB">${mdInline(enE.desc, entEn)}</p>`,
+    );
+    if (zhE) {
+      lines.push(
+        `${I}            <p lang="zh-TW">${mdInline(zhE.desc, entZh)}</p>`,
+      );
+    }
+    lines.push(`${I}        </div>`);
+    lines.push(`${I}    </a>`);
+  }
+  lines.push(`${I}</div>`);
+
+  return lines.join("\n");
+}
+
 function renderPublications(): string {
   const lines: string[] = [];
   const I = "    "; // 4 spaces
@@ -1201,6 +1287,7 @@ const contentMap: Record<string, () => string> = {
   CIVIC_AI: renderCivicAI,
   FILM_HEADER: renderFilmHeader,
   FILM_QUOTES: renderFilmQuotes,
+  ESSAYS: renderEssays,
   PUBLICATIONS: renderPublications,
   BACKGROUND: renderBackground,
   CONNECT: renderConnect,

@@ -25,7 +25,7 @@
 <meta name="theme-color" content="#0f1923" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#faf8f5" media="(prefers-color-scheme: light)">
 <meta name="color-scheme" content="light dark">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-WqMorOfjjZNgOsb4BU+bclWxZec5y+bzTOujic3XVGw=' 'sha256-4G7wnwQc6qvKDvB+Quf3SC5N+0WcBvc/riHtQRDvDX4=' 'sha256-PBIbXpxoZq+dGJKBjiohe0A6iJvI1eJGI9eoqhVuI+Q='; style-src 'sha256-bDY6FZoeTf6q1OFKAm9VbOuUPcTtgmyHFqO238fjg8E=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-kTULIk1LNNTuREciBeliE5aA3crzF37/I9L8WOTrbcw=' 'sha256-qaTsg9q/v14wZX1rR2kkXPt29UCRdBxw/RSXTl5jv/A='; img-src 'self'; font-src 'self' data:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-WqMorOfjjZNgOsb4BU+bclWxZec5y+bzTOujic3XVGw=' 'sha256-4G7wnwQc6qvKDvB+Quf3SC5N+0WcBvc/riHtQRDvDX4=' 'sha256-PBIbXpxoZq+dGJKBjiohe0A6iJvI1eJGI9eoqhVuI+Q='; style-src 'sha256-bDY6FZoeTf6q1OFKAm9VbOuUPcTtgmyHFqO238fjg8E=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-kTULIk1LNNTuREciBeliE5aA3crzF37/I9L8WOTrbcw=' 'sha256-KmFeWrg9QfK52p1rkGW+R+/WJKFdfZDWw3+CTC2ETqU='; img-src 'self'; font-src 'self' data:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
 <link rel="canonical" href="https://cyberambassador.tw/">
 <link rel="alternate" hreflang="zh-TW" href="https://audreyt.org/">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -277,6 +277,7 @@ picture { display: block; }
             <a href="#recognition"><span lang="en-GB">Honours</span><span lang="zh-TW">獲獎</span></a>
             <a href="#work"><span lang="en-GB">Work</span><span lang="zh-TW">工作</span></a>
             <a href="#publications"><span lang="en-GB">Published</span><span lang="zh-TW">著作</span></a>
+            <a href="#essays"><span lang="en-GB">Long Read</span><span lang="zh-TW">長篇</span></a>
             <a href="#connect"><span lang="en-GB">Connect</span><span lang="zh-TW">聯絡</span></a>
         </div>
         <label for="lang-zh" class="lang-toggle" role="button" tabindex="0" aria-label="切換語言 / Switch language"><span lang="zh-TW">EN</span><span lang="en-GB">華文</span></label>
@@ -1213,6 +1214,67 @@ footer .footer-name {
     line-height: 1.65;
 }
 
+/* ─── ESSAY CARDS ─── */
+.essay-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    margin-top: 48px;
+}
+
+.essay-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 28px 28px 32px;
+    color: var(--text);
+    text-decoration: none;
+    transition: box-shadow 0.4s cubic-bezier(0.22,1,0.36,1),
+                transform 0.4s cubic-bezier(0.22,1,0.36,1),
+                border-color 0.3s ease;
+}
+
+.essay-card:hover {
+    color: var(--text);
+    transform: translateY(-4px);
+    border-color: color-mix(in srgb, var(--gold) 35%, var(--border));
+    box-shadow: 0 16px 48px rgba(0,0,0,0.08);
+}
+
+.essay-card .meta {
+    font-family: var(--sans);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 14px;
+}
+
+.essay-card h3 {
+    font-family: var(--serif);
+    font-size: 1.45rem;
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--heading);
+    margin-bottom: 14px;
+    letter-spacing: -0.005em;
+}
+
+.essay-card p {
+    font-family: var(--serif);
+    font-size: 1rem;
+    line-height: 1.55;
+    color: var(--text);
+    font-style: italic;
+    margin: 0;
+}
+
+html:has(#lang-zh:checked) .essay-card h3 { font-family: var(--cjk); font-weight: 700; line-height: 1.3; }
+html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: normal; font-weight: 400; line-height: 1.7; }
+
 /* ─── SCROLL REVEAL ─── */
 .js .reveal {
     opacity: 0;
@@ -1236,6 +1298,7 @@ footer .footer-name {
     .gallery-inner { grid-template-columns: 1fr 1fr; }
     .gallery-inner figure:nth-child(3) { grid-column: 1 / -1; }
     .gallery-inner figure:nth-child(3) img { height: 300px; }
+    .essay-grid { grid-template-columns: 1fr 1fr; }
 }
 
 @media (max-width: 768px) {
@@ -1244,6 +1307,7 @@ footer .footer-name {
     .hamburger { display: block; }
     .lang-toggle { margin-left: auto; }
     .dialogue-grid { grid-template-columns: 1fr; }
+    .essay-grid { grid-template-columns: 1fr; gap: 20px; }
     .hero-content {
         padding: 100px 32px 80px;
         max-width: 100%;
@@ -2371,6 +2435,46 @@ footer .footer-name {
             <time class="pub-year" datetime="2024">2024</time>
         </li>
     </ul>
+</section>
+
+<!-- ════════ ESSAYS & TESTIMONIES ════════ -->
+<section class="section reveal" id="essays">
+    <div class="section-label" lang="en-GB">Essays &amp; Testimonies</div>
+    <div class="section-label" lang="zh-TW">文集與證詞</div>
+    <h2 lang="en-GB">The Long Read</h2>
+    <h2 lang="zh-TW">長篇</h2>
+    <div class="essay-grid">
+        <a href="/collaborative-immune-system" class="essay-card">
+            <div class="essay-body">
+                <div class="meta" lang="en-GB">LDP Headquarters &middot; Tokyo &middot; December 2025</div>
+                <div class="meta" lang="zh-TW">日本自民黨總部 · 東京 · 2025 年 12 月</div>
+                <h3 lang="en-GB">Collaborative Immune System</h3>
+                <h3 lang="zh-TW">協作式免疫系統</h3>
+                <p lang="en-GB">How citizen collaboration and precision legislation build a digital immune system against deepfakes and AI scams. In a democracy, the strongest anti-fraud technology is not a filter &mdash; it is legitimacy.</p>
+                <p lang="zh-TW">公眾協作制定規則，轉化為精準的法律義務。在民主社會中，最重要的防詐技術不是過濾器，而是「正當性」。</p>
+            </div>
+        </a>
+        <a href="/good-enough-ancestor" class="essay-card">
+            <div class="essay-body">
+                <div class="meta" lang="en-GB">Standing Committee on Human Rights &middot; Senate of Canada &middot; April 2026</div>
+                <div class="meta" lang="zh-TW">加拿大參議院人權委員會 · 2026 年 4 月</div>
+                <h3 lang="en-GB">A Good Enough Ancestor: Senate Testimony</h3>
+                <h3 lang="zh-TW">夠好的祖先：參議院證詞</h3>
+                <p lang="en-GB">AI is more than automation. It redistributes attention, authority, and bargaining power. In a democracy, such redistribution must be visible, contestable, and co-governed.</p>
+                <p lang="zh-TW">AI 不只是自動化。它重新分配注意力、權威與議價能力。在民主社會中，這樣的重新分配必須可見、可爭辯，並且共同治理。</p>
+            </div>
+        </a>
+        <a href="/transparent-horse" class="essay-card">
+            <div class="essay-body">
+                <div class="meta" lang="en-GB">A 2040 Retrospective &middot; 2025</div>
+                <div class="meta" lang="zh-TW">2040 年的回望 · 2025</div>
+                <h3 lang="en-GB">Transparent Horse</h3>
+                <h3 lang="zh-TW">透明之馬</h3>
+                <p lang="en-GB">A retrospective from 2040 on how we waged peace and won. Not the story of how we failed to build a god &mdash; the story of how we decided one was not needed.</p>
+                <p lang="zh-TW">2040 年回望：我們如何策動和平並獲勝。這不是我們未能造神的故事，而是我們決定不需要神的故事。</p>
+            </div>
+        </a>
+    </div>
 </section>
 
 <!-- ════════ BACKGROUND ════════ -->
