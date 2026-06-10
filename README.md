@@ -51,7 +51,7 @@ The hamster runs faster in the wheel — but goes nowhere. On moving from “hum
 
 ### 2026 — [Creative Bureaucracy Award](https://creativebureaucracy.org/festival)
 
-Presented at Berlin's Creative Bureaucracy Festival alongside Mariana Mazzucato, Wolfgang Schüssel and Olafur Eliasson, for public service that strengthens democracy through creative administration.
+Presented at Berlin's Creative Bureaucracy Festival for building resilient, citizen-centred digital structures that strengthen democratic participation and have made Taiwan an international pioneer of digital democracy.
 
 ### 2025 — [Right Livelihood Award](https://rightlivelihood.org/the-change-makers/find-a-laureate/audrey-tang/)
 

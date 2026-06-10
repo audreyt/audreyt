@@ -49,7 +49,7 @@
 
 ### 2026 — [創意官吏獎](https://creativebureaucracy.org/festival)
 
-於柏林「創意官吏節」與 Mariana Mazzucato、Wolfgang Schüssel、Olafur Eliasson 同獲此獎，表彰以創意行政強化民主的公共服務。
+由柏林「創意官吏節」頒發，表彰其打造韌性且以公民為本的數位體系，強化民主參與，使臺灣成為數位民主的國際先驅。
 
 ### 2025 — [正命獎](https://rightlivelihood.org/the-change-makers/find-a-laureate/audrey-tang/)
 
