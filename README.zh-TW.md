@@ -47,6 +47,10 @@
 <!-- section:RECOGNITION -->
 ## 獲獎肯定: 攜手共創無限未來
 
+### 2026 — [創意官吏獎](https://creativebureaucracy.org/festival)
+
+於柏林「創意官吏節」與 Mariana Mazzucato、Wolfgang Schüssel、Olafur Eliasson 同獲此獎，表彰以創意行政強化民主的公共服務。
+
 ### 2025 — [正命獎](https://rightlivelihood.org/the-change-makers/find-a-laureate/audrey-tang/)
 
 素有「諾貝爾替代獎」之稱，表彰以仁工智慧將衝突化為共創的貢獻。
@@ -58,6 +62,10 @@
 ### 2023 — [《時代》雜誌百大 AI 影響人物](https://time.com/collection/time100-ai/)
 
 獲選為人工智慧領域百大最具影響力人物，表彰其開創對齊大會、將 AI 整合進民主流程的貢獻。
+
+### 2020 — [《連線》雜誌 WIRED25](https://www.wired.com/story/wired25-2020-people-making-things-better/)
+
+與蔡英文總統、陳建仁副總統共同獲選「讓世界更好的 25 人」，表彰臺灣以信任為本的防疫成就。
 
 ### 2019 — [《外交政策》全球百大思想家](https://2019globalthinkers.foreignpolicy.com/?thinker=audrey-tang)
 

@@ -49,6 +49,10 @@ The hamster runs faster in the wheel — but goes nowhere. On moving from “hum
 <!-- section:RECOGNITION -->
 ## Honours: Free the Future — Together!
 
+### 2026 — [Creative Bureaucracy Award](https://creativebureaucracy.org/festival)
+
+Presented at Berlin's Creative Bureaucracy Festival alongside Mariana Mazzucato, Wolfgang Schüssel and Olafur Eliasson, for public service that strengthens democracy through creative administration.
+
 ### 2025 — [Right Livelihood Award](https://rightlivelihood.org/the-change-makers/find-a-laureate/audrey-tang/)
 
 The “alternative Nobel Prize” is in recognition of civic AI work that channels conflict into co-creation.
@@ -60,6 +64,10 @@ Presented by the Boston Global Forum at Harvard University's Loeb House for lead
 ### 2023 — [TIME 100 AI](https://time.com/collection/time100-ai/)
 
 Named among the 100 Most Influential People in Artificial Intelligence for pioneering Alignment Assemblies and integrating AI into democratic processes.
+
+### 2020 — [WIRED25](https://www.wired.com/story/wired25-2020-people-making-things-better/)
+
+Named among WIRED's 25 people making things better, jointly with President Tsai Ing-wen and Vice President Chen Chien-jen, for Taiwan's trust-based pandemic response.
 
 ### 2019 — [Foreign Policy 100 Global Thinkers](https://2019globalthinkers.foreignpolicy.com/?thinker=audrey-tang)
 

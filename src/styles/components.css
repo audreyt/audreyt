@@ -264,7 +264,7 @@
 /* ─── RECOGNITION ─── */
 .awards-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, auto);
     grid-auto-flow: column;
     gap: 32px;
@@ -988,7 +988,7 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
     .hero-content { padding: 80px 48px; }
     .section, .film, .gallery { padding: 80px 48px; }
     footer { padding: 48px; }
-    .awards-grid { grid-template-columns: 1fr 1fr; }
+    .awards-grid { grid-template-columns: 1fr 1fr; grid-template-rows: repeat(3, auto); }
     .work-grid { grid-template-columns: 1fr 1fr; }
     .gallery-inner { grid-template-columns: 1fr 1fr; }
     .gallery-inner figure:nth-child(3) { grid-column: 1 / -1; }
@@ -1335,7 +1335,7 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
 
     .awards-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-        grid-template-rows: repeat(2, auto) !important;
+        grid-template-rows: repeat(3, auto) !important;
         grid-auto-flow: column !important;
     }
 

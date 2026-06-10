@@ -25,7 +25,7 @@
 <meta name="theme-color" content="#0f1923" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#faf8f5" media="(prefers-color-scheme: light)">
 <meta name="color-scheme" content="light dark">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-WqMorOfjjZNgOsb4BU+bclWxZec5y+bzTOujic3XVGw=' 'sha256-4G7wnwQc6qvKDvB+Quf3SC5N+0WcBvc/riHtQRDvDX4=' 'sha256-PBIbXpxoZq+dGJKBjiohe0A6iJvI1eJGI9eoqhVuI+Q='; style-src 'sha256-bDY6FZoeTf6q1OFKAm9VbOuUPcTtgmyHFqO238fjg8E=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-kTULIk1LNNTuREciBeliE5aA3crzF37/I9L8WOTrbcw=' 'sha256-KmFeWrg9QfK52p1rkGW+R+/WJKFdfZDWw3+CTC2ETqU='; img-src 'self'; font-src 'self' data:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-WqMorOfjjZNgOsb4BU+bclWxZec5y+bzTOujic3XVGw=' 'sha256-4G7wnwQc6qvKDvB+Quf3SC5N+0WcBvc/riHtQRDvDX4=' 'sha256-PBIbXpxoZq+dGJKBjiohe0A6iJvI1eJGI9eoqhVuI+Q='; style-src 'sha256-bDY6FZoeTf6q1OFKAm9VbOuUPcTtgmyHFqO238fjg8E=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-kTULIk1LNNTuREciBeliE5aA3crzF37/I9L8WOTrbcw=' 'sha256-lKnRG3REDAd6g62pH3H0GEnhoqNAzT8ir+/Pg5nQBJk='; img-src 'self'; font-src 'self' data:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
 <link rel="canonical" href="https://cyberambassador.tw/">
 <link rel="alternate" hreflang="zh-TW" href="https://audreyt.org/">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -569,7 +569,7 @@ window.__webp=__imgProbe('assets/probe.webp');
 /* ─── RECOGNITION ─── */
 .awards-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, auto);
     grid-auto-flow: column;
     gap: 32px;
@@ -1293,7 +1293,7 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
     .hero-content { padding: 80px 48px; }
     .section, .film, .gallery { padding: 80px 48px; }
     footer { padding: 48px; }
-    .awards-grid { grid-template-columns: 1fr 1fr; }
+    .awards-grid { grid-template-columns: 1fr 1fr; grid-template-rows: repeat(3, auto); }
     .work-grid { grid-template-columns: 1fr 1fr; }
     .gallery-inner { grid-template-columns: 1fr 1fr; }
     .gallery-inner figure:nth-child(3) { grid-column: 1 / -1; }
@@ -1640,7 +1640,7 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
 
     .awards-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-        grid-template-rows: repeat(2, auto) !important;
+        grid-template-rows: repeat(3, auto) !important;
         grid-auto-flow: column !important;
     }
 
@@ -2133,6 +2133,13 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
     <h2 lang="en-GB">Free the Future &mdash; Together!</h2>
     <h2 lang="zh-TW">攜手共創無限未來</h2>
     <div class="awards-grid">
+        <a href="https://creativebureaucracy.org/festival" class="award-card" target="_blank" rel="noopener noreferrer">
+            <time class="award-year" datetime="2026">2026</time>
+            <div class="award-name" lang="en-GB">Creative Bureaucracy Award</div>
+            <div class="award-name" lang="zh-TW">創意官吏獎</div>
+            <div class="award-desc" lang="en-GB">Presented at Berlin's Creative Bureaucracy Festival alongside Mariana Mazzucato, Wolfgang Schüssel and Olafur Eliasson, for public service that strengthens democracy through creative administration.</div>
+            <div class="award-desc" lang="zh-TW">於柏林「創意官吏節」與 Mariana Mazzucato、Wolfgang Schüssel、Olafur Eliasson 同獲此獎，表彰以創意行政強化民主的公共服務。</div>
+        </a>
         <a href="https://rightlivelihood.org/the-change-makers/find-a-laureate/audrey-tang/" class="award-card" target="_blank" rel="noopener noreferrer">
             <time class="award-year" datetime="2025">2025</time>
             <div class="award-name" lang="en-GB">Right Livelihood Award</div>
@@ -2153,6 +2160,13 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
             <div class="award-name" lang="zh-TW">《時代》雜誌百大 AI 影響人物</div>
             <div class="award-desc" lang="en-GB">Named among the 100 Most Influential People in Artificial Intelligence for pioneering Alignment Assemblies and integrating AI into democratic processes.</div>
             <div class="award-desc" lang="zh-TW">獲選為人工智慧領域百大最具影響力人物，表彰其開創對齊大會、將 AI 整合進民主流程的貢獻。</div>
+        </a>
+        <a href="https://www.wired.com/story/wired25-2020-people-making-things-better/" class="award-card" target="_blank" rel="noopener noreferrer">
+            <time class="award-year" datetime="2020">2020</time>
+            <div class="award-name" lang="en-GB">WIRED25</div>
+            <div class="award-name" lang="zh-TW">《連線》雜誌 WIRED25</div>
+            <div class="award-desc" lang="en-GB">Named among WIRED's 25 people making things better, jointly with President Tsai Ing-wen and Vice President Chen Chien-jen, for Taiwan's trust-based pandemic response.</div>
+            <div class="award-desc" lang="zh-TW">與蔡英文總統、陳建仁副總統共同獲選「讓世界更好的 25 人」，表彰臺灣以信任為本的防疫成就。</div>
         </a>
         <a href="https://2019globalthinkers.foreignpolicy.com/?thinker=audrey-tang" class="award-card" target="_blank" rel="noopener noreferrer">
             <time class="award-year" datetime="2019">2019</time>
@@ -2689,9 +2703,11 @@ document.querySelector('.lang-toggle').addEventListener('keydown', (e) => {
         "https://en.wikipedia.org/wiki/Audrey_Tang"
     ],
     "award": [
+        "Creative Bureaucracy Award (2026)",
         "Right Livelihood Award (2025)",
         "AI World Society World Leader Award (2025)",
         "TIME 100 Most Influential People in AI (2023)",
+        "WIRED25: People Who Are Making Things Better (2020)",
         "Foreign Policy 100 Global Thinkers (2019)"
     ],
     "affiliation": [
