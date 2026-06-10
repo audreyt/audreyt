@@ -25,7 +25,7 @@
 <meta name="theme-color" content="#0f1923" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#faf8f5" media="(prefers-color-scheme: light)">
 <meta name="color-scheme" content="light dark">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-WqMorOfjjZNgOsb4BU+bclWxZec5y+bzTOujic3XVGw=' 'sha256-4G7wnwQc6qvKDvB+Quf3SC5N+0WcBvc/riHtQRDvDX4=' 'sha256-PBIbXpxoZq+dGJKBjiohe0A6iJvI1eJGI9eoqhVuI+Q='; style-src 'sha256-bDY6FZoeTf6q1OFKAm9VbOuUPcTtgmyHFqO238fjg8E=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-kTULIk1LNNTuREciBeliE5aA3crzF37/I9L8WOTrbcw=' 'sha256-lKnRG3REDAd6g62pH3H0GEnhoqNAzT8ir+/Pg5nQBJk='; img-src 'self'; font-src 'self' data:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-WqMorOfjjZNgOsb4BU+bclWxZec5y+bzTOujic3XVGw=' 'sha256-4G7wnwQc6qvKDvB+Quf3SC5N+0WcBvc/riHtQRDvDX4=' 'sha256-PBIbXpxoZq+dGJKBjiohe0A6iJvI1eJGI9eoqhVuI+Q='; style-src 'sha256-bDY6FZoeTf6q1OFKAm9VbOuUPcTtgmyHFqO238fjg8E=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-kTULIk1LNNTuREciBeliE5aA3crzF37/I9L8WOTrbcw=' 'sha256-6k157dgmLAiicFrv7mMJZtSmoUkqv7ADq1cdw1ftSTQ='; img-src 'self'; font-src 'self' data:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
 <link rel="canonical" href="https://cyberambassador.tw/">
 <link rel="alternate" hreflang="zh-TW" href="https://audreyt.org/">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -570,8 +570,6 @@ window.__webp=__imgProbe('assets/probe.webp');
 .awards-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, auto);
-    grid-auto-flow: column;
     gap: 32px;
     margin-top: 48px;
 }
@@ -1293,7 +1291,7 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
     .hero-content { padding: 80px 48px; }
     .section, .film, .gallery { padding: 80px 48px; }
     footer { padding: 48px; }
-    .awards-grid { grid-template-columns: 1fr 1fr; grid-template-rows: repeat(3, auto); }
+    .awards-grid { grid-template-columns: 1fr 1fr; }
     .work-grid { grid-template-columns: 1fr 1fr; }
     .gallery-inner { grid-template-columns: 1fr 1fr; }
     .gallery-inner figure:nth-child(3) { grid-column: 1 / -1; }
@@ -1339,7 +1337,7 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
     footer { padding: 40px 24px; }
 
     .bio-grid { grid-template-columns: 1fr; gap: 40px; }
-    .awards-grid { grid-template-columns: 1fr; grid-template-rows: none; grid-auto-flow: row; }
+    .awards-grid { grid-template-columns: 1fr; }
     .work-grid { grid-template-columns: 1fr; }
     .gallery-inner { grid-template-columns: 1fr; }
     .gallery-inner figure img { height: 280px; }
@@ -1640,8 +1638,6 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
 
     .awards-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-        grid-template-rows: repeat(3, auto) !important;
-        grid-auto-flow: column !important;
     }
 
     .dialogue-card,

@@ -265,8 +265,6 @@
 .awards-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, auto);
-    grid-auto-flow: column;
     gap: 32px;
     margin-top: 48px;
 }
@@ -988,7 +986,7 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
     .hero-content { padding: 80px 48px; }
     .section, .film, .gallery { padding: 80px 48px; }
     footer { padding: 48px; }
-    .awards-grid { grid-template-columns: 1fr 1fr; grid-template-rows: repeat(3, auto); }
+    .awards-grid { grid-template-columns: 1fr 1fr; }
     .work-grid { grid-template-columns: 1fr 1fr; }
     .gallery-inner { grid-template-columns: 1fr 1fr; }
     .gallery-inner figure:nth-child(3) { grid-column: 1 / -1; }
@@ -1034,7 +1032,7 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
     footer { padding: 40px 24px; }
 
     .bio-grid { grid-template-columns: 1fr; gap: 40px; }
-    .awards-grid { grid-template-columns: 1fr; grid-template-rows: none; grid-auto-flow: row; }
+    .awards-grid { grid-template-columns: 1fr; }
     .work-grid { grid-template-columns: 1fr; }
     .gallery-inner { grid-template-columns: 1fr; }
     .gallery-inner figure img { height: 280px; }
@@ -1335,8 +1333,6 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
 
     .awards-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-        grid-template-rows: repeat(3, auto) !important;
-        grid-auto-flow: column !important;
     }
 
     .dialogue-card,
