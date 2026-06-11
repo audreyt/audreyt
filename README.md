@@ -38,8 +38,8 @@ A child prodigy who practiced Taoism to manage a congenital heart condition, Tan
 <!-- section:DIALOGUE -->
 ## Spotlight Addresses: We the People are Truly the Superintelligence
 
-[Geothermal Democracy](https://www.youtube.com/watch?v=iZWtNLFaC-U&t=8m46s) — Right Livelihood Lecture · Zurich · December 2025
-The hamster runs faster in the wheel — but goes nowhere. On moving from “human in the loop of AI” to “AI in the loop of humanity,” and why democracy cannot be delegated.
+[We the People Are Truly the Superintelligence](https://www.youtube.com/watch?v=fqvdaHWH7a0&t=5s) — Keynote and Fireside with Hala Hanna · Solve at MIT · May 2026
+Superintelligence is not built in a data centre; it is already in the room. On wildfire versus campfire platforms, turning data oil back into living soil, and the local Kami path to Civic AI.
 
 [Technology, Democracy and AI](https://www.youtube.com/watch?v=OcpF2yXj3b0) — Firing Line with Margaret Hoover · PBS · October 2025
 “To give no trust is to get no trust.” On Taiwan’s citizens’ assemblies, the illusion of polarisation, and how Civic AI built inside the occupied parliament became today’s Community Notes.

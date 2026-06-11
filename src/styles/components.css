@@ -621,7 +621,7 @@ a.featured-outlet:hover {
 }
 
 .hero-portrait                                       { --lqip: -174493; }
-.dialogue-grid .dialogue-card:nth-child(1) .thumb img { --lqip:  169571; }
+.dialogue-grid .dialogue-card:nth-child(1) .thumb img { --lqip:  -92453; }
 .dialogue-grid .dialogue-card:nth-child(2) .thumb img { --lqip:  157987; }
 .dialogue-grid .dialogue-card:nth-child(3) .thumb img { --lqip:  174691; }
 .gallery-inner figure:nth-child(1) img               { --lqip:   90595; }
