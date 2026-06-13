@@ -27,9 +27,9 @@
 | 數位治理無任所大使 | 中華民國 |
 | 加速哲人 | 牛津大學 AI 倫理研究院 |
 | 客座策展人 | TED 2026 |
-| 多元宇宙倡議顧問 | 以太坊基金會 |
 | 資深顧問 | Special Competitive Studies Project |
-| 資深顧問 | BLOOM |
+| 資深顧問 | BLOOM Project |
+| 多元宇宙倡議顧問 | 以太坊基金會 |
 
 ---
 

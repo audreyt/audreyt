@@ -29,9 +29,9 @@ A child prodigy who practiced Taoism to manage a congenital heart condition, Tan
 | Cyber Ambassador | Taiwan |
 | Senior Accelerator Fellow | Oxford Institute for Ethics in AI |
 | Guest Curator | TED 2026 |
-| Plurality Initiative Advisor | Ethereum Foundation |
 | Senior Advisor | Special Competitive Studies Project |
-| Senior Advisor | BLOOM |
+| Senior Advisor | BLOOM Project |
+| Plurality Initiative Advisor | Ethereum Foundation |
 
 ---
 
