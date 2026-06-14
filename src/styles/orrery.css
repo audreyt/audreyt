@@ -1,0 +1,57 @@
+/* orrery.css — every orrery colour, motion, and the ink halo live here.
+   The SVG carries geometry + class names only (var() does not resolve in SVG
+   presentation attributes; see DESIGN spec §3). */
+:root { --orrery-line: var(--gold); --orrery-bright: var(--gold-light); }
+
+/* hero wrapper: between the ink vignette (z0) and the lockup (z2) */
+.orrery--hero { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+.orrery--hero .orrery-svg { width: 100%; height: 100%; display: block; }
+
+/* strata — colour sourced here, never from SVG attributes */
+.orrery-svg .o-civic > circle { stroke: var(--orrery-bright); stroke-opacity: .55; }
+.orrery-svg .o-ticks line     { stroke: var(--orrery-bright); stroke-opacity: .30; stroke-width: .8; }
+.orrery-svg .o-people circle  { fill:   var(--orrery-bright); fill-opacity: .70; }
+.orrery-svg .o-boundary       { stroke: var(--orrery-line);   stroke-opacity: .18; stroke-dasharray: 2 8; }
+.orrery-svg .o-graticule line { stroke: var(--orrery-line);   stroke-opacity: .10; }
+.orrery-svg .o-ai-ring        { stroke: var(--orrery-bright); stroke-opacity: .55; stroke-width: 1.3; }
+.orrery-svg .o-ai-disc        { fill:   var(--orrery-bright); fill-opacity: .05; }
+.orrery-svg .o-ai-planet      { fill:   var(--orrery-bright); fill-opacity: .95; }
+.orrery-svg .o-ai-halo        { stroke: var(--orrery-bright); stroke-opacity: .40; stroke-width: .9; }
+.orrery-svg .o-centre         { fill:   var(--orrery-bright); fill-opacity: .85; }
+.orrery-svg .o-caption        { fill:   var(--orrery-bright); fill-opacity: .55;
+                                font-family: var(--sans); font-size: 11px; letter-spacing: 6px; }
+
+/* ink halo — gradient stops coloured from CSS (a stop-color="var(--ink)" ATTRIBUTE would not resolve) */
+.orrery-svg .o-halo-0 { stop-color: var(--ink); stop-opacity: .82; }
+.orrery-svg .o-halo-1 { stop-color: var(--ink); stop-opacity: .30; }
+.orrery-svg .o-halo-2 { stop-color: var(--ink); stop-opacity: 0; }
+
+/* motion — transform-only on three groups */
+.orrery-svg .o-civic     { animation: orrery-spin 360s linear infinite; }
+.orrery-svg .o-graticule { animation: orrery-spin 240s linear infinite reverse; }
+.orrery-svg .o-ai        { animation: orrery-spin 48s  linear infinite; }
+.orrery-svg .o-civic,
+.orrery-svg .o-graticule,
+.orrery-svg .o-ai { transform-box: fill-box; transform-origin: center; will-change: transform; }
+@keyframes orrery-spin { to { transform: rotate(360deg); } }
+
+/* reduced motion — a still engraving */
+@media (prefers-reduced-motion: reduce) {
+  .orrery-svg .o-civic,
+  .orrery-svg .o-graticule,
+  .orrery-svg .o-ai { animation: none; }
+}
+
+/* mobile — simplify behind the centred lockup; mirror the portrait's 0.25 veil */
+@media (max-width: 768px) {
+  .orrery--hero { opacity: .25; }
+  .orrery-svg .o-ticks,
+  .orrery-svg .o-graticule,
+  .orrery-svg .o-boundary { display: none; }
+  .orrery-svg .o-people circle:nth-of-type(n+17) { display: none; }
+}
+
+/* print — the live print hero is a compact redesigned grid; a full-bleed decorative
+   instrument would overlap it, so hide it. The argument still prints as .hero-loop text.
+   (Spec §7's print engraving is deferred to a later print proof.) */
+@media print { .orrery--hero { display: none !important; } }
