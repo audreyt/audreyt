@@ -8,7 +8,9 @@
 .orrery--hero .orrery-svg { width: 100%; height: 100%; display: block; }
 
 /* strata — colour sourced here, never from SVG attributes */
-.orrery-svg .o-civic > circle { stroke: var(--orrery-bright); stroke-opacity: .55; }
+.orrery-svg .o-civic-ring     { stroke: var(--orrery-bright); stroke-opacity: .55; }
+.orrery-svg .o-civic-glint    { fill: #fff; fill-opacity: .92; }          /* the light, riding the crack */
+.orrery-svg .o-civic-glint-halo { fill: var(--orrery-bright); fill-opacity: .22; }
 .orrery-svg .o-ticks line     { stroke: var(--orrery-bright); stroke-opacity: .30; stroke-width: .8; }
 .orrery-svg .o-people circle  { fill:   var(--orrery-bright); fill-opacity: .70; }
 .orrery-svg .o-boundary       { stroke: var(--orrery-line);   stroke-opacity: .18; stroke-dasharray: 2 8; }
