@@ -25,7 +25,7 @@
 <meta name="theme-color" content="#0f1923" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#faf8f5" media="(prefers-color-scheme: light)">
 <meta name="color-scheme" content="light dark">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-WqMorOfjjZNgOsb4BU+bclWxZec5y+bzTOujic3XVGw=' 'sha256-4G7wnwQc6qvKDvB+Quf3SC5N+0WcBvc/riHtQRDvDX4=' 'sha256-PBIbXpxoZq+dGJKBjiohe0A6iJvI1eJGI9eoqhVuI+Q='; style-src 'sha256-bDY6FZoeTf6q1OFKAm9VbOuUPcTtgmyHFqO238fjg8E=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-kTULIk1LNNTuREciBeliE5aA3crzF37/I9L8WOTrbcw=' 'sha256-FrsUic5gCplxRKziN2WjNGAScB7BNkOEV/PfsAy/X0E=' 'sha256-3fmG9biBIqf9nTfhNtHbUD7Ur+N2yqvkOOXoxOPBqjo='; img-src 'self'; font-src 'self' data:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-WqMorOfjjZNgOsb4BU+bclWxZec5y+bzTOujic3XVGw=' 'sha256-4G7wnwQc6qvKDvB+Quf3SC5N+0WcBvc/riHtQRDvDX4=' 'sha256-PBIbXpxoZq+dGJKBjiohe0A6iJvI1eJGI9eoqhVuI+Q='; style-src 'sha256-bDY6FZoeTf6q1OFKAm9VbOuUPcTtgmyHFqO238fjg8E=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-kTULIk1LNNTuREciBeliE5aA3crzF37/I9L8WOTrbcw=' 'sha256-Lk7glYGgO2uAe2e10KBTuIkd5MavIX5XaC6r3ULrzw4=' 'sha256-3fmG9biBIqf9nTfhNtHbUD7Ur+N2yqvkOOXoxOPBqjo='; img-src 'self'; font-src 'self' data:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
 <link rel="canonical" href="https://cyberambassador.tw/">
 <link rel="alternate" hreflang="zh-TW" href="https://audreyt.org/">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -686,7 +686,8 @@ a.featured-outlet,
     display: inline-flex;
     align-items: center;
     text-decoration: none;
-    opacity: 0.5;
+    opacity: 0.72; /* press credentials read confident, not faded (was 0.5); hover lifts to full.
+                      (brand logotypes are exempt from WCAG 1.4.11 — this is a visual-weight call) */
     transition: opacity 0.2s;
 }
 
@@ -2498,7 +2499,6 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
     </div>
 </section>
 
-<div class="divider-arc"><svg class="divider-arc-svg" viewBox="0 0 1200 40" preserveAspectRatio="none" aria-hidden="true" focusable="false" fill="none"><path class="d-arc" pathLength="1" d="M0 38 A 4000 4000 0 0 1 1200 38"/></svg></div>
 <!-- ════════ FILM ════════ -->
 <section class="film">
     <div class="film-inner reveal">

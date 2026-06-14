@@ -380,7 +380,8 @@ a.featured-outlet,
     display: inline-flex;
     align-items: center;
     text-decoration: none;
-    opacity: 0.5;
+    opacity: 0.72; /* press credentials read confident, not faded (was 0.5); hover lifts to full.
+                      (brand logotypes are exempt from WCAG 1.4.11 — this is a visual-weight call) */
     transition: opacity 0.2s;
 }
 
