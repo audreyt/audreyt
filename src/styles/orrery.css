@@ -126,3 +126,12 @@
 /* print: drop the orbit; the existing print stylesheet restores .work-item's
    ink border-top (!important at components.css ~1432) */
 @media print { .work-grid > .work-item::before, .work-grid > .work-item::after { content: none; } }
+
+/* ─── Idea pieces: people-arc behind the pullquote (Phase 3) ──────────── */
+.pullquote { position: relative; overflow: hidden; }
+.pullquote .people-arc { position: absolute; left: 0; right: 0; bottom: 18px; height: 170px;
+  z-index: 0; pointer-events: none; }
+.pullquote .people-arc .people-arc-svg { width: 100%; height: 100%; display: block; }
+.pullquote .people-arc .pa-arc { stroke: var(--orrery-line); stroke-opacity: .22; stroke-width: 1; }
+.pullquote .people-arc .pa-nodes circle { fill: var(--orrery-line); fill-opacity: .55; }
+.pullquote blockquote, .pullquote cite { position: relative; z-index: 1; }

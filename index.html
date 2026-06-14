@@ -25,7 +25,7 @@
 <meta name="theme-color" content="#0f1923" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#faf8f5" media="(prefers-color-scheme: light)">
 <meta name="color-scheme" content="light dark">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-WqMorOfjjZNgOsb4BU+bclWxZec5y+bzTOujic3XVGw=' 'sha256-4G7wnwQc6qvKDvB+Quf3SC5N+0WcBvc/riHtQRDvDX4=' 'sha256-PBIbXpxoZq+dGJKBjiohe0A6iJvI1eJGI9eoqhVuI+Q='; style-src 'sha256-bDY6FZoeTf6q1OFKAm9VbOuUPcTtgmyHFqO238fjg8E=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-kTULIk1LNNTuREciBeliE5aA3crzF37/I9L8WOTrbcw=' 'sha256-fkhsgMz1xtdCll5U4bL6hJzZlFl6ruTj9F0f0T52ZCw=' 'sha256-BuLQ9rKuEOetM8iAyQeHl2wQlkMKcrEHUHJW29uK550='; img-src 'self'; font-src 'self' data:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-WqMorOfjjZNgOsb4BU+bclWxZec5y+bzTOujic3XVGw=' 'sha256-4G7wnwQc6qvKDvB+Quf3SC5N+0WcBvc/riHtQRDvDX4=' 'sha256-PBIbXpxoZq+dGJKBjiohe0A6iJvI1eJGI9eoqhVuI+Q='; style-src 'sha256-bDY6FZoeTf6q1OFKAm9VbOuUPcTtgmyHFqO238fjg8E=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-kTULIk1LNNTuREciBeliE5aA3crzF37/I9L8WOTrbcw=' 'sha256-fkhsgMz1xtdCll5U4bL6hJzZlFl6ruTj9F0f0T52ZCw=' 'sha256-fwthCMwWaFkSxEKaTHUpfpFK/YxLXiTRz7ocGF24DL8='; img-src 'self'; font-src 'self' data:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
 <link rel="canonical" href="https://cyberambassador.tw/">
 <link rel="alternate" hreflang="zh-TW" href="https://audreyt.org/">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -2123,6 +2123,15 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
 /* print: drop the orbit; the existing print stylesheet restores .work-item's
    ink border-top (!important at components.css ~1432) */
 @media print { .work-grid > .work-item::before, .work-grid > .work-item::after { content: none; } }
+
+/* ─── Idea pieces: people-arc behind the pullquote (Phase 3) ──────────── */
+.pullquote { position: relative; overflow: hidden; }
+.pullquote .people-arc { position: absolute; left: 0; right: 0; bottom: 18px; height: 170px;
+  z-index: 0; pointer-events: none; }
+.pullquote .people-arc .people-arc-svg { width: 100%; height: 100%; display: block; }
+.pullquote .people-arc .pa-arc { stroke: var(--orrery-line); stroke-opacity: .22; stroke-width: 1; }
+.pullquote .people-arc .pa-nodes circle { fill: var(--orrery-line); fill-opacity: .55; }
+.pullquote blockquote, .pullquote cite { position: relative; z-index: 1; }
 </style>
 
 <!-- ════════ HERO ════════ -->
@@ -2338,6 +2347,7 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
 <div class="divider-arc"><svg class="divider-arc-svg" viewBox="0 0 1200 40" preserveAspectRatio="none" aria-hidden="true" focusable="false" fill="none"><path class="d-arc" pathLength="1" d="M0 38 A 4000 4000 0 0 1 1200 38"/></svg></div>
 <!-- ════════ PULLQUOTE ════════ -->
 <aside class="pullquote reveal">
+    <div class="people-arc"><svg class="people-arc-svg" viewBox="0 0 1200 200" preserveAspectRatio="none" aria-hidden="true" focusable="false" fill="none"><path class="pa-arc" d="M 70 178 Q 600 -86 1130 178"/><g class="pa-nodes"><circle cx="70.0" cy="178.1" r="2.20"/><circle cx="95.9" cy="166.1" r="2.30"/><circle cx="121.7" cy="155.6" r="2.21"/><circle cx="147.6" cy="139.7" r="2.20"/><circle cx="173.4" cy="132.2" r="2.07"/><circle cx="199.3" cy="121.3" r="2.73"/><circle cx="225.1" cy="111.6" r="2.44"/><circle cx="251.0" cy="104.3" r="1.57"/><circle cx="276.8" cy="93.1" r="1.77"/><circle cx="302.7" cy="86.9" r="1.94"/><circle cx="328.5" cy="81.1" r="1.52"/><circle cx="354.4" cy="74.9" r="2.28"/><circle cx="380.2" cy="68.2" r="2.74"/><circle cx="406.1" cy="65.5" r="2.61"/><circle cx="432.0" cy="58.2" r="2.36"/><circle cx="457.8" cy="54.0" r="1.40"/><circle cx="483.7" cy="53.8" r="2.96"/><circle cx="509.5" cy="48.6" r="1.55"/><circle cx="535.4" cy="49.4" r="1.89"/><circle cx="561.2" cy="47.0" r="2.28"/><circle cx="587.1" cy="48.2" r="1.54"/><circle cx="612.9" cy="48.2" r="2.69"/><circle cx="638.8" cy="46.0" r="1.34"/><circle cx="664.6" cy="45.4" r="2.73"/><circle cx="690.5" cy="49.8" r="2.19"/><circle cx="716.3" cy="51.0" r="2.15"/><circle cx="742.2" cy="56.9" r="1.45"/><circle cx="768.0" cy="60.1" r="1.38"/><circle cx="793.9" cy="63.3" r="2.38"/><circle cx="819.8" cy="71.6" r="2.03"/><circle cx="845.6" cy="74.1" r="1.90"/><circle cx="871.5" cy="77.9" r="2.55"/><circle cx="897.3" cy="87.1" r="2.59"/><circle cx="923.2" cy="93.9" r="2.24"/><circle cx="949.0" cy="102.3" r="2.73"/><circle cx="974.9" cy="110.0" r="1.50"/><circle cx="1000.7" cy="122.2" r="2.36"/><circle cx="1026.6" cy="129.3" r="1.93"/><circle cx="1052.4" cy="141.5" r="2.89"/><circle cx="1078.3" cy="155.6" r="2.37"/><circle cx="1104.1" cy="164.9" r="2.86"/><circle cx="1130.0" cy="178.5" r="2.04"/></g></svg></div>
     <blockquote lang="en-GB">
         "We built a geothermal democracy &mdash;<br>the crashing plates turned<br>into positive energy for renewal."
     </blockquote>
