@@ -25,7 +25,7 @@
 <meta name="theme-color" content="#0f1923" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#faf8f5" media="(prefers-color-scheme: light)">
 <meta name="color-scheme" content="light dark">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-WqMorOfjjZNgOsb4BU+bclWxZec5y+bzTOujic3XVGw=' 'sha256-4G7wnwQc6qvKDvB+Quf3SC5N+0WcBvc/riHtQRDvDX4=' 'sha256-PBIbXpxoZq+dGJKBjiohe0A6iJvI1eJGI9eoqhVuI+Q='; style-src 'sha256-bDY6FZoeTf6q1OFKAm9VbOuUPcTtgmyHFqO238fjg8E=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-kTULIk1LNNTuREciBeliE5aA3crzF37/I9L8WOTrbcw=' 'sha256-iPkswWSSnsurm29lr+tL0fHp02JksGyam16V4UACbGU=' 'sha256-FN2b7nG9dKZAcQbLm93rESC9RTeX2BRr49Y9Phh8DF4='; img-src 'self'; font-src 'self' data:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-WqMorOfjjZNgOsb4BU+bclWxZec5y+bzTOujic3XVGw=' 'sha256-4G7wnwQc6qvKDvB+Quf3SC5N+0WcBvc/riHtQRDvDX4=' 'sha256-PBIbXpxoZq+dGJKBjiohe0A6iJvI1eJGI9eoqhVuI+Q='; style-src 'sha256-bDY6FZoeTf6q1OFKAm9VbOuUPcTtgmyHFqO238fjg8E=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-kTULIk1LNNTuREciBeliE5aA3crzF37/I9L8WOTrbcw=' 'sha256-iPkswWSSnsurm29lr+tL0fHp02JksGyam16V4UACbGU=' 'sha256-VoQH82rCbFTVVkZoM1coiFz9/QNBxHXCRZqvKnxI100='; img-src 'self'; font-src 'self' data:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
 <link rel="canonical" href="https://cyberambassador.tw/">
 <link rel="alternate" hreflang="zh-TW" href="https://audreyt.org/">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -2151,16 +2151,19 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
   content: ""; position: absolute; top: 0; left: 0;
   width: 28px; height: 28px; border-radius: 50%; transform-origin: center;
   will-change: transform;
-  animation: kami 72s linear infinite;
+  animation: kami 96s linear infinite;   /* one shared speed → the six hold their spacing */
   background: radial-gradient(circle 2.4px at 50% 0%, var(--orrery-line) 99%, transparent 100%);
 }
-/* staggered periods + directions so the six read as an ensemble, not one clock */
-.work-grid > .work-item:nth-child(1)::after { animation-duration: 66s; }
-.work-grid > .work-item:nth-child(2)::after { animation-duration: 78s; }
-.work-grid > .work-item:nth-child(3)::after { animation-duration: 90s; animation-direction: reverse; }
-.work-grid > .work-item:nth-child(4)::after { animation-duration: 84s; animation-direction: reverse; }
-.work-grid > .work-item:nth-child(5)::after { animation-duration: 72s; }
-.work-grid > .work-item:nth-child(6)::after { animation-duration: 96s; animation-direction: reverse; }
+/* The six kami's start angles complete one clockwise turn — Attentiveness at the top
+   (0°, the ::after base position), each later pack a further 60° clockwise. Baked into
+   the node's position (not animation-delay) so the 60° spacing also holds under reduced
+   motion; the shared speed above keeps the spacing as the whole set turns.
+   pos: x% = 50 + 50·sin θ, y% = 50 − 50·cos θ (θ clockwise from top). */
+.work-grid > .work-item:nth-child(2)::after { background: radial-gradient(circle 2.4px at 93.3% 25%, var(--orrery-line) 99%, transparent 100%); }  /*  60° Responsibility */
+.work-grid > .work-item:nth-child(3)::after { background: radial-gradient(circle 2.4px at 93.3% 75%, var(--orrery-line) 99%, transparent 100%); }  /* 120° Competence */
+.work-grid > .work-item:nth-child(4)::after { background: radial-gradient(circle 2.4px at 50% 100%, var(--orrery-line) 99%, transparent 100%); }   /* 180° Responsiveness */
+.work-grid > .work-item:nth-child(5)::after { background: radial-gradient(circle 2.4px at 6.7% 75%, var(--orrery-line) 99%, transparent 100%); }   /* 240° Solidarity */
+.work-grid > .work-item:nth-child(6)::after { background: radial-gradient(circle 2.4px at 6.7% 25%, var(--orrery-line) 99%, transparent 100%); }   /* 300° Symbiosis */
 @keyframes kami { to { transform: rotate(360deg); } }
 @media (prefers-reduced-motion: reduce) { .work-grid > .work-item::after { animation: none; } }
 /* print: drop the orbit; the existing print stylesheet restores .work-item's
