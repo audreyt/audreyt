@@ -97,3 +97,32 @@
    (components.css ~1127), but these divider divs are their SIBLINGS, not
    children, so they survive — hide them explicitly or they print as orphan bows. */
 @media print { .divider-arc { display: none !important; } }
+
+/* ─── Idea pieces: 6-Pack of Care as bounded orbits (Phase 3) ─────────── */
+/* The six grid items become bounded orbits — a kami circling each loop.
+   Scoped with the child combinator so the trailing link-items (outside the
+   grid) keep their own style. Replaces each item's 3px ink border-top. */
+.work-grid > .work-item { position: relative; border-top: none; padding-top: 46px; }
+.work-grid > .work-item::before {
+  content: ""; position: absolute; top: 0; left: 0;
+  width: 28px; height: 28px; border: 1px solid var(--orrery-line); border-radius: 50%; opacity: .7;
+}
+.work-grid > .work-item::after {
+  content: ""; position: absolute; top: 0; left: 0;
+  width: 28px; height: 28px; border-radius: 50%; transform-origin: center;
+  will-change: transform;
+  animation: kami 72s linear infinite;
+  background: radial-gradient(circle 2.4px at 50% 0%, var(--orrery-line) 99%, transparent 100%);
+}
+/* staggered periods + directions so the six read as an ensemble, not one clock */
+.work-grid > .work-item:nth-child(1)::after { animation-duration: 66s; }
+.work-grid > .work-item:nth-child(2)::after { animation-duration: 78s; }
+.work-grid > .work-item:nth-child(3)::after { animation-duration: 90s; animation-direction: reverse; }
+.work-grid > .work-item:nth-child(4)::after { animation-duration: 84s; animation-direction: reverse; }
+.work-grid > .work-item:nth-child(5)::after { animation-duration: 72s; }
+.work-grid > .work-item:nth-child(6)::after { animation-duration: 96s; animation-direction: reverse; }
+@keyframes kami { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .work-grid > .work-item::after { animation: none; } }
+/* print: drop the orbit; the existing print stylesheet restores .work-item's
+   ink border-top (!important at components.css ~1432) */
+@media print { .work-grid > .work-item::before, .work-grid > .work-item::after { content: none; } }
