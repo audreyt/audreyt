@@ -25,7 +25,7 @@
 <meta name="theme-color" content="#0f1923" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#faf8f5" media="(prefers-color-scheme: light)">
 <meta name="color-scheme" content="light dark">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-WqMorOfjjZNgOsb4BU+bclWxZec5y+bzTOujic3XVGw=' 'sha256-4G7wnwQc6qvKDvB+Quf3SC5N+0WcBvc/riHtQRDvDX4=' 'sha256-PBIbXpxoZq+dGJKBjiohe0A6iJvI1eJGI9eoqhVuI+Q='; style-src 'sha256-bDY6FZoeTf6q1OFKAm9VbOuUPcTtgmyHFqO238fjg8E=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-kTULIk1LNNTuREciBeliE5aA3crzF37/I9L8WOTrbcw=' 'sha256-fkhsgMz1xtdCll5U4bL6hJzZlFl6ruTj9F0f0T52ZCw=' 'sha256-fwthCMwWaFkSxEKaTHUpfpFK/YxLXiTRz7ocGF24DL8='; img-src 'self'; font-src 'self' data:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-WqMorOfjjZNgOsb4BU+bclWxZec5y+bzTOujic3XVGw=' 'sha256-4G7wnwQc6qvKDvB+Quf3SC5N+0WcBvc/riHtQRDvDX4=' 'sha256-PBIbXpxoZq+dGJKBjiohe0A6iJvI1eJGI9eoqhVuI+Q='; style-src 'sha256-bDY6FZoeTf6q1OFKAm9VbOuUPcTtgmyHFqO238fjg8E=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-kTULIk1LNNTuREciBeliE5aA3crzF37/I9L8WOTrbcw=' 'sha256-fkhsgMz1xtdCll5U4bL6hJzZlFl6ruTj9F0f0T52ZCw=' 'sha256-VB9k6CAIOH7liXjpzfhRERovqQGz+V6+iZ/TPJjpVm0='; img-src 'self'; font-src 'self' data:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
 <link rel="canonical" href="https://cyberambassador.tw/">
 <link rel="alternate" hreflang="zh-TW" href="https://audreyt.org/">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -2132,6 +2132,22 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
 .pullquote .people-arc .pa-arc { stroke: var(--orrery-line); stroke-opacity: .22; stroke-width: 1; }
 .pullquote .people-arc .pa-nodes circle { fill: var(--orrery-line); fill-opacity: .55; }
 .pullquote blockquote, .pullquote cite { position: relative; z-index: 1; }
+
+/* ─── Substance: Constellation of Honours (Phase 4a) ──────────────────── */
+/* The four awards keep their 2x2 grid; an arc of time sits above, and each
+   award-year becomes a node in the loop grammar. No animation. */
+.constellation { display: block; margin: 8px 0 0; }
+.constellation .constellation-arc { display: block; width: 100%; height: 46px; overflow: visible; }
+.constellation .c-arc  { stroke: var(--orrery-line); stroke-opacity: .30; stroke-width: 1; }
+.constellation .c-star { fill: var(--orrery-line); fill-opacity: .60; }
+.constellation + .awards-grid { margin-top: 14px; }
+.award-year { position: relative; display: inline-block; padding-left: 34px; margin-bottom: 0; }
+.award-year::before {
+  content: ""; position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+  width: 18px; height: 18px; border: 1px solid var(--orrery-line); border-radius: 50%;
+  background: radial-gradient(circle 1.6px at 86% 50%, var(--orrery-line) 99%, transparent 100%); opacity: .8;
+}
+@media print { .constellation { display: none; } .award-year { padding-left: 0; } .award-year::before { content: none; } }
 </style>
 
 <!-- ════════ HERO ════════ -->

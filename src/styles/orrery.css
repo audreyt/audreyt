@@ -135,3 +135,19 @@
 .pullquote .people-arc .pa-arc { stroke: var(--orrery-line); stroke-opacity: .22; stroke-width: 1; }
 .pullquote .people-arc .pa-nodes circle { fill: var(--orrery-line); fill-opacity: .55; }
 .pullquote blockquote, .pullquote cite { position: relative; z-index: 1; }
+
+/* ─── Substance: Constellation of Honours (Phase 4a) ──────────────────── */
+/* The four awards keep their 2x2 grid; an arc of time sits above, and each
+   award-year becomes a node in the loop grammar. No animation. */
+.constellation { display: block; margin: 8px 0 0; }
+.constellation .constellation-arc { display: block; width: 100%; height: 46px; overflow: visible; }
+.constellation .c-arc  { stroke: var(--orrery-line); stroke-opacity: .30; stroke-width: 1; }
+.constellation .c-star { fill: var(--orrery-line); fill-opacity: .60; }
+.constellation + .awards-grid { margin-top: 14px; }
+.award-year { position: relative; display: inline-block; padding-left: 34px; margin-bottom: 0; }
+.award-year::before {
+  content: ""; position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+  width: 18px; height: 18px; border: 1px solid var(--orrery-line); border-radius: 50%;
+  background: radial-gradient(circle 1.6px at 86% 50%, var(--orrery-line) 99%, transparent 100%); opacity: .8;
+}
+@media print { .constellation { display: none; } .award-year { padding-left: 0; } .award-year::before { content: none; } }
