@@ -151,3 +151,14 @@
   background: radial-gradient(circle 1.6px at 86% 50%, var(--orrery-line) 99%, transparent 100%); opacity: .8;
 }
 @media print { .constellation { display: none; } .award-year { padding-left: 0; } .award-year::before { content: none; } }
+
+/* ─── Finale: care-orbit hover polish (Phase 4b) ──────────────────────── */
+/* On hover the bounded orbit's ring brightens and grows a touch — the kami
+   stirs. Decorative only: nothing is hidden; the descriptions are always shown. */
+.work-grid > .work-item::before {
+  transition: opacity .3s ease, border-color .3s ease, transform .4s cubic-bezier(.22, 1, .36, 1);
+}
+.work-grid > .work-item:hover::before {
+  opacity: 1; border-color: var(--orrery-bright); transform: scale(1.15);
+}
+@media (prefers-reduced-motion: reduce) { .work-grid > .work-item::before { transition: none; } }
