@@ -613,6 +613,8 @@ function renderRecognition(): string {
   const enAwards = parseAwards(enP.body, entEn);
   const zhAwards = parseAwards(zhP.body, entZh);
 
+  // Constellation of Honours: a faint arc of time above the awards (Phase 4a)
+  lines.push(`${I}<div class="constellation" aria-hidden="true">{{svg:constellation-arc}}</div>`);
   lines.push(`${I}<div class="awards-grid">`);
 
   for (let i = 0; i < enAwards.length; i++) {
