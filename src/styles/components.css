@@ -154,6 +154,18 @@
 }
 
 html:has(#lang-zh:checked) .hero-loop { font-family: var(--cjk); letter-spacing: 0.1em; }
+/* The orrery's curved caption already shows "AI · IN · THE · LOOP · OF · HUMANITY",
+   so the straight line is visually redundant ON SCREEN — hide it there. It stays in
+   the a11y tree for screen readers (the orrery caption is aria-hidden) and prints
+   normally (the orrery is print-hidden, so this text carries the argument on paper).
+   @media screen excludes print; the clip pattern keeps it screen-reader-readable. */
+@media screen {
+  .hero-loop {
+    position: absolute; width: 1px; height: 1px;
+    padding: 0; margin: -1px; overflow: hidden;
+    clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+  }
+}
 
 
 .hero-scroll {

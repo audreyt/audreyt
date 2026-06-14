@@ -25,7 +25,7 @@
 <meta name="theme-color" content="#0f1923" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#faf8f5" media="(prefers-color-scheme: light)">
 <meta name="color-scheme" content="light dark">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-WqMorOfjjZNgOsb4BU+bclWxZec5y+bzTOujic3XVGw=' 'sha256-4G7wnwQc6qvKDvB+Quf3SC5N+0WcBvc/riHtQRDvDX4=' 'sha256-PBIbXpxoZq+dGJKBjiohe0A6iJvI1eJGI9eoqhVuI+Q='; style-src 'sha256-bDY6FZoeTf6q1OFKAm9VbOuUPcTtgmyHFqO238fjg8E=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-kTULIk1LNNTuREciBeliE5aA3crzF37/I9L8WOTrbcw=' 'sha256-Lk7glYGgO2uAe2e10KBTuIkd5MavIX5XaC6r3ULrzw4=' 'sha256-7Iwfyoy9Mg6zlQf4itxk6zb3Nyny6+eluGAbwyt1JuI='; img-src 'self'; font-src 'self' data:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-WqMorOfjjZNgOsb4BU+bclWxZec5y+bzTOujic3XVGw=' 'sha256-4G7wnwQc6qvKDvB+Quf3SC5N+0WcBvc/riHtQRDvDX4=' 'sha256-PBIbXpxoZq+dGJKBjiohe0A6iJvI1eJGI9eoqhVuI+Q='; style-src 'sha256-bDY6FZoeTf6q1OFKAm9VbOuUPcTtgmyHFqO238fjg8E=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-kTULIk1LNNTuREciBeliE5aA3crzF37/I9L8WOTrbcw=' 'sha256-iPkswWSSnsurm29lr+tL0fHp02JksGyam16V4UACbGU=' 'sha256-7Iwfyoy9Mg6zlQf4itxk6zb3Nyny6+eluGAbwyt1JuI='; img-src 'self'; font-src 'self' data:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
 <link rel="canonical" href="https://cyberambassador.tw/">
 <link rel="alternate" hreflang="zh-TW" href="https://audreyt.org/">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -460,6 +460,18 @@ window.__webp=__imgProbe('assets/probe.webp');
 }
 
 html:has(#lang-zh:checked) .hero-loop { font-family: var(--cjk); letter-spacing: 0.1em; }
+/* The orrery's curved caption already shows "AI · IN · THE · LOOP · OF · HUMANITY",
+   so the straight line is visually redundant ON SCREEN — hide it there. It stays in
+   the a11y tree for screen readers (the orrery caption is aria-hidden) and prints
+   normally (the orrery is print-hidden, so this text carries the argument on paper).
+   @media screen excludes print; the clip pattern keeps it screen-reader-readable. */
+@media screen {
+  .hero-loop {
+    position: absolute; width: 1px; height: 1px;
+    padding: 0; margin: -1px; overflow: hidden;
+    clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+  }
+}
 
 
 .hero-scroll {
