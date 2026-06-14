@@ -19,7 +19,7 @@
 .orrery-svg .o-ai-halo        { stroke: var(--orrery-bright); stroke-opacity: .40; stroke-width: .9; }
 .orrery-svg .o-centre         { fill:   var(--orrery-bright); fill-opacity: .85; }
 .orrery-svg .o-caption        { fill:   var(--orrery-bright); fill-opacity: .55;
-                                font-family: var(--sans); font-size: 11px; letter-spacing: 6px; }
+                                font-family: var(--sans); font-size: 11px; letter-spacing: 3px; }
 
 /* ink halo — gradient stops coloured from CSS (a stop-color="var(--ink)" ATTRIBUTE would not resolve) */
 .orrery-svg .o-halo-0 { stop-color: var(--ink); stop-opacity: .82; }
@@ -57,6 +57,15 @@
   .orrery-svg .o-graticule,
   .orrery-svg .o-boundary { display: none; }
   .orrery-svg .o-people circle:nth-of-type(n+17) { display: none; }
+}
+
+/* small-desktop / tablet band (769–1024px): the desktop two-column hero still
+   applies, but the narrower width clips the off-centre orrery's left edge (the
+   AI ring + caption lose their left portion). A gentle rightward nudge keeps the
+   bounded geometry + the shortened caption on the ink, without the full mobile
+   re-centre (validated 769→1024px). */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .orrery--hero .orrery-svg { transform: translateX(10%); }
 }
 
 /* print — the live print hero is a compact redesigned grid; a full-bleed decorative

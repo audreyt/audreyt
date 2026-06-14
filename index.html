@@ -25,11 +25,12 @@
 <meta name="theme-color" content="#0f1923" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#faf8f5" media="(prefers-color-scheme: light)">
 <meta name="color-scheme" content="light dark">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-WqMorOfjjZNgOsb4BU+bclWxZec5y+bzTOujic3XVGw=' 'sha256-4G7wnwQc6qvKDvB+Quf3SC5N+0WcBvc/riHtQRDvDX4=' 'sha256-PBIbXpxoZq+dGJKBjiohe0A6iJvI1eJGI9eoqhVuI+Q='; style-src 'sha256-bDY6FZoeTf6q1OFKAm9VbOuUPcTtgmyHFqO238fjg8E=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-kTULIk1LNNTuREciBeliE5aA3crzF37/I9L8WOTrbcw=' 'sha256-uX9Yr50SwhTOWa7XJkmg5cxctDU4BEeyfCvms8gDo5I=' 'sha256-AuwSv9bKlmEmTKZZ4517I5P8yCtiPW4Daqmkrp2J/4A='; img-src 'self'; font-src 'self' data:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-WqMorOfjjZNgOsb4BU+bclWxZec5y+bzTOujic3XVGw=' 'sha256-4G7wnwQc6qvKDvB+Quf3SC5N+0WcBvc/riHtQRDvDX4=' 'sha256-PBIbXpxoZq+dGJKBjiohe0A6iJvI1eJGI9eoqhVuI+Q='; style-src 'sha256-bDY6FZoeTf6q1OFKAm9VbOuUPcTtgmyHFqO238fjg8E=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-kTULIk1LNNTuREciBeliE5aA3crzF37/I9L8WOTrbcw=' 'sha256-uX9Yr50SwhTOWa7XJkmg5cxctDU4BEeyfCvms8gDo5I=' 'sha256-zGb4xO+DVhhUQq7nYZb4LaQ5a5wT0QySQV8cbM5Py+Y='; img-src 'self'; font-src 'self' data:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
 <link rel="canonical" href="https://cyberambassador.tw/">
 <link rel="alternate" hreflang="zh-TW" href="https://audreyt.org/">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 html:not(:has(#lang-zh:checked)) [lang="zh-TW"]:not(.cjk) { display: none; }
@@ -2016,7 +2017,7 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
 .orrery-svg .o-ai-halo        { stroke: var(--orrery-bright); stroke-opacity: .40; stroke-width: .9; }
 .orrery-svg .o-centre         { fill:   var(--orrery-bright); fill-opacity: .85; }
 .orrery-svg .o-caption        { fill:   var(--orrery-bright); fill-opacity: .55;
-                                font-family: var(--sans); font-size: 11px; letter-spacing: 6px; }
+                                font-family: var(--sans); font-size: 11px; letter-spacing: 3px; }
 
 /* ink halo — gradient stops coloured from CSS (a stop-color="var(--ink)" ATTRIBUTE would not resolve) */
 .orrery-svg .o-halo-0 { stop-color: var(--ink); stop-opacity: .82; }
@@ -2054,6 +2055,15 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
   .orrery-svg .o-graticule,
   .orrery-svg .o-boundary { display: none; }
   .orrery-svg .o-people circle:nth-of-type(n+17) { display: none; }
+}
+
+/* small-desktop / tablet band (769–1024px): the desktop two-column hero still
+   applies, but the narrower width clips the off-centre orrery's left edge (the
+   AI ring + caption lose their left portion). A gentle rightward nudge keeps the
+   bounded geometry + the shortened caption on the ink, without the full mobile
+   re-centre (validated 769→1024px). */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .orrery--hero .orrery-svg { transform: translateX(10%); }
 }
 
 /* print — the live print hero is a compact redesigned grid; a full-bleed decorative
