@@ -31,8 +31,11 @@
 .orrery-svg .o-graticule { animation: orrery-spin 240s linear infinite reverse; }
 .orrery-svg .o-ai        { animation: orrery-spin 48s  linear infinite; }
 .orrery-svg .o-civic,
-.orrery-svg .o-graticule,
-.orrery-svg .o-ai { transform-box: fill-box; transform-origin: center; will-change: transform; }
+.orrery-svg .o-graticule { transform-box: fill-box; transform-origin: center; will-change: transform; }
+/* .o-ai is concentric with the hero centre, but its bbox is pulled up by the
+   planet/halo (y=336), so fill-box/center would wobble it ~6.5px per turn —
+   pin it to the true ring centre instead. */
+.orrery-svg .o-ai { transform-box: view-box; transform-origin: 410px 456px; will-change: transform; }
 @keyframes orrery-spin { to { transform: rotate(360deg); } }
 
 /* reduced motion — a still engraving */
@@ -42,9 +45,14 @@
   .orrery-svg .o-ai { animation: none; }
 }
 
-/* mobile — simplify behind the centred lockup; mirror the portrait's 0.25 veil */
+/* mobile — the landscape viewBox + slice pushes the off-centre orrery (cx=410)
+   far off the left edge, so the bounded AI orbit/centre/caption fall off-screen
+   and the containment argument is lost. Re-centre + shrink the whole instrument
+   so civic ring + AI orbit + centre + caption all stay on screen (validated at
+   390px across hero heights 740/844/1000). Then simplify + veil to 0.25. */
 @media (max-width: 768px) {
   .orrery--hero { opacity: .25; }
+  .orrery--hero .orrery-svg { transform: translateX(50%) scale(.55); transform-origin: left center; }
   .orrery-svg .o-ticks,
   .orrery-svg .o-graticule,
   .orrery-svg .o-boundary { display: none; }

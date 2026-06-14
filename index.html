@@ -25,7 +25,7 @@
 <meta name="theme-color" content="#0f1923" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#faf8f5" media="(prefers-color-scheme: light)">
 <meta name="color-scheme" content="light dark">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-WqMorOfjjZNgOsb4BU+bclWxZec5y+bzTOujic3XVGw=' 'sha256-4G7wnwQc6qvKDvB+Quf3SC5N+0WcBvc/riHtQRDvDX4=' 'sha256-PBIbXpxoZq+dGJKBjiohe0A6iJvI1eJGI9eoqhVuI+Q='; style-src 'sha256-bDY6FZoeTf6q1OFKAm9VbOuUPcTtgmyHFqO238fjg8E=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-kTULIk1LNNTuREciBeliE5aA3crzF37/I9L8WOTrbcw=' 'sha256-fkhsgMz1xtdCll5U4bL6hJzZlFl6ruTj9F0f0T52ZCw=' 'sha256-v6hFYJE+vPL0AhNLfVO5qEDRFUmDXMfDx1zbKygrRJA='; img-src 'self'; font-src 'self' data:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-WqMorOfjjZNgOsb4BU+bclWxZec5y+bzTOujic3XVGw=' 'sha256-4G7wnwQc6qvKDvB+Quf3SC5N+0WcBvc/riHtQRDvDX4=' 'sha256-PBIbXpxoZq+dGJKBjiohe0A6iJvI1eJGI9eoqhVuI+Q='; style-src 'sha256-bDY6FZoeTf6q1OFKAm9VbOuUPcTtgmyHFqO238fjg8E=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-kTULIk1LNNTuREciBeliE5aA3crzF37/I9L8WOTrbcw=' 'sha256-uX9Yr50SwhTOWa7XJkmg5cxctDU4BEeyfCvms8gDo5I=' 'sha256-AuwSv9bKlmEmTKZZ4517I5P8yCtiPW4Daqmkrp2J/4A='; img-src 'self'; font-src 'self' data:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
 <link rel="canonical" href="https://cyberambassador.tw/">
 <link rel="alternate" hreflang="zh-TW" href="https://audreyt.org/">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -455,7 +455,7 @@ window.__webp=__imgProbe('assets/probe.webp');
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--gold-light);
-    opacity: 0.7;
+    opacity: 0.8;
 }
 
 html:has(#lang-zh:checked) .hero-loop { font-family: var(--cjk); letter-spacing: 0.1em; }
@@ -2028,8 +2028,11 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
 .orrery-svg .o-graticule { animation: orrery-spin 240s linear infinite reverse; }
 .orrery-svg .o-ai        { animation: orrery-spin 48s  linear infinite; }
 .orrery-svg .o-civic,
-.orrery-svg .o-graticule,
-.orrery-svg .o-ai { transform-box: fill-box; transform-origin: center; will-change: transform; }
+.orrery-svg .o-graticule { transform-box: fill-box; transform-origin: center; will-change: transform; }
+/* .o-ai is concentric with the hero centre, but its bbox is pulled up by the
+   planet/halo (y=336), so fill-box/center would wobble it ~6.5px per turn —
+   pin it to the true ring centre instead. */
+.orrery-svg .o-ai { transform-box: view-box; transform-origin: 410px 456px; will-change: transform; }
 @keyframes orrery-spin { to { transform: rotate(360deg); } }
 
 /* reduced motion — a still engraving */
@@ -2039,9 +2042,14 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
   .orrery-svg .o-ai { animation: none; }
 }
 
-/* mobile — simplify behind the centred lockup; mirror the portrait's 0.25 veil */
+/* mobile — the landscape viewBox + slice pushes the off-centre orrery (cx=410)
+   far off the left edge, so the bounded AI orbit/centre/caption fall off-screen
+   and the containment argument is lost. Re-centre + shrink the whole instrument
+   so civic ring + AI orbit + centre + caption all stay on screen (validated at
+   390px across hero heights 740/844/1000). Then simplify + veil to 0.25. */
 @media (max-width: 768px) {
   .orrery--hero { opacity: .25; }
+  .orrery--hero .orrery-svg { transform: translateX(50%) scale(.55); transform-origin: left center; }
   .orrery-svg .o-ticks,
   .orrery-svg .o-graticule,
   .orrery-svg .o-boundary { display: none; }

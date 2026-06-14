@@ -6,15 +6,11 @@
     </radialGradient>
   </defs>
   <rect width="32" height="32" rx="6" fill="#0f1923"/>
-  <!-- the light getting in through the crack -->
   <circle cx="23.4" cy="8.6" r="8" fill="url(#lightIn)"/>
-  <!-- outer civic ring, cracked open at the upper right -->
-  <path d="M25.09 10.75 A10.5 10.5 0 1 1 21.25 6.91"
-        fill="none" stroke="#c9a961" stroke-width="2.2" stroke-linecap="round"/>
-  <!-- the glint at the crack -->
-  <circle cx="23.4" cy="8.6" r="1.7" fill="#fff"/>
-  <!-- bounded inner orbit, concentric, with its body + centre -->
+  <!-- civic ring, cracked open upper-right; butt caps + a wider gap so the crack survives 16px AA -->
+  <path d="M25.74 12.07 A10.5 10.5 0 1 1 19.93 6.26" fill="none" stroke="#c9a961" stroke-width="2.1"/>
+  <circle cx="23.4" cy="8.6" r="1.8" fill="#fff"/>
   <circle cx="16" cy="16" r="4.3" fill="none" stroke="#c9a961" stroke-width="1.6"/>
-  <circle cx="16" cy="11.7" r="1.1" fill="#c9a961"/>
+  <circle cx="16" cy="11.7" r="1.2" fill="#c9a961"/>
   <circle cx="16" cy="16" r="0.95" fill="#c9a961"/>
 </svg>
