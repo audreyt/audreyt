@@ -1323,6 +1323,15 @@ html = html.replace(/\{\{content:([^}]+)\}\}/g, (_, name) => {
   return renderer();
 });
 
+// Section eyebrow glyph: inject the shared favicon mark before every label.
+// One <symbol id="o-mark"> (defined in the template) is reused via <use>; it carries
+// the favicon's cracked-ring arc distilled to crack + glint — the full mark (inner
+// orbit + planet) muds to a blob at ~15px, so we keep only the signature opening.
+html = html.replace(
+  /(<div class="section-label"[^>]*>)/g,
+  '$1<svg class="o-glyph" viewBox="0 0 32 32" aria-hidden="true"><use href="#o-mark"/></svg>',
+);
+
 // ─── Resolve inclusion markers (unchanged from original) ────────────
 
 // {{style:NAME}} → content of src/styles/NAME.css

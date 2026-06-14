@@ -75,24 +75,25 @@
    (Spec §7's print engraving is deferred to a later print proof.) */
 @media print { .orrery--hero { display: none !important; } }
 
-/* ─── Loop grammar: section orbit-glyph (Phase 2) ─────────────────────── */
-/* A tiny ring + one rim node before every section eyebrow. Pure CSS — no
-   SVG, no marker, no renderer edits. CSP-safe (no data: mask). */
+/* ─── Loop grammar: section eyebrow glyph — the favicon mark (Phase 2) ─── */
+/* Each eyebrow carries the favicon's cracked-orrery ring + glint, via one shared
+   inline symbol (#o-mark, defined in the template) referenced before every label.
+   The full favicon mark's inner orbit/planet mud to a blob at ~15px, so we distil
+   to the signature crack + glint. Colour lives here (var() resolves on CSS props,
+   unlike SVG attrs), so it adapts to scheme and the always-dark film band. */
 .section-label { position: relative; padding-left: 1.7em; }
-.section-label::before {
-  content: "";
+.o-glyph {
   position: absolute; left: 0; top: 50%; transform: translateY(-50%);
-  width: 0.95em; height: 0.95em;
-  border: 1px solid var(--orrery-line); border-radius: 50%;
-  background: radial-gradient(circle 1.4px at 88% 50%, var(--orrery-line) 99%, transparent 100%);
-  opacity: 0.85;
+  width: 0.95em; height: 0.95em; overflow: visible; opacity: 0.85;
 }
+.o-mark-ring  { fill: none; stroke: var(--orrery-line); stroke-width: 2.1; }
+.o-mark-glint { fill: var(--orrery-line); }
 /* always-dark sections (the film band) need the scheme-invariant bright gold */
-.film .section-label::before { border-color: var(--orrery-bright);
-  background: radial-gradient(circle 1.4px at 88% 50%, var(--orrery-bright) 99%, transparent 100%); }
+.film .o-mark-ring  { stroke: var(--orrery-bright); }
+.film .o-mark-glint { fill: var(--orrery-bright); }
 /* print: drop the glyph so the print eyebrows stay flush (the elaborate print
    stylesheet re-lays section labels; a ring there adds nothing) */
-@media print { .section-label { padding-left: 0; } .section-label::before { content: none; } }
+@media print { .section-label { padding-left: 0; } .o-glyph { display: none; } }
 
 /* ─── Loop grammar: arc-segment divider + draw-on (Phase 2) ───────────── */
 .divider-arc { max-width: 1200px; margin: 0 auto; padding: 0 80px; }

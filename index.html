@@ -25,7 +25,7 @@
 <meta name="theme-color" content="#0f1923" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#faf8f5" media="(prefers-color-scheme: light)">
 <meta name="color-scheme" content="light dark">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-WqMorOfjjZNgOsb4BU+bclWxZec5y+bzTOujic3XVGw=' 'sha256-4G7wnwQc6qvKDvB+Quf3SC5N+0WcBvc/riHtQRDvDX4=' 'sha256-PBIbXpxoZq+dGJKBjiohe0A6iJvI1eJGI9eoqhVuI+Q='; style-src 'sha256-bDY6FZoeTf6q1OFKAm9VbOuUPcTtgmyHFqO238fjg8E=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-kTULIk1LNNTuREciBeliE5aA3crzF37/I9L8WOTrbcw=' 'sha256-iPkswWSSnsurm29lr+tL0fHp02JksGyam16V4UACbGU=' 'sha256-7Iwfyoy9Mg6zlQf4itxk6zb3Nyny6+eluGAbwyt1JuI='; img-src 'self'; font-src 'self' data:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-WqMorOfjjZNgOsb4BU+bclWxZec5y+bzTOujic3XVGw=' 'sha256-4G7wnwQc6qvKDvB+Quf3SC5N+0WcBvc/riHtQRDvDX4=' 'sha256-PBIbXpxoZq+dGJKBjiohe0A6iJvI1eJGI9eoqhVuI+Q='; style-src 'sha256-bDY6FZoeTf6q1OFKAm9VbOuUPcTtgmyHFqO238fjg8E=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-kTULIk1LNNTuREciBeliE5aA3crzF37/I9L8WOTrbcw=' 'sha256-iPkswWSSnsurm29lr+tL0fHp02JksGyam16V4UACbGU=' 'sha256-FN2b7nG9dKZAcQbLm93rESC9RTeX2BRr49Y9Phh8DF4='; img-src 'self'; font-src 'self' data:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
 <link rel="canonical" href="https://cyberambassador.tw/">
 <link rel="alternate" hreflang="zh-TW" href="https://audreyt.org/">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -262,6 +262,10 @@ picture { display: block; }
 <noscript><style>.reveal { opacity: 1 !important; transform: none !important; }</style></noscript>
 </head>
 <body>
+<!-- Shared section-eyebrow mark: the favicon's cracked-orrery ring + glint, defined
+     once and referenced via <use> before every .section-label. Colour comes from CSS
+     (.o-mark-* in orrery.css) so it adapts to scheme + the always-dark film band. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><symbol id="o-mark" viewBox="0 0 32 32"><path class="o-mark-ring" d="M25.74 12.07 A10.5 10.5 0 1 1 19.93 6.26"/><circle class="o-mark-glint" cx="23.4" cy="8.6" r="2.3"/></symbol></svg>
 <input type="checkbox" id="lang-zh" hidden>
 <div id="lang-announce" class="sr-only" aria-live="polite"></div>
 <script>document.documentElement.classList.add('js');(function(){var r=document.documentElement,c=document.getElementById('lang-zh'),s=null,z;try{s=localStorage.getItem('lang');}catch(e){}if(s){z=s==='zh-TW';}else{var l=navigator.languages||[navigator.language||''],h=0,g=0,i;for(i=0;i<l.length;i++){if(/^en\b/i.test(l[i]))h=1;if(/^zh\b/i.test(l[i]))g=1;}z=/^zh\b/i.test(navigator.language)||g&&!h;}if(z){c.checked=true;r.setAttribute('lang','zh-TW');document.title='\u5510\u9cf3 \u00b7 \u6578\u4f4d\u6cbb\u7406\u5927\u4f7f';}})();</script>
@@ -2091,24 +2095,25 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
    (Spec §7's print engraving is deferred to a later print proof.) */
 @media print { .orrery--hero { display: none !important; } }
 
-/* ─── Loop grammar: section orbit-glyph (Phase 2) ─────────────────────── */
-/* A tiny ring + one rim node before every section eyebrow. Pure CSS — no
-   SVG, no marker, no renderer edits. CSP-safe (no data: mask). */
+/* ─── Loop grammar: section eyebrow glyph — the favicon mark (Phase 2) ─── */
+/* Each eyebrow carries the favicon's cracked-orrery ring + glint, via one shared
+   inline symbol (#o-mark, defined in the template) referenced before every label.
+   The full favicon mark's inner orbit/planet mud to a blob at ~15px, so we distil
+   to the signature crack + glint. Colour lives here (var() resolves on CSS props,
+   unlike SVG attrs), so it adapts to scheme and the always-dark film band. */
 .section-label { position: relative; padding-left: 1.7em; }
-.section-label::before {
-  content: "";
+.o-glyph {
   position: absolute; left: 0; top: 50%; transform: translateY(-50%);
-  width: 0.95em; height: 0.95em;
-  border: 1px solid var(--orrery-line); border-radius: 50%;
-  background: radial-gradient(circle 1.4px at 88% 50%, var(--orrery-line) 99%, transparent 100%);
-  opacity: 0.85;
+  width: 0.95em; height: 0.95em; overflow: visible; opacity: 0.85;
 }
+.o-mark-ring  { fill: none; stroke: var(--orrery-line); stroke-width: 2.1; }
+.o-mark-glint { fill: var(--orrery-line); }
 /* always-dark sections (the film band) need the scheme-invariant bright gold */
-.film .section-label::before { border-color: var(--orrery-bright);
-  background: radial-gradient(circle 1.4px at 88% 50%, var(--orrery-bright) 99%, transparent 100%); }
+.film .o-mark-ring  { stroke: var(--orrery-bright); }
+.film .o-mark-glint { fill: var(--orrery-bright); }
 /* print: drop the glyph so the print eyebrows stay flush (the elaborate print
    stylesheet re-lays section labels; a ring there adds nothing) */
-@media print { .section-label { padding-left: 0; } .section-label::before { content: none; } }
+@media print { .section-label { padding-left: 0; } .o-glyph { display: none; } }
 
 /* ─── Loop grammar: arc-segment divider + draw-on (Phase 2) ───────────── */
 .divider-arc { max-width: 1200px; margin: 0 auto; padding: 0 80px; }
@@ -2272,8 +2277,8 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
     <div class="section">
     <div class="bio-grid reveal">
         <div class="bio-text">
-            <div class="section-label" lang="en-GB">About</div>
-            <div class="section-label" lang="zh-TW">關於</div>
+            <div class="section-label" lang="en-GB"><svg class="o-glyph" viewBox="0 0 32 32" aria-hidden="true"><use href="#o-mark"/></svg>About</div>
+            <div class="section-label" lang="zh-TW"><svg class="o-glyph" viewBox="0 0 32 32" aria-hidden="true"><use href="#o-mark"/></svg>關於</div>
             <p lang="en-GB">Audrey Tang is a civic hacker, co-author of <a href="https://plurality.net" target="_blank" rel="noopener noreferrer"><em>Plurality: The Future of Collaborative Technology and Democracy</em></a>, and an inaugural senior accelerator fellow at the Oxford Institute for Ethics in AI.</p>
             <p lang="en-GB">Taiwan's 1st digital minister and the world's first nonbinary cabinet minister, Tang was awarded the 2025 <a href="https://rightlivelihood.org/the-change-makers/find-a-laureate/audrey-tang/" target="_blank" rel="noopener noreferrer">Right Livelihood Award</a> for <em>&ldquo;advancing the social use of digital technology to empower citizens, renew democracy and heal divides.&rdquo;</em></p>
             <p lang="en-GB">A child prodigy who practiced Taoism to manage a congenital heart condition, Tang opted for homeschooling and entrepreneurship at 14. A decade later, Tang was a leader in the free and open-source software communities, revitalising the Haskell and Perl languages.</p>
@@ -2282,8 +2287,8 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
             <p lang="zh-TW">唐鳳從小資賦優異，練習道家功法抑制先天性心臟病，14 歲離開正規學校投身創業，24 歲時已是自由開源軟體社群的領袖，重振了 Haskell 與 Perl 程式語言的生態。</p>
         </div>
         <div>
-            <div class="section-label" lang="en-GB">Roles</div>
-            <div class="section-label" lang="zh-TW">職稱</div>
+            <div class="section-label" lang="en-GB"><svg class="o-glyph" viewBox="0 0 32 32" aria-hidden="true"><use href="#o-mark"/></svg>Roles</div>
+            <div class="section-label" lang="zh-TW"><svg class="o-glyph" viewBox="0 0 32 32" aria-hidden="true"><use href="#o-mark"/></svg>職稱</div>
             <ul class="bio-roles" lang="en-GB">
                 <li>
                     <span class="role-title">Cyber Ambassador</span>
@@ -2343,8 +2348,8 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
 
 <!-- ════════ IN DIALOGUE ════════ -->
 <section class="section reveal" id="dialogue">
-    <div class="section-label" lang="en-GB">Spotlight Addresses</div>
-    <div class="section-label" lang="zh-TW">精選演講</div>
+    <div class="section-label" lang="en-GB"><svg class="o-glyph" viewBox="0 0 32 32" aria-hidden="true"><use href="#o-mark"/></svg>Spotlight Addresses</div>
+    <div class="section-label" lang="zh-TW"><svg class="o-glyph" viewBox="0 0 32 32" aria-hidden="true"><use href="#o-mark"/></svg>精選演講</div>
     <h2 lang="en-GB">We the People are Truly the Superintelligence</h2>
     <h2 lang="zh-TW">我們全民，<span class="nowrap">才是超級智慧</span></h2>
     <div class="dialogue-grid">
@@ -2380,8 +2385,8 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
 
 <!-- ════════ RECOGNITION ════════ -->
 <section class="section reveal" id="recognition">
-    <div class="section-label" lang="en-GB">Honours</div>
-    <div class="section-label" lang="zh-TW">獲獎肯定</div>
+    <div class="section-label" lang="en-GB"><svg class="o-glyph" viewBox="0 0 32 32" aria-hidden="true"><use href="#o-mark"/></svg>Honours</div>
+    <div class="section-label" lang="zh-TW"><svg class="o-glyph" viewBox="0 0 32 32" aria-hidden="true"><use href="#o-mark"/></svg>獲獎肯定</div>
     <h2 lang="en-GB">Free the Future &mdash; Together!</h2>
     <h2 lang="zh-TW">攜手共創無限未來</h2>
     <div class="constellation" aria-hidden="true"><svg class="constellation-arc" viewBox="0 0 1200 46" preserveAspectRatio="none" aria-hidden="true" focusable="false" fill="none"><path class="c-arc" d="M40 40 A 5200 5200 0 0 1 1160 40"/><circle class="c-star" cx="40" cy="40" r="2.4"/><circle class="c-star" cx="320" cy="22" r="2.4"/><circle class="c-star" cx="600" cy="16" r="2.4"/><circle class="c-star" cx="880" cy="22" r="2.4"/><circle class="c-star" cx="1160" cy="40" r="2.4"/></svg></div>
@@ -2451,8 +2456,8 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
 
 <!-- ════════ CIVIC AI ════════ -->
 <section class="section reveal" id="work">
-    <div class="section-label" lang="en-GB">Current Work &middot; Oxford Institute for Ethics in AI</div>
-    <div class="section-label" lang="zh-TW">現階段工作&#x30FB;牛津大學 AI 倫理研究院</div>
+    <div class="section-label" lang="en-GB"><svg class="o-glyph" viewBox="0 0 32 32" aria-hidden="true"><use href="#o-mark"/></svg>Current Work &middot; Oxford Institute for Ethics in AI</div>
+    <div class="section-label" lang="zh-TW"><svg class="o-glyph" viewBox="0 0 32 32" aria-hidden="true"><use href="#o-mark"/></svg>現階段工作&#x30FB;牛津大學 AI 倫理研究院</div>
     <h2 lang="en-GB">Civic AI and the 6-Pack of Care</h2>
     <h2 lang="zh-TW"><span class="nowrap">仁工智慧</span> &amp; <span class="nowrap">關懷六力</span></h2>
     <p lang="en-GB">The dominant AI safety narrative is vertical: one superintelligent system, aligned once and for all to human values. But no amount of what is produces what ought to be. <a href="https://civic.ai" target="_blank" rel="noopener noreferrer">Civic AI</a>, developed with Caroline Green at Oxford, offers a horizontal alternative &mdash; many bounded, purpose-specific AI agents, each devoted to one community&rsquo;s relational health.</p>
@@ -2498,8 +2503,8 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
         </div>
     </div>
     <div class="case-study">
-        <div class="section-label" lang="en-GB">Case Study &middot; Taiwan, 2024</div>
-        <div class="section-label" lang="zh-TW">案例研究&#x30FB;臺灣，2024</div>
+        <div class="section-label" lang="en-GB"><svg class="o-glyph" viewBox="0 0 32 32" aria-hidden="true"><use href="#o-mark"/></svg>Case Study &middot; Taiwan, 2024</div>
+        <div class="section-label" lang="zh-TW"><svg class="o-glyph" viewBox="0 0 32 32" aria-hidden="true"><use href="#o-mark"/></svg>案例研究&#x30FB;臺灣，2024</div>
         <h3 lang="en-GB">Deliberative Poll on Deepfake Regulation</h3>
         <h3 lang="zh-TW">深偽治理審議式民調</h3>
         <p lang="en-GB">AI-generated scam ads impersonating Jensen Huang were costing Taiwanese citizens millions of dollars. 200,000 text messages went out to randomly selected numbers across Taiwan, asking one question: what should be done? Thousands volunteered; 447 were chosen by lottery to mirror the country&rsquo;s demographics. They deliberated in 44 virtual rooms. A <a href="https://taide.tw/en" target="_blank" rel="noopener noreferrer">Trustworthy AI Dialogue Engine</a> synthesised their proposals the same day.</p>
@@ -2518,8 +2523,8 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
 <!-- ════════ FILM ════════ -->
 <section class="film">
     <div class="film-inner reveal">
-        <div class="section-label" lang="en-GB">Short Film &middot; Directed by Cynthia Wade</div>
-        <div class="section-label" lang="zh-TW">短片&#x30FB;導演：Cynthia Wade</div>
+        <div class="section-label" lang="en-GB"><svg class="o-glyph" viewBox="0 0 32 32" aria-hidden="true"><use href="#o-mark"/></svg>Short Film &middot; Directed by Cynthia Wade</div>
+        <div class="section-label" lang="zh-TW"><svg class="o-glyph" viewBox="0 0 32 32" aria-hidden="true"><use href="#o-mark"/></svg>短片&#x30FB;導演：Cynthia Wade</div>
         <h2 lang="en-GB">Good Enough Ancestor &mdash; A Documentary</h2>
         <h2 lang="zh-TW">夠好的祖先（紀錄短片）</h2>
         <p class="film-subtitle" id="film-desc-en" lang="en-GB">Oscar and Emmy-winning director Cynthia Wade's documentary on democracy, mortality, and the courage to leave a wider canvas for future generations. <strong>Best Professional Documentary Short</strong>, SCAD Savannah Film Festival. Screened at the Woodstock Film Festival and Athena Film Festival. 21 min.</p>
@@ -2593,8 +2598,8 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
 
 <!-- ════════ PUBLICATIONS ════════ -->
 <section class="section reveal" id="publications">
-    <div class="section-label" lang="en-GB">Published</div>
-    <div class="section-label" lang="zh-TW">選輯</div>
+    <div class="section-label" lang="en-GB"><svg class="o-glyph" viewBox="0 0 32 32" aria-hidden="true"><use href="#o-mark"/></svg>Published</div>
+    <div class="section-label" lang="zh-TW"><svg class="o-glyph" viewBox="0 0 32 32" aria-hidden="true"><use href="#o-mark"/></svg>選輯</div>
     <h2 lang="en-GB">Deep Thinking</h2>
     <h2 lang="zh-TW">睦育行思</h2>
     <ul class="pub-list">
@@ -2695,8 +2700,8 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
 
 <!-- ════════ ESSAYS & TESTIMONIES ════════ -->
 <section class="section reveal" id="essays">
-    <div class="section-label" lang="en-GB">Essays &amp; Testimonies</div>
-    <div class="section-label" lang="zh-TW">文集與證詞</div>
+    <div class="section-label" lang="en-GB"><svg class="o-glyph" viewBox="0 0 32 32" aria-hidden="true"><use href="#o-mark"/></svg>Essays &amp; Testimonies</div>
+    <div class="section-label" lang="zh-TW"><svg class="o-glyph" viewBox="0 0 32 32" aria-hidden="true"><use href="#o-mark"/></svg>文集與證詞</div>
     <h2 lang="en-GB">The Long Read</h2>
     <h2 lang="zh-TW">長篇</h2>
     <div class="essay-grid">
@@ -2735,8 +2740,8 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
 
 <!-- ════════ BACKGROUND ════════ -->
 <section class="section section-narrow reveal">
-    <div class="section-label" lang="en-GB">Background</div>
-    <div class="section-label" lang="zh-TW">背景</div>
+    <div class="section-label" lang="en-GB"><svg class="o-glyph" viewBox="0 0 32 32" aria-hidden="true"><use href="#o-mark"/></svg>Background</div>
+    <div class="section-label" lang="zh-TW"><svg class="o-glyph" viewBox="0 0 32 32" aria-hidden="true"><use href="#o-mark"/></svg>背景</div>
     <h2 lang="en-GB"><span class="nowrap">From Open Source</span> <span class="nowrap">to Open Government</span></h2>
     <h2 lang="zh-TW"><span class="nowrap">從開源軟體</span><span class="nowrap">到開放政府</span></h2>
     <p lang="en-GB">Tang is a driving force behind the creation of <strong>g0v</strong> (gov-zero), one of the largest civic technology communities in East Asia, and played a pivotal role in the <strong>2014 Sunflower Movement</strong>, facilitating digital consensus-building during the occupation of Taiwan's Legislature. By bringing live streaming and civic tech into the movement, Tang proved that radical transparency could transform governance from the bottom up.</p>
