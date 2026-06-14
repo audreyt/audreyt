@@ -25,7 +25,7 @@
 <meta name="theme-color" content="#0f1923" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#faf8f5" media="(prefers-color-scheme: light)">
 <meta name="color-scheme" content="light dark">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-WqMorOfjjZNgOsb4BU+bclWxZec5y+bzTOujic3XVGw=' 'sha256-4G7wnwQc6qvKDvB+Quf3SC5N+0WcBvc/riHtQRDvDX4=' 'sha256-PBIbXpxoZq+dGJKBjiohe0A6iJvI1eJGI9eoqhVuI+Q='; style-src 'sha256-bDY6FZoeTf6q1OFKAm9VbOuUPcTtgmyHFqO238fjg8E=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-kTULIk1LNNTuREciBeliE5aA3crzF37/I9L8WOTrbcw=' 'sha256-fkhsgMz1xtdCll5U4bL6hJzZlFl6ruTj9F0f0T52ZCw=' 'sha256-IPuEcjAo7GhTgjGvjzLqC2SkeEFhD2pXEqUmwMbS+iw='; img-src 'self'; font-src 'self' data:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-WqMorOfjjZNgOsb4BU+bclWxZec5y+bzTOujic3XVGw=' 'sha256-4G7wnwQc6qvKDvB+Quf3SC5N+0WcBvc/riHtQRDvDX4=' 'sha256-PBIbXpxoZq+dGJKBjiohe0A6iJvI1eJGI9eoqhVuI+Q='; style-src 'sha256-bDY6FZoeTf6q1OFKAm9VbOuUPcTtgmyHFqO238fjg8E=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-kTULIk1LNNTuREciBeliE5aA3crzF37/I9L8WOTrbcw=' 'sha256-fkhsgMz1xtdCll5U4bL6hJzZlFl6ruTj9F0f0T52ZCw=' 'sha256-xjtecSLEhNAH13OcjX2+K6YvpuQ0SI7ipBoIlY0XjCw='; img-src 'self'; font-src 'self' data:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
 <link rel="canonical" href="https://cyberambassador.tw/">
 <link rel="alternate" hreflang="zh-TW" href="https://audreyt.org/">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -2071,6 +2071,29 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
 /* print: drop the glyph so the print eyebrows stay flush (the elaborate print
    stylesheet re-lays section labels; a ring there adds nothing) */
 @media print { .section-label { padding-left: 0; } .section-label::before { content: none; } }
+
+/* ─── Loop grammar: arc-segment divider + draw-on (Phase 2) ───────────── */
+.divider-arc { max-width: 1200px; margin: 0 auto; padding: 0 80px; }
+.divider-arc .divider-arc-svg { width: 100%; height: 40px; display: block; overflow: visible; }
+.divider-arc .d-arc {
+  stroke: var(--orrery-line); stroke-opacity: 0.4; stroke-width: 1;
+  stroke-dasharray: 1; stroke-dashoffset: 0;            /* default = fully drawn */
+}
+/* draw-on where supported (Chromium/Safari); elsewhere it stays statically drawn */
+@supports (animation-timeline: view()) {
+  .divider-arc .d-arc {
+    animation: draw-arc linear both;
+    animation-timeline: view();                          /* declared AFTER the shorthand, which resets it */
+    animation-range: entry 0% cover 35%;
+  }
+}
+@keyframes draw-arc { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@media (prefers-reduced-motion: reduce) { .divider-arc .d-arc { stroke-dashoffset: 0 !important; } }
+@media (max-width: 768px) { .divider-arc { padding: 0 24px; } }
+/* load-bearing: the Pullquote/Film/Gallery bands are display:none in print
+   (components.css ~1127), but these divider divs are their SIBLINGS, not
+   children, so they survive — hide them explicitly or they print as orphan bows. */
+@media print { .divider-arc { display: none !important; } }
 </style>
 
 <!-- ════════ HERO ════════ -->

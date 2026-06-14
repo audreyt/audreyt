@@ -74,3 +74,26 @@
 /* print: drop the glyph so the print eyebrows stay flush (the elaborate print
    stylesheet re-lays section labels; a ring there adds nothing) */
 @media print { .section-label { padding-left: 0; } .section-label::before { content: none; } }
+
+/* ─── Loop grammar: arc-segment divider + draw-on (Phase 2) ───────────── */
+.divider-arc { max-width: 1200px; margin: 0 auto; padding: 0 80px; }
+.divider-arc .divider-arc-svg { width: 100%; height: 40px; display: block; overflow: visible; }
+.divider-arc .d-arc {
+  stroke: var(--orrery-line); stroke-opacity: 0.4; stroke-width: 1;
+  stroke-dasharray: 1; stroke-dashoffset: 0;            /* default = fully drawn */
+}
+/* draw-on where supported (Chromium/Safari); elsewhere it stays statically drawn */
+@supports (animation-timeline: view()) {
+  .divider-arc .d-arc {
+    animation: draw-arc linear both;
+    animation-timeline: view();                          /* declared AFTER the shorthand, which resets it */
+    animation-range: entry 0% cover 35%;
+  }
+}
+@keyframes draw-arc { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@media (prefers-reduced-motion: reduce) { .divider-arc .d-arc { stroke-dashoffset: 0 !important; } }
+@media (max-width: 768px) { .divider-arc { padding: 0 24px; } }
+/* load-bearing: the Pullquote/Film/Gallery bands are display:none in print
+   (components.css ~1127), but these divider divs are their SIBLINGS, not
+   children, so they survive — hide them explicitly or they print as orphan bows. */
+@media print { .divider-arc { display: none !important; } }
