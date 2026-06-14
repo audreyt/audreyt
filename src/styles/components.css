@@ -1252,6 +1252,11 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
         color: var(--print-ink) !important;
     }
 
+    .hero-loop {
+        opacity: 1 !important;
+        color: var(--print-accent) !important;
+    }
+
     .bio,
     .section,
     footer {

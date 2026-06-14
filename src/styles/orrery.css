@@ -65,7 +65,7 @@
    bounded geometry + the shortened caption on the ink, without the full mobile
    re-centre (validated 769→1024px). */
 @media (min-width: 769px) and (max-width: 1024px) {
-  .orrery--hero .orrery-svg { transform: translateX(10%); }
+  .orrery--hero .orrery-svg { transform: translateX(22%) scale(.74); transform-origin: left center; }
 }
 
 /* print — the live print hero is a compact redesigned grid; a full-bleed decorative
