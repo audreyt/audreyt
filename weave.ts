@@ -257,7 +257,19 @@ function renderHero(): string {
       }
     }
 
-    return { name, quoteLines, subtitleLines };
+    // Loop line: non-heading, non-rule, non-quote, non-empty lines BEFORE the quote.
+    // (Currently the only such line is the new "AI in the loop of humanity" argument;
+    // renderHero previously dropped this slot entirely.)
+    const loopLines: string[] = [];
+    let reachedQuote = false;
+    for (const line of content.split("\n")) {
+      if (line.startsWith("> ") || line === ">") reachedQuote = true;
+      else if (!reachedQuote && line.trim() && !line.startsWith("#") && line.trim() !== "****") {
+        loopLines.push(line.trim());
+      }
+    }
+
+    return { name, quoteLines, subtitleLines, loopLines };
   }
 
   const enH = parseHero(en.HERO);
@@ -289,6 +301,12 @@ function renderHero(): string {
   lines.push(`${I}<blockquote class="hero-quote" lang="zh-TW">`);
   lines.push(`${I}    ${zhH.quoteLines.join("<br>")}`);
   lines.push(`${I}</blockquote>`);
+
+  // Loop argument — the real-text equivalent of the decorative SVG caption (a11y).
+  if (enH.loopLines.length)
+    lines.push(`${I}<p class="hero-loop" lang="en-GB">${enH.loopLines.join(" ")}</p>`);
+  if (zhH.loopLines.length)
+    lines.push(`${I}<p class="hero-loop" lang="zh-TW">${zhH.loopLines.join(" ")}</p>`);
 
   return lines.join("\n");
 }
