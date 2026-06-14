@@ -3,6 +3,8 @@
 
 ****
 
+AI in the loop of humanity
+
 > "I want to be a good enough ancestor
 > for future generations."
 
