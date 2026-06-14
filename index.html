@@ -25,7 +25,7 @@
 <meta name="theme-color" content="#0f1923" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#faf8f5" media="(prefers-color-scheme: light)">
 <meta name="color-scheme" content="light dark">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-WqMorOfjjZNgOsb4BU+bclWxZec5y+bzTOujic3XVGw=' 'sha256-4G7wnwQc6qvKDvB+Quf3SC5N+0WcBvc/riHtQRDvDX4=' 'sha256-PBIbXpxoZq+dGJKBjiohe0A6iJvI1eJGI9eoqhVuI+Q='; style-src 'sha256-bDY6FZoeTf6q1OFKAm9VbOuUPcTtgmyHFqO238fjg8E=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-kTULIk1LNNTuREciBeliE5aA3crzF37/I9L8WOTrbcw=' 'sha256-FrsUic5gCplxRKziN2WjNGAScB7BNkOEV/PfsAy/X0E=' 'sha256-0LMmOM7iyJwnIl8SjX9umk5z0agpJatBzzPjUUV9IHc='; img-src 'self'; font-src 'self' data:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-WqMorOfjjZNgOsb4BU+bclWxZec5y+bzTOujic3XVGw=' 'sha256-4G7wnwQc6qvKDvB+Quf3SC5N+0WcBvc/riHtQRDvDX4=' 'sha256-PBIbXpxoZq+dGJKBjiohe0A6iJvI1eJGI9eoqhVuI+Q='; style-src 'sha256-bDY6FZoeTf6q1OFKAm9VbOuUPcTtgmyHFqO238fjg8E=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-kTULIk1LNNTuREciBeliE5aA3crzF37/I9L8WOTrbcw=' 'sha256-FrsUic5gCplxRKziN2WjNGAScB7BNkOEV/PfsAy/X0E=' 'sha256-3fmG9biBIqf9nTfhNtHbUD7Ur+N2yqvkOOXoxOPBqjo='; img-src 'self'; font-src 'self' data:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
 <link rel="canonical" href="https://cyberambassador.tw/">
 <link rel="alternate" hreflang="zh-TW" href="https://audreyt.org/">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -2155,6 +2155,11 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
 .pullquote .people-arc .pa-arc { stroke: var(--orrery-line); stroke-opacity: .22; stroke-width: 1; }
 .pullquote .people-arc .pa-nodes circle { fill: var(--orrery-line); fill-opacity: .55; }
 .pullquote blockquote, .pullquote cite { position: relative; z-index: 1; }
+/* mobile: thin the studded nodes (the 1200-wide arc squashes 42 nodes into a dense
+   crowded band at phone width) — keep every other node for a calmer arc. */
+@media (max-width: 768px) {
+  .pullquote .people-arc .pa-nodes circle:nth-of-type(even) { display: none; }
+}
 
 /* ─── Substance: Constellation of Honours (Phase 4a) ──────────────────── */
 /* The four awards keep their 2x2 grid; an arc of time sits above, and each
