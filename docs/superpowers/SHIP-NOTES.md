@@ -9,7 +9,7 @@ A single new design grammar — **the loop** — threaded through the site, dist
 | Phase | What it adds |
 |:------|:-------------|
 | **1 — hero orrery** | An animated inline-SVG orrery behind the index hero (civic ring + bounded AI orbit + curved `AI · IN · THE · LOOP · OF · HUMANITY` caption + ink halo); a real-text `.hero-loop` argument woven from a new README line. |
-| **2 — loop grammar** | Pure-CSS section orbit-glyph on every eyebrow; four arc-segment dividers at the major band transitions (draw-on via CSS scroll-timeline). |
+| **2 — loop grammar** | Pure-CSS section orbit-glyph on every eyebrow; three arc-segment dividers at the major band transitions (draw-on via CSS scroll-timeline). |
 | **3 — idea pieces** | The 6-Pack of Care as six bounded orbits (pure CSS, staggered "kami"); a 42-node people-arc behind the geothermal pullquote. |
 | **4a — constellation** | Honours as an "arc of time" with each award-year an orbit-node (the grid stays). |
 | **4b — finale** | Care-orbit hover polish; the three prose essays' chapter-divider diamond becomes an orbit-ring. Essays **keep** their bespoke crystal/emblem heroes (plurality of registers). |
@@ -19,14 +19,15 @@ The original intent lives in `specs/2026-06-14-in-the-loop-of-humanity-design.md
 
 ## How it was reviewed
 
-Built phase-by-phase (each plan adversarially verified before implementation, each implementation spec- and quality-reviewed), then **four rounds of a multi-lens adversarial council** over the complete integrated system. Everything the council found was fixed and re-verified:
+Built phase-by-phase (each plan adversarially verified before implementation, each implementation spec- and quality-reviewed), then **five rounds of multi-lens adversarial review** over the complete integrated system. Everything found was fixed and re-verified:
 
 - **R1** (2 majors): mobile orrery lost its containment (inner orbit off-screen) → re-centre+scale; favicon crack vanished at 16px → butt-cap + wider gap. Plus `.o-ai` rotation-wobble pin and a `.hero-loop` contrast bump.
 - **R2** (1 blocker + 2 majors): a stray `git stash`-pop conflict got swept into a commit by an over-broad `git add -A` and shipped raw `<<<<<<<` markers into `good-enough-ancestor.html` → clean-restored from the published content (your `stash@{0}` left untouched — see below); the caption ran onto the portrait → tighter tracking so it ends on the ink; a 769–1024px containment band → scale-based re-centre; apple-touch-icon added.
 - **R3** (2 pre-existing essay blockers): `collaborative-immune-system.html` hero was invisible under reduced-motion (its reset was mis-nested in `@media print`) → added the screen reset; all three essays' `.closing` chapter + colophon printed white-on-cream → dark-ink print resets.
-- **R4** (self-review, after the council workflow was lost to a session pause): extreme viewports (320/2560), semantic-HTML/SEO, build idempotency, and a people-arc mobile thinning.
+- **R4** (self-review, after that round's council workflow was lost to a session pause): extreme viewports (320/2560), semantic-HTML/SEO, build idempotency, and a people-arc mobile thinning.
+- **R5** (lean judgment council — design-coherence + fresh-eyes + ship-verdict): verdict **ship / ship-with-tweaks**, no blockers. Two minor polish findings applied: the densest stretch (Honours→Work→Film→Published) carried the only semantically-empty mark, so the **fourth divider-arc was cut at the Work→Film seam** (4→3 — the care-orbit grid closes Current Work and the film band opens on its own bold eyebrow + dark block, so that seam earns no horizon); and the **"Featured in" press logos were brightened 0.5→0.72** so they read as confident credentials rather than faded placeholders (hover still lifts to full).
 
-Final state: **24 commits, working tree clean, CSP 5 style / 3 script, zero conflict markers, generators byte-reproducible, weave idempotent.**
+Final state: **26 commits, working tree clean, CSP 5 style / 3 script, zero conflict markers, generators byte-reproducible, weave idempotent.**
 
 ## One thing that needs your eye
 
