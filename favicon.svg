@@ -1,8 +1,20 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Audrey Tang">
+  <defs>
+    <radialGradient id="lightIn" cx="73%" cy="26%" r="42%">
+      <stop offset="0" stop-color="#fff" stop-opacity=".62"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
   <rect width="32" height="32" rx="6" fill="#0f1923"/>
-  <!-- inner 'a' circle -->
-  <circle cx="15" cy="16" r="5" fill="none" stroke="#c9a961" stroke-width="2.2"/>
-  <!-- outer arc: 270° counterclockwise from top to right, then tail drops down -->
-  <path d="M15 6 A10 10 0 1 0 25 16 L25 21"
+  <!-- the light getting in through the crack -->
+  <circle cx="23.4" cy="8.6" r="8" fill="url(#lightIn)"/>
+  <!-- outer civic ring, cracked open at the upper right -->
+  <path d="M25.09 10.75 A10.5 10.5 0 1 1 21.25 6.91"
         fill="none" stroke="#c9a961" stroke-width="2.2" stroke-linecap="round"/>
+  <!-- the glint at the crack -->
+  <circle cx="23.4" cy="8.6" r="1.7" fill="#fff"/>
+  <!-- bounded inner orbit, concentric, with its body + centre -->
+  <circle cx="16" cy="16" r="4.3" fill="none" stroke="#c9a961" stroke-width="1.6"/>
+  <circle cx="16" cy="11.7" r="1.1" fill="#c9a961"/>
+  <circle cx="16" cy="16" r="0.95" fill="#c9a961"/>
 </svg>
