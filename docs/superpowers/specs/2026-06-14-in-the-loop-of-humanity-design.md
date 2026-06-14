@@ -25,6 +25,19 @@ csp-impact:
 
 > A companion to **DESIGN.md**. Read DESIGN.md first; this document extends its vocabulary with a single new grammar — the **loop** — and tells you exactly where each piece slots into the weave pipeline. Everything in DESIGN.md still holds: no frameworks, strict CSP, `--ink` is always-dark, `index.html` is generated, sync is cherry-pick-only.
 
+## 0. Reconciliation note (what actually shipped)
+
+This document is the original design *intent*. The system was built across five phases on `design/finale` (2026-06-14); the **authoritative record of what shipped — and where it deliberately diverged from this spec — lives in the five phase plans** under `docs/superpowers/plans/2026-06-14-*.md`, each carrying a "deliberate divergences" list. The most load-bearing divergences, all validated and code-verified:
+
+- **Ring-and-dot marks ship as pure CSS, not SVG markers.** The section orbit-glyph (§5b) is `.section-label::before`; the 6-Pack of Care (§5e) is `.work-grid > .work-item` `::before`/`::after`. No `{{svg:glyph-orbit}}` / `{{svg:care-orbits}}` markers exist — CSP forbids `data:` masks and the pure-CSS form is DRYer. The **five real markers** are `{{svg:orrery-hero}}`, `{{style:orrery}}`, `{{svg:divider-arc}}`, `{{svg:people-arc}}`, `{{svg:constellation-arc}}`; all post-Phase-1 CSS appends to `orrery.css` (style-src 4→5, script-src 3).
+- **Hero geometry** (§4.1): boundary ring r=206, caption arc r≈380 via `startOffset="50%"`, graticule inner 132; the hero SVG is generated (~134 nodes). The `.o-ai` group rotates about `transform-origin: 410px 456px` (`view-box`), not its bbox centre (R1 wobble fix); mobile re-centres + scales it (`translateX(50%) scale(.55)`) so the bounded geometry stays on-screen at 390px.
+- **People-arc** (§5f) backs the *geothermal-democracy* pullquote; "We the People are the superintelligence" is the section:DIALOGUE heading, not the pullquote.
+- **Plurality of registers** (§5g): essays **keep** their bespoke crystal/emblem heroes (no orrery imposed); the care "expansion" is a decorative hover *polish*, not a content reveal; essays join the grammar only via their `.divider-mark` becoming an orbit-ring.
+- **Print** (§7): every decorative orrery element is **hidden** in print (the shipped, consistent decision), not engraved.
+- The **favicon** is the orrery distilled, with a crack in the civic ring (butt-capped + widened so it survives 16px) — "that's how the light gets in."
+
+Where the prose below still states the original numbers, the plan + code win.
+
 ## 1. Status
 
 | Field | Value |
