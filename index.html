@@ -25,7 +25,7 @@
 <meta name="theme-color" content="#0f1923" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#faf8f5" media="(prefers-color-scheme: light)">
 <meta name="color-scheme" content="light dark">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-WqMorOfjjZNgOsb4BU+bclWxZec5y+bzTOujic3XVGw=' 'sha256-4G7wnwQc6qvKDvB+Quf3SC5N+0WcBvc/riHtQRDvDX4=' 'sha256-PBIbXpxoZq+dGJKBjiohe0A6iJvI1eJGI9eoqhVuI+Q='; style-src 'sha256-bDY6FZoeTf6q1OFKAm9VbOuUPcTtgmyHFqO238fjg8E=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-kTULIk1LNNTuREciBeliE5aA3crzF37/I9L8WOTrbcw=' 'sha256-fkhsgMz1xtdCll5U4bL6hJzZlFl6ruTj9F0f0T52ZCw=' 'sha256-PhBrfWbxks5VtATWd42AoQi4arzexR6YkNjrkWjHEWk='; img-src 'self'; font-src 'self' data:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-WqMorOfjjZNgOsb4BU+bclWxZec5y+bzTOujic3XVGw=' 'sha256-4G7wnwQc6qvKDvB+Quf3SC5N+0WcBvc/riHtQRDvDX4=' 'sha256-PBIbXpxoZq+dGJKBjiohe0A6iJvI1eJGI9eoqhVuI+Q='; style-src 'sha256-bDY6FZoeTf6q1OFKAm9VbOuUPcTtgmyHFqO238fjg8E=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-kTULIk1LNNTuREciBeliE5aA3crzF37/I9L8WOTrbcw=' 'sha256-fkhsgMz1xtdCll5U4bL6hJzZlFl6ruTj9F0f0T52ZCw=' 'sha256-IPuEcjAo7GhTgjGvjzLqC2SkeEFhD2pXEqUmwMbS+iw='; img-src 'self'; font-src 'self' data:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
 <link rel="canonical" href="https://cyberambassador.tw/">
 <link rel="alternate" hreflang="zh-TW" href="https://audreyt.org/">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -2052,6 +2052,25 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
    instrument would overlap it, so hide it. The argument still prints as .hero-loop text.
    (Spec §7's print engraving is deferred to a later print proof.) */
 @media print { .orrery--hero { display: none !important; } }
+
+/* ─── Loop grammar: section orbit-glyph (Phase 2) ─────────────────────── */
+/* A tiny ring + one rim node before every section eyebrow. Pure CSS — no
+   SVG, no marker, no renderer edits. CSP-safe (no data: mask). */
+.section-label { position: relative; padding-left: 1.7em; }
+.section-label::before {
+  content: "";
+  position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+  width: 0.95em; height: 0.95em;
+  border: 1px solid var(--orrery-line); border-radius: 50%;
+  background: radial-gradient(circle 1.4px at 88% 50%, var(--orrery-line) 99%, transparent 100%);
+  opacity: 0.85;
+}
+/* always-dark sections (the film band) need the scheme-invariant bright gold */
+.film .section-label::before { border-color: var(--orrery-bright);
+  background: radial-gradient(circle 1.4px at 88% 50%, var(--orrery-bright) 99%, transparent 100%); }
+/* print: drop the glyph so the print eyebrows stay flush (the elaborate print
+   stylesheet re-lays section labels; a ring there adds nothing) */
+@media print { .section-label { padding-left: 0; } .section-label::before { content: none; } }
 </style>
 
 <!-- ════════ HERO ════════ -->
