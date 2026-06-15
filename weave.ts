@@ -257,7 +257,19 @@ function renderHero(): string {
       }
     }
 
-    return { name, quoteLines, subtitleLines };
+    // Loop line: non-heading, non-rule, non-quote, non-empty lines BEFORE the quote.
+    // (Currently the only such line is the new "AI in the loop of humanity" argument;
+    // renderHero previously dropped this slot entirely.)
+    const loopLines: string[] = [];
+    let reachedQuote = false;
+    for (const line of content.split("\n")) {
+      if (line.startsWith("> ") || line === ">") reachedQuote = true;
+      else if (!reachedQuote && line.trim() && !line.startsWith("#") && line.trim() !== "****") {
+        loopLines.push(line.trim());
+      }
+    }
+
+    return { name, quoteLines, subtitleLines, loopLines };
   }
 
   const enH = parseHero(en.HERO);
@@ -289,6 +301,12 @@ function renderHero(): string {
   lines.push(`${I}<blockquote class="hero-quote" lang="zh-TW">`);
   lines.push(`${I}    ${zhH.quoteLines.join("<br>")}`);
   lines.push(`${I}</blockquote>`);
+
+  // Loop argument — the real-text equivalent of the decorative SVG caption (a11y).
+  if (enH.loopLines.length)
+    lines.push(`${I}<p class="hero-loop" lang="en-GB">${enH.loopLines.join(" ")}</p>`);
+  if (zhH.loopLines.length)
+    lines.push(`${I}<p class="hero-loop" lang="zh-TW">${zhH.loopLines.join(" ")}</p>`);
 
   return lines.join("\n");
 }
@@ -595,6 +613,8 @@ function renderRecognition(): string {
   const enAwards = parseAwards(enP.body, entEn);
   const zhAwards = parseAwards(zhP.body, entZh);
 
+  // Constellation of Honours: a faint arc of time above the awards (Phase 4a)
+  lines.push(`${I}<div class="constellation" aria-hidden="true">{{svg:constellation-arc}}</div>`);
   lines.push(`${I}<div class="awards-grid">`);
 
   for (let i = 0; i < enAwards.length; i++) {
@@ -1302,6 +1322,15 @@ html = html.replace(/\{\{content:([^}]+)\}\}/g, (_, name) => {
   }
   return renderer();
 });
+
+// Section eyebrow glyph: inject the shared favicon mark before every label.
+// One <symbol id="o-mark"> (defined in the template) is reused via <use>; it carries
+// the favicon's cracked-ring arc distilled to crack + glint — the full mark (inner
+// orbit + planet) muds to a blob at ~15px, so we keep only the signature opening.
+html = html.replace(
+  /(<div class="section-label"[^>]*>)/g,
+  '$1<svg class="o-glyph" viewBox="0 0 32 32" aria-hidden="true"><use href="#o-mark"/></svg>',
+);
 
 // ─── Resolve inclusion markers (unchanged from original) ────────────
 

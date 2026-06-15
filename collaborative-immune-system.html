@@ -507,7 +507,7 @@ html:has(#lang-ja:checked) .defense-heading { font-family: var(--serif-ja); }
 .divider::before, .divider::after { content: ''; flex: 1; height: 1px; }
 .divider::before { background: linear-gradient(to right, transparent, var(--border)); }
 .divider::after { background: linear-gradient(to left, transparent, var(--border)); }
-.divider-mark { width: 7px; height: 7px; border: 1px solid var(--gold-light); transform: rotate(45deg); margin: 0 18px; flex-shrink: 0; opacity: 0.7; }
+.divider-mark { width: 11px; height: 11px; border: 1px solid var(--gold-light); border-radius: 50%; background: radial-gradient(circle 1.3px at 86% 50%, var(--gold-light) 99%, transparent 100%); margin: 0 18px; flex-shrink: 0; opacity: 0.75; }
 
 /* ── CLOSING ── */
 .closing { background: var(--ink); color: #fff; padding: 100px 48px; }
@@ -588,6 +588,15 @@ html:has(#lang-ja:checked) .defense-heading { font-family: var(--serif-ja); }
     }
 }
 
+/* reduced-motion: the hero text/emblem are opacity:0 + fadeUp/driftIn; the shared
+   essay.css reduced-motion block only resets .reveal, so reset the hero here too
+   (mirrors transparent-horse / good-enough-ancestor) — else the hero is invisible. */
+@media (prefers-reduced-motion: reduce) {
+    .hero-label, .hero h1, .hero-subtitle, .hero-lede, .scroll-cue, .hero-emblem {
+        opacity: 1 !important; transform: none !important;
+    }
+}
+
 /* ── PRINT ── */
 @media print {
     body::after, .lang-toggle, .progress, .scroll-cue, .hero-year, .hero-emblem, header.site { display: none !important; }
@@ -601,7 +610,8 @@ html:has(#lang-ja:checked) .defense-heading { font-family: var(--serif-ja); }
     .hero-label, .hero h1, .hero-subtitle, .hero-lede { opacity: 1; animation: none; }
     .reveal { opacity: 1; transform: none; }
     .closing { background: none; color: inherit; }
-    .closing .chapter-body p { color: inherit; }
+    .closing .chapter-body, .closing .chapter-body p, .closing .chapter-body em, .closing .chapter-title { color: inherit !important; }
+    .colophon a { color: #7b5f34 !important; text-decoration: underline; }
     .colophon { background: none; color: inherit; border-top: 1px solid #ccc; }
 }
 </style>

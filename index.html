@@ -25,11 +25,12 @@
 <meta name="theme-color" content="#0f1923" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#faf8f5" media="(prefers-color-scheme: light)">
 <meta name="color-scheme" content="light dark">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-WqMorOfjjZNgOsb4BU+bclWxZec5y+bzTOujic3XVGw=' 'sha256-4G7wnwQc6qvKDvB+Quf3SC5N+0WcBvc/riHtQRDvDX4=' 'sha256-PBIbXpxoZq+dGJKBjiohe0A6iJvI1eJGI9eoqhVuI+Q='; style-src 'sha256-bDY6FZoeTf6q1OFKAm9VbOuUPcTtgmyHFqO238fjg8E=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-kTULIk1LNNTuREciBeliE5aA3crzF37/I9L8WOTrbcw=' 'sha256-Jw+JEL6DKc8tjfYSRrxv3ChJOOmC3nKtipu5CXMbZsI='; img-src 'self'; font-src 'self' data:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-WqMorOfjjZNgOsb4BU+bclWxZec5y+bzTOujic3XVGw=' 'sha256-4G7wnwQc6qvKDvB+Quf3SC5N+0WcBvc/riHtQRDvDX4=' 'sha256-PBIbXpxoZq+dGJKBjiohe0A6iJvI1eJGI9eoqhVuI+Q='; style-src 'sha256-bDY6FZoeTf6q1OFKAm9VbOuUPcTtgmyHFqO238fjg8E=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-kTULIk1LNNTuREciBeliE5aA3crzF37/I9L8WOTrbcw=' 'sha256-pel7euO7Bh8J86KDJ7sUh4ECAMBONBFL0znYGkZmusw=' 'sha256-VoQH82rCbFTVVkZoM1coiFz9/QNBxHXCRZqvKnxI100='; img-src 'self'; font-src 'self' data:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
 <link rel="canonical" href="https://cyberambassador.tw/">
 <link rel="alternate" hreflang="zh-TW" href="https://audreyt.org/">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 html:not(:has(#lang-zh:checked)) [lang="zh-TW"]:not(.cjk) { display: none; }
@@ -261,6 +262,10 @@ picture { display: block; }
 <noscript><style>.reveal { opacity: 1 !important; transform: none !important; }</style></noscript>
 </head>
 <body>
+<!-- Shared section-eyebrow mark: the favicon's cracked-orrery ring + glint, defined
+     once and referenced via <use> before every .section-label. Colour comes from CSS
+     (.o-mark-* in orrery.css) so it adapts to scheme + the always-dark film band. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><symbol id="o-mark" viewBox="0 0 32 32"><path class="o-mark-ring" d="M25.74 12.07 A10.5 10.5 0 1 1 19.93 6.26"/><circle class="o-mark-glint" cx="23.4" cy="8.6" r="2.3"/></symbol></svg>
 <input type="checkbox" id="lang-zh" hidden>
 <div id="lang-announce" class="sr-only" aria-live="polite"></div>
 <script>document.documentElement.classList.add('js');(function(){var r=document.documentElement,c=document.getElementById('lang-zh'),s=null,z;try{s=localStorage.getItem('lang');}catch(e){}if(s){z=s==='zh-TW';}else{var l=navigator.languages||[navigator.language||''],h=0,g=0,i;for(i=0;i<l.length;i++){if(/^en\b/i.test(l[i]))h=1;if(/^zh\b/i.test(l[i]))g=1;}z=/^zh\b/i.test(navigator.language)||g&&!h;}if(z){c.checked=true;r.setAttribute('lang','zh-TW');document.title='\u5510\u9cf3 \u00b7 \u6578\u4f4d\u6cbb\u7406\u5927\u4f7f';}})();</script>
@@ -337,7 +342,7 @@ window.__webp=__imgProbe('assets/probe.webp');
         rgba(15,25,35,0.3) 70%,
         rgba(15,25,35,0.1) 100%
     );
-    z-index: 1;
+    z-index: 0;
 }
 
 .hero-portrait-picture {
@@ -445,6 +450,31 @@ window.__webp=__imgProbe('assets/probe.webp');
 @keyframes fadeUp {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-loop {
+    margin-top: 28px;
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    opacity: 0.8;
+}
+
+html:has(#lang-zh:checked) .hero-loop { font-family: var(--cjk); letter-spacing: 0.1em; }
+/* The orrery's curved caption already shows "AI · IN · THE · LOOP · OF · HUMANITY",
+   so the straight line is visually redundant ON SCREEN — hide it there. It stays in
+   the a11y tree for screen readers (the orrery caption is aria-hidden) and prints
+   normally (the orrery is print-hidden, so this text carries the argument on paper).
+   @media screen excludes print; the clip pattern keeps it screen-reader-readable. */
+@media screen {
+  .hero-loop {
+    position: absolute; width: 1px; height: 1px;
+    padding: 0; margin: -1px; overflow: hidden;
+    clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+  }
 }
 
 
@@ -670,7 +700,8 @@ a.featured-outlet,
     display: inline-flex;
     align-items: center;
     text-decoration: none;
-    opacity: 0.5;
+    opacity: 0.72; /* press credentials read confident, not faded (was 0.5); hover lifts to full.
+                      (brand logotypes are exempt from WCAG 1.4.11 — this is a visual-weight call) */
     transition: opacity 0.2s;
 }
 
@@ -1542,6 +1573,11 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
         color: var(--print-ink) !important;
     }
 
+    .hero-loop {
+        opacity: 1 !important;
+        color: var(--print-accent) !important;
+    }
+
     .bio,
     .section,
     footer {
@@ -1977,6 +2013,200 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
     }
 }
 </style>
+<style>
+/* orrery.css — every orrery colour, motion, and the ink halo live here.
+   The SVG carries geometry + class names only (var() does not resolve in SVG
+   presentation attributes; see DESIGN spec §3). */
+:root { --orrery-line: var(--gold); --orrery-bright: var(--gold-light); }
+
+/* hero wrapper: between the ink vignette (z0) and the lockup (z2) */
+.orrery--hero { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+.orrery--hero .orrery-svg { width: 100%; height: 100%; display: block; }
+
+/* strata — colour sourced here, never from SVG attributes */
+.orrery-svg .o-civic-ring     { stroke: var(--orrery-bright); stroke-opacity: .55; }
+.orrery-svg .o-civic-glint    { fill: #fff; fill-opacity: .92; }          /* the light, riding the crack */
+.orrery-svg .o-civic-glint-halo { fill: var(--orrery-bright); fill-opacity: .22; }
+.orrery-svg .o-ticks line     { stroke: var(--orrery-bright); stroke-opacity: .30; stroke-width: .8; }
+.orrery-svg .o-people circle  { fill:   var(--orrery-bright); fill-opacity: .70; }
+.orrery-svg .o-boundary       { stroke: var(--orrery-line);   stroke-opacity: .18; stroke-dasharray: 2 8; }
+.orrery-svg .o-graticule line { stroke: var(--orrery-line);   stroke-opacity: .10; }
+.orrery-svg .o-ai-ring        { stroke: var(--orrery-bright); stroke-opacity: .55; stroke-width: 1.3; }
+.orrery-svg .o-ai-disc        { fill:   var(--orrery-bright); fill-opacity: .05; }
+.orrery-svg .o-ai-planet      { fill:   var(--orrery-bright); fill-opacity: .95; }
+.orrery-svg .o-ai-halo        { stroke: var(--orrery-bright); stroke-opacity: .40; stroke-width: .9; }
+.orrery-svg .o-centre         { fill:   var(--orrery-bright); fill-opacity: .85; }
+.orrery-svg .o-caption        { fill:   var(--orrery-bright); fill-opacity: .55;
+                                font-family: var(--sans); font-size: 11px; letter-spacing: 3px; }
+
+/* ink halo — gradient stops coloured from CSS (a stop-color="var(--ink)" ATTRIBUTE would not resolve) */
+.orrery-svg .o-halo-0 { stop-color: var(--ink); stop-opacity: .82; }
+.orrery-svg .o-halo-1 { stop-color: var(--ink); stop-opacity: .30; }
+.orrery-svg .o-halo-2 { stop-color: var(--ink); stop-opacity: 0; }
+
+/* motion — transform-only on three groups */
+.orrery-svg .o-civic     { animation: orrery-spin 360s linear infinite; }
+.orrery-svg .o-graticule { animation: orrery-spin 240s linear infinite reverse; }
+.orrery-svg .o-ai        { animation: orrery-spin 48s  linear infinite; }
+.orrery-svg .o-civic,
+.orrery-svg .o-graticule { transform-box: fill-box; transform-origin: center; will-change: transform; }
+/* .o-ai is concentric with the hero centre, but its bbox is pulled up by the
+   planet/halo (y=336), so fill-box/center would wobble it ~6.5px per turn —
+   pin it to the true ring centre instead. */
+.orrery-svg .o-ai { transform-box: view-box; transform-origin: 410px 456px; will-change: transform; }
+@keyframes orrery-spin { to { transform: rotate(360deg); } }
+
+/* reduced motion — a still engraving */
+@media (prefers-reduced-motion: reduce) {
+  .orrery-svg .o-civic,
+  .orrery-svg .o-graticule,
+  .orrery-svg .o-ai { animation: none; }
+}
+
+/* mobile — the landscape viewBox + slice pushes the off-centre orrery (cx=410)
+   far off the left edge, so the bounded AI orbit/centre/caption fall off-screen
+   and the containment argument is lost. Re-centre + shrink the whole instrument
+   so civic ring + AI orbit + centre + caption all stay on screen (validated at
+   390px across hero heights 740/844/1000). Then simplify + veil to 0.25. */
+@media (max-width: 768px) {
+  .orrery--hero { opacity: .25; }
+  .orrery--hero .orrery-svg { transform: translateX(50%) scale(.55); transform-origin: left center; }
+  .orrery-svg .o-ticks,
+  .orrery-svg .o-graticule,
+  .orrery-svg .o-boundary { display: none; }
+  .orrery-svg .o-people circle:nth-of-type(n+17) { display: none; }
+}
+
+/* small-desktop / tablet band (769–1024px): the desktop two-column hero still
+   applies, but the narrower width clips the off-centre orrery's left edge (the
+   AI ring + caption lose their left portion). A gentle rightward nudge keeps the
+   bounded geometry + the shortened caption on the ink, without the full mobile
+   re-centre (validated 769→1024px). */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .orrery--hero .orrery-svg { transform: translateX(22%) scale(.74); transform-origin: left center; }
+}
+
+/* print — the live print hero is a compact redesigned grid; a full-bleed decorative
+   instrument would overlap it, so hide it. The argument still prints as .hero-loop text.
+   (Spec §7's print engraving is deferred to a later print proof.) */
+@media print { .orrery--hero { display: none !important; } }
+
+/* ─── Loop grammar: section eyebrow glyph — the favicon mark (Phase 2) ─── */
+/* Each eyebrow carries the favicon's cracked-orrery ring + glint, via one shared
+   inline symbol (#o-mark, defined in the template) referenced before every label.
+   The full favicon mark's inner orbit/planet mud to a blob at ~15px, so we distil
+   to the signature crack + glint. Colour lives here (var() resolves on CSS props,
+   unlike SVG attrs), so it adapts to scheme and the always-dark film band. */
+.section-label { position: relative; padding-left: 1.7em; }
+.o-glyph {
+  position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+  width: 0.95em; height: 0.95em; overflow: visible; opacity: 0.85;
+}
+.o-mark-ring  { fill: none; stroke: var(--orrery-line); stroke-width: 2.1; }
+.o-mark-glint { fill: var(--orrery-line); }
+/* always-dark sections (the film band) need the scheme-invariant bright gold */
+.film .o-mark-ring  { stroke: var(--orrery-bright); }
+.film .o-mark-glint { fill: var(--orrery-bright); }
+/* print: drop the glyph so the print eyebrows stay flush (the elaborate print
+   stylesheet re-lays section labels; a ring there adds nothing) */
+@media print { .section-label { padding-left: 0; } .o-glyph { display: none; } }
+
+/* ─── Loop grammar: arc-segment divider + draw-on (Phase 2) ───────────── */
+.divider-arc { max-width: 1200px; margin: 0 auto; padding: 0 80px; }
+.divider-arc .divider-arc-svg { width: 100%; height: 40px; display: block; overflow: visible; }
+.divider-arc .d-arc {
+  stroke: var(--orrery-line); stroke-opacity: 0.4; stroke-width: 1;
+  stroke-dasharray: 1; stroke-dashoffset: 0;            /* default = fully drawn */
+}
+/* draw-on where supported (Chromium/Safari); elsewhere it stays statically drawn */
+@supports (animation-timeline: view()) {
+  .divider-arc .d-arc {
+    animation: draw-arc linear both;
+    animation-timeline: view();                          /* declared AFTER the shorthand, which resets it */
+    animation-range: entry 0% cover 35%;
+  }
+}
+@keyframes draw-arc { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@media (prefers-reduced-motion: reduce) { .divider-arc .d-arc { stroke-dashoffset: 0 !important; } }
+@media (max-width: 768px) { .divider-arc { padding: 0 24px; } }
+/* load-bearing: the Pullquote/Film/Gallery bands are display:none in print
+   (components.css ~1127), but these divider divs are their SIBLINGS, not
+   children, so they survive — hide them explicitly or they print as orphan bows. */
+@media print { .divider-arc { display: none !important; } }
+
+/* ─── Idea pieces: 6-Pack of Care as bounded orbits (Phase 3) ─────────── */
+/* The six grid items become bounded orbits — a kami circling each loop.
+   Scoped with the child combinator so the trailing link-items (outside the
+   grid) keep their own style. Replaces each item's 3px ink border-top. */
+.work-grid > .work-item { position: relative; border-top: none; padding-top: 46px; }
+.work-grid > .work-item::before {
+  content: ""; position: absolute; top: 0; left: 0;
+  width: 28px; height: 28px; border: 1px solid var(--orrery-line); border-radius: 50%; opacity: .7;
+}
+.work-grid > .work-item::after {
+  content: ""; position: absolute; top: 0; left: 0;
+  width: 28px; height: 28px; border-radius: 50%; transform-origin: center;
+  will-change: transform;
+  animation: kami 96s linear infinite;   /* one shared speed → the six hold their spacing */
+  background: radial-gradient(circle 2.4px at 50% 0%, var(--orrery-line) 99%, transparent 100%);
+}
+/* The six kami's start angles complete one clockwise turn — Attentiveness at the top
+   (0°, the ::after base position), each later pack a further 60° clockwise. Baked into
+   the node's position (not animation-delay) so the 60° spacing also holds under reduced
+   motion; the shared speed above keeps the spacing as the whole set turns.
+   pos: x% = 50 + 50·sin θ, y% = 50 − 50·cos θ (θ clockwise from top). */
+.work-grid > .work-item:nth-child(2)::after { background: radial-gradient(circle 2.4px at 93.3% 25%, var(--orrery-line) 99%, transparent 100%); }  /*  60° Responsibility */
+.work-grid > .work-item:nth-child(3)::after { background: radial-gradient(circle 2.4px at 93.3% 75%, var(--orrery-line) 99%, transparent 100%); }  /* 120° Competence */
+.work-grid > .work-item:nth-child(4)::after { background: radial-gradient(circle 2.4px at 50% 100%, var(--orrery-line) 99%, transparent 100%); }   /* 180° Responsiveness */
+.work-grid > .work-item:nth-child(5)::after { background: radial-gradient(circle 2.4px at 6.7% 75%, var(--orrery-line) 99%, transparent 100%); }   /* 240° Solidarity */
+.work-grid > .work-item:nth-child(6)::after { background: radial-gradient(circle 2.4px at 6.7% 25%, var(--orrery-line) 99%, transparent 100%); }   /* 300° Symbiosis */
+@keyframes kami { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .work-grid > .work-item::after { animation: none; } }
+/* print: drop the orbit; the existing print stylesheet restores .work-item's
+   ink border-top (!important at components.css ~1432) */
+@media print { .work-grid > .work-item::before, .work-grid > .work-item::after { content: none; } }
+
+/* ─── Idea pieces: people-arc behind the pullquote (Phase 3) ──────────── */
+.pullquote { position: relative; overflow: hidden; }
+.pullquote .people-arc { position: absolute; left: 0; right: 0; bottom: 18px; height: 170px;
+  z-index: 0; pointer-events: none; }
+.pullquote .people-arc .people-arc-svg { width: 100%; height: 100%; display: block; }
+.pullquote .people-arc .pa-arc { stroke: var(--orrery-line); stroke-opacity: .22; stroke-width: 1; }
+.pullquote .people-arc .pa-nodes circle { fill: var(--orrery-line); fill-opacity: .55; }
+.pullquote blockquote, .pullquote cite { position: relative; z-index: 1; }
+/* mobile: thin the studded nodes (the 1200-wide arc squashes 42 nodes into a dense
+   crowded band at phone width) — keep every other node for a calmer arc. */
+@media (max-width: 768px) {
+  .pullquote .people-arc .pa-nodes circle:nth-of-type(even) { display: none; }
+}
+
+/* ─── Substance: Constellation of Honours (Phase 4a) ──────────────────── */
+/* The four awards keep their 2x2 grid; an arc of time sits above, and each
+   award-year becomes a node in the loop grammar. No animation. */
+.constellation { display: block; margin: 8px 0 0; }
+.constellation .constellation-arc { display: block; width: 100%; height: 46px; overflow: visible; }
+.constellation .c-arc  { stroke: var(--orrery-line); stroke-opacity: .30; stroke-width: 1; }
+.constellation .c-star { fill: var(--orrery-line); fill-opacity: .60; }
+.constellation + .awards-grid { margin-top: 14px; }
+.award-year { position: relative; display: inline-block; padding-left: 34px; margin-bottom: 0; }
+.award-year::before {
+  content: ""; position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+  width: 18px; height: 18px; border: 1px solid var(--orrery-line); border-radius: 50%;
+  background: radial-gradient(circle 1.6px at 86% 50%, var(--orrery-line) 99%, transparent 100%); opacity: .8;
+}
+@media print { .constellation { display: none; } .award-year { padding-left: 0; } .award-year::before { content: none; } }
+
+/* ─── Finale: care-orbit hover polish (Phase 4b) ──────────────────────── */
+/* On hover the bounded orbit's ring brightens and grows a touch — the kami
+   stirs. Decorative only: nothing is hidden; the descriptions are always shown. */
+.work-grid > .work-item::before {
+  transition: opacity .3s ease, border-color .3s ease, transform .4s cubic-bezier(.22, 1, .36, 1);
+}
+.work-grid > .work-item:hover::before {
+  opacity: 1; border-color: var(--orrery-bright); transform: scale(1.15);
+}
+@media (prefers-reduced-motion: reduce) { .work-grid > .work-item::before { transition: none; } }
+</style>
 
 <!-- ════════ HERO ════════ -->
 <header class="hero">
@@ -1987,6 +2217,33 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
              alt="Audrey Tang, arms crossed, gazing thoughtfully to the side, wearing rimless glasses and a jacket printed with an ink-wash mountain landscape, against a dark textured background" title="Audrey Tang portrait by Kaii Chiang, CC BY-NC-SA 4.0" width="1200" height="1200" fetchpriority="high" decoding="async"></noscript>
     </div>
     <span class="hero-portrait-credit" aria-hidden="true">Kaii Chiang · CC BY-NC-SA 4.0</span>
+    <div class="orrery orrery--hero" aria-hidden="true"><svg class="orrery-svg" viewBox="0 0 1440 913" preserveAspectRatio="xMidYMid slice"
+     fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+  <defs>
+    <radialGradient id="orrery-halo" cx="410" cy="456" r="360" gradientUnits="userSpaceOnUse">
+      <stop class="o-halo-0" offset="0"/><stop class="o-halo-1" offset="0.55"/><stop class="o-halo-2" offset="1"/>
+    </radialGradient>
+    <path id="orrery-cap" d="M 149.9 733.0 A 380 380 0 0 1 670.1 733.0"/>
+  </defs>
+  <circle class="o-boundary" cx="410" cy="456" r="206"/>
+  <g class="o-graticule"><line x1="542.0" y1="456.0" x2="770.0" y2="456.0"/><line x1="524.3" y1="522.0" x2="721.8" y2="636.0"/><line x1="476.0" y1="570.3" x2="590.0" y2="767.8"/><line x1="410.0" y1="588.0" x2="410.0" y2="816.0"/><line x1="344.0" y1="570.3" x2="230.0" y2="767.8"/><line x1="295.7" y1="522.0" x2="98.2" y2="636.0"/><line x1="278.0" y1="456.0" x2="50.0" y2="456.0"/><line x1="295.7" y1="390.0" x2="98.2" y2="276.0"/><line x1="344.0" y1="341.7" x2="230.0" y2="144.2"/><line x1="410.0" y1="324.0" x2="410.0" y2="96.0"/><line x1="476.0" y1="341.7" x2="590.0" y2="144.2"/><line x1="524.3" y1="390.0" x2="721.8" y2="276.0"/></g>
+  <g class="o-civic">
+    <path class="o-civic-ring" d="M 745.6 320.4 A 362 362 0 1 1 545.6 120.4"/>
+    <g class="o-ticks"><line x1="772.0" y1="456.0" x2="761.0" y2="456.0"/><line x1="770.0" y1="493.8" x2="764.0" y2="493.2"/><line x1="764.1" y1="531.3" x2="758.2" y2="530.0"/><line x1="754.3" y1="567.9" x2="748.6" y2="566.0"/><line x1="740.7" y1="603.2" x2="735.2" y2="600.8"/><line x1="723.5" y1="637.0" x2="714.0" y2="631.5"/><line x1="702.9" y1="668.8" x2="698.0" y2="665.3"/><line x1="679.0" y1="698.2" x2="674.6" y2="694.2"/><line x1="652.2" y1="725.0" x2="648.2" y2="720.6"/><line x1="622.8" y1="748.9" x2="619.3" y2="744.0"/><line x1="591.0" y1="769.5" x2="585.5" y2="760.0"/><line x1="557.2" y1="786.7" x2="554.8" y2="781.2"/><line x1="521.9" y1="800.3" x2="520.0" y2="794.6"/><line x1="485.3" y1="810.1" x2="484.0" y2="804.2"/><line x1="447.8" y1="816.0" x2="447.2" y2="810.0"/><line x1="410.0" y1="818.0" x2="410.0" y2="807.0"/><line x1="372.2" y1="816.0" x2="372.8" y2="810.0"/><line x1="334.7" y1="810.1" x2="336.0" y2="804.2"/><line x1="298.1" y1="800.3" x2="300.0" y2="794.6"/><line x1="262.8" y1="786.7" x2="265.2" y2="781.2"/><line x1="229.0" y1="769.5" x2="234.5" y2="760.0"/><line x1="197.2" y1="748.9" x2="200.7" y2="744.0"/><line x1="167.8" y1="725.0" x2="171.8" y2="720.6"/><line x1="141.0" y1="698.2" x2="145.4" y2="694.2"/><line x1="117.1" y1="668.8" x2="122.0" y2="665.3"/><line x1="96.5" y1="637.0" x2="106.0" y2="631.5"/><line x1="79.3" y1="603.2" x2="84.8" y2="600.8"/><line x1="65.7" y1="567.9" x2="71.4" y2="566.0"/><line x1="55.9" y1="531.3" x2="61.8" y2="530.0"/><line x1="50.0" y1="493.8" x2="56.0" y2="493.2"/><line x1="48.0" y1="456.0" x2="59.0" y2="456.0"/><line x1="50.0" y1="418.2" x2="56.0" y2="418.8"/><line x1="55.9" y1="380.7" x2="61.8" y2="382.0"/><line x1="65.7" y1="344.1" x2="71.4" y2="346.0"/><line x1="79.3" y1="308.8" x2="84.8" y2="311.2"/><line x1="96.5" y1="275.0" x2="106.0" y2="280.5"/><line x1="117.1" y1="243.2" x2="122.0" y2="246.7"/><line x1="141.0" y1="213.8" x2="145.4" y2="217.8"/><line x1="167.8" y1="187.0" x2="171.8" y2="191.4"/><line x1="197.2" y1="163.1" x2="200.7" y2="168.0"/><line x1="229.0" y1="142.5" x2="234.5" y2="152.0"/><line x1="262.8" y1="125.3" x2="265.2" y2="130.8"/><line x1="298.1" y1="111.7" x2="300.0" y2="117.4"/><line x1="334.7" y1="101.9" x2="336.0" y2="107.8"/><line x1="372.2" y1="96.0" x2="372.8" y2="102.0"/><line x1="410.0" y1="94.0" x2="410.0" y2="105.0"/><line x1="447.8" y1="96.0" x2="447.2" y2="102.0"/><line x1="485.3" y1="101.9" x2="484.0" y2="107.8"/><line x1="521.9" y1="111.7" x2="520.0" y2="117.4"/><line x1="754.3" y1="344.1" x2="748.6" y2="346.0"/><line x1="764.1" y1="380.7" x2="758.2" y2="382.0"/><line x1="770.0" y1="418.2" x2="764.0" y2="418.8"/></g>
+    <g class="o-people"><circle cx="772.0" cy="451.8" r="1.69"/><circle cx="766.9" cy="516.7" r="2.65"/><circle cx="754.2" cy="568.0" r="2.21"/><circle cx="732.7" cy="620.1" r="1.96"/><circle cx="702.6" cy="669.2" r="2.69"/><circle cx="667.5" cy="710.5" r="1.83"/><circle cx="620.9" cy="750.2" r="2.38"/><circle cx="576.7" cy="777.3" r="2.15"/><circle cx="523.6" cy="799.7" r="2.40"/><circle cx="468.4" cy="813.3" r="3.07"/><circle cx="412.2" cy="818.0" r="2.92"/><circle cx="356.0" cy="814.0" r="1.82"/><circle cx="301.0" cy="801.2" r="2.04"/><circle cx="245.3" cy="778.4" r="2.74"/><circle cx="200.2" cy="751.0" r="2.97"/><circle cx="153.7" cy="711.6" r="2.53"/><circle cx="116.2" cy="667.5" r="3.05"/><circle cx="87.0" cy="619.4" r="2.98"/><circle cx="64.8" cy="565.2" r="1.66"/><circle cx="52.9" cy="515.4" r="2.14"/><circle cx="48.0" cy="456.6" r="1.63"/><circle cx="51.9" cy="402.9" r="2.75"/><circle cx="65.4" cy="345.2" r="2.24"/><circle cx="87.3" cy="291.9" r="3.02"/><circle cx="118.2" cy="241.8" r="2.63"/><circle cx="153.0" cy="201.1" r="2.13"/><circle cx="194.7" cy="165.0" r="1.80"/><circle cx="248.9" cy="131.8" r="2.08"/><circle cx="295.6" cy="112.6" r="2.55"/><circle cx="352.0" cy="98.7" r="1.67"/><circle cx="411.6" cy="94.0" r="2.98"/><circle cx="467.0" cy="98.5" r="2.84"/><circle cx="523.1" cy="112.1" r="2.98"/><circle cx="755.1" cy="346.8" r="1.61"/><circle cx="767.6" cy="399.5" r="2.09"/></g>
+    <circle class="o-civic-glint-halo" cx="666.0" cy="200.0" r="14"/>
+    <circle class="o-civic-glint" cx="666.0" cy="200.0" r="5.5"/>
+  </g>
+  <rect class="o-halo" x="0" y="0" width="1440" height="913" fill="url(#orrery-halo)"/>
+  <g class="o-ai">
+    <circle class="o-ai-ring" cx="410" cy="456" r="120"/>
+    <circle class="o-ai-disc" cx="410" cy="456" r="120"/>
+    <circle class="o-ai-planet" cx="410" cy="336" r="6"/>
+    <circle class="o-ai-halo" cx="410" cy="336" r="13"/>
+  </g>
+  <circle class="o-centre" cx="410" cy="456" r="2.6"/>
+  <text class="o-caption" aria-hidden="true"><textPath href="#orrery-cap" startOffset="50%" text-anchor="middle" aria-hidden="true">AI · IN · THE · LOOP · OF · HUMANITY</textPath></text>
+</svg></div>
     <div class="hero-content">
         <div class="hero-label"><span lang="en-GB">Cyber Ambassador </span><svg class="flag-tw" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 80" role="img" aria-label="Taiwan flag"><title>Taiwan</title><defs><clipPath id="tw-c"><rect width="120" height="80" rx="13"/></clipPath><linearGradient id="tw-l" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".13"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/></linearGradient><radialGradient id="tw-v" cx="50%" cy="50%" r="70%"><stop offset="55%" stop-color="#000" stop-opacity="0"/><stop offset="100%" stop-color="#000" stop-opacity=".18"/></radialGradient></defs><g clip-path="url(#tw-c)"><rect width="120" height="80" fill="#CF152D"/><rect width="60" height="40" fill="#003F87"/><path id="tw-a" fill="#fff" d="M30 5l4 15-4 15-4-15zM15 20l15 4 15-4-15-4z"/><use href="#tw-a" transform="rotate(30,30,20)"/><use href="#tw-a" transform="rotate(60,30,20)"/><circle cx="30" cy="20" r="8" fill="#fff" stroke="#003F87" stroke-width="1"/><rect width="120" height="80" fill="url(#tw-l)"/><rect width="120" height="80" fill="url(#tw-v)"/><rect x=".5" y=".5" width="119" height="79" rx="12.5" fill="none" stroke="#fff" stroke-opacity=".22" stroke-width=".8"/></g></svg><span lang="en-GB"> Taiwan</span><span lang="zh-TW"> 數位治理大使</span></div>
         <h1 lang="en-GB">Audrey Tang</h1>
@@ -2006,18 +2263,21 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
         <blockquote class="hero-quote" lang="zh-TW">
             我願作後代子孫夠好的祖先。
         </blockquote>
+        <p class="hero-loop" lang="en-GB">AI in the loop of humanity</p>
+        <p class="hero-loop" lang="zh-TW">AI 進入人類迴圈</p>
     </div>
     <div class="hero-scroll" aria-hidden="true"><span lang="en-GB">Scroll</span><span lang="zh-TW">向下滾動</span></div>
 </header>
 
 <main id="main" tabindex="-1">
+<div class="divider-arc"><svg class="divider-arc-svg" viewBox="0 0 1200 40" preserveAspectRatio="none" aria-hidden="true" focusable="false" fill="none"><path class="d-arc" pathLength="1" d="M0 38 A 4000 4000 0 0 1 1200 38"/></svg></div>
 <!-- ════════ BIO ════════ -->
 <section class="bio">
     <div class="section">
     <div class="bio-grid reveal">
         <div class="bio-text">
-            <div class="section-label" lang="en-GB">About</div>
-            <div class="section-label" lang="zh-TW">關於</div>
+            <div class="section-label" lang="en-GB"><svg class="o-glyph" viewBox="0 0 32 32" aria-hidden="true"><use href="#o-mark"/></svg>About</div>
+            <div class="section-label" lang="zh-TW"><svg class="o-glyph" viewBox="0 0 32 32" aria-hidden="true"><use href="#o-mark"/></svg>關於</div>
             <p lang="en-GB">Audrey Tang is a civic hacker, co-author of <a href="https://plurality.net" target="_blank" rel="noopener noreferrer"><em>Plurality: The Future of Collaborative Technology and Democracy</em></a>, and an inaugural senior accelerator fellow at the Oxford Institute for Ethics in AI.</p>
             <p lang="en-GB">Taiwan's 1st digital minister and the world's first nonbinary cabinet minister, Tang was awarded the 2025 <a href="https://rightlivelihood.org/the-change-makers/find-a-laureate/audrey-tang/" target="_blank" rel="noopener noreferrer">Right Livelihood Award</a> for <em>&ldquo;advancing the social use of digital technology to empower citizens, renew democracy and heal divides.&rdquo;</em></p>
             <p lang="en-GB">A child prodigy who practiced Taoism to manage a congenital heart condition, Tang opted for homeschooling and entrepreneurship at 14. A decade later, Tang was a leader in the free and open-source software communities, revitalising the Haskell and Perl languages.</p>
@@ -2026,8 +2286,8 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
             <p lang="zh-TW">唐鳳從小資賦優異，練習道家功法抑制先天性心臟病，14 歲離開正規學校投身創業，24 歲時已是自由開源軟體社群的領袖，重振了 Haskell 與 Perl 程式語言的生態。</p>
         </div>
         <div>
-            <div class="section-label" lang="en-GB">Roles</div>
-            <div class="section-label" lang="zh-TW">職稱</div>
+            <div class="section-label" lang="en-GB"><svg class="o-glyph" viewBox="0 0 32 32" aria-hidden="true"><use href="#o-mark"/></svg>Roles</div>
+            <div class="section-label" lang="zh-TW"><svg class="o-glyph" viewBox="0 0 32 32" aria-hidden="true"><use href="#o-mark"/></svg>職稱</div>
             <ul class="bio-roles" lang="en-GB">
                 <li>
                     <span class="role-title">Cyber Ambassador</span>
@@ -2087,8 +2347,8 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
 
 <!-- ════════ IN DIALOGUE ════════ -->
 <section class="section reveal" id="dialogue">
-    <div class="section-label" lang="en-GB">Spotlight Addresses</div>
-    <div class="section-label" lang="zh-TW">精選演講</div>
+    <div class="section-label" lang="en-GB"><svg class="o-glyph" viewBox="0 0 32 32" aria-hidden="true"><use href="#o-mark"/></svg>Spotlight Addresses</div>
+    <div class="section-label" lang="zh-TW"><svg class="o-glyph" viewBox="0 0 32 32" aria-hidden="true"><use href="#o-mark"/></svg>精選演講</div>
     <h2 lang="en-GB">We the People are Truly the Superintelligence</h2>
     <h2 lang="zh-TW">我們全民，<span class="nowrap">才是超級智慧</span></h2>
     <div class="dialogue-grid">
@@ -2124,10 +2384,11 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
 
 <!-- ════════ RECOGNITION ════════ -->
 <section class="section reveal" id="recognition">
-    <div class="section-label" lang="en-GB">Honours</div>
-    <div class="section-label" lang="zh-TW">獲獎肯定</div>
+    <div class="section-label" lang="en-GB"><svg class="o-glyph" viewBox="0 0 32 32" aria-hidden="true"><use href="#o-mark"/></svg>Honours</div>
+    <div class="section-label" lang="zh-TW"><svg class="o-glyph" viewBox="0 0 32 32" aria-hidden="true"><use href="#o-mark"/></svg>獲獎肯定</div>
     <h2 lang="en-GB">Free the Future &mdash; Together!</h2>
     <h2 lang="zh-TW">攜手共創無限未來</h2>
+    <div class="constellation" aria-hidden="true"><svg class="constellation-arc" viewBox="0 0 1200 46" preserveAspectRatio="none" aria-hidden="true" focusable="false" fill="none"><path class="c-arc" d="M40 40 A 5200 5200 0 0 1 1160 40"/><circle class="c-star" cx="40" cy="40" r="2.4"/><circle class="c-star" cx="320" cy="22" r="2.4"/><circle class="c-star" cx="600" cy="16" r="2.4"/><circle class="c-star" cx="880" cy="22" r="2.4"/><circle class="c-star" cx="1160" cy="40" r="2.4"/></svg></div>
     <div class="awards-grid">
         <a href="https://creativebureaucracy.org/festival" class="award-card" target="_blank" rel="noopener noreferrer">
             <time class="award-year" datetime="2026">2026</time>
@@ -2174,8 +2435,10 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
     </div>
 </section>
 
+<div class="divider-arc"><svg class="divider-arc-svg" viewBox="0 0 1200 40" preserveAspectRatio="none" aria-hidden="true" focusable="false" fill="none"><path class="d-arc" pathLength="1" d="M0 38 A 4000 4000 0 0 1 1200 38"/></svg></div>
 <!-- ════════ PULLQUOTE ════════ -->
 <aside class="pullquote reveal">
+    <div class="people-arc"><svg class="people-arc-svg" viewBox="0 0 1200 200" preserveAspectRatio="none" aria-hidden="true" focusable="false" fill="none"><path class="pa-arc" d="M 70 178 Q 600 -86 1130 178"/><g class="pa-nodes"><circle cx="70.0" cy="178.1" r="2.20"/><circle cx="95.9" cy="166.1" r="2.30"/><circle cx="121.7" cy="155.6" r="2.21"/><circle cx="147.6" cy="139.7" r="2.20"/><circle cx="173.4" cy="132.2" r="2.07"/><circle cx="199.3" cy="121.3" r="2.73"/><circle cx="225.1" cy="111.6" r="2.44"/><circle cx="251.0" cy="104.3" r="1.57"/><circle cx="276.8" cy="93.1" r="1.77"/><circle cx="302.7" cy="86.9" r="1.94"/><circle cx="328.5" cy="81.1" r="1.52"/><circle cx="354.4" cy="74.9" r="2.28"/><circle cx="380.2" cy="68.2" r="2.74"/><circle cx="406.1" cy="65.5" r="2.61"/><circle cx="432.0" cy="58.2" r="2.36"/><circle cx="457.8" cy="54.0" r="1.40"/><circle cx="483.7" cy="53.8" r="2.96"/><circle cx="509.5" cy="48.6" r="1.55"/><circle cx="535.4" cy="49.4" r="1.89"/><circle cx="561.2" cy="47.0" r="2.28"/><circle cx="587.1" cy="48.2" r="1.54"/><circle cx="612.9" cy="48.2" r="2.69"/><circle cx="638.8" cy="46.0" r="1.34"/><circle cx="664.6" cy="45.4" r="2.73"/><circle cx="690.5" cy="49.8" r="2.19"/><circle cx="716.3" cy="51.0" r="2.15"/><circle cx="742.2" cy="56.9" r="1.45"/><circle cx="768.0" cy="60.1" r="1.38"/><circle cx="793.9" cy="63.3" r="2.38"/><circle cx="819.8" cy="71.6" r="2.03"/><circle cx="845.6" cy="74.1" r="1.90"/><circle cx="871.5" cy="77.9" r="2.55"/><circle cx="897.3" cy="87.1" r="2.59"/><circle cx="923.2" cy="93.9" r="2.24"/><circle cx="949.0" cy="102.3" r="2.73"/><circle cx="974.9" cy="110.0" r="1.50"/><circle cx="1000.7" cy="122.2" r="2.36"/><circle cx="1026.6" cy="129.3" r="1.93"/><circle cx="1052.4" cy="141.5" r="2.89"/><circle cx="1078.3" cy="155.6" r="2.37"/><circle cx="1104.1" cy="164.9" r="2.86"/><circle cx="1130.0" cy="178.5" r="2.04"/></g></svg></div>
     <blockquote lang="en-GB">
         "We built a geothermal democracy &mdash;<br>the crashing plates turned<br>into positive energy for renewal."
     </blockquote>
@@ -2208,8 +2471,8 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
 
 <!-- ════════ CIVIC AI ════════ -->
 <section class="section reveal" id="work">
-    <div class="section-label" lang="en-GB">Current Work &middot; Oxford Institute for Ethics in AI</div>
-    <div class="section-label" lang="zh-TW">現階段工作&#x30FB;牛津大學 AI 倫理研究院</div>
+    <div class="section-label" lang="en-GB"><svg class="o-glyph" viewBox="0 0 32 32" aria-hidden="true"><use href="#o-mark"/></svg>Current Work &middot; Oxford Institute for Ethics in AI</div>
+    <div class="section-label" lang="zh-TW"><svg class="o-glyph" viewBox="0 0 32 32" aria-hidden="true"><use href="#o-mark"/></svg>現階段工作&#x30FB;牛津大學 AI 倫理研究院</div>
     <h2 lang="en-GB">Civic AI and the 6-Pack of Care</h2>
     <h2 lang="zh-TW"><span class="nowrap">仁工智慧</span> &amp; <span class="nowrap">關懷六力</span></h2>
     <p lang="en-GB">The dominant AI safety narrative is vertical: one superintelligent system, aligned once and for all to human values. But no amount of what is produces what ought to be. <a href="https://civic.ai" target="_blank" rel="noopener noreferrer">Civic AI</a>, developed with Caroline Green at Oxford, offers a horizontal alternative &mdash; many bounded, purpose-specific AI agents, each devoted to one community&rsquo;s relational health.</p>
@@ -2255,8 +2518,8 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
         </div>
     </div>
     <div class="case-study">
-        <div class="section-label" lang="en-GB">Case Study &middot; Taiwan, 2024</div>
-        <div class="section-label" lang="zh-TW">案例研究&#x30FB;臺灣，2024</div>
+        <div class="section-label" lang="en-GB"><svg class="o-glyph" viewBox="0 0 32 32" aria-hidden="true"><use href="#o-mark"/></svg>Case Study &middot; Taiwan, 2024</div>
+        <div class="section-label" lang="zh-TW"><svg class="o-glyph" viewBox="0 0 32 32" aria-hidden="true"><use href="#o-mark"/></svg>案例研究&#x30FB;臺灣，2024</div>
         <h3 lang="en-GB">Deliberative Poll on Deepfake Regulation</h3>
         <h3 lang="zh-TW">深偽治理審議式民調</h3>
         <p lang="en-GB">AI-generated scam ads impersonating Jensen Huang were costing Taiwanese citizens millions of dollars. 200,000 text messages went out to randomly selected numbers across Taiwan, asking one question: what should be done? Thousands volunteered; 447 were chosen by lottery to mirror the country&rsquo;s demographics. They deliberated in 44 virtual rooms. A <a href="https://taide.tw/en" target="_blank" rel="noopener noreferrer">Trustworthy AI Dialogue Engine</a> synthesised their proposals the same day.</p>
@@ -2275,8 +2538,8 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
 <!-- ════════ FILM ════════ -->
 <section class="film">
     <div class="film-inner reveal">
-        <div class="section-label" lang="en-GB">Short Film &middot; Directed by Cynthia Wade</div>
-        <div class="section-label" lang="zh-TW">短片&#x30FB;導演：Cynthia Wade</div>
+        <div class="section-label" lang="en-GB"><svg class="o-glyph" viewBox="0 0 32 32" aria-hidden="true"><use href="#o-mark"/></svg>Short Film &middot; Directed by Cynthia Wade</div>
+        <div class="section-label" lang="zh-TW"><svg class="o-glyph" viewBox="0 0 32 32" aria-hidden="true"><use href="#o-mark"/></svg>短片&#x30FB;導演：Cynthia Wade</div>
         <h2 lang="en-GB">Good Enough Ancestor &mdash; A Documentary</h2>
         <h2 lang="zh-TW">夠好的祖先（紀錄短片）</h2>
         <p class="film-subtitle" id="film-desc-en" lang="en-GB">Oscar and Emmy-winning director Cynthia Wade's documentary on democracy, mortality, and the courage to leave a wider canvas for future generations. <strong>Best Professional Documentary Short</strong>, SCAD Savannah Film Festival. Screened at the Woodstock Film Festival and Athena Film Festival. 21 min.</p>
@@ -2304,6 +2567,7 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
     </div>
 </section>
 
+<div class="divider-arc"><svg class="divider-arc-svg" viewBox="0 0 1200 40" preserveAspectRatio="none" aria-hidden="true" focusable="false" fill="none"><path class="d-arc" pathLength="1" d="M0 38 A 4000 4000 0 0 1 1200 38"/></svg></div>
 <!-- ════════ GALLERY ════════ -->
 <div class="gallery reveal" id="gallery">
     <div class="gallery-inner">
@@ -2349,8 +2613,8 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
 
 <!-- ════════ PUBLICATIONS ════════ -->
 <section class="section reveal" id="publications">
-    <div class="section-label" lang="en-GB">Published</div>
-    <div class="section-label" lang="zh-TW">選輯</div>
+    <div class="section-label" lang="en-GB"><svg class="o-glyph" viewBox="0 0 32 32" aria-hidden="true"><use href="#o-mark"/></svg>Published</div>
+    <div class="section-label" lang="zh-TW"><svg class="o-glyph" viewBox="0 0 32 32" aria-hidden="true"><use href="#o-mark"/></svg>選輯</div>
     <h2 lang="en-GB">Deep Thinking</h2>
     <h2 lang="zh-TW">睦育行思</h2>
     <ul class="pub-list">
@@ -2451,8 +2715,8 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
 
 <!-- ════════ ESSAYS & TESTIMONIES ════════ -->
 <section class="section reveal" id="essays">
-    <div class="section-label" lang="en-GB">Essays &amp; Testimonies</div>
-    <div class="section-label" lang="zh-TW">文集與證詞</div>
+    <div class="section-label" lang="en-GB"><svg class="o-glyph" viewBox="0 0 32 32" aria-hidden="true"><use href="#o-mark"/></svg>Essays &amp; Testimonies</div>
+    <div class="section-label" lang="zh-TW"><svg class="o-glyph" viewBox="0 0 32 32" aria-hidden="true"><use href="#o-mark"/></svg>文集與證詞</div>
     <h2 lang="en-GB">The Long Read</h2>
     <h2 lang="zh-TW">長篇</h2>
     <div class="essay-grid">
@@ -2491,8 +2755,8 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
 
 <!-- ════════ BACKGROUND ════════ -->
 <section class="section section-narrow reveal">
-    <div class="section-label" lang="en-GB">Background</div>
-    <div class="section-label" lang="zh-TW">背景</div>
+    <div class="section-label" lang="en-GB"><svg class="o-glyph" viewBox="0 0 32 32" aria-hidden="true"><use href="#o-mark"/></svg>Background</div>
+    <div class="section-label" lang="zh-TW"><svg class="o-glyph" viewBox="0 0 32 32" aria-hidden="true"><use href="#o-mark"/></svg>背景</div>
     <h2 lang="en-GB"><span class="nowrap">From Open Source</span> <span class="nowrap">to Open Government</span></h2>
     <h2 lang="zh-TW"><span class="nowrap">從開源軟體</span><span class="nowrap">到開放政府</span></h2>
     <p lang="en-GB">Tang is a driving force behind the creation of <strong>g0v</strong> (gov-zero), one of the largest civic technology communities in East Asia, and played a pivotal role in the <strong>2014 Sunflower Movement</strong>, facilitating digital consensus-building during the occupation of Taiwan's Legislature. By bringing live streaming and civic tech into the movement, Tang proved that radical transparency could transform governance from the bottom up.</p>

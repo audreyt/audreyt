@@ -32,7 +32,7 @@
         rgba(15,25,35,0.3) 70%,
         rgba(15,25,35,0.1) 100%
     );
-    z-index: 1;
+    z-index: 0;
 }
 
 .hero-portrait-picture {
@@ -140,6 +140,31 @@
 @keyframes fadeUp {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-loop {
+    margin-top: 28px;
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    opacity: 0.8;
+}
+
+html:has(#lang-zh:checked) .hero-loop { font-family: var(--cjk); letter-spacing: 0.1em; }
+/* The orrery's curved caption already shows "AI · IN · THE · LOOP · OF · HUMANITY",
+   so the straight line is visually redundant ON SCREEN — hide it there. It stays in
+   the a11y tree for screen readers (the orrery caption is aria-hidden) and prints
+   normally (the orrery is print-hidden, so this text carries the argument on paper).
+   @media screen excludes print; the clip pattern keeps it screen-reader-readable. */
+@media screen {
+  .hero-loop {
+    position: absolute; width: 1px; height: 1px;
+    padding: 0; margin: -1px; overflow: hidden;
+    clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+  }
 }
 
 
@@ -365,7 +390,8 @@ a.featured-outlet,
     display: inline-flex;
     align-items: center;
     text-decoration: none;
-    opacity: 0.5;
+    opacity: 0.72; /* press credentials read confident, not faded (was 0.5); hover lifts to full.
+                      (brand logotypes are exempt from WCAG 1.4.11 — this is a visual-weight call) */
     transition: opacity 0.2s;
 }
 
@@ -1235,6 +1261,11 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
         border-left: 1.5pt solid var(--print-accent);
         font-size: 11pt !important;
         color: var(--print-ink) !important;
+    }
+
+    .hero-loop {
+        opacity: 1 !important;
+        color: var(--print-accent) !important;
     }
 
     .bio,

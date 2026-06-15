@@ -1,0 +1,192 @@
+/* orrery.css — every orrery colour, motion, and the ink halo live here.
+   The SVG carries geometry + class names only (var() does not resolve in SVG
+   presentation attributes; see DESIGN spec §3). */
+:root { --orrery-line: var(--gold); --orrery-bright: var(--gold-light); }
+
+/* hero wrapper: between the ink vignette (z0) and the lockup (z2) */
+.orrery--hero { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+.orrery--hero .orrery-svg { width: 100%; height: 100%; display: block; }
+
+/* strata — colour sourced here, never from SVG attributes */
+.orrery-svg .o-civic-ring     { stroke: var(--orrery-bright); stroke-opacity: .55; }
+.orrery-svg .o-civic-glint    { fill: #fff; fill-opacity: .92; }          /* the light, riding the crack */
+.orrery-svg .o-civic-glint-halo { fill: var(--orrery-bright); fill-opacity: .22; }
+.orrery-svg .o-ticks line     { stroke: var(--orrery-bright); stroke-opacity: .30; stroke-width: .8; }
+.orrery-svg .o-people circle  { fill:   var(--orrery-bright); fill-opacity: .70; }
+.orrery-svg .o-boundary       { stroke: var(--orrery-line);   stroke-opacity: .18; stroke-dasharray: 2 8; }
+.orrery-svg .o-graticule line { stroke: var(--orrery-line);   stroke-opacity: .10; }
+.orrery-svg .o-ai-ring        { stroke: var(--orrery-bright); stroke-opacity: .55; stroke-width: 1.3; }
+.orrery-svg .o-ai-disc        { fill:   var(--orrery-bright); fill-opacity: .05; }
+.orrery-svg .o-ai-planet      { fill:   var(--orrery-bright); fill-opacity: .95; }
+.orrery-svg .o-ai-halo        { stroke: var(--orrery-bright); stroke-opacity: .40; stroke-width: .9; }
+.orrery-svg .o-centre         { fill:   var(--orrery-bright); fill-opacity: .85; }
+.orrery-svg .o-caption        { fill:   var(--orrery-bright); fill-opacity: .55;
+                                font-family: var(--sans); font-size: 11px; letter-spacing: 3px; }
+
+/* ink halo — gradient stops coloured from CSS (a stop-color="var(--ink)" ATTRIBUTE would not resolve) */
+.orrery-svg .o-halo-0 { stop-color: var(--ink); stop-opacity: .82; }
+.orrery-svg .o-halo-1 { stop-color: var(--ink); stop-opacity: .30; }
+.orrery-svg .o-halo-2 { stop-color: var(--ink); stop-opacity: 0; }
+
+/* motion — transform-only on three groups */
+.orrery-svg .o-civic     { animation: orrery-spin 360s linear infinite; }
+.orrery-svg .o-graticule { animation: orrery-spin 240s linear infinite reverse; }
+.orrery-svg .o-ai        { animation: orrery-spin 48s  linear infinite; }
+.orrery-svg .o-civic,
+.orrery-svg .o-graticule { transform-box: fill-box; transform-origin: center; will-change: transform; }
+/* .o-ai is concentric with the hero centre, but its bbox is pulled up by the
+   planet/halo (y=336), so fill-box/center would wobble it ~6.5px per turn —
+   pin it to the true ring centre instead. */
+.orrery-svg .o-ai { transform-box: view-box; transform-origin: 410px 456px; will-change: transform; }
+@keyframes orrery-spin { to { transform: rotate(360deg); } }
+
+/* reduced motion — a still engraving */
+@media (prefers-reduced-motion: reduce) {
+  .orrery-svg .o-civic,
+  .orrery-svg .o-graticule,
+  .orrery-svg .o-ai { animation: none; }
+}
+
+/* mobile — the landscape viewBox + slice pushes the off-centre orrery (cx=410)
+   far off the left edge, so the bounded AI orbit/centre/caption fall off-screen
+   and the containment argument is lost. Re-centre + shrink the whole instrument
+   so civic ring + AI orbit + centre + caption all stay on screen (validated at
+   390px across hero heights 740/844/1000). Then simplify + veil to 0.25. */
+@media (max-width: 768px) {
+  .orrery--hero { opacity: .25; }
+  .orrery--hero .orrery-svg { transform: translateX(50%) scale(.55); transform-origin: left center; }
+  .orrery-svg .o-ticks,
+  .orrery-svg .o-graticule,
+  .orrery-svg .o-boundary { display: none; }
+  .orrery-svg .o-people circle:nth-of-type(n+17) { display: none; }
+}
+
+/* small-desktop / tablet band (769–1024px): the desktop two-column hero still
+   applies, but the narrower width clips the off-centre orrery's left edge (the
+   AI ring + caption lose their left portion). A gentle rightward nudge keeps the
+   bounded geometry + the shortened caption on the ink, without the full mobile
+   re-centre (validated 769→1024px). */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .orrery--hero .orrery-svg { transform: translateX(22%) scale(.74); transform-origin: left center; }
+}
+
+/* print — the live print hero is a compact redesigned grid; a full-bleed decorative
+   instrument would overlap it, so hide it. The argument still prints as .hero-loop text.
+   (Spec §7's print engraving is deferred to a later print proof.) */
+@media print { .orrery--hero { display: none !important; } }
+
+/* ─── Loop grammar: section eyebrow glyph — the favicon mark (Phase 2) ─── */
+/* Each eyebrow carries the favicon's cracked-orrery ring + glint, via one shared
+   inline symbol (#o-mark, defined in the template) referenced before every label.
+   The full favicon mark's inner orbit/planet mud to a blob at ~15px, so we distil
+   to the signature crack + glint. Colour lives here (var() resolves on CSS props,
+   unlike SVG attrs), so it adapts to scheme and the always-dark film band. */
+.section-label { position: relative; padding-left: 1.7em; }
+.o-glyph {
+  position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+  width: 0.95em; height: 0.95em; overflow: visible; opacity: 0.85;
+}
+.o-mark-ring  { fill: none; stroke: var(--orrery-line); stroke-width: 2.1; }
+.o-mark-glint { fill: var(--orrery-line); }
+/* always-dark sections (the film band) need the scheme-invariant bright gold */
+.film .o-mark-ring  { stroke: var(--orrery-bright); }
+.film .o-mark-glint { fill: var(--orrery-bright); }
+/* print: drop the glyph so the print eyebrows stay flush (the elaborate print
+   stylesheet re-lays section labels; a ring there adds nothing) */
+@media print { .section-label { padding-left: 0; } .o-glyph { display: none; } }
+
+/* ─── Loop grammar: arc-segment divider + draw-on (Phase 2) ───────────── */
+.divider-arc { max-width: 1200px; margin: 0 auto; padding: 0 80px; }
+.divider-arc .divider-arc-svg { width: 100%; height: 40px; display: block; overflow: visible; }
+.divider-arc .d-arc {
+  stroke: var(--orrery-line); stroke-opacity: 0.4; stroke-width: 1;
+  stroke-dasharray: 1; stroke-dashoffset: 0;            /* default = fully drawn */
+}
+/* draw-on where supported (Chromium/Safari); elsewhere it stays statically drawn */
+@supports (animation-timeline: view()) {
+  .divider-arc .d-arc {
+    animation: draw-arc linear both;
+    animation-timeline: view();                          /* declared AFTER the shorthand, which resets it */
+    animation-range: entry 0% cover 35%;
+  }
+}
+@keyframes draw-arc { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@media (prefers-reduced-motion: reduce) { .divider-arc .d-arc { stroke-dashoffset: 0 !important; } }
+@media (max-width: 768px) { .divider-arc { padding: 0 24px; } }
+/* load-bearing: the Pullquote/Film/Gallery bands are display:none in print
+   (components.css ~1127), but these divider divs are their SIBLINGS, not
+   children, so they survive — hide them explicitly or they print as orphan bows. */
+@media print { .divider-arc { display: none !important; } }
+
+/* ─── Idea pieces: 6-Pack of Care as bounded orbits (Phase 3) ─────────── */
+/* The six grid items become bounded orbits — a kami circling each loop.
+   Scoped with the child combinator so the trailing link-items (outside the
+   grid) keep their own style. Replaces each item's 3px ink border-top. */
+.work-grid > .work-item { position: relative; border-top: none; padding-top: 46px; }
+.work-grid > .work-item::before {
+  content: ""; position: absolute; top: 0; left: 0;
+  width: 28px; height: 28px; border: 1px solid var(--orrery-line); border-radius: 50%; opacity: .7;
+}
+.work-grid > .work-item::after {
+  content: ""; position: absolute; top: 0; left: 0;
+  width: 28px; height: 28px; border-radius: 50%; transform-origin: center;
+  will-change: transform;
+  animation: kami 96s linear infinite;   /* one shared speed → the six hold their spacing */
+  background: radial-gradient(circle 2.4px at 50% 0%, var(--orrery-line) 99%, transparent 100%);
+}
+/* The six kami's start angles complete one clockwise turn — Attentiveness at the top
+   (0°, the ::after base position), each later pack a further 60° clockwise. Baked into
+   the node's position (not animation-delay) so the 60° spacing also holds under reduced
+   motion; the shared speed above keeps the spacing as the whole set turns.
+   pos: x% = 50 + 50·sin θ, y% = 50 − 50·cos θ (θ clockwise from top). */
+.work-grid > .work-item:nth-child(2)::after { background: radial-gradient(circle 2.4px at 93.3% 25%, var(--orrery-line) 99%, transparent 100%); }  /*  60° Responsibility */
+.work-grid > .work-item:nth-child(3)::after { background: radial-gradient(circle 2.4px at 93.3% 75%, var(--orrery-line) 99%, transparent 100%); }  /* 120° Competence */
+.work-grid > .work-item:nth-child(4)::after { background: radial-gradient(circle 2.4px at 50% 100%, var(--orrery-line) 99%, transparent 100%); }   /* 180° Responsiveness */
+.work-grid > .work-item:nth-child(5)::after { background: radial-gradient(circle 2.4px at 6.7% 75%, var(--orrery-line) 99%, transparent 100%); }   /* 240° Solidarity */
+.work-grid > .work-item:nth-child(6)::after { background: radial-gradient(circle 2.4px at 6.7% 25%, var(--orrery-line) 99%, transparent 100%); }   /* 300° Symbiosis */
+@keyframes kami { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .work-grid > .work-item::after { animation: none; } }
+/* print: drop the orbit; the existing print stylesheet restores .work-item's
+   ink border-top (!important at components.css ~1432) */
+@media print { .work-grid > .work-item::before, .work-grid > .work-item::after { content: none; } }
+
+/* ─── Idea pieces: people-arc behind the pullquote (Phase 3) ──────────── */
+.pullquote { position: relative; overflow: hidden; }
+.pullquote .people-arc { position: absolute; left: 0; right: 0; bottom: 18px; height: 170px;
+  z-index: 0; pointer-events: none; }
+.pullquote .people-arc .people-arc-svg { width: 100%; height: 100%; display: block; }
+.pullquote .people-arc .pa-arc { stroke: var(--orrery-line); stroke-opacity: .22; stroke-width: 1; }
+.pullquote .people-arc .pa-nodes circle { fill: var(--orrery-line); fill-opacity: .55; }
+.pullquote blockquote, .pullquote cite { position: relative; z-index: 1; }
+/* mobile: thin the studded nodes (the 1200-wide arc squashes 42 nodes into a dense
+   crowded band at phone width) — keep every other node for a calmer arc. */
+@media (max-width: 768px) {
+  .pullquote .people-arc .pa-nodes circle:nth-of-type(even) { display: none; }
+}
+
+/* ─── Substance: Constellation of Honours (Phase 4a) ──────────────────── */
+/* The four awards keep their 2x2 grid; an arc of time sits above, and each
+   award-year becomes a node in the loop grammar. No animation. */
+.constellation { display: block; margin: 8px 0 0; }
+.constellation .constellation-arc { display: block; width: 100%; height: 46px; overflow: visible; }
+.constellation .c-arc  { stroke: var(--orrery-line); stroke-opacity: .30; stroke-width: 1; }
+.constellation .c-star { fill: var(--orrery-line); fill-opacity: .60; }
+.constellation + .awards-grid { margin-top: 14px; }
+.award-year { position: relative; display: inline-block; padding-left: 34px; margin-bottom: 0; }
+.award-year::before {
+  content: ""; position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+  width: 18px; height: 18px; border: 1px solid var(--orrery-line); border-radius: 50%;
+  background: radial-gradient(circle 1.6px at 86% 50%, var(--orrery-line) 99%, transparent 100%); opacity: .8;
+}
+@media print { .constellation { display: none; } .award-year { padding-left: 0; } .award-year::before { content: none; } }
+
+/* ─── Finale: care-orbit hover polish (Phase 4b) ──────────────────────── */
+/* On hover the bounded orbit's ring brightens and grows a touch — the kami
+   stirs. Decorative only: nothing is hidden; the descriptions are always shown. */
+.work-grid > .work-item::before {
+  transition: opacity .3s ease, border-color .3s ease, transform .4s cubic-bezier(.22, 1, .36, 1);
+}
+.work-grid > .work-item:hover::before {
+  opacity: 1; border-color: var(--orrery-bright); transform: scale(1.15);
+}
+@media (prefers-reduced-motion: reduce) { .work-grid > .work-item::before { transition: none; } }
