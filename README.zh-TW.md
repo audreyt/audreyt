@@ -61,7 +61,7 @@ AI 進入人類迴圈
 
 由波士頓全球論壇於哈佛大學 Loeb House 頒發，表彰其在倫理 AI 開發與全球治理的領導力。
 
-### 2023 — [《時代》雜誌百大 AI 影響人物](https://time.com/collection/time100-ai/)
+### 2023 — [《時代》雜誌百大 AI 人物](https://time.com/collection/time100-ai/)
 
 獲選為人工智慧領域百大最具影響力人物，表彰其開創對齊大會、將 AI 整合進民主流程的貢獻。
 
@@ -69,7 +69,7 @@ AI 進入人類迴圈
 
 與蔡英文總統、陳建仁副總統共同獲選「讓世界更好的 25 人」，表彰臺灣以信任為本的防疫成就。
 
-### 2019 — [《外交政策》全球百大思想家](https://2019globalthinkers.foreignpolicy.com/?thinker=audrey-tang)
+### 2019 — [《外交政策》百大思想家](https://2019globalthinkers.foreignpolicy.com/?thinker=audrey-tang)
 
 與各國元首及國際知名政策領袖一同獲得此殊榮，表彰其對數位民主的貢獻。
 
