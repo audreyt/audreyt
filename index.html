@@ -25,7 +25,7 @@
 <meta name="theme-color" content="#0f1923" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#faf8f5" media="(prefers-color-scheme: light)">
 <meta name="color-scheme" content="light dark">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-WqMorOfjjZNgOsb4BU+bclWxZec5y+bzTOujic3XVGw=' 'sha256-4G7wnwQc6qvKDvB+Quf3SC5N+0WcBvc/riHtQRDvDX4=' 'sha256-PBIbXpxoZq+dGJKBjiohe0A6iJvI1eJGI9eoqhVuI+Q='; style-src 'sha256-bDY6FZoeTf6q1OFKAm9VbOuUPcTtgmyHFqO238fjg8E=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-kTULIk1LNNTuREciBeliE5aA3crzF37/I9L8WOTrbcw=' 'sha256-pel7euO7Bh8J86KDJ7sUh4ECAMBONBFL0znYGkZmusw=' 'sha256-VoQH82rCbFTVVkZoM1coiFz9/QNBxHXCRZqvKnxI100='; img-src 'self'; font-src 'self' data:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-WqMorOfjjZNgOsb4BU+bclWxZec5y+bzTOujic3XVGw=' 'sha256-4G7wnwQc6qvKDvB+Quf3SC5N+0WcBvc/riHtQRDvDX4=' 'sha256-PBIbXpxoZq+dGJKBjiohe0A6iJvI1eJGI9eoqhVuI+Q='; style-src 'sha256-bDY6FZoeTf6q1OFKAm9VbOuUPcTtgmyHFqO238fjg8E=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-kTULIk1LNNTuREciBeliE5aA3crzF37/I9L8WOTrbcw=' 'sha256-pel7euO7Bh8J86KDJ7sUh4ECAMBONBFL0znYGkZmusw=' 'sha256-NuNhndyRrQswqp8rvW/QTFWpWX5sn7lgXFIAOXEVWg4='; img-src 'self'; font-src 'self' data:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
 <link rel="canonical" href="https://cyberambassador.tw/">
 <link rel="alternate" hreflang="zh-TW" href="https://audreyt.org/">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -2071,10 +2071,10 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
 @media (max-width: 768px) {
   .orrery--hero { opacity: .25; }
   .orrery--hero .orrery-svg { transform: translateX(50%) scale(.55); transform-origin: left center; }
-  .orrery-svg .o-ticks,
-  .orrery-svg .o-graticule,
-  .orrery-svg .o-boundary { display: none; }
-  .orrery-svg .o-people circle:nth-of-type(n+17) { display: none; }
+  .orrery--hero .o-ticks,
+  .orrery--hero .o-graticule,
+  .orrery--hero .o-boundary { display: none; }
+  .orrery--hero .o-people circle:nth-of-type(n+17) { display: none; }
 }
 
 /* small-desktop / tablet band (769–1024px): the desktop two-column hero still
@@ -2089,7 +2089,29 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
 /* print — the live print hero is a compact redesigned grid; a full-bleed decorative
    instrument would overlap it, so hide it. The argument still prints as .hero-loop text.
    (Spec §7's print engraving is deferred to a later print proof.) */
-@media print { .orrery--hero { display: none !important; } }
+@media print { .orrery--hero, .orrery--footer { display: none !important; } }
+
+/* ─── Footer: a faint hint of the orrery, working in the background ─────── */
+/* A closing bookend to the hero instrument. The footer clips it
+   (overflow:hidden) so the rising rings never bleed up into the cream section
+   above; the footer text sits over it on z-index 1. It reuses the o-* classes,
+   so colour + the civic/graticule/AI spin are inherited from the top of this
+   file — only the AI orbit's pivot needs re-homing to this instance's centre. */
+footer { position: relative; overflow: hidden; }
+footer .footer-name, footer p { position: relative; z-index: 1; }
+.orrery--footer {
+  position: absolute; left: 50%; bottom: -286px;
+  width: 640px; height: 640px;
+  transform: translateX(-50%);
+  opacity: .46; z-index: 0; pointer-events: none;
+}
+.orrery--footer .orrery-svg { width: 100%; height: 100%; display: block; }
+.orrery--footer .o-ai { transform-box: view-box; transform-origin: 240px 240px; }
+
+@media (max-width: 768px) {
+  /* shrink so the whole instrument still reads on a phone-width footer */
+  .orrery--footer { width: 460px; height: 460px; bottom: -206px; opacity: .4; }
+}
 
 /* ─── Loop grammar: section eyebrow glyph — the favicon mark (Phase 2) ─── */
 /* Each eyebrow carries the favicon's cracked-orrery ring + glint, via one shared
@@ -2168,7 +2190,7 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
 
 /* ─── Idea pieces: people-arc behind the pullquote (Phase 3) ──────────── */
 .pullquote { position: relative; overflow: hidden; }
-.pullquote .people-arc { position: absolute; left: 0; right: 0; bottom: 18px; height: 170px;
+.pullquote .people-arc { position: absolute; left: 0; right: 0; bottom: 18px; height: 120px;
   z-index: 0; pointer-events: none; }
 .pullquote .people-arc .people-arc-svg { width: 100%; height: 100%; display: block; }
 .pullquote .people-arc .pa-arc { stroke: var(--orrery-line); stroke-opacity: .22; stroke-width: 1; }
@@ -2804,6 +2826,23 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
 
 <!-- ════════ FOOTER ════════ -->
 <footer>
+    <div class="orrery orrery--footer" aria-hidden="true"><svg class="orrery-svg" viewBox="0 0 480 480" preserveAspectRatio="xMidYMid meet" fill="none" aria-hidden="true" focusable="false">
+  <circle class="o-boundary" cx="240" cy="240" r="140"/>
+  <g class="o-graticule"><line x1="304" y1="240" x2="380" y2="240"/><line x1="295.4" y1="272" x2="361.2" y2="310"/><line x1="272" y1="295.4" x2="310" y2="361.2"/><line x1="240" y1="304" x2="240" y2="380"/><line x1="208" y1="295.4" x2="170" y2="361.2"/><line x1="184.6" y1="272" x2="118.8" y2="310"/><line x1="176" y1="240" x2="100" y2="240"/><line x1="184.6" y1="208" x2="118.8" y2="170"/><line x1="208" y1="184.6" x2="170" y2="118.8"/><line x1="240" y1="176" x2="240" y2="100"/><line x1="272" y1="184.6" x2="310" y2="118.8"/><line x1="295.4" y1="208" x2="361.2" y2="170"/></g>
+  <g class="o-civic">
+    <path class="o-civic-ring" d="M 401.8 150.3 A 185 185 0 1 1 329.7 78.2"/>
+    <g class="o-people"><circle cx="240" cy="55" r="1.30"/><circle cx="268.9" cy="57.3" r="1.92"/><circle cx="297.2" cy="64.1" r="2.54"/><circle cx="415.9" cy="182.8" r="2.85"/><circle cx="422.7" cy="211.1" r="1.76"/><circle cx="425" cy="240" r="2.38"/><circle cx="422.7" cy="268.9" r="1.30"/><circle cx="415.9" cy="297.2" r="1.92"/><circle cx="404.8" cy="324" r="2.54"/><circle cx="389.7" cy="348.7" r="1.45"/><circle cx="370.8" cy="370.8" r="2.07"/><circle cx="348.7" cy="389.7" r="2.69"/><circle cx="324" cy="404.8" r="1.61"/><circle cx="297.2" cy="415.9" r="2.23"/><circle cx="268.9" cy="422.7" r="2.85"/><circle cx="240" cy="425" r="1.76"/><circle cx="211.1" cy="422.7" r="2.38"/><circle cx="182.8" cy="415.9" r="1.30"/><circle cx="156" cy="404.8" r="1.92"/><circle cx="131.3" cy="389.7" r="2.54"/><circle cx="109.2" cy="370.8" r="1.45"/><circle cx="90.3" cy="348.7" r="2.07"/><circle cx="75.2" cy="324" r="2.69"/><circle cx="64.1" cy="297.2" r="1.61"/><circle cx="57.3" cy="268.9" r="2.23"/><circle cx="55" cy="240" r="2.85"/><circle cx="57.3" cy="211.1" r="1.76"/><circle cx="64.1" cy="182.8" r="2.38"/><circle cx="75.2" cy="156" r="1.30"/><circle cx="90.3" cy="131.3" r="1.92"/><circle cx="109.2" cy="109.2" r="2.54"/><circle cx="131.3" cy="90.3" r="1.45"/><circle cx="156" cy="75.2" r="2.07"/><circle cx="182.8" cy="64.1" r="2.69"/><circle cx="211.1" cy="57.3" r="1.61"/></g>
+    <circle class="o-civic-glint-halo" cx="370.8" cy="109.2" r="11"/>
+    <circle class="o-civic-glint" cx="370.8" cy="109.2" r="4.2"/>
+  </g>
+  <g class="o-ai">
+    <circle class="o-ai-ring" cx="240" cy="240" r="82"/>
+    <circle class="o-ai-disc" cx="240" cy="240" r="82"/>
+    <circle class="o-ai-planet" cx="240" cy="158" r="4.6"/>
+    <circle class="o-ai-halo" cx="240" cy="158" r="10"/>
+  </g>
+  <circle class="o-centre" cx="240" cy="240" r="2.6"/>
+</svg></div>
     <div class="footer-name">Audrey Tang &middot; <span class="cjk" lang="zh-TW">唐鳳</span></div>
     <p lang="en-GB"><a href="https://github.com/audreyt/audreyt" target="_blank" rel="noopener noreferrer">Site text and code</a> are <a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener noreferrer">CC0 1.0 Universal</a> &mdash; <span class="nowrap">no rights reserved.</span></p>
     <p lang="zh-TW"><a href="https://github.com/audreyt/audreyt" target="_blank" rel="noopener noreferrer">網站文字與程式碼</a>採 <a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener noreferrer">CC0 1.0 公眾領域貢獻宣告</a>——<span class="nowrap">拋棄所有權利。</span></p>

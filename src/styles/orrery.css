@@ -55,10 +55,10 @@
 @media (max-width: 768px) {
   .orrery--hero { opacity: .25; }
   .orrery--hero .orrery-svg { transform: translateX(50%) scale(.55); transform-origin: left center; }
-  .orrery-svg .o-ticks,
-  .orrery-svg .o-graticule,
-  .orrery-svg .o-boundary { display: none; }
-  .orrery-svg .o-people circle:nth-of-type(n+17) { display: none; }
+  .orrery--hero .o-ticks,
+  .orrery--hero .o-graticule,
+  .orrery--hero .o-boundary { display: none; }
+  .orrery--hero .o-people circle:nth-of-type(n+17) { display: none; }
 }
 
 /* small-desktop / tablet band (769–1024px): the desktop two-column hero still
@@ -73,7 +73,29 @@
 /* print — the live print hero is a compact redesigned grid; a full-bleed decorative
    instrument would overlap it, so hide it. The argument still prints as .hero-loop text.
    (Spec §7's print engraving is deferred to a later print proof.) */
-@media print { .orrery--hero { display: none !important; } }
+@media print { .orrery--hero, .orrery--footer { display: none !important; } }
+
+/* ─── Footer: a faint hint of the orrery, working in the background ─────── */
+/* A closing bookend to the hero instrument. The footer clips it
+   (overflow:hidden) so the rising rings never bleed up into the cream section
+   above; the footer text sits over it on z-index 1. It reuses the o-* classes,
+   so colour + the civic/graticule/AI spin are inherited from the top of this
+   file — only the AI orbit's pivot needs re-homing to this instance's centre. */
+footer { position: relative; overflow: hidden; }
+footer .footer-name, footer p { position: relative; z-index: 1; }
+.orrery--footer {
+  position: absolute; left: 50%; bottom: -286px;
+  width: 640px; height: 640px;
+  transform: translateX(-50%);
+  opacity: .46; z-index: 0; pointer-events: none;
+}
+.orrery--footer .orrery-svg { width: 100%; height: 100%; display: block; }
+.orrery--footer .o-ai { transform-box: view-box; transform-origin: 240px 240px; }
+
+@media (max-width: 768px) {
+  /* shrink so the whole instrument still reads on a phone-width footer */
+  .orrery--footer { width: 460px; height: 460px; bottom: -206px; opacity: .4; }
+}
 
 /* ─── Loop grammar: section eyebrow glyph — the favicon mark (Phase 2) ─── */
 /* Each eyebrow carries the favicon's cracked-orrery ring + glint, via one shared
@@ -152,7 +174,7 @@
 
 /* ─── Idea pieces: people-arc behind the pullquote (Phase 3) ──────────── */
 .pullquote { position: relative; overflow: hidden; }
-.pullquote .people-arc { position: absolute; left: 0; right: 0; bottom: 18px; height: 170px;
+.pullquote .people-arc { position: absolute; left: 0; right: 0; bottom: 18px; height: 120px;
   z-index: 0; pointer-events: none; }
 .pullquote .people-arc .people-arc-svg { width: 100%; height: 100%; display: block; }
 .pullquote .people-arc .pa-arc { stroke: var(--orrery-line); stroke-opacity: .22; stroke-width: 1; }
