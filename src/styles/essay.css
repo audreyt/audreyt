@@ -29,8 +29,7 @@
     --text: #2c3e50;
     --muted: #5f6a7d;
     --border: #e0ddd7;
-    --serif: 'Cormorant Garamond', 'Noto Serif TC', Georgia, serif;
-    --sans: 'Outfit', 'Noto Sans TC', system-ui, -apple-system, sans-serif;
+    --serif: 'Spectral', 'Noto Serif TC', Georgia, serif;
     --serif-cjk: 'Noto Serif TC', 'Songti TC', 'PMingLiU', Georgia, serif;
     --cjk: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
     --cursive: 'Kaiti TC', 'DFKai-SB', 'BiauKai', 'STKaiti', cursive;
@@ -53,7 +52,7 @@
 html { scroll-behavior: smooth; }
 
 body {
-    font-family: var(--sans);
+    font-family: var(--serif);
     color: var(--text);
     background: var(--paper);
     line-height: 1.7;
@@ -111,7 +110,7 @@ header.site {
     margin-left: 4px;
 }
 .crumbs {
-    font-family: var(--sans);
+    font-family: var(--serif);
     font-size: 0.66rem;
     font-weight: 500;
     letter-spacing: 0.1em;
