@@ -242,12 +242,17 @@ Three Latin faces and three CJK fallback stacks share the page:
 
 ### Two-stage font loading (index only)
 
-The woven `index.html` ships fonts in two waves to eliminate FOIT/FOUT on the nav-logo:
+The woven `index.html` serves fonts from **`/fonts/`** (cacheable WOFF2/TTF files at repo root). No Google Fonts on the homepage; CSP `font-src` is `'self'` only.
 
-1. **Stage 1 (in `<head>`):** a ~3 KB Cormorant Garamond Bold subset containing only the glyphs in "Audrey Tang" (`AT a d e g n r u y`), declared with `font-display: block` and a `unicode-range` so the nav-logo paints in the real face on first byte.
-2. **Stage 2 (after `<nav>`):** full Cormorant Garamond normal, Outfit (300–600 variable), and Cormorant Garamond italic, all inlined as base64. Same family/weight as Stage 1, so the hand-off is invisible.
+1. **Preloads (in `<head>`):** `spectral-700.woff2` (nav-logo) and the Iansui **critical** file (`iansui-critical.*` — extension comes from `src/fonts/iansui-index.meta.json`).
+2. **Stage 1 CSS (`base.css`):** Spectral 700 for `.nav-logo`, `font-display: block`, `url('/fonts/spectral-700.woff2')`.
+3. **Iansui (`iansui.css`):** two non-overlapping `@font-face` rules (critical + rest/index) with `unicode-range` woven from meta; `var(--cjk)` is `'Iansui', …` fallbacks.
+4. **Stage 2 (after `<nav>`, `fonts-stage2.css`):** Spectral 300/400/600, Source Sans 3, plus italic faces in `components.css` — all `url('/fonts/…')`.
+5. **`fonts-load.js`:** preloads the Iansui rest file after first paint.
 
-Stand-alone essay pages load the same families from Google Fonts (`<link>` to fonts.googleapis.com). Acceptable because those pages are visited from links rather than referenced as a brand-anchored homepage.
+Glyph harvest + subset build: `tools/glyph-harvest.ts` (linkedom DOM walk), `tools/build-iansui.ts` (GF `&text=` fetch; detects woff2 vs truetype), `tools/build-fonts.ts`. Manifest SHA-256 in `iansui-index.meta.json`; `weave.ts` substitutes `{{iansui-*}}` placeholders via `tools/iansui-format.ts` **before** CSP hash recompute.
+
+Stand-alone essay pages may still load display faces from Google Fonts where not yet migrated.
 
 ### Typography levels
 
@@ -348,8 +353,9 @@ Fixed top bar. `backdrop-filter: blur(16px)` over `--nav-bg` (paper at 96% alpha
 
 Two variants depending on page:
 
-- **Two-language essays (`transparent-horse`, `good-enough-ancestor`):** single `<label>` linked to a hidden `<input type="checkbox" id="lang-zh">`. The label shows `華文` or `EN` depending on which language is active.
-- **Three-language essays (`collaborative-immune-system`):** three `<label>`s linked to a hidden `<input type="radio" name="lang">` triad (`lang-en`, `lang-zh`, `lang-ja`).
+- **Index (`cyberambassador.tw`):** hidden `#lang-zh` — unchecked = EN, checked = 中文. EN print: `html:not(:has(#lang-zh:checked))` except `#publications`. **audreyt.org** index uses `#lang-en` (zh default); do not copy lang selectors across repos.
+- **Two-language essays:** hidden `#lang-zh` checkbox + label.
+- **Three-language essays (`collaborative-immune-system`):** radio triad `lang-en`, `lang-zh`, `lang-ja`.
 
 Both variants are positioned `fixed; top: 24px; right: 24px;`, render against the hero on the dark background, and switch to a `scrolled` palette via JS once the user moves past the hero (`.lang-toggle.scrolled` swaps to paper background, muted text, with the same active highlighting in `gold`).
 
@@ -434,19 +440,22 @@ src/
 ├── index.template.html           ← skeleton with {{content:X}}, {{style:X}}, {{script:X}},
 │                                   {{font:X}}, {{svg:X}}, {{json-ld:X}} markers
 ├── thumbs.json                   ← dialogue thumbnail metadata
-├── svg/                          ← inline SVG markup
-├── fonts/                        ← base64-encoded WOFF2 (one .b64 per face)
 ├── styles/
-│   ├── base.css                  ← index reset, :root tokens, LQIP rules, nav, Stage 1 font-face
-│   ├── fonts-stage2.css          ← @font-face for full Cormorant Garamond normal
-│   ├── components.css            ← all index component styles, typography, Outfit + italic font-faces
-│   ├── essay.css                 ← shared baseline for stand-alone essays (inlined by pre-commit Phase 3)
+│   ├── base.css                  ← reset, tokens, LQIP, nav, Stage 1 Spectral
+│   ├── iansui.css                ← Iansui @font-face ({{iansui-*}} placeholders)
+│   ├── fonts-stage2.css          ← Spectral + Source Sans 3 → /fonts/
+│   ├── components.css            ← index components, print, italic faces
+│   ├── essay.css                 ← essay baseline (pre-commit Phase 3)
 │   └── noscript-reveal.css
+├── fonts/                        ← *.woff2.b64 inputs; iansui-index.meta.json
 └── scripts/
-    ├── lang-detect.js            ← language detection (minified, runs in <head>)
-    ├── image-probe.js            ← AVIF/WebP decode probe
-    ├── image-upgrade.js          ← noscript → real <img> upgrade, video poster, lang toggle
-    └── structured-data.json      ← JSON-LD (schema.org Person)
+    ├── lang-detect.js
+    ├── fonts-load.js             ← preload Iansui rest
+    ├── image-probe.js
+    ├── image-upgrade.js
+    └── structured-data.json
+fonts/                            ← committed WOFF2/TTF at /fonts/ (Latin + Iansui)
+tools/                            ← build-fonts, build-iansui, glyph-harvest, iansui-format/manifest
 index.html                        ← GENERATED. Do not edit by hand.
 collaborative-immune-system.html  ← stand-alone essay (en/zh/ja), single-file
 good-enough-ancestor.html         ← stand-alone essay (en/zh), single-file
@@ -478,11 +487,14 @@ The pre-commit hook (`pre-commit.ts`, symlinked from `.git/hooks/pre-commit`) ru
 | `{{style:NAME}}` | Content of `src/styles/NAME.css` |
 | `{{script:NAME}}` | Content of `src/scripts/NAME.js` |
 | `{{json-ld:NAME}}` | Content of `src/scripts/NAME.json` |
-| `{{font:NAME}}` | Raw base64 string from `src/fonts/NAME.woff2.b64` |
 | `{{svg:NAME}}` | Content of `src/svg/NAME.svg` |
 | `{{content:NAME}}` | Rendered bilingual HTML from README section `<!-- section:NAME -->` |
 
-Font markers appear *inside* `@font-face` rules: `src: url('data:font/woff2;base64,{{font:cormorant-garamond-normal}}') format('woff2');`
+After markers resolve, `weave.ts` runs `substituteIansuiPlaceholders()` for `{{iansui-*}}` tokens (from `src/fonts/iansui-index.meta.json`). Index Latin/Iansui use `url('/fonts/…')` in CSS. Legacy `{{font:NAME}}` still expands `src/fonts/NAME.woff2.b64` if used.
+
+`weave.ts` flags: `--skip-font-check`, `--glyph-out=PATH`, `--check-fonts`. Iansui regen: *AGENTS.md*.
+
+`bun tools/build-fonts.ts` decodes Latin `.b64` → `fonts/`; `--regen` fetches Iansui subsets (network).
 
 ## Editing Workflow
 
