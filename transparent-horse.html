@@ -16,7 +16,7 @@
 <meta name="color-scheme" content="light dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Source+Sans+3:wght@400;500;600&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@400;600&display=swap" rel="stylesheet">
 <style>
 /* essay:base */
 /* ── essay.css ──────────────────────────────────────────────────────────
@@ -51,6 +51,7 @@
     --muted: #5f6a7d;
     --border: #e0ddd7;
     --serif: 'Spectral', 'Noto Serif TC', Georgia, serif;
+    --sans: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     --serif-cjk: 'Noto Serif TC', 'Songti TC', 'PMingLiU', Georgia, serif;
     --cjk: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
     --cursive: 'Kaiti TC', 'DFKai-SB', 'BiauKai', 'STKaiti', cursive;
@@ -131,7 +132,7 @@ header.site {
     margin-left: 4px;
 }
 .crumbs {
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-size: 0.66rem;
     font-weight: 500;
     letter-spacing: 0.1em;
@@ -182,7 +183,7 @@ html:has(#lang-zh:checked) .lang-toggle [lang="en-GB"] { display: none; }
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(255,255,255,0.12);
     border-radius: 3px;
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-size: 0.75rem;
     font-weight: 500;
     color: rgba(255,255,255,0.7);
@@ -288,7 +289,7 @@ body::after {
     text-align: center;
 }
 .hero-label {
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-size: 0.72rem;
     font-weight: 500;
     letter-spacing: 0.22em;
@@ -340,7 +341,7 @@ body::after {
     transform: translateX(-50%);
     z-index: 2;
     color: rgba(255,255,255,0.35);
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-size: 0.65rem;
     font-weight: 500;
     letter-spacing: 0.18em;

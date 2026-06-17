@@ -1,3 +1,4 @@
 @font-face { font-family:'Spectral'; font-style:normal; font-display:swap; font-weight:300; src:url('data:font/woff2;base64,{{font:spectral-300}}') format('woff2'); }
 @font-face { font-family:'Spectral'; font-style:normal; font-display:swap; font-weight:400 500; src:url('data:font/woff2;base64,{{font:spectral-400}}') format('woff2'); }
 @font-face { font-family:'Spectral'; font-style:normal; font-display:swap; font-weight:600; src:url('data:font/woff2;base64,{{font:spectral-600}}') format('woff2'); }
+@font-face { font-family:'Source Sans 3'; font-style:normal; font-display:swap; font-weight:400 600; src:url('data:font/woff2;base64,{{font:source-sans-3}}') format('woff2'); }

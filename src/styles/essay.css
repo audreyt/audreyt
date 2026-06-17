@@ -30,6 +30,7 @@
     --muted: #5f6a7d;
     --border: #e0ddd7;
     --serif: 'Spectral', 'Noto Serif TC', Georgia, serif;
+    --sans: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     --serif-cjk: 'Noto Serif TC', 'Songti TC', 'PMingLiU', Georgia, serif;
     --cjk: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
     --cursive: 'Kaiti TC', 'DFKai-SB', 'BiauKai', 'STKaiti', cursive;
@@ -110,7 +111,7 @@ header.site {
     margin-left: 4px;
 }
 .crumbs {
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-size: 0.66rem;
     font-weight: 500;
     letter-spacing: 0.1em;

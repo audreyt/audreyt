@@ -23,6 +23,7 @@ html:has(#lang-zh:checked) blockquote { font-style: normal; font-family: 'Kaiti 
     --nav-bg: rgba(250,248,245,0.96);
     --nav-open-bg: rgba(250,248,245,0.98);
     --serif: 'Spectral', 'Noto Serif TC', Georgia, serif;
+    --sans: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     --cjk: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
 }
 
@@ -106,6 +107,7 @@ nav.scrolled {
 .nav-links {
     display: flex;
     gap: 2rem;
+    font-family: var(--sans);
     font-size: 0.85rem;
     font-weight: 500;
     margin-left: auto;
@@ -128,7 +130,7 @@ nav.scrolled {
     background: none;
     border: 1px solid var(--border);
     border-radius: 3px;
-    font-family: var(--serif);
+    font-family: var(--sans);
     font-size: 0.75rem;
     font-weight: 500;
     color: var(--muted);
