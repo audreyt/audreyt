@@ -1,0 +1,16 @@
+@font-face {
+    font-family: 'Iansui';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('/fonts/{{iansui-critical-file}}') format('{{iansui-font-format}}');
+    unicode-range: {{iansui-critical-range}};
+}
+@font-face {
+    font-family: 'Iansui';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('/fonts/{{iansui-rest-file}}') format('{{iansui-font-format}}');
+    unicode-range: {{iansui-rest-range}};
+}

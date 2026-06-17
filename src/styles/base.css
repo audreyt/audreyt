@@ -2,7 +2,7 @@
 html:not(:has(#lang-zh:checked)) [lang="zh-TW"]:not(.cjk) { display: none; }
 html:has(#lang-zh:checked) [lang="en-GB"] { display: none; }
 .nowrap { white-space: nowrap; }
-html:has(#lang-zh:checked) body { font-weight: 500; }
+html:has(#lang-zh:checked) body { font-weight: 400; }
 html:has(#lang-zh:checked) em,
 html:has(#lang-zh:checked) blockquote { font-style: normal; font-family: 'Kaiti TC', 'DFKai-SB', 'BiauKai', 'STKaiti', cursive; }
 
@@ -22,18 +22,18 @@ html:has(#lang-zh:checked) blockquote { font-style: normal; font-family: 'Kaiti 
     --border: #e0ddd7;
     --nav-bg: rgba(250,248,245,0.96);
     --nav-open-bg: rgba(250,248,245,0.98);
-    --serif: 'Spectral', 'Noto Serif TC', Georgia, serif;
+    --serif: 'Spectral', 'Iansui', Georgia, serif;
     --sans: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    --cjk: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+    --cjk: 'Iansui', 'PingFang TC', 'Microsoft JhengHei', 'Noto Sans TC', sans-serif;
 }
 
-// Two-stage font loading: this is just the subset for .nav-logo
+/* Two-stage font loading: nav-logo subset */
 @font-face {
     font-family: 'Spectral';
     font-style: normal;
     font-weight: 700;
     font-display: block;
-    src: url('data:font/woff2;base64,{{font:spectral-700}}') format('woff2');
+    src: url('/fonts/spectral-700.woff2') format('woff2');
 }
 
 html { scroll-behavior: smooth; }

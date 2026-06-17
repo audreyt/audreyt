@@ -3,7 +3,7 @@
     font-style: italic;
     font-weight: 400 500;
     font-display: swap;
-    src: url('data:font/woff2;base64,{{font:spectral-400i}}') format('woff2');
+    src: url('/fonts/spectral-400i.woff2') format('woff2');
 }
 
 
@@ -995,6 +995,7 @@ footer .footer-name {
 html:has(#lang-zh:checked) .essay-card h3 { font-family: var(--cjk); font-weight: 700; line-height: 1.3; }
 html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: normal; font-weight: 400; line-height: 1.7; }
 
+
 /* ─── SCROLL REVEAL ─── */
 .js .reveal {
     opacity: 0;
@@ -1097,7 +1098,7 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
     font-style: italic;
     font-weight: 600 700;
     font-display: swap;
-    src: url('data:font/woff2;base64,{{font:spectral-600i}}') format('woff2');
+    src: url('/fonts/spectral-600i.woff2') format('woff2');
 }
 
 @page {
@@ -1600,105 +1601,105 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
         letter-spacing: -0.01em;
     }
 
-    html:not(:has(#lang-en:checked)) #publications {
+    html:has(#lang-zh:checked) #publications {
         break-before: page;
         page-break-before: always;
     }
 
-    html:has(#lang-en:checked) .hero {
+    html:not(:has(#lang-zh:checked)) .hero {
         grid-template-columns: minmax(0, 1fr) 40mm;
         gap: 6mm;
         padding-bottom: 6mm !important;
         margin-bottom: 6mm;
     }
 
-    html:has(#lang-en:checked) .hero h1 {
+    html:not(:has(#lang-zh:checked)) .hero h1 {
         font-size: 25pt !important;
     }
 
-    html:has(#lang-en:checked) .hero-subtitle {
+    html:not(:has(#lang-zh:checked)) .hero-subtitle {
         font-size: 10.5pt !important;
         line-height: 1.3 !important;
     }
 
-    html:has(#lang-en:checked) .hero-quote {
+    html:not(:has(#lang-zh:checked)) .hero-quote {
         font-size: 10pt !important;
         max-width: 20em;
     }
 
-    html:has(#lang-en:checked) .bio > .section {
+    html:not(:has(#lang-zh:checked)) .bio > .section {
         padding: 5mm !important;
     }
 
-    html:has(#lang-en:checked) .bio-grid {
+    html:not(:has(#lang-zh:checked)) .bio-grid {
         gap: 6mm !important;
     }
 
-    html:has(#lang-en:checked) .bio-text {
+    html:not(:has(#lang-zh:checked)) .bio-text {
         font-size: 9.7pt !important;
         line-height: 1.54 !important;
     }
 
-    html:has(#lang-en:checked) .bio-roles li {
+    html:not(:has(#lang-zh:checked)) .bio-roles li {
         padding: 2.2mm 0 !important;
     }
 
-    html:has(#lang-en:checked) .role-title {
+    html:not(:has(#lang-zh:checked)) .role-title {
         font-size: 11.2pt !important;
     }
 
-    html:has(#lang-en:checked) .role-org {
+    html:not(:has(#lang-zh:checked)) .role-org {
         font-size: 7.8pt !important;
     }
 
-    html:has(#lang-en:checked) .section.section-narrow {
+    html:not(:has(#lang-zh:checked)) .section.section-narrow {
         column-gap: 5mm;
     }
 
-    html:has(#lang-en:checked) .section.section-narrow p {
+    html:not(:has(#lang-zh:checked)) .section.section-narrow p {
         margin-bottom: 2mm !important;
         font-size: 9.2pt !important;
         line-height: 1.42 !important;
     }
 
-    html:has(#lang-en:checked) #connect {
+    html:not(:has(#lang-zh:checked)) #connect {
         padding-top: 3mm !important;
         margin-bottom: 3mm;
     }
 
-    html:has(#lang-en:checked) #connect h2 {
+    html:not(:has(#lang-zh:checked)) #connect h2 {
         margin-bottom: 2mm !important;
         font-size: 17pt !important;
     }
 
-    html:has(#lang-en:checked) .connect-grid {
+    html:not(:has(#lang-zh:checked)) .connect-grid {
         flex-direction: row !important;
         gap: 1.5mm !important;
         margin-top: 0 !important;
     }
 
-    html:has(#lang-en:checked) .connect-link {
+    html:not(:has(#lang-zh:checked)) .connect-link {
         padding: 1.2mm 2.6mm !important;
         font-size: 7.5pt !important;
     }
 
-    html:has(#lang-en:checked) .connect-note {
+    html:not(:has(#lang-zh:checked)) .connect-note {
         margin-top: 1mm !important;
         font-size: 7.5pt !important;
     }
 
-    html:has(#lang-en:checked) footer {
+    html:not(:has(#lang-zh:checked)) footer {
         padding-top: 3mm !important;
         font-size: 7.5pt !important;
         line-height: 1.32 !important;
     }
 
-    html:has(#lang-en:checked) footer .footer-name {
+    html:not(:has(#lang-zh:checked)) footer .footer-name {
         margin-bottom: 1mm !important;
         font-size: 9.2pt !important;
     }
 
-    html:has(#lang-en:checked) footer p {
+    html:not(:has(#lang-zh:checked)) footer p {
         font-size: 7pt !important;
     }
 }

@@ -10,6 +10,19 @@
  */
 
 import { createHash } from "crypto";
+import {
+  assertIansuiManifestMatchesHtml,
+  loadIansuiMeta,
+} from "./tools/iansui-manifest";
+import {
+  substituteIansuiPlaceholders,
+  type IansuiFontMeta,
+} from "./tools/iansui-format";
+
+const cliArgs = process.argv.slice(2);
+const skipFontCheck = cliArgs.includes("--skip-font-check");
+const checkFontsOnly = cliArgs.includes("--check-fonts");
+const glyphOut = cliArgs.find((a) => a.startsWith("--glyph-out="))?.slice(12);
 
 const TEMPLATE = "src/index.template.html";
 const OUTPUT = "index.html";
@@ -1334,6 +1347,12 @@ html = html.replace(
 
 // ─── Resolve inclusion markers (unchanged from original) ────────────
 
+let iansuiMeta: IansuiFontMeta | null = null;
+async function getIansuiMeta(): Promise<IansuiFontMeta> {
+  if (!iansuiMeta) iansuiMeta = await loadIansuiMeta();
+  return iansuiMeta;
+}
+
 // {{style:NAME}} → content of src/styles/NAME.css
 html = await replaceAsync(html, /\{\{style:([^}]+)\}\}/g, async (_, name) => {
   const content = await readSrc(`styles/${name}.css`);
@@ -1372,6 +1391,8 @@ html = await replaceAsync(html, /\{\{svg:([^}]+)\}\}/g, async (_, name) => {
   return content.trimEnd();
 });
 
+html = substituteIansuiPlaceholders(html, await getIansuiMeta());
+
 // ─── CSP hash update ─────────────────────────────────────────────────
 
 function computeHashes(tag: string): string[] {
@@ -1408,6 +1429,21 @@ if (!cspMatch) {
 let newCsp = replaceDirective(cspMatch[2], "script-src", scriptHashes);
 newCsp = replaceDirective(newCsp, "style-src", styleHashes);
 html = html.replace(cspMatch[0], cspMatch[1] + newCsp + cspMatch[3]);
+html = html.replace(/font-src[^;]*/i, "font-src 'self'");
+
+if (glyphOut) {
+  await Bun.write(glyphOut, html);
+  console.log(`weave: glyph source → ${glyphOut}`);
+}
+
+if (!skipFontCheck) {
+  await assertIansuiManifestMatchesHtml(html);
+}
+
+if (checkFontsOnly) {
+  console.log("weave: --check-fonts ok");
+  process.exit(0);
+}
 
 // ─── Write output ────────────────────────────────────────────────────
 

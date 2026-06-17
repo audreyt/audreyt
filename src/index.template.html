@@ -25,7 +25,9 @@
 <meta name="theme-color" content="#0f1923" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#faf8f5" media="(prefers-color-scheme: light)">
 <meta name="color-scheme" content="light dark">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-uuoz5TQ6x7Soce1tzIb0Z2db7jLBjb7qhVerELB8ywk=' 'sha256-4G7wnwQc6qvKDvB+Quf3SC5N+0WcBvc/riHtQRDvDX4=' 'sha256-PBIbXpxoZq+dGJKBjiohe0A6iJvI1eJGI9eoqhVuI+Q='; style-src 'sha256-bDY6FZoeTf6q1OFKAm9VbOuUPcTtgmyHFqO238fjg8E=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-kTULIk1LNNTuREciBeliE5aA3crzF37/I9L8WOTrbcw=' 'sha256-NLW4yiQuIy9g5kLSPZ7mOtdvxdTH6pXivuiJrW5DmrQ='; img-src 'self'; font-src 'self' data:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-uuoz5TQ6x7Soce1tzIb0Z2db7jLBjb7qhVerELB8ywk=' 'sha256-4G7wnwQc6qvKDvB+Quf3SC5N+0WcBvc/riHtQRDvDX4=' 'sha256-PBIbXpxoZq+dGJKBjiohe0A6iJvI1eJGI9eoqhVuI+Q='; style-src 'sha256-bDY6FZoeTf6q1OFKAm9VbOuUPcTtgmyHFqO238fjg8E=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-kTULIk1LNNTuREciBeliE5aA3crzF37/I9L8WOTrbcw=' 'sha256-NLW4yiQuIy9g5kLSPZ7mOtdvxdTH6pXivuiJrW5DmrQ='; img-src 'self'; font-src 'self'; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
+<link rel="preload" href="/fonts/spectral-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/{{iansui-critical-file}}" as="font" type="{{iansui-font-mime}}" crossorigin>
 <link rel="canonical" href="https://cyberambassador.tw/">
 <link rel="alternate" hreflang="zh-TW" href="https://audreyt.org/">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -33,6 +35,9 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <style>
 {{style:base}}
+</style>
+<style>
+{{style:iansui}}
 </style>
 <noscript><style>{{style:noscript-reveal}}</style></noscript>
 </head>
@@ -44,6 +49,7 @@
 <input type="checkbox" id="lang-zh" hidden>
 <div id="lang-announce" class="sr-only" aria-live="polite"></div>
 <script>{{script:lang-detect}}</script>
+<script>{{script:fonts-load}}</script>
 
 <a class="skip-link" href="#main"><span lang="en-GB">Skip to content</span><span lang="zh-TW">跳至內容</span></a>
 

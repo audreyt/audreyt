@@ -3,6 +3,7 @@
   "private": true,
   "dependencies": {
     "colorthief": "^2.4.0",
+    "linkedom": "^0.18.12",
     "sharp": "^0.34.1"
   },
   "devDependencies": {
