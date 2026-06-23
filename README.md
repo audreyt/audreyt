@@ -178,7 +178,7 @@ Currently, Tang is developing **techno-communitarianism** — a synthesis of the
 
 - [LinkedIn](https://www.linkedin.com/in/tangaudrey/)
 - [X](https://x.com/audreyt)
-- [W Social](https://wsocial.eu/profile/audreyt.org)
+- [Mu Social](https://mu.social/profile/audreyt.org)
 - [Transcripts](https://archive.tw)
 - Email: au@civic.ai
 

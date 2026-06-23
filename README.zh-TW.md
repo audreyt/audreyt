@@ -176,7 +176,7 @@ AI 不只是自動化。它重新分配注意力、權威與議價能力。在�
 
 - [LinkedIn](https://www.linkedin.com/in/tangaudrey/)
 - [X](https://x.com/audreyt)
-- [W Social](https://wsocial.eu/profile/audreyt.org)
+- [Mu Social](https://mu.social/profile/audreyt.org)
 - [逐字稿](https://archive.tw)
 - 電子郵件: au@civic.ai
 
