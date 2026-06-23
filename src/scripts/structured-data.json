@@ -5,7 +5,7 @@
     "alternateName": "唐鳳",
     "url": "https://cyberambassador.tw",
     "image": "https://cyberambassador.tw/og-image.jpg",
-    "jobTitle": ["Cyber Ambassador", "Senior Accelerator Fellow, Oxford Institute for Ethics in AI", "Guest Curator, TED 2026", "Senior Advisor, Special Competitive Studies Project", "Senior Advisor, BLOOM Project", "Plurality Initiative Advisor, Ethereum Foundation"],
+    "jobTitle": ["Cyber Ambassador", "Senior Accelerator Fellow, Oxford Institute for Ethics in AI", "Senior Advisor, Special Competitive Studies Project", "Senior Advisor, BLOOM Project", "Plurality Initiative Advisor, Ethereum Foundation", "Board Member, Robust Open Online Safety Tools", "Board Member, Cooperative AI Foundation", "Board Member, RadicalxChange"],
     "description": "Civic hacker, 2025 Right Livelihood Laureate, co-author of Plurality, Senior Accelerator Fellow at Oxford Institute for Ethics in AI. Former Digital Minister of Taiwan.",
     "sameAs": [
         "https://wsocial.eu/profile/audreyt.org",
@@ -29,10 +29,6 @@
         },
         {
             "@type": "Organization",
-            "name": "TED Conferences"
-        },
-        {
-            "@type": "Organization",
             "name": "Special Competitive Studies Project",
             "url": "https://www.scsp.ai/"
         },
@@ -44,6 +40,18 @@
         {
             "@type": "Organization",
             "name": "Ethereum Foundation"
+        },
+        {
+            "@type": "Organization",
+            "name": "Robust Open Online Safety Tools"
+        },
+        {
+            "@type": "Organization",
+            "name": "Cooperative AI Foundation"
+        },
+        {
+            "@type": "Organization",
+            "name": "RadicalxChange"
         }
     ],
     "knowsAbout": ["Digital Democracy", "Civic Technology", "AI Governance", "Plurality", "Open Source Software"],
