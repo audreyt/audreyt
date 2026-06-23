@@ -33,7 +33,7 @@ AI 進入人類迴圈
 | 多元宇宙倡議顧問 | 以太坊基金會 |
 | 董事 | Robust Open Online Safety Tools |
 | 董事 | Cooperative AI Foundation |
-| 董事 | RadicalxChange |
+| 董事 | RadicalxChange Foundation |
 
 ---
 

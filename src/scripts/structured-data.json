@@ -5,7 +5,7 @@
     "alternateName": "唐鳳",
     "url": "https://cyberambassador.tw",
     "image": "https://cyberambassador.tw/og-image.jpg",
-    "jobTitle": ["Cyber Ambassador", "Senior Accelerator Fellow, Oxford Institute for Ethics in AI", "Senior Advisor, Special Competitive Studies Project", "Senior Advisor, BLOOM Project", "Plurality Initiative Advisor, Ethereum Foundation", "Board Member, Robust Open Online Safety Tools", "Board Member, Cooperative AI Foundation", "Board Member, RadicalxChange"],
+    "jobTitle": ["Cyber Ambassador", "Senior Accelerator Fellow, Oxford Institute for Ethics in AI", "Senior Advisor, Special Competitive Studies Project", "Senior Advisor, BLOOM Project", "Plurality Initiative Advisor, Ethereum Foundation", "Board Member, Robust Open Online Safety Tools", "Board Member, Cooperative AI Foundation", "Board Member, RadicalxChange Foundation"],
     "description": "Civic hacker, 2025 Right Livelihood Laureate, co-author of Plurality, Senior Accelerator Fellow at Oxford Institute for Ethics in AI. Former Digital Minister of Taiwan.",
     "sameAs": [
         "https://wsocial.eu/profile/audreyt.org",
@@ -51,7 +51,7 @@
         },
         {
             "@type": "Organization",
-            "name": "RadicalxChange"
+            "name": "RadicalxChange Foundation"
         }
     ],
     "knowsAbout": ["Digital Democracy", "Civic Technology", "AI Governance", "Plurality", "Open Source Software"],
