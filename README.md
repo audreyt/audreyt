@@ -37,6 +37,7 @@ A child prodigy who practiced Taoism to manage a congenital heart condition, Tan
 | Board Member | Robust Open Online Safety Tools |
 | Board Member | Cooperative AI Foundation |
 | Board Member | RadicalxChange Foundation |
+| Senior Research Fellow | Collective Intelligence Project |
 
 ---
 

@@ -35,6 +35,7 @@ AI 進入人類迴圈
 | 理事 | Robust Open Online Safety Tools |
 | 理事 | Cooperative AI Foundation |
 | 理事 | RadicalxChange Foundation |
+| 資深研究員 | 集體智慧計畫 |
 
 ---
 
