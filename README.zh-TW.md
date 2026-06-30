@@ -29,13 +29,13 @@ AI 進入人類迴圈
 | 數位治理無任所大使 | 中華民國 |
 | 加速哲人 | 牛津大學 AI 倫理研究院 |
 | GLOCOM 客座教授 | International University of Japan |
+| 資深研究員 | 集體智慧計畫 |
 | 資深顧問 | Special Competitive Studies Project |
 | 資深顧問 | BLOOM Project |
 | 多元宇宙倡議顧問 | 以太坊基金會 |
 | 理事 | Robust Open Online Safety Tools |
 | 理事 | Cooperative AI Foundation |
 | 理事 | RadicalxChange Foundation |
-| 資深研究員 | 集體智慧計畫 |
 
 ---
 
