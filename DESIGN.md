@@ -455,7 +455,7 @@ src/
     ├── image-upgrade.js
     └── structured-data.json
 fonts/                            ← committed WOFF2/TTF at /fonts/ (Latin + Iansui)
-tools/                            ← build-fonts, build-iansui, glyph-harvest, iansui-format/manifest
+tools/                            ← build-fonts, build-iansui, glyph-harvest, iansui-format/manifest, build-image-variants
 index.html                        ← GENERATED. Do not edit by hand.
 collaborative-immune-system.html  ← stand-alone essay (en/zh/ja), single-file
 good-enough-ancestor.html         ← stand-alone essay (en/zh), single-file
@@ -463,6 +463,7 @@ transparent-horse.html            ← stand-alone essay (en/zh), single-file
 pi-ds4.html                       ← stand-alone redirect → pi.audreyt.org
 weave.ts                          ← homepage build script
 pre-commit.ts                     ← LQIP + weave pipeline (symlinked to .git/hooks/pre-commit)
+dev.ts                            ← local preview server: watches src/+READMEs, runs weave.ts to rebuild index.html on change (same write as `bun weave.ts`); reload-script injection is response-only, never written to disk
 ```
 
 The **index** is woven from `README.md` + `src/`; the **essays** are single-file HTML documents that are hand-edited directly. The two architectures coexist deliberately — essays are reading documents that benefit from being one self-contained `.html` per piece (easy to mirror, archive, port). The pre-commit hook does inline `src/styles/essay.css` into each essay (between `essay:base` sentinel comments) so the shared color/typography/header baseline lives in one source-of-truth file, but the deployed essay is still a single self-contained HTML.
@@ -472,6 +473,7 @@ The **index** is woven from `README.md` + `src/`; the **essays** are single-file
 ```bash
 bun weave.ts              # assemble index.html (template + content + CSP hashes)
 bun pre-commit.ts --force # full pipeline: LQIP + weave
+bun dev.ts                # local preview: watch src/ + READMEs, rebuild + live-reload on :4321
 ```
 
 The pre-commit hook (`pre-commit.ts`, symlinked from `.git/hooks/pre-commit`) runs automatically:
@@ -531,10 +533,20 @@ No duplicate markup. The `<noscript>` tag is the single source of truth.
 ### Adding a new image
 
 ```bash
-# Source JPEG and resized variants in assets/
+# Source JPEG (or PNG) and resized variants in assets/
+bun tools/build-image-variants.ts assets/foo.jpg assets/foo-400.jpg   # one call per size variant
+# --scan backfills every missing sibling under assets/ + thumbs/; --force re-encodes existing ones
+# Then reference inside <noscript><img> in the template
+```
+
+Uses Bun's built-in `Bun.Image` (no `avifenc`/`cwebp` binaries needed) at the
+same quality targets as before (AVIF q50, WebP q75). AVIF encode is
+platform-dependent per Bun's docs — verified working on macOS arm64; if it
+fails on another machine, fall back to the CLI tools for that one file:
+
+```bash
 avifenc -q 50 -s 4 assets/foo.jpg assets/foo.avif
 cwebp -q 75 assets/foo.jpg -o assets/foo.webp
-# Repeat for each size variant; then reference inside <noscript><img> in the template
 ```
 
 ### Adding a new essay page
