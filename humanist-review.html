@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI 與民主：拒絕被最佳化的權利｜唐鳳</title>
+<meta name="description" content="臺灣數位治理無任所大使唐鳳：AI 真正的危險，不在機器把人模仿得多像，而在人開始把自己調整成機器的形狀。">
+<meta property="og:title" content="AI 與民主：拒絕被最佳化的權利">
+<meta property="og:description" content="AI 真正的危險，不在機器把人模仿得多像，而在人開始把自己調整成機器的形狀。">
+<meta property="og:image" content="https://cyberambassador.tw/og-humanist-review.jpg">
+<meta property="og:image:alt" content="AI 與民主：拒絕被最佳化的權利 — 唐鳳，The Humanist Review 創刊號">
+<meta property="og:image:width" content="2400">
+<meta property="og:image:height" content="1260">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://cyberambassador.tw/og-humanist-review.jpg">
+<meta property="og:type" content="article">
+<meta name="theme-color" content="#2b1a1f" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#faf8f3" media="(prefers-color-scheme: light)">
+<meta name="color-scheme" content="light dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700;900&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=Red+Hat+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+    --paper: #faf8f3;
+    --cream: #f7f1ea;
+    --shell: #f2efe8;
+    --accent: #f7ecd9;
+    --ink: #1c1718;
+    --plum: #4d2a33;
+    --stone: #b2a496;
+    --peach: #fadbc9;
+    --coral: #f4a499;
+    --coral-deep: #e2836f;
+    --taupe: #5d524b;
+    --text: #2a2325;
+    --muted: #7c6f66;
+    --border: #e5ddd2;
+    --serif: 'Noto Serif TC', 'Spectral', 'Songti TC', 'PingFang TC', serif;
+    --latin: 'Spectral', 'Noto Serif TC', Georgia, serif;
+    --mono: 'Red Hat Mono', 'PingFang TC', ui-monospace, monospace;
+    --kai: 'Kaiti TC', 'DFKai-SB', 'BiauKai', 'STKaiti', var(--serif);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --paper: #1d1719;
+        --cream: #241c1e;
+        --shell: #211a1c;
+        --accent: #2a2124;
+        --ink: #f2ece4;
+        --stone: #8a7d70;
+        --peach: #b57f66;
+        --taupe: #b3a396;
+        --text: #cfc4ba;
+        --muted: #97887d;
+        --border: #382e30;
+    }
+}
+
+html {
+    scroll-behavior: smooth;
+    hanging-punctuation: first allow-end last;
+}
+
+body {
+    font-family: var(--serif);
+    color: var(--text);
+    background: var(--paper);
+    line-height: 2;
+    font-weight: 400;
+    text-spacing-trim: trim-start;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+::selection { background: var(--peach); color: var(--plum); }
+
+a { color: inherit; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; text-decoration-color: var(--coral-deep); transition: color 0.2s; }
+a:hover { color: var(--coral-deep); }
+
+:focus-visible { outline: 2px solid var(--coral-deep); outline-offset: 3px; }
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+html.js .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.8s ease, transform 0.8s ease; }
+html.js .reveal.visible { opacity: 1; transform: translateY(0); }
+
+@media (prefers-reduced-motion: reduce) {
+    html.js .reveal { opacity: 1; transform: none; transition: none; }
+    header.site, .masthead > *, .art-band { animation: none !important; opacity: 1 !important; }
+    html { scroll-behavior: auto; }
+}
+
+/* ── progress ── */
+.progress {
+    position: fixed; top: 0; left: 0; height: 3px; width: 0;
+    background: linear-gradient(90deg, var(--coral), var(--coral-deep));
+    z-index: 90;
+}
+
+/* ── SITE HEADER (links back to homepage, matching the other essays) ── */
+header.site {
+    max-width: 860px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 48px 6px;
+    opacity: 0;
+    animation: fadeUp 0.6s ease 0.15s forwards;
+}
+header.site .name {
+    font-family: var(--latin);
+    font-size: 1.02rem;
+    font-weight: 600;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: 0.01em;
+}
+header.site .name:hover { color: var(--coral-deep); }
+header.site .name .cjk { font-family: var(--serif); font-weight: 500; margin-left: 2px; }
+header.site .crumbs {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+header.site .crumbs .tag {
+    border: 1px solid var(--stone);
+    color: var(--taupe);
+    padding: 2px 9px;
+    border-radius: 2px;
+    letter-spacing: 0.22em;
+}
+@media (max-width: 768px) {
+    header.site { padding: 14px 22px 4px; }
+    header.site .crumbs span:first-child { display: none; }
+}
+
+/* ── masthead ── */
+.masthead {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: clamp(56px, 9vw, 110px) 24px 0;
+    text-align: center;
+}
+.masthead > * { opacity: 0; animation: fadeUp 0.9s ease forwards; }
+.kicker {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--taupe);
+    animation-delay: 0.25s;
+}
+.kicker > span { display: inline-block; }
+.kicker .dot { color: var(--coral-deep); margin: 0 0.6em; }
+.masthead h1 {
+    font-size: clamp(2.1rem, 6.4vw, 4.15rem);
+    font-weight: 900;
+    line-height: 1.22;
+    letter-spacing: 0.015em;
+    color: var(--ink);
+    margin: clamp(20px, 3.5vw, 36px) auto 0;
+    max-width: 20em;
+    text-wrap: balance;
+    animation-delay: 0.4s;
+}
+.masthead .dek {
+    font-size: clamp(1.05rem, 2.1vw, 1.28rem);
+    line-height: 2;
+    color: var(--muted);
+    max-width: 30em;
+    margin: clamp(20px, 3vw, 32px) auto 0;
+    text-wrap: balance;
+    animation-delay: 0.55s;
+}
+
+/* ── art band ── */
+.art-band {
+    max-width: 1200px;
+    margin: clamp(36px, 6vw, 72px) auto 0;
+    padding: 0 24px;
+    opacity: 0;
+    animation: fadeUp 1.1s ease 0.7s forwards;
+}
+.art-frame {
+    background: var(--accent);
+    border-radius: 4px;
+    overflow: hidden;
+}
+.art-svg { display: block; width: 100%; height: auto; }
+.art-coral { fill: var(--coral); }
+.art-peach { fill: var(--peach); }
+.art-plum  { fill: var(--plum); }
+@media (prefers-color-scheme: dark) { .art-plum { fill: var(--coral-deep); } }
+.art-ring { fill: none; stroke: var(--stone); stroke-width: 1; opacity: 0.55; }
+.art-ring--dash { stroke-dasharray: 3 7; opacity: 0.45; }
+.art-arc { fill: none; stroke: var(--coral-deep); stroke-width: 1.2; opacity: 0.5; }
+.art-disc { fill: var(--peach); opacity: 0.65; }
+.art-disc--sm { fill: none; stroke: var(--coral-deep); stroke-width: 1; opacity: 0.6; }
+.art-line { stroke: var(--stone); stroke-width: 1; opacity: 0.5; }
+.art-caption {
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.16em;
+    color: var(--muted);
+    text-align: right;
+    padding-top: 10px;
+}
+
+/* ── byline row ── */
+.byline {
+    max-width: 1200px;
+    margin: clamp(22px, 3.5vw, 34px) auto 0;
+    padding: 0 24px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--taupe);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding-top: 14px;
+    padding-bottom: 14px;
+    opacity: 0;
+    animation: fadeUp 0.9s ease 0.85s forwards;
+}
+.byline .who { color: var(--ink); letter-spacing: 0.26em; }
+@media (max-width: 600px) {
+    .byline { flex-direction: column; gap: 6px; }
+}
+
+/* ── prose ── */
+main { padding-bottom: 0; }
+.prose {
+    max-width: 34.5em;
+    margin: 0 auto;
+    padding: 0 24px;
+    font-size: 1.13rem;
+    line-height: 2.1;
+    letter-spacing: 0.035em;
+    text-align: justify;
+    text-justify: inter-ideograph;
+}
+.prose p { margin: 0 0 1.9em; text-wrap: pretty; }
+.prose em { font-style: normal; font-weight: 600; color: var(--ink); text-emphasis: filled dot var(--coral-deep); text-emphasis-position: under right; }
+.lede { margin-top: clamp(48px, 7vw, 84px); }
+.lede > p:first-child::first-letter {
+    font-size: 3.05em;
+    font-weight: 700;
+    color: var(--plum);
+    float: left;
+    line-height: 1;
+    margin: 0.09em 0.18em 0 0;
+}
+@media (prefers-color-scheme: dark) {
+    .lede > p:first-child::first-letter { color: var(--coral); }
+}
+
+/* ── section heads ── */
+.section-head {
+    max-width: 34.5em;
+    margin: clamp(56px, 8vw, 92px) auto 2.4em;
+    padding: 0 24px;
+}
+.section-head .num {
+    display: block;
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    color: var(--coral-deep);
+    margin-bottom: 14px;
+}
+.section-head h2 {
+    font-size: clamp(1.5rem, 3.4vw, 1.95rem);
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.5;
+    letter-spacing: 0.02em;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--border);
+    text-wrap: balance;
+}
+
+/* ── pull quotes ── */
+.pull {
+    max-width: 46rem;
+    margin: clamp(40px, 6vw, 64px) auto;
+    padding: 0 24px;
+}
+.pull blockquote {
+    position: relative;
+    font-size: clamp(1.28rem, 2.9vw, 1.66rem);
+    font-weight: 700;
+    line-height: 1.9;
+    letter-spacing: 0.03em;
+    color: var(--plum);
+    padding: 0.4em 0 0.4em 1.15em;
+    border-left: 3px solid var(--coral);
+    text-wrap: pretty;
+}
+@media (prefers-color-scheme: dark) {
+    .pull blockquote { color: var(--peach); }
+}
+.pull blockquote::before {
+    content: '「';
+    position: absolute;
+    left: -0.62em;
+    top: -0.5em;
+    font-size: 2.4em;
+    line-height: 1;
+    color: var(--coral);
+    opacity: 0.5;
+    font-weight: 400;
+}
+
+/* ── interlude (cream band) ── */
+.interlude {
+    background: var(--cream);
+    margin: clamp(56px, 8vw, 96px) 0;
+    padding: clamp(44px, 6vw, 72px) 24px;
+}
+.interlude .inner {
+    max-width: 46rem;
+    margin: 0 auto;
+    text-align: center;
+}
+.interlude .mark {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    color: var(--coral-deep);
+    display: block;
+    margin-bottom: 20px;
+}
+.interlude blockquote {
+    font-size: clamp(1.22rem, 2.7vw, 1.52rem);
+    font-weight: 600;
+    line-height: 2;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+    text-wrap: balance;
+}
+
+/* ── closing (plum band — always dark) ── */
+.closing {
+    background: var(--plum);
+    color: #f8eedd;
+    margin-top: clamp(72px, 10vw, 120px);
+    padding: clamp(72px, 9vw, 120px) 24px clamp(64px, 8vw, 104px);
+}
+.closing .prose-dark {
+    max-width: 34.5em;
+    margin: 0 auto;
+    font-size: 1.13rem;
+    line-height: 2.1;
+    letter-spacing: 0.035em;
+    text-align: justify;
+    text-justify: inter-ideograph;
+}
+.closing .prose-dark p { margin-bottom: 1.9em; color: rgba(248, 238, 221, 0.88); text-wrap: pretty; }
+.closing .prose-dark em { font-style: normal; font-weight: 600; color: var(--peach); }
+.closing .num { display: block; font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.34em; text-transform: uppercase; color: var(--coral); margin-bottom: 14px; }
+.closing h2 {
+    font-size: clamp(1.5rem, 3.4vw, 1.95rem);
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.5;
+    letter-spacing: 0.02em;
+    max-width: 34.5em;
+    margin: 0 auto 2.2em;
+    padding-bottom: 18px;
+    border-bottom: 1px solid rgba(250, 219, 201, 0.25);
+}
+.closing .head-wrap { max-width: 34.5em; margin: 0 auto; }
+
+/* ── vertical finale ── */
+.finale {
+    display: flex;
+    justify-content: center;
+    padding: clamp(48px, 7vw, 80px) 24px 0;
+}
+.finale blockquote {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    font-size: clamp(1.35rem, 3vw, 1.8rem);
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    line-height: 2.4;
+    color: var(--peach);
+    max-height: 21em;
+    padding-left: 28px;
+    border-right: 1px solid rgba(250, 219, 201, 0.35);
+    padding-right: 28px;
+}
+.finale .sig {
+    writing-mode: vertical-rl;
+    font-family: var(--kai);
+    font-size: 1.05rem;
+    letter-spacing: 0.5em;
+    color: var(--coral);
+    align-self: flex-end;
+    padding-left: 26px;
+    padding-bottom: 0.5em;
+}
+@media (max-width: 540px) {
+    .finale blockquote { font-size: 1.2rem; letter-spacing: 0.16em; line-height: 2.15; }
+}
+
+/* ── author ── */
+.author {
+    background: var(--shell);
+    padding: clamp(56px, 7vw, 84px) 24px;
+}
+.author .inner {
+    max-width: 46rem;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: clamp(24px, 4vw, 44px);
+    align-items: start;
+}
+.author .monogram {
+    width: 92px;
+    height: 92px;
+    border-radius: 50%;
+    background: var(--peach);
+    color: var(--plum);
+    display: grid;
+    place-items: center;
+    font-family: var(--kai);
+    font-size: 1.7rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    line-height: 1;
+    padding-left: 0.08em;
+}
+.author .label {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--coral-deep);
+    display: block;
+    margin-bottom: 12px;
+}
+.author .bio {
+    font-size: 0.99rem;
+    line-height: 2;
+    letter-spacing: 0.03em;
+    color: var(--muted);
+}
+.author .bio strong { color: var(--ink); font-weight: 700; }
+@media (max-width: 540px) {
+    .author .inner { grid-template-columns: 1fr; }
+    .author .monogram { width: 72px; height: 72px; font-size: 1.35rem; }
+}
+
+/* ── colophon ── */
+.colophon {
+    padding: 44px 24px 60px;
+    text-align: center;
+}
+.colophon .cc0 {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.3em;
+    color: var(--taupe);
+    border: 1px solid var(--stone);
+    padding: 4px 14px;
+    border-radius: 2px;
+    margin-bottom: 20px;
+}
+.colophon p {
+    font-size: 0.86rem;
+    line-height: 2;
+    letter-spacing: 0.03em;
+    color: var(--muted);
+    max-width: 36em;
+    margin: 0 auto;
+}
+
+/* ── print ── */
+@media print {
+    .progress, header.site, .art-band, .author .monogram { display: none; }
+    body { background: #fff; color: #000; }
+    .closing { background: none; color: #000; }
+    .closing .prose-dark p, .closing h2 { color: #000; }
+    .finale blockquote { color: #000; border-color: #999; }
+    .pull blockquote { color: #000; }
+}
+</style>
+</head>
+<body>
+
+<script>document.documentElement.classList.add('js');</script>
+
+<div class="progress" aria-hidden="true"></div>
+
+<header class="site">
+  <a class="name" href="/">Audrey&nbsp;Tang <span class="cjk">唐鳳</span></a>
+  <div class="crumbs">
+    <span>拒絕被最佳化的權利</span>
+    <span class="tag">譯文</span>
+  </div>
+</header>
+
+<!-- ════════ MASTHEAD ════════ -->
+<header class="masthead">
+    <p class="kicker"><span>The Humanist Review</span><span class="dot">&middot;</span><span>創刊號</span><span class="dot">&middot;</span><span>人與科技</span></p>
+    <h1>AI 與民主：<br>拒絕被最佳化的權利</h1>
+    <p class="dek">真正的危險，不在機器把人模仿得多像，而在人開始把自己調整成機器的形狀。</p>
+</header>
+
+<div class="art-band">
+    <div class="art-frame">
+<svg class="art-svg" viewBox="0 0 1200 540" role="img" aria-label="以珊瑚色網點構成的蝴蝶，疊上幾何圓環與弧線" preserveAspectRatio="xMidYMid meet">
+<circle class="art-ring" cx="600" cy="285" r="238"/>
+<circle class="art-ring art-ring--dash" cx="600" cy="285" r="196"/>
+<path class="art-arc" d="M 208 430 A 300 300 0 0 1 600 -10"/>
+<circle class="art-disc" cx="878" cy="150" r="58"/>
+<circle class="art-disc art-disc--sm" cx="318" cy="408" r="26"/>
+<line class="art-line" x1="120" y1="285" x2="352" y2="285"/>
+<line class="art-line" x1="848" y1="285" x2="1080" y2="285"/>
+<g class="art-plum"><circle cx="490.3" cy="199.6" r="3.3"/><circle cx="669.5" cy="210.8" r="3.4"/><circle cx="609.5" cy="230.3" r="3.4"/><circle cx="610.3" cy="240.6" r="3.4"/><circle cx="549.4" cy="250.5" r="3.4"/><circle cx="609.7" cy="270.8" r="3.4"/><circle cx="579.6" cy="279.0" r="3.4"/></g>
+<g class="art-coral"><circle cx="720.6" cy="80.9" r="1.2"/><circle cx="730.4" cy="80.1" r="1.2"/><circle cx="691.0" cy="90.7" r="1.2"/><circle cx="701.0" cy="90.7" r="1.4"/><circle cx="709.8" cy="89.5" r="1.7"/><circle cx="719.7" cy="89.4" r="1.7"/><circle cx="730.3" cy="90.5" r="1.6"/><circle cx="739.8" cy="90.7" r="1.3"/><circle cx="680.7" cy="99.2" r="1.5"/><circle cx="689.5" cy="99.4" r="1.4"/><circle cx="700.8" cy="101.0" r="2.0"/><circle cx="709.1" cy="99.8" r="1.7"/><circle cx="719.6" cy="100.3" r="1.9"/><circle cx="729.2" cy="99.2" r="1.6"/><circle cx="740.0" cy="100.5" r="1.4"/><circle cx="749.4" cy="99.2" r="1.4"/><circle cx="669.8" cy="110.4" r="1.5"/><circle cx="680.4" cy="110.5" r="1.9"/><circle cx="690.1" cy="110.5" r="1.9"/><circle cx="699.0" cy="109.3" r="2.0"/><circle cx="709.4" cy="111.0" r="2.2"/><circle cx="719.4" cy="110.4" r="2.1"/><circle cx="730.0" cy="109.6" r="1.9"/><circle cx="740.3" cy="109.4" r="1.7"/><circle cx="750.3" cy="110.4" r="1.5"/><circle cx="420.6" cy="120.2" r="1.1"/><circle cx="429.1" cy="119.3" r="1.4"/><circle cx="440.8" cy="120.4" r="1.4"/><circle cx="450.1" cy="119.6" r="1.4"/><circle cx="460.1" cy="119.8" r="1.5"/><circle cx="470.8" cy="121.0" r="1.4"/><circle cx="660.2" cy="119.5" r="1.5"/><circle cx="670.8" cy="119.1" r="2.0"/><circle cx="680.6" cy="119.0" r="2.2"/><circle cx="690.8" cy="120.2" r="2.4"/><circle cx="699.9" cy="120.6" r="2.5"/><circle cx="709.8" cy="119.4" r="2.2"/><circle cx="720.3" cy="119.3" r="2.3"/><circle cx="730.5" cy="119.1" r="1.9"/><circle cx="740.9" cy="119.4" r="1.9"/><circle cx="750.1" cy="120.0" r="1.6"/><circle cx="410.3" cy="130.5" r="1.2"/><circle cx="419.7" cy="130.3" r="1.4"/><circle cx="430.3" cy="129.9" r="1.4"/><circle cx="439.2" cy="129.8" r="1.9"/><circle cx="449.9" cy="130.7" r="1.6"/><circle cx="460.9" cy="129.1" r="1.7"/><circle cx="469.8" cy="130.9" r="1.8"/><circle cx="479.1" cy="130.2" r="1.5"/><circle cx="490.7" cy="130.6" r="1.5"/><circle cx="649.8" cy="130.2" r="1.4"/><circle cx="659.3" cy="129.9" r="2.2"/><circle cx="669.7" cy="130.8" r="2.3"/><circle cx="680.6" cy="129.4" r="2.3"/><circle cx="689.3" cy="130.9" r="2.7"/><circle cx="700.6" cy="130.7" r="2.5"/><circle cx="709.8" cy="129.3" r="2.5"/><circle cx="720.5" cy="130.6" r="2.2"/><circle cx="730.3" cy="129.0" r="2.3"/><circle cx="740.3" cy="129.6" r="2.0"/><circle cx="749.2" cy="130.7" r="1.4"/><circle cx="409.7" cy="140.1" r="1.3"/><circle cx="420.4" cy="140.6" r="1.7"/><circle cx="429.3" cy="139.2" r="1.6"/><circle cx="440.3" cy="140.8" r="2.0"/><circle cx="449.1" cy="139.2" r="1.8"/><circle cx="461.0" cy="139.7" r="2.0"/><circle cx="470.4" cy="140.3" r="1.9"/><circle cx="479.6" cy="140.0" r="1.9"/><circle cx="489.8" cy="139.9" r="1.7"/><circle cx="499.9" cy="140.5" r="1.5"/><circle cx="640.2" cy="139.6" r="1.2"/><circle cx="650.8" cy="140.5" r="2.3"/><circle cx="659.5" cy="139.0" r="2.2"/><circle cx="670.4" cy="139.5" r="2.6"/><circle cx="680.4" cy="140.1" r="2.8"/><circle cx="689.4" cy="139.7" r="2.9"/><circle cx="699.6" cy="139.8" r="2.7"/><circle cx="709.2" cy="139.7" r="2.4"/><circle cx="720.2" cy="139.8" r="2.4"/><circle cx="729.5" cy="140.3" r="2.3"/><circle cx="739.9" cy="140.0" r="1.8"/><circle cx="749.3" cy="140.2" r="1.6"/><circle cx="409.4" cy="150.7" r="1.3"/><circle cx="420.8" cy="149.6" r="1.8"/><circle cx="429.1" cy="149.6" r="1.9"/><circle cx="440.2" cy="150.4" r="2.1"/><circle cx="451.0" cy="149.3" r="2.1"/><circle cx="460.4" cy="149.8" r="2.3"/><circle cx="470.0" cy="149.7" r="2.3"/><circle cx="479.1" cy="149.7" r="2.4"/><circle cx="489.7" cy="150.7" r="2.2"/><circle cx="500.0" cy="149.3" r="2.0"/><circle cx="509.8" cy="150.2" r="1.9"/><circle cx="519.8" cy="150.7" r="1.2"/><circle cx="640.5" cy="150.8" r="2.1"/><circle cx="649.7" cy="149.2" r="2.2"/><circle cx="659.0" cy="149.6" r="2.6"/><circle cx="669.8" cy="149.3" r="3.0"/><circle cx="679.3" cy="149.5" r="2.7"/><circle cx="690.4" cy="149.5" r="2.9"/><circle cx="700.9" cy="150.0" r="2.6"/><circle cx="710.5" cy="150.0" r="2.8"/><circle cx="720.0" cy="149.3" r="2.5"/><circle cx="729.6" cy="150.9" r="2.0"/><circle cx="740.2" cy="150.0" r="1.7"/><circle cx="410.3" cy="160.6" r="1.4"/><circle cx="420.5" cy="159.4" r="1.6"/><circle cx="430.3" cy="159.2" r="1.8"/><circle cx="439.5" cy="160.2" r="2.3"/><circle cx="450.1" cy="160.7" r="2.2"/><circle cx="459.3" cy="161.0" r="2.4"/><circle cx="469.3" cy="159.8" r="2.6"/><circle cx="480.5" cy="159.6" r="2.4"/><circle cx="489.4" cy="160.0" r="2.8"/><circle cx="500.4" cy="160.3" r="2.4"/><circle cx="509.9" cy="160.5" r="2.4"/><circle cx="519.3" cy="159.1" r="2.0"/><circle cx="529.9" cy="160.0" r="1.7"/><circle cx="629.5" cy="160.7" r="1.6"/><circle cx="639.0" cy="160.4" r="2.5"/><circle cx="651.0" cy="159.6" r="2.8"/><circle cx="659.5" cy="159.7" r="3.1"/><circle cx="669.4" cy="160.2" r="3.1"/><circle cx="680.9" cy="159.1" r="3.1"/><circle cx="690.9" cy="159.4" r="3.1"/><circle cx="700.5" cy="160.2" r="3.1"/><circle cx="710.8" cy="160.6" r="2.9"/><circle cx="719.1" cy="159.9" r="2.6"/><circle cx="730.9" cy="160.7" r="1.9"/><circle cx="739.8" cy="160.9" r="1.5"/><circle cx="419.9" cy="170.9" r="1.4"/><circle cx="429.2" cy="170.0" r="1.8"/><circle cx="440.8" cy="169.8" r="2.1"/><circle cx="450.4" cy="170.3" r="2.6"/><circle cx="459.8" cy="170.3" r="2.4"/><circle cx="469.9" cy="170.0" r="2.7"/><circle cx="479.0" cy="170.2" r="2.6"/><circle cx="489.7" cy="170.6" r="2.9"/><circle cx="499.9" cy="169.5" r="2.9"/><circle cx="509.8" cy="170.5" r="2.9"/><circle cx="520.9" cy="169.6" r="2.5"/><circle cx="529.1" cy="169.5" r="2.1"/><circle cx="539.1" cy="170.4" r="1.5"/><circle cx="629.1" cy="170.9" r="2.0"/><circle cx="640.9" cy="170.6" r="2.8"/><circle cx="649.6" cy="169.7" r="2.9"/><circle cx="659.7" cy="169.8" r="3.2"/><circle cx="669.3" cy="170.7" r="3.2"/><circle cx="679.5" cy="169.8" r="3.2"/><circle cx="691.0" cy="170.8" r="3.1"/><circle cx="699.1" cy="169.5" r="2.8"/><circle cx="709.4" cy="170.4" r="2.7"/><circle cx="720.6" cy="169.0" r="2.5"/><circle cx="729.3" cy="170.5" r="2.0"/><circle cx="419.4" cy="180.9" r="1.2"/><circle cx="430.4" cy="180.4" r="1.8"/><circle cx="440.7" cy="179.1" r="2.2"/><circle cx="450.8" cy="180.1" r="2.3"/><circle cx="459.6" cy="180.7" r="2.8"/><circle cx="470.4" cy="179.9" r="2.8"/><circle cx="479.1" cy="180.6" r="2.8"/><circle cx="490.6" cy="180.8" r="3.0"/><circle cx="499.4" cy="180.1" r="3.2"/><circle cx="510.9" cy="179.6" r="3.0"/><circle cx="519.7" cy="179.1" r="3.0"/><circle cx="529.4" cy="179.9" r="2.7"/><circle cx="539.2" cy="180.6" r="2.4"/><circle cx="550.9" cy="180.9" r="1.7"/><circle cx="620.4" cy="179.2" r="1.7"/><circle cx="629.8" cy="179.1" r="2.7"/><circle cx="640.6" cy="179.7" r="3.1"/><circle cx="649.9" cy="179.9" r="3.2"/><circle cx="659.8" cy="179.1" r="3.4"/><circle cx="670.6" cy="179.0" r="3.6"/><circle cx="681.0" cy="179.4" r="3.2"/><circle cx="689.7" cy="179.6" r="3.2"/><circle cx="700.4" cy="180.0" r="2.8"/><circle cx="709.9" cy="180.6" r="2.7"/><circle cx="719.8" cy="180.5" r="2.4"/><circle cx="730.5" cy="180.6" r="1.4"/><circle cx="430.1" cy="189.9" r="1.5"/><circle cx="440.6" cy="189.3" r="2.0"/><circle cx="449.5" cy="190.5" r="2.4"/><circle cx="459.8" cy="190.4" r="2.5"/><circle cx="470.8" cy="190.0" r="2.8"/><circle cx="480.3" cy="189.9" r="2.8"/><circle cx="490.2" cy="189.4" r="3.0"/><circle cx="499.9" cy="190.4" r="3.4"/><circle cx="509.6" cy="190.9" r="3.4"/><circle cx="519.6" cy="189.2" r="3.3"/><circle cx="530.4" cy="189.3" r="3.3"/><circle cx="540.7" cy="190.6" r="2.9"/><circle cx="549.0" cy="190.4" r="2.7"/><circle cx="620.4" cy="190.4" r="2.4"/><circle cx="630.4" cy="189.2" r="3.1"/><circle cx="640.5" cy="189.5" r="3.6"/><circle cx="649.7" cy="189.6" r="3.7"/><circle cx="660.7" cy="189.2" r="3.7"/><circle cx="669.7" cy="190.7" r="3.5"/><circle cx="679.6" cy="189.1" r="3.6"/><circle cx="690.3" cy="190.9" r="3.1"/><circle cx="700.7" cy="190.6" r="3.0"/><circle cx="710.8" cy="190.6" r="2.3"/><circle cx="720.2" cy="189.9" r="2.0"/><circle cx="441.0" cy="200.3" r="1.6"/><circle cx="449.2" cy="201.0" r="2.1"/><circle cx="460.8" cy="200.7" r="2.6"/><circle cx="470.6" cy="199.7" r="2.6"/><circle cx="479.5" cy="199.1" r="2.9"/><circle cx="499.2" cy="200.7" r="3.3"/><circle cx="509.1" cy="199.4" r="3.5"/><circle cx="520.6" cy="199.4" r="3.4"/><circle cx="531.0" cy="199.6" r="3.4"/><circle cx="539.9" cy="199.8" r="3.3"/><circle cx="550.8" cy="200.6" r="2.9"/><circle cx="559.9" cy="200.0" r="2.5"/><circle cx="610.3" cy="200.3" r="1.7"/><circle cx="619.4" cy="199.8" r="2.9"/><circle cx="629.7" cy="200.3" r="3.6"/><circle cx="640.5" cy="199.7" r="3.8"/><circle cx="650.0" cy="199.5" r="3.7"/><circle cx="660.8" cy="199.4" r="3.5"/><circle cx="670.0" cy="199.7" r="3.8"/><circle cx="679.8" cy="200.9" r="3.4"/><circle cx="689.5" cy="200.4" r="3.2"/><circle cx="699.2" cy="199.6" r="3.0"/><circle cx="709.2" cy="200.9" r="2.2"/><circle cx="719.7" cy="199.7" r="1.3"/><circle cx="440.5" cy="210.6" r="1.3"/><circle cx="450.0" cy="210.2" r="2.0"/><circle cx="460.7" cy="209.3" r="2.5"/><circle cx="469.8" cy="209.6" r="2.9"/><circle cx="479.7" cy="210.5" r="3.0"/><circle cx="490.4" cy="209.4" r="3.1"/><circle cx="500.1" cy="209.1" r="3.3"/><circle cx="509.6" cy="210.0" r="3.5"/><circle cx="520.8" cy="210.6" r="3.6"/><circle cx="530.5" cy="209.1" r="3.6"/><circle cx="539.7" cy="209.1" r="3.6"/><circle cx="550.6" cy="209.3" r="3.5"/><circle cx="560.2" cy="209.6" r="3.0"/><circle cx="571.0" cy="209.7" r="1.9"/><circle cx="610.7" cy="209.0" r="2.3"/><circle cx="620.9" cy="209.8" r="3.6"/><circle cx="629.8" cy="209.8" r="3.9"/><circle cx="639.1" cy="209.1" r="4.1"/><circle cx="649.6" cy="210.5" r="3.8"/><circle cx="659.3" cy="210.8" r="3.8"/><circle cx="680.6" cy="209.0" r="3.3"/><circle cx="690.7" cy="210.4" r="2.9"/><circle cx="699.1" cy="210.4" r="2.3"/><circle cx="710.5" cy="210.4" r="1.3"/><circle cx="450.9" cy="219.2" r="1.2"/><circle cx="459.8" cy="219.2" r="1.9"/><circle cx="469.6" cy="220.1" r="2.3"/><circle cx="479.4" cy="219.8" r="2.6"/><circle cx="490.5" cy="219.3" r="3.3"/><circle cx="499.4" cy="219.6" r="3.4"/><circle cx="509.5" cy="219.7" r="3.6"/><circle cx="520.0" cy="220.3" r="3.7"/><circle cx="530.7" cy="219.2" r="3.8"/><circle cx="539.9" cy="220.4" r="3.8"/><circle cx="549.8" cy="220.1" r="4.0"/><circle cx="559.8" cy="220.1" r="3.7"/><circle cx="569.3" cy="220.3" r="3.0"/><circle cx="579.5" cy="219.5" r="1.1"/><circle cx="610.6" cy="220.8" r="3.1"/><circle cx="620.7" cy="220.5" r="3.8"/><circle cx="630.6" cy="220.4" r="3.9"/><circle cx="641.0" cy="219.9" r="3.9"/><circle cx="650.8" cy="220.9" r="3.9"/><circle cx="659.6" cy="219.9" r="4.0"/><circle cx="669.4" cy="220.5" r="3.6"/><circle cx="680.5" cy="219.9" r="3.2"/><circle cx="690.5" cy="219.8" r="2.4"/><circle cx="700.2" cy="219.3" r="1.6"/><circle cx="470.7" cy="230.9" r="2.0"/><circle cx="480.4" cy="230.3" r="2.6"/><circle cx="490.3" cy="229.5" r="3.1"/><circle cx="499.8" cy="229.7" r="3.5"/><circle cx="510.9" cy="229.8" r="3.6"/><circle cx="520.9" cy="229.5" r="3.9"/><circle cx="530.0" cy="229.3" r="3.9"/><circle cx="539.2" cy="230.4" r="4.1"/><circle cx="550.7" cy="229.2" r="4.2"/><circle cx="559.1" cy="230.1" r="4.2"/><circle cx="570.1" cy="229.8" r="3.6"/><circle cx="580.9" cy="229.2" r="2.4"/><circle cx="600.4" cy="230.0" r="1.4"/><circle cx="620.6" cy="229.6" r="4.1"/><circle cx="629.8" cy="230.0" r="4.4"/><circle cx="639.5" cy="229.5" r="4.2"/><circle cx="649.2" cy="229.3" r="3.9"/><circle cx="660.6" cy="230.5" r="3.7"/><circle cx="670.1" cy="230.7" r="3.2"/><circle cx="680.1" cy="229.1" r="2.7"/><circle cx="689.9" cy="230.4" r="1.2"/><circle cx="480.4" cy="239.6" r="1.7"/><circle cx="490.6" cy="241.0" r="2.3"/><circle cx="499.8" cy="240.5" r="3.1"/><circle cx="509.3" cy="240.3" r="3.4"/><circle cx="520.4" cy="239.3" r="3.6"/><circle cx="530.8" cy="240.2" r="4.0"/><circle cx="540.0" cy="240.6" r="4.0"/><circle cx="550.6" cy="240.6" r="4.2"/><circle cx="559.5" cy="240.0" r="4.1"/><circle cx="570.7" cy="240.1" r="4.2"/><circle cx="580.6" cy="239.5" r="3.4"/><circle cx="589.8" cy="240.0" r="1.9"/><circle cx="600.7" cy="239.3" r="2.5"/><circle cx="620.1" cy="241.0" r="4.5"/><circle cx="630.0" cy="240.0" r="4.5"/><circle cx="639.7" cy="240.5" r="4.3"/><circle cx="650.9" cy="240.4" r="4.1"/><circle cx="660.9" cy="240.3" r="3.4"/><circle cx="669.7" cy="239.6" r="2.9"/><circle cx="499.6" cy="249.4" r="2.3"/><circle cx="509.4" cy="249.1" r="3.0"/><circle cx="519.7" cy="250.6" r="3.5"/><circle cx="529.8" cy="250.1" r="3.7"/><circle cx="540.4" cy="249.2" r="4.3"/><circle cx="559.1" cy="250.3" r="4.4"/><circle cx="570.5" cy="249.1" r="4.2"/><circle cx="579.4" cy="249.8" r="4.1"/><circle cx="590.9" cy="250.7" r="3.2"/><circle cx="600.0" cy="250.0" r="3.0"/><circle cx="609.9" cy="249.2" r="4.1"/><circle cx="619.4" cy="249.2" r="4.5"/><circle cx="630.8" cy="249.8" r="4.3"/><circle cx="640.7" cy="250.8" r="4.1"/><circle cx="649.1" cy="250.6" r="3.6"/><circle cx="659.2" cy="249.2" r="3.1"/><circle cx="519.3" cy="259.6" r="2.5"/><circle cx="529.1" cy="259.9" r="3.0"/><circle cx="539.3" cy="260.3" r="3.6"/><circle cx="549.4" cy="259.0" r="4.2"/><circle cx="559.3" cy="259.3" r="4.3"/><circle cx="569.8" cy="259.3" r="4.5"/><circle cx="580.6" cy="260.1" r="4.5"/><circle cx="590.3" cy="259.6" r="4.2"/><circle cx="600.3" cy="259.2" r="3.5"/><circle cx="610.7" cy="260.2" r="4.6"/><circle cx="621.0" cy="260.4" r="4.5"/><circle cx="630.1" cy="260.6" r="4.4"/><circle cx="639.1" cy="260.0" r="3.9"/><circle cx="650.3" cy="259.1" r="2.2"/><circle cx="540.7" cy="269.2" r="2.4"/><circle cx="549.2" cy="270.7" r="3.2"/><circle cx="560.1" cy="270.1" r="4.0"/><circle cx="570.8" cy="270.9" r="4.6"/><circle cx="580.3" cy="270.6" r="4.6"/><circle cx="590.2" cy="270.9" r="4.9"/><circle cx="599.7" cy="269.1" r="4.2"/><circle cx="619.0" cy="269.0" r="4.7"/><circle cx="629.8" cy="270.2" r="3.2"/><circle cx="590.4" cy="280.3" r="4.6"/><circle cx="609.8" cy="279.7" r="4.4"/><circle cx="619.4" cy="290.3" r="3.4"/><circle cx="590.2" cy="300.9" r="4.2"/><circle cx="610.3" cy="300.9" r="3.6"/><circle cx="630.3" cy="299.3" r="3.9"/><circle cx="579.3" cy="310.0" r="4.1"/><circle cx="590.9" cy="310.5" r="3.6"/><circle cx="619.0" cy="309.4" r="3.8"/><circle cx="630.7" cy="309.2" r="4.2"/><circle cx="649.8" cy="310.3" r="3.4"/><circle cx="659.9" cy="309.7" r="2.6"/><circle cx="569.4" cy="319.9" r="3.8"/><circle cx="579.3" cy="319.0" r="4.0"/><circle cx="629.8" cy="319.5" r="3.7"/><circle cx="650.0" cy="320.0" r="3.6"/><circle cx="660.3" cy="320.8" r="3.3"/><circle cx="670.9" cy="319.7" r="2.5"/><circle cx="540.6" cy="330.7" r="2.3"/><circle cx="549.0" cy="330.1" r="3.0"/><circle cx="569.3" cy="329.2" r="3.5"/><circle cx="579.6" cy="330.9" r="3.0"/><circle cx="629.9" cy="330.4" r="1.3"/><circle cx="640.6" cy="329.0" r="3.3"/><circle cx="649.9" cy="329.1" r="3.6"/><circle cx="660.1" cy="329.9" r="3.4"/><circle cx="670.6" cy="329.5" r="3.1"/><circle cx="680.5" cy="330.6" r="2.7"/><circle cx="529.5" cy="340.5" r="2.0"/><circle cx="540.3" cy="339.1" r="3.0"/><circle cx="560.6" cy="339.1" r="3.6"/><circle cx="579.7" cy="340.5" r="1.5"/><circle cx="639.4" cy="339.9" r="1.7"/><circle cx="649.4" cy="339.6" r="2.9"/><circle cx="659.9" cy="339.8" r="3.2"/><circle cx="691.0" cy="339.4" r="2.4"/><circle cx="700.8" cy="339.0" r="1.9"/><circle cx="530.3" cy="349.3" r="2.6"/><circle cx="550.8" cy="349.9" r="3.1"/><circle cx="559.8" cy="350.0" r="3.0"/><circle cx="569.1" cy="349.6" r="2.5"/><circle cx="650.1" cy="349.1" r="1.8"/><circle cx="660.0" cy="349.8" r="2.4"/><circle cx="670.2" cy="350.4" r="2.8"/><circle cx="679.0" cy="350.7" r="2.8"/><circle cx="689.9" cy="350.4" r="2.5"/><circle cx="700.9" cy="349.1" r="2.0"/><circle cx="709.1" cy="350.2" r="1.8"/><circle cx="519.6" cy="360.9" r="2.1"/><circle cx="530.2" cy="359.0" r="2.5"/><circle cx="549.2" cy="360.7" r="3.0"/><circle cx="559.6" cy="360.5" r="2.6"/><circle cx="670.4" cy="359.7" r="2.3"/><circle cx="690.1" cy="360.8" r="2.2"/><circle cx="699.1" cy="360.6" r="2.2"/><circle cx="709.3" cy="359.7" r="1.8"/><circle cx="510.0" cy="370.5" r="1.6"/><circle cx="540.1" cy="369.2" r="2.5"/><circle cx="700.7" cy="370.8" r="2.0"/><circle cx="709.9" cy="370.3" r="1.7"/><circle cx="720.2" cy="369.6" r="1.1"/><circle cx="550.9" cy="379.3" r="1.7"/></g>
+<g class="art-peach"><circle cx="599.9" cy="279.2" r="4.6"/><circle cx="610.3" cy="289.7" r="4.3"/><circle cx="579.3" cy="299.1" r="4.0"/><circle cx="619.7" cy="299.6" r="4.2"/><circle cx="639.7" cy="300.2" r="3.2"/><circle cx="650.3" cy="300.9" r="1.6"/><circle cx="559.9" cy="309.3" r="1.8"/><circle cx="570.8" cy="311.0" r="3.8"/><circle cx="640.0" cy="310.4" r="4.0"/><circle cx="550.8" cy="319.3" r="2.5"/><circle cx="560.5" cy="319.9" r="3.5"/><circle cx="640.0" cy="320.1" r="3.7"/><circle cx="680.1" cy="320.2" r="1.9"/><circle cx="560.7" cy="329.1" r="3.7"/><circle cx="690.8" cy="329.8" r="2.0"/><circle cx="549.4" cy="340.0" r="3.4"/><circle cx="570.0" cy="340.8" r="3.4"/><circle cx="670.7" cy="340.2" r="3.1"/><circle cx="680.0" cy="340.3" r="2.8"/><circle cx="520.5" cy="350.1" r="1.5"/><circle cx="539.6" cy="349.3" r="3.1"/><circle cx="539.7" cy="359.4" r="3.0"/><circle cx="680.1" cy="360.1" r="2.1"/><circle cx="719.7" cy="359.6" r="1.3"/><circle cx="520.5" cy="370.6" r="2.2"/><circle cx="529.9" cy="370.6" r="2.3"/><circle cx="550.7" cy="370.5" r="2.4"/><circle cx="560.8" cy="370.0" r="1.5"/><circle cx="680.6" cy="369.7" r="1.8"/><circle cx="689.2" cy="370.8" r="1.9"/><circle cx="509.9" cy="380.5" r="1.8"/><circle cx="521.0" cy="380.6" r="2.2"/><circle cx="530.4" cy="380.5" r="2.2"/><circle cx="540.3" cy="379.3" r="2.2"/><circle cx="699.3" cy="379.4" r="1.3"/><circle cx="710.1" cy="380.8" r="1.3"/><circle cx="509.7" cy="389.1" r="1.8"/><circle cx="520.6" cy="390.2" r="2.0"/><circle cx="530.4" cy="389.4" r="1.8"/><circle cx="539.9" cy="389.7" r="1.4"/><circle cx="510.5" cy="399.6" r="1.2"/><circle cx="519.7" cy="400.1" r="1.4"/><circle cx="530.0" cy="399.2" r="1.3"/></g>
+</svg>
+    </div>
+</div>
+
+<div class="byline">
+    <span class="who">唐鳳 Audrey Tang</span>
+    <span>2026 年 7 月 15 日</span>
+</div>
+
+<main>
+
+<!-- ════════ 引言 ════════ -->
+<section class="prose lede reveal">
+    <p>每當有人問我，AI 是否威脅人文主義，我總覺得這個問題本身，已經來得有些晚了。更深的威脅來得更早——當數位系統學會以工業規模排序注意力的那一刻。早在生成式模型能寫文章、譜歌曲、模擬對話之前，我們許多人就已被訓練成排序系統裡的零件：永遠可見、永遠反應、永遠可測。等到合成的流暢抵達時，一場更安靜的變化早已展開。我們，正變得更容易被打分數。</p>
+    <p>所以我不認為，本世紀最關鍵的問題是機器會不會愈來愈像人。真正的問題是：人，是否仍被允許，活得超出機器所能輕易評量的範圍。</p>
+    <p>兩種可能，我都親眼見過。一方面，語言模型能帶我走進一場原本無從發生的對話。在會見一位日本思想家之前——他最新的著作，我讀不了原文——我先用 AI 在我們相異的哲學傳統之間，搭起一套堪用的詞彙。系統並沒有取代那場相遇；它讓相遇成為可能。對話一旦展開，模型的重要性便逐漸淡去。它把工作做得恰到好處，正是因為它不再需要居於中心。</p>
+    <p>另一方面，我們也都領教過反其道而行的系統。它們不加深理解，而是訓練人按照資訊流的節奏過活，把自己壓縮成平台最容易判讀的形狀，並把不斷的反應誤認為參與。問題不在於 AI 將說得像人；問題在於，制度將獎勵說得像機器的人。</p>
+</section>
+
+<aside class="pull reveal">
+    <blockquote>我們匱乏的不是內容，而是相互理解。</blockquote>
+</aside>
+
+<section class="prose reveal">
+    <p>合乎人性的科技未來，不靠多愁善感來保障，也不靠懷舊地捍衛每件軟體如今能夠加速的差事。它繫於我們能否設計出工具、制度與規範，護持公共生活中人之所以為人的部分——那是一種能力：跨越差異理解彼此、立下經得起時間的承諾、修正自己而不受屈辱、要求權力接受課責，並且顧念那些任何基準測試都無法完全捕捉的後果。</p>
+</section>
+
+<!-- ════════ 一 ════════ -->
+<div class="section-head reveal">
+    <span class="num">壹</span>
+    <h2>值得守護的，未必都是手工</h2>
+</div>
+<section class="prose reveal">
+    <p>面對 AI，一種常見的反應，是以捍衛每件人類差事，來捍衛人本身。如果模型能起草書信，尊嚴或許就在於不假外力寫下每句話；如果模型能摘要一本書，真誠或許就要求親自讀過每一頁；如果模型能作曲，唯一體面的回應，或許就是匠人式的純粹。</p>
+    <p>我理解這種直覺。它出於一種正當的恐懼：自動化可能把意義掏空。但我不相信，人文主義可以化約為對手工勞動的保存。許多人類的差事本身並不神聖；它們是環繞著更重要之物搭起的鷹架。</p>
+    <p>關鍵的界線，不在「有無輔助」的產出之間，而在「表達」與「承擔」之間。模型可以幫我找到字句，卻無法為字句裡的承諾作保。系統可以幫我準備一場對話，卻無法繼承我決定說出口的責任。工具可以讓我的想法跨越文化傳統、呈現得更清晰，但意圖、承諾與課責，必須始終屬於人。</p>
+    <p>這個區分之所以重要，是因為它讓我們得以歡迎擴大感官的技術，而不必交出「親自在場」這門道德功課。眼鏡、字幕、地圖、助聽器、翻譯工具、搜尋引擎，都在延伸我們的能力，讓世界更加觸手可及。使用它們，不會讓我們比較不像人；反而讓我們更能理解，也更能被理解。</p>
+    <p>AI 系統亦然。就我的經驗，它們最好的用法，不是替我演出一段人生，而是讓我更有能力，好好與另一個社群相會。一套好的系統，能讓我在原本只聽見噪音之處聽出意義，能讓我在尚未學會的語言裡發現一個概念，也能重新框定一場艱難的交鋒，讓雙方都保住尊嚴。在這些時刻，工具不像一個替身，更像一副暫借的輔具，讓彼此得以互通。</p>
+    <p>這與當前許多環繞「代理式 AI」的言說所暗示的野心，截然不同。替我訂房、替我排行程的代理，或許有用；但逐漸成為我的社交存在、我的公共聲音、乃至替代良知的代理，就完全是另一回事了。工具一旦不再延伸我們的參與，而開始取而代之，它也就開始重塑「參與」本身據以評判的標準。</p>
+</section>
+
+<aside class="pull reveal">
+    <blockquote>這才是「去人性化」真正的危險：人把自己修剪成機器讀得懂的形狀。</blockquote>
+</aside>
+
+<section class="prose reveal">
+    <p>到了那一步，人便開始遷就代理。人們學著以對機器友善的方式書寫，為了讓模型看得見而編排工作，為了讓演算法願意接收而最佳化情緒的表達。人不再只是使用系統，而是開始按照系統所能處理的樣子安放自己。</p>
+</section>
+
+<!-- ════════ 二 ════════ -->
+<div class="section-head reveal">
+    <span class="num">貳</span>
+    <h2>從自主的自我，到關係中的人</h2>
+</div>
+<section class="prose reveal">
+    <p>幾個世紀以來，人文主義思想多半強調個人的自主。這個傳統帶給我們權利、自由、良知、表達的自由，以及個人面對專斷權力時的尊嚴。這些無比珍貴的保障，我們不應鬆手。</p>
+    <p>但 AI 時代正以罕見的清晰，揭示著工業現代性時常遮蔽的一件事：我們不只是自主的個體；我們是在關懷、語言、信任、衝突與肯認交織的網絡裡，長成自己。人不只是偏好的容器；人，也是回應的樣態。</p>
+    <p>這件事之所以要緊，是因為許多一度被誤認為智慧本質的活動，如今已然自動化。循規蹈矩、表面的流暢、風格的模仿、模式的補完、考試的表現——這些正日漸成為像水電一樣隨取隨用的公用服務。而當這一切發生，最重要的人類能力反而更容易看見，不是更難。</p>
+    <p>學生的未來，不該取決於算術算得過計算機，或制式作文寫得過模型。工作者的尊嚴，不該繫於親手敲出每一句行政文書。公民的價值，不該用行為與推薦系統的預設吻合到什麼程度來衡量。真正屬於人的，不是原始的產出，而是我們引導注意力的風格、走進協作的方式、在不確定之中運用判斷的姿態，以及對一個共同世界的顧念。</p>
+    <p>我時常覺得，這些能力與其說是私人的德性，不如說是關係中的德性。好奇，不只是內在的求知欲；它是走近他人與問題的方式：不急著將其化約。協作，不只是企業意義上的團隊合作；它是一種練出來的本事：因應其他智慧，修改自己的計畫。對公共之善的公民關懷，也不是抽象的利他；它是願意將顧念後果的圈子，擴大到眼前得失之外。</p>
+    <p>這些品質，都不適合用最佳化的語言來描述；事實上，它們往往正是被最佳化所傷。執著於衝高指標的人，會變得比較不好奇，因為好奇必須越出指標犒賞的範圍；會變得比較不擅協作，因為協作會改變節奏、重新分配功勞；也會變得比較不公民，因為公共財很少換得來最漂亮的短期分數。</p>
+    <p>因此，AI 之後的教育問題，不是「人還有什麼比機器做得更好？」——這個問題的保鮮期很短。更好的問題是：「當許多形式的表現都能自動化，教育應當培養哪些<em>成為人</em>的方式？」我的答案是：教育必須離開為順從的產出打分排序的老路，轉而培養詮釋的勇氣、協作的廣度、倫理的想像，以及參與修正而不失顏面的能力。</p>
+    <p>民主在最好的時候，早已在教我們其中一部分。民主是一種社會技術，讓一個社會抵擋「把自身一勞永逸地解決掉」的誘惑。它給人一套程序，使我們得以改變方向，而不至於社會決裂。就此而言，民主並不站在科技的對立面；民主本身，就是人類最重要的技術之一：讓集體生活始終可以修正的方法。</p>
+</section>
+
+<!-- ════════ 三 ════════ -->
+<div class="section-head reveal">
+    <span class="num">參</span>
+    <h2>問題不在智慧，而在資訊流</h2>
+</div>
+<section class="prose reveal">
+    <p>今天，當人們憂心合成的親密、機器人蜂群與規模化的說服，往往把它們說成全新的病症。其實不然。生成式 AI 加劇的，是一場架構早已築成的危機。</p>
+    <p>過去十年，網路世界的核心病灶不是言論太多，而是藉排序搾取注意力。資訊流犒賞最易燃、最善表演、最能迅速引發情緒感染的內容。憤怒成了廉價的能源。細膩太慢。脈絡難以遠行。而更正抵達時，陣營幾乎總已固化。</p>
+    <p>在這樣的環境裡，資訊變得不如節奏重要。人接受某個信念，不只因為證據動人，更因為信念周圍的社會機器，轉得比反思更快。等到謠言受到挑戰，群體認同也許早已繞著它結成。</p>
+    <p>AI 可能就在這裡雪上加霜。它能大量生成有說服力的內容、量身裁製情緒線索、模擬共識，並以合成的確定性淹沒每一條渠道。倘若部署在資訊流的舊邏輯之內，它會把既有的極化，變成一具永不熄火的「分裂生成」（schismogenesis）引擎。</p>
+    <p>但 AI 也能用來反制這套邏輯。它可以在憤怒鈣化之前，先行加註。它可以在道德語言互異、實際盼望卻彼此重疊的社群之間翻譯。它可以在衝突被誤述為「文明的不相容」之前，先讓共同的問題浮上檯面。它可以在人們發文選邊之前，先摘要整串討論。它可以幫一個人回應敵意，而不必先把每一句侮辱吞進身體裡代謝。</p>
+    <p>最後這種用法，我發現出乎意料地重要。在公共生活裡，人常收到滿載輕蔑、投射或焦慮的訊息。直接閱讀，會耗去大量心神。審慎使用的語言模型，能在那片敵意之中，辨認出仍承載真實關切的少數句子——值得澄清的誤會，或披著攻擊外衣的悲痛。然後，人再去回應那個比較小、比較可以著力的部分。</p>
+</section>
+
+<aside class="interlude reveal">
+    <div class="inner">
+        <span class="mark">Interlude</span>
+        <blockquote>機器不會和解。機器不會原諒。機器也不會生出友誼。但它可以減少一個人在判斷「這段關係還救不救得回來」之前，必須嚥下的毒性。</blockquote>
+    </div>
+</aside>
+
+<section class="prose reveal">
+    <p>就此而言，AI 有時是衝突的擴音器，但也可以是一層薄膜——讓意義透過，同時濾低毒性。</p>
+    <p>如果我們認真看待人文主義，服務公共利益的 AI 就該往這個方向發展。我們需要傾聽的基礎設施，而不只是生成的基礎設施。我們需要擴增詮釋頻寬的公民系統，而不只是擴增表達吞吐量。檢驗的標準，不該是模型一分鐘能產出多少內容，而是它是否留下這樣一群公眾：更能理解歧見，而不把歧見釀成敵意。</p>
+</section>
+
+<!-- ════════ 四 ════════ -->
+<div class="section-head reveal">
+    <span class="num">肆</span>
+    <h2>照片之後的真實</h2>
+</div>
+<section class="prose reveal">
+    <p>這些問題之所以顯得急迫，原因之一，是影像與真實之間的舊關係正在瓦解。一個多世紀以來，許多社會把照片當作享有特權的證據形式。照片並非萬無一失，卻被賦予特殊的知識論地位——它彷彿直接捕捉了現實。</p>
+    <p>數位文化早已鬆動這個假設；生成式模型則將它徹底溶解。影像、聲音、影片，如今都能逼真合成。單憑表面，已經不夠。</p>
+    <p>許多人據此斷定，真實本身已病入膏肓。我不這麼想。正在崩塌的不是真實，而是一條通往真實的特定捷徑。我們正被迫重新想起一件更古老、放遠了看也更堅韌的事：公共的真實，向來仰賴再現、出處、程序、相互印證，以及提出異議的可能。</p>
+    <p>早在深偽出現之前，法庭就不曾單看一張照片斷案。法庭會問：這是誰拍的？經過怎樣的保管鏈？與哪些證詞相互對照？又經受過怎樣的質疑？最好的新聞工作與此相似，科學當然如此，民主的課責亦然。重點不在表面看起來真不真，而在有沒有一套可課責的程序，讓主張得以受檢驗、被修正。</p>
+    <p>這指向一種更成熟的數位知識論。未來幾年，最重要的分野不會落在「天然」與「合成」的產物之間——彷彿未經觸碰的現實與生成的媒體分屬兩個世界。真正要緊的分野，是<em>可課責的中介</em>，與<em>不可課責的中介</em>。</p>
+    <p>誰站在一項主張背後？哪個社群、機構或簽署者為它負責？他人如何檢視它、質疑它、為它補上脈絡？系統能否登錄異議，而不是讓異議隱形？</p>
+    <p>民主社會裡的真實，從來不是一個彷彿來自虛空的單一聲音。它意味著不同的社群可以比對彼此所見、相互挑戰，同時仍維繫著讓修正始終可能的程序。AI 可以在此幫忙：追溯來源、辨認矛盾、在不同的詞彙之間翻譯。但它不能被供奉為凌駕社會的神諭。重點不是取代公共判斷，而是讓公共判斷更有能力。</p>
+</section>
+
+<!-- ════════ 五 ════════ -->
+<div class="section-head reveal">
+    <span class="num">伍</span>
+    <h2>合乎人性，可以中斷</h2>
+</div>
+<section class="prose reveal">
+    <p>當前 AI 論述的另一個謬誤，是假定最通用的模型——餵進最多資料、作為萬用底層供應——必然是智慧的最高形式。這是帝國思維的科技版：把規模，誤認作正當性。</p>
+    <p>實際上，最深刻影響人類生活的許多決定，仰賴的是脈絡、範圍，與具體處境裡的責任。課堂裡的助教，不必兼管福利資格的認定；醫療檢傷系統，不該同時決定排班；翻譯的輔具，不該悄悄變成政治說服的器械。合乎人性的系統，需要人們能夠理解的職權。</p>
+    <p>這正是我對某種願景有所保留的原因：由單一助理，一舉成為工作、溝通、教育與公民生活共同的作業層。這樣的系統看似便利，卻把太多領域，收攏在太少的可異議性之下。當工具無所不在，拒絕就變得困難；當它中介太多功能，錯誤就長成結構；當它的權威瀰散各處，課責也隨之瀰散。</p>
+    <p>人文的設計，始於分際——分際是<em>部署</em>的屬性，而非能力的屬性。一套通用的基礎模型，可以在地調校、在地部署，置於狹窄且由民主界定的職權之下，並對它所影響的人完全負責。</p>
+    <p>真正的問題在於：誰握著方向盤，又由哪些價值決定方向。AI 執行的，是那些有權設定目標的人所選定的目標。倘若唯一入選的指標只有效率，最先被最佳化掉的，往往正是關懷、耐心、信任，以及社會需要留存的<em>人與人之間的餘地</em>。</p>
+    <p>合乎人性的系統，應當知道自己的職權止於何處。它應當有具名的守護者，直接承擔責任。它應當留下可供檢視的紀錄，並提供申訴的途徑。最關鍵的是：它必須可以被暫停、被推翻、被除役，而不至於讓社會停擺。可中斷，不是民主技術的瑕疵；它是民主技術的憲政美德之一。</p>
+    <p>我遇過一些最合乎人性的系統——有的改造自通用模型，有的是樸素的訂製工具——它們都針對持續公共審議所辨認出的特定需求調校，部署在最了解那些需求的社群身邊。美德不在氣派，而在合身。</p>
+    <p>合身，在倫理上要緊，在生態與政治上同樣要緊。在部署上恰如其分節制的系統，能夠分散對機構的依附，也能節制「把使用者資料持續回收到集中式伺服器」的作法。正因它的職權清楚，受影響的社群更容易理解它、稽核它、修訂它，並在必要時汰換它。應用上的節制不是落後；它往往是能動性的前提。</p>
+    <p>通用 AI 的替代方案，不是碎裂成一座座孤島，而是聯邦：許多系統，共享標準、協定互通、在地課責。畢竟，網際網路正是這樣長出韌性的。它的天才之處，在於不同的網路學會了彼此交談，同時不必交出各自的在地結構。</p>
+    <p>AI 時代的人文主義，也該嚮往類似的事：工具幫助許多不同的社群彼此思考，同時始終對最靠近後果的人負責。</p>
+</section>
+
+<!-- ════════ 六 ════════ -->
+<div class="section-head reveal">
+    <span class="num">陸</span>
+    <h2>拒絕被最佳化的權利</h2>
+</div>
+<section class="prose reveal">
+    <p>人文主義還有一個元素，時常在技術辯論中缺席：為未被最佳化的生活辯護。</p>
+    <p>市場、平台與生產力文化，往往預設「減少摩擦」是毋庸置疑的善：更快的回覆、更滑順的介面、更頻繁的互動、更少停頓、更多個人化。但人的興盛，並不總在最短路徑上。信任生長的速度，常被效率指標誤讀為浪費。創造力往往始於無聊與放空。友誼不是吞吐量的問題。睡眠也不是生產系統的停機時間。</p>
+    <p>問題有一部分，出在我們記帳的方式。臺灣企業家施振榮曾提出「總帳」的構想——把尋常資產負債表遺漏的成本與價值，一併入帳。</p>
+    <p>透過這面鏡片望去，兩筆隱藏已久的帳目同時浮現。第一筆，是社會單繞著 GDP 組織起來的累積成本：猜疑、孤立與磨損——它們無處不在，卻從不列入細目。第二筆，是陪伴、養育、照顧與社群生活長期被低估的價值——這些勞動，工業現代性學會了不把它們當一回事，只因它們難以買賣。</p>
+</section>
+
+<aside class="pull reveal">
+    <blockquote>只崇尚最佳化的社會，終將把一切護持沉思生活的事物病理化：沉默視為閒置，儀式視為低效，隱私視為不透明，延遲視為失敗。然而，判斷力恰恰是在這些空間裡成熟的。</blockquote>
+</aside>
+
+<section class="prose reveal">
+    <p>因此，人文的科技必須捍衛表達的自由，也必須捍衛免於持續刺激的自由。我們需要不總是比周遭世界更亮眼的介面。我們需要不強求人隨時待命的規範。我們需要這樣的系統：允許歇息，允許不被看穿，允許在反應硬化成身分之前，先行抽身。</p>
+    <p>有時候，最先進的介入不是再添一項功能，而是更少的刺激。更暗一些的色彩。更慢一些的預設。更少一些的觸發。多留一些餘地，讓尋常的現實，恢復它的質地。</p>
+    <p>幽默在這裡很重要，雅量也是。脆而易碎的公共領域，會把每個過錯放到最大、把每次歧見道德化、為每句話打上立場的分數。人無法在這樣的空氣裡好好生活。我們需要技術與制度，幫助我們調降情緒的電壓、找回分寸，找到重新打開關係、而非關上關係的回應方式。</p>
+    <p>身而為人，不只是講理。也是即興，是笑，是把緊張消化掉，而不必總讓它升級。這些不是點綴；它們是公民的能力。</p>
+</section>
+
+<!-- ════════ 七・結 ════════ -->
+<section class="closing reveal">
+    <div class="head-wrap">
+        <span class="num">柒</span>
+        <h2>給合成心智的公民人文主義</h2>
+    </div>
+    <div class="prose-dark">
+        <p>於是，問題不在 AI 能否與抽象的「人類」對齊——那個概念太過含糊，難以在政治上派上用場。真正的問題是：我們的工具，能否與那些關係、制度與公共實踐對齊——在其中，人們仍有能力，共同治理自己。</p>
+        <p>如果系統讓我更流利，卻更難課責，它就縮減了我。如果它讓機構更快，卻更難質疑，它就縮減了民主。如果它給我更多資訊，卻讓我除了帶著猜疑，再無其他方式與人相會，它就縮減了公共生活。</p>
+        <p>未來不會因為證明模型有感受而得救，也不會因為佯裝感受是道德考量唯一的基礎而得救。要緊的是，我們打造的社會技術環境，是否為承諾、異議、修復與共同判斷留下餘地。就此意義而言，人文主義並非在捍衛某種物種的本質；它是在設計一種境況——讓人得以繼續與彼此一起、透過彼此，<em>成而為人</em>。</p>
+        <p>所以，我不夢想某種一舉化解所有衝突的完美智慧。衝突不是「母體」裡的故障。文明裡許多有創造力的事物，來自世界觀原本不同的人，學會了一起行動。任務並非消弭差異，而是打造中介的形式，不讓差異硬化為宰制。</p>
+        <p>AI 可以在這裡幫上忙。它可以幫我們翻譯、加註、比對、搭鷹架、做審議。它可以幫我們承載更多複雜，而不急著過早簡化。它可以幫我們看見：兩個社群也許說著不同的故事，想要的未來卻彼此相容。它可以幫我們在難以對話的咆哮裡，回應仍可著手的提問。它可以幫我們讓制度，對身在其中的人更加易讀。</p>
+        <p>但要讓這一切發生，我們必須不再只問 AI 能做什麼，而要問：它被使用之後，應當讓哪些社會能力，變得更強。合乎人性的工具，應當在自己退場之後，留下更能彼此理解的人。它應當留下更可修正、而非更難看透的制度。它應當留下這樣的社群：更能不在恐慌中做決定，更能查證主張而不必臣服於單一權威，也更願意保全異見者的尊嚴。</p>
+        <p>當所有的基準測試、所有的展示、所有合成的演出都過去之後，那個起決定作用的問題，仍將老派得動人：</p>
+    </div>
+    <div class="finale">
+        <blockquote>我們，是否變得更懂得，一起生活？</blockquote>
+        <span class="sig">唐鳳</span>
+    </div>
+</section>
+
+</main>
+
+<!-- ════════ 作者 ════════ -->
+<section class="author">
+    <div class="inner">
+        <div>
+            <span class="label">Author&nbsp;&mdash;&nbsp;作者</span>
+            <p class="bio"><strong>唐鳳</strong>是中華民國數位治理無任所大使、2025 年正命獎得主。曾任臺灣首任數位發展部長，將深厚的公民黑客背景帶入公職。現為牛津大學 AI 倫理研究院首屆加速哲人，與衛谷倫合著《多元宇宙》，並與 Caroline&nbsp;Green 共同發起《仁工智慧》研究計畫。</p>
+        </div>
+    </div>
+</section>
+
+<footer class="colophon">
+    <div class="cc0">CC0</div>
+    <p>譯自 <a href="https://humanistreview.ai/issue-1/tang-ai-democracy-optimization/" target="_blank" rel="noopener"><span lang="en">The Humanist Review</span> 創刊號</a>（2026 年 7 月 15 日）。譯文依據<a href="https://creativecommons.org/publicdomain/zero/1.0/deed.zh_TW" target="_blank" rel="noopener">創用 CC0 1.0 通用</a>條款釋出至公共領域。不保留任何權利。歡迎自由複製、改編、翻譯、再創作。</p>
+</footer>
+
+<script>
+(function () {
+    var bar = document.querySelector('.progress');
+    var ticking = false;
+    window.addEventListener('scroll', function () {
+        if (!ticking) {
+            requestAnimationFrame(function () {
+                var s = window.scrollY;
+                var h = document.documentElement.scrollHeight - window.innerHeight;
+                bar.style.width = (h > 0 ? Math.min(s / h * 100, 100) : 0) + '%';
+                ticking = false;
+            });
+            ticking = true;
+        }
+    }, { passive: true });
+
+    var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+            if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+        });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+})();
+</script>
+
+</body>
+</html>
