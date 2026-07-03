@@ -589,6 +589,7 @@ a.featured-outlet:hover {
     text-transform: uppercase;
     color: var(--gold);
     min-width: 100px;
+    max-width: 100px;
 }
 
 .pub-title {
@@ -1075,7 +1076,7 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
         grid-template-areas: "venue year" "body body";
         grid-template-columns: 1fr auto;
     }
-    .pub-venue { grid-area: venue; min-width: auto; }
+    .pub-venue { grid-area: venue; min-width: auto; max-width: none; }
     .pub-list li > div { grid-area: body; }
     .pub-year { grid-area: year; font-size: 0.8rem; align-self: center; }
     .connect-grid { flex-direction: column; gap: 12px; }
@@ -1513,6 +1514,7 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
     .pub-venue {
         display: block;
         min-width: 0 !important;
+        max-width: none !important;
         margin-bottom: 0.65mm;
         font-size: 6.2pt !important;
         letter-spacing: 0.14em !important;

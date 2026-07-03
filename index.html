@@ -25,7 +25,7 @@
 <meta name="theme-color" content="#0f1923" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#faf8f5" media="(prefers-color-scheme: light)">
 <meta name="color-scheme" content="light dark">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-WqMorOfjjZNgOsb4BU+bclWxZec5y+bzTOujic3XVGw=' 'sha256-lskdTSrqRyP4LdjRriW37lMPfLDa6mJKLENxKpNLyr8=' 'sha256-4G7wnwQc6qvKDvB+Quf3SC5N+0WcBvc/riHtQRDvDX4=' 'sha256-PBIbXpxoZq+dGJKBjiohe0A6iJvI1eJGI9eoqhVuI+Q='; style-src 'sha256-z1/Rj/dZLn3kRBVgVzDmICCp8biCr0hTvtkhJOODgZ4=' 'sha256-TH+pIesv8AUfJmKVY5WSKhTps6Qin1MeW46ROJLNhTk=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-uGayCSwz7/ng+0bU//d1fTAgPiGWbx/Liw8iCuPII4Q=' 'sha256-LJ4nU2hUpq+CtkFykCagGUPZYPFZ0NfQJ4nThQLCooE=' 'sha256-NuNhndyRrQswqp8rvW/QTFWpWX5sn7lgXFIAOXEVWg4='; img-src 'self'; font-src 'self'; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-WqMorOfjjZNgOsb4BU+bclWxZec5y+bzTOujic3XVGw=' 'sha256-lskdTSrqRyP4LdjRriW37lMPfLDa6mJKLENxKpNLyr8=' 'sha256-4G7wnwQc6qvKDvB+Quf3SC5N+0WcBvc/riHtQRDvDX4=' 'sha256-PBIbXpxoZq+dGJKBjiohe0A6iJvI1eJGI9eoqhVuI+Q='; style-src 'sha256-z1/Rj/dZLn3kRBVgVzDmICCp8biCr0hTvtkhJOODgZ4=' 'sha256-TH+pIesv8AUfJmKVY5WSKhTps6Qin1MeW46ROJLNhTk=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-uGayCSwz7/ng+0bU//d1fTAgPiGWbx/Liw8iCuPII4Q=' 'sha256-QxRUb9nx6N5qNygVuwqh5tEj6PUqTwRQ9aPDBq4F6GQ=' 'sha256-NuNhndyRrQswqp8rvW/QTFWpWX5sn7lgXFIAOXEVWg4='; img-src 'self'; font-src 'self'; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
 <link rel="preload" href="/fonts/spectral-700.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/iansui-critical.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="canonical" href="https://cyberambassador.tw/">
@@ -926,6 +926,7 @@ a.featured-outlet:hover {
     text-transform: uppercase;
     color: var(--gold);
     min-width: 100px;
+    max-width: 100px;
 }
 
 .pub-title {
@@ -1412,7 +1413,7 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
         grid-template-areas: "venue year" "body body";
         grid-template-columns: 1fr auto;
     }
-    .pub-venue { grid-area: venue; min-width: auto; }
+    .pub-venue { grid-area: venue; min-width: auto; max-width: none; }
     .pub-list li > div { grid-area: body; }
     .pub-year { grid-area: year; font-size: 0.8rem; align-self: center; }
     .connect-grid { flex-direction: column; gap: 12px; }
@@ -1850,6 +1851,7 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
     .pub-venue {
         display: block;
         min-width: 0 !important;
+        max-width: none !important;
         margin-bottom: 0.65mm;
         font-size: 6.2pt !important;
         letter-spacing: 0.14em !important;
