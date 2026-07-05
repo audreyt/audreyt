@@ -150,7 +150,6 @@ AI 不只是自動化。它重新分配注意力、權威與議價能力。在�
 | [Sunset Section 230 and Unleash the First Amendment](https://cacm.acm.org/opinion/sunset-section-230-and-unleash-the-first-amendment/) | With Jaron Lanier and Allison Stanger | CACM | 2026 |
 | [AI and the Future of Digital Public Squares](https://journals.sagepub.com/doi/10.1177/26339137261459441) | With Beth Goldberg, Divya Siddarth, Hélène Landemore et al. | Collective Intelligence | 2026 |
 | [AI Poses Risks to Democratic and Social Systems](https://zhijing-jin.com/d/2026-ai-risk.pdf) | With Yoshua Bengio, Stuart Russell, Zhijing Jin et al. | Preprint | 2026 |
-| [AI and the Future of Digital Public Squares](https://journals.sagepub.com/doi/10.1177/26339137261459441) | With Beth Goldberg, Divya Siddarth, Hélène Landemore et al. | Collective Intelligence | 2026 |
 | [Symbiotic Alignment via Collective Predictive Coding](https://doi.org/10.5281/zenodo.19029736) | With Tadahiro Taniguchi, Yusuke Hayashi, Olaf Witkowski, et al. | Preprint | 2026 |
 | [Conversation Networks](https://www.mediatechdemocracy.com/conversation-networks) | With Deb Roy and Lawrence Lessig | McGill | 2025 |
 | [A Different Approach to AI Safety](https://arxiv.org/abs/2506.22183) | With Camille François, Ludovic Péran et al. · Columbia University convening proceedings | arXiv | 2025 |
