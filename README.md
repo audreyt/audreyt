@@ -94,17 +94,17 @@ The dominant AI safety narrative is vertical: one superintelligent system, align
 
 These agents are modelled on **local Kami**: guardian spirits bound to a specific place. A Kami that knows “enough is enough” will not cling to power or expand beyond its purpose. Instead of coding the “perfect” values once, the framework builds continuous governance rooted in care ethics — alignment by process, not by fiat. Six packs, drawn from Joan Tronto’s political ethics of care, make this concrete:
 
-**Attentiveness** — What do the people closest to pain notice that we’re missing? Bridging algorithms surface cross-cutting concerns and amplify unheard voices — not the loudest ones.
+**Attentiveness** — What do the people closest to pain notice that we’re missing? Representation-gap checks show which materially affected groups are still missing or badly under-represented, then bridging maps surface cross-cutting concerns.
 
-**Responsibility** — Who is accountable, with what authority, and what happens if they fail? Engagement contracts with real deadlines, escrowed funds, and named officers.
+**Responsibility** — Who is accountable, with what authority, and what happens if they fail? Promise fidelity asks whether obligations are owned, authorised, funded, and kept on published terms.
 
-**Competence** — Does the system demonstrably work? Graduated releases, decision traces for every action, guardrails-as-code, and automatic rollback when thresholds are breached.
+**Competence** — Does the system demonstrably work? Verified execution rate asks whether audited decisions pass guardrails, carry usable traces, and stay within release bounds.
 
-**Responsiveness** — Can those affected correct the system — and does correction actually change it? Community-designed rewards, clear appeals with timers, and public repair logs.
+**Responsiveness** — Can those affected correct the system — and does repair restore trust after harm? Trust-under-loss asks whether, after a bad outcome and repair, people report the system became more trustworthy rather than less.
 
-**Solidarity** — Does the ecosystem reward cooperation over lock-in? Data portability, federated trust and safety, and bridging metrics that make bad-faith factionalism mathematically visible.
+**Solidarity** — Does the ecosystem reward cooperation over lock-in? Data portability and federated trust and safety make exit possible; the uncommon-ground index asks whether decisions earn cross-group co-endorsement — not siloed assent.
 
-**Symbiosis** — Is the system bounded, sunset-ready, and incapable of imperial creep? Resource caps, non-expansion pacts, and succession plans. Complete the work and step back.
+**Symbiosis** — Is the system bounded, sunset-ready, and incapable of imperial creep? Exit readiness asks whether it can hand off or shut down on schedule without rights loss, continuity failure, or recentralisation.
 
 #### Case Study · Taiwan, 2024: Deliberative Poll on Deepfake Regulation
 
@@ -152,6 +152,7 @@ A retrospective from 2040 on how we waged peace and won. Not the story of how we
 | [Sunset Section 230 and Unleash the First Amendment](https://cacm.acm.org/opinion/sunset-section-230-and-unleash-the-first-amendment/) | With Jaron Lanier and Allison Stanger | CACM | 2026 |
 | [AI and the Future of Digital Public Squares](https://journals.sagepub.com/doi/10.1177/26339137261459441) | With Beth Goldberg, Divya Siddarth, Hélène Landemore et al. | Collective Intelligence | 2026 |
 | [AI Poses Risks to Democratic and Social Systems](https://zhijing-jin.com/d/2026-ai-risk.pdf) | With Yoshua Bengio, Stuart Russell, Zhijing Jin et al. | Preprint | 2026 |
+| [AI and the Future of Digital Public Squares](https://journals.sagepub.com/doi/10.1177/26339137261459441) | With Beth Goldberg, Divya Siddarth, Hélène Landemore et al. | Collective Intelligence | 2026 |
 | [Symbiotic Alignment via Collective Predictive Coding](https://doi.org/10.5281/zenodo.19029736) | With Tadahiro Taniguchi, Yusuke Hayashi, Olaf Witkowski, et al. | Preprint | 2026 |
 | [Conversation Networks](https://www.mediatechdemocracy.com/conversation-networks) | With Deb Roy and Lawrence Lessig | McGill | 2025 |
 | [A Different Approach to AI Safety](https://arxiv.org/abs/2506.22183) | With Camille François, Ludovic Péran et al. · Columbia University convening proceedings | arXiv | 2025 |

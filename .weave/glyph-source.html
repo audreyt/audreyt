@@ -21,11 +21,11 @@
 <meta name="twitter:image" content="https://cyberambassador.tw/og-image.jpg">
 <meta property="og:image:alt" content="Audrey Tang portrait">
 <meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
+<meta property="og:image:height" content="675">
 <meta name="theme-color" content="#0f1923" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#faf8f5" media="(prefers-color-scheme: light)">
 <meta name="color-scheme" content="light dark">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-WqMorOfjjZNgOsb4BU+bclWxZec5y+bzTOujic3XVGw=' 'sha256-lskdTSrqRyP4LdjRriW37lMPfLDa6mJKLENxKpNLyr8=' 'sha256-4G7wnwQc6qvKDvB+Quf3SC5N+0WcBvc/riHtQRDvDX4=' 'sha256-PBIbXpxoZq+dGJKBjiohe0A6iJvI1eJGI9eoqhVuI+Q='; style-src 'sha256-z1/Rj/dZLn3kRBVgVzDmICCp8biCr0hTvtkhJOODgZ4=' 'sha256-TH+pIesv8AUfJmKVY5WSKhTps6Qin1MeW46ROJLNhTk=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-uGayCSwz7/ng+0bU//d1fTAgPiGWbx/Liw8iCuPII4Q=' 'sha256-LJ4nU2hUpq+CtkFykCagGUPZYPFZ0NfQJ4nThQLCooE=' 'sha256-NuNhndyRrQswqp8rvW/QTFWpWX5sn7lgXFIAOXEVWg4='; img-src 'self'; font-src 'self'; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-WqMorOfjjZNgOsb4BU+bclWxZec5y+bzTOujic3XVGw=' 'sha256-lskdTSrqRyP4LdjRriW37lMPfLDa6mJKLENxKpNLyr8=' 'sha256-4G7wnwQc6qvKDvB+Quf3SC5N+0WcBvc/riHtQRDvDX4=' 'sha256-PBIbXpxoZq+dGJKBjiohe0A6iJvI1eJGI9eoqhVuI+Q='; style-src 'sha256-z1/Rj/dZLn3kRBVgVzDmICCp8biCr0hTvtkhJOODgZ4=' 'sha256-TH+pIesv8AUfJmKVY5WSKhTps6Qin1MeW46ROJLNhTk=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-uGayCSwz7/ng+0bU//d1fTAgPiGWbx/Liw8iCuPII4Q=' 'sha256-QxRUb9nx6N5qNygVuwqh5tEj6PUqTwRQ9aPDBq4F6GQ=' 'sha256-YEbsr5+p7cqpqCOMMYJ0oQtSUg/lVFxKAF81MendBNw='; img-src 'self'; font-src 'self'; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
 <link rel="preload" href="/fonts/spectral-700.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/iansui-critical.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="canonical" href="https://cyberambassador.tw/">
@@ -926,6 +926,7 @@ a.featured-outlet:hover {
     text-transform: uppercase;
     color: var(--gold);
     min-width: 100px;
+    max-width: 100px;
 }
 
 .pub-title {
@@ -1412,7 +1413,7 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
         grid-template-areas: "venue year" "body body";
         grid-template-columns: 1fr auto;
     }
-    .pub-venue { grid-area: venue; min-width: auto; }
+    .pub-venue { grid-area: venue; min-width: auto; max-width: none; }
     .pub-list li > div { grid-area: body; }
     .pub-year { grid-area: year; font-size: 0.8rem; align-self: center; }
     .connect-grid { flex-direction: column; gap: 12px; }
@@ -1850,6 +1851,7 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
     .pub-venue {
         display: block;
         min-width: 0 !important;
+        max-width: none !important;
         margin-bottom: 0.65mm;
         font-size: 6.2pt !important;
         letter-spacing: 0.14em !important;
@@ -2045,7 +2047,16 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
 /* orrery.css — every orrery colour, motion, and the ink halo live here.
    The SVG carries geometry + class names only (var() does not resolve in SVG
    presentation attributes; see DESIGN spec §3). */
-:root { --orrery-line: var(--gold); --orrery-bright: var(--gold-light); }
+:root {
+  --orrery-line: var(--gold);
+  --orrery-bright: var(--gold-light);
+  --care-p1: var(--gold);
+  --care-p2: var(--gold-light);
+  --care-p3: var(--teal);
+  --care-p4: color-mix(in srgb, var(--teal) 60%, var(--heading));
+  --care-p5: color-mix(in srgb, var(--teal) 55%, var(--gold-light));
+  --care-p6: var(--gold-light);
+}
 
 /* hero wrapper: between the ink vignette (z0) and the lockup (z2) */
 .orrery--hero { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
@@ -2184,37 +2195,293 @@ footer .footer-name, footer p { position: relative; z-index: 1; }
    children, so they survive — hide them explicitly or they print as orphan bows. */
 @media print { .divider-arc { display: none !important; } }
 
-/* ─── Idea pieces: 6-Pack of Care as bounded orbits (Phase 3) ─────────── */
-/* The six grid items become bounded orbits — a kami circling each loop.
-   Scoped with the child combinator so the trailing link-items (outside the
-   grid) keep their own style. Replaces each item's 3px ink border-top. */
-.work-grid > .work-item { position: relative; border-top: none; padding-top: 46px; }
+/* ─── Idea map: 6-Pack of Care as a bounded civic orrery ─────── */
+.care-map { margin: 46px 0 0; }
+.care-map-frame {
+  position: relative;
+  border: 1px solid color-mix(in srgb, var(--care-p6) 72%, transparent);
+  border-radius: var(--radius-sm, 4px);
+  background:
+    radial-gradient(circle at 18% 50%, color-mix(in srgb, var(--care-p6) 12%, transparent), transparent 34%),
+    linear-gradient(135deg, color-mix(in srgb, var(--warm) 74%, transparent), transparent 62%);
+  padding: clamp(28px, 4.5vw, 48px);
+}
+.care-map-title {
+  max-width: 100%;
+  margin-bottom: clamp(18px, 3vw, 26px);
+}
+.care-map-title .care-map-chip {
+  position: static;
+  transform: none;
+  display: inline-flex;
+  width: auto;
+  color: var(--care-p6);
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  border-color: var(--care-p6);
+}
+.care-map-body {
+  display: grid;
+  grid-template-columns: minmax(280px, .86fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(24px, 5vw, 56px);
+}
+.care-map-dial {
+  position: relative;
+  aspect-ratio: 1;
+  width: min(100%, 420px);
+  margin: 0 auto;
+}
+.care-map-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.care-map-rim {
+  fill: none;
+  stroke: var(--care-p6);
+  stroke-width: 2;
+  stroke-dasharray: 2 8;
+  opacity: .78;
+}
+.care-map-horizon,
+.care-map-chord {
+  stroke: var(--border);
+  stroke-width: 1.7;
+  stroke-dasharray: 3 7;
+}
+.care-map-chord { opacity: .55; }
+.care-map-field {
+  fill: color-mix(in srgb, var(--care-p5) 9%, transparent);
+  stroke: var(--care-p5);
+  stroke-width: 1.5;
+  stroke-dasharray: 3 8;
+  opacity: .9;
+}
+.care-map-centre { fill: var(--care-p6); opacity: .9; }
+.care-map-arc {
+  fill: none;
+  stroke-linecap: round;
+  stroke-width: 12;
+  opacity: .82;
+  transition: stroke-width .22s ease, opacity .22s ease;
+}
+.care-map-arc--1 { stroke: var(--care-p1); }
+.care-map-arc--2 { stroke: var(--care-p2); }
+.care-map-arc--3 { stroke: var(--care-p3); }
+.care-map-arc--4 { stroke: var(--care-p4); }
+.care-map-chip {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: inline-flex;
+  align-items: center;
+  gap: .42em;
+  min-height: 28px;
+  padding: .34em .66em;
+  border: 1px solid var(--care-pack, var(--care-p6));
+  border-radius: var(--radius-xs, 3px);
+  background: color-mix(in srgb, var(--surface) 94%, transparent);
+  color: var(--care-pack, var(--care-p6));
+  font-family: var(--sans);
+  font-size: .74rem;
+  font-weight: 600;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background .2s ease, border-color .2s ease, color .2s ease, transform .25s cubic-bezier(.22, 1, .36, 1);
+}
+.care-map-chip-num {
+  font-family: var(--serif);
+  font-size: .98em;
+  font-weight: 700;
+}
+.care-map-dial > .care-map-chip:nth-of-type(1) { --care-pack: var(--care-p1); left: 50%; top: 18%; }
+.care-map-dial > .care-map-chip:nth-of-type(2) { --care-pack: var(--care-p2); left: 82%; top: 50%; }
+.care-map-dial > .care-map-chip:nth-of-type(3) { --care-pack: var(--care-p3); left: 50%; top: 82%; }
+.care-map-dial > .care-map-chip:nth-of-type(4) { --care-pack: var(--care-p4); left: 18%; top: 50%; }
+.care-map-dial > .care-map-chip:nth-of-type(5) { --care-pack: var(--care-p5); left: 50%; top: 100%; }
+.care-map-chip:hover,
+.care-map-chip:focus-visible {
+  background: color-mix(in srgb, var(--care-pack, var(--care-p6)) 12%, var(--surface));
+  border-color: currentColor;
+  color: var(--heading);
+  outline: none;
+}
+.care-map-dial > .care-map-chip:hover,
+.care-map-dial > .care-map-chip:focus-visible {
+  transform: translate(-50%, -50%) scale(1.04);
+}
+.care-map:has(.care-map-dial > .care-map-chip:nth-of-type(1):is(:hover, :focus-visible)) .care-map-arc--1,
+.care-map:has(.care-map-dial > .care-map-chip:nth-of-type(2):is(:hover, :focus-visible)) .care-map-arc--2,
+.care-map:has(.care-map-dial > .care-map-chip:nth-of-type(3):is(:hover, :focus-visible)) .care-map-arc--3,
+.care-map:has(.care-map-dial > .care-map-chip:nth-of-type(4):is(:hover, :focus-visible)) .care-map-arc--4 {
+  stroke-width: 18;
+  opacity: 1;
+}
+.care-map:has(.care-map-dial > .care-map-chip:nth-of-type(5):is(:hover, :focus-visible)) .care-map-field {
+  fill: color-mix(in srgb, var(--care-p5) 16%, transparent);
+  opacity: 1;
+}
+.care-map-copy p {
+  margin: 0;
+  max-width: 38rem;
+  color: var(--text);
+  font-size: 1rem;
+  line-height: 1.72;
+}
+.care-map-legend {
+  display: grid;
+  gap: 10px;
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: .82rem;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.care-map-legend li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.care-map-legend-mark {
+  width: 28px;
+  height: 1px;
+  background: var(--care-p6);
+}
+.care-map-legend li:nth-child(1) .care-map-legend-mark {
+  background: linear-gradient(90deg, var(--care-p1), var(--care-p2), var(--care-p3), var(--care-p4));
+}
+.care-map-legend li:nth-child(2) .care-map-legend-mark { background: var(--care-p5); }
+.care-map-legend li:nth-child(3) .care-map-legend-mark { background: var(--care-p6); }
+#work:has(.care-map-chip[href="#care-pack-1"]:is(:hover, :focus-visible)) .work-grid > .work-item:nth-child(1)::before,
+#work:has(.care-map-chip[href="#care-pack-2"]:is(:hover, :focus-visible)) .work-grid > .work-item:nth-child(2)::before,
+#work:has(.care-map-chip[href="#care-pack-3"]:is(:hover, :focus-visible)) .work-grid > .work-item:nth-child(3)::before,
+#work:has(.care-map-chip[href="#care-pack-4"]:is(:hover, :focus-visible)) .work-grid > .work-item:nth-child(4)::before,
+#work:has(.care-map-chip[href="#care-pack-5"]:is(:hover, :focus-visible)) .work-grid > .work-item:nth-child(5)::before,
+#work:has(.care-map-chip[href="#care-pack-6"]:is(:hover, :focus-visible)) .work-grid > .work-item:nth-child(6)::before,
+.work-grid > .work-item:target::before {
+  opacity: 1;
+  border-color: var(--care-card, var(--orrery-bright));
+  transform: scale(1.15);
+}
+@media (prefers-reduced-motion: reduce) {
+  .care-map-arc,
+  .care-map-chip { transition: none; }
+}
+@media (max-width: 900px) {
+  .care-map-body {
+    grid-template-columns: 1fr;
+  }
+  .care-map-copy p {
+    max-width: none;
+  }
+}
+@media (max-width: 640px) {
+  .care-map-frame { padding: 22px 18px; }
+  .care-map-title { margin-bottom: 18px; }
+  .care-map-title .care-map-chip { white-space: normal; line-height: 1.25; }
+  .care-map-dial {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    width: 100%;
+    aspect-ratio: auto;
+  }
+  .care-map-svg {
+    grid-column: 1 / -1;
+    width: min(76vw, 300px);
+    height: auto;
+    justify-self: center;
+  }
+  .care-map-dial > .care-map-chip {
+    position: static;
+    transform: none;
+    justify-content: center;
+    white-space: normal;
+    text-align: center;
+    line-height: 1.2;
+  }
+  .care-map-dial > .care-map-chip:hover,
+  .care-map-dial > .care-map-chip:focus-visible {
+    transform: none;
+  }
+  .care-map-legend {
+    font-size: .74rem;
+  }
+}
+@media print {
+  .care-map {
+    break-inside: avoid;
+    margin-top: 5mm !important;
+  }
+  .care-map-frame {
+    padding: 5mm !important;
+    background: var(--print-panel) !important;
+    border-color: var(--print-accent-soft) !important;
+  }
+  .care-map-title {
+    position: static !important;
+    transform: none !important;
+    max-width: none !important;
+    margin-bottom: 3mm !important;
+  }
+  .care-map-title .care-map-chip {
+    background: none !important;
+    border: 0 !important;
+    padding: 0 !important;
+    color: var(--print-ink) !important;
+  }
+  .care-map-body {
+    grid-template-columns: 34mm 1fr !important;
+    gap: 5mm !important;
+  }
+  .care-map-dial {
+    width: 34mm !important;
+  }
+  .care-map-dial > .care-map-chip {
+    display: none !important;
+  }
+  .care-map-copy p,
+  .care-map-legend {
+    font-size: 8.5pt !important;
+    line-height: 1.45 !important;
+  }
+}
+
+/* ─── Idea pieces: 6-Pack cards as numbered bounded rings ─────────────── */
+/* The six grid items keep a small numbered ring as their local index.
+   The moving dot now lives in the map above; duplicating it here makes
+   the cards look misregistered rather than alive. */
+.work-grid { counter-reset: care-pack; }
+.work-grid > .work-item {
+  --care-card: var(--orrery-line);
+  position: relative;
+  border-top: none;
+  padding-top: 46px;
+  scroll-margin-top: 110px;
+  counter-increment: care-pack;
+}
+.work-grid > .work-item:nth-child(1) { --care-card: var(--care-p1); }
+.work-grid > .work-item:nth-child(2) { --care-card: var(--care-p2); }
+.work-grid > .work-item:nth-child(3) { --care-card: var(--care-p3); }
+.work-grid > .work-item:nth-child(4) { --care-card: var(--care-p4); }
+.work-grid > .work-item:nth-child(5) { --care-card: var(--care-p5); }
+.work-grid > .work-item:nth-child(6) { --care-card: var(--care-p6); }
 .work-grid > .work-item::before {
-  content: ""; position: absolute; top: 0; left: 0;
-  width: 28px; height: 28px; border: 1px solid var(--orrery-line); border-radius: 50%; opacity: .7;
+  content: counter(care-pack);
+  position: absolute; top: 0; left: 0;
+  width: 28px; height: 28px;
+  display: grid; place-items: center;
+  border: 1px solid var(--care-card); border-radius: 50%; opacity: .78;
+  color: var(--care-card);
+  font-family: var(--serif); font-size: .78rem; line-height: 1; font-weight: 700;
 }
-.work-grid > .work-item::after {
-  content: ""; position: absolute; top: 0; left: 0;
-  width: 28px; height: 28px; border-radius: 50%; transform-origin: center;
-  will-change: transform;
-  animation: kami 96s linear infinite;   /* one shared speed → the six hold their spacing */
-  background: radial-gradient(circle 2.4px at 50% 0%, var(--orrery-line) 99%, transparent 100%);
-}
-/* The six kami's start angles complete one clockwise turn — Attentiveness at the top
-   (0°, the ::after base position), each later pack a further 60° clockwise. Baked into
-   the node's position (not animation-delay) so the 60° spacing also holds under reduced
-   motion; the shared speed above keeps the spacing as the whole set turns.
-   pos: x% = 50 + 50·sin θ, y% = 50 − 50·cos θ (θ clockwise from top). */
-.work-grid > .work-item:nth-child(2)::after { background: radial-gradient(circle 2.4px at 93.3% 25%, var(--orrery-line) 99%, transparent 100%); }  /*  60° Responsibility */
-.work-grid > .work-item:nth-child(3)::after { background: radial-gradient(circle 2.4px at 93.3% 75%, var(--orrery-line) 99%, transparent 100%); }  /* 120° Competence */
-.work-grid > .work-item:nth-child(4)::after { background: radial-gradient(circle 2.4px at 50% 100%, var(--orrery-line) 99%, transparent 100%); }   /* 180° Responsiveness */
-.work-grid > .work-item:nth-child(5)::after { background: radial-gradient(circle 2.4px at 6.7% 75%, var(--orrery-line) 99%, transparent 100%); }   /* 240° Solidarity */
-.work-grid > .work-item:nth-child(6)::after { background: radial-gradient(circle 2.4px at 6.7% 25%, var(--orrery-line) 99%, transparent 100%); }   /* 300° Symbiosis */
-@keyframes kami { to { transform: rotate(360deg); } }
-@media (prefers-reduced-motion: reduce) { .work-grid > .work-item::after { animation: none; } }
-/* print: drop the orbit; the existing print stylesheet restores .work-item's
+/* print: drop the ring; the existing print stylesheet restores .work-item's
    ink border-top (!important at components.css ~1432) */
-@media print { .work-grid > .work-item::before, .work-grid > .work-item::after { content: none; } }
+@media print { .work-grid > .work-item::before { content: none; } }
 
 /* ─── Idea pieces: people-arc behind the pullquote (Phase 3) ──────────── */
 .pullquote { position: relative; overflow: hidden; }
@@ -2246,14 +2513,15 @@ footer .footer-name, footer p { position: relative; z-index: 1; }
 }
 @media print { .constellation { display: none; } .award-year { padding-left: 0; } .award-year::before { content: none; } }
 
-/* ─── Finale: care-orbit hover polish (Phase 4b) ──────────────────────── */
-/* On hover the bounded orbit's ring brightens and grows a touch — the kami
-   stirs. Decorative only: nothing is hidden; the descriptions are always shown. */
+/* ─── Finale: care-ring hover polish (Phase 4b) ───────────────────────── */
+/* On hover the bounded ring brightens and grows a touch. Decorative only:
+   nothing is hidden; the descriptions are always shown. */
 .work-grid > .work-item::before {
   transition: opacity .3s ease, border-color .3s ease, transform .4s cubic-bezier(.22, 1, .36, 1);
 }
-.work-grid > .work-item:hover::before {
-  opacity: 1; border-color: var(--orrery-bright); transform: scale(1.15);
+.work-grid > .work-item:hover::before,
+.work-grid > .work-item:focus-within::before {
+  opacity: 1; border-color: var(--care-card); transform: scale(1.15);
 }
 @media (prefers-reduced-motion: reduce) { .work-grid > .work-item::before { transition: none; } }
 </style>
@@ -2352,6 +2620,10 @@ footer .footer-name, footer p { position: relative; z-index: 1; }
                     <span class="role-org">International University of Japan</span>
                 </li>
                 <li>
+                    <span class="role-title">Senior Research Fellow</span>
+                    <span class="role-org">Collective Intelligence Project</span>
+                </li>
+                <li>
                     <span class="role-title">Senior Advisor</span>
                     <span class="role-org">Special Competitive Studies Project</span>
                 </li>
@@ -2375,10 +2647,6 @@ footer .footer-name, footer p { position: relative; z-index: 1; }
                     <span class="role-title">Board Member</span>
                     <span class="role-org">RadicalxChange Foundation</span>
                 </li>
-                <li>
-                    <span class="role-title">Senior Research Fellow</span>
-                    <span class="role-org">Collective Intelligence Project</span>
-                </li>
             </ul>
             <ul class="bio-roles" lang="zh-TW">
                 <li>
@@ -2392,6 +2660,10 @@ footer .footer-name, footer p { position: relative; z-index: 1; }
                 <li>
                     <span class="role-org">International University of Japan</span>
                     <span class="role-title">GLOCOM 客座教授</span>
+                </li>
+                <li>
+                    <span class="role-org">集體智慧計畫</span>
+                    <span class="role-title">資深研究員</span>
                 </li>
                 <li>
                     <span class="role-org">Special Competitive Studies Project</span>
@@ -2416,10 +2688,6 @@ footer .footer-name, footer p { position: relative; z-index: 1; }
                 <li>
                     <span class="role-org">RadicalxChange Foundation</span>
                     <span class="role-title">理事</span>
-                </li>
-                <li>
-                    <span class="role-org">集體智慧計畫</span>
-                    <span class="role-title">資深研究員</span>
                 </li>
             </ul>
         </div>
@@ -2561,42 +2829,102 @@ footer .footer-name, footer p { position: relative; z-index: 1; }
     <p lang="en-GB">These agents are modelled on <strong>local Kami</strong>: guardian spirits bound to a specific place. A Kami that knows &ldquo;enough is enough&rdquo; will not cling to power or expand beyond its purpose. Instead of coding the &ldquo;perfect&rdquo; values once, the framework builds continuous governance rooted in care ethics &mdash; alignment by process, not by fiat. Six packs, drawn from Joan Tronto&rsquo;s political ethics of care, make this concrete:</p>
     <p lang="zh-TW">主流的 AI 安全論述是由上而下的：一套超級智慧系統，一次性對齊人類價值。但再多的「實然」永遠導不出「應然」。唐鳳與牛津大學的 Caroline Green 共同開發的<a href="https://civic.tw" target="_blank" rel="noopener noreferrer">《仁工智慧》</a>提供了水平的替代方案——眾多有邊界、針對特定目的的 AI 智慧體，各自專注服務單一社群的關係健康。</p>
     <p lang="zh-TW">這些智慧體的概念來自 <strong>local Kami</strong>（地神）：特定場域的守護者，明白「夠好就好」，不執著於權力，也不會擴張超出自身目的。這個架構並非一次性寫入「完美」價值，而是建構奠基於關懷倫理的持續治理——透過流程而非指令對齊。從 Joan Tronto 的政治關懷倫理延伸而來的六力架構具體如下：</p>
+    <div class="care-map" role="group" aria-labelledby="care-map-title-en care-map-title-zh">
+        <div class="care-map-frame">
+            <div class="care-map-title">
+                <a class="care-map-chip" href="#care-pack-6">
+                    <span id="care-map-title-en" lang="en-GB">Pack 6 &middot; Symbiosis &mdash; the boundary in time</span>
+                    <span id="care-map-title-zh" lang="zh-TW">第六力&#x30FB;共生力&mdash;&mdash;時間中的邊界</span>
+                </a>
+            </div>
+            <div class="care-map-body">
+                <div class="care-map-dial" aria-label="6-Pack of Care map">
+                    <svg class="care-map-svg" viewBox="0 0 620 620" aria-hidden="true" focusable="false">
+                        <circle class="care-map-rim" cx="310" cy="310" r="292"/>
+                        <line class="care-map-horizon" x1="82" y1="310" x2="538" y2="310"/>
+                        <path class="care-map-arc care-map-arc--1" pathLength="100" d="M 164.7 124 A 236 236 0 0 1 455.3 124"/>
+                        <path class="care-map-arc care-map-arc--2" pathLength="100" d="M 496 164.7 A 236 236 0 0 1 496 455.3"/>
+                        <path class="care-map-arc care-map-arc--3" pathLength="100" d="M 455.3 496 A 236 236 0 0 1 164.7 496"/>
+                        <path class="care-map-arc care-map-arc--4" pathLength="100" d="M 124 455.3 A 236 236 0 0 1 124 164.7"/>
+                        <line class="care-map-chord care-map-chord--13" x1="310" y1="90" x2="310" y2="530"/>
+                        <line class="care-map-chord care-map-chord--24" x1="530" y1="310" x2="90" y2="310"/>
+                        <circle class="care-map-field" cx="310" cy="310" r="172"/>
+                        <circle class="care-map-centre" cx="310" cy="310" r="5"/>
+                    </svg>
+                    <a class="care-map-chip" href="#care-pack-1">
+                        <span class="care-map-chip-num" aria-hidden="true">1</span>
+                        <span lang="en-GB">Attentiveness</span>
+                        <span lang="zh-TW">覺察力</span>
+                    </a>
+                    <a class="care-map-chip" href="#care-pack-2">
+                        <span class="care-map-chip-num" aria-hidden="true">2</span>
+                        <span lang="en-GB">Responsibility</span>
+                        <span lang="zh-TW">負責力</span>
+                    </a>
+                    <a class="care-map-chip" href="#care-pack-3">
+                        <span class="care-map-chip-num" aria-hidden="true">3</span>
+                        <span lang="en-GB">Competence</span>
+                        <span lang="zh-TW">勝任力</span>
+                    </a>
+                    <a class="care-map-chip" href="#care-pack-4">
+                        <span class="care-map-chip-num" aria-hidden="true">4</span>
+                        <span lang="en-GB">Responsiveness</span>
+                        <span lang="zh-TW">回應力</span>
+                    </a>
+                    <a class="care-map-chip" href="#care-pack-5">
+                        <span class="care-map-chip-num" aria-hidden="true">5</span>
+                        <span lang="en-GB">Solidarity</span>
+                        <span lang="zh-TW">團結力</span>
+                    </a>
+                </div>
+                <div class="care-map-copy">
+                    <p lang="en-GB">Packs 1&ndash;4 turn as the care cycle; Pack 5 is the field between deployments; Pack 6 keeps every deployment local, plural, and ready to step back.</p>
+                    <p lang="zh-TW">第一至第四力構成關懷循環；第五力連結部署之間的場域；第六力守住邊界，讓每個部署維持在地、多元，並能功遂身退。</p>
+                    <ul class="care-map-legend">
+                        <li><span class="care-map-legend-mark"></span><span lang="en-GB">Care cycle</span><span lang="zh-TW">關懷循環</span></li>
+                        <li><span class="care-map-legend-mark"></span><span lang="en-GB">Solidarity field</span><span lang="zh-TW">團結場域</span></li>
+                        <li><span class="care-map-legend-mark"></span><span lang="en-GB">Symbiosis boundary</span><span lang="zh-TW">共生邊界</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="work-grid">
-        <div class="work-item">
+        <div class="work-item" id="care-pack-1">
             <h3 lang="en-GB">Attentiveness</h3>
             <h3 lang="zh-TW">覺察力</h3>
-            <p lang="en-GB">What do the people closest to pain notice that we&rsquo;re missing? Bridging algorithms surface cross-cutting concerns and amplify unheard voices &mdash; not the loudest ones.</p>
-            <p lang="zh-TW">最貼近痛苦的人注意到哪些我們忽視的需求？橋接演算法能凸顯跨領域的關切，放大未被聽見的聲音，而非最大聲的聲音。</p>
+            <p lang="en-GB">What do the people closest to pain notice that we&rsquo;re missing? Representation-gap checks show which materially affected groups are still missing or badly under-represented, then bridging maps surface cross-cutting concerns.</p>
+            <p lang="zh-TW">最貼近痛苦的人注意到哪些我們忽視的需求？代表性落差檢驗哪些受實質影響的群體仍缺席或被低估，再由搭橋地圖浮現跨領域關切。</p>
         </div>
-        <div class="work-item">
+        <div class="work-item" id="care-pack-2">
             <h3 lang="en-GB">Responsibility</h3>
             <h3 lang="zh-TW">負責力</h3>
-            <p lang="en-GB">Who is accountable, with what authority, and what happens if they fail? Engagement contracts with real deadlines, escrowed funds, and named officers.</p>
-            <p lang="zh-TW">誰負責、擁有什麼權限、失敗時有什麼後果？參與合約搭配明確的期限、託管資金、指名負責人。</p>
+            <p lang="en-GB">Who is accountable, with what authority, and what happens if they fail? Promise fidelity asks whether obligations are owned, authorised, funded, and kept on published terms.</p>
+            <p lang="zh-TW">誰負責、擁有什麼權限、失敗時有什麼後果？承諾保真度檢驗重要義務是否被明確指派、授權正當，並依公布條件履行。</p>
         </div>
-        <div class="work-item">
+        <div class="work-item" id="care-pack-3">
             <h3 lang="en-GB">Competence</h3>
             <h3 lang="zh-TW">勝任力</h3>
-            <p lang="en-GB">Does the system demonstrably work? Graduated releases, decision traces for every action, guardrails-as-code, and automatic rollback when thresholds are breached.</p>
-            <p lang="zh-TW">系統是否真的能運作？階段性釋出、每個行為都有決策軌跡、程式化的護欄，超過門檻時自動回溯。</p>
+            <p lang="en-GB">Does the system demonstrably work? Verified execution rate asks whether audited decisions pass guardrails, carry usable traces, and stay within release bounds.</p>
+            <p lang="zh-TW">系統是否真的能運作？經驗證的執行率檢驗被抽查的決策或發版是否通過護欄、具備可用軌跡，並維持在發版界限內。</p>
         </div>
-        <div class="work-item">
+        <div class="work-item" id="care-pack-4">
             <h3 lang="en-GB">Responsiveness</h3>
             <h3 lang="zh-TW">回應力</h3>
-            <p lang="en-GB">Can those affected correct the system &mdash; and does correction actually change it? Community-designed rewards, clear appeals with timers, and public repair logs.</p>
-            <p lang="zh-TW">受影響的人能否修正系統——且修正確實能改變系統？由社群設計的獎勵機制、明確的申訴時限、公開修復紀錄。</p>
+            <p lang="en-GB">Can those affected correct the system &mdash; and does repair restore trust after harm? Trust-under-loss asks whether, after a bad outcome and repair, people report the system became more trustworthy rather than less.</p>
+            <p lang="zh-TW">受影響的人能否修正系統——且修復是否恢復信任？失利下的信任檢驗不良結果與修復後，受影響者是否覺得系統更值得信任。</p>
         </div>
-        <div class="work-item">
+        <div class="work-item" id="care-pack-5">
             <h3 lang="en-GB">Solidarity</h3>
             <h3 lang="zh-TW">團結力</h3>
-            <p lang="en-GB">Does the ecosystem reward cooperation over lock-in? Data portability, federated trust and safety, and bridging metrics that make bad-faith factionalism mathematically visible.</p>
-            <p lang="zh-TW">生態系是否獎勵合作而非封閉？資料可攜性、聯邦式信任與安全、橋接指標能以數學方式識別惡意派系操作。</p>
+            <p lang="en-GB">Does the ecosystem reward cooperation over lock-in? Data portability and federated trust and safety make exit possible; the uncommon-ground index asks whether decisions earn cross-group co-endorsement &mdash; not siloed assent.</p>
+            <p lang="zh-TW">生態系是否獎勵合作而非封閉？資料可攜性與聯邦式信任與安全讓退出可行；罕見共識指數檢驗共同決策是否有跨群體參與及共同背書，而非平行孤島。</p>
         </div>
-        <div class="work-item">
+        <div class="work-item" id="care-pack-6">
             <h3 lang="en-GB">Symbiosis</h3>
             <h3 lang="zh-TW">共生力</h3>
-            <p lang="en-GB">Is the system bounded, sunset-ready, and incapable of imperial creep? Resource caps, non-expansion pacts, and succession plans. Complete the work and step back.</p>
-            <p lang="zh-TW">系統是否有邊界、具備日落條款、不會無止境擴張？資源上限、不擴張協議、繼承計劃，功遂身退。</p>
+            <p lang="en-GB">Is the system bounded, sunset-ready, and incapable of imperial creep? Exit readiness asks whether it can hand off or shut down on schedule without rights loss, continuity failure, or recentralisation.</p>
+            <p lang="zh-TW">系統是否有邊界、具備日落條款、不會無止境擴張？退出就緒度檢驗系統能否按期交接或關閉，而不造成權利流失、服務中斷或再集中化。</p>
         </div>
     </div>
     <div class="case-study">
@@ -2717,10 +3045,26 @@ footer .footer-name, footer p { position: relative; z-index: 1; }
             <time class="pub-year" datetime="2026">2026</time>
         </li>
         <li>
+            <span class="pub-venue">Collective Intelligence</span>
+            <div>
+                <div class="pub-title"><a href="https://journals.sagepub.com/doi/10.1177/26339137261459441" target="_blank" rel="noopener noreferrer">AI and the Future of Digital Public Squares</a></div>
+                <div class="pub-coauthors">With Beth Goldberg, Divya Siddarth, H&eacute;l&egrave;ne Landemore et al.</div>
+            </div>
+            <time class="pub-year" datetime="2026">2026</time>
+        </li>
+        <li>
             <span class="pub-venue">Preprint</span>
             <div>
                 <div class="pub-title"><a href="https://zhijing-jin.com/d/2026-ai-risk.pdf" target="_blank" rel="noopener noreferrer">AI Poses Risks to Democratic and Social Systems</a></div>
                 <div class="pub-coauthors">With Yoshua Bengio, Stuart Russell, Zhijing Jin et al.</div>
+            </div>
+            <time class="pub-year" datetime="2026">2026</time>
+        </li>
+        <li>
+            <span class="pub-venue">Collective Intelligence</span>
+            <div>
+                <div class="pub-title"><a href="https://journals.sagepub.com/doi/10.1177/26339137261459441" target="_blank" rel="noopener noreferrer">AI and the Future of Digital Public Squares</a></div>
+                <div class="pub-coauthors">With Beth Goldberg, Divya Siddarth, H&eacute;l&egrave;ne Landemore et al.</div>
             </div>
             <time class="pub-year" datetime="2026">2026</time>
         </li>
@@ -2755,14 +3099,6 @@ footer .footer-name, footer p { position: relative; z-index: 1; }
                 <div class="pub-coauthors">With E. Glen Weyl et al.</div>
             </div>
             <time class="pub-year" datetime="2025">2025</time>
-        </li>
-        <li>
-            <span class="pub-venue">arXiv</span>
-            <div>
-                <div class="pub-title"><a href="https://arxiv.org/abs/2412.09988" target="_blank" rel="noopener noreferrer">AI and the Future of Digital Public Squares</a></div>
-                <div class="pub-coauthors">With Beth Goldberg, Divya Siddarth, H&eacute;l&egrave;ne Landemore et al.</div>
-            </div>
-            <time class="pub-year" datetime="2024">2024</time>
         </li>
         <li>
             <span class="pub-venue">RSA Journal</span>

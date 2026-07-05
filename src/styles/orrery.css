@@ -1,7 +1,16 @@
 /* orrery.css — every orrery colour, motion, and the ink halo live here.
    The SVG carries geometry + class names only (var() does not resolve in SVG
    presentation attributes; see DESIGN spec §3). */
-:root { --orrery-line: var(--gold); --orrery-bright: var(--gold-light); }
+:root {
+  --orrery-line: var(--gold);
+  --orrery-bright: var(--gold-light);
+  --care-p1: var(--gold);
+  --care-p2: var(--gold-light);
+  --care-p3: var(--teal);
+  --care-p4: color-mix(in srgb, var(--teal) 60%, var(--heading));
+  --care-p5: color-mix(in srgb, var(--teal) 55%, var(--gold-light));
+  --care-p6: var(--gold-light);
+}
 
 /* hero wrapper: between the ink vignette (z0) and the lockup (z2) */
 .orrery--hero { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
@@ -140,37 +149,293 @@ footer .footer-name, footer p { position: relative; z-index: 1; }
    children, so they survive — hide them explicitly or they print as orphan bows. */
 @media print { .divider-arc { display: none !important; } }
 
-/* ─── Idea pieces: 6-Pack of Care as bounded orbits (Phase 3) ─────────── */
-/* The six grid items become bounded orbits — a kami circling each loop.
-   Scoped with the child combinator so the trailing link-items (outside the
-   grid) keep their own style. Replaces each item's 3px ink border-top. */
-.work-grid > .work-item { position: relative; border-top: none; padding-top: 46px; }
+/* ─── Idea map: 6-Pack of Care as a bounded civic orrery ─────── */
+.care-map { margin: 46px 0 0; }
+.care-map-frame {
+  position: relative;
+  border: 1px solid color-mix(in srgb, var(--care-p6) 72%, transparent);
+  border-radius: var(--radius-sm, 4px);
+  background:
+    radial-gradient(circle at 18% 50%, color-mix(in srgb, var(--care-p6) 12%, transparent), transparent 34%),
+    linear-gradient(135deg, color-mix(in srgb, var(--warm) 74%, transparent), transparent 62%);
+  padding: clamp(28px, 4.5vw, 48px);
+}
+.care-map-title {
+  max-width: 100%;
+  margin-bottom: clamp(18px, 3vw, 26px);
+}
+.care-map-title .care-map-chip {
+  position: static;
+  transform: none;
+  display: inline-flex;
+  width: auto;
+  color: var(--care-p6);
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  border-color: var(--care-p6);
+}
+.care-map-body {
+  display: grid;
+  grid-template-columns: minmax(280px, .86fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(24px, 5vw, 56px);
+}
+.care-map-dial {
+  position: relative;
+  aspect-ratio: 1;
+  width: min(100%, 420px);
+  margin: 0 auto;
+}
+.care-map-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.care-map-rim {
+  fill: none;
+  stroke: var(--care-p6);
+  stroke-width: 2;
+  stroke-dasharray: 2 8;
+  opacity: .78;
+}
+.care-map-horizon,
+.care-map-chord {
+  stroke: var(--border);
+  stroke-width: 1.7;
+  stroke-dasharray: 3 7;
+}
+.care-map-chord { opacity: .55; }
+.care-map-field {
+  fill: color-mix(in srgb, var(--care-p5) 9%, transparent);
+  stroke: var(--care-p5);
+  stroke-width: 1.5;
+  stroke-dasharray: 3 8;
+  opacity: .9;
+}
+.care-map-centre { fill: var(--care-p6); opacity: .9; }
+.care-map-arc {
+  fill: none;
+  stroke-linecap: round;
+  stroke-width: 12;
+  opacity: .82;
+  transition: stroke-width .22s ease, opacity .22s ease;
+}
+.care-map-arc--1 { stroke: var(--care-p1); }
+.care-map-arc--2 { stroke: var(--care-p2); }
+.care-map-arc--3 { stroke: var(--care-p3); }
+.care-map-arc--4 { stroke: var(--care-p4); }
+.care-map-chip {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: inline-flex;
+  align-items: center;
+  gap: .42em;
+  min-height: 28px;
+  padding: .34em .66em;
+  border: 1px solid var(--care-pack, var(--care-p6));
+  border-radius: var(--radius-xs, 3px);
+  background: color-mix(in srgb, var(--surface) 94%, transparent);
+  color: var(--care-pack, var(--care-p6));
+  font-family: var(--sans);
+  font-size: .74rem;
+  font-weight: 600;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background .2s ease, border-color .2s ease, color .2s ease, transform .25s cubic-bezier(.22, 1, .36, 1);
+}
+.care-map-chip-num {
+  font-family: var(--serif);
+  font-size: .98em;
+  font-weight: 700;
+}
+.care-map-dial > .care-map-chip:nth-of-type(1) { --care-pack: var(--care-p1); left: 50%; top: 18%; }
+.care-map-dial > .care-map-chip:nth-of-type(2) { --care-pack: var(--care-p2); left: 82%; top: 50%; }
+.care-map-dial > .care-map-chip:nth-of-type(3) { --care-pack: var(--care-p3); left: 50%; top: 82%; }
+.care-map-dial > .care-map-chip:nth-of-type(4) { --care-pack: var(--care-p4); left: 18%; top: 50%; }
+.care-map-dial > .care-map-chip:nth-of-type(5) { --care-pack: var(--care-p5); left: 50%; top: 100%; }
+.care-map-chip:hover,
+.care-map-chip:focus-visible {
+  background: color-mix(in srgb, var(--care-pack, var(--care-p6)) 12%, var(--surface));
+  border-color: currentColor;
+  color: var(--heading);
+  outline: none;
+}
+.care-map-dial > .care-map-chip:hover,
+.care-map-dial > .care-map-chip:focus-visible {
+  transform: translate(-50%, -50%) scale(1.04);
+}
+.care-map:has(.care-map-dial > .care-map-chip:nth-of-type(1):is(:hover, :focus-visible)) .care-map-arc--1,
+.care-map:has(.care-map-dial > .care-map-chip:nth-of-type(2):is(:hover, :focus-visible)) .care-map-arc--2,
+.care-map:has(.care-map-dial > .care-map-chip:nth-of-type(3):is(:hover, :focus-visible)) .care-map-arc--3,
+.care-map:has(.care-map-dial > .care-map-chip:nth-of-type(4):is(:hover, :focus-visible)) .care-map-arc--4 {
+  stroke-width: 18;
+  opacity: 1;
+}
+.care-map:has(.care-map-dial > .care-map-chip:nth-of-type(5):is(:hover, :focus-visible)) .care-map-field {
+  fill: color-mix(in srgb, var(--care-p5) 16%, transparent);
+  opacity: 1;
+}
+.care-map-copy p {
+  margin: 0;
+  max-width: 38rem;
+  color: var(--text);
+  font-size: 1rem;
+  line-height: 1.72;
+}
+.care-map-legend {
+  display: grid;
+  gap: 10px;
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: .82rem;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+.care-map-legend li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.care-map-legend-mark {
+  width: 28px;
+  height: 1px;
+  background: var(--care-p6);
+}
+.care-map-legend li:nth-child(1) .care-map-legend-mark {
+  background: linear-gradient(90deg, var(--care-p1), var(--care-p2), var(--care-p3), var(--care-p4));
+}
+.care-map-legend li:nth-child(2) .care-map-legend-mark { background: var(--care-p5); }
+.care-map-legend li:nth-child(3) .care-map-legend-mark { background: var(--care-p6); }
+#work:has(.care-map-chip[href="#care-pack-1"]:is(:hover, :focus-visible)) .work-grid > .work-item:nth-child(1)::before,
+#work:has(.care-map-chip[href="#care-pack-2"]:is(:hover, :focus-visible)) .work-grid > .work-item:nth-child(2)::before,
+#work:has(.care-map-chip[href="#care-pack-3"]:is(:hover, :focus-visible)) .work-grid > .work-item:nth-child(3)::before,
+#work:has(.care-map-chip[href="#care-pack-4"]:is(:hover, :focus-visible)) .work-grid > .work-item:nth-child(4)::before,
+#work:has(.care-map-chip[href="#care-pack-5"]:is(:hover, :focus-visible)) .work-grid > .work-item:nth-child(5)::before,
+#work:has(.care-map-chip[href="#care-pack-6"]:is(:hover, :focus-visible)) .work-grid > .work-item:nth-child(6)::before,
+.work-grid > .work-item:target::before {
+  opacity: 1;
+  border-color: var(--care-card, var(--orrery-bright));
+  transform: scale(1.15);
+}
+@media (prefers-reduced-motion: reduce) {
+  .care-map-arc,
+  .care-map-chip { transition: none; }
+}
+@media (max-width: 900px) {
+  .care-map-body {
+    grid-template-columns: 1fr;
+  }
+  .care-map-copy p {
+    max-width: none;
+  }
+}
+@media (max-width: 640px) {
+  .care-map-frame { padding: 22px 18px; }
+  .care-map-title { margin-bottom: 18px; }
+  .care-map-title .care-map-chip { white-space: normal; line-height: 1.25; }
+  .care-map-dial {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    width: 100%;
+    aspect-ratio: auto;
+  }
+  .care-map-svg {
+    grid-column: 1 / -1;
+    width: min(76vw, 300px);
+    height: auto;
+    justify-self: center;
+  }
+  .care-map-dial > .care-map-chip {
+    position: static;
+    transform: none;
+    justify-content: center;
+    white-space: normal;
+    text-align: center;
+    line-height: 1.2;
+  }
+  .care-map-dial > .care-map-chip:hover,
+  .care-map-dial > .care-map-chip:focus-visible {
+    transform: none;
+  }
+  .care-map-legend {
+    font-size: .74rem;
+  }
+}
+@media print {
+  .care-map {
+    break-inside: avoid;
+    margin-top: 5mm !important;
+  }
+  .care-map-frame {
+    padding: 5mm !important;
+    background: var(--print-panel) !important;
+    border-color: var(--print-accent-soft) !important;
+  }
+  .care-map-title {
+    position: static !important;
+    transform: none !important;
+    max-width: none !important;
+    margin-bottom: 3mm !important;
+  }
+  .care-map-title .care-map-chip {
+    background: none !important;
+    border: 0 !important;
+    padding: 0 !important;
+    color: var(--print-ink) !important;
+  }
+  .care-map-body {
+    grid-template-columns: 34mm 1fr !important;
+    gap: 5mm !important;
+  }
+  .care-map-dial {
+    width: 34mm !important;
+  }
+  .care-map-dial > .care-map-chip {
+    display: none !important;
+  }
+  .care-map-copy p,
+  .care-map-legend {
+    font-size: 8.5pt !important;
+    line-height: 1.45 !important;
+  }
+}
+
+/* ─── Idea pieces: 6-Pack cards as numbered bounded rings ─────────────── */
+/* The six grid items keep a small numbered ring as their local index.
+   The moving dot now lives in the map above; duplicating it here makes
+   the cards look misregistered rather than alive. */
+.work-grid { counter-reset: care-pack; }
+.work-grid > .work-item {
+  --care-card: var(--orrery-line);
+  position: relative;
+  border-top: none;
+  padding-top: 46px;
+  scroll-margin-top: 110px;
+  counter-increment: care-pack;
+}
+.work-grid > .work-item:nth-child(1) { --care-card: var(--care-p1); }
+.work-grid > .work-item:nth-child(2) { --care-card: var(--care-p2); }
+.work-grid > .work-item:nth-child(3) { --care-card: var(--care-p3); }
+.work-grid > .work-item:nth-child(4) { --care-card: var(--care-p4); }
+.work-grid > .work-item:nth-child(5) { --care-card: var(--care-p5); }
+.work-grid > .work-item:nth-child(6) { --care-card: var(--care-p6); }
 .work-grid > .work-item::before {
-  content: ""; position: absolute; top: 0; left: 0;
-  width: 28px; height: 28px; border: 1px solid var(--orrery-line); border-radius: 50%; opacity: .7;
+  content: counter(care-pack);
+  position: absolute; top: 0; left: 0;
+  width: 28px; height: 28px;
+  display: grid; place-items: center;
+  border: 1px solid var(--care-card); border-radius: 50%; opacity: .78;
+  color: var(--care-card);
+  font-family: var(--serif); font-size: .78rem; line-height: 1; font-weight: 700;
 }
-.work-grid > .work-item::after {
-  content: ""; position: absolute; top: 0; left: 0;
-  width: 28px; height: 28px; border-radius: 50%; transform-origin: center;
-  will-change: transform;
-  animation: kami 96s linear infinite;   /* one shared speed → the six hold their spacing */
-  background: radial-gradient(circle 2.4px at 50% 0%, var(--orrery-line) 99%, transparent 100%);
-}
-/* The six kami's start angles complete one clockwise turn — Attentiveness at the top
-   (0°, the ::after base position), each later pack a further 60° clockwise. Baked into
-   the node's position (not animation-delay) so the 60° spacing also holds under reduced
-   motion; the shared speed above keeps the spacing as the whole set turns.
-   pos: x% = 50 + 50·sin θ, y% = 50 − 50·cos θ (θ clockwise from top). */
-.work-grid > .work-item:nth-child(2)::after { background: radial-gradient(circle 2.4px at 93.3% 25%, var(--orrery-line) 99%, transparent 100%); }  /*  60° Responsibility */
-.work-grid > .work-item:nth-child(3)::after { background: radial-gradient(circle 2.4px at 93.3% 75%, var(--orrery-line) 99%, transparent 100%); }  /* 120° Competence */
-.work-grid > .work-item:nth-child(4)::after { background: radial-gradient(circle 2.4px at 50% 100%, var(--orrery-line) 99%, transparent 100%); }   /* 180° Responsiveness */
-.work-grid > .work-item:nth-child(5)::after { background: radial-gradient(circle 2.4px at 6.7% 75%, var(--orrery-line) 99%, transparent 100%); }   /* 240° Solidarity */
-.work-grid > .work-item:nth-child(6)::after { background: radial-gradient(circle 2.4px at 6.7% 25%, var(--orrery-line) 99%, transparent 100%); }   /* 300° Symbiosis */
-@keyframes kami { to { transform: rotate(360deg); } }
-@media (prefers-reduced-motion: reduce) { .work-grid > .work-item::after { animation: none; } }
-/* print: drop the orbit; the existing print stylesheet restores .work-item's
+/* print: drop the ring; the existing print stylesheet restores .work-item's
    ink border-top (!important at components.css ~1432) */
-@media print { .work-grid > .work-item::before, .work-grid > .work-item::after { content: none; } }
+@media print { .work-grid > .work-item::before { content: none; } }
 
 /* ─── Idea pieces: people-arc behind the pullquote (Phase 3) ──────────── */
 .pullquote { position: relative; overflow: hidden; }
@@ -202,13 +467,14 @@ footer .footer-name, footer p { position: relative; z-index: 1; }
 }
 @media print { .constellation { display: none; } .award-year { padding-left: 0; } .award-year::before { content: none; } }
 
-/* ─── Finale: care-orbit hover polish (Phase 4b) ──────────────────────── */
-/* On hover the bounded orbit's ring brightens and grows a touch — the kami
-   stirs. Decorative only: nothing is hidden; the descriptions are always shown. */
+/* ─── Finale: care-ring hover polish (Phase 4b) ───────────────────────── */
+/* On hover the bounded ring brightens and grows a touch. Decorative only:
+   nothing is hidden; the descriptions are always shown. */
 .work-grid > .work-item::before {
   transition: opacity .3s ease, border-color .3s ease, transform .4s cubic-bezier(.22, 1, .36, 1);
 }
-.work-grid > .work-item:hover::before {
-  opacity: 1; border-color: var(--orrery-bright); transform: scale(1.15);
+.work-grid > .work-item:hover::before,
+.work-grid > .work-item:focus-within::before {
+  opacity: 1; border-color: var(--care-card); transform: scale(1.15);
 }
 @media (prefers-reduced-motion: reduce) { .work-grid > .work-item::before { transition: none; } }

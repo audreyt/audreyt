@@ -785,18 +785,71 @@ function renderCivicAI(): string {
   const enC = parseCivicBody(enP.body);
   const zhC = parseCivicBody(zhP.body);
 
+  function pushCareMap(
+    enItems: { name: string; desc: string }[],
+    zhItems: { name: string; desc: string }[],
+  ) {
+    if (enItems.length < 6 || zhItems.length < 6) return;
+
+    lines.push(`${I}<div class="care-map" role="group" aria-labelledby="care-map-title-en care-map-title-zh">`);
+    lines.push(`${I}    <div class="care-map-frame">`);
+    lines.push(`${I}        <div class="care-map-title">`);
+    lines.push(`${I}            <a class="care-map-chip" href="#care-pack-6">`);
+    lines.push(`${I}                <span id="care-map-title-en" lang="en-GB">Pack 6 &middot; ${entEn(enItems[5].name)} &mdash; the boundary in time</span>`);
+    lines.push(`${I}                <span id="care-map-title-zh" lang="zh-TW">第六力&#x30FB;${entZh(zhItems[5].name)}&mdash;&mdash;時間中的邊界</span>`);
+    lines.push(`${I}            </a>`);
+    lines.push(`${I}        </div>`);
+    lines.push(`${I}        <div class="care-map-body">`);
+    lines.push(`${I}            <div class="care-map-dial" aria-label="6-Pack of Care map">`);
+    lines.push(`${I}                <svg class="care-map-svg" viewBox="0 0 620 620" aria-hidden="true" focusable="false">`);
+    lines.push(`${I}                    <circle class="care-map-rim" cx="310" cy="310" r="292"/>`);
+    lines.push(`${I}                    <line class="care-map-horizon" x1="82" y1="310" x2="538" y2="310"/>`);
+    lines.push(`${I}                    <path class="care-map-arc care-map-arc--1" pathLength="100" d="M 164.7 124 A 236 236 0 0 1 455.3 124"/>`);
+    lines.push(`${I}                    <path class="care-map-arc care-map-arc--2" pathLength="100" d="M 496 164.7 A 236 236 0 0 1 496 455.3"/>`);
+    lines.push(`${I}                    <path class="care-map-arc care-map-arc--3" pathLength="100" d="M 455.3 496 A 236 236 0 0 1 164.7 496"/>`);
+    lines.push(`${I}                    <path class="care-map-arc care-map-arc--4" pathLength="100" d="M 124 455.3 A 236 236 0 0 1 124 164.7"/>`);
+    lines.push(`${I}                    <line class="care-map-chord care-map-chord--13" x1="310" y1="90" x2="310" y2="530"/>`);
+    lines.push(`${I}                    <line class="care-map-chord care-map-chord--24" x1="530" y1="310" x2="90" y2="310"/>`);
+    lines.push(`${I}                    <circle class="care-map-field" cx="310" cy="310" r="172"/>`);
+    lines.push(`${I}                    <circle class="care-map-centre" cx="310" cy="310" r="5"/>`);
+    lines.push(`${I}                </svg>`);
+    for (let i = 0; i < 5; i++) {
+      lines.push(`${I}                <a class="care-map-chip" href="#care-pack-${i + 1}">`);
+      lines.push(`${I}                    <span class="care-map-chip-num" aria-hidden="true">${i + 1}</span>`);
+      lines.push(`${I}                    <span lang="en-GB">${entEn(enItems[i].name)}</span>`);
+      lines.push(`${I}                    <span lang="zh-TW">${entZh(zhItems[i].name)}</span>`);
+      lines.push(`${I}                </a>`);
+    }
+    lines.push(`${I}            </div>`);
+    lines.push(`${I}            <div class="care-map-copy">`);
+    lines.push(`${I}                <p lang="en-GB">Packs 1&ndash;4 turn as the care cycle; Pack 5 is the field between deployments; Pack 6 keeps every deployment local, plural, and ready to step back.</p>`);
+    lines.push(`${I}                <p lang="zh-TW">第一至第四力構成關懷循環；第五力連結部署之間的場域；第六力守住邊界，讓每個部署維持在地、多元，並能功遂身退。</p>`);
+    lines.push(`${I}                <ul class="care-map-legend">`);
+    lines.push(`${I}                    <li><span class="care-map-legend-mark"></span><span lang="en-GB">Care cycle</span><span lang="zh-TW">關懷循環</span></li>`);
+    lines.push(`${I}                    <li><span class="care-map-legend-mark"></span><span lang="en-GB">Solidarity field</span><span lang="zh-TW">團結場域</span></li>`);
+    lines.push(`${I}                    <li><span class="care-map-legend-mark"></span><span lang="en-GB">Symbiosis boundary</span><span lang="zh-TW">共生邊界</span></li>`);
+    lines.push(`${I}                </ul>`);
+    lines.push(`${I}            </div>`);
+    lines.push(`${I}        </div>`);
+    lines.push(`${I}    </div>`);
+    lines.push(`${I}</div>`);
+  }
+
+
   // Intro paragraphs
   for (const p of enC.introParagraphs)
     lines.push(`${I}<p lang="en-GB">${mdInline(p, entEn)}</p>`);
   for (const p of zhC.introParagraphs)
     lines.push(`${I}<p lang="zh-TW">${mdInline(p, entZh)}</p>`);
 
+  pushCareMap(enC.workItems, zhC.workItems);
+
   // Work grid
   lines.push(`${I}<div class="work-grid">`);
   for (let i = 0; i < enC.workItems.length; i++) {
     const w = enC.workItems[i];
     const wz = zhC.workItems[i];
-    lines.push(`${I}    <div class="work-item">`);
+    lines.push(`${I}    <div class="work-item" id="care-pack-${i + 1}">`);
     lines.push(
       `${I}        <h3 lang="en-GB">${entEn(w.name)}</h3>`,
     );

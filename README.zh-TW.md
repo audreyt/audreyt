@@ -92,17 +92,17 @@ AI 進入人類迴圈
 
 這些智慧體的概念來自 **local Kami**（地神）：特定場域的守護者，明白「夠好就好」，不執著於權力，也不會擴張超出自身目的。這個架構並非一次性寫入「完美」價值，而是建構奠基於關懷倫理的持續治理——透過流程而非指令對齊。從 Joan Tronto 的政治關懷倫理延伸而來的六力架構具體如下：
 
-**覺察力** — 最貼近痛苦的人注意到哪些我們忽視的需求？橋接演算法能凸顯跨領域的關切，放大未被聽見的聲音，而非最大聲的聲音。
+**覺察力** — 最貼近痛苦的人注意到哪些我們忽視的需求？代表性落差檢驗哪些受實質影響的群體仍缺席或被低估，再由搭橋地圖浮現跨領域關切。
 
-**負責力** — 誰負責、擁有什麼權限、失敗時有什麼後果？參與合約搭配明確的期限、託管資金、指名負責人。
+**負責力** — 誰負責、擁有什麼權限、失敗時有什麼後果？承諾保真度檢驗重要義務是否被明確指派、授權正當，並依公布條件履行。
 
-**勝任力** — 系統是否真的能運作？階段性釋出、每個行為都有決策軌跡、程式化的護欄，超過門檻時自動回溯。
+**勝任力** — 系統是否真的能運作？經驗證的執行率檢驗被抽查的決策或發版是否通過護欄、具備可用軌跡，並維持在發版界限內。
 
-**回應力** — 受影響的人能否修正系統——且修正確實能改變系統？由社群設計的獎勵機制、明確的申訴時限、公開修復紀錄。
+**回應力** — 受影響的人能否修正系統——且修復是否恢復信任？失利下的信任檢驗不良結果與修復後，受影響者是否覺得系統更值得信任。
 
-**團結力** — 生態系是否獎勵合作而非封閉？資料可攜性、聯邦式信任與安全、橋接指標能以數學方式識別惡意派系操作。
+**團結力** — 生態系是否獎勵合作而非封閉？資料可攜性與聯邦式信任與安全讓退出可行；罕見共識指數檢驗共同決策是否有跨群體參與及共同背書，而非平行孤島。
 
-**共生力** — 系統是否有邊界、具備日落條款、不會無止境擴張？資源上限、不擴張協議、繼承計劃，功遂身退。
+**共生力** — 系統是否有邊界、具備日落條款、不會無止境擴張？退出就緒度檢驗系統能否按期交接或關閉，而不造成權利流失、服務中斷或再集中化。
 
 #### 案例研究・臺灣，2024: 深偽治理審議式民調
 
@@ -150,6 +150,7 @@ AI 不只是自動化。它重新分配注意力、權威與議價能力。在�
 | [Sunset Section 230 and Unleash the First Amendment](https://cacm.acm.org/opinion/sunset-section-230-and-unleash-the-first-amendment/) | With Jaron Lanier and Allison Stanger | CACM | 2026 |
 | [AI and the Future of Digital Public Squares](https://journals.sagepub.com/doi/10.1177/26339137261459441) | With Beth Goldberg, Divya Siddarth, Hélène Landemore et al. | Collective Intelligence | 2026 |
 | [AI Poses Risks to Democratic and Social Systems](https://zhijing-jin.com/d/2026-ai-risk.pdf) | With Yoshua Bengio, Stuart Russell, Zhijing Jin et al. | Preprint | 2026 |
+| [AI and the Future of Digital Public Squares](https://journals.sagepub.com/doi/10.1177/26339137261459441) | With Beth Goldberg, Divya Siddarth, Hélène Landemore et al. | Collective Intelligence | 2026 |
 | [Symbiotic Alignment via Collective Predictive Coding](https://doi.org/10.5281/zenodo.19029736) | With Tadahiro Taniguchi, Yusuke Hayashi, Olaf Witkowski, et al. | Preprint | 2026 |
 | [Conversation Networks](https://www.mediatechdemocracy.com/conversation-networks) | With Deb Roy and Lawrence Lessig | McGill | 2025 |
 | [A Different Approach to AI Safety](https://arxiv.org/abs/2506.22183) | With Camille François, Ludovic Péran et al. · Columbia University convening proceedings | arXiv | 2025 |
