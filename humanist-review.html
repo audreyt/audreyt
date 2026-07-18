@@ -5,21 +5,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AI 與民主：拒絕被最佳化的權利｜唐鳳</title>
 <meta name="description" content="臺灣數位治理無任所大使唐鳳：AI 真正的危險，不在機器把人模仿得多像，而在人開始把自己調整成機器的形狀。">
+<meta name="author" content="唐鳳 Audrey Tang">
+<link rel="canonical" href="https://audreyt.org/humanist-review-ai-democracy/">
+<link rel="alternate" hreflang="en" href="https://humanistreview.ai/issue-1/tang-ai-democracy-optimization/">
+<link rel="alternate" hreflang="zh-Hant" href="https://audreyt.org/humanist-review-ai-democracy/">
 <meta property="og:title" content="AI 與民主：拒絕被最佳化的權利">
 <meta property="og:description" content="AI 真正的危險，不在機器把人模仿得多像，而在人開始把自己調整成機器的形狀。">
-<meta property="og:image" content="https://cyberambassador.tw/og-humanist-review.jpg">
+<meta property="og:image" content="https://audreyt.org/og-humanist-review.jpg">
 <meta property="og:image:alt" content="AI 與民主：拒絕被最佳化的權利 — 唐鳳，The Humanist Review 創刊號">
 <meta property="og:image:width" content="2400">
 <meta property="og:image:height" content="1260">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://cyberambassador.tw/og-humanist-review.jpg">
 <meta property="og:type" content="article">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:site_name" content="Audrey Tang 唐鳳">
+<meta property="article:published_time" content="2026-07-15">
+<meta property="article:author" content="https://audreyt.org/">
+<meta property="article:section" content="人與科技">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://audreyt.org/og-humanist-review.jpg">
+<meta name="twitter:title" content="AI 與民主：拒絕被最佳化的權利｜唐鳳">
+<meta name="twitter:description" content="AI 真正的危險，不在機器把人模仿得多像，而在人開始把自己調整成機器的形狀。">
 <meta name="theme-color" content="#2b1a1f" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#faf8f3" media="(prefers-color-scheme: light)">
 <meta name="color-scheme" content="light dark">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='26' fill='%23f4a499'/%3E%3Ccircle cx='32' cy='32' r='12' fill='%234d2a33'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600;700;900&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=Red+Hat+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "AI 與民主：拒絕被最佳化的權利",
+  "description": "AI 真正的危險，不在機器把人模仿得多像，而在人開始把自己調整成機器的形狀。",
+  "inLanguage": "zh-TW",
+  "datePublished": "2026-07-15",
+  "image": "https://audreyt.org/og-humanist-review.jpg",
+  "isAccessibleForFree": true,
+  "license": "https://creativecommons.org/publicdomain/zero/1.0/",
+  "author": { "@type": "Person", "name": "Audrey Tang", "alternateName": "唐鳳", "url": "https://audreyt.org/" },
+  "translator": { "@type": "Person", "name": "Audrey Tang", "alternateName": "唐鳳" },
+  "publisher": { "@type": "Organization", "name": "The Humanist Review" },
+  "translationOfWork": {
+    "@type": "Article",
+    "inLanguage": "en",
+    "url": "https://humanistreview.ai/issue-1/tang-ai-democracy-optimization/"
+  }
+}
+</script>
 <style>
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -45,7 +78,7 @@
 }
 
 @media (prefers-color-scheme: dark) {
-    :root {
+    :root:not([data-theme="light"]) {
         --paper: #1d1719;
         --cream: #241c1e;
         --shell: #211a1c;
@@ -59,9 +92,30 @@
         --border: #382e30;
     }
 }
+:root[data-theme="dark"] {
+    --paper: #1d1719;
+    --cream: #241c1e;
+    --shell: #211a1c;
+    --accent: #2a2124;
+    --ink: #f2ece4;
+    --stone: #8a7d70;
+    --peach: #b57f66;
+    --taupe: #b3a396;
+    --text: #cfc4ba;
+    --muted: #97887d;
+    --border: #382e30;
+}
+:root[data-theme="dark"] { color-scheme: dark; }
+:root[data-theme="light"] { color-scheme: light; }
+
+/* smooth cross-fade while flipping themes */
+:root.theming, :root.theming *, :root.theming *::before, :root.theming *::after {
+    transition: background-color .35s ease, color .35s ease, border-color .35s ease, fill .35s ease, stroke .35s ease, box-shadow .35s ease !important;
+}
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 88px;
     hanging-punctuation: first allow-end last;
 }
 
@@ -72,8 +126,21 @@ body {
     line-height: 2;
     font-weight: 400;
     text-spacing-trim: trim-start;
+    text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* faint paper grain over everything, below chrome */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    pointer-events: none;
+    opacity: .04;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
 }
 
 ::selection { background: var(--peach); color: var(--plum); }
@@ -82,6 +149,14 @@ a { color: inherit; text-decoration: underline; text-decoration-thickness: 1px; 
 a:hover { color: var(--coral-deep); }
 
 :focus-visible { outline: 2px solid var(--coral-deep); outline-offset: 3px; }
+main:focus { outline: none; }
+
+.sr-only {
+    position: absolute; width: 1px; height: 1px;
+    margin: -1px; padding: 0; overflow: hidden;
+    clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+html:not(.js) .needs-js { display: none !important; }
 
 @keyframes fadeUp {
     from { opacity: 0; transform: translateY(20px); }
@@ -95,16 +170,109 @@ html.js .reveal.visible { opacity: 1; transform: translateY(0); }
     html.js .reveal { opacity: 1; transform: none; transition: none; }
     header.site, .masthead > *, .art-band { animation: none !important; opacity: 1 !important; }
     html { scroll-behavior: auto; }
+    .readbar, .totop, .rail a i, .rail a b { transition: none !important; }
+    .section-head:target, #citizen-humanism:target .head-wrap { animation: none !important; }
 }
+
+/* ── skip link ── */
+.skip {
+    position: fixed; top: 10px; left: 10px; z-index: 100;
+    background: var(--ink); color: var(--paper);
+    padding: 8px 16px; font-size: 0.8rem; letter-spacing: 0.1em;
+    text-decoration: none; border-radius: 4px;
+    transform: translateY(-300%); transition: transform 0.25s ease;
+}
+.skip:focus { transform: none; }
 
 /* ── progress ── */
 .progress {
     position: fixed; top: 0; left: 0; height: 3px; width: 0;
     background: linear-gradient(90deg, var(--coral), var(--coral-deep));
-    z-index: 90;
+    border-radius: 0 2px 2px 0;
+    z-index: 96;
 }
 
-/* ── SITE HEADER (links back to homepage, matching the other essays) ── */
+/* ── readbar (floating pill, JS-gated) ── */
+.readbar {
+    position: fixed; bottom: 14px; left: 50%;
+    transform: translate(-50%, -10px);
+    z-index: 95;
+    display: flex; align-items: center; gap: 14px;
+    padding: 7px 8px 7px 16px;
+    max-width: min(93vw, 740px);
+    background: var(--paper);
+    background: color-mix(in srgb, var(--paper) 86%, transparent);
+    -webkit-backdrop-filter: blur(14px) saturate(1.2);
+    backdrop-filter: blur(14px) saturate(1.2);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    box-shadow: 0 10px 34px rgba(28, 23, 24, 0.10);
+    opacity: 0; visibility: hidden; pointer-events: none;
+    transition: opacity 0.35s ease, transform 0.35s ease, visibility 0.35s;
+}
+.readbar.on { opacity: 1; visibility: visible; transform: translate(-50%, 0); pointer-events: auto; }
+.rb-loc { display: flex; align-items: baseline; gap: 9px; min-width: 0; }
+.rb-num {
+    font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.18em;
+    color: var(--coral-deep); border: 1px solid var(--stone);
+    border-radius: 2px; padding: 1px 7px; flex: none;
+}
+.rb-title {
+    font-size: 0.84rem; font-weight: 600; letter-spacing: 0.05em;
+    color: var(--ink); white-space: nowrap; overflow: hidden;
+    text-overflow: ellipsis; max-width: 15em;
+}
+.rb-pct {
+    font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.12em;
+    color: var(--muted); flex: none; min-width: 3.2em; text-align: right;
+}
+.rb-btn {
+    font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.16em;
+    color: var(--taupe); background: transparent;
+    border: 1px solid var(--stone); border-radius: 999px;
+    padding: 4px 13px; cursor: pointer; flex: none;
+    transition: color 0.25s, border-color 0.25s, background 0.25s;
+}
+.rb-btn:hover { color: var(--coral-deep); border-color: var(--coral-deep); }
+@media (max-width: 680px) {
+    .rb-title { display: none; }
+    .rb-btn.copy { display: none; }
+    .readbar { gap: 10px; padding-left: 12px; }
+}
+
+/* ── chapter rail (wide screens) ── */
+.rail {
+    position: fixed; left: 30px; top: 50%;
+    transform: translateY(-50%);
+    z-index: 70;
+}
+.rail ol { list-style: none; position: relative; display: flex; flex-direction: column; gap: 16px; }
+.rail ol::before {
+    content: ""; position: absolute; left: 3px; top: -6px; bottom: -6px;
+    width: 1px; background: var(--border);
+}
+.rail a {
+    position: relative; display: flex; align-items: center; gap: 10px;
+    text-decoration: none;
+}
+.rail a i {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--stone); flex: none;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+.rail a b {
+    font-family: var(--mono); font-weight: 400; font-size: 0.62rem;
+    letter-spacing: 0.24em; color: var(--muted);
+    opacity: 0; transform: translateX(-5px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.rail a:hover i, .rail a:focus-visible i { background: var(--coral-deep); transform: scale(1.4); }
+.rail a:hover b, .rail a:focus-visible b { opacity: 1; transform: none; }
+.rail a[aria-current="true"] i { background: var(--coral-deep); transform: scale(1.55); }
+.rail a[aria-current="true"] b { opacity: 1; transform: none; color: var(--coral-deep); }
+@media (max-width: 1180px) { .rail { display: none; } }
+
+/* ── SITE HEADER ── */
 header.site {
     max-width: 860px;
     margin: 0 auto;
@@ -135,13 +303,18 @@ header.site .crumbs {
     text-transform: uppercase;
     color: var(--muted);
 }
-header.site .crumbs .tag {
+header.site .crumbs .tag,
+header.site .crumbs .tagbtn {
     border: 1px solid var(--stone);
     color: var(--taupe);
     padding: 2px 9px;
     border-radius: 2px;
     letter-spacing: 0.22em;
+    font-family: inherit; font-size: inherit;
+    background: transparent;
 }
+header.site .crumbs .tagbtn { cursor: pointer; transition: color 0.25s, border-color 0.25s; }
+header.site .crumbs .tagbtn:hover { color: var(--coral-deep); border-color: var(--coral-deep); }
 @media (max-width: 768px) {
     header.site { padding: 14px 22px 4px; }
     header.site .crumbs span:first-child { display: none; }
@@ -196,6 +369,10 @@ header.site .crumbs .tag {
 }
 .art-frame {
     background: var(--accent);
+    background:
+        radial-gradient(90% 120% at 78% 12%, color-mix(in srgb, var(--peach) 26%, transparent), transparent 60%),
+        radial-gradient(80% 110% at 18% 88%, color-mix(in srgb, var(--coral) 16%, transparent), transparent 55%),
+        var(--accent);
     border-radius: 4px;
     overflow: hidden;
 }
@@ -203,7 +380,8 @@ header.site .crumbs .tag {
 .art-coral { fill: var(--coral); }
 .art-peach { fill: var(--peach); }
 .art-plum  { fill: var(--plum); }
-@media (prefers-color-scheme: dark) { .art-plum { fill: var(--coral-deep); } }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .art-plum { fill: var(--coral-deep); } }
+:root[data-theme="dark"] .art-plum { fill: var(--coral-deep); }
 .art-ring { fill: none; stroke: var(--stone); stroke-width: 1; opacity: 0.55; }
 .art-ring--dash { stroke-dasharray: 3 7; opacity: 0.45; }
 .art-arc { fill: none; stroke: var(--coral-deep); stroke-width: 1.2; opacity: 0.5; }
@@ -211,12 +389,28 @@ header.site .crumbs .tag {
 .art-disc--sm { fill: none; stroke: var(--coral-deep); stroke-width: 1; opacity: 0.6; }
 .art-line { stroke: var(--stone); stroke-width: 1; opacity: 0.5; }
 .art-caption {
+    display: block;
     font-family: var(--mono);
     font-size: 0.66rem;
     letter-spacing: 0.16em;
     color: var(--muted);
     text-align: right;
     padding-top: 10px;
+}
+
+/* living artwork — strictly opt-in to motion */
+@keyframes artSpin { to { transform: rotate(1turn); } }
+@keyframes artBreathe { from { transform: scale(1); } to { transform: scale(1.011); } }
+@keyframes artTwinkle { 0%, 100% { opacity: 1; } 50% { opacity: 0.45; } }
+@media (prefers-reduced-motion: no-preference) {
+    .art-ring--dash { transform-box: fill-box; transform-origin: center; animation: artSpin 140s linear infinite; }
+    .art-coral, .art-peach { transform-box: fill-box; transform-origin: center; animation: artBreathe 10s ease-in-out infinite alternate; }
+    .art-peach { animation-delay: -5s; }
+    .art-coral circle:nth-of-type(6n+1) { animation: artTwinkle 7s ease-in-out infinite; }
+    .art-coral circle:nth-of-type(6n+3) { animation: artTwinkle 7s ease-in-out -2.3s infinite; }
+    .art-coral circle:nth-of-type(6n+5) { animation: artTwinkle 7s ease-in-out -4.6s infinite; }
+    .art-peach circle:nth-of-type(5n+2) { animation: artTwinkle 8s ease-in-out -1.2s infinite; }
+    .art-peach circle:nth-of-type(5n+4) { animation: artTwinkle 8s ease-in-out -5.1s infinite; }
 }
 
 /* ── byline row ── */
@@ -241,9 +435,54 @@ header.site .crumbs .tag {
     animation: fadeUp 0.9s ease 0.85s forwards;
 }
 .byline .who { color: var(--ink); letter-spacing: 0.26em; }
+.byline .by-mid { display: flex; align-items: baseline; gap: 12px; }
+.byline .by-dot { color: var(--coral-deep); }
+.byline time { font: inherit; color: inherit; }
 @media (max-width: 600px) {
     .byline { flex-direction: column; gap: 6px; }
 }
+
+/* ── table of contents ── */
+.toc {
+    max-width: 46rem;
+    margin: clamp(40px, 6vw, 64px) auto 0;
+    padding: 0 24px;
+}
+.toc-label {
+    display: block;
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    color: var(--taupe);
+    margin-bottom: 18px;
+}
+.toc ol {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px 32px;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 0;
+}
+.toc a {
+    display: flex; gap: 12px; align-items: baseline;
+    padding: 9px 8px;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background 0.25s ease;
+}
+.toc a:hover { background: var(--accent); }
+.toc .t-num {
+    font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.18em;
+    color: var(--coral-deep); min-width: 1.7em; flex: none;
+}
+.toc .t-title { font-size: 0.95rem; letter-spacing: 0.04em; color: var(--text); line-height: 1.75; }
+.toc a[aria-current="true"] { background: var(--accent); }
+.toc a[aria-current="true"] .t-title { color: var(--coral-deep); font-weight: 600; }
+@media (max-width: 640px) { .toc ol { grid-template-columns: 1fr; } }
 
 /* ── prose ── */
 main { padding-bottom: 0; }
@@ -256,9 +495,17 @@ main { padding-bottom: 0; }
     letter-spacing: 0.035em;
     text-align: justify;
     text-justify: inter-ideograph;
+    line-break: strict;
 }
-.prose p { margin: 0 0 1.9em; text-wrap: pretty; }
-.prose em { font-style: normal; font-weight: 600; color: var(--ink); text-emphasis: filled dot var(--coral-deep); text-emphasis-position: under right; }
+.prose p { margin: 0 0 1.9em; text-wrap: pretty; orphans: 3; widows: 3; }
+.prose em {
+    font-style: normal; font-weight: 600; color: var(--ink);
+    -webkit-text-emphasis: filled dot var(--coral-deep);
+    -webkit-text-emphasis-position: under right;
+    text-emphasis: filled dot var(--coral-deep);
+    text-emphasis-position: under right;
+    padding-bottom: 2px;
+}
 .lede { margin-top: clamp(48px, 7vw, 84px); }
 .lede > p:first-child::first-letter {
     font-size: 3.05em;
@@ -269,14 +516,17 @@ main { padding-bottom: 0; }
     margin: 0.09em 0.18em 0 0;
 }
 @media (prefers-color-scheme: dark) {
-    .lede > p:first-child::first-letter { color: var(--coral); }
+    :root:not([data-theme="light"]) .lede > p:first-child::first-letter { color: var(--coral); }
 }
+:root[data-theme="dark"] .lede > p:first-child::first-letter { color: var(--coral); }
 
 /* ── section heads ── */
 .section-head {
+    position: relative;
     max-width: 34.5em;
     margin: clamp(56px, 8vw, 92px) auto 2.4em;
-    padding: 0 24px;
+    padding: 6px 24px;
+    border-radius: 8px;
 }
 .section-head .num {
     display: block;
@@ -297,6 +547,51 @@ main { padding-bottom: 0; }
     border-bottom: 1px solid var(--border);
     text-wrap: balance;
 }
+.section-head .plink {
+    position: absolute;
+    left: -0.4em;
+    bottom: 0.9em;
+    font-family: var(--mono);
+    font-size: 1rem;
+    color: var(--stone);
+    text-decoration: none;
+    opacity: 0;
+    transition: opacity 0.25s ease, color 0.25s ease;
+}
+.section-head:hover .plink, .plink:focus-visible { opacity: 1; }
+.plink:hover { color: var(--coral-deep); }
+@media (max-width: 720px) { .section-head .plink { display: none; } }
+
+/* ghost outline numerals */
+.ghost {
+    position: absolute;
+    right: 12px; top: -0.5em;
+    font-weight: 900;
+    font-size: clamp(3.6rem, 8vw, 6rem);
+    line-height: 1;
+    color: var(--border);
+    opacity: 0.5;
+    pointer-events: none;
+    user-select: none;
+}
+@supports ((-webkit-text-stroke: 1px black)) {
+    .ghost {
+        color: transparent;
+        -webkit-text-stroke: 1.2px var(--stone);
+        opacity: 0.55;
+    }
+}
+
+@keyframes targetFlash {
+    0% { background-color: var(--accent); }
+    100% { background-color: transparent; }
+}
+@keyframes targetFlashDark {
+    0% { background-color: rgba(250, 219, 201, 0.14); }
+    100% { background-color: transparent; }
+}
+.section-head:target { animation: targetFlash 1.6s ease; }
+#citizen-humanism:target .head-wrap { animation: targetFlashDark 1.6s ease; }
 
 /* ── pull quotes ── */
 .pull {
@@ -316,8 +611,9 @@ main { padding-bottom: 0; }
     text-wrap: pretty;
 }
 @media (prefers-color-scheme: dark) {
-    .pull blockquote { color: var(--peach); }
+    :root:not([data-theme="light"]) .pull blockquote { color: var(--peach); }
 }
+:root[data-theme="dark"] .pull blockquote { color: var(--peach); }
 .pull blockquote::before {
     content: '「';
     position: absolute;
@@ -362,6 +658,7 @@ main { padding-bottom: 0; }
 /* ── closing (plum band — always dark) ── */
 .closing {
     background: var(--plum);
+    background: radial-gradient(130% 90% at 50% 0%, #5c3340 0%, var(--plum) 58%);
     color: #f8eedd;
     margin-top: clamp(72px, 10vw, 120px);
     padding: clamp(72px, 9vw, 120px) 24px clamp(64px, 8vw, 104px);
@@ -374,9 +671,16 @@ main { padding-bottom: 0; }
     letter-spacing: 0.035em;
     text-align: justify;
     text-justify: inter-ideograph;
+    line-break: strict;
 }
 .closing .prose-dark p { margin-bottom: 1.9em; color: rgba(248, 238, 221, 0.88); text-wrap: pretty; }
-.closing .prose-dark em { font-style: normal; font-weight: 600; color: var(--peach); }
+.closing .prose-dark em {
+    font-style: normal; font-weight: 600; color: var(--peach);
+    -webkit-text-emphasis: filled dot rgba(250, 219, 201, 0.7);
+    -webkit-text-emphasis-position: under right;
+    text-emphasis: filled dot rgba(250, 219, 201, 0.7);
+    text-emphasis-position: under right;
+}
 .closing .num { display: block; font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.34em; text-transform: uppercase; color: var(--coral); margin-bottom: 14px; }
 .closing h2 {
     font-size: clamp(1.5rem, 3.4vw, 1.95rem);
@@ -389,7 +693,11 @@ main { padding-bottom: 0; }
     padding-bottom: 18px;
     border-bottom: 1px solid rgba(250, 219, 201, 0.25);
 }
-.closing .head-wrap { max-width: 34.5em; margin: 0 auto; }
+.closing .head-wrap { position: relative; max-width: 34.5em; margin: 0 auto; border-radius: 8px; padding: 6px 0; }
+.closing .ghost { color: rgba(250, 219, 201, 0.14); opacity: 1; right: 0; }
+@supports ((-webkit-text-stroke: 1px black)) {
+    .closing .ghost { color: transparent; -webkit-text-stroke: 1.2px rgba(250, 219, 201, 0.32); }
+}
 
 /* ── vertical finale ── */
 .finale {
@@ -423,6 +731,15 @@ main { padding-bottom: 0; }
 @media (max-width: 540px) {
     .finale blockquote { font-size: 1.2rem; letter-spacing: 0.16em; line-height: 2.15; }
 }
+.fin {
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.55em;
+    color: rgba(248, 238, 221, 0.55);
+    margin-top: clamp(44px, 6vw, 68px);
+    padding-left: 0.55em;
+}
 
 /* ── author ── */
 .author {
@@ -433,24 +750,48 @@ main { padding-bottom: 0; }
     max-width: 46rem;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: auto 1fr;
-    gap: clamp(24px, 4vw, 44px);
-    align-items: start;
+    grid-template-columns: minmax(220px, 280px) 1fr;
+    gap: clamp(28px, 5vw, 52px);
+    align-items: center;
 }
-.author .monogram {
-    width: 92px;
-    height: 92px;
-    border-radius: 50%;
-    background: var(--peach);
-    color: var(--plum);
+.author .author-mark {
+    position: relative;
     display: grid;
     place-items: center;
-    font-family: var(--kai);
-    font-size: 1.7rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    line-height: 1;
-    padding-left: 0.08em;
+    width: min(100%, 280px);
+    aspect-ratio: 1142 / 382;
+    justify-self: center;
+    text-decoration: none;
+}
+.author .signature {
+    display: block;
+    width: 100%;
+    height: auto;
+    opacity: 0.7;
+    transition: opacity 0.25s ease;
+}
+.author .portrait {
+    position: absolute;
+    width: clamp(86px, 8vw, 100px);
+    aspect-ratio: 1;
+    overflow: hidden;
+    border-radius: 50%;
+    background: var(--peach);
+    box-shadow: 0 0 0 4px var(--shell), 0 8px 24px rgba(28, 23, 24, 0.14);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.author .portrait img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.author .author-mark:hover .signature,
+.author .author-mark:focus-visible .signature { opacity: 1; }
+.author .author-mark:hover .portrait,
+.author .author-mark:focus-visible .portrait {
+    transform: scale(1.04);
+    box-shadow: 0 0 0 4px var(--shell), 0 10px 28px rgba(28, 23, 24, 0.2);
 }
 .author .label {
     font-family: var(--mono);
@@ -468,9 +809,9 @@ main { padding-bottom: 0; }
     color: var(--muted);
 }
 .author .bio strong { color: var(--ink); font-weight: 700; }
-@media (max-width: 540px) {
+@media (max-width: 600px) {
     .author .inner { grid-template-columns: 1fr; }
-    .author .monogram { width: 72px; height: 72px; font-size: 1.35rem; }
+    .author .author-mark { width: min(82vw, 260px); }
 }
 
 /* ── colophon ── */
@@ -495,44 +836,105 @@ main { padding-bottom: 0; }
     letter-spacing: 0.03em;
     color: var(--muted);
     max-width: 36em;
-    margin: 0 auto;
+    margin: 0 auto 0.6em;
+    overflow-wrap: break-word;
 }
+.colophon .craft {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    color: var(--stone);
+}
+
+/* ── back to top ── */
+.totop {
+    position: fixed; right: 22px; bottom: 22px; z-index: 95;
+    width: 46px; height: 46px; border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--paper);
+    color: var(--taupe);
+    font-family: var(--mono); font-size: 1.05rem; line-height: 1;
+    cursor: pointer;
+    box-shadow: 0 8px 24px rgba(28, 23, 24, 0.10);
+    opacity: 0; visibility: hidden; transform: translateY(8px);
+    transition: opacity 0.35s ease, transform 0.35s ease, visibility 0.35s, color 0.25s, border-color 0.25s;
+}
+.totop.on { opacity: 1; visibility: visible; transform: none; }
+.totop:hover { color: var(--coral-deep); border-color: var(--coral-deep); }
 
 /* ── print ── */
 @media print {
-    .progress, header.site, .art-band, .author .monogram { display: none; }
+    * { animation: none !important; transition: none !important; }
+    .progress, header.site, .art-band, .author .author-mark,
+    .readbar, .rail, .totop, .skip, .toc, body::before { display: none !important; }
     body { background: #fff; color: #000; }
+    html.js .reveal { opacity: 1; transform: none; }
     .closing { background: none; color: #000; }
     .closing .prose-dark p, .closing h2 { color: #000; }
+    .closing .prose-dark em { color: #000; }
     .finale blockquote { color: #000; border-color: #999; }
+    .finale .sig, .fin { color: #444; }
     .pull blockquote { color: #000; }
+    .ghost { display: none; }
+    .section-head, .pull, .interlude, .finale { break-inside: avoid; }
+    .section-head h2, .closing h2 { break-after: avoid; }
+    .colophon a[href^="http"]::after {
+        content: "（" attr(href) "）";
+        font-size: 0.82em;
+        word-break: break-all;
+    }
 }
 </style>
 </head>
-<body>
+<body id="top">
 
 <script>document.documentElement.classList.add('js');</script>
 
+<a class="skip" href="#main">跳至正文</a>
+
 <div class="progress" aria-hidden="true"></div>
+
+<div class="readbar" id="readbar" aria-label="閱讀進度與頁面工具">
+  <span class="rb-loc"><span class="rb-num" id="rbNum">序</span><span class="rb-title" id="rbTitle">引言</span></span>
+  <span class="rb-pct" id="rbPct">0%</span>
+  <button class="rb-btn copy" id="copyBtn" type="button">複製連結</button>
+  <button class="rb-btn themeBtn needs-js" type="button" aria-label="切換色彩主題">自動</button>
+</div>
+
+<nav class="rail" aria-label="章節導覽">
+  <ol>
+    <li><a href="#preface" data-spy="preface" title="序・引言"><i></i><b>序</b></a></li>
+    <li><a href="#craft" data-spy="craft" title="壹・值得守護的，未必都是手工"><i></i><b>壹</b></a></li>
+    <li><a href="#relational" data-spy="relational" title="貳・從自主的自我，到關係中的人"><i></i><b>貳</b></a></li>
+    <li><a href="#feed" data-spy="feed" title="參・問題不在智慧，而在資訊流"><i></i><b>參</b></a></li>
+    <li><a href="#truth" data-spy="truth" title="肆・照片之後的真實"><i></i><b>肆</b></a></li>
+    <li><a href="#fit" data-spy="fit" title="伍・合乎人性，可以中斷"><i></i><b>伍</b></a></li>
+    <li><a href="#optimization" data-spy="optimization" title="陸・拒絕被最佳化的權利"><i></i><b>陸</b></a></li>
+    <li><a href="#citizen-humanism" data-spy="citizen-humanism" title="柒・給合成心智的公民人文主義"><i></i><b>柒</b></a></li>
+  </ol>
+</nav>
 
 <header class="site">
   <a class="name" href="/">Audrey&nbsp;Tang <span class="cjk">唐鳳</span></a>
   <div class="crumbs">
     <span>拒絕被最佳化的權利</span>
     <span class="tag">譯文</span>
+    <button class="tagbtn themeBtn needs-js" type="button" aria-label="切換色彩主題">自動</button>
   </div>
 </header>
 
 <!-- ════════ MASTHEAD ════════ -->
 <header class="masthead">
-    <p class="kicker"><span>The Humanist Review</span><span class="dot">&middot;</span><span>創刊號</span><span class="dot">&middot;</span><span>人與科技</span></p>
+    <p class="kicker"><span lang="en">The Humanist Review</span><span class="dot">&middot;</span><span>創刊號</span><span class="dot">&middot;</span><span>人與科技</span></p>
     <h1>AI 與民主：<br>拒絕被最佳化的權利</h1>
     <p class="dek">真正的危險，不在機器把人模仿得多像，而在人開始把自己調整成機器的形狀。</p>
 </header>
 
-<div class="art-band">
+<figure class="art-band">
     <div class="art-frame">
-<svg class="art-svg" viewBox="0 0 1200 540" role="img" aria-label="以珊瑚色網點構成的蝴蝶，疊上幾何圓環與弧線" preserveAspectRatio="xMidYMid meet">
+<svg class="art-svg" viewBox="0 0 1200 540" role="img" aria-labelledby="artTitle artDesc" preserveAspectRatio="xMidYMid meet">
+<title id="artTitle">網點之蝶</title>
+<desc id="artDesc">以珊瑚色與蜜桃色網點構成的蝴蝶，疊上幾何圓環、虛線圓與弧線；左右兩翼由密集圓點組成，中央留出縫隙。</desc>
 <circle class="art-ring" cx="600" cy="285" r="238"/>
 <circle class="art-ring art-ring--dash" cx="600" cy="285" r="196"/>
 <path class="art-arc" d="M 208 430 A 300 300 0 0 1 600 -10"/>
@@ -545,17 +947,37 @@ main { padding-bottom: 0; }
 <g class="art-peach"><circle cx="599.9" cy="279.2" r="4.6"/><circle cx="610.3" cy="289.7" r="4.3"/><circle cx="579.3" cy="299.1" r="4.0"/><circle cx="619.7" cy="299.6" r="4.2"/><circle cx="639.7" cy="300.2" r="3.2"/><circle cx="650.3" cy="300.9" r="1.6"/><circle cx="559.9" cy="309.3" r="1.8"/><circle cx="570.8" cy="311.0" r="3.8"/><circle cx="640.0" cy="310.4" r="4.0"/><circle cx="550.8" cy="319.3" r="2.5"/><circle cx="560.5" cy="319.9" r="3.5"/><circle cx="640.0" cy="320.1" r="3.7"/><circle cx="680.1" cy="320.2" r="1.9"/><circle cx="560.7" cy="329.1" r="3.7"/><circle cx="690.8" cy="329.8" r="2.0"/><circle cx="549.4" cy="340.0" r="3.4"/><circle cx="570.0" cy="340.8" r="3.4"/><circle cx="670.7" cy="340.2" r="3.1"/><circle cx="680.0" cy="340.3" r="2.8"/><circle cx="520.5" cy="350.1" r="1.5"/><circle cx="539.6" cy="349.3" r="3.1"/><circle cx="539.7" cy="359.4" r="3.0"/><circle cx="680.1" cy="360.1" r="2.1"/><circle cx="719.7" cy="359.6" r="1.3"/><circle cx="520.5" cy="370.6" r="2.2"/><circle cx="529.9" cy="370.6" r="2.3"/><circle cx="550.7" cy="370.5" r="2.4"/><circle cx="560.8" cy="370.0" r="1.5"/><circle cx="680.6" cy="369.7" r="1.8"/><circle cx="689.2" cy="370.8" r="1.9"/><circle cx="509.9" cy="380.5" r="1.8"/><circle cx="521.0" cy="380.6" r="2.2"/><circle cx="530.4" cy="380.5" r="2.2"/><circle cx="540.3" cy="379.3" r="2.2"/><circle cx="699.3" cy="379.4" r="1.3"/><circle cx="710.1" cy="380.8" r="1.3"/><circle cx="509.7" cy="389.1" r="1.8"/><circle cx="520.6" cy="390.2" r="2.0"/><circle cx="530.4" cy="389.4" r="1.8"/><circle cx="539.9" cy="389.7" r="1.4"/><circle cx="510.5" cy="399.6" r="1.2"/><circle cx="519.7" cy="400.1" r="1.4"/><circle cx="530.0" cy="399.2" r="1.3"/></g>
 </svg>
     </div>
-</div>
+    <figcaption class="art-caption">Fig. 01 · 網點之蝶，棲於圓規與弧線之間</figcaption>
+</figure>
 
 <div class="byline">
     <span class="who">唐鳳 Audrey Tang</span>
-    <span>2026 年 7 月 15 日</span>
+    <span class="by-mid">
+        <span id="readtime">約 12 分鐘</span>
+        <span class="by-dot" aria-hidden="true">·</span>
+        <a href="https://humanistreview.ai/issue-1/tang-ai-democracy-optimization/" hreflang="en" target="_blank" rel="noopener"><span lang="en">English</span> 原文</a>
+    </span>
+    <time datetime="2026-07-15">2026 年 7 月 15 日</time>
 </div>
 
-<main>
+<nav class="toc reveal" aria-label="目次">
+    <span class="toc-label">目次 · <span lang="en">Contents</span></span>
+    <ol>
+        <li><a href="#preface" data-spy="preface"><span class="t-num">序</span><span class="t-title">引言：更容易被打分數的人</span></a></li>
+        <li><a href="#craft" data-spy="craft"><span class="t-num">壹</span><span class="t-title">值得守護的，未必都是手工</span></a></li>
+        <li><a href="#relational" data-spy="relational"><span class="t-num">貳</span><span class="t-title">從自主的自我，到關係中的人</span></a></li>
+        <li><a href="#feed" data-spy="feed"><span class="t-num">參</span><span class="t-title">問題不在智慧，而在資訊流</span></a></li>
+        <li><a href="#truth" data-spy="truth"><span class="t-num">肆</span><span class="t-title">照片之後的真實</span></a></li>
+        <li><a href="#fit" data-spy="fit"><span class="t-num">伍</span><span class="t-title">合乎人性，可以中斷</span></a></li>
+        <li><a href="#optimization" data-spy="optimization"><span class="t-num">陸</span><span class="t-title">拒絕被最佳化的權利</span></a></li>
+        <li><a href="#citizen-humanism" data-spy="citizen-humanism"><span class="t-num">柒</span><span class="t-title">給合成心智的公民人文主義</span></a></li>
+    </ol>
+</nav>
+
+<main id="main" tabindex="-1">
 
 <!-- ════════ 引言 ════════ -->
-<section class="prose lede reveal">
+<section class="prose lede reveal" id="preface">
     <p>每當有人問我，AI 是否威脅人文主義，我總覺得這個問題本身，已經來得有些晚了。更深的威脅來得更早——當數位系統學會以工業規模排序注意力的那一刻。早在生成式模型能寫文章、譜歌曲、模擬對話之前，我們許多人就已被訓練成排序系統裡的零件：永遠可見、永遠反應、永遠可測。等到合成的流暢抵達時，一場更安靜的變化早已展開。我們，正變得更容易被打分數。</p>
     <p>所以我不認為，本世紀最關鍵的問題是機器會不會愈來愈像人。真正的問題是：人，是否仍被允許，活得超出機器所能輕易評量的範圍。</p>
     <p>兩種可能，我都親眼見過。一方面，語言模型能帶我走進一場原本無從發生的對話。在會見一位日本思想家之前——他最新的著作，我讀不了原文——我先用 AI 在我們相異的哲學傳統之間，搭起一套堪用的詞彙。系統並沒有取代那場相遇；它讓相遇成為可能。對話一旦展開，模型的重要性便逐漸淡去。它把工作做得恰到好處，正是因為它不再需要居於中心。</p>
@@ -571,9 +993,11 @@ main { padding-bottom: 0; }
 </section>
 
 <!-- ════════ 一 ════════ -->
-<div class="section-head reveal">
+<div class="section-head reveal" id="craft">
     <span class="num">壹</span>
     <h2>值得守護的，未必都是手工</h2>
+    <a class="plink" href="#craft" aria-label="本節錨點連結">#</a>
+    <span class="ghost" aria-hidden="true">壹</span>
 </div>
 <section class="prose reveal">
     <p>面對 AI，一種常見的反應，是以捍衛每件人類差事，來捍衛人本身。如果模型能起草書信，尊嚴或許就在於不假外力寫下每句話；如果模型能摘要一本書，真誠或許就要求親自讀過每一頁；如果模型能作曲，唯一體面的回應，或許就是匠人式的純粹。</p>
@@ -593,9 +1017,11 @@ main { padding-bottom: 0; }
 </section>
 
 <!-- ════════ 二 ════════ -->
-<div class="section-head reveal">
+<div class="section-head reveal" id="relational">
     <span class="num">貳</span>
     <h2>從自主的自我，到關係中的人</h2>
+    <a class="plink" href="#relational" aria-label="本節錨點連結">#</a>
+    <span class="ghost" aria-hidden="true">貳</span>
 </div>
 <section class="prose reveal">
     <p>幾個世紀以來，人文主義思想多半強調個人的自主。這個傳統帶給我們權利、自由、良知、表達的自由，以及個人面對專斷權力時的尊嚴。這些無比珍貴的保障，我們不應鬆手。</p>
@@ -609,9 +1035,11 @@ main { padding-bottom: 0; }
 </section>
 
 <!-- ════════ 三 ════════ -->
-<div class="section-head reveal">
+<div class="section-head reveal" id="feed">
     <span class="num">參</span>
     <h2>問題不在智慧，而在資訊流</h2>
+    <a class="plink" href="#feed" aria-label="本節錨點連結">#</a>
+    <span class="ghost" aria-hidden="true">參</span>
 </div>
 <section class="prose reveal">
     <p>今天，當人們憂心合成的親密、機器人蜂群與規模化的說服，往往把它們說成全新的病症。其實不然。生成式 AI 加劇的，是一場架構早已築成的危機。</p>
@@ -624,7 +1052,6 @@ main { padding-bottom: 0; }
 
 <aside class="interlude reveal">
     <div class="inner">
-        <span class="mark">Interlude</span>
         <blockquote>機器不會和解。機器不會原諒。機器也不會生出友誼。但它可以減少一個人在判斷「這段關係還救不救得回來」之前，必須嚥下的毒性。</blockquote>
     </div>
 </aside>
@@ -635,9 +1062,11 @@ main { padding-bottom: 0; }
 </section>
 
 <!-- ════════ 四 ════════ -->
-<div class="section-head reveal">
+<div class="section-head reveal" id="truth">
     <span class="num">肆</span>
     <h2>照片之後的真實</h2>
+    <a class="plink" href="#truth" aria-label="本節錨點連結">#</a>
+    <span class="ghost" aria-hidden="true">肆</span>
 </div>
 <section class="prose reveal">
     <p>這些問題之所以顯得急迫，原因之一，是影像與真實之間的舊關係正在瓦解。一個多世紀以來，許多社會把照片當作享有特權的證據形式。照片並非萬無一失，卻被賦予特殊的知識論地位——它彷彿直接捕捉了現實。</p>
@@ -650,9 +1079,11 @@ main { padding-bottom: 0; }
 </section>
 
 <!-- ════════ 五 ════════ -->
-<div class="section-head reveal">
+<div class="section-head reveal" id="fit">
     <span class="num">伍</span>
     <h2>合乎人性，可以中斷</h2>
+    <a class="plink" href="#fit" aria-label="本節錨點連結">#</a>
+    <span class="ghost" aria-hidden="true">伍</span>
 </div>
 <section class="prose reveal">
     <p>當前 AI 論述的另一個謬誤，是假定最通用的模型——餵進最多資料、作為萬用底層供應——必然是智慧的最高形式。這是帝國思維的科技版：把規模，誤認作正當性。</p>
@@ -668,9 +1099,11 @@ main { padding-bottom: 0; }
 </section>
 
 <!-- ════════ 六 ════════ -->
-<div class="section-head reveal">
+<div class="section-head reveal" id="optimization">
     <span class="num">陸</span>
     <h2>拒絕被最佳化的權利</h2>
+    <a class="plink" href="#optimization" aria-label="本節錨點連結">#</a>
+    <span class="ghost" aria-hidden="true">陸</span>
 </div>
 <section class="prose reveal">
     <p>人文主義還有一個元素，時常在技術辯論中缺席：為未被最佳化的生活辯護。</p>
@@ -691,10 +1124,11 @@ main { padding-bottom: 0; }
 </section>
 
 <!-- ════════ 七・結 ════════ -->
-<section class="closing reveal">
+<section class="closing reveal" id="citizen-humanism">
     <div class="head-wrap">
         <span class="num">柒</span>
         <h2>給合成心智的公民人文主義</h2>
+        <span class="ghost" aria-hidden="true">柒</span>
     </div>
     <div class="prose-dark">
         <p>於是，問題不在 AI 能否與抽象的「人類」對齊——那個概念太過含糊，難以在政治上派上用場。真正的問題是：我們的工具，能否與那些關係、制度與公共實踐對齊——在其中，人們仍有能力，共同治理自己。</p>
@@ -709,6 +1143,7 @@ main { padding-bottom: 0; }
         <blockquote>我們，是否變得更懂得，一起生活？</blockquote>
         <span class="sig">唐鳳</span>
     </div>
+    <p class="fin">全文完</p>
 </section>
 
 </main>
@@ -716,40 +1151,227 @@ main { padding-bottom: 0; }
 <!-- ════════ 作者 ════════ -->
 <section class="author">
     <div class="inner">
+        <a class="author-mark" href="https://humanistreview.ai/authors/?profile=audrey-tang" target="_blank" rel="noopener" aria-label="前往 The Humanist Review 的唐鳳作者頁">
+            <img class="signature" src="assets/humanist-review-audrey-tang-signature.svg" alt="" width="1142" height="382" loading="lazy" decoding="async" aria-hidden="true">
+        </a>
         <div>
             <span class="label">Author&nbsp;&mdash;&nbsp;作者</span>
-            <p class="bio"><strong>唐鳳</strong>是中華民國數位治理無任所大使、2025 年正命獎得主。曾任臺灣首任數位發展部長，將深厚的公民黑客背景帶入公職。現為牛津大學 AI 倫理研究院首屆加速哲人，與衛谷倫合著《多元宇宙》，並與 Caroline&nbsp;Green 共同發起《仁工智慧》研究計畫。</p>
+            <p class="bio"><strong>唐鳳</strong>是中華民國數位治理無任所大使、2025 年正命獎得主。曾任臺灣首任數位發展部長，將深厚的公民黑客背景帶入公職。現為牛津大學 AI 倫理研究院首屆加速哲人，與衛谷倫合著<a href="https://www.plurality.net/" hreflang="en" target="_blank" rel="noopener">《多元宇宙》</a>，並與 Caroline&nbsp;Green 共同發起<a href="https://civic.ai/tw/" hreflang="en" target="_blank" rel="noopener">《仁工智慧》</a>研究計畫。</p>
         </div>
     </div>
 </section>
 
 <footer class="colophon">
     <div class="cc0">CC0</div>
-    <p>譯自 <a href="https://humanistreview.ai/issue-1/tang-ai-democracy-optimization/" target="_blank" rel="noopener"><span lang="en">The Humanist Review</span> 創刊號</a>（2026 年 7 月 15 日）。譯文依據<a href="https://creativecommons.org/publicdomain/zero/1.0/deed.zh_TW" target="_blank" rel="noopener">創用 CC0 1.0 通用</a>條款釋出至公共領域。不保留任何權利。歡迎自由複製、改編、翻譯、再創作。</p>
+    <p>譯自 <a href="https://humanistreview.ai/issue-1/tang-ai-democracy-optimization/" hreflang="en" target="_blank" rel="noopener"><span lang="en">The Humanist Review</span> 創刊號</a>（2026 年 7 月 15 日）。譯文依據<a href="https://creativecommons.org/publicdomain/zero/1.0/deed.zh_TW" target="_blank" rel="noopener">創用 CC0 1.0 通用</a>條款釋出至公共領域。不保留任何權利。歡迎自由複製、改編、翻譯、再創作。</p>
+    <p class="craft">字體 Noto Serif TC · Spectral · Red Hat Mono ｜ 純 HTML / CSS / JavaScript 手工排版，無框架、無追蹤。</p>
 </footer>
+
+<button class="totop" id="totop" type="button" aria-label="回到頁首">↑</button>
+<span class="sr-only" id="liveRegion" aria-live="polite"></span>
 
 <script>
 (function () {
-    var bar = document.querySelector('.progress');
-    var ticking = false;
-    window.addEventListener('scroll', function () {
-        if (!ticking) {
-            requestAnimationFrame(function () {
-                var s = window.scrollY;
-                var h = document.documentElement.scrollHeight - window.innerHeight;
-                bar.style.width = (h > 0 ? Math.min(s / h * 100, 100) : 0) + '%';
-                ticking = false;
-            });
-            ticking = true;
-        }
-    }, { passive: true });
+    'use strict';
+    var root = document.documentElement;
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-    var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) {
-            if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    /* ── responsive author portrait ── */
+    function probeImage(src) {
+        return new Promise(function (resolve) {
+            var image = new Image();
+            image.onload = function () { resolve(image.width > 0); };
+            image.onerror = function () { resolve(false); };
+            image.src = src;
         });
-    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-    document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+    }
+    Promise.all([probeImage('assets/probe.avif'), probeImage('assets/probe.webp')]).then(function (supported) {
+        var ext = supported[0] ? '.avif' : supported[1] ? '.webp' : '.jpg';
+        document.querySelectorAll('.author-mark noscript').forEach(function (noscript) {
+            var html = noscript.textContent;
+            if (ext !== '.jpg') html = html.replace(/\.jpg(?=["'\s])/g, ext);
+            var holder = document.createElement('div');
+            holder.innerHTML = html;
+            var image = holder.querySelector('img');
+            if (image) noscript.replaceWith(image);
+        });
+    });
+
+    /* ── theme (自動 / 淺色 / 深色) ── */
+    var themeBtns = Array.prototype.slice.call(document.querySelectorAll('.themeBtn'));
+    var mqDark = window.matchMedia('(prefers-color-scheme: dark)');
+    var MODES = ['auto', 'light', 'dark'];
+    var LABELS = { auto: '自動', light: '淺色', dark: '深色' };
+    var dynMeta = null;
+    var mode = 'auto';
+    try { mode = localStorage.getItem('theme') || 'auto'; } catch (e) {}
+    if (MODES.indexOf(mode) < 0) mode = 'auto';
+
+    function effective(m) { return m === 'auto' ? (mqDark.matches ? 'dark' : 'light') : m; }
+
+    function applyTheme(m, store) {
+        if (m === 'auto') { root.removeAttribute('data-theme'); }
+        else { root.setAttribute('data-theme', m); }
+        root.style.colorScheme = effective(m);
+        if (!dynMeta) {
+            dynMeta = document.createElement('meta');
+            dynMeta.setAttribute('name', 'theme-color');
+            var first = document.querySelector('meta[name="theme-color"]');
+            first.parentNode.insertBefore(dynMeta, first);
+        }
+        dynMeta.setAttribute('content', effective(m) === 'dark' ? '#1d1719' : '#faf8f3');
+        themeBtns.forEach(function (b) {
+            b.textContent = LABELS[m];
+            b.setAttribute('aria-label', '色彩主題：' + LABELS[m] + '。點按切換');
+        });
+        if (store !== false) { try { localStorage.setItem('theme', m); } catch (e) {} }
+    }
+    applyTheme(mode, false);
+    themeBtns.forEach(function (b) {
+        b.addEventListener('click', function () {
+            root.classList.add('theming');
+            mode = MODES[(MODES.indexOf(mode) + 1) % MODES.length];
+            applyTheme(mode);
+            setTimeout(function () { root.classList.remove('theming'); }, 420);
+        });
+    });
+    function onSchemeChange() { if (mode === 'auto') applyTheme('auto', false); }
+    if (mqDark.addEventListener) mqDark.addEventListener('change', onSchemeChange);
+    else if (mqDark.addListener) mqDark.addListener(onSchemeChange);
+
+    /* ── reading time ── */
+    var rt = document.getElementById('readtime');
+    if (rt) {
+        var txt = (document.querySelector('main').textContent || '').replace(/\s+/g, '');
+        rt.textContent = '約 ' + Math.max(1, Math.round(txt.length / 420)) + ' 分鐘';
+    }
+
+    /* ── scroll engine: progress, readbar, spy, totop ── */
+    var bar = document.querySelector('.progress');
+    var readbar = document.getElementById('readbar');
+    var rbNum = document.getElementById('rbNum');
+    var rbTitle = document.getElementById('rbTitle');
+    var rbPct = document.getElementById('rbPct');
+    var totop = document.getElementById('totop');
+    var masthead = document.querySelector('.masthead');
+
+    var SEC_META = {
+        'preface': ['序', '引言'],
+        'craft': ['壹', '值得守護的，未必都是手工'],
+        'relational': ['貳', '從自主的自我，到關係中的人'],
+        'feed': ['參', '問題不在智慧，而在資訊流'],
+        'truth': ['肆', '照片之後的真實'],
+        'fit': ['伍', '合乎人性，可以中斷'],
+        'optimization': ['陸', '拒絕被最佳化的權利'],
+        'citizen-humanism': ['柒', '給合成心智的公民人文主義']
+    };
+    var SEC_IDS = Object.keys(SEC_META);
+    var secs = SEC_IDS.map(function (id) { return document.getElementById(id); });
+    var tops = [];
+    var mastBottom = 400;
+
+    var spyLinks = {};
+    document.querySelectorAll('[data-spy]').forEach(function (a) {
+        var k = a.getAttribute('data-spy');
+        (spyLinks[k] = spyLinks[k] || []).push(a);
+    });
+
+    function measure() {
+        tops = secs.map(function (el) { return el ? el.getBoundingClientRect().top + window.scrollY : Infinity; });
+        if (masthead) mastBottom = masthead.getBoundingClientRect().bottom + window.scrollY;
+    }
+    measure();
+    window.addEventListener('resize', measure);
+    window.addEventListener('load', measure);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
+
+    var current = null;
+    function setCurrent(id) {
+        if (id === current) return;
+        current = id;
+        var m = SEC_META[id];
+        rbNum.textContent = m[0];
+        rbTitle.textContent = m[1];
+        Object.keys(spyLinks).forEach(function (k) {
+            spyLinks[k].forEach(function (a) {
+                if (k === id) a.setAttribute('aria-current', 'true');
+                else a.removeAttribute('aria-current');
+            });
+        });
+    }
+
+    var ticking = false;
+    function onScroll() {
+        ticking = false;
+        var y = window.scrollY;
+        var vh = window.innerHeight;
+        var h = root.scrollHeight - vh;
+        var p = h > 0 ? Math.min(y / h * 100, 100) : 0;
+        bar.style.width = p + '%';
+        rbPct.textContent = Math.round(p) + '%';
+
+        if (y > mastBottom + 60) readbar.classList.add('on');
+        else readbar.classList.remove('on');
+        if (y > vh * 1.4) totop.classList.add('on');
+        else totop.classList.remove('on');
+
+        var line = y + vh * 0.34;
+        var id = SEC_IDS[0];
+        for (var i = 0; i < secs.length; i++) { if (tops[i] <= line) id = SEC_IDS[i]; }
+        if (h > 0 && y >= h - 4) id = SEC_IDS[SEC_IDS.length - 1];
+        setCurrent(id);
+    }
+    window.addEventListener('scroll', function () {
+        if (!ticking) { requestAnimationFrame(onScroll); ticking = true; }
+    }, { passive: true });
+    onScroll();
+
+    totop.addEventListener('click', function () {
+        window.scrollTo({ top: 0, behavior: reduced.matches ? 'auto' : 'smooth' });
+    });
+
+    /* ── copy link ── */
+    var copyBtn = document.getElementById('copyBtn');
+    var live = document.getElementById('liveRegion');
+    var copyLabel = copyBtn.textContent;
+    function copyFeedback(msg) {
+        copyBtn.textContent = msg;
+        live.textContent = msg;
+        setTimeout(function () { copyBtn.textContent = copyLabel; }, 1800);
+    }
+    function copyFallback(url) {
+        var ta = document.createElement('textarea');
+        ta.value = url;
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); copyFeedback('已複製 ✓'); }
+        catch (e) { copyFeedback('複製失敗'); }
+        document.body.removeChild(ta);
+    }
+    copyBtn.addEventListener('click', function () {
+        var url = location.href;
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(url).then(
+                function () { copyFeedback('已複製 ✓'); },
+                function () { copyFallback(url); }
+            );
+        } else { copyFallback(url); }
+    });
+
+    /* ── reveal on scroll (with fallback) ── */
+    if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) {
+                if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+            });
+        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+    } else {
+        document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('visible'); });
+    }
 })();
 </script>
 
