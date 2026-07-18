@@ -1014,6 +1014,7 @@ interface Essay {
   url: string;
   meta: string;
   desc: string;
+  featured: boolean;
 }
 
 function renderEssays(): string {
@@ -1030,7 +1031,16 @@ function renderEssays(): string {
       if (m) {
         if (current?.title) essays.push(current as Essay);
         const descLines = block.split("\n").slice(1).join(" ").trim();
-        current = { title: m[1], url: m[2], meta: m[3], desc: descLines || "" };
+        // [**Title**](url) marks a featured (full-width) card.
+        const featured = /^\*\*.+\*\*$/.test(m[1]);
+        const title = featured ? m[1].slice(2, -2) : m[1];
+        current = {
+          title,
+          url: m[2],
+          meta: m[3],
+          desc: descLines || "",
+          featured,
+        };
       } else if (current && !current.desc) {
         current.desc = block.trim();
       }
@@ -1058,10 +1068,34 @@ function renderEssays(): string {
   );
 
   lines.push(`${I}<div class="essay-grid">`);
+  const hrefAttrs = (url: string) =>
+    /^https?:\/\//.test(url)
+      ? `href="${url}" target="_blank" rel="noopener noreferrer"`
+      : `href="${url}"`;
   for (let i = 0; i < enEssays.length; i++) {
     const enE = enEssays[i];
     const zhE = zhEssays[i];
-    lines.push(`${I}    <a href="${enE.url}" class="essay-card">`);
+    const cls = enE.featured ? "essay-card essay-card--featured" : "essay-card";
+    if (zhE && zhE.url !== enE.url) {
+      // Language-specific destinations: one whole-card anchor per language,
+      // toggled by the same [lang] rules that switch all other index copy.
+      lines.push(`${I}    <a ${hrefAttrs(enE.url)} class="${cls}" lang="en-GB">`);
+      lines.push(`${I}        <div class="essay-body">`);
+      lines.push(`${I}            <div class="meta">${entEn(enE.meta)}</div>`);
+      lines.push(`${I}            <h3>${entEn(enE.title)}</h3>`);
+      lines.push(`${I}            <p>${mdInline(enE.desc, entEn)}</p>`);
+      lines.push(`${I}        </div>`);
+      lines.push(`${I}    </a>`);
+      lines.push(`${I}    <a ${hrefAttrs(zhE.url)} class="${cls}" lang="zh-TW">`);
+      lines.push(`${I}        <div class="essay-body">`);
+      lines.push(`${I}            <div class="meta">${entZh(zhE.meta)}</div>`);
+      lines.push(`${I}            <h3>${entZh(zhE.title)}</h3>`);
+      lines.push(`${I}            <p>${mdInline(zhE.desc, entZh)}</p>`);
+      lines.push(`${I}        </div>`);
+      lines.push(`${I}    </a>`);
+      continue;
+    }
+    lines.push(`${I}    <a ${hrefAttrs(enE.url)} class="${cls}">`);
     lines.push(`${I}        <div class="essay-body">`);
     lines.push(
       `${I}            <div class="meta" lang="en-GB">${entEn(enE.meta)}</div>`,

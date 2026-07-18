@@ -132,6 +132,9 @@ Oscar and Emmy-winning director Cynthia Wade's documentary on democracy, mortali
 <!-- section:ESSAYS -->
 ## Essays & Testimonies: The Long Read
 
+[**AI and Democracy: The Right to Resist Optimization**](https://humanistreview.ai/issue-1/tang-ai-democracy-optimization/) — The Humanist Review · Issue 01 · July 2026
+The real danger of AI isn’t that machines imitate humans, but that humans adapt to machines. On agentic proxies, the feed, truth after photography, and the defense of unoptimized life.
+
 [Collaborative Immune System](/collaborative-immune-system) — LDP Headquarters · Tokyo · December 2025
 How citizen collaboration and precision legislation build a digital immune system against deepfakes and AI scams. In a democracy, the strongest anti-fraud technology is not a filter — it is legitimacy.
 
