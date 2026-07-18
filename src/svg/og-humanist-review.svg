@@ -1,4 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" font-family="'Noto Serif TC','Spectral','Songti TC','PingFang TC',serif" text-rendering="optimizeLegibility" role="img" aria-label="AI 與民主：拒絕被最佳化的權利 — 唐鳳，The Humanist Review 創刊號">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" font-family="'jf-lanyangming','Noto Serif TC','Songti TC','PingFang TC',serif" text-rendering="optimizeLegibility" role="img" aria-label="AI 與民主：拒絕被最佳化的權利 — 唐鳳，The Humanist Review 創刊號">
+<!-- Bake: render at 2x (2400×1260) in a browser with local jf-lanyangming/jf-lanyanghei OTFs
+     (~/Library/Fonts, licensed devices only — commit the raster JPG, never font bytes)
+     plus Red Hat Mono. Weight map: ming 400=Regular 500=Medium 700=Bold;
+     hei 400=W7 500=W8 600=W9. -->
 <defs>
   <radialGradient id="blush" cx="50%" cy="50%" r="50%">
     <stop offset="0%" stop-color="#f7ecd9" stop-opacity="0.95"/>
@@ -9,10 +13,20 @@
     <stop offset="0%" stop-color="#f4a499"/>
     <stop offset="100%" stop-color="#e2836f"/>
   </linearGradient>
+  <radialGradient id="washPeach" cx="50%" cy="50%" r="50%">
+    <stop offset="0%" stop-color="#fadbc9" stop-opacity="0.3"/>
+    <stop offset="100%" stop-color="#fadbc9" stop-opacity="0"/>
+  </radialGradient>
+  <radialGradient id="washCoral" cx="50%" cy="50%" r="50%">
+    <stop offset="0%" stop-color="#f4a499" stop-opacity="0.18"/>
+    <stop offset="100%" stop-color="#f4a499" stop-opacity="0"/>
+  </radialGradient>
 </defs>
 
 <!-- ground -->
 <rect width="1200" height="630" fill="#faf8f3"/>
+<ellipse cx="1081" cy="89" rx="300" ry="220" fill="url(#washPeach)"/>
+<ellipse cx="757" cy="541" rx="300" ry="210" fill="url(#washCoral)"/>
 <circle cx="940" cy="315" r="258" fill="url(#blush)"/>
 
 <!-- geometry -->
@@ -34,11 +48,11 @@
 <rect x="0" y="0" width="1200" height="6" fill="url(#strip)"/>
 
 <!-- kicker -->
-<text x="72" y="110" font-family="'Red Hat Mono','PingFang TC',ui-monospace,monospace" font-weight="500" font-size="15" letter-spacing="4.5" fill="#5d524b">THE HUMANIST REVIEW<tspan fill="#e2836f" dx="10"> · </tspan><tspan dx="10">創刊號</tspan><tspan fill="#e2836f" dx="10"> · </tspan><tspan dx="10">人與科技</tspan></text>
+<text x="72" y="110" font-family="'Red Hat Mono','jf-lanyanghei','PingFang TC',ui-monospace,monospace" font-weight="500" font-size="15" letter-spacing="4.5" fill="#5d524b">THE HUMANIST REVIEW<tspan fill="#e2836f" dx="10"> · </tspan><tspan dx="10">創刊號</tspan><tspan fill="#e2836f" dx="10"> · </tspan><tspan dx="10">人與科技</tspan></text>
 
 <!-- title -->
-<text x="72" y="200" font-weight="900" font-size="66" letter-spacing="2" fill="#1c1718">AI 與民主：</text>
-<text x="72" y="296" font-weight="900" font-size="66" letter-spacing="2" fill="#1c1718">拒絕被最佳化的權利</text>
+<text x="72" y="200" font-weight="700" font-size="66" letter-spacing="1.5" fill="#1c1718">AI 與民主：</text>
+<text x="72" y="296" font-weight="700" font-size="66" letter-spacing="1.5" fill="#1c1718">拒絕被最佳化的權利</text>
 <circle cx="241" cy="327" r="3.6" fill="#e2836f"/><circle cx="309" cy="327" r="3.6" fill="#e2836f"/><circle cx="377" cy="327" r="3.6" fill="#e2836f"/><circle cx="445" cy="327" r="3.6" fill="#e2836f"/>
 
 <!-- dek -->
@@ -50,8 +64,8 @@
 <line x1="72" y1="512" x2="164" y2="512" stroke="#e2836f" stroke-width="3"/>
 
 <!-- byline -->
-<text x="72" y="556" font-family="'Red Hat Mono','PingFang TC',ui-monospace,monospace" font-weight="500" font-size="15" letter-spacing="3.5" fill="#1c1718">唐鳳 AUDREY TANG</text>
-<text x="1044" y="556" font-family="'Red Hat Mono','PingFang TC',ui-monospace,monospace" font-size="14" letter-spacing="2.5" fill="#5d524b" text-anchor="end">2026 年 7 月 15 日</text>
+<text x="72" y="556" font-family="'Red Hat Mono','jf-lanyanghei','PingFang TC',ui-monospace,monospace" font-weight="500" font-size="15" letter-spacing="3.5" fill="#1c1718">唐鳳 AUDREY TANG</text>
+<text x="1044" y="556" font-family="'Red Hat Mono','jf-lanyanghei','PingFang TC',ui-monospace,monospace" font-size="14" letter-spacing="2.5" fill="#5d524b" text-anchor="end">2026 年 7 月 15 日</text>
 <rect x="1064" y="533" width="64" height="30" rx="2" fill="none" stroke="#b2a496" stroke-width="1"/>
-<text x="1099" y="554" font-family="'Red Hat Mono','PingFang TC',ui-monospace,monospace" font-size="13" letter-spacing="5" fill="#5d524b" text-anchor="middle">譯文</text>
+<text x="1099" y="554" font-family="'Red Hat Mono','jf-lanyanghei','PingFang TC',ui-monospace,monospace" font-weight="500" font-size="13" letter-spacing="4" fill="#5d524b" text-anchor="middle">譯文</text>
 </svg>
