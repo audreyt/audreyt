@@ -16,7 +16,7 @@
 <meta name="color-scheme" content="light dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Iansui&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Iansui&family=Noto+Serif+TC:wght@400;600;700&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 /* essay:base */
 /* ── essay.css ──────────────────────────────────────────────────────────
@@ -574,9 +574,78 @@ body::after {
     .hero-crystal { transform: translateY(-55%) !important; }
 }
 
+/* ── LEGIBLE CONTRAST (humanist-review port) ── */
+:root { --text: #2a3644; }
+@media (prefers-color-scheme: dark) {
+    :root { --text: #c9c4bb; --muted: #96a1b2; }
+}
+.hero-lede { color: rgba(255,255,255,0.8); }
+.closing .chapter-body, .closing .chapter-body p { color: rgba(255,255,255,0.85); }
+.closing .chapter-body em { color: rgba(255,255,255,0.94); }
+.colophon { color: rgba(255,255,255,0.55); }
+.colophon a { color: rgba(255,255,255,0.72); }
+
+/* ── ZH SERIF BODY (Noto Serif TC, humanist-review port) ── */
+html:has(#lang-zh:checked) {
+    --serif: 'Spectral', 'Noto Serif TC', 'Songti TC', Georgia, serif;
+    --serif-cjk: 'Noto Serif TC', 'Songti TC', 'PingFang TC', serif;
+    --cjk: 'Noto Serif TC', 'Songti TC', 'PingFang TC', serif;
+}
+html:has(#lang-zh:checked) .hero h1 { font-weight: 700; }
+html:has(#lang-zh:checked) .chapter-title { font-weight: 700; }
+html:has(#lang-zh:checked) .chapter-body,
+html:has(#lang-zh:checked) .hero-lede { letter-spacing: 0.035em; }
+html:has(#lang-zh:checked) .chapter-body p { font-size: 1.1rem; line-height: 2.05; }
+
+/* ── CHAPTER RAIL (wide screens) ── */
+.rail { position: fixed; left: 30px; top: 50%; transform: translateY(-50%); z-index: 9990; }
+.rail ol { list-style: none; position: relative; display: flex; flex-direction: column; gap: 15px; }
+.rail ol::before { content: ""; position: absolute; left: 3px; top: -6px; bottom: -6px; width: 1px; background: var(--border); }
+.rail a { position: relative; display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.rail a i { width: 7px; height: 7px; border-radius: 50%; background: var(--muted); opacity: 0.55; flex: none; transition: transform 0.3s ease, background 0.3s ease, opacity 0.3s ease; }
+.rail a b { font-family: var(--sans); font-weight: 500; font-size: 0.62rem; letter-spacing: 0.22em; color: var(--muted); opacity: 0; transform: translateX(-5px); transition: opacity 0.3s ease, transform 0.3s ease; }
+.rail a:hover i, .rail a:focus-visible i, .rail a[aria-current="true"] i { background: var(--gold); opacity: 1; transform: scale(1.45); }
+.rail a:hover b, .rail a:focus-visible b, .rail a[aria-current="true"] b { opacity: 1; transform: none; }
+.rail a[aria-current="true"] b { color: var(--gold); }
+@media (max-width: 1180px) { .rail { display: none; } }
+
+/* ── READBAR + TOTOP (JS-gated) ── */
+.readbar { position: fixed; bottom: 14px; left: 50%; transform: translate(-50%, -10px); z-index: 10001; display: flex; align-items: center; gap: 12px; padding: 7px 8px 7px 15px; max-width: min(93vw, 640px); background: color-mix(in srgb, var(--paper) 86%, transparent); -webkit-backdrop-filter: blur(14px) saturate(1.2); backdrop-filter: blur(14px) saturate(1.2); border: 1px solid var(--border); border-radius: 999px; box-shadow: 0 10px 34px rgba(15,25,35,0.12); opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.35s ease, transform 0.35s ease, visibility 0.35s; }
+.readbar.on { opacity: 1; visibility: visible; transform: translate(-50%, 0); pointer-events: auto; }
+.rb-loc { display: flex; align-items: baseline; gap: 9px; min-width: 0; }
+.rb-num { font-family: var(--sans); font-size: 0.64rem; font-weight: 500; letter-spacing: 0.18em; color: var(--gold); border: 1px solid var(--border); border-radius: 2px; padding: 1px 7px; flex: none; }
+.rb-title { font-family: var(--serif); font-size: 0.86rem; font-weight: 600; letter-spacing: 0.04em; color: var(--heading); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 14em; }
+html:has(#lang-zh:checked) .rb-title { font-family: var(--cjk); }
+.rb-pct { font-family: var(--sans); font-size: 0.64rem; letter-spacing: 0.12em; color: var(--muted); flex: none; min-width: 3.1em; text-align: right; font-variant-numeric: tabular-nums; }
+.rb-btn { font-family: var(--sans); font-size: 0.62rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); background: transparent; border: 1px solid var(--border); border-radius: 999px; padding: 4px 12px; cursor: pointer; flex: none; transition: color 0.25s, border-color 0.25s; }
+.rb-btn:hover { color: var(--gold); border-color: var(--gold); }
+.totop { position: fixed; right: 22px; bottom: 22px; z-index: 10001; width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--border); background: var(--paper); color: var(--muted); font-family: var(--sans); font-size: 1rem; line-height: 1; cursor: pointer; box-shadow: 0 8px 24px rgba(15,25,35,0.12); opacity: 0; visibility: hidden; transform: translateY(8px); transition: opacity 0.35s ease, transform 0.35s ease, visibility 0.35s, color 0.25s, border-color 0.25s; }
+.totop.on { opacity: 1; visibility: visible; transform: none; }
+.totop:hover { color: var(--gold); border-color: var(--gold); }
+@media (max-width: 680px) {
+    .rb-title { display: none; }
+    .rb-btn { display: none; }
+    .readbar { gap: 10px; padding-left: 12px; }
+    .totop { bottom: 70px; }
+}
+
+/* ── LIVING CRYSTAL (opt-in motion, humanist-review port) ── */
+@keyframes crystalBreathe { from { transform: scale(1); } to { transform: scale(1.02); } }
+@keyframes crystalGlint { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+@media (prefers-reduced-motion: no-preference) {
+    .hero-crystal .crystal-body { transform-box: fill-box; transform-origin: center; animation: crystalBreathe 14s ease-in-out infinite alternate; }
+    .crystal-body path:nth-of-type(2) { animation: crystalGlint 9s ease-in-out infinite; }
+    .crystal-body path:nth-of-type(3) { animation: crystalGlint 11s ease-in-out -3s infinite; }
+    .crystal-body path:nth-of-type(4) { animation: crystalGlint 10s ease-in-out -6s infinite; }
+    .crystal-body path:nth-of-type(5) { animation: crystalGlint 12s ease-in-out -2s infinite; }
+    .crystal-body path:nth-of-type(6) { animation: crystalGlint 9.5s ease-in-out -7s infinite; }
+    .crystal-body path:nth-of-type(7) { animation: crystalGlint 11.5s ease-in-out -4.5s infinite; }
+    .crystal-body path:nth-of-type(8) { animation: crystalGlint 10.5s ease-in-out -8s infinite; }
+}
+
 /* ── PRINT ── */
 @media print {
-    body::after, .progress, .scroll-cue, .hero-crystal, .hero-year, .lang-toggle, .orrery--footer, header.site { display: none !important; }
+    body::after, .progress, .scroll-cue, .hero-crystal, .hero-year, .lang-toggle, .orrery--footer, header.site, .rail, .readbar, .totop { display: none !important; }
     .hero { min-height: 0; padding: 40px; }
     .hero-content { padding: 0; }
     .hero-label, .hero h1, .hero-subtitle, .hero-lede { opacity: 1; animation: none; }
@@ -597,6 +666,26 @@ body::after {
 
 <div class="progress" aria-hidden="true"></div>
 
+<nav class="rail" aria-label="Chapters 章節導覽">
+  <ol>
+    <li><a href="#the-gate" data-spy="the-gate"><i></i><b>I</b></a></li>
+    <li><a href="#the-cost" data-spy="the-cost"><i></i><b>II</b></a></li>
+    <li><a href="#the-line" data-spy="the-line"><i></i><b>III</b></a></li>
+    <li><a href="#the-arrival" data-spy="the-arrival"><i></i><b>IV</b></a></li>
+    <li><a href="#symbiogenesis" data-spy="symbiogenesis"><i></i><b>V</b></a></li>
+    <li><a href="#waging-peace" data-spy="waging-peace"><i></i><b>VI</b></a></li>
+    <li><a href="#the-critics" data-spy="the-critics"><i></i><b>VII</b></a></li>
+    <li><a href="#year-2040" data-spy="year-2040"><i></i><b>VIII</b></a></li>
+  </ol>
+</nav>
+
+<div class="readbar" id="readbar" aria-label="Reading progress 閱讀進度">
+  <span class="rb-loc"><span class="rb-num" id="rbNum">I</span><span class="rb-title" id="rbTitle">The Gate</span></span>
+  <span class="rb-pct" id="rbPct">0%</span>
+  <button class="rb-btn" id="copyBtn" type="button"><span lang="en-GB">Copy link</span><span lang="zh-TW">複製連結</span></button>
+</div>
+<button class="totop" id="totop" type="button" aria-label="Back to top 回到頁首">↑</button>
+
 <header class="site">
   <a class="name" href="/">Audrey&nbsp;Tang <span class="cjk">唐鳳</span></a>
   <div class="crumbs">
@@ -608,7 +697,7 @@ body::after {
 <!-- ════════ HERO ════════ -->
 <header class="hero">
     <div class="hero-year" aria-hidden="true">2040</div>
-    <svg class="hero-crystal" viewBox="0 0 120 200" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <svg class="hero-crystal" viewBox="0 0 120 200" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round"><g class="crystal-body">
         <path d="M60 6 L108 50 L108 150 L60 194 L12 150 L12 50 Z" stroke="rgba(201,169,97,0.1)" stroke-width="0.6"/>
         <path d="M60 6 L60 194" stroke="rgba(201,169,97,0.06)" stroke-width="0.4"/>
         <path d="M12 50 L108 150" stroke="rgba(201,169,97,0.05)" stroke-width="0.4"/>
@@ -617,7 +706,7 @@ body::after {
         <path d="M36 28 L84 28" stroke="rgba(201,169,97,0.035)" stroke-width="0.3"/>
         <path d="M36 172 L84 172" stroke="rgba(201,169,97,0.035)" stroke-width="0.3"/>
         <path d="M60 6 L12 100 M60 6 L108 100 M60 194 L12 100 M60 194 L108 100" stroke="rgba(201,169,97,0.03)" stroke-width="0.3"/>
-    </svg>
+    </g></svg>
     <div class="hero-content">
         <div class="hero-label"><span lang="en-GB">A Speculative History</span><span lang="zh-TW">推想歷史</span><span class="dot">&middot;</span><span lang="en-GB">Public Domain</span><span lang="zh-TW">公共領域</span></div>
         <h1><span lang="en-GB">Transparent Horse</span><span lang="zh-TW">透明之馬</span></h1>
@@ -643,7 +732,7 @@ body::after {
 </aside>
 
 <!-- ════════ I ════════ -->
-<section class="chapter reveal">
+<section id="the-gate" class="chapter reveal">
     <div class="chapter-head">
         <span class="chapter-num">I</span>
         <h2 class="chapter-title"><span lang="en-GB">The Gate</span><span lang="zh-TW">城門</span></h2>
@@ -669,7 +758,7 @@ body::after {
 <div class="divider reveal"><div class="divider-mark"></div></div>
 
 <!-- ════════ II ════════ -->
-<section class="chapter reveal">
+<section id="the-cost" class="chapter reveal">
     <div class="chapter-head">
         <span class="chapter-num">II</span>
         <h2 class="chapter-title"><span lang="en-GB">The Cost</span><span lang="zh-TW">代價</span></h2>
@@ -695,7 +784,7 @@ body::after {
 <div class="divider reveal"><div class="divider-mark"></div></div>
 
 <!-- ════════ III ════════ -->
-<section class="chapter reveal">
+<section id="the-line" class="chapter reveal">
     <div class="chapter-head">
         <span class="chapter-num">III</span>
         <h2 class="chapter-title"><span lang="en-GB">The Line</span><span lang="zh-TW">底線</span></h2>
@@ -722,7 +811,7 @@ body::after {
 </aside>
 
 <!-- ════════ IV ════════ -->
-<section class="chapter reveal">
+<section id="the-arrival" class="chapter reveal">
     <div class="chapter-head">
         <span class="chapter-num">IV</span>
         <h2 class="chapter-title"><span lang="en-GB">The Arrival</span><span lang="zh-TW">到來</span></h2>
@@ -752,7 +841,7 @@ body::after {
 <div class="divider reveal"><div class="divider-mark"></div></div>
 
 <!-- ════════ V ════════ -->
-<section class="chapter reveal">
+<section id="symbiogenesis" class="chapter reveal">
     <div class="chapter-head">
         <span class="chapter-num">V</span>
         <h2 class="chapter-title"><span lang="en-GB">Symbiogenesis</span><span lang="zh-TW">共生起源</span></h2>
@@ -785,7 +874,7 @@ body::after {
 </aside>
 
 <!-- ════════ VI ════════ -->
-<section class="chapter reveal">
+<section id="waging-peace" class="chapter reveal">
     <div class="chapter-head">
         <span class="chapter-num">VI</span>
         <h2 class="chapter-title"><span lang="en-GB">Waging Peace</span><span lang="zh-TW">策動和平</span></h2>
@@ -813,7 +902,7 @@ body::after {
 <div class="divider reveal"><div class="divider-mark"></div></div>
 
 <!-- ════════ VII ════════ -->
-<section class="chapter reveal">
+<section id="the-critics" class="chapter reveal">
     <div class="chapter-head">
         <span class="chapter-num">VII</span>
         <h2 class="chapter-title"><span lang="en-GB">The Critics</span><span lang="zh-TW">批評者</span></h2>
@@ -839,7 +928,7 @@ body::after {
 </section>
 
 <!-- ════════ VIII ════════ -->
-<section class="closing reveal">
+<section id="year-2040" class="closing reveal">
     <div class="chapter" style="padding: 0;">
         <div class="chapter-head">
             <span class="chapter-num">VIII</span>
@@ -892,19 +981,71 @@ body::after {
     var bar = document.querySelector('.progress');
     var toggle = document.querySelector('.lang-toggle');
     var heroH = document.querySelector('.hero').offsetHeight;
+    var zhBox = document.getElementById('lang-zh');
+    var readbar = document.getElementById('readbar');
+    var rbNum = document.getElementById('rbNum');
+    var rbTitle = document.getElementById('rbTitle');
+    var rbPct = document.getElementById('rbPct');
+    var totop = document.getElementById('totop');
+    var copyBtn = document.getElementById('copyBtn');
+    var SECS = [
+        ['the-gate', 'I', 'The Gate', '城門'],
+        ['the-cost', 'II', 'The Cost', '代價'],
+        ['the-line', 'III', 'The Line', '底線'],
+        ['the-arrival', 'IV', 'The Arrival', '到來'],
+        ['symbiogenesis', 'V', 'Symbiogenesis', '共生起源'],
+        ['waging-peace', 'VI', 'Waging Peace', '策動和平'],
+        ['the-critics', 'VII', 'The Critics', '批評者'],
+        ['year-2040', 'VIII', '2040', '2040']
+    ];
+    var els = SECS.map(function (s) { return document.getElementById(s[0]); });
+    var spyLinks = {};
+    document.querySelectorAll('.rail a[data-spy]').forEach(function (a) { spyLinks[a.getAttribute('data-spy')] = a; });
+    var tops = [];
+    function measure() {
+        heroH = document.querySelector('.hero').offsetHeight;
+        tops = els.map(function (el) { return el ? el.getBoundingClientRect().top + window.scrollY : Infinity; });
+    }
+    measure();
+    window.addEventListener('resize', measure);
+    window.addEventListener('load', measure);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
+
+    var current = -1;
+    function renderLoc() {
+        if (current < 0) return;
+        var s = SECS[current];
+        rbNum.textContent = s[1];
+        rbTitle.textContent = zhBox.checked ? s[3] : s[2];
+        SECS.forEach(function (m, i) {
+            var a = spyLinks[m[0]];
+            if (!a) return;
+            if (i === current) a.setAttribute('aria-current', 'true');
+            else a.removeAttribute('aria-current');
+        });
+    }
     var ticking = false;
+    function onScroll() {
+        ticking = false;
+        var s = window.scrollY;
+        var vh = window.innerHeight;
+        var h = document.documentElement.scrollHeight - vh;
+        var p = h > 0 ? Math.min(s / h * 100, 100) : 0;
+        bar.style.width = p + '%';
+        rbPct.textContent = Math.round(p) + '%';
+        toggle.classList.toggle('scrolled', s > heroH * 0.7);
+        readbar.classList.toggle('on', s > heroH * 0.7);
+        totop.classList.toggle('on', s > vh * 1.4);
+        var line = s + vh * 0.34;
+        var idx = 0;
+        for (var i = 0; i < tops.length; i++) { if (tops[i] <= line) idx = i; }
+        if (h > 0 && s >= h - 4) idx = SECS.length - 1;
+        if (idx !== current) { current = idx; renderLoc(); }
+    }
     window.addEventListener('scroll', function () {
-        if (!ticking) {
-            requestAnimationFrame(function () {
-                var s = window.scrollY;
-                var h = document.documentElement.scrollHeight - window.innerHeight;
-                bar.style.width = (h > 0 ? Math.min(s / h * 100, 100) : 0) + '%';
-                toggle.classList.toggle('scrolled', s > heroH * 0.7);
-                ticking = false;
-            });
-            ticking = true;
-        }
+        if (!ticking) { requestAnimationFrame(onScroll); ticking = true; }
     }, { passive: true });
+    onScroll();
 
     var io = new IntersectionObserver(function (entries) {
         entries.forEach(function (e) {
@@ -913,11 +1054,30 @@ body::after {
     }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
     document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
 
-    document.getElementById('lang-zh').addEventListener('change', function () {
+    totop.addEventListener('click', function () {
+        var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' });
+    });
+
+    var copyHTML = copyBtn.innerHTML;
+    function copied(ok) {
+        copyBtn.textContent = ok ? (zhBox.checked ? '已複製 ✓' : 'Copied ✓') : (zhBox.checked ? '複製失敗' : 'Copy failed');
+        setTimeout(function () { copyBtn.innerHTML = copyHTML; }, 1800);
+    }
+    copyBtn.addEventListener('click', function () {
+        var url = location.origin + location.pathname + (current > 0 ? '#' + SECS[current][0] : '');
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(url).then(function () { copied(true); }, function () { copied(false); });
+        } else { copied(false); }
+    });
+
+    zhBox.addEventListener('change', function () {
         var zh = this.checked;
         document.documentElement.setAttribute('lang', zh ? 'zh-TW' : 'en-GB');
         document.title = zh ? '\u900f\u660e\u4e4b\u99ac\uff1a\u6211\u5011\u5982\u4f55\u7b56\u52d5\u548c\u5e73\u4e26\u7372\u52dd' : 'Transparent Horse: How We Waged Peace and Won';
         try { localStorage.setItem('lang', zh ? 'zh-TW' : 'en'); } catch (e) {}
+        renderLoc();
+        measure();
     });
 })();
 </script>
