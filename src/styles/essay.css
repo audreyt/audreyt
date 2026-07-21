@@ -102,6 +102,12 @@ a:hover { color: var(--gold); }
     transform: translateY(0);
 }
 
+/* ── DIVIDER MARK (tiny orrery: the dot orbits its ring; motion opt-in) ── */
+@keyframes divider-orbit { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: no-preference) {
+    .divider-mark { animation: divider-orbit 36s linear infinite; }
+}
+
 /* ── SITE HEADER (links back to homepage, matching pi.audreyt.org / audreyt.box) ── */
 header.site {
     max-width: 860px;

@@ -123,6 +123,12 @@ a:hover { color: var(--gold); }
     transform: translateY(0);
 }
 
+/* ── DIVIDER MARK (tiny orrery: the dot orbits its ring; motion opt-in) ── */
+@keyframes divider-orbit { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: no-preference) {
+    .divider-mark { animation: divider-orbit 36s linear infinite; }
+}
+
 /* ── SITE HEADER (links back to homepage, matching pi.audreyt.org / audreyt.box) ── */
 header.site {
     max-width: 860px;
@@ -458,6 +464,24 @@ body::after {
     line-height: 1.6;
     border-top: 1px solid rgba(201,169,97,0.2);
     padding-top: 48px;
+}
+
+/* ── AUTHOR (signature + intro, humanist-review port) ── */
+.author { background: var(--warm); border-top: 1px solid var(--border); padding: clamp(56px, 7vw, 84px) 24px; }
+.author .inner { max-width: 46rem; margin: 0 auto; display: grid; grid-template-columns: minmax(220px, 280px) 1fr; gap: clamp(28px, 5vw, 52px); align-items: center; }
+.author .author-mark { position: relative; display: grid; place-items: center; width: min(100%, 280px); aspect-ratio: 1142 / 382; justify-self: center; text-decoration: none; }
+.author .signature { display: block; width: 100%; height: auto; opacity: 0.7; transition: opacity 0.25s ease; }
+.author .author-mark:hover .signature, .author .author-mark:focus-visible .signature { opacity: 1; }
+.author .label { font-family: var(--sans); font-size: 0.68rem; font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); display: block; margin-bottom: 12px; }
+.author .bio { font-family: var(--serif); font-size: 0.99rem; line-height: 2; letter-spacing: 0.03em; color: var(--muted); }
+.author .bio strong { color: var(--heading); font-weight: 600; }
+html:has(#lang-zh:checked) .author .bio { font-family: var(--cjk); }
+@media (prefers-color-scheme: dark) {
+    .author .signature { filter: invert(0.88) sepia(0.14); }
+}
+@media (max-width: 600px) {
+    .author .inner { grid-template-columns: 1fr; }
+    .author .author-mark { width: min(82vw, 260px); }
 }
 
 /* ── COLOPHON ── */
@@ -952,6 +976,20 @@ html:has(#lang-zh:checked) .rb-title { font-family: var(--cjk); }
 </section>
 
 </main>
+
+<!-- ════════ AUTHOR ════════ -->
+<section class="author reveal">
+    <div class="inner">
+        <a class="author-mark" href="/" aria-label="Audrey Tang 唐鳳 — audreyt.org">
+            <img class="signature" src="assets/humanist-review-audrey-tang-signature.svg" alt="" width="1142" height="382" loading="lazy" decoding="async" aria-hidden="true">
+        </a>
+        <div>
+            <span class="label"><span lang="en-GB">Author&nbsp;&mdash;&nbsp;作者</span><span lang="zh-TW">Author&nbsp;&mdash;&nbsp;作者</span></span>
+            <p class="bio" lang="en-GB"><strong>Audrey Tang</strong> is Taiwan&rsquo;s Cyber Ambassador and the 2025 Right Livelihood laureate. As the inaugural Minister of Digital Affairs, she brought a deep civic-hacking background into public service. Now a Senior Accelerator Fellow at Oxford&rsquo;s Institute for Ethics in AI, she co-authored <a href="https://www.plurality.net/" target="_blank" rel="noopener"><em>Plurality</em></a> with Glen&nbsp;Weyl and co-initiated the <a href="https://civic.ai/" target="_blank" rel="noopener">Civic&nbsp;AI</a> research programme with Caroline&nbsp;Green.</p>
+            <p class="bio" lang="zh-TW"><strong>唐鳳</strong>是中華民國數位治理無任所大使、2025 年正命獎得主。曾任臺灣首任數位發展部長，將深厚的公民黑客背景帶入公職。現為牛津大學 AI 倫理研究院首屆加速哲人，與衛谷倫合著<a href="https://www.plurality.net/" hreflang="en" target="_blank" rel="noopener">《多元宇宙》</a>，並與 Caroline&nbsp;Green 共同發起<a href="https://civic.ai/tw/" hreflang="en" target="_blank" rel="noopener">《仁工智慧》</a>研究計畫。</p>
+        </div>
+    </div>
+</section>
 
 <footer class="colophon">
     <div class="orrery orrery--footer" aria-hidden="true"><svg class="orrery-svg" viewBox="0 0 480 480" preserveAspectRatio="xMidYMid meet" fill="none" aria-hidden="true" focusable="false">
