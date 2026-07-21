@@ -83,6 +83,26 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+/* ── CJK TYPESETTING (zh-TW / ja modes) ──
+   Hanging punctuation, trimmed fullwidth openers, and justified
+   inter-ideograph long prose. zh is active when #lang-zh is checked
+   (explicit-toggle pages) OR when a #lang-en input exists unchecked with
+   no #lang-zh input (zh-default two-lang pages on audreyt.org) — so this
+   one file serves both repos. Selectors are inert on pages without the
+   matching lang input; every declaration is a progressive enhancement. */
+html:has(#lang-zh:checked),
+html:has(#lang-en):not(:has(#lang-en:checked)):not(:has(#lang-zh)),
+html:has(#lang-ja:checked) { hanging-punctuation: first allow-end last; }
+html:has(#lang-zh:checked) body,
+html:has(#lang-en):not(:has(#lang-en:checked)):not(:has(#lang-zh)) body,
+html:has(#lang-ja:checked) body { text-spacing-trim: trim-start; }
+html:has(#lang-zh:checked) .chapter-body,
+html:has(#lang-zh:checked) .hero-lede,
+html:has(#lang-en):not(:has(#lang-en:checked)):not(:has(#lang-zh)) .chapter-body,
+html:has(#lang-en):not(:has(#lang-en:checked)):not(:has(#lang-zh)) .hero-lede { text-align: justify; text-justify: inter-ideograph; line-break: strict; letter-spacing: 0.03em; }
+html:has(#lang-ja:checked) .chapter-body,
+html:has(#lang-ja:checked) .hero-lede { text-align: justify; text-justify: inter-ideograph; line-break: strict; letter-spacing: 0.02em; }
+
 a { color: var(--teal); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; text-decoration-color: color-mix(in srgb, currentColor 35%, transparent); transition: color 0.2s; }
 a:hover { color: var(--gold); }
 
@@ -752,8 +772,8 @@ body::after {
             <p>During my tenure in day&#8209;to&#8209;day government, our mandate was not just to make people trust technology. It was to make digital institutions worthy of people&rsquo;s trust.</p>
         </div>
         <div class="hero-lede" lang="zh-TW">
-            <p>主席、副主席、各位尊敬的參議員，感謝邀請我以個人身分出席作證。今天我的觀點，來自我目前擔任臺灣數位治理大使的工作、我在牛津大學 AI 倫理研究院的學人身分，以及我作為臺灣首任數位發展部長的經驗。</p>
-            <p>在我參與日常政府運作的任內，我們的使命不只是讓人民信任科技，而是讓數位制度值得人民信任。</p>
+            <p>主席、副主席、各位參議員：感謝各位邀請我以個人身分出席作證。我今天的觀點，來自三段經歷：現任臺灣數位治理無任所大使的工作、在牛津大學 AI 倫理研究院擔任學人的研究，以及出任臺灣首任數位發展部部長的所見所學。</p>
+            <p>在政府裡打理日常政務的那幾年，我們的任務從來不只是讓人民信任科技，而是讓數位制度，值得人民信任。</p>
         </div>
     </div>
     <div class="scroll-cue" aria-hidden="true"><span lang="en-GB">Read</span><span lang="zh-TW">閱讀</span></div>
@@ -764,7 +784,7 @@ body::after {
 <!-- ════════ EPIGRAPH ════════ -->
 <aside class="interlude interlude--warm reveal">
     <blockquote lang="en-GB">AI is more than automation. It redistributes attention, authority and bargaining power. In a democracy, such redistribution must be visible, contestable and co&#8209;governed.</blockquote>
-    <blockquote lang="zh-TW">AI 不只是自動化。它重新分配注意力、權威與議價能力。在民主社會中，這樣的重新分配必須可見、可爭辯，並且共同治理。</blockquote>
+    <blockquote lang="zh-TW">AI 不只是自動化。它重新分配注意力、權威與議價能力。在民主社會，這樣的重新分配必須可見、可爭辯、可共治。</blockquote>
 </aside>
 
 <!-- ════════ I. TRUST ════════ -->
@@ -795,12 +815,12 @@ body::after {
         <p>The right to contest means those affected can challenge outcomes without needing a degree in computer science. Appeals must lead to repair &mdash; correction, compensation, policy change, or retiring the system altogether.</p>
     </div>
     <div class="chapter-body" lang="zh-TW">
-        <p>貴委員會的研究關注 AI 如何影響人權、經濟安全、弱勢群體，以及國際工作權。我想提供一個框架。</p>
-        <p>臺灣成功應對 AI 生成詐騙廣告的經驗顯示，民主社會不必在技術官僚式控制與平台消極不作為之間二選一。公民可以審議詐騙防制與言論自由之間的平衡。同樣的原則也適用於工作：<em>在系統固化成基礎設施之前，受影響的人就應協助設定規則</em>。</p>
-        <p>AI 時代的工作權，必須包含三項實際權利：學習權、知情權與申訴權。</p>
-        <blockquote>學習權，意味著在被取代之前就接受培訓，而不是在被取代之後才補救。工作不只是收入。工作也是學徒制，是歸屬感、關懷與尊嚴。</blockquote>
-        <p>知情權，意味著當 AI 影響招募、排班、升遷、福利、教育或公共服務時，人們應該知道 AI 正在被使用、誰應負責，以及誰的資料正在塑造這項決定。黑盒子的結果不應被視為正當程序。</p>
-        <p>申訴權，意味著受影響者可以挑戰結果，而不需要先取得電腦科學學位。申訴必須導向修復，例如更正、補償、政策改變，或讓該系統完全退場。</p>
+        <p>貴委員會的研究，關注 AI 如何影響人權、經濟安全、弱勢族群，以及國際工作權。請容我提出一個框架。</p>
+        <p>臺灣遏止 AI 生成詐騙廣告的經驗說明：民主社會不必在技術官僚的控制與平台的坐視不管之間二選一。詐騙防制與言論自由之間的分寸，由公民親自審議拿捏。同樣的原則也適用於工作：<em>在系統硬化成基礎設施之前，受影響的人就該一起訂定規則</em>。</p>
+        <p>AI 時代的工作權，必須包含三項具體權利：學習權、知情權、申訴權。</p>
+        <blockquote>學習權，是在被取代之前受訓，而不是之後補課。工作不只是收入；工作是師徒相承，是歸屬、關懷與尊嚴。</blockquote>
+        <p>知情權，是當 AI 影響招募、排班、升遷、福利、教育或公共服務時，人們有權知道：AI 正在其中運作、誰為它負責、又是誰的資料在形塑這項決定。黑箱吐出的結果，不該被當成正當程序。</p>
+        <p>申訴權，是受影響的人不必先讀完資訊科系，也能挑戰結果。申訴必須通向修復——更正、補償、修改政策，或乾脆讓整套系統除役。</p>
     </div>
 </section>
 
@@ -839,20 +859,20 @@ body::after {
         <p>Protect people from harm. Empower them with skills and knowledge. Build trustworthy public infrastructure. And co&#8209;govern AI with the workers, families, communities, and future generations who will live with these consequences.</p>
     </div>
     <div class="chapter-body" lang="zh-TW">
-        <p>這對那些已經因既有制度而變得脆弱的人尤其重要。我想到的是原住民族社群、移工、身心障礙者、兒童、高齡者、被種族化的社群，以及在勞動與技能資料中代表性不足的人。</p>
-        <p>AI 不應成為新的方式，用來在未經同意下榨取知識、在缺乏脈絡下替人打分數，或讓排除變得更有效率。</p>
-        <p>在牛津，我研究「仁工智慧」（Civic AI）的工作，是把關懷倫理轉譯為六個治理問題：</p>
-        <blockquote>我們是否聽見最接近傷害的人？是否有人被明確指定並負起責任？系統是否能在脈絡中運作？受影響者是否有救濟管道？它是否建立團結，而不是供應商鎖定？以及，它是否知道何時該停止？</blockquote>
-        <p>對於高影響 AI，民主社會應要求決策軌跡、獨立稽核、可近用的申訴機制、公開事件通報、勞工與社群共同治理、落日條款，以及避免供應商鎖定的採購規則。</p>
-        <p>民主化的系統必須是<em>可中斷的</em>：在不破壞人們所依賴之必要服務的情況下，可以暫停、覆寫或退場。</p>
-        <p>共融繁榮也是民主安全。在大家熟悉的<em>保護</em>、<em>賦權</em>與<em>建設</em>之外，我想再加上一個動詞：<em>共同治理</em>。</p>
-        <p>保護人們免於傷害。以技能與知識賦權於人。建設可信賴的公共基礎設施，並與勞工、家庭、社群，以及將承受這些後果的未來世代，共同治理 AI。</p>
+        <p>這件事，對已被既有制度推向脆弱處境的人最為要緊。我想到的是原住民族、移工、身心障礙者、孩子與長輩、少數族裔社群，以及在勞動與技能資料裡代表性不足的人。</p>
+        <p>AI 不該成為一種新的手法：未經同意就搾取知識、抽掉脈絡就替人打分數、讓排除變得更有效率。</p>
+        <p>在牛津，我推動「仁工智慧」（Civic AI）研究，把關懷倫理化為六個治理問題：</p>
+        <blockquote>我們有沒有聽見離傷害最近的人？有沒有人具名負責？系統放進真實脈絡，還管不管用？受影響的人有沒有救濟管道？它促成的是團結，還是供應商鎖定？還有——它知不知道何時該停？</blockquote>
+        <p>對於影響重大的 AI，民主社會應該要求：決策留痕、獨立稽核、人人用得上的申訴管道、公開的事故通報、勞工與社群共同治理、落日條款，以及防止供應商鎖定的採購規則。</p>
+        <p>民主的系統必須<em>可以中斷</em>：能暫停、能推翻、能除役，而不至於讓人們賴以為生的服務停擺。</p>
+        <p>共融的繁榮，也是民主的安全。在大家熟悉的<em>保護</em>、<em>培力</em>、<em>建造</em>之外，我想再添一個動詞：<em>共同治理</em>。</p>
+        <p>保護人們免於傷害；以技能與知識培力眾人；建造值得信賴的公共基礎設施；並且和勞工、家庭、社群，以及終將承接這一切後果的未來世代，一起治理 AI。</p>
     </div>
 </section>
 
 <aside class="interlude interlude--dark reveal">
     <blockquote lang="en-GB">A good enough ancestor does not ask, &ldquo;Are the machines ready to replace humans?&rdquo; A good enough ancestor asks how machines can help humans better care for one another, deliberate together and keep faith with those not yet born.</blockquote>
-    <blockquote lang="zh-TW">一位夠好的祖先不會問：「機器是否準備好取代人類？」一位夠好的祖先會問：機器如何幫助人類更好地彼此關懷、共同審議，並守住對尚未出生者的承諾？</blockquote>
+    <blockquote lang="zh-TW">夠好的祖先不會問：「機器準備好取代人類了嗎？」夠好的祖先會問：機器要怎麼幫助人類，更懂得彼此關懷、一起審議，並且不負尚未出生的世代？</blockquote>
 </aside>
 
 <!-- ════════ III. ALIGNMENT ASSEMBLY ════════ -->
@@ -880,7 +900,7 @@ body::after {
         </svg>
     </figure>
     <p class="ask" lang="en-GB">Could you give a concrete example of co&#8209;governing AI in Taiwan?</p>
-    <p class="ask" lang="zh-TW">能否舉一個你在臺灣實施的具體例子，說明如何圍繞 AI 進行真正的共同治理？</p>
+    <p class="ask" lang="zh-TW">能否舉個具體的例子，說明臺灣如何真正共同治理 AI？</p>
     <div class="chapter-body" lang="en-GB">
         <p>In 2024, we convened what is called an <em>alignment assembly</em> to respond to the harms of generative AI in scam and fraud ads online.</p>
         <p>Deepfakes that year were prevalent in every democracy. But as Asia&rsquo;s most internet&#8209;free country, Taiwan simply could not do top&#8209;down censorship. So we sent SMS text messages to 200,000 random numbers around the island, asking: <em>What should we do together?</em></p>
@@ -890,12 +910,12 @@ body::after {
         <p>When people want to show up at the table, the idea is not to do top&#8209;down control. It is to invent a bigger table.</p>
     </div>
     <div class="chapter-body" lang="zh-TW">
-        <p>2024 年，我們召開了一場所謂的<em>對齊大會</em>，來應對生成式 AI 所造成的網路詐騙與詐欺廣告傷害。</p>
-        <p>大家知道，2024 年 deepfake 在所有民主社會都非常普遍。但作為亞洲網際網路自由度最高的國家，臺灣不能採取由上而下的審查。因此，我們向全臺 20 萬組隨機電話號碼發送簡訊，詢問：<em>我們應該一起怎麼做？</em></p>
-        <p>我們選出了 447 位民眾，組成一個在統計上近似整體政治共同體的小型公眾。他們以每桌 10 人的方式進行審議。唯一簡單的規則是：AI 只能扮演<em>促進者</em>，而參與者必須先說服同桌另外九個人，他們的想法才會浮現上來。</p>
-        <p>長話短說，我們實施了一組在這個小型公眾中獲得超過 85% 同意，而另外 15% 也能接受的構想。其中包括共同責任、認識你的客戶規則，以及讓不遵守我們責任規則的外國平台連線變慢。</p>
-        <blockquote>整個 2025 年，冒名與 deepfake 廣告減少了超過 90%。</blockquote>
-        <p>當人們想要坐上談判桌時，重點不是由上而下地控制，而是發明一張更大的桌子。</p>
+        <p>2024 年，我們召開了一場<em>對齊大會</em>，回應生成式 AI 用於網路詐騙廣告所造成的傷害。</p>
+        <p>那一年，深偽在每個民主國家都氾濫成災。但臺灣是亞洲網路最自由的國家，由上而下的審查根本行不通。於是，我們向全臺 20 萬組隨機抽出的電話號碼發送簡訊，問大家：<em>我們該一起怎麼做？</em></p>
+        <p>我們選出 447 位民眾，組成統計上與整體社會相似的微型公眾；十人一桌，展開審議。規則簡單一條：AI <em>只做輔助</em>；想法要浮上檯面，得先說服同桌的另外九個人。</p>
+        <p>長話短說：最後我們付諸實行的那批構想，獲得微型公眾超過 85% 的同意，其餘 15% 也表示可以接受。其中包括平台連帶責任、認識客戶（KYC）規範，以及把不遵守責任規範的境外平台連線降速。</p>
+        <blockquote>整個 2025 年，冒名與深偽廣告減少了 90% 以上。</blockquote>
+        <p>當人們想要上桌，該做的不是由上而下的控制，而是發明一張更大的桌子。</p>
     </div>
 </section>
 
@@ -925,7 +945,7 @@ body::after {
         </svg>
     </figure>
     <p class="ask" lang="en-GB">From an energy&#8209;use perspective, what is the difference between general&#8209;purpose AI and domain&#8209;specific models?</p>
-    <p class="ask" lang="zh-TW">從能源使用的角度，能否說明通用 AI 與領域特定模型有什麼不同？</p>
+    <p class="ask" lang="zh-TW">從能源使用的角度來看，通用 AI 與特定領域模型有什麼不同？</p>
     <div class="chapter-body" lang="en-GB">
         <p>Currently, in AI training, general&#8209;purpose large models need to anticipate pretty much every use, from folding proteins to folding laundry, in the same model. In doing so, they are incredibly energy&#8209;inefficient to train.</p>
         <p>But when we know what we want the model to do &mdash; folding proteins, or folding laundry &mdash; we can train what are called domain&#8209;specific models, or local models. These can incorporate the community&rsquo;s input in a way that also protects its data from extraction to the cloud, to big tech companies.</p>
@@ -938,15 +958,15 @@ body::after {
         <p>The state&rsquo;s role is not to pick a national champion. It is to subsidise the freedom to choose.</p>
     </div>
     <div class="chapter-body" lang="zh-TW">
-        <p>目前在 AI 訓練中，通用目的的大型模型，需要在同一個模型中預期幾乎所有用途，從摺疊蛋白質到摺疊衣物都包含在內。這樣做的結果，是訓練時極度能源低效率。</p>
-        <p>但當我們知道希望模型做什麼，例如摺疊蛋白質或摺疊衣物，我們就可以訓練所謂的領域特定模型或本地模型。這些模型可以納入社群的輸入，同時也保護社群資料不被抽取到雲端，不被送到大型科技公司手中。</p>
-        <blockquote>那種榨取式、非常耗能的部分，可以被想像成「資料如石油」——這種萃取會送到某個大型煉油廠。但以本地方式訓練小模型，則可以被想像成「資料如土壤」，由本地社群一起照料這些資料。</blockquote>
-        <p>他們進行微調，持續訓練。一旦出現偏見或錯誤，修正可以立即發生，而不是等待一次可能耗時半年的高耗能訓練。</p>
-        <p>在臺灣，數位發展部與農業部前後約一年內相繼成立，兩部會合作，確保環境感測不限於單一生產設施，也讓種植哪些作物、如何灌溉、農民與買方關係管理等長期趨勢，都能獲得支援。</p>
-        <p>我們有一個稱為 TCloud，也就是「臺灣雲市集」的計畫。每一家中小企業，包括農業部門的業者，都可以在數千種解決方案之間選擇。關鍵在於透明性與資料可攜性：在供應商之間移動的自由，讓資料留在經營者手中。如果某個預測模型或 SaaS 供應商不再符合其特定情況，他們可以自由轉換到另一家。</p>
-        <p>為了協助導入，政府曾一度補助 SaaS 採購金額最高 80%。補助流向 SaaS 消費端，其中多半本身就是中小企業——而非任何作為國家級或區域級冠軍的供應商。其結果是部門內的互通性、資料主權與所有權，讓經營者可以共同訓練特定部門的模型。同樣的概念，現在也被金融部門中由銀行與保險公司組成的資料聯盟採用。</p>
-        <p>例如，我們的無人機農業服務平台集合了許多小型經營者。他們共享設備、認證飛手，並共享合規紀錄。任何一位若單獨行動，都無法負擔設備，也難以承擔監管要求；但他們在一起，就達到了一種水平規模，而這種規模過去只有大型農企業才能取得。</p>
-        <p>國家的角色不是挑選國家冠軍，而是資助選擇的自由。</p>
+        <p>目前的 AI 訓練裡，通用大型模型得在同一個模型中預作準備，應付幾乎所有用途——從摺疊蛋白質到摺疊衣物，無所不包。也因此，訓練起來極其耗能，效率極差。</p>
+        <p>可是，一旦我們清楚要模型做什麼——摺蛋白質，或者摺衣服——就能訓練「特定領域模型」，也就是在地模型。這類模型能納入社群的意見，也讓社群的資料不必被抽上雲端、送進大型科技公司手裡。</p>
+        <blockquote>搾取式、極度耗能的那條路，可以想成「資料如石油」：開採出來，運往某座遠方的大煉油廠。在地訓練小模型的這條路，則是「資料如土壤」——這片土，由在地社群一起耕耘照料。</blockquote>
+        <p>社群自己微調、持續訓練。一旦出現偏誤或錯誤，當下就能修正，不必苦等一輪動輒半年、極其耗能的訓練跑完。</p>
+        <p>在臺灣，數位發展部與農業部在前後約一年間相繼成立。兩個部會攜手，讓環境感測不再侷限於單一生產場域，也讓種什麼作物、怎麼灌溉、農民與買家的長期關係，都有資料可以支撐。</p>
+        <p>我們有個計畫叫 TCloud——臺灣雲市集。每一家中小企業，包括農業部門的業者，都能在數千種解決方案之間挑選。關鍵在透明與資料可攜：搬家的自由，讓資料留在經營者自己手上。哪天某個預測模型或 SaaS 供應商不再合用，隨時可以換一家。</p>
+        <p>為了帶動採用，政府一度補助最高 80% 的 SaaS 採購費用。補助給的是採購 SaaS 的一方——多半本身就是中小企業——而不是把哪家供應商養成國家隊或區域冠軍。結果是整個部門的互通性、資料主權與所有權都握在業者手中，經營者因此能夠合力訓練部門專屬的模型。同樣的思路，如今也由銀行與保險業者組成的金融資料聯盟接了過去。</p>
+        <p>以我們的農業無人機服務平台為例：許多小型業者聚在一起，共用設備、一起考照、共享法遵紀錄。單打獨鬥，誰也買不起設備、扛不起法遵；聚在一起，卻搆得著過去只有大型農企才有的水平規模。</p>
+        <p>國家的角色不是欽點國家隊，而是補助選擇的自由。</p>
     </div>
 </section>
 
@@ -956,7 +976,7 @@ body::after {
 <section id="without-revealing" class="chapter reveal">
     <div class="chapter-head">
         <span class="chapter-num">V</span>
-        <h2 class="chapter-title"><span lang="en-GB">Without Revealing</span><span lang="zh-TW">不需揭露</span></h2>
+        <h2 class="chapter-title"><span lang="en-GB">Without Revealing</span><span lang="zh-TW">毋須揭露</span></h2>
     </div>
     <figure class="chapter-illustration" aria-hidden="true">
         <svg viewBox="0 0 180 120" focusable="false">
@@ -975,7 +995,7 @@ body::after {
         </svg>
     </figure>
     <p class="ask" lang="en-GB">How do you protect human&#8209;rights information while sharing it across jurisdictions?</p>
-    <p class="ask" lang="zh-TW">如何在強調透明與民主參與的同時，也保護人權資訊？</p>
+    <p class="ask" lang="zh-TW">人權資訊需要跨越司法管轄區分享，又該如何保護？</p>
     <div class="chapter-body" lang="en-GB">
         <p>I would like to make the distinction between data <em>coalitions</em>, where people pool data in a way useful to all members, and the <em>aggregation</em> of data.</p>
         <p>It is possible for multiple players, stakeholders, and communities to join a data coalition without sharing any of the raw data. There exists a kind of technology called <em>zero&#8209;knowledge technology</em> that allows people to prove they can do something, that they possess certain knowledge, or that a community can respond to a certain kind of query &mdash; without revealing any personally identifiable information underneath.</p>
@@ -984,17 +1004,17 @@ body::after {
         <p>But if an infection happened, we could do contact tracing and recursive notification &mdash; again, without sacrificing the privacy of people who were not in the affected area.</p>
     </div>
     <div class="chapter-body" lang="zh-TW">
-        <p>我想區分資料<em>聯盟</em>與資料<em>聚合</em>。資料聯盟是人們以對所有成員都有用的方式共用資料；資料聚合則不然。</p>
-        <p>多個行動者、利害關係人與社群，可以加入一個資料聯盟，而不分享任何原始資料。現在有一類技術稱為<em>零知識技術</em>，可以讓人證明自己能做某件事、擁有某些知識，或證明某個社群能回應某類查詢，而不揭露底層任何可識別個人身分的資訊。</p>
-        <p>在臺灣疫情期間，我們使用了保護隱私的接觸者追蹤方法。場所在門口用 QR code 印出一組隨機號碼。民眾掃描之後，透過電信業者把它傳到可信任的 1922 專線。</p>
-        <blockquote>電信業者不知道那組隨機號碼代表什麼。場所什麼也不知道，甚至不知道訪客的電話號碼。國家也完全不知道任何資訊。</blockquote>
-        <p>但是，如果發生感染，我們可以進行接觸者追蹤與遞迴通知，而且同樣不犧牲未在受影響區域者的隱私。</p>
+        <p>我想先區分資料的<em>聯盟</em>與資料的<em>聚合</em>。聯盟，是大家把資料匯在一起，讓每個成員都用得上；聚合，則不是這麼回事。</p>
+        <p>多方參與者、利害關係人與社群，可以加入同一個資料聯盟，卻不必交出任何原始資料。有一類技術叫<em>零知識技術</em>：它讓人證明自己會做某件事、握有某些知識，或證明一個社群能回應某類查詢——而底下任何足以識別個人的資訊，一概不必揭露。</p>
+        <p>臺灣疫情期間的「簡訊實聯制」，就是保護隱私的接觸者追蹤：場所在門口貼出一組化為 QR code 的亂數，民眾掃描後，經電信業者傳給可信賴的 1922 專線。</p>
+        <blockquote>電信業者不知道那組亂數是什麼意思。場所一無所獲——連訪客的電話號碼都沒有。國家則一無所知。</blockquote>
+        <p>可是一旦出現感染，我們照樣能追蹤接觸者、層層遞迴通知——同樣不犧牲疫區之外任何人的隱私。</p>
     </div>
 </section>
 
 <aside class="interlude interlude--warm reveal">
     <blockquote lang="en-GB">Instead of a wildfire that consumes the oxygen between people, think of it as a campfire that people sit around, illuminating the different faces.</blockquote>
-    <blockquote lang="zh-TW">不要把它想像成吞噬人與人之間氧氣的野火，而要把它想像成大家圍坐其旁的營火，照亮不同的臉孔。</blockquote>
+    <blockquote lang="zh-TW">與其是一把野火，燒光人與人之間的氧氣；不如是一座營火，大家圍坐，火光映亮一張張不同的臉。</blockquote>
 </aside>
 
 <!-- ════════ VI. BRIDGES ════════ -->
@@ -1022,7 +1042,7 @@ body::after {
         </svg>
     </figure>
     <p class="ask" lang="en-GB">Can AI be used to help us relate to one another rather than replace us?</p>
-    <p class="ask" lang="zh-TW">AI 能否用來幫助我們彼此連結、彼此協助，而不是取代我們？</p>
+    <p class="ask" lang="zh-TW">AI 能不能幫助我們彼此連結，而不是取代我們？</p>
     <div class="chapter-body" lang="en-GB">
         <p>I would like to make a distinction between AI that automates intelligence &mdash; what I sometimes call <em>authoritarian intelligence</em>, making decisions on behalf of people &mdash; and a different kind of AI.</p>
         <p>Ten years ago on social media, many felt their agency had been taken away. Previously, when we followed the same people, we saw the same feed. But this was replaced by a very judgmental AI that personalised our feed and encouraged engagement through enragement. That is very authoritarian.</p>
@@ -1033,13 +1053,13 @@ body::after {
         <p>Now we work with all the major social media companies on Community Notes implementation, and on collaborative notes &mdash; drafted by AI and instantly corrected by humans, so AI can learn what can translate across communities. For example, between the climate&#8209;justice community on one side and biblical creation care on the other, so they can translate across their vocabularies.</p>
     </div>
     <div class="chapter-body" lang="zh-TW">
-        <p>我想先區分兩種 AI。一種是把智慧自動化的 AI，我有時稱之為<em>威權智慧</em>，也就是代替人們做決策。另一種則不同。</p>
-        <p>例如，十年前在社群媒體上，許多人覺得自己的能動性被奪走了。過去，當我們追蹤同樣的人，我們看到的是同樣的動態消息。但後來這被一種非常有評判性的 AI 取代，它將我們的動態消息個人化，並透過激怒來鼓勵互動。那是非常威權的。</p>
-        <p>在臺灣，我們把另一種稱為<em>輔助智慧</em>，它協助那些原本無法同意彼此的人進行跨對話。</p>
-        <p>不過，每個營火仍由一組有界線的人照料：10 人、100 人，或是一個更大的篝火。在臺灣，我們設計了這種利社會媒體，例如 Polis。Polis 是一項開源技術，已被全球十多個國家使用，包括加拿大。</p>
-        <blockquote>它的理念是，不是讓憤怒病毒式擴散，而是讓重疊點病毒式擴散。在這種利社會媒體上，能夠變得有傳播力的，只會是那些原本不會同意彼此的人也能共同支持的想法。只有搭橋者能獲得傳播力。透過這種方式，人們可以療癒極化與分裂。</blockquote>
-        <p>我們的示範足夠成功，甚至連 X，也就是原本的 Twitter，這類傳統社群媒體平台，如今也採用了非常類似的演算法，稱為 Community Notes，也就是社群筆記。它讓能跨越意識形態搭橋的人撰寫筆記，在病毒式傳播的錯誤資訊、假訊息，或只是具爭議性的資訊旁邊進行澄清或補充脈絡。</p>
-        <p>現在，我們與所有主要社群媒體公司合作，協助實作社群筆記，也合作推動協作筆記。協作筆記是由 AI 起草，再由人類即時修正的筆記，讓 AI 能學會哪些內容可以跨社群轉譯。例如在一邊是氣候正義社群、另一邊是聖經關懷受造界社群時，AI 可以學會如何在不同語彙之間轉譯。</p>
+        <p>我想先區分兩種 AI。一種把智慧自動化——我有時稱之為<em>威權智慧</em>——替人做決定。另一種，是很不一樣的 AI。</p>
+        <p>十年前的社群媒體上，許多人感到能動性被拿走了。從前，追蹤同樣的人，就看見同樣的動態；後來，取而代之的是一套動輒評斷的 AI，替每個人客製動態消息，用激怒餵養互動。那是非常威權的。</p>
+        <p>在臺灣，我們把另一種稱為<em>輔助智慧</em>：協助原本談不攏的人，跨過立場交談。</p>
+        <p>每一座營火，都由一群有邊界的人照料：十人、百人，或一座更大的火堆。我們設計了利社會媒體，例如 Polis——這項開源技術，全球已有十多個國家採用，加拿大也在其中。</p>
+        <blockquote>Polis 不讓怒火瘋傳，而讓交集瘋傳。能傳開的，只有那些原本水火不容的人也都支持的想法；能被看見的，只有搭橋的人。就這樣，人們療癒極化與分裂。</blockquote>
+        <p>這場示範夠成功，連 X（前身是 Twitter）這樣的傳統社群平台，如今也採用了非常相似的演算法——社群筆記（Community Notes）：讓跨越意識形態搭橋的人，在瘋傳的錯誤資訊、假訊息，或單純有爭議的訊息旁，寫下澄清與補充脈絡的筆記。</p>
+        <p>現在，我們與各大社群媒體公司合作導入社群筆記，也推動「協作筆記」：由 AI 起草、人類即時修正，讓 AI 學會哪些話能在社群之間轉譯——比方在氣候正義社群與聖經受造守護社群之間，讓兩套語彙互相聽懂。</p>
     </div>
 </section>
 
@@ -1068,16 +1088,16 @@ body::after {
         </svg>
     </figure>
     <p class="ask" lang="en-GB">The UN&rsquo;s 2024 report on governing AI for humanity points to a global governance deficit. How do we close it?</p>
-    <p class="ask" lang="zh-TW">聯合國 2024 年《為人類治理 AI》指出全球治理赤字。我們要如何填補？</p>
+    <p class="ask" lang="zh-TW">聯合國 2024 年《為人類治理 AI》報告指出全球治理赤字。我們該如何補上？</p>
     <div class="chapter-body" lang="en-GB">
         <p>I think the report&rsquo;s diagnosis is correct: a patchwork of principles without enforceable duties will not govern AI, which is intrinsically a global phenomenon in technology.</p>
         <p>Democracies, especially including middle powers, should build interoperable governance. That does not mean identical governance applied everywhere in the same way around the globe. It means auditing standards, incident&#8209;reporting standards, provenance for synthetic media, procurement requirements that avoid vendor lock&#8209;in, and similar stacks that can be made to work across jurisdictions without harmonising every domestic rule.</p>
         <blockquote>Canada, Taiwan, and other free and open societies can be peers in this work. The global governance deficit will not be closed by another universal principle, but by enforceable duties that make principles contestable in each and every domain.</blockquote>
     </div>
     <div class="chapter-body" lang="zh-TW">
-        <p>我認為該報告的診斷是正確的：只有一堆原則拼湊在一起，而沒有可執行的義務，是無法治理 AI 的。AI 本質上是技術領域中的一種全球性現象。</p>
-        <p>我認為民主社會，尤其包括中等強權，應該建立可互通的治理。這並不表示在全球各地以完全相同方式適用同一套治理。它意味著稽核標準、事件通報標準、合成媒體的來源標示、避免供應商鎖定的採購要求，以及類似的技術與制度堆疊，都能跨司法管轄區運作，而不必調和每一條國內規則。</p>
-        <blockquote>加拿大、臺灣，以及其他自由開放社會，可以在這項工作上成為彼此的同儕。全球治理赤字不會靠另一項普世原則來補上，但可以透過可執行的義務來補上，讓原則在每一個領域中都能被爭辯、被檢驗。</blockquote>
+        <p>我認為報告的診斷是對的：原則東拼西湊、義務卻無從執行，治理不了 AI——何況 AI 在技術上，本來就是全球性的現象。</p>
+        <p>民主社會——尤其是中等強權——應該建立可互通的治理。可互通，不是全球各地一體適用同一套規則；而是稽核標準、事故通報標準、合成媒體的出處驗證、防止供應商鎖定的採購要求，這一類制度堆疊可以跨司法管轄區銜接運作，而不必先統一每一條國內法規。</p>
+        <blockquote>加拿大、臺灣，以及其他自由開放的社會，可以在這件事上互為同儕。全球治理赤字，靠的不是再添一條普世原則，而是可執行的義務——讓原則在每一個領域，都容得下異議、經得起檢驗。</blockquote>
     </div>
 </section>
 
@@ -1086,7 +1106,7 @@ body::after {
     <div class="chapter" style="padding: 0;">
         <div class="chapter-head">
             <span class="chapter-num">VIII</span>
-            <h2 class="chapter-title"><span lang="en-GB">Sovereignty Is Not Solitude</span><span lang="zh-TW">主權不是孤立獨行</span></h2>
+            <h2 class="chapter-title"><span lang="en-GB">Sovereignty Is Not Solitude</span><span lang="zh-TW">主權不是孤島</span></h2>
         </div>
         <figure class="chapter-illustration" aria-hidden="true">
             <svg viewBox="0 0 180 120" focusable="false">
@@ -1112,7 +1132,7 @@ body::after {
             </svg>
         </figure>
         <p class="ask" lang="en-GB" style="color: rgba(255,255,255,0.55);">How can the federal government best support Indigenous data sovereignty?</p>
-        <p class="ask" lang="zh-TW" style="color: rgba(255,255,255,0.55);">聯邦政府如何能最好地支持原住民族資料主權？</p>
+        <p class="ask" lang="zh-TW" style="color: rgba(255,255,255,0.55);">聯邦政府要怎麼做，才最能支持原住民族的資料主權？</p>
         <div class="chapter-body" lang="en-GB">
             <p>Taiwan has 16 Indigenous nations and more than 42 language variations. We see cultural sovereignty &mdash; and also <em>transcultural</em> sovereignty, the ability to translate across cultures &mdash; as very important.</p>
             <p>When we say &ldquo;sovereign AI&rdquo; in Taiwan, we do not mean just a national AI model that speaks Mandarin, Taigi, Hakka, and Indigenous languages. We mean a reproducible process for language communities to <em>own</em> the social and cultural composition of the data curated within those language communities.</p>
@@ -1123,16 +1143,16 @@ body::after {
             <p>Inclusive prosperity is also democratic security. Canada and Taiwan are both free and open societies, and we know our adversaries are testing our seams of trust.</p>
         </div>
         <div class="chapter-body" lang="zh-TW">
-            <p>臺灣有 16 個原住民族，還有超過 42 種語言變體。我們認為文化主權，以及<em>跨文化</em>主權，也就是跨文化翻譯的能力，非常重要。</p>
-            <p>當我們在臺灣說「主權 AI」時，我們指的不是只有一個會說華語、並替臺語、客語和其他原住民族語言發聲的國家 AI 模型。我們指的是一套可重現的流程，讓語言社群能夠<em>擁有</em>其語言社群內所策展資料的社會與文化組成。</p>
-            <p>它也包括對齊大會，也就是讓人們能夠劃定 AI 應該如何進入其社群的邊界，幾乎像是為 AI 代理者制定行為準則。</p>
-            <p>這兩者結合起來，使每一個社群在語言模型訓練上，不只感覺到自己擁有其社會與文化自決權，也能納入跨文化翻譯能力。當某一種語言或文化取得某項能力時，一個社群可以選擇在自己的脈絡中引入它，如果它願意的話。</p>
-            <p>但能動性與主權，是由原住民族或社群持有，而不是由上而下的國家委員會持有。</p>
-            <p>不應有人因自動化而喪失自主能動性。任何社群的知識、語言或勞動，都不應在未經同意下被視為原料。任何工作者都不應被迫獨自與黑盒子談判。</p>
-            <p>共融繁榮也是民主安全。加拿大與臺灣都是自由開放的社會，我們都知道敵對勢力正在測試我們信任的縫隙。</p>
+            <p>臺灣有 16 個原住民族、超過 42 種語言變體。在我們看來，文化主權極其重要——還有<em>跨文化</em>主權：在文化與文化之間翻譯的能力。</p>
+            <p>在臺灣，當我們說「主權 AI」，指的不只是一個會說華語、臺語、客語與原住民族語的國家級模型。我們指的是一套可以重複施行的流程，讓每個語言社群<em>擁有</em>自己社群裡彙整資料的社會與文化組成。</p>
+            <p>這也包括對齊大會：讓族人自己劃定 AI 進入社群的界線，幾乎像是為 AI 智慧體訂下的行為準則。</p>
+            <p>兩者合起來，每個社群在語言模型的訓練上，不只真切握有社會與文化的自決，也能接上跨文化翻譯的能力：當某個語言、某種文化長出新的本事，其他社群若願意，也能把它引入自己的脈絡。</p>
+            <p>而能動性與主權，始終握在原住民族與社群自己手中——不在任何由上而下的國家委員會。</p>
+            <p>沒有人應該被自動化奪去能動性。沒有一個社群的知識、語言或勞動，應該在未經同意之下被當成原料。沒有一位勞動者，應該獨自面對黑箱談判。</p>
+            <p>共融的繁榮，也是民主的安全。加拿大與臺灣同為自由開放的社會；我們都明白，對手正在試探我們信任的接縫。</p>
         </div>
         <p class="closing-final" lang="en-GB">But sovereignty is not solitude. It is the way to protect people and cooperate without surrendering public judgment.</p>
-        <p class="closing-final" lang="zh-TW">但主權不是孤立獨行。主權是保護人民並與他者合作，同時不放棄公共判斷的方式。</p>
+        <p class="closing-final" lang="zh-TW">然而，主權不是孤島。主權是一種方式：保護人民、與人合作，而不交出公共的判斷。</p>
     </div>
 </section>
 
