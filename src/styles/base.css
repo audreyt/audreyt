@@ -6,6 +6,14 @@ html:has(#lang-zh:checked) body { font-weight: 400; }
 html:has(#lang-zh:checked) em,
 html:has(#lang-zh:checked) blockquote { font-style: normal; font-family: 'Kaiti TC', 'DFKai-SB', 'BiauKai', 'STKaiti', cursive; }
 
+/* zh-TW typesetting (ported from the essay family): hanging CJK punctuation,
+   trimmed fullwidth openers, and justified inter-ideograph long prose.
+   All progressive enhancements — unsupporting browsers render as before. */
+html:has(#lang-zh:checked) { hanging-punctuation: first allow-end last; }
+html:has(#lang-zh:checked) body { text-spacing-trim: trim-start; }
+html:has(#lang-zh:checked) .bio-text,
+html:has(#lang-zh:checked) .section-narrow p { text-align: justify; text-justify: inter-ideograph; line-break: strict; letter-spacing: 0.02em; }
+
 :root {
     scroll-padding-top: 90px;
     --ink: #0f1923;

@@ -62,6 +62,26 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+/* ── CJK TYPESETTING (zh-TW / ja modes) ──
+   Hanging punctuation, trimmed fullwidth openers, and justified
+   inter-ideograph long prose. zh is active when #lang-zh is checked
+   (explicit-toggle pages) OR when a #lang-en input exists unchecked with
+   no #lang-zh input (zh-default two-lang pages on audreyt.org) — so this
+   one file serves both repos. Selectors are inert on pages without the
+   matching lang input; every declaration is a progressive enhancement. */
+html:has(#lang-zh:checked),
+html:has(#lang-en):not(:has(#lang-en:checked)):not(:has(#lang-zh)),
+html:has(#lang-ja:checked) { hanging-punctuation: first allow-end last; }
+html:has(#lang-zh:checked) body,
+html:has(#lang-en):not(:has(#lang-en:checked)):not(:has(#lang-zh)) body,
+html:has(#lang-ja:checked) body { text-spacing-trim: trim-start; }
+html:has(#lang-zh:checked) .chapter-body,
+html:has(#lang-zh:checked) .hero-lede,
+html:has(#lang-en):not(:has(#lang-en:checked)):not(:has(#lang-zh)) .chapter-body,
+html:has(#lang-en):not(:has(#lang-en:checked)):not(:has(#lang-zh)) .hero-lede { text-align: justify; text-justify: inter-ideograph; line-break: strict; letter-spacing: 0.03em; }
+html:has(#lang-ja:checked) .chapter-body,
+html:has(#lang-ja:checked) .hero-lede { text-align: justify; text-justify: inter-ideograph; line-break: strict; letter-spacing: 0.02em; }
+
 a { color: var(--teal); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; text-decoration-color: color-mix(in srgb, currentColor 35%, transparent); transition: color 0.2s; }
 a:hover { color: var(--gold); }
 

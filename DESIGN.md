@@ -1,7 +1,7 @@
 ---
 version: alpha
 name: Civic Broadsheet
-description: Editorial, multilingual long-form site for Audrey Tang's speeches, essays, and testimonies. Cream paper, ink type, sparing gold, set in Cormorant Garamond + Outfit with sibling Noto Serif/Sans for zh-TW and ja.
+description: Editorial, multilingual long-form site for Audrey Tang's speeches, essays, and testimonies. Cream paper, ink type, sparing gold, set in Spectral + Source Sans 3 with Iansui/Kaiti TC siblings for zh-TW and Noto Serif/Sans JP for ja.
 colors:
   primary: "#0f1923"
   secondary: "#5a6577"
@@ -20,70 +20,70 @@ colors:
   border: "#e0ddd7"
 typography:
   display-hero:
-    fontFamily: Cormorant Garamond
+    fontFamily: Spectral
     fontSize: 6rem
     fontWeight: 400
     lineHeight: 1.04
     letterSpacing: -0.025em
   display:
-    fontFamily: Cormorant Garamond
+    fontFamily: Spectral
     fontSize: 5rem
     fontWeight: 400
     lineHeight: 1.1
     letterSpacing: -0.02em
   headline:
-    fontFamily: Cormorant Garamond
+    fontFamily: Spectral
     fontSize: 2.8rem
     fontWeight: 400
     lineHeight: 1.25
     letterSpacing: -0.01em
   chapter-title:
-    fontFamily: Cormorant Garamond
+    fontFamily: Spectral
     fontSize: 1.6rem
     fontWeight: 600
     lineHeight: 1.3
     letterSpacing: 0em
   subtitle-italic:
-    fontFamily: Cormorant Garamond
+    fontFamily: Spectral
     fontSize: 1.55rem
     fontWeight: 400
     lineHeight: 1.5
     letterSpacing: 0.01em
   pullquote:
-    fontFamily: Cormorant Garamond
+    fontFamily: Spectral
     fontSize: 1.9rem
     fontWeight: 400
     lineHeight: 1.7
     letterSpacing: 0em
   lede:
-    fontFamily: Cormorant Garamond
+    fontFamily: Spectral
     fontSize: 1.2rem
     fontWeight: 400
     lineHeight: 1.85
   body-lg:
-    fontFamily: Outfit
+    fontFamily: Spectral
     fontSize: 1.1rem
     fontWeight: 400
     lineHeight: 1.85
   body-md:
-    fontFamily: Outfit
+    fontFamily: Spectral
     fontSize: 1.05rem
     fontWeight: 400
     lineHeight: 1.7
   name-lockup:
-    fontFamily: Cormorant Garamond
+    fontFamily: Spectral
     fontSize: 1.02rem
     fontWeight: 600
     lineHeight: 1.2
     letterSpacing: 0.01em
   eyebrow:
-    fontFamily: Outfit
+    fontFamily: Source Sans 3
     fontSize: 0.75rem
     fontWeight: 500
     lineHeight: 1
     letterSpacing: 0.2em
   crumb:
-    fontFamily: Outfit
+    fontFamily: Source Sans 3
     fontSize: 0.66rem
     fontWeight: 500
     lineHeight: 1
@@ -187,7 +187,7 @@ Both the design system *and* the repo guide for `cyberambassador.tw` and its mir
 
 ## Overview
 
-A literary broadsheet that happens to be a website. Long-form testimony and essays sit on cream paper, in a refined Renaissance serif (Cormorant Garamond), with a single warm-metal accent (gold) used sparingly enough that it still reads as ceremonial. The CJK companion type stacks (Noto Serif TC, Noto Serif JP, with a brush-script Kaiti TC reserved for emphasis) mirror the same gravitas in Mandarin and Japanese, so all three language modes feel like they were typeset by the same editorial hand rather than translated through a templating engine.
+A literary broadsheet that happens to be a website. Long-form testimony and essays sit on cream paper, in a single literary serif (Spectral) that carries both display and body, with a single warm-metal accent (gold) used sparingly enough that it still reads as ceremonial. The CJK companion type stacks (Iansui for zh-TW, Noto Serif JP for ja, with a brush-script Kaiti TC reserved for emphasis) mirror the same gravitas in Mandarin and Japanese, so all three language modes feel like they were typeset by the same editorial hand rather than translated through a templating engine.
 
 The atmosphere is *quiet civic*: generous whitespace, deliberate asymmetry, the occasional always-dark island (`hero`, `interlude--dark`, `closing`) used to mark a turn in argument the way a chapter break does in a printed essay. Animations are present but restrained — staggered `fadeUp` reveals on first paint, a slowly orbiting hero emblem, scroll-triggered `.reveal` for chapter blocks. No bouncing, no parallax theatrics. The work is the work; the chrome stays out of the way.
 
@@ -231,14 +231,14 @@ Stand-alone essay pages (`transparent-horse.html`, `collaborative-immune-system.
 
 ## Typography
 
-Three Latin faces and three CJK fallback stacks share the page:
+Two Latin faces and the CJK companion stacks share the page:
 
-- **Cormorant Garamond** — display face. Headlines, hero, pullquote, chapter title, name lockup. A high-contrast Renaissance serif with a calligraphic italic. Variable weights 300 / 400 / 600 / 700; italic at 400. Used at sizes from 1.02 rem (name lockup) up to a hero clamp ceiling of 6 rem.
-- **Outfit** — body face. A geometric humanist sans, weights 300–600 (variable), used for body copy, navigation, eyebrow labels, breadcrumbs, lang toggle. Renders calmly at long reading lengths without competing with the serif display.
-- **Noto Serif TC** — Mandarin display counterpart. Paired with Cormorant Garamond at the same heading sizes so zh-TW mode looks typeset, not transliterated. Stack: `'Noto Serif TC', 'Songti TC', 'PMingLiU', Georgia, serif`.
-- **Noto Sans TC** (with PingFang TC / Microsoft JhengHei fallbacks) — Mandarin body face.
+- **Spectral** — the sole Latin face, doing display *and* body. Headlines, hero, pullquote, chapter title, name lockup, and paragraph copy. Weights 300 / 400 / 500 / 600 / 700 with italics at 400–600. Used at sizes from 1.02 rem (name lockup) up to a hero clamp ceiling of 6 rem.
+- **Source Sans 3** — utility sans. Navigation, eyebrow labels, breadcrumbs, lang toggle, scroll cue. Weights 400–600.
+- **Iansui** — the zh-TW companion for both display and body (`--serif-cjk`, `--cjk`), with PingFang TC / Microsoft JhengHei / Noto Sans TC fallbacks. Self-hosted subsets on the index; Google Fonts on stand-alone essays.
 - **Kaiti TC** (`'Kaiti TC', 'DFKai-SB', 'BiauKai', 'STKaiti'`) — a brush-script cursive reserved for `<em>` and `<blockquote>` in zh-TW mode. Substitutes for Latin italic emphasis, which Mandarin does not idiomatically take.
 - **Noto Serif JP / Noto Sans JP** — Japanese counterparts. Used on `collaborative-immune-system.html` and any other page that ships a ja mode. Bold (700) substitutes for italic emphasis.
+- The **reprint idiom** (`humanist-review.html`, see *Reprint Idiom*) carries its own stack — Noto Serif TC 400–900 for display and body, Spectral as Latin companion, Red Hat Mono for labels — because the host publication's identity leads there.
 
 ### Two-stage font loading (index only)
 
@@ -410,6 +410,45 @@ Used by `.award-card`, `.case-study`, `.work-item`, `.featured-outlet`. All flat
 
 `color: teal; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; text-decoration-color: color-mix(in srgb, currentColor 35%, transparent);` Hover transitions colour to `gold` over 0.2s.
 
+## Reprint Idiom (humanist-review.html)
+
+`humanist-review.html` introduces a second, deliberately separate page idiom: the **magazine reprint** — a single-language zh-TW translation of a piece published elsewhere, where the host publication's identity (not Civic Broadsheet's) leads the design. It is fully self-contained and lives **outside** the `essay:base` weave: no sentinel comments, its own tokens, its own chrome. To build the next reprint, copy `humanist-review.html` as the skeleton — this section is the map; the file is the template.
+
+### Publication-specific (do not port into Broadsheet essays)
+
+- Palette: coral / peach / plum on warm paper (`--coral`, `--peach`, `--plum`, `--cream`, `--shell`) — The Humanist Review's identity, not ours.
+- Type: Noto Serif TC at weight 900 for display, Red Hat Mono for labels.
+- The plum always-dark closing band and the vertical-rl finale with Kaiti signature.
+- `em` rendered as 著重號 text-emphasis dots — in the reprint's coral. Broadsheet essays choose per page between Kaiti substitution (`good-enough-ancestor`, `collaborative-immune-system`) and gold 著重號 (`transparent-horse`); pick ONE per page, never both.
+
+### Reusable reader chrome
+
+All JS-gated (`html.js` + `.needs-js`), all no-JS safe. Per-page config lives in the inline script's `SEC_META` map (section id → [numeral, title]); the rail, TOC, and readbar all key off it.
+
+- **readbar** — floating bottom pill: section numeral + title, read percentage, copy-link, theme button. Appears once the reader scrolls past the masthead.
+- **rail** — fixed left scrollspy dots with numeral labels (≥1180 px only).
+- **toc** — two-column grid with `aria-current` sync to the scrollspy.
+- **theme switcher** — three-mode 自動/淺色/深色: `data-theme` attribute + `localStorage`, dynamic `<meta name="theme-color">`, `.theming` cross-fade class. (Broadsheet essays are media-query-only dark.)
+- **plink + `:target` flash** — hover anchor links on section heads; `targetFlash` keyframe.
+- **ghost numerals** — outline-stroke oversized chapter numbers behind section heads.
+- **totop, skip link**, and JSON-LD `Article` with `translationOfWork`.
+
+Porting this chrome into a Broadsheet essay is a taste call, default **no**: the essays' minimal chrome (progress hairline + lang toggle only) is deliberate "quiet civic". Reach for the rail/readbar only on very long single-language pieces.
+
+### Ported back into the Broadsheet: CJK typesetting
+
+The reprint's CJK typesetting craft is idiom-independent and is now part of the shared baseline, not per-essay CSS. It lives in `src/styles/essay.css` under `/* ── CJK TYPESETTING (zh-TW / ja modes) ── */` and is inlined into every essay by pre-commit Phase 3 — new essays inherit it automatically:
+
+- `hanging-punctuation: first allow-end last` on the `:has(#lang-zh:checked)` / `:has(#lang-ja:checked)` root (Safari-only for now).
+- `text-spacing-trim: trim-start` on `body` (Chromium 123+).
+- `.chapter-body` / `.hero-lede`: `text-align: justify; text-justify: inter-ideograph; line-break: strict`, with `letter-spacing: 0.03em` (zh-TW) / `0.02em` (ja).
+
+The selectors are inert on pages without the matching lang input, and every declaration is a progressive enhancement — unsupporting browsers render exactly as before. The index carries the same treatment in `src/styles/base.css` scoped to its long-prose lanes (`.bio-text`, `.section-narrow p`). Do not re-declare these rules in a per-essay block; the baseline owns them.
+
+### If reprints multiply
+
+At n = 1 the copy-skeleton approach wins. If a second reprint lands, extract the shared chrome into `src/styles/reprint.css` with its own sentinel pair (`/* reprint:base */ … /* /reprint:base */`) and teach pre-commit Phase 3 the second sentinel — the same mechanism as `essay.css`, no new machinery.
+
 ## Do's and Don'ts
 
 The non-negotiable rules. Most originate from past incidents.
@@ -459,6 +498,7 @@ tools/                            ← build-fonts, build-iansui, glyph-harvest, 
 index.html                        ← GENERATED. Do not edit by hand.
 collaborative-immune-system.html  ← stand-alone essay (en/zh/ja), single-file
 good-enough-ancestor.html         ← stand-alone essay (en/zh), single-file
+humanist-review.html              ← stand-alone reprint (zh-TW), reprint idiom — outside essay:base weave
 transparent-horse.html            ← stand-alone essay (en/zh), single-file
 pi-ds4.html                       ← stand-alone redirect → pi.audreyt.org
 weave.ts                          ← homepage build script
@@ -551,7 +591,7 @@ cwebp -q 75 assets/foo.jpg -o assets/foo.webp
 
 ### Adding a new essay page
 
-1. Copy an existing essay (e.g. `transparent-horse.html`) as the starting skeleton — its CSS and `<head>` markup are the closest baseline.
+1. Copy an existing essay (e.g. `transparent-horse.html`) as the starting skeleton — its CSS and `<head>` markup are the closest baseline. For a magazine reprint (single-language translation of an externally published piece), copy `humanist-review.html` instead — see *Reprint Idiom*.
 2. Update `<title>`, `<meta name="description">`, `og:*` tags. If the essay will live on `audreyt.org` too, leave `og:image` pointing at `https://cyberambassador.tw/…` here; the cherry-picked variant on `audreyt.org` will substitute `https://audreyt.org/…` itself.
 3. Write content directly inline. Use `<span lang="en-GB">…</span>` / `<span lang="zh-TW">…</span>` / `<span lang="ja">…</span>` for each language variant; the existing CSS `html:has(#lang-…:checked)` rules handle visibility.
 4. Add the `header.site` lockup (see *Components → site-header*).

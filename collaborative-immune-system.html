@@ -83,6 +83,26 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+/* ── CJK TYPESETTING (zh-TW / ja modes) ──
+   Hanging punctuation, trimmed fullwidth openers, and justified
+   inter-ideograph long prose. zh is active when #lang-zh is checked
+   (explicit-toggle pages) OR when a #lang-en input exists unchecked with
+   no #lang-zh input (zh-default two-lang pages on audreyt.org) — so this
+   one file serves both repos. Selectors are inert on pages without the
+   matching lang input; every declaration is a progressive enhancement. */
+html:has(#lang-zh:checked),
+html:has(#lang-en):not(:has(#lang-en:checked)):not(:has(#lang-zh)),
+html:has(#lang-ja:checked) { hanging-punctuation: first allow-end last; }
+html:has(#lang-zh:checked) body,
+html:has(#lang-en):not(:has(#lang-en:checked)):not(:has(#lang-zh)) body,
+html:has(#lang-ja:checked) body { text-spacing-trim: trim-start; }
+html:has(#lang-zh:checked) .chapter-body,
+html:has(#lang-zh:checked) .hero-lede,
+html:has(#lang-en):not(:has(#lang-en:checked)):not(:has(#lang-zh)) .chapter-body,
+html:has(#lang-en):not(:has(#lang-en:checked)):not(:has(#lang-zh)) .hero-lede { text-align: justify; text-justify: inter-ideograph; line-break: strict; letter-spacing: 0.03em; }
+html:has(#lang-ja:checked) .chapter-body,
+html:has(#lang-ja:checked) .hero-lede { text-align: justify; text-justify: inter-ideograph; line-break: strict; letter-spacing: 0.02em; }
+
 a { color: var(--teal); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; text-decoration-color: color-mix(in srgb, currentColor 35%, transparent); transition: color 0.2s; }
 a:hover { color: var(--gold); }
 
@@ -759,8 +779,8 @@ document.documentElement.classList.add('js');
             <p>Today, I wish to share a practical lesson from Taiwan’s response to AI-enabled fraud, including deepfakes.</p>
         </div>
         <div class="hero-lede" lang="zh-TW">
-            <p>自由民主黨的各位議員先進、鈴木健先生、各位貴賓，大家早安，我是臺灣數位治理大使唐鳳。</p>
-            <p>今天，我想分享臺灣在應對 AI 詐騙（包含深偽技術 deepfakes）時，所獲得的實務經驗。</p>
+            <p>自由民主黨的各位議員先進、鈴木健先生、各位貴賓，大家早安。我是臺灣數位治理大使唐鳳。</p>
+            <p>今天，我想分享臺灣因應深偽（deepfake）等 AI 詐騙時，學到的一堂實務課。</p>
         </div>
         <div class="hero-lede" lang="ja">
             <p>自由民主党の先生方、鈴木健さん、ご列席の皆さま、おはようございます。台湾のサイバー大使、オードリー・タンです。</p>
@@ -780,7 +800,7 @@ document.documentElement.classList.add('js');
 <!-- ════════ EPIGRAPH ════════ -->
 <aside class="interlude interlude--warm reveal">
     <blockquote lang="en-GB">In a democracy, the strongest anti-fraud technology is not a filter. It is legitimacy.</blockquote>
-    <blockquote lang="zh-TW">在民主社會中，最重要的防詐技術不是過濾器，而是「正當性」。</blockquote>
+    <blockquote lang="zh-TW">在民主社會裡，最強的防詐技術不是過濾器，而是「正當性」。</blockquote>
     <blockquote lang="ja">民主主義において、最強の詐欺対策テクノロジーはフィルターではないと私は信じています。それは「正統性」です。</blockquote>
 </aside>
 
@@ -808,15 +828,15 @@ document.documentElement.classList.add('js');
     </div>
     
     <div class="chapter-body" lang="zh-TW">
-        <p>正如各位所熟知的，我主張開放政府，比如起草法律不是關起門來寫字，而是從「廣泛傾聽」開始（稍後鈴木健先生將補充）。</p>
-        <p>2024 年 3 月，數位發展部（moda）召集了由 447 位公民組成的「對齊大會」，這些公民在統計學上能夠代表臺灣的人口結構。我們針對平台責任這個非常困難的問題，邀請大家集思廣益。</p>
-        <p>經過一天的視訊審議，他們給出了結果——這是一個任何遊說團體都無法反駁的民意基礎：</p>
+        <p>如各位所知，我長年倡議「開放政府」：法律不必關起門來起草，而是從「廣泛傾聽」開始——稍後鈴木健先生會再深入說明。</p>
+        <p>2024 年 3 月，數位發展部（moda）召開「對齊大會」，邀集 447 位公民；他們在統計上，正是臺灣人口結構的縮影。我們請大家針對「平台責任」這道難題，一同集思廣益。</p>
+        <p>經過一整天的視訊審議，大家交出了結果——這份民意付託，任何遊說團體都無從反駁：</p>
         <ul>
-            <li><strong>89%</strong> 支持要求平台必須偵測並標示 AI 生成內容。</li>
-            <li><strong>85%</strong> 支持平台連帶責任——如果平台不配合下架詐騙廣告，導致有人誤信，平台應該對損害負連帶賠償責任。</li>
-            <li><strong>關於執法：</strong>公民們同意，如果境外平台持續拒絕配合，我們應該降低其連線速度，也就是流量管制。</li>
+            <li><strong>89%</strong> 支持要求平台偵測並標示 AI 生成內容。</li>
+            <li><strong>85%</strong> 支持平台負連帶責任——詐騙廣告不下架，害人誤信受騙，平台就該對損害連帶賠償。</li>
+            <li><strong>執行面上：</strong>公民也同意，境外平台若一再拒不配合，就降低它的連線速度——也就是「流量管制」。</li>
         </ul>
-        <p>以上共識成為了我們立法的基礎。去年在法律通過時，沒有引起公眾的反彈，因為這些規則本就是大眾共同制定的。</p>
+        <p>這份共識，成了立法的地基。去年法律通過時，社會沒有反彈——因為規則本來就是大家親手寫成的。</p>
     </div>
     
     <div class="chapter-body" lang="ja">
@@ -852,9 +872,9 @@ document.documentElement.classList.add('js');
     </div>
     
     <div class="chapter-body" lang="zh-TW">
-        <p>有了這份正當性，我們在 2024 年 5 月提出草案，立法院 7 月通過了「打詐新四法」。其中的核心是<strong>《詐欺犯罪危害防制條例》</strong>。</p>
-        <p>今天，我將聚焦在第三章：第 27 條到第 42 條，專門規範「網路廣告平台」。注意，不是一般的言論平台，而是僅針對廣告平台。</p>
-        <p>我們將人民的道德期待，轉化為四道法律防線。</p>
+        <p>帶著這份正當性，我們在 2024 年 5 月提出草案；同年 7 月，立法院通過「打詐新四法」，核心正是<strong>《詐欺犯罪危害防制條例》</strong>。</p>
+        <p>今天聚焦其中的第三章，也就是第 27 條到第 42 條：專門規範「網路廣告平台」的部分。請留意——對象是廣告平台，不是一般的言論平台。</p>
+        <p>我們把人民的道德期待，鍛造成四道法律防線。</p>
     </div>
     
     <div class="chapter-body" lang="ja">
@@ -908,32 +928,32 @@ document.documentElement.classList.add('js');
     </div>
     
     <div class="chapter-body" lang="zh-TW">
-        <h3 class="defense-heading">一、 源頭驗證（第 30 條）</h3>
-        <p>第一道防線是改變「預設值」。根據第 30 條，平台必須實施 <strong>KYA (Know Your Advertiser，認識你的廣告客戶)</strong>——就像金融業的 KYC，但這是針對廣告商。</p>
-        <p>在任何廣告刊登之前——不只是投資廣告，是任何廣告——平台必須使用數位簽章、生物辨識或同等技術來驗證廣告主的身分。如果平台無法驗證身分，就不能收廣告主的錢。就這麼簡單。</p>
+        <h3 class="defense-heading">一、源頭驗證（第 30 條）</h3>
+        <p>第一道防線，是改變「預設值」。依第 30 條，平台必須落實 <strong>KYA</strong>（Know Your Advertiser，認識你的廣告主）——如同金融業的 KYC，只是對象換成了廣告主。</p>
+        <p>任何廣告要上架之前——不限投資廣告，而是任何廣告——平台都必須以數位簽章、生物辨識或同等技術，驗證廣告主的身分。驗不了身分，就收不了錢。就這麼簡單。</p>
         
-        <h3 class="defense-heading">二、 徹底透明（第 31 條）</h3>
-        <p>第二道防線是打開黑盒子。一旦身分確認，所有廣告都必須向所有觀看者清楚標示：</p>
+        <h3 class="defense-heading">二、徹底透明（第 31 條）</h3>
+        <p>第二道防線，是打開黑盒子。身分一經驗證，每則廣告都必須向所有觀看者清楚標示：</p>
         <ul>
-            <li>委託刊播者的姓名</li>
-            <li>出資購買廣告的人是誰</li>
-            <li>如果使用了深偽技術或 AI 生成來描繪某人，必須明確揭露</li>
+            <li>委託刊播者是誰——這則廣告由誰發起。</li>
+            <li>出資者是誰——錢從哪裡來。</li>
+            <li>若以深偽或 AI 生成技術描繪任何人，必須明白揭露。</li>
         </ul>
-        <p>我們正在剝去詐騙集團賴以生存的匿名面紗。</p>
+        <p>詐騙集團賴以藏身的匿名面紗，就這樣一層層剝下。</p>
         
-        <h3 class="defense-heading">三、 通知機制（第 32 條）</h3>
-        <p>第三道防線是最積極的行動。第 32 條規定了「通知即下架」機制。如果平台知悉或被通知有詐騙內容，必須在 <strong>24 小時內</strong> 將其下架。</p>
-        <p>但沒有後果的規則阻礙了自律。因此，第 32 條包含了一個強大的槓桿：<strong>連帶賠償責任</strong>。如果平台在接獲通知後未能移除詐騙廣告，導致公民遭受財產損失，平台必須與詐騙者共同負擔損害賠償責任。這在一夜之間翻轉了平台的投資報酬率（ROI）計算。合規變得比疏忽更便宜。</p>
-        <p>相對地，根據第 38 條，我們提供<strong>避風港條款</strong>。如果平台基於我們的法律善意移除內容但發生錯誤，他們可以免除對用戶的損害賠償責任。我們懲罰不合規，但明確保護合作行為。</p>
-        <p>再次強調，這僅適用於廣告——也就是付費推播的內容。這是關於觸及率（Reach），而非言論自由（Freedom of Speech）。</p>
+        <h3 class="defense-heading">三、通知即下架（第 32 條）</h3>
+        <p>第三道防線，是主動出擊。第 32 條明定「通知即下架」：平台知悉或接獲通報有詐騙內容，必須在 <strong>24 小時內</strong>下架。</p>
+        <p>但沒有後果的規則，只是建議。所以第 32 條裝上了一根強力槓桿：<strong>連帶賠償責任</strong>。平台接獲通知仍不下架，害公民蒙受財損，就必須和詐騙者一起賠。平台的投資報酬率（ROI）一夜之間翻轉——守法，從此比怠惰便宜。</p>
+        <p>反過來，第 38 條也備妥<strong>避風港條款</strong>：平台依法、出於善意下架內容，即使誤判，也免除對使用者的損害賠償責任。不配合的，我們課責；願意合作的，我們明文保護。</p>
+        <p>再次強調：這一切只適用於廣告，也就是付費推播的內容。管的是觸及（Reach），不是言論自由（Freedom of Speech）。</p>
         
-        <h3 class="defense-heading">四、 最後防線：執法（第 39 條）</h3>
-        <p>如果跨國巨頭拒絕配合怎麼辦？第 29 條要求平台必須在臺灣指定<strong>法律代理人</strong>。不再接受「我們沒有在地辦公室」這種藉口。</p>
-        <p>如果他們仍然拒絕配合，第 39 條授權我們的專家審議委員會執行公民授權的處罰：</p>
+        <h3 class="defense-heading">四、最後防線：執行（第 39 條）</h3>
+        <p>萬一全球巨頭就是不配合呢？第 29 條要求平台在臺灣指定<strong>法律代理人</strong>——「我們沒有在地辦公室」這種藉口，從此失效。</p>
+        <p>若仍拒不改正，第 39 條授權專家審議委員會，動用公民授權的處分：</p>
         <ol>
-            <li><strong>高額罰款：</strong>每次違規最高可達新台幣 1 億元。</li>
-            <li><strong>流量管制：</strong>我們可以命令網際網路服務供應商（ISP）降低對該平台的存取速度。這會降低使用者體驗，讓平台在商業廣告上無利可圖，但言論自由依然受到保障。</li>
-            <li><strong>限制接取：</strong>如果持續未改正，最後可以對平台網域停止解析。</li>
+            <li><strong>高額罰鍰：</strong>每次違規最高新臺幣 1 億元（約 4.6 億日圓）。</li>
+            <li><strong>流量管制：</strong>命令網際網路服務供應商（ISP）調降平台的連線速度。使用體驗一差，廣告生意就做不下去——但言論自由分毫無損。</li>
+            <li><strong>限制接取：</strong>若持續不改正，最終可停止解析平台的網域（DNS 阻斷）。</li>
         </ol>
     </div>
     
@@ -976,7 +996,7 @@ document.documentElement.classList.add('js');
         <span class="chapter-num">IV</span>
         <h2 class="chapter-title">
             <span lang="en-GB">The Shield in Action</span>
-            <span lang="zh-TW">聯動防禦機制</span>
+            <span lang="zh-TW">防線如何連動</span>
             <span lang="ja">連携プロセスの実像</span>
         </h2>
     </div>
@@ -994,15 +1014,15 @@ document.documentElement.classList.add('js');
     </div>
     
     <div class="chapter-body" lang="zh-TW">
-        <p>這在實務上如何運作？這是自動化的流程，連結了公民、政府和平台。</p>
+        <p>實務上怎麼運作？這是一條自動化的流程，把公民、政府與平台串連起來。</p>
         
         <figure class="chapter-illustration image-illustration">
             <noscript><img src="assets/LDP.001_2.png" alt="網詐通報查詢網運作流程圖" width="800" height="450" loading="lazy"></noscript>
         </figure>
         
-        <p>公民不是被動的受害者，而是主動的參與者。公民在平台上看到任何詐騙廣告，都可以在我們的<strong>《網詐通報查詢網》（Fraud Buster）</strong>上通報。</p>
-        <p>我們也訓練 AI 模型來偵測常見模式。公民標記新型態的詐騙後，一旦該類型被確認為詐騙，AI 就會接手進行自動偵測。</p>
-        <p>這些通報會透過查詢網流向各個部會：投資詐騙流向金管會，醫藥詐騙流向衛福部，以此類推。有時，如果有人被冒充，通報網會發電子郵件給當事人：「你有授權這個影像嗎？」因為有時候人們也會建立自己的個人品牌——我們不想誤刪那些內容。一旦主管機關確認這確實是詐騙，就會發送給平台。通知發出後開始計時，平台必須在 24 小時內下架。</p>
+        <p>公民不是被動的受害者，而是主動的參與者：在平台上看到疑似詐騙的廣告，隨手就能到「<strong>網詐通報查詢網</strong>」（Fraud Buster）通報。</p>
+        <p>我們同時訓練 AI 模型辨認常見的詐騙模式。公民標記出新手法、一經確認，AI 就接手自動偵測。</p>
+        <p>通報會自動分流到相關部會：投資詐騙送金管會，醫藥詐騙送衛福部，依此類推。若有人遭到冒名，系統會直接寄信問本人：「這則廣告是您授權的嗎？」畢竟也有人正在經營個人品牌，正當的內容不該被誤下架。等主管機關確認確屬詐騙，通知便送達平台——24 小時的倒數，隨即開始。</p>
     </div>
     
     <div class="chapter-body" lang="ja">
@@ -1043,14 +1063,14 @@ document.documentElement.classList.add('js');
     </div>
     
     <div class="chapter-body" lang="zh-TW">
-        <p>這套系統有效嗎？數據會說話。數位發展部的報告顯示：</p>
+        <p>這套系統真的有效嗎？數字會說話。根據數位發展部的報告：</p>
         <ul>
-            <li>名人冒充詐騙廣告下降了 <strong>超過 95%</strong>。</li>
-            <li>投資詐騙廣告下降了 <strong>近 90%</strong>。</li>
+            <li>冒用名人的詐騙廣告，減少<strong>超過 95%</strong>。</li>
+            <li>投資詐騙廣告，減少<strong>將近 90%</strong>。</li>
         </ul>
-        <p>我們的 AI 主動掃描，顯示這對日常生活的意義：名人冒充詐騙廣告的數量，從 2024 年 5 月的 每週超過 30,000 則，在法律生效後崩跌至 每週低於 1,000 則，現在已經非常罕見。在公共安全成果方面，從 2024 年 11 月到 2025 年 11 月，受理詐欺案件數下降了 25%，公民通報的財損金額下降了 超過 50%。這是指所有案件——不僅僅是投資詐騙或廣告詐騙。</p>
-        <p>像 Meta 這樣的大型平台，已經從原本忽視我們的對立面轉變為盟友，將他們的系統與通報網整合。對抗這場詐騙病毒的抗體，是集體防護。當公民通報時，系統現在能做出回應並大規模地放大防禦效果。</p>
-        <p>從 2024 年 8 月到 2025 年 11 月，Meta 上共有 112,054 則疑似詐騙廣告被標記（由 AI 或人工）並透過合作管道下架。去年三月曾經充斥 Facebook 的假投資廣告，現在已難得一見。</p>
+        <p>AI 主動掃描的結果，說明了這對日常生活的意義：冒用名人的詐騙廣告，從 2024 年 5 月的每週三萬多則，在法律生效後跌到每週不足一千則，如今已難得一見。治安成果同樣明顯：以 2025 年 11 月對照前一年同月，詐欺案件受理數減少 25%，民眾通報的財產損失更減少五成以上——而且這是所有案件的統計，不限投資詐騙或廣告詐騙。</p>
+        <p>Meta 等大型平台，也從當初相應不理的對手，變成把系統直接介接通報網的盟友。對抗詐騙病毒的抗體，是集體的警覺：公民一通報，系統就回應，防線隨之擴大。</p>
+        <p>2024 年 8 月到 2025 年 11 月間，Meta 上共有 112,054 則疑似詐騙廣告，經 AI 或人工標記後，透過合作管道下架。去年三月還淹沒 Facebook 的假投資廣告，如今幾乎無跡可尋。</p>
     </div>
     
     <div class="chapter-body" lang="ja">
@@ -1094,18 +1114,18 @@ document.documentElement.classList.add('js');
     </div>
     
     <div class="chapter-body" lang="zh-TW">
-        <p>根據 V-Dem，臺灣在過去 12 年來一直是全球境外干預攻擊的首要目標。通常，其他國家需要付費進行滲透測試——我們則是免費享有。</p>
-        <p>為什麼攻擊者能源源不絕提供這種「服務」？因為現在大多數攻擊都是 AI 協力的，對人力的消耗有限。過去，機器人生成的詐騙看起來很假，不像真人。但從去年開始，它們通過了所謂的圖靈測試——人們無法分辨機器生成和人類生成內容的差異。</p>
-        <blockquote>不可能用人類防禦者來戰勝攻擊者的 AI，必須要以 AI 治 AI。</blockquote>
-        <p>未來的人類，仍然會擔任 AI 防禦者的訓練師，但實際進行防禦的將是 AI 系統。</p>
-        <p>我目前擔任 <strong>ROOST (Robust Open Online Safety Tools)</strong> 的理事。這個組織與 OpenAI、Discord、Bluesky 等合作，提供可以給出引用的 <code>gpt-oss-safeguard</code> 模型：「我們對此採取行動，是因為它違反了這條規則。」</p>
-        <p>這個 AI 模型是：</p>
+        <p>根據 V-Dem 的統計，臺灣連續 12 年是全球境外假訊息攻擊的頭號目標。別的國家做滲透測試要付費——我們的是免費奉送。</p>
+        <p>攻擊者為什麼能把這種「服務」供應得源源不絕？因為如今的攻擊多半有 AI 協力，幾乎不耗人力。過去，機器人生成的詐騙一眼就能看穿；但從去年起，它們已經通過所謂的圖靈測試——人們再也分不出內容出自機器還是真人。</p>
+        <blockquote>靠人類防禦者，不可能勝過攻擊方的 AI；唯有以 AI 治 AI。</blockquote>
+        <p>未來，人類仍會負責訓練防禦方的 AI，但真正站上第一線的，將是 AI 系統。</p>
+        <p>我目前擔任 <strong>ROOST</strong>（Robust Open Online Safety Tools）的理事。我們與 OpenAI、Discord、Bluesky 等夥伴合作，提供 <code>gpt-oss-safeguard</code> 模型；它的每個處置，都能引述依據：「我們採取行動，因為這則內容違反了這條規則。」</p>
+        <p>這個 AI 模型有三個特點：</p>
         <ul>
-            <li><strong>審慎的（Deliberative）：</strong>它會思考規則。</li>
-            <li><strong>開放的（Open）：</strong>你可以根據在地文化進行微調。</li>
-            <li><strong>可駕馭的（Steerable）：</strong>人們可以共同編寫規則——這只是一個文字檔，你不需要 GPU 來重新訓練。</li>
+            <li><strong>審議（Deliberative）：</strong>它會思考規則本身。</li>
+            <li><strong>開放（Open）：</strong>可以依在地文化微調。</li>
+            <li><strong>可駕馭（Steerable）：</strong>規則由大家共同撰寫——它只是一個文字檔，不必動用 GPU 重新訓練。</li>
         </ul>
-        <p>你只需要更改規則，它就會自動執行規則。</p>
+        <p>規則一改，AI 隨即依新規則執行。</p>
     </div>
     
     <div class="chapter-body" lang="ja">
@@ -1145,10 +1165,10 @@ document.documentElement.classList.add('js');
         </div>
         
         <div class="chapter-body" lang="zh-TW">
-            <p>我們學到，要在數位時代進行治理，我們不需要在自由與安全之間做選擇。</p>
-            <p>透過結合公民審議凝聚意志，與精準立法執行意志——有志者，事竟成。</p>
-            <p>我們建立了讓全球巨頭尊重、公民相互協力的系統。這不僅僅是臺灣模式。我認為這是全球開放社會的藍圖。</p>
-            <p>日本擁有進一步演化這個模式的力量。日本擁有深厚的法治傳統。結合臺灣靈活的社會實踐，我深信我們可以攜手共創無限未來。</p>
+            <p>這段歷程教會我們：數位時代的治理，不必在自由與安全之間二選一。</p>
+            <p>以公民審議凝聚「志」，以精準立法開闢「路」——有志者，事竟成。</p>
+            <p>我們建成了一套全球巨頭尊重、公民信任的系統。這不只是臺灣模式；我相信，它是為世界上所有開放社會準備的藍圖。</p>
+            <p>日本有能力讓這個模式更上層樓：以日本深厚的法治傳統，結合臺灣敏捷的社會實踐——我深信，我們能攜手共創無限未來。</p>
             <p>謝謝大家。</p>
         </div>
         
