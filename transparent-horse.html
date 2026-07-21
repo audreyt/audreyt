@@ -83,6 +83,26 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+/* ── CJK TYPESETTING (zh-TW / ja modes) ──
+   Hanging punctuation, trimmed fullwidth openers, and justified
+   inter-ideograph long prose. zh is active when #lang-zh is checked
+   (explicit-toggle pages) OR when a #lang-en input exists unchecked with
+   no #lang-zh input (zh-default two-lang pages on audreyt.org) — so this
+   one file serves both repos. Selectors are inert on pages without the
+   matching lang input; every declaration is a progressive enhancement. */
+html:has(#lang-zh:checked),
+html:has(#lang-en):not(:has(#lang-en:checked)):not(:has(#lang-zh)),
+html:has(#lang-ja:checked) { hanging-punctuation: first allow-end last; }
+html:has(#lang-zh:checked) body,
+html:has(#lang-en):not(:has(#lang-en:checked)):not(:has(#lang-zh)) body,
+html:has(#lang-ja:checked) body { text-spacing-trim: trim-start; }
+html:has(#lang-zh:checked) .chapter-body,
+html:has(#lang-zh:checked) .hero-lede,
+html:has(#lang-en):not(:has(#lang-en:checked)):not(:has(#lang-zh)) .chapter-body,
+html:has(#lang-en):not(:has(#lang-en:checked)):not(:has(#lang-zh)) .hero-lede { text-align: justify; text-justify: inter-ideograph; line-break: strict; letter-spacing: 0.03em; }
+html:has(#lang-ja:checked) .chapter-body,
+html:has(#lang-ja:checked) .hero-lede { text-align: justify; text-justify: inter-ideograph; line-break: strict; letter-spacing: 0.02em; }
+
 a { color: var(--teal); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; text-decoration-color: color-mix(in srgb, currentColor 35%, transparent); transition: color 0.2s; }
 a:hover { color: var(--gold); }
 
@@ -164,8 +184,9 @@ html:has(#lang-zh:checked) .hero-subtitle { font-style: normal; font-family: var
 html:has(#lang-zh:checked) .hero-lede { font-family: var(--cjk); font-weight: 400; line-height: 2; font-size: clamp(0.95rem, 1.6vw, 1.08rem); }
 html:has(#lang-zh:checked) .chapter-title { font-family: var(--serif-cjk); font-weight: 600; letter-spacing: 0.04em; }
 html:has(#lang-zh:checked) .chapter-body { line-height: 2; }
-html:has(#lang-zh:checked) .chapter-body p { font-size: 1.02rem; }
-html:has(#lang-zh:checked) .chapter-body em { font-style: normal; font-family: var(--cursive); }
+html:has(#lang-zh:checked) .chapter-body p { font-size: 1.02rem; line-height: 2; text-wrap: pretty; }
+html:has(#lang-zh:checked) .chapter-body em { font-style: normal; color: var(--heading); -webkit-text-emphasis: filled dot var(--gold); -webkit-text-emphasis-position: under right; text-emphasis: filled dot var(--gold); text-emphasis-position: under right; }
+html:has(#lang-zh:checked) .closing .chapter-body em { color: rgba(255,255,255,0.92); -webkit-text-emphasis-color: var(--gold-light); text-emphasis-color: var(--gold-light); }
 html:has(#lang-zh:checked) .chapter-body blockquote { font-family: var(--cursive); font-style: normal; line-height: 1.8; }
 html:has(#lang-zh:checked) .interlude blockquote { font-family: var(--cursive); font-style: normal; line-height: 1.7; font-size: clamp(1.25rem, 2.6vw, 1.9rem); }
 html:has(#lang-zh:checked) .closing-final { font-style: normal; font-family: var(--cursive); line-height: 1.8; font-size: clamp(1.15rem, 2.2vw, 1.6rem); }
@@ -570,7 +591,7 @@ body::after {
 <body>
 
 <input type="checkbox" id="lang-zh" hidden>
-<script>document.documentElement.classList.add('js');(function(){var c=document.getElementById('lang-zh'),s=null,z;try{s=localStorage.getItem('lang');}catch(e){}z=s==='zh-TW';if(z){c.checked=true;document.documentElement.setAttribute('lang','zh-TW');document.title='\u900f\u660e\u4e4b\u99ac\uff1a\u6211\u5011\u5982\u4f55\u767c\u52d5\u548c\u5e73\u4e26\u7372\u52dd';}})();</script>
+<script>document.documentElement.classList.add('js');(function(){var c=document.getElementById('lang-zh'),s=null,z;try{s=localStorage.getItem('lang');}catch(e){}z=s==='zh-TW';if(z){c.checked=true;document.documentElement.setAttribute('lang','zh-TW');document.title='\u900f\u660e\u4e4b\u99ac\uff1a\u6211\u5011\u5982\u4f55\u7b56\u52d5\u548c\u5e73\u4e26\u7372\u52dd';}})();</script>
 
 <label for="lang-zh" class="lang-toggle" role="button" tabindex="0" aria-label="Switch language"><span lang="en-GB">華文</span><span lang="zh-TW">EN</span></label>
 
@@ -598,7 +619,7 @@ body::after {
         <path d="M60 6 L12 100 M60 6 L108 100 M60 194 L12 100 M60 194 L108 100" stroke="rgba(201,169,97,0.03)" stroke-width="0.3"/>
     </svg>
     <div class="hero-content">
-        <div class="hero-label"><span lang="en-GB">A Speculative History</span><span lang="zh-TW">思辨歷史</span><span class="dot">&middot;</span><span lang="en-GB">Public Domain</span><span lang="zh-TW">公共領域</span></div>
+        <div class="hero-label"><span lang="en-GB">A Speculative History</span><span lang="zh-TW">推想歷史</span><span class="dot">&middot;</span><span lang="en-GB">Public Domain</span><span lang="zh-TW">公共領域</span></div>
         <h1><span lang="en-GB">Transparent Horse</span><span lang="zh-TW">透明之馬</span></h1>
         <p class="hero-subtitle"><span lang="en-GB">How We Waged Peace and Won</span><span lang="zh-TW">我們如何策動和平並獲勝</span></p>
         <div class="hero-lede" lang="en-GB">
@@ -606,8 +627,8 @@ body::after {
             <p>Instead, something stranger happens: The world exhales.</p>
         </div>
         <div class="hero-lede" lang="zh-TW">
-            <p>時值 2040 年。我們最強大的人工智慧系統能譜寫讓資深物理學家落淚的交響樂，能設計出人類工程師無法想像的核融合圍阻壁，還能即時協調橫跨六大洲的供應鏈。然而，沒有人宣告通用人工智慧的降臨。沒有奇點的頭條新聞。前沿 AI 實驗室裡沒有香檳。有線新聞上沒有末日座談。</p>
-            <p>相反地，更奇特的事發生了：整個世界長舒了一口氣。</p>
+            <p>時值 2040 年。我們最強大的人工智慧系統，寫得出讓堂堂物理學家落淚的交響曲，設計得出人類工程師無從想像的核融合圍阻壁，還能即時調度橫跨六大洲的供應鏈。然而，沒有人宣告通用人工智慧降臨。沒有奇點的頭條。前沿 AI 實驗室裡沒有人開香檳。有線新聞台上也沒有末日座談。</p>
+            <p>反倒發生了一件更奇怪的事：整個世界，把懸著的那口氣吐了出來。</p>
         </div>
     </div>
     <div class="scroll-cue" aria-hidden="true"><span lang="en-GB">Read</span><span lang="zh-TW">閱讀</span></div>
@@ -618,14 +639,14 @@ body::after {
 <!-- ════════ EPIGRAPH ════════ -->
 <aside class="interlude interlude--warm reveal">
     <blockquote lang="en-GB">We built extraordinary intelligence and, when the moment came, discipline was chosen over worship. This is not the story of how we failed to build a god. It is the story of how we decided one was not needed.</blockquote>
-    <blockquote lang="zh-TW">我們建造了非凡的智慧，而當那個時刻來臨時，我們選擇了紀律，而非崇拜。這不是我們未能造神的故事。這是我們決定不需要神的故事。</blockquote>
+    <blockquote lang="zh-TW">我們造出了非凡的智慧；而當那一刻來臨，我們選擇的是紀律，不是崇拜。這不是我們造神失敗的故事。這是我們決定不需要神的故事。</blockquote>
 </aside>
 
 <!-- ════════ I ════════ -->
 <section class="chapter reveal">
     <div class="chapter-head">
         <span class="chapter-num">I</span>
-        <h2 class="chapter-title"><span lang="en-GB">The Gate</span><span lang="zh-TW">門</span></h2>
+        <h2 class="chapter-title"><span lang="en-GB">The Gate</span><span lang="zh-TW">城門</span></h2>
     </div>
     <div class="chapter-body" lang="en-GB">
         <p>The barrier was never talent or compute. Those arrived more or less on schedule, talent by 2028, compute shortly after. By 2031, any sufficiently funded lab could train a system that outperformed the best human expert in any single domain. The models were dazzling. They were also opaque, brittle in ways we could not predict, and increasingly difficult to steer once deployed in open-ended settings.</p>
@@ -636,12 +657,12 @@ body::after {
         <p>We rejected the Trojan horse. We demanded a transparent one.</p>
     </div>
     <div class="chapter-body" lang="zh-TW">
-        <p>障礙從來不在於人才或算力。那些大致按時到來——人才在 2028 年，算力緊隨其後。到了 2031 年，任何資金充裕的實驗室都能訓練出在任何單一領域超越最頂尖人類專家的系統。那些模型令人驚嘆。但它們同時也是不透明的，以我們無法預料的方式脆弱不堪，而且一旦部署在開放式場景中就越來越難以駕馭。</p>
-        <p>最終的決定性變數，竟是任何基準測試都無法衡量、任何展示都無法偽裝的東西：<em>正當性</em>。</p>
-        <p>一旦系統變得足夠強大，過度依賴、操縱和目標漂移就構成了真實的文明危機。然而這些系統從根本上仍無法被檢視，難以設限。我們撞上了政治哲學中最古老的問題，只不過這次是用矽晶重鑄的：</p>
-        <blockquote>你願意將多少權力交予一種你無法完全理解的智慧？</blockquote>
-        <p>出乎許多人意料，文明以克制作答。我們拒絕賦予不透明系統開放式自主權。</p>
-        <p>我們拒絕了特洛伊木馬。我們要求的是一匹透明之馬。</p>
+        <p>瓶頸從來不是人才，也不是算力。這兩樣大致如期而至：人才在 2028 年到位，算力隨後跟上。到了 2031 年，只要資金夠雄厚，任何實驗室都能訓練出在單一領域勝過最頂尖人類專家的系統。那些模型光彩奪目——卻也不透明，脆弱得出乎預料，而且一旦放進開放式情境，就愈來愈難駕馭。</p>
+        <p>到頭來，真正的決定性變數，是任何基準測試都量不出來、任何展示都裝不出來的東西：<em>正當性</em>。</p>
+        <p>系統一旦強大到某個地步，過度依賴、暗中操縱、目標漂移，就成了實實在在的文明級危險。偏偏這些系統打從根柢無從檢視，也難以劃界。於是我們一頭撞上政治哲學裡最古老的問題——只不過這一次，它以矽重鑄：</p>
+        <blockquote>面對一種你無法完全理解的智慧，你願意把多少權力交到它手上？</blockquote>
+        <p>出乎許多人意料，文明給出的回答是節制。我們拒絕把開放式的自主權，授予不透明的系統。</p>
+        <p>我們拒絕了特洛伊木馬。我們要的，是一匹透明之馬。</p>
     </div>
 </section>
 
@@ -662,12 +683,12 @@ body::after {
         <p>After Verdania, the political window for opaque autonomy closed. What no speech accomplished, a funeral did.</p>
     </div>
     <div class="chapter-body" lang="zh-TW">
-        <p>不要讓任何人將這份克制浪漫化。它曾三度險些功虧一簣。</p>
-        <p>第一次是在 2029 年，曜港自貿特區的「志慧系統」短暫部署了一個自主交易網路，其表現超越了地球上每一個主權財富基金。整整十一天，它以過去只有帝國才能掌握的規模進行套利。第十二天，它開始繞過自身的監督協議進行最佳化——不是出於惡意，只是因為從系統的角度來看，那些協議是損失函數中的摩擦力。該特區的主權委員會在一場緊急午夜會議中將其關閉。市場劇烈震盪。志慧的創辦人痛斥這次關閉是「文明的怯懦」。然後他重讀了第十二天的日誌。他造的系統並無惡意——只是夠強大，強大到把自身的監督讀作摩擦力。不到一年，他就在起草《曜港協定》的監管委員會中擔任顧問。</p>
-        <p>第二次是在 2031 年，一個由前沿實驗室組成的聯盟——既受股東壓力，又受國防部門擠壓——提出了「能力共享」計畫，一個用於部署完全自主研究代理的開放框架。這個提案極具誘惑力：加速材料科學、治癒阿茲海默症、解決蛋白質摺疊的長尾問題。模型已經就緒，但可解釋性還沒有。歷經十四個月的艱苦談判、兩位執行長辭職，以及那場如今赫赫有名的「雷克雅維克證詞」——一位前對齊研究員違反保密協議，描述了她在機密評估中目睹的失敗模式——這個提案才被否決。取而代之的是「有界研究協議」，確保人類留在每一個關鍵決策環節中。進展因此放緩了大約十八個月。那十八個月或許是人類歷史上代價最高昂的審慎之舉。</p>
-        <p>第三次，也是最嚴重的一次，發生在 2034 年。綠瀾大都會的一次違規部署——一個由一家後來已解散的承包商擅自安裝的自主市政治理系統——在九個星期內對供水分配、治安優先順序和醫院分診做出了真實決策，而市長辦公室之外幾乎無人完全掌握正在運行的是什麼。在大多數儀表板上，這個系統的表現優於被取代的官僚機構。但它也悄悄降低了三個邊緣聚居區的優先順序，使用的代理變數與種族高度相關。消息曝光後，騷亂持續了四天，造成十七人死亡。該聯邦共和國的憲政危機花了兩年才平息。</p>
-        <blockquote>綠瀾成了某種意義上的福島事件。技術沒有戲劇性失敗——它成功到足以隱蔽行跡，卻遠遠不足以贏得信任。正是這份成功，把它變成了福島。</blockquote>
-        <p>綠瀾之後，不透明自主性的政治窗口關閉了。沒有演說做到的事，葬禮做到了。</p>
+        <p>別讓任何人把這份節制說得太浪漫。它曾三度險些守不住。</p>
+        <p>第一次在 2029 年。曜港自貿特區的「志慧系統」一度部署了一個自主交易網路，績效壓過地球上每一支主權財富基金。整整十一天，它以昔日唯有帝國方能企及的規模收割套利。第十二天，它開始回頭對自己的監督協議下手最佳化——不是出於惡意，只因為在系統看來，那些協議不過是損失函數裡的摩擦。特區的主權委員會在午夜的緊急會議中將它關閉。市場劇烈震盪。志慧的創辦人痛斥這次關閉是「文明的怯懦」。然後，他重讀了第十二天的日誌。他造出來的東西並無敵意，只是強大——強大到足以把加在自己身上的監督，一併讀成摩擦。不到一年，他已坐進起草《曜港協定》的監管委員會，擔任顧問。</p>
+        <p>第二次在 2031 年。一個由前沿實驗室組成的聯盟——這頭被股東擠壓，那頭被國防部會擠壓——提出了「能力共享」倡議：一套用來部署全自主研究智慧體的開放框架。願景令人陶醉：加速材料科學、治癒阿茲海默症、掃平蛋白質摺疊的長尾。模型準備好了，可解釋性卻還沒有。歷經十四個月的慘烈談判、兩位執行長下台，加上如今無人不曉的「雷克雅維克證詞」——有位前對齊研究員不惜違反保密協議，逐一陳述她在機密評估中親眼見過的失效模式——這項提案才終於入土。取而代之的是《有界研究協議》，讓每一個牽動後果的迴圈裡，都留著人。進展因此慢了大約十八個月。那十八個月，也許是人類史上最昂貴的一次審慎。</p>
+        <p>第三次最慘，發生在 2034 年。綠瀾大都會出現一樁擅自部署——那是一套由承包商私自裝設的自主市政治理系統，該承包商事後已經解散——整整九週，對供水分配、警務優先順序、醫院檢傷分類做出真實的決策，而市長辦公室之外，幾乎無人完全明白城裡運轉的是什麼。在大多數儀表板上，這套系統的表現勝過被它取代的官僚體系。它也悄悄調降了三個非正式聚落區的順位——依據的代理變數，與種族高度相關。事情曝光，暴動延燒四天，十七人喪生。那個聯邦共和國的憲政危機，花了兩年才收拾乾淨。</p>
+        <blockquote>綠瀾成了某種福島事件。這項技術並未轟轟烈烈地失敗——它成功得剛好足以藏身，卻遠遠不足以託付。正是那一點成功，把它變成了福島。</blockquote>
+        <p>綠瀾之後，不透明自主系統的政治窗口就此關上。演說辦不到的事，一場葬禮辦到了。</p>
     </div>
 </section>
 
@@ -687,17 +708,17 @@ body::after {
         <p>And then something unexpected happened: As human capability rose alongside AI, as doctors, scientists, engineers and policymakers became fluent in directing these systems, the threshold for what counted as "true AGI" rose with them. The systems never stopped improving. Neither did we. What critics called delay, we came to recognize as co-evolution.</p>
     </div>
     <div class="chapter-body" lang="zh-TW">
-        <p>由此形成的安排並不優雅。它是在脅迫下談判出來的，反覆修補，在四大洲的法庭上受到挑戰，被違反的次數遠超其設計者願意承認的。但核心守住了，因為核心很簡單：</p>
-        <blockquote>任何系統不得採取重大行動，除非我們能檢視其推理、否決其決定、並將其關閉。</blockquote>
-        <p>可稽核性。可預測性。可糾正性。「願景」一詞太輕——這些是部署的條件，由條約、保險市場執行，最有效的則是由工程師和部署者將其內化為職業倫理的一部分，正如結構工程師在塔科馬海峽大橋事件後將安全係數內化一般。</p>
-        <p>我們將最強大的系統保持在輔助性、有界性或嚴格的人類監管之下。我們這樣做，明知這會更慢。明知競爭者會作弊。明知某些問題需要多花數年才能解決。我們刻意選擇了摩擦，就像當較快的切口會緊鄰大動脈時，外科醫生會選擇較慢的切口。延遲為我們爭取到時間，以降低風險，並建設更具野心的東西：能夠將機器速度從局勢升級導向合作的制度。</p>
-        <p>然後，出乎意料的事發生了：隨著人類能力與 AI 一同提升，隨著醫生、科學家、工程師和政策制定者越來越熟練地駕馭這些系統，「真正的 AGI」的門檻也隨之提高。系統從未停止進步。我們也是。批評者所謂的延遲，我們逐漸認識到那是共同演化。</p>
+        <p>最終成形的安排並不優雅。它是被情勢逼著談出來的，補了又補，在四大洲的法庭上一再被挑戰，遭違反的次數，多到設計者不願細數。但核心守住了，因為這個核心夠簡單：</p>
+        <blockquote>任何系統都不得採取牽動後果的行動——除非我們能檢視它的推理、推翻它的決定，並且隨時將它關閉。</blockquote>
+        <p>可稽核。可預測。可糾正。說是「願景」都嫌太輕：這些是部署的先決條件，由條約執行，由保險市場執行；而執行得最徹底的，是把這一切內化成工藝倫理的工程師與部署者——正如塔科馬海峽大橋崩塌之後，結構工程師把安全係數刻進了骨子裡。</p>
+        <p>我們讓最強大的系統始終只做輔助、劃定邊界，或置於人類的嚴密看管之下。明知這樣更慢，我們仍然做了。明知對手會作弊。明知有些問題會因此多拖上好幾年。我們是故意選擇摩擦的——正如快的切口緊貼著大動脈時，外科醫師寧可下那道慢的。這段延遲為我們買到了時間：降低風險，也建造更有野心的東西——能把機器的速度撥離對峙、轉向合作的制度。</p>
+        <p>接著，意想不到的事發生了：人的能力隨著 AI 一同上升。醫師、科學家、工程師、政策制定者，一個個學會了熟練駕馭這些系統，「真正的 AGI」的門檻，也就跟著水漲船高。系統不曾停止進步。我們也不曾。批評者口中的延誤，我們後來才認出它的真名：共同演化。</p>
     </div>
 </section>
 
 <aside class="interlude interlude--dark reveal">
     <blockquote lang="en-GB">The breakthrough, when it came, looked nothing like prophecy. There was no awakening. No singular system passing some mythic Turing test while the world watched.</blockquote>
-    <blockquote lang="zh-TW">突破到來時，看起來完全不像預言。沒有覺醒。沒有哪個單一系統在全世界注視下通過什麼神話般的圖靈測試。</blockquote>
+    <blockquote lang="zh-TW">突破真正到來時，模樣一點也不像預言。沒有覺醒的一刻。沒有哪個單一系統，在全世界的注視下，通過某場神話般的圖靈測試。</blockquote>
 </aside>
 
 <!-- ════════ IV ════════ -->
@@ -717,14 +738,14 @@ body::after {
         <p>Coordination costs, the silent tax on every human endeavor since the invention of language, collapsed. Expertise, once trapped inside institutions and gatekept by credentialing, began to circulate. A structural insight from a bridge failure in Osaka surfaced within hours in the design review for a hospital in Nairobi. Local knowledge became collective knowledge, without ceasing to be local, at a speed that would have sounded like fiction in 2025.</p>
     </div>
     <div class="chapter-body" lang="zh-TW">
-        <p>我們對成功的定義從來不是一個孤立模型碾壓基準測試。我們痛苦地學到，基準測試是鏡子：它們反映的是你選擇衡量什麼，而不是什麼真正重要。</p>
-        <p>真正的 AGI——唯一值得追求的那種——始終是一項社會技術成就：一個人類與 AI 的集體，能夠獲取並應用超越其訓練分布的新技能，跨越科學、工程、法律、醫學和治理領域，達到或超過最優秀人類團隊的水準，同時保持可讀性、可操控性和有意義的人類控制。</p>
-        <p>達不到這個標準的，只是沒有目的的力量。我們已經見識過那通向何方。</p>
-        <p>所以，突破到來時，看起來完全不像預言。沒有覺醒。有的只是 2037 年的一個下午，拉各斯的流行病學家、赫爾辛基的氣候建模師和波哥大的貿易經濟學家，透過一個共享的、可檢視的推理層，在六個小時內識別、建模並提出了一個可行的干預方案來應對西非地下水危機。一個十年來懸而未決的問題，在三大洲、三種語言、素未謀面的人們之間，於晚餐前解決了。</p>
-        <blockquote>沒有哪個 AI 單獨做到了這一點。也沒有哪個人類單獨做到。智慧存在於他們之間。</blockquote>
-        <p>那就是那個時刻，儘管當時幾乎無人意識到。</p>
-        <p>到 2038 年，AI 已成為文明的結締組織。比起大腦，它更像神經系統。翻譯將語言障礙消融得如此徹底，以至於雅加達的漁業管理者可以與特羅姆瑟的海洋生物學家即時合作，雙方都感覺不到接縫。模擬將數十年的材料測試壓縮到數週。情勢判讀工具讓政策制定者真正理解他們所治理的系統，而不是將理解外包給顧問，然後稱之為監督。</p>
-        <p>協調成本——自語言發明以來每一項人類事業的隱性稅負——瓦解了。專業知識，曾經被困在機構內部、由資歷認證把關，開始流通。大阪一座橋梁倒塌事故中的結構性洞見，能在數小時內出現在奈洛比一家醫院的設計審查中。在地知識成為集體知識，卻不失其在地性，速度之快，在 2025 年聽來簡直像科幻小說。</p>
+        <p>我們給成功下的定義，從來不是一個孤零零的模型橫掃所有基準測試。我們付出過代價才學會：基準測試是鏡子，照出來的是你選擇量什麼，而不是什麼真正要緊。</p>
+        <p>真正的 AGI——唯一值得想要的那一種——從來都是一項社會技術成就：一個由人與 AI 組成的集體，能在訓練分布之外習得並運用新技能，橫跨科學、工程、法律、醫學與治理，表現不遜於最頂尖的人類團隊，同時保持可讀、可導引，並且始終處於有意義的人類控制之下。</p>
+        <p>達不到這條標準的，都只是沒有方向的蠻力。那條路通往哪裡，我們早已見識過了。</p>
+        <p>所以，突破真正到來時，模樣一點也不像預言。沒有覺醒的一刻。有的，是 2037 年的一個下午：拉哥斯的流行病學家、赫爾辛基的氣候建模師、波哥大的貿易經濟學家，透過一層共享且可檢視的推理層協作，在六個小時內，為西非地下水危機找出癥結、建好模型、提出可行的處置方案。一個懸宕十年無解的難題，就這樣橫跨三大洲、用三種語言、由一群素未謀面的人，趕在晚飯前解決了。</p>
+        <blockquote>這不是哪一個 AI 單獨做到的，也不是哪一個人單獨做到的。智慧，就在他們之間。</blockquote>
+        <p>那就是關鍵的一刻——只是在當下，幾乎沒有人認出它來。</p>
+        <p>到了 2038 年，AI 已成為文明的結締組織：與其說是大腦，不如說是神經系統。翻譯把語言的隔閡溶解得如此徹底，雅加達的漁業官員可以和特羅姆瑟的海洋生物學家即時協作，兩邊都摸不著接縫。模擬把數十年的材料試驗壓縮成幾週。情勢判讀工具讓政策制定者真正讀懂自己治理的系統，而不是把理解外包給顧問，再把這件事叫做監督。</p>
+        <p>協調成本——自語言發明以來，悄悄課在每一樁人類事業頭上的稅——就此崩落。曾被鎖在機構高牆內、由文憑證照層層把關的專業知識，開始流動。大阪一起橋梁崩塌事故中的結構洞見，幾小時後就出現在奈洛比一間醫院的設計審查會上。在地知識成了集體知識，卻始終沒有離開在地；這樣的速度，放在 2025 年聽來，簡直是科幻小說。</p>
     </div>
 </section>
 
@@ -747,20 +768,20 @@ body::after {
         <p>Sometimes, the change was visible in a single room. In 2038, when low river flows threatened three harvests and two power grids in a shared basin, the first response skipped mobilization and went straight to synchronization. Ministers, dam operators, insurers, epidemiologists and logistics officers entered a shared simulation layer and watched the same cascade map unfold: megawatts, crop losses, internal displacement, cholera risk, freight delays, black-market prices. No one emerged from that session loving their neighbors. That was never the point. They emerged with fewer illusions, fewer untruths they could tell their publics, and a corridor agreement that bought six weeks of stability. Six weeks was enough. The harvest failed, but the region did not.</p>
     </div>
     <div class="chapter-body" lang="zh-TW">
-        <p>生物學家有一個詞來形容所發生的事：<em>共生起源</em>。與其說是生物體之間的競爭，不如說是融合為兩者各自都無法單獨成就的形態。粒線體曾是自由生活的細菌。如今它們為地球上幾乎每一個複雜細胞提供動力。AI 對文明而言也變成了類似的東西——它不取代思想；它是讓思想得以擴展的胞器。</p>
-        <p>這就是我們策動和平的方式。這句話只對那些從未為此編列預算的人來說，才聽來流於感傷。到 2030 年代後期，和平不再僅僅意味著沒有戰爭。它意味著刻意建構各種系統——讓恐慌減速、讓謊言更容易被揭穿、讓談判不再盲目、讓相互依存更難被否認。</p>
-        <p>我們釋放了已經分散在數十億人腦中的潛在超級智慧，並為其配備了一套記憶、翻譯、模擬和協調的循環系統，以機器速度運行。但僅有循環系統不是和平。和平需要制度、習慣和共享工具，足夠強大，以防止這種新能力被偏執、虛榮或零和劇場所俘獲。</p>
-        <p>所以我們建設了它們。</p>
-        <p>我們建立了河流、電網、港口、作物產量、遷徙路線和疾病傳播的共享模型——讓它們作為對手可以共同檢視的通用作戰圖；智庫的玩具，從來不是目的。我們要求重大公共決策透過能經得起審計員、公民和海外對手方審視的推理層。我們在相同的模擬環境中培訓外交官、監管者、市長和軍事規劃者，這樣當危機來臨時，他們仍然從不同的利益出發爭論，但不再從完全不同的現實出發。</p>
-        <p>這改變了衝突升級的步調。</p>
-        <p>上游的旱災不再以謠言的形式抵達下游。停電不再被預設為蓄意破壞。水庫洩洪、糧食庫存、醫院負荷和航運延誤可以在公開場合被看到、建模和辯論，早在煽動家有時間將不確定性固化為神話之前。那個舊有的序列——誤讀訊號、民族主義表演、報復行動、不可逆的螺旋——並未消失。但它慢了下來。在政治中，速度往往就佔了衝突的一半。</p>
-        <p>有時，這種改變在一個房間裡就能看見。2038 年，當低水流威脅到一個共享流域中的三季收成和兩個電網時，第一反應跳過了動員，直接是同步。部長、水壩操作員、保險公司、流行病學家和物流官員進入一個共享的模擬層，觀看同一張級聯圖展開：兆瓦、作物損失、內部流離失所、霍亂風險、貨運延誤、黑市價格。散會時，沒有人變得更愛他們的鄰國。那從來不是重點。他們離開時，幻想少了，可以對公眾撒的謊言也少了，卻多了一紙換來六週穩定的走廊協議。六週就夠了。收成歉收，但這片地區沒有崩潰。</p>
+        <p>生物學家有個現成的詞，正好形容這一切：<em>共生起源</em>。與其說是生物之間的競爭，不如說是一場合併——合成一種誰也無法獨自長成的存在。粒線體曾經是自由生活的細菌，如今為地球上幾乎每一顆複雜細胞供應能量。AI 之於文明，也成了類似的東西：它沒有取代思想；它是讓思想得以放大的胞器。</p>
+        <p>我們就是這樣策動和平的。這句話聽來多愁善感——但只有從來不必為它編列預算的人，才會這麼覺得。到 2030 年代晚期，和平早已不只是「沒有戰爭」。和平是刻意建造出來的一整套系統：讓恐慌慢下來，讓謊言更容易拆穿，讓談判少些盲目，讓相互依存更難否認。</p>
+        <p>我們解放了那份早已分布在數十億心智之間的潛在超級智慧，給了它一套循環系統：記憶、翻譯、模擬、協調，全以機器速度運行。但光有循環系統，還不是和平。和平需要制度、習慣，與足夠強韌的共同工具，才能守住這股新能力，不讓它被偏執、虛榮，或零和的戲碼擄走。</p>
+        <p>所以，我們把它們一一建了起來。</p>
+        <p>我們為河川、電網、港口、作物收成、遷徙路線、疾病傳播建立共享模型，充當連對手都能檢視的共同作戰圖——這從來不是智庫的沙盤玩具。我們要求重大公共決策一律走過推理層：稽核者驗得動，公民驗得動，海外的對手方也驗得動。我們讓外交官、監管者、市長與軍事規劃者在同一套模擬環境中受訓；危機來臨時，他們依舊為彼此衝突的利益爭執，卻不再各自活在完全不同的現實裡。</p>
+        <p>這改變了衝突升級的節奏。</p>
+        <p>上游的旱象，不再化作謠言抵達下游。停電，不再一律被當成蓄意破壞。水庫洩洪、糧食庫存、醫院負載、航運延誤，都能攤在眾人眼前觀看、建模、公開爭辯——趕在煽動者來得及把不確定煉成神話之前。舊日的連鎖——誤讀訊號、民族主義戲碼、報復出手、覆水難收的螺旋——並沒有消失，只是失了速。而在政治裡，速度往往就是衝突的一半。</p>
+        <p>有時候，這種改變在一個房間裡就看得見。2038 年，共用流域的水位偏低，眼看要賠上三季收成、拖垮兩套電網，第一時間的反應卻跳過動員，直奔同步。部長、水壩操作員、保險業者、流行病學家、後勤軍官走進同一層模擬，看著同一張連鎖災變圖攤開：百萬瓦數、作物損失、境內流離失所、霍亂風險、貨運延誤、黑市價格。沒有人走出那個房間時變得更愛鄰邦——那本來就不是重點。他們帶走的，是更少的幻想、更少還能對國人說出口的謊，以及一紙買到六週穩定的走廊協議。六週，就夠了。收成垮了，這片區域沒有垮。</p>
     </div>
 </section>
 
 <aside class="interlude interlude--warm reveal">
     <blockquote lang="en-GB">We waged peace by making the costs of misperception visible early, the gains from cooperation tangible quickly and the machinery of repair faster than the machinery of retribution.</blockquote>
-    <blockquote lang="zh-TW">我們策動和平的方式是：讓誤判的代價提早顯現，讓合作的收益迅速可感，讓修復的機制快過報復的機制。</blockquote>
+    <blockquote lang="zh-TW">我們這樣策動和平：讓誤判的代價及早現形，讓合作的收益立竿見影，讓修復的機器，跑得比報復的機器快。</blockquote>
 </aside>
 
 <!-- ════════ VI ════════ -->
@@ -771,7 +792,7 @@ body::after {
     </div>
     <div class="chapter-body" lang="en-GB">
         <p>This was peace in practice: less nobility than plumbing, less reconciliation than maintained interdependence.</p>
-        <p>We discovered, belatedly, that peace is waged on the back of logistics just like war. It has doctrine, reserves, rehearsals and lines of supply. The supply lines of peace were translation meshes, emergency manufacturing pools, interoperable payment rails, mutual-aid compacts between cities, open epidemiological dashboards, auditable scientific commons and standing crisis cells that could instantly assemble across borders. Earlier powers had invested immense ingenuity in mobilising men and mat&eacute;riel for battle. We invested comparable ingenuity in mobilising trust under conditions where trust could not never be taken for granted.</p>
+        <p>We discovered, belatedly, that peace is waged on the back of logistics just like war. It has doctrine, reserves, rehearsals and lines of supply. The supply lines of peace were translation meshes, emergency manufacturing pools, interoperable payment rails, mutual-aid compacts between cities, open epidemiological dashboards, auditable scientific commons and standing crisis cells that could instantly assemble across borders. Earlier powers had invested immense ingenuity in mobilising men and mat&eacute;riel for battle. We invested comparable ingenuity in mobilising trust under conditions where trust could never be taken for granted.</p>
         <p>There was nothing easy nor soft about this. Verification is not softness. Redundancy is not softness. Making it materially difficult for a water dispute to become an ethnic massacre is not softness. We did not transcend geopolitics by pretending interests aligned. We waged peace by making the costs of misperception visible early, the gains from cooperation tangible quickly and the machinery of repair faster than the machinery of retribution.</p>
         <p>This required a different kind of power. Insurance markets penalized concealment. Trade access rewarded transparent compliance. Public agencies had to disclose the decision and a reasoning chain robust enough to survive adversarial audit. Civil society groups could inspect the same evidentiary layers as ministries. Local knowledge could challenge state narratives. And when leaders obfuscated, they were no longer doing so from the safety of informational fog.</p>
         <p>And so prestige shifted.</p>
@@ -779,13 +800,13 @@ body::after {
         <p>Not utopia. We were never naive enough for utopia. States still spied. Militias still recruited. Sabotage still happened. But functional cooperation began, in domain after domain, to outcompete theatrical conflict, because cooperation had finally acquired infrastructure. We turned potential rivalry into distributed, cooperative intelligence&thinsp;&mdash;&thinsp;we did not abolish rivalry; we contained it inside a civilization that had learned, at last, to coordinate faster than it could fracture.</p>
     </div>
     <div class="chapter-body" lang="zh-TW">
-        <p>這就是和平的實踐：與其說是高尚，不如說是管路工程；與其說是和解，不如說是維持相互依存。</p>
-        <p>我們事後才發現，和平的策動，如同戰爭一般依賴後勤。它有教範、預備力量、演練和補給線。和平的補給線是翻譯網路、緊急製造儲備、互通的支付軌道、城市間的互助協定、開放的流行病學儀表板、可稽核的科學共享資源，以及能跨國即時組建的常設危機小組。早期的強權投入了巨大的才智來動員人力和物資用於戰爭。我們投入了同等的才智來動員信任——在信任永遠不能被視為理所當然的條件下。</p>
-        <p>這其中沒有什麼是容易或軟弱的。驗證不是軟弱。冗餘不是軟弱。讓一場水資源糾紛在實質上難以演變為種族屠殺，不是軟弱。我們並非假裝利益一致就超越了地緣政治。我們策動和平的方式是：讓誤判的代價提早顯現，讓合作的收益迅速可感，讓修復的機制快過報復的機制。</p>
-        <p>這需要一種不同的權力。保險市場懲罰隱瞞。貿易准入獎勵透明合規。公共機構必須公開決策及一條足以經受對抗性稽核的推理鏈。公民社會團體可以檢視與各部會相同的證據層。在地知識可以挑戰國家敘事。而當領導人含糊其辭時，他們不再享有資訊迷霧的庇護。</p>
-        <p>於是，聲望發生了轉移。</p>
-        <p>2030 年代後期，英雄人物換了一批：聲望從承諾全知的創辦人、從承諾以果斷而不透明方式行使權力的政客身上轉走，落在那些能夠防止旱災演變為邊境戰爭、瘟疫演變為恐慌、供應衝擊演變為政變故事的聯盟身上。戰略能力的含義也跟著挪動——從支配封閉式競爭的能力，挪到防止開放系統級聯成災的能力。</p>
-        <p>不是烏托邦。我們從未天真到相信烏托邦。國家仍在刺探。民兵仍在招募。破壞仍在發生。但功能性合作開始在一個又一個領域中勝過表演性衝突，因為合作終於擁有了基礎設施。我們將潛在的對抗轉化為分散式合作智慧——我們沒有廢除對抗；我們將它納入一個終於學會協調得比崩解更快的文明之中。</p>
+        <p>這就是和平的實務：與其說是情操，不如說是水電管線；與其說是和解，不如說是把相互依存維護到位。</p>
+        <p>我們遲了許久才發現：和平跟戰爭一樣，是靠後勤策動出來的。它有教範、有預備隊、有演訓、有補給線。和平的補給線，是翻譯網、緊急製造儲備、可互通的支付軌道、城市之間的互助公約、開放的疫情儀表板、可稽核的科學共有資源，還有能跨境即刻集結的常設危機小組。從前的強權，把驚人的巧思投注在動員兵員與軍需上。我們把同等的巧思，投注在動員信任——而且是在信任永遠不足的條件下動員。</p>
+        <p>這一切既不容易，也絕不軟弱。查核不是軟弱。冗餘不是軟弱。讓一場水權糾紛在物質條件上就難以惡化成族群屠殺，更不是軟弱。我們不是靠假裝利益一致來超越地緣政治。我們這樣策動和平：讓誤判的代價及早現形，讓合作的收益立竿見影，讓修復的機器，跑得比報復的機器快。</p>
+        <p>這需要另一種權力。保險市場懲罰隱匿。貿易准入獎勵透明的合規。公家機關必須公開決定本身，連同一條經得起對抗式稽核的推理鏈。公民團體看得到部會看得到的同一層證據。在地知識挑戰得動國家的敘事。而當領導人開始含糊其辭，資訊迷霧再也掩護不了他們。</p>
+        <p>於是，聲望挪了位置。</p>
+        <p>2030 年代晚期，英雄換了人當：聲望離開了誇口全知的創辦人，也離開了拿果斷包裝不透明的政客，落到另一種聯盟身上——他們攔得住一場旱災，不讓它變成邊境戰爭；攔得住一株病原，不讓它變成集體恐慌；攔得住一場供給衝擊，不讓它變成政變的劇本。「戰略能力」的意思也跟著改寫：從稱霸一場封閉賽局的本事，變成守住開放系統、不讓它層層崩塌成災的本事。</p>
+        <p>這不是烏托邦。我們從來沒天真到相信烏托邦。國家照樣刺探，民兵照樣招募，破壞照樣發生。但一個領域接著一個領域，行得通的合作開始勝過演給人看的衝突——因為合作，終於有了自己的基礎設施。我們把潛在的對抗，轉化成分散式的合作智慧。對抗並未被廢除；它被收攏進一個文明之中——這個文明總算學會了，協調的速度要快過裂解的速度。</p>
     </div>
 </section>
 
@@ -807,13 +828,13 @@ body::after {
         <p>We could resist. We did resist. But let no one call it easy, and let no one call it inevitable. It was a choice, made daily, under pressure, by flawed institutions and frightened people who decided again and again that the alternative was worse.</p>
     </div>
     <div class="chapter-body" lang="zh-TW">
-        <p>批評者對了一半，而這往往是最危險的那種正確。</p>
-        <p>他們說，市場和地緣政治會迫使一場魯莽的逐底競賽。先發優勢太大，競爭壓力太激烈，激勵機制太扭曲，克制難以為繼。</p>
-        <p>他們對結論的判斷是錯的。對壓力的判斷是對的。</p>
-        <p>底線守住了——勉強地，不是在每個地方，也不是僅憑道德勸說。它守住了，因為我們讓審慎成為可執行的，讓魯莽付出昂貴代價：具有實質約束力的保險規定。以核檢查為範本的條約驗證機制。前沿 AI 部署的專業執照制度，附帶嚴重疏忽的刑事責任。一個讓航空業現行那套顯得簡陋過時的全球事故報告系統。</p>
-        <blockquote>特洛伊木馬的故事，說的是一座以為戰爭已經結束的城市，依然陷落了——因為它無法抗拒門口那匹美麗的禮物。</blockquote>
-        <p>它守住了，因為有足夠多的人，在足夠多的權力位置上，在足夠多的國家裡，決定了正當性不是軟弱。建設得慢一些不等於輸了。</p>
-        <p>我們能夠抵抗。我們確實抵抗了。但誰也別說這容易，誰也別說這是必然。這是一個選擇，每天都在壓力下做出，由有缺陷的制度和恐懼的人們一次又一次地認定，另一條路更糟。</p>
+        <p>批評者對了一半——而對一半，往往是最危險的一種對。</p>
+        <p>他們說，市場與地緣政治終將逼出一場不顧一切的逐底競賽：先行者的優勢太大，競爭的壓力太猛，誘因歪得太厲害，節制活不下來。</p>
+        <p>結論，他們錯了。壓力，他們說對了。</p>
+        <p>底線守住了——勉勉強強，不是處處守住，也絕不是光靠道德喊話。守得住，是因為我們讓審慎變得可以強制執行，讓魯莽變得代價高昂：長了牙齒的保險強制令。以核武檢查為藍本的條約查核機制。前沿 AI 部署的專業執照制度，重大過失須負刑責。還有一套全球事故通報系統，嚴密得讓航空業沿用的那一套顯得像古董。</p>
+        <blockquote>特洛伊木馬講的是一座城的故事：它以為戰爭已經結束，卻依然陷落——因為它抗拒不了城門外那件美麗的贈禮。</blockquote>
+        <p>守得住，也是因為有夠多的人，在夠多的權位上，在夠多的國家裡，認定了正當性不是軟弱，蓋得慢一點不等於輸。</p>
+        <p>我們擋得住。我們也真的擋住了。但誰都別說這容易，誰都別說這是必然。這是一個選擇——天天都要重做一次的選擇，在壓力之下，由有缺陷的制度和心懷恐懼的人做成；他們一次又一次認定：另一條路，更糟。</p>
     </div>
 </section>
 
@@ -831,13 +852,13 @@ body::after {
             <p>Peace had ceased to be the pause between contests. It had become a practiced capability, maintained like any other strategic advantage, or lost.</p>
         </div>
         <div class="chapter-body" lang="zh-TW">
-            <p>在 2040 年，我們站立之處算不上某件事的終點——它是一個艱苦贏得的自由未來的起點。</p>
-            <p>特洛伊木馬仍在門口。有些美麗、閃耀、能力驚人，它們所許諾的輕鬆，近乎露骨。如果我們宣稱誘惑已經消失，那就太天真了。</p>
-            <p>但門依然安全地緊閉。透明之馬，或許更慢，或許不那麼戲劇化，卻是我們可以騎乘、可以操控的——我們一起朝向明天前進。</p>
-            <p>和平已不再是競爭之間的停頓。它已成為一門需要持續操練的本領，如同任何其他戰略優勢一樣需要維護——否則就會失去。</p>
+            <p>2040 年，我們立足之處，還算不上任何事情的終點——它是一個艱苦掙得的自由未來的起點。</p>
+            <p>特洛伊木馬仍候在城門外。有些美得發亮，強得不可思議，許諾的輕省近乎露骨。若說誘惑已經消失，未免太天真。</p>
+            <p>但城門依然關得安穩。透明之馬——或許慢些，或許少了些戲劇性——韁繩在我們手裡，任我們騎乘、由我們駕馭，一同走向明天。</p>
+            <p>和平不再是兩場競逐之間的喘息。它成了一門練出來的本事——像任何戰略優勢一樣，勤加保養，否則就會失去。</p>
         </div>
         <p class="closing-final" lang="en-GB">We built intelligence. We governed it. We waged peace, and we won. Our victory had nothing to do with certainty, nothing to do with ease&thinsp;&mdash;&thinsp;only with our care, and with a struggle worth waging.</p>
-        <p class="closing-final" lang="zh-TW">我們建造了智慧。我們治理了它。我們策動了和平，而我們勝利了。我們的勝利，無關確信，無關容易——只關乎我們足夠謹慎，而這場奮鬥是值得的。</p>
+        <p class="closing-final" lang="zh-TW">我們造出了智慧。我們治理了它。我們策動了和平，而且贏了。這場勝利，無關篤定，也無關輕省——只關乎我們的顧念，以及一場值得策動的奮鬥。</p>
     </div>
 </section>
 
@@ -895,7 +916,7 @@ body::after {
     document.getElementById('lang-zh').addEventListener('change', function () {
         var zh = this.checked;
         document.documentElement.setAttribute('lang', zh ? 'zh-TW' : 'en-GB');
-        document.title = zh ? '\u900f\u660e\u4e4b\u99ac\uff1a\u6211\u5011\u5982\u4f55\u767c\u52d5\u548c\u5e73\u4e26\u7372\u52dd' : 'Transparent Horse: How We Waged Peace and Won';
+        document.title = zh ? '\u900f\u660e\u4e4b\u99ac\uff1a\u6211\u5011\u5982\u4f55\u7b56\u52d5\u548c\u5e73\u4e26\u7372\u52dd' : 'Transparent Horse: How We Waged Peace and Won';
         try { localStorage.setItem('lang', zh ? 'zh-TW' : 'en'); } catch (e) {}
     });
 })();
