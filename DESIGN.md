@@ -421,19 +421,21 @@ Used by `.award-card`, `.case-study`, `.work-item`, `.featured-outlet`. All flat
 - The plum always-dark closing band and the vertical-rl finale with Kaiti signature.
 - `em` rendered as 著重號 text-emphasis dots — in the reprint's coral. Broadsheet essays choose per page between Kaiti substitution (`good-enough-ancestor`, `collaborative-immune-system`) and gold 著重號 (`transparent-horse`); pick ONE per page, never both.
 
-### Reusable reader chrome
+### Reader aids (now standard on Broadsheet essays)
 
-All JS-gated (`html.js` + `.needs-js`), all no-JS safe. Per-page config lives in the inline script's `SEC_META` map (section id → [numeral, title]); the rail, TOC, and readbar all key off it.
+Originally reprint chrome; per Audrey's 2026-07-21 steer, the reader-aid set is now ported into every Broadsheet essay in the house skin (gold/ink tokens, Source Sans 3 labels). The per-essay `<script>` holds a `SECS` array (`[id, numeral, EN title, zh title(, ja title)]`); the rail and readbar key off it, and the lang-change handler calls `renderLoc()` so titles follow the toggle. All JS-gated and no-JS safe; everything below is print-hidden.
 
-- **readbar** — floating bottom pill: section numeral + title, read percentage, copy-link, theme button. Appears once the reader scrolls past the masthead.
-- **rail** — fixed left scrollspy dots with numeral labels (≥1180 px only).
-- **toc** — two-column grid with `aria-current` sync to the scrollspy.
-- **theme switcher** — three-mode 自動/淺色/深色: `data-theme` attribute + `localStorage`, dynamic `<meta name="theme-color">`, `.theming` cross-fade class. (Broadsheet essays are media-query-only dark.)
-- **plink + `:target` flash** — hover anchor links on section heads; `targetFlash` keyframe.
-- **ghost numerals** — outline-stroke oversized chapter numbers behind section heads.
-- **totop, skip link**, and JSON-LD `Article` with `translationOfWork`.
+- **rail** — fixed left scrollspy dots with numeral labels (≥1180 px only); every chapter `<section>` carries an `id`.
+- **readbar** — floating bottom pill: numeral chip + language-following section title, tabular-nums read %, copy-link (anchors to the current section). Appears past the hero.
+- **totop** — round back-to-top button, honours reduced motion.
+- **legible contrast** — light `--text` `#2a3644`; dark `--text` `#c9c4bb`, `--muted` `#96a1b2`; `hero-lede` 0.8 / closing body 0.85 / colophon 0.55 white alphas.
+- **zh serif body** — zh mode swaps `--serif`/`--serif-cjk`/`--cjk` to `'Noto Serif TC', 'Songti TC', …` (the `--serif` override is REQUIRED — Han glyphs fall through the body's `--serif` before ever reaching `--cjk`), 700 headings, body 1.1rem/2.05 at 0.035em.
+- **author block** — signature SVG (`assets/humanist-review-audrey-tang-signature.svg`) linked to `/`, warm band, bilingual/trilingual bio, dark-mode `filter: invert(0.88) sepia(0.14)`; `reveal`-gated before the colophon.
+- **favicon** — every essay carries the same three `<link rel="icon">`/`apple-touch-icon` lines as the index and the reprint.
+- **divider-mark orbit** — the tiny orrery dot between chapters rotates (36 s linear, `@media (prefers-reduced-motion: no-preference)`); lives in `essay.css` baseline.
+- **living hero SVG** — each essay's hero decoration gets a slow breathe + staggered glint set, strictly motion-opt-in (transparent-horse's crystal is the reference).
 
-Porting this chrome into a Broadsheet essay is a taste call, default **no**: the essays' minimal chrome (progress hairline + lang toggle only) is deliberate "quiet civic". Reach for the rail/readbar only on very long single-language pieces.
+Still reprint-only (not ported): TOC grid, three-mode theme switcher (Broadsheet stays media-query dark), plink/`:target` flash, ghost numerals, JSON-LD `translationOfWork`.
 
 ### Ported back into the Broadsheet: CJK typesetting
 
