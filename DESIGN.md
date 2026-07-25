@@ -450,6 +450,36 @@ The selectors are inert on pages without the matching lang input, and every decl
 ### If reprints multiply
 
 At n = 1 the copy-skeleton approach wins. If a second reprint lands, extract the shared chrome into `src/styles/reprint.css` with its own sentinel pair (`/* reprint:base */ … /* /reprint:base */`) and teach pre-commit Phase 3 the second sentinel — the same mechanism as `essay.css`, no new machinery.
+### `orrery` — the live instrument (index)
+
+Three mounts share one hand-written WebGL2 point-sprite renderer, `src/scripts/orrery-gl.js` (no library, no bundler — the geometry, the 4×4 maths, and both shaders are in the file):
+
+| Mount | Attribute | Register |
+|:------|:----------|:---------|
+| Hero | `data-orrery="hero"` on `.orrery--hero` | light on ink — **additive** blend, brass ring + steel dust |
+| 6-Pack of Care dial | `data-orrery="care"` on `.care-map-dial` | ink on paper — **premultiplied over**, the cycle turning |
+| Footer | `data-orrery="footer"` on `.orrery--footer` | the hero instrument at ¾ density, as a closing bookend |
+
+**Every particle is one orbit.** A single interleaved `STATIC_DRAW` buffer carries `(radius, θ₀, spin, pulse-gain)`, the two basis vectors of the particle's plane, an RGB, `(size, alpha, seed, flare)`, and a group index. The vertex shader integrates the orbit, so a frame is one `drawArrays` and the CPU only touches uniforms. ~4 300 points (hero), ~3 800 (care), ~3 200 (footer).
+
+**Design decisions worth keeping:**
+
+- The civic great circle stays **flat and circular** — it is the favicon mark, and an ellipse would break the brand read. Depth comes from the two armillary bands and the tilted AI orbit, whose planet genuinely passes behind the civic plane once every 48 s.
+- **The civic ring is inscribed to the left edge of the frame: `R === cx === 410`.** This is load-bearing geometry, not a look. The hero lockup lives in a *fixed* 80 px gutter, but the orrery is `slice`-scaled, so as the window widens the ring grows while the type does not — at the original `R = 362` the left arc swung up through "CYBER AMBASSADOR" at every width (measured: it needed 371 at 1280 px, rising to 383 at 3440 px, asymptotic to `cx`). With `R = cx` the arc's centre line lands on viewBox `x = 0`, so it can never enter the gutter, and clearance *grows* with width (40 px at 1280, 65 px at 3440). `R` lives in `tools/build-orrery-hero.mjs` (every other radius there is the original hand-tuned drawing scaled by `K = R/362`) and is mirrored by `unit` in `heroSpec`. **Change one and you must change the other**, then re-run `bun tools/build-orrery-hero.mjs`, which nothing else invokes.
+- Type still carries its own veil. The AI orbit and the dust shell legitimately pass behind the lockup, so `.hero-content` defines `--hero-veil` / `--hero-veil-soft` (both derived from `--ink`) and every lockup line takes a soft `text-shadow` from them. Invisible against plain ink; it simply lets anything crossing read as *behind* the type. Print strips `text-shadow` wholesale, so it costs nothing there.
+- The crack (open upper-right, −68°…−22°, "that's how the light gets in") is baked at build time: particles inside it are never emitted, and their edges are alpha-feathered.
+- `u_flow` is a travelling light. Ring particles carry a pulse gain; the shader brightens them by `exp(-Δθ · u_tail)` behind the head. Group **7** takes its angle from `u_flow` instead of its own clock, so the care comet's head is a real bead on the ring rather than a gradient.
+- The care dial's four arcs stay **registered with their chips** — this is a diagram before it is a picture. Only the tilt (≈0) and a whisper of pointer parallax give it dimension.
+- The diagram narrates itself. `draw()` reports which arc the head has entered (`onArc`); JS toggles `.is-lit` on that pack's chip and its card index. Tint only — no shadow, no movement — because the loop repeats every few seconds; suppressed entirely under reduced motion. Hovering or focusing a chip (or its card) parks the head on that quadrant, blooms its arc and dims the rest; `#care-pack-N` in the URL pins the same state.
+- Colour is never hard-coded. `hue()` resolves any CSS expression (`var()`, `color-mix()`) against the mount through a probe element, so token edits and scheme flips carry through; `prefers-color-scheme` changes rebuild the buffer in place.
+
+Tokens live in `orrery.css`'s `:root`: `--orrery-line` / `--orrery-bright` for the instrument, `--care-p1`…`--care-p6` for the six packs, and `--care-spark` — the colour the travelling light drives toward, written as one `color-mix(in srgb, var(--heading) 55%, var(--gold))` so it is dense ink on paper and warm near-white on ink without a media query. `--care-p2` is deliberately *not* bare `--gold-light`: pale gold cannot hold a stroke on cream, so it is pulled 30% toward `--gold`.
+
+**Projection is derived from the SVG it replaces.** `layout()` re-runs the same `viewBox` + `preserveAspectRatio` (`slice` / `meet`) arithmetic, so world radius 1.0 lands exactly on the SVG's ring radius. That is why the hero's `AI · IN · THE · LOOP · OF · HUMANITY` arc-set caption still aligns, and why responsive transforms must be applied to `.orrery-svg` **and** `.orrery-gl` together (see the 768 px and 1024 px blocks in `orrery.css`).
+
+**Fallback contract.** The SVG under each mount is the source of truth. JS adds `.is-live` *only after a context is acquired*; `@media screen` then retires the strata the GPU took over (`.o-civic`, `.o-graticule`, `.o-boundary`, `.o-ai`, `.o-centre`; `.care-map-arc`, `.care-map-field`, `.care-map-centre`). No JS, no WebGL2, print, or a lost context → the engraving comes straight back. Context loss is **not** recovered: GL objects are gone, so the instrument retires for good rather than leaving a blank canvas.
+
+**Motion budget.** `prefers-reduced-motion: reduce` draws exactly one still frame and never starts a rAF (resize and scheme changes redraw that frame). `IntersectionObserver` skips off-screen instruments; `visibilitychange` stops the loop. DPR capped at 2. `gl_PointSize` is clamped to `ALIASED_POINT_SIZE_RANGE` with energy compensation, so halos do not silently thin out on drivers that cap at 63 px.
 
 ## Do's and Don'ts
 
@@ -465,6 +495,8 @@ The non-negotiable rules. Most originate from past incidents.
 - **Don't** copy files between `cyberambassador.tw` and `audreyt.org` directly. Always cherry-pick the commit. See *Cross-site Sync* below.
 - **Don't** add rounded corners larger than 4 px without a strong, design-justified reason. The system is intentionally sharp-cornered.
 - **Don't** add box-shadows outside the state-change list (`nav.scrolled`, `.nav-links.open`, `.lightbox`, dark-mode illustration). Reach for `--warm` tonal lift or a `--border` hairline first.
+- **Do** gate every progressive-enhancement layer behind a class the enhancement itself adds (`.is-live` for the WebGL orreries), and scope the "hide the fallback" rules to `@media screen`. **Don't** hide an SVG on the assumption that a canvas will paint — print, no-JS, no-WebGL and lost contexts all have to land on the engraving.
+- **Don't** put a `style="…"` attribute in the template. The CSP hashes `<style>` *elements* only; an inline style attribute needs `'unsafe-hashes'` and is silently dropped. Give the element a class (see `.o-symbols`).
 
 ---
 
@@ -486,6 +518,7 @@ src/
 │   ├── iansui.css                ← Iansui @font-face ({{iansui-*}} placeholders)
 │   ├── fonts-stage2.css          ← Spectral + Source Sans 3 → /fonts/
 │   ├── components.css            ← index components, print, italic faces
+│   ├── orrery.css                ← orrery + care-map + loop-grammar; .is-live cutover
 │   ├── essay.css                 ← essay baseline (pre-commit Phase 3)
 │   └── noscript-reveal.css
 ├── fonts/                        ← *.woff2.b64 inputs; iansui-index.meta.json
@@ -494,6 +527,7 @@ src/
     ├── fonts-load.js             ← preload Iansui rest
     ├── image-probe.js
     ├── image-upgrade.js
+    ├── orrery-gl.js              ← WebGL2 point-sprite orrery (hero / care / footer)
     └── structured-data.json
 fonts/                            ← committed WOFF2/TTF at /fonts/ (Latin + Iansui)
 tools/                            ← build-fonts, build-iansui, glyph-harvest, iansui-format/manifest, build-image-variants

@@ -5,11 +5,16 @@
   --orrery-line: var(--gold);
   --orrery-bright: var(--gold-light);
   --care-p1: var(--gold);
-  --care-p2: var(--gold-light);
+  /* gold-light alone is too pale to hold a stroke on cream; pull it toward
+     the deep gold so pack 2 carries the same weight as its teal neighbours */
+  --care-p2: color-mix(in srgb, var(--gold-light) 70%, var(--gold));
   --care-p3: var(--teal);
   --care-p4: color-mix(in srgb, var(--teal) 60%, var(--heading));
   --care-p5: color-mix(in srgb, var(--teal) 55%, var(--gold-light));
   --care-p6: var(--gold-light);
+  /* the colour the travelling light drives toward: dense ink on paper,
+     near-white warmth on ink. One expression, both schemes. */
+  --care-spark: color-mix(in srgb, var(--heading) 55%, var(--gold));
 }
 
 /* hero wrapper: between the ink vignette (z0) and the lockup (z2) */
@@ -63,7 +68,11 @@
    390px across hero heights 740/844/1000). Then simplify + veil to 0.25. */
 @media (max-width: 768px) {
   .orrery--hero { opacity: .25; }
-  .orrery--hero .orrery-svg { transform: translateX(50%) scale(.55); transform-origin: left center; }
+  /* additive motes start quieter than solid strokes; keep the live layer in
+     the same register as the .25 engraving without disappearing */
+  .orrery--hero.is-live { opacity: .45; }
+  .orrery--hero .orrery-svg,
+  .orrery--hero .orrery-gl { transform: translateX(50%) scale(.55); transform-origin: left center; }
   .orrery--hero .o-ticks,
   .orrery--hero .o-graticule,
   .orrery--hero .o-boundary { display: none; }
@@ -76,13 +85,104 @@
    bounded geometry + the shortened caption on the ink, without the full mobile
    re-centre (validated 769→1024px). */
 @media (min-width: 769px) and (max-width: 1024px) {
-  .orrery--hero .orrery-svg { transform: translateX(22%) scale(.74); transform-origin: left center; }
+  .orrery--hero .orrery-svg,
+  .orrery--hero .orrery-gl { transform: translateX(22%) scale(.74); transform-origin: left center; }
 }
 
 /* print — the live print hero is a compact redesigned grid; a full-bleed decorative
    instrument would overlap it, so hide it. The argument still prints as .hero-loop text.
    (Spec §7's print engraving is deferred to a later print proof.) */
 @media print { .orrery--hero, .orrery--footer { display: none !important; } }
+
+/* ─── The live instrument (orrery-gl.js) ──────────────────────────────────
+   A WebGL2 point-sprite layer takes over the moving strata of both orreries.
+   The SVG under it stays the source of truth for no-JS, no-WebGL and print;
+   `.is-live` is added by JS only once a context has actually been acquired,
+   so every rule below is an enhancement that can simply not happen.        */
+
+.orrery-gl { position: absolute; inset: 0; display: block; width: 100%; height: 100%; }
+
+/* the GL sits UNDER the SVG's ink vignette, so the halo keeps veiling the
+   centre for the lockup, and the arc-set caption still rides on top */
+.orrery--hero .orrery-svg { position: relative; z-index: 1; }
+.orrery--hero .orrery-gl  { z-index: 0; }
+
+/* Beyond the civic ring the dust drifts over the portrait; taper it off so it
+   reads as air rather than specks on her face. The ring's right arc survives
+   as a ghost, which is what ties the two halves of the hero together. */
+@media (min-width: 769px) {
+  .orrery--hero .orrery-gl {
+    -webkit-mask-image: linear-gradient(96deg, #000 0 38%, rgba(0,0,0,.34) 50%, rgba(0,0,0,.09) 62%, transparent 73%);
+            mask-image: linear-gradient(96deg, #000 0 38%, rgba(0,0,0,.34) 50%, rgba(0,0,0,.09) 62%, transparent 73%);
+  }
+}
+
+/* retire the strata the GPU has taken over — screen only, so print still gets
+   the full engraving from the SVG */
+@media screen {
+  .orrery.is-live .o-civic,
+  .orrery.is-live .o-graticule,
+  .orrery.is-live .o-boundary,
+  .orrery.is-live .o-ai,
+  .orrery.is-live .o-centre { display: none; }
+
+  /* the ink vignette still guards the lockup, but a filament of light needs
+     less veiling than a flat engraving did — ease it off by a third */
+  .orrery--hero.is-live .o-halo-0 { stop-opacity: .60; }
+  .orrery--hero.is-live .o-halo-1 { stop-opacity: .17; }
+
+  .care-map-dial.is-live .care-map-arc,
+  .care-map-dial.is-live .care-map-field,
+  .care-map-dial.is-live .care-map-centre { display: none; }
+}
+
+/* The footer wrapper is dimmed to .46 for the flat engraving; a field of
+   additive motes starts far quieter than solid strokes, so give the live
+   instrument back most of that headroom to land in the same visual register. */
+.orrery--footer.is-live { opacity: .8; }
+
+/* care dial: chassis (rim, horizon, chords) engraved below, light above,
+   chips always on top and clickable */
+.care-map-dial { isolation: isolate; }
+.care-map-dial .orrery-gl { z-index: 1; pointer-events: none; }
+.care-map-dial > .care-map-chip { z-index: 2; }
+.care-map-rim { transition: opacity .35s ease, stroke-width .35s ease; }
+.care-map:has(.care-map-title .care-map-chip:is(:hover, :focus-visible)) .care-map-rim {
+  opacity: 1; stroke-width: 3;
+}
+
+/* The cycle narrates itself: as the travelling head enters an arc, JS lights
+   that pack's chip and its card index for the beat it is there. Tint only —
+   no shadow, no motion — so a loop that repeats every few seconds stays calm. */
+.care-map-chip.is-lit {
+  border-color: var(--care-pack, var(--care-p6));
+  background: color-mix(in srgb, var(--care-pack, var(--care-p6)) 10%, var(--surface));
+}
+.work-grid > .work-item.is-lit::before {
+  opacity: .9;
+  border-color: var(--care-card, var(--orrery-bright));
+}
+
+/* instrument bezel: four corner ticks on the frame, the way a plate is scored */
+.care-map-frame::before,
+.care-map-frame::after {
+  content: '';
+  position: absolute;
+  width: 14px; height: 14px;
+  border: 0 solid color-mix(in srgb, var(--care-p6) 85%, transparent);
+  pointer-events: none;
+}
+.care-map-frame::before {
+  top: -1px; left: -1px;
+  border-top-width: 2px; border-left-width: 2px;
+}
+.care-map-frame::after {
+  bottom: -1px; right: -1px;
+  border-bottom-width: 2px; border-right-width: 2px;
+}
+
+
+@media print { .orrery-gl { display: none !important; } }
 
 /* ─── Footer: a faint hint of the orrery, working in the background ─────── */
 /* A closing bookend to the hero instrument. The footer clips it
@@ -104,6 +204,7 @@ footer .footer-name, footer p { position: relative; z-index: 1; }
 @media (max-width: 768px) {
   /* shrink so the whole instrument still reads on a phone-width footer */
   .orrery--footer { width: 460px; height: 460px; bottom: -206px; opacity: .4; }
+  .orrery--footer.is-live { opacity: .62; }
 }
 
 /* ─── Loop grammar: section eyebrow glyph — the favicon mark (Phase 2) ─── */
@@ -113,6 +214,9 @@ footer .footer-name, footer p { position: relative; z-index: 1; }
    to the signature crack + glint. Colour lives here (var() resolves on CSS props,
    unlike SVG attrs), so it adapts to scheme and the always-dark film band. */
 .section-label { position: relative; padding-left: 1.7em; }
+/* the shared <symbol> holder: taken out of flow from CSS, not from a style
+   attribute the hash-based CSP has no way to allow */
+.o-symbols { position: absolute; }
 .o-glyph {
   position: absolute; left: 0; top: 50%; transform: translateY(-50%);
   width: 0.95em; height: 0.95em; overflow: visible; opacity: 0.85;
@@ -122,6 +226,23 @@ footer .footer-name, footer p { position: relative; z-index: 1; }
 /* always-dark sections (the film band) need the scheme-invariant bright gold */
 .film .o-mark-ring  { stroke: var(--orrery-bright); }
 .film .o-mark-glint { fill: var(--orrery-bright); }
+/* The mark turns into place as its section arrives — the same gesture the two
+   orreries make, at eyebrow scale. Default state is fully settled, so browsers
+   without scroll-driven animations simply see the finished mark. */
+@supports (animation-timeline: view()) {
+  .o-glyph {
+    animation: o-mark-turn linear both;
+    animation-timeline: view();                         /* AFTER the shorthand, which resets it */
+    animation-range: entry 8% cover 20%;
+  }
+}
+@keyframes o-mark-turn {
+  from { opacity: 0; transform: translateY(-50%) rotate(-130deg) scale(.7); }
+  to   { opacity: .85; transform: translateY(-50%) rotate(0) scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .o-glyph { opacity: .85 !important; transform: translateY(-50%) !important; }
+}
 /* print: drop the glyph so the print eyebrows stay flush (the elaborate print
    stylesheet re-lays section labels; a ring there adds nothing) */
 @media print { .section-label { padding-left: 0; } .o-glyph { display: none; } }
@@ -175,14 +296,14 @@ footer .footer-name, footer p { position: relative; z-index: 1; }
 }
 .care-map-body {
   display: grid;
-  grid-template-columns: minmax(280px, .86fr) minmax(0, 1fr);
+  grid-template-columns: minmax(300px, 1.06fr) minmax(0, 1fr);
   align-items: center;
   gap: clamp(24px, 5vw, 56px);
 }
 .care-map-dial {
   position: relative;
   aspect-ratio: 1;
-  width: min(100%, 420px);
+  width: min(100%, 460px);
   margin: 0 auto;
 }
 .care-map-svg {
@@ -286,8 +407,9 @@ footer .footer-name, footer p { position: relative; z-index: 1; }
 .care-map-legend {
   display: grid;
   gap: 10px;
-  margin: 18px 0 0;
-  padding: 0;
+  margin: 22px 0 0;
+  padding: 16px 0 0;
+  border-top: 1px solid var(--border);
   list-style: none;
   color: var(--muted);
   font-family: var(--sans);
@@ -453,11 +575,23 @@ footer .footer-name, footer p { position: relative; z-index: 1; }
 
 /* ─── Substance: Constellation of Honours (Phase 4a) ──────────────────── */
 /* The four awards keep their 2x2 grid; an arc of time sits above, and each
-   award-year becomes a node in the loop grammar. No animation. */
+   award-year becomes a node in the loop grammar. */
 .constellation { display: block; margin: 8px 0 0; }
 .constellation .constellation-arc { display: block; width: 100%; height: 46px; overflow: visible; }
 .constellation .c-arc  { stroke: var(--orrery-line); stroke-opacity: .30; stroke-width: 1; }
 .constellation .c-star { fill: var(--orrery-line); fill-opacity: .60; }
+/* Stars breathe on their own long clock — 9s apart on purpose, so no two ever
+   read as a synchronised blink. Killed outright by the global reduced-motion
+   rule in components.css. */
+.constellation .c-star { animation: c-twinkle 9s ease-in-out infinite; }
+.constellation .c-star:nth-of-type(2) { animation-delay: -6.4s; }
+.constellation .c-star:nth-of-type(3) { animation-delay: -2.1s; }
+.constellation .c-star:nth-of-type(4) { animation-delay: -7.8s; }
+.constellation .c-star:nth-of-type(5) { animation-delay: -3.7s; }
+@keyframes c-twinkle {
+  0%, 100% { fill-opacity: .42; }
+  50%      { fill-opacity: .95; }
+}
 .constellation + .awards-grid { margin-top: 14px; }
 .award-year { position: relative; display: inline-block; padding-left: 34px; margin-bottom: 0; }
 .award-year::before {

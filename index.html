@@ -25,7 +25,7 @@
 <meta name="theme-color" content="#0f1923" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#faf8f5" media="(prefers-color-scheme: light)">
 <meta name="color-scheme" content="light dark">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-WqMorOfjjZNgOsb4BU+bclWxZec5y+bzTOujic3XVGw=' 'sha256-lskdTSrqRyP4LdjRriW37lMPfLDa6mJKLENxKpNLyr8=' 'sha256-4G7wnwQc6qvKDvB+Quf3SC5N+0WcBvc/riHtQRDvDX4=' 'sha256-PBIbXpxoZq+dGJKBjiohe0A6iJvI1eJGI9eoqhVuI+Q='; style-src 'sha256-NFs9229jg1npBo+6D0CVjbf7yKGY0LMeCVEhL9F1i4I=' 'sha256-aG7rtwrhH+Utm/Qfl/B/vHqAhnlWZqFuOJEVDyNOZkU=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-uGayCSwz7/ng+0bU//d1fTAgPiGWbx/Liw8iCuPII4Q=' 'sha256-kPRCC1FQ7Z3Pd6l4OFKihhSMj7VAbydTW6lI/lesRcY=' 'sha256-YEbsr5+p7cqpqCOMMYJ0oQtSUg/lVFxKAF81MendBNw='; img-src 'self'; font-src 'self'; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-WqMorOfjjZNgOsb4BU+bclWxZec5y+bzTOujic3XVGw=' 'sha256-lskdTSrqRyP4LdjRriW37lMPfLDa6mJKLENxKpNLyr8=' 'sha256-4G7wnwQc6qvKDvB+Quf3SC5N+0WcBvc/riHtQRDvDX4=' 'sha256-PBIbXpxoZq+dGJKBjiohe0A6iJvI1eJGI9eoqhVuI+Q=' 'sha256-yJPetZ3zNtSq4H7Q0eHSsk1bczbCgMDE/ckFQdlFS0s='; style-src 'sha256-NFs9229jg1npBo+6D0CVjbf7yKGY0LMeCVEhL9F1i4I=' 'sha256-aG7rtwrhH+Utm/Qfl/B/vHqAhnlWZqFuOJEVDyNOZkU=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-uGayCSwz7/ng+0bU//d1fTAgPiGWbx/Liw8iCuPII4Q=' 'sha256-MUSJ0ylowvUY1j7GajVq98IGX4nmHnPUPKFPfDcRFaM=' 'sha256-s7tzXwdnR9KMhhqaRx5TpSjRMd9fMajTr2FZV+p6ygc='; img-src 'self'; font-src 'self'; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
 <link rel="preload" href="/fonts/spectral-700.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/iansui-critical.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="canonical" href="https://cyberambassador.tw/">
@@ -293,7 +293,7 @@ picture { display: block; }
 <!-- Shared section-eyebrow mark: the favicon's cracked-orrery ring + glint, defined
      once and referenced via <use> before every .section-label. Colour comes from CSS
      (.o-mark-* in orrery.css) so it adapts to scheme + the always-dark film band. -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><symbol id="o-mark" viewBox="0 0 32 32"><path class="o-mark-ring" d="M25.74 12.07 A10.5 10.5 0 1 1 19.93 6.26"/><circle class="o-mark-glint" cx="23.4" cy="8.6" r="2.3"/></symbol></svg>
+<svg class="o-symbols" width="0" height="0" aria-hidden="true" focusable="false"><symbol id="o-mark" viewBox="0 0 32 32"><path class="o-mark-ring" d="M25.74 12.07 A10.5 10.5 0 1 1 19.93 6.26"/><circle class="o-mark-glint" cx="23.4" cy="8.6" r="2.3"/></symbol></svg>
 <input type="checkbox" id="lang-zh" hidden>
 <div id="lang-announce" class="sr-only" aria-live="polite"></div>
 <script>document.documentElement.classList.add('js');(function(){var r=document.documentElement,c=document.getElementById('lang-zh'),s=null,z;try{s=localStorage.getItem('lang');}catch(e){}if(s){z=s==='zh-TW';}else{var l=navigator.languages||[navigator.language||''],h=0,g=0,i;for(i=0;i<l.length;i++){if(/^en\b/i.test(l[i]))h=1;if(/^zh\b/i.test(l[i]))g=1;}z=/^zh\b/i.test(navigator.language)||g&&!h;}if(z){c.checked=true;r.setAttribute('lang','zh-TW');document.title='\u5510\u9cf3 \u00b7 \u6578\u4f4d\u6cbb\u7406\u5927\u4f7f';}})();</script>
@@ -424,6 +424,14 @@ window.__webp=__imgProbe('assets/probe.webp');
     max-width: 620px;
     padding: 120px 80px;
     color: #fff;
+    /* The lockup lane is a fixed 80–620px, but the orrery is `slice`-scaled, so
+       on a wide/short window the ring's left arc swings up through this column
+       (and on the right the portrait's jacket is bright). Every line therefore
+       carries its own ink veil: invisible against plain ink, and enough to let
+       a bead chain or a highlight pass BEHIND the type instead of through it.
+       Print strips text-shadow wholesale (~L1162), so this costs nothing there. */
+    --hero-veil: color-mix(in srgb, var(--ink) 90%, transparent);
+    --hero-veil-soft: color-mix(in srgb, var(--ink) 62%, transparent);
 }
 
 .hero-label {
@@ -434,6 +442,7 @@ window.__webp=__imgProbe('assets/probe.webp');
     text-transform: uppercase;
     color: var(--gold-light);
     margin-bottom: 24px;
+    text-shadow: 0 0 4px var(--hero-veil), 0 0 15px var(--hero-veil), 0 0 28px var(--hero-veil-soft);
     opacity: 0;
     animation: fadeUp 0.8s ease 0.6s forwards;
 }
@@ -445,6 +454,7 @@ window.__webp=__imgProbe('assets/probe.webp');
     line-height: 1.1;
     letter-spacing: -0.02em;
     margin-bottom: 8px;
+    text-shadow: 0 0 12px var(--hero-veil-soft), 0 0 44px var(--hero-veil-soft);
     opacity: 0;
     animation: fadeUp 0.8s ease 0.8s forwards;
 }
@@ -464,6 +474,7 @@ window.__webp=__imgProbe('assets/probe.webp');
     color: rgba(255,255,255,0.85);
     line-height: 1.5;
     margin-bottom: 32px;
+    text-shadow: 0 0 4px var(--hero-veil), 0 0 22px var(--hero-veil-soft);
     opacity: 0;
     animation: fadeUp 0.8s ease 1s forwards;
 }
@@ -477,6 +488,7 @@ window.__webp=__imgProbe('assets/probe.webp');
     border-left: 2px solid var(--gold);
     padding-left: 20px;
     margin-top: 40px;
+    text-shadow: 0 0 4px var(--hero-veil), 0 0 18px var(--hero-veil-soft);
     opacity: 0;
     animation: fadeUp 0.8s ease 1.2s forwards;
 }
@@ -2099,11 +2111,16 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
   --orrery-line: var(--gold);
   --orrery-bright: var(--gold-light);
   --care-p1: var(--gold);
-  --care-p2: var(--gold-light);
+  /* gold-light alone is too pale to hold a stroke on cream; pull it toward
+     the deep gold so pack 2 carries the same weight as its teal neighbours */
+  --care-p2: color-mix(in srgb, var(--gold-light) 70%, var(--gold));
   --care-p3: var(--teal);
   --care-p4: color-mix(in srgb, var(--teal) 60%, var(--heading));
   --care-p5: color-mix(in srgb, var(--teal) 55%, var(--gold-light));
   --care-p6: var(--gold-light);
+  /* the colour the travelling light drives toward: dense ink on paper,
+     near-white warmth on ink. One expression, both schemes. */
+  --care-spark: color-mix(in srgb, var(--heading) 55%, var(--gold));
 }
 
 /* hero wrapper: between the ink vignette (z0) and the lockup (z2) */
@@ -2157,7 +2174,11 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
    390px across hero heights 740/844/1000). Then simplify + veil to 0.25. */
 @media (max-width: 768px) {
   .orrery--hero { opacity: .25; }
-  .orrery--hero .orrery-svg { transform: translateX(50%) scale(.55); transform-origin: left center; }
+  /* additive motes start quieter than solid strokes; keep the live layer in
+     the same register as the .25 engraving without disappearing */
+  .orrery--hero.is-live { opacity: .45; }
+  .orrery--hero .orrery-svg,
+  .orrery--hero .orrery-gl { transform: translateX(50%) scale(.55); transform-origin: left center; }
   .orrery--hero .o-ticks,
   .orrery--hero .o-graticule,
   .orrery--hero .o-boundary { display: none; }
@@ -2170,13 +2191,104 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
    bounded geometry + the shortened caption on the ink, without the full mobile
    re-centre (validated 769→1024px). */
 @media (min-width: 769px) and (max-width: 1024px) {
-  .orrery--hero .orrery-svg { transform: translateX(22%) scale(.74); transform-origin: left center; }
+  .orrery--hero .orrery-svg,
+  .orrery--hero .orrery-gl { transform: translateX(22%) scale(.74); transform-origin: left center; }
 }
 
 /* print — the live print hero is a compact redesigned grid; a full-bleed decorative
    instrument would overlap it, so hide it. The argument still prints as .hero-loop text.
    (Spec §7's print engraving is deferred to a later print proof.) */
 @media print { .orrery--hero, .orrery--footer { display: none !important; } }
+
+/* ─── The live instrument (orrery-gl.js) ──────────────────────────────────
+   A WebGL2 point-sprite layer takes over the moving strata of both orreries.
+   The SVG under it stays the source of truth for no-JS, no-WebGL and print;
+   `.is-live` is added by JS only once a context has actually been acquired,
+   so every rule below is an enhancement that can simply not happen.        */
+
+.orrery-gl { position: absolute; inset: 0; display: block; width: 100%; height: 100%; }
+
+/* the GL sits UNDER the SVG's ink vignette, so the halo keeps veiling the
+   centre for the lockup, and the arc-set caption still rides on top */
+.orrery--hero .orrery-svg { position: relative; z-index: 1; }
+.orrery--hero .orrery-gl  { z-index: 0; }
+
+/* Beyond the civic ring the dust drifts over the portrait; taper it off so it
+   reads as air rather than specks on her face. The ring's right arc survives
+   as a ghost, which is what ties the two halves of the hero together. */
+@media (min-width: 769px) {
+  .orrery--hero .orrery-gl {
+    -webkit-mask-image: linear-gradient(96deg, #000 0 38%, rgba(0,0,0,.34) 50%, rgba(0,0,0,.09) 62%, transparent 73%);
+            mask-image: linear-gradient(96deg, #000 0 38%, rgba(0,0,0,.34) 50%, rgba(0,0,0,.09) 62%, transparent 73%);
+  }
+}
+
+/* retire the strata the GPU has taken over — screen only, so print still gets
+   the full engraving from the SVG */
+@media screen {
+  .orrery.is-live .o-civic,
+  .orrery.is-live .o-graticule,
+  .orrery.is-live .o-boundary,
+  .orrery.is-live .o-ai,
+  .orrery.is-live .o-centre { display: none; }
+
+  /* the ink vignette still guards the lockup, but a filament of light needs
+     less veiling than a flat engraving did — ease it off by a third */
+  .orrery--hero.is-live .o-halo-0 { stop-opacity: .60; }
+  .orrery--hero.is-live .o-halo-1 { stop-opacity: .17; }
+
+  .care-map-dial.is-live .care-map-arc,
+  .care-map-dial.is-live .care-map-field,
+  .care-map-dial.is-live .care-map-centre { display: none; }
+}
+
+/* The footer wrapper is dimmed to .46 for the flat engraving; a field of
+   additive motes starts far quieter than solid strokes, so give the live
+   instrument back most of that headroom to land in the same visual register. */
+.orrery--footer.is-live { opacity: .8; }
+
+/* care dial: chassis (rim, horizon, chords) engraved below, light above,
+   chips always on top and clickable */
+.care-map-dial { isolation: isolate; }
+.care-map-dial .orrery-gl { z-index: 1; pointer-events: none; }
+.care-map-dial > .care-map-chip { z-index: 2; }
+.care-map-rim { transition: opacity .35s ease, stroke-width .35s ease; }
+.care-map:has(.care-map-title .care-map-chip:is(:hover, :focus-visible)) .care-map-rim {
+  opacity: 1; stroke-width: 3;
+}
+
+/* The cycle narrates itself: as the travelling head enters an arc, JS lights
+   that pack's chip and its card index for the beat it is there. Tint only —
+   no shadow, no motion — so a loop that repeats every few seconds stays calm. */
+.care-map-chip.is-lit {
+  border-color: var(--care-pack, var(--care-p6));
+  background: color-mix(in srgb, var(--care-pack, var(--care-p6)) 10%, var(--surface));
+}
+.work-grid > .work-item.is-lit::before {
+  opacity: .9;
+  border-color: var(--care-card, var(--orrery-bright));
+}
+
+/* instrument bezel: four corner ticks on the frame, the way a plate is scored */
+.care-map-frame::before,
+.care-map-frame::after {
+  content: '';
+  position: absolute;
+  width: 14px; height: 14px;
+  border: 0 solid color-mix(in srgb, var(--care-p6) 85%, transparent);
+  pointer-events: none;
+}
+.care-map-frame::before {
+  top: -1px; left: -1px;
+  border-top-width: 2px; border-left-width: 2px;
+}
+.care-map-frame::after {
+  bottom: -1px; right: -1px;
+  border-bottom-width: 2px; border-right-width: 2px;
+}
+
+
+@media print { .orrery-gl { display: none !important; } }
 
 /* ─── Footer: a faint hint of the orrery, working in the background ─────── */
 /* A closing bookend to the hero instrument. The footer clips it
@@ -2198,6 +2310,7 @@ footer .footer-name, footer p { position: relative; z-index: 1; }
 @media (max-width: 768px) {
   /* shrink so the whole instrument still reads on a phone-width footer */
   .orrery--footer { width: 460px; height: 460px; bottom: -206px; opacity: .4; }
+  .orrery--footer.is-live { opacity: .62; }
 }
 
 /* ─── Loop grammar: section eyebrow glyph — the favicon mark (Phase 2) ─── */
@@ -2207,6 +2320,9 @@ footer .footer-name, footer p { position: relative; z-index: 1; }
    to the signature crack + glint. Colour lives here (var() resolves on CSS props,
    unlike SVG attrs), so it adapts to scheme and the always-dark film band. */
 .section-label { position: relative; padding-left: 1.7em; }
+/* the shared <symbol> holder: taken out of flow from CSS, not from a style
+   attribute the hash-based CSP has no way to allow */
+.o-symbols { position: absolute; }
 .o-glyph {
   position: absolute; left: 0; top: 50%; transform: translateY(-50%);
   width: 0.95em; height: 0.95em; overflow: visible; opacity: 0.85;
@@ -2216,6 +2332,23 @@ footer .footer-name, footer p { position: relative; z-index: 1; }
 /* always-dark sections (the film band) need the scheme-invariant bright gold */
 .film .o-mark-ring  { stroke: var(--orrery-bright); }
 .film .o-mark-glint { fill: var(--orrery-bright); }
+/* The mark turns into place as its section arrives — the same gesture the two
+   orreries make, at eyebrow scale. Default state is fully settled, so browsers
+   without scroll-driven animations simply see the finished mark. */
+@supports (animation-timeline: view()) {
+  .o-glyph {
+    animation: o-mark-turn linear both;
+    animation-timeline: view();                         /* AFTER the shorthand, which resets it */
+    animation-range: entry 8% cover 20%;
+  }
+}
+@keyframes o-mark-turn {
+  from { opacity: 0; transform: translateY(-50%) rotate(-130deg) scale(.7); }
+  to   { opacity: .85; transform: translateY(-50%) rotate(0) scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .o-glyph { opacity: .85 !important; transform: translateY(-50%) !important; }
+}
 /* print: drop the glyph so the print eyebrows stay flush (the elaborate print
    stylesheet re-lays section labels; a ring there adds nothing) */
 @media print { .section-label { padding-left: 0; } .o-glyph { display: none; } }
@@ -2269,14 +2402,14 @@ footer .footer-name, footer p { position: relative; z-index: 1; }
 }
 .care-map-body {
   display: grid;
-  grid-template-columns: minmax(280px, .86fr) minmax(0, 1fr);
+  grid-template-columns: minmax(300px, 1.06fr) minmax(0, 1fr);
   align-items: center;
   gap: clamp(24px, 5vw, 56px);
 }
 .care-map-dial {
   position: relative;
   aspect-ratio: 1;
-  width: min(100%, 420px);
+  width: min(100%, 460px);
   margin: 0 auto;
 }
 .care-map-svg {
@@ -2380,8 +2513,9 @@ footer .footer-name, footer p { position: relative; z-index: 1; }
 .care-map-legend {
   display: grid;
   gap: 10px;
-  margin: 18px 0 0;
-  padding: 0;
+  margin: 22px 0 0;
+  padding: 16px 0 0;
+  border-top: 1px solid var(--border);
   list-style: none;
   color: var(--muted);
   font-family: var(--sans);
@@ -2547,11 +2681,23 @@ footer .footer-name, footer p { position: relative; z-index: 1; }
 
 /* ─── Substance: Constellation of Honours (Phase 4a) ──────────────────── */
 /* The four awards keep their 2x2 grid; an arc of time sits above, and each
-   award-year becomes a node in the loop grammar. No animation. */
+   award-year becomes a node in the loop grammar. */
 .constellation { display: block; margin: 8px 0 0; }
 .constellation .constellation-arc { display: block; width: 100%; height: 46px; overflow: visible; }
 .constellation .c-arc  { stroke: var(--orrery-line); stroke-opacity: .30; stroke-width: 1; }
 .constellation .c-star { fill: var(--orrery-line); fill-opacity: .60; }
+/* Stars breathe on their own long clock — 9s apart on purpose, so no two ever
+   read as a synchronised blink. Killed outright by the global reduced-motion
+   rule in components.css. */
+.constellation .c-star { animation: c-twinkle 9s ease-in-out infinite; }
+.constellation .c-star:nth-of-type(2) { animation-delay: -6.4s; }
+.constellation .c-star:nth-of-type(3) { animation-delay: -2.1s; }
+.constellation .c-star:nth-of-type(4) { animation-delay: -7.8s; }
+.constellation .c-star:nth-of-type(5) { animation-delay: -3.7s; }
+@keyframes c-twinkle {
+  0%, 100% { fill-opacity: .42; }
+  50%      { fill-opacity: .95; }
+}
 .constellation + .awards-grid { margin-top: 14px; }
 .award-year { position: relative; display: inline-block; padding-left: 34px; margin-bottom: 0; }
 .award-year::before {
@@ -2583,31 +2729,31 @@ footer .footer-name, footer p { position: relative; z-index: 1; }
              alt="Audrey Tang, arms crossed, gazing thoughtfully to the side, wearing rimless glasses and a jacket printed with an ink-wash mountain landscape, against a dark textured background" title="Audrey Tang portrait by Kaii Chiang, CC BY-NC-SA 4.0" width="1200" height="1200" fetchpriority="high" decoding="async"></noscript>
     </div>
     <span class="hero-portrait-credit" aria-hidden="true">Kaii Chiang · CC BY-NC-SA 4.0</span>
-    <div class="orrery orrery--hero" aria-hidden="true"><svg class="orrery-svg" viewBox="0 0 1440 913" preserveAspectRatio="xMidYMid slice"
+    <div class="orrery orrery--hero" data-orrery="hero" aria-hidden="true"><svg class="orrery-svg" viewBox="0 0 1440 913" preserveAspectRatio="xMidYMid slice"
      fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
   <defs>
-    <radialGradient id="orrery-halo" cx="410" cy="456" r="360" gradientUnits="userSpaceOnUse">
+    <radialGradient id="orrery-halo" cx="410" cy="456" r="407.73" gradientUnits="userSpaceOnUse">
       <stop class="o-halo-0" offset="0"/><stop class="o-halo-1" offset="0.55"/><stop class="o-halo-2" offset="1"/>
     </radialGradient>
-    <path id="orrery-cap" d="M 149.9 733.0 A 380 380 0 0 1 670.1 733.0"/>
+    <path id="orrery-cap" d="M 115.4 769.7 A 430.39 430.39 0 0 1 704.6 769.7"/>
   </defs>
-  <circle class="o-boundary" cx="410" cy="456" r="206"/>
-  <g class="o-graticule"><line x1="542.0" y1="456.0" x2="770.0" y2="456.0"/><line x1="524.3" y1="522.0" x2="721.8" y2="636.0"/><line x1="476.0" y1="570.3" x2="590.0" y2="767.8"/><line x1="410.0" y1="588.0" x2="410.0" y2="816.0"/><line x1="344.0" y1="570.3" x2="230.0" y2="767.8"/><line x1="295.7" y1="522.0" x2="98.2" y2="636.0"/><line x1="278.0" y1="456.0" x2="50.0" y2="456.0"/><line x1="295.7" y1="390.0" x2="98.2" y2="276.0"/><line x1="344.0" y1="341.7" x2="230.0" y2="144.2"/><line x1="410.0" y1="324.0" x2="410.0" y2="96.0"/><line x1="476.0" y1="341.7" x2="590.0" y2="144.2"/><line x1="524.3" y1="390.0" x2="721.8" y2="276.0"/></g>
+  <circle class="o-boundary" cx="410" cy="456" r="233.31"/>
+  <g class="o-graticule"><line x1="559.5" y1="456.0" x2="817.7" y2="456.0"/><line x1="539.5" y1="530.8" x2="763.1" y2="659.9"/><line x1="484.8" y1="585.5" x2="613.9" y2="809.1"/><line x1="410.0" y1="605.5" x2="410.0" y2="863.7"/><line x1="335.3" y1="585.5" x2="206.1" y2="809.1"/><line x1="280.5" y1="530.8" x2="56.9" y2="659.9"/><line x1="260.5" y1="456.0" x2="2.3" y2="456.0"/><line x1="280.5" y1="381.3" x2="56.9" y2="252.1"/><line x1="335.2" y1="326.5" x2="206.1" y2="102.9"/><line x1="410.0" y1="306.5" x2="410.0" y2="48.3"/><line x1="484.8" y1="326.5" x2="613.9" y2="102.9"/><line x1="539.5" y1="381.2" x2="763.1" y2="252.1"/></g>
   <g class="o-civic">
-    <path class="o-civic-ring" d="M 745.6 320.4 A 362 362 0 1 1 545.6 120.4"/>
-    <g class="o-ticks"><line x1="772.0" y1="456.0" x2="761.0" y2="456.0"/><line x1="770.0" y1="493.8" x2="764.0" y2="493.2"/><line x1="764.1" y1="531.3" x2="758.2" y2="530.0"/><line x1="754.3" y1="567.9" x2="748.6" y2="566.0"/><line x1="740.7" y1="603.2" x2="735.2" y2="600.8"/><line x1="723.5" y1="637.0" x2="714.0" y2="631.5"/><line x1="702.9" y1="668.8" x2="698.0" y2="665.3"/><line x1="679.0" y1="698.2" x2="674.6" y2="694.2"/><line x1="652.2" y1="725.0" x2="648.2" y2="720.6"/><line x1="622.8" y1="748.9" x2="619.3" y2="744.0"/><line x1="591.0" y1="769.5" x2="585.5" y2="760.0"/><line x1="557.2" y1="786.7" x2="554.8" y2="781.2"/><line x1="521.9" y1="800.3" x2="520.0" y2="794.6"/><line x1="485.3" y1="810.1" x2="484.0" y2="804.2"/><line x1="447.8" y1="816.0" x2="447.2" y2="810.0"/><line x1="410.0" y1="818.0" x2="410.0" y2="807.0"/><line x1="372.2" y1="816.0" x2="372.8" y2="810.0"/><line x1="334.7" y1="810.1" x2="336.0" y2="804.2"/><line x1="298.1" y1="800.3" x2="300.0" y2="794.6"/><line x1="262.8" y1="786.7" x2="265.2" y2="781.2"/><line x1="229.0" y1="769.5" x2="234.5" y2="760.0"/><line x1="197.2" y1="748.9" x2="200.7" y2="744.0"/><line x1="167.8" y1="725.0" x2="171.8" y2="720.6"/><line x1="141.0" y1="698.2" x2="145.4" y2="694.2"/><line x1="117.1" y1="668.8" x2="122.0" y2="665.3"/><line x1="96.5" y1="637.0" x2="106.0" y2="631.5"/><line x1="79.3" y1="603.2" x2="84.8" y2="600.8"/><line x1="65.7" y1="567.9" x2="71.4" y2="566.0"/><line x1="55.9" y1="531.3" x2="61.8" y2="530.0"/><line x1="50.0" y1="493.8" x2="56.0" y2="493.2"/><line x1="48.0" y1="456.0" x2="59.0" y2="456.0"/><line x1="50.0" y1="418.2" x2="56.0" y2="418.8"/><line x1="55.9" y1="380.7" x2="61.8" y2="382.0"/><line x1="65.7" y1="344.1" x2="71.4" y2="346.0"/><line x1="79.3" y1="308.8" x2="84.8" y2="311.2"/><line x1="96.5" y1="275.0" x2="106.0" y2="280.5"/><line x1="117.1" y1="243.2" x2="122.0" y2="246.7"/><line x1="141.0" y1="213.8" x2="145.4" y2="217.8"/><line x1="167.8" y1="187.0" x2="171.8" y2="191.4"/><line x1="197.2" y1="163.1" x2="200.7" y2="168.0"/><line x1="229.0" y1="142.5" x2="234.5" y2="152.0"/><line x1="262.8" y1="125.3" x2="265.2" y2="130.8"/><line x1="298.1" y1="111.7" x2="300.0" y2="117.4"/><line x1="334.7" y1="101.9" x2="336.0" y2="107.8"/><line x1="372.2" y1="96.0" x2="372.8" y2="102.0"/><line x1="410.0" y1="94.0" x2="410.0" y2="105.0"/><line x1="447.8" y1="96.0" x2="447.2" y2="102.0"/><line x1="485.3" y1="101.9" x2="484.0" y2="107.8"/><line x1="521.9" y1="111.7" x2="520.0" y2="117.4"/><line x1="754.3" y1="344.1" x2="748.6" y2="346.0"/><line x1="764.1" y1="380.7" x2="758.2" y2="382.0"/><line x1="770.0" y1="418.2" x2="764.0" y2="418.8"/></g>
-    <g class="o-people"><circle cx="772.0" cy="451.8" r="1.69"/><circle cx="766.9" cy="516.7" r="2.65"/><circle cx="754.2" cy="568.0" r="2.21"/><circle cx="732.7" cy="620.1" r="1.96"/><circle cx="702.6" cy="669.2" r="2.69"/><circle cx="667.5" cy="710.5" r="1.83"/><circle cx="620.9" cy="750.2" r="2.38"/><circle cx="576.7" cy="777.3" r="2.15"/><circle cx="523.6" cy="799.7" r="2.40"/><circle cx="468.4" cy="813.3" r="3.07"/><circle cx="412.2" cy="818.0" r="2.92"/><circle cx="356.0" cy="814.0" r="1.82"/><circle cx="301.0" cy="801.2" r="2.04"/><circle cx="245.3" cy="778.4" r="2.74"/><circle cx="200.2" cy="751.0" r="2.97"/><circle cx="153.7" cy="711.6" r="2.53"/><circle cx="116.2" cy="667.5" r="3.05"/><circle cx="87.0" cy="619.4" r="2.98"/><circle cx="64.8" cy="565.2" r="1.66"/><circle cx="52.9" cy="515.4" r="2.14"/><circle cx="48.0" cy="456.6" r="1.63"/><circle cx="51.9" cy="402.9" r="2.75"/><circle cx="65.4" cy="345.2" r="2.24"/><circle cx="87.3" cy="291.9" r="3.02"/><circle cx="118.2" cy="241.8" r="2.63"/><circle cx="153.0" cy="201.1" r="2.13"/><circle cx="194.7" cy="165.0" r="1.80"/><circle cx="248.9" cy="131.8" r="2.08"/><circle cx="295.6" cy="112.6" r="2.55"/><circle cx="352.0" cy="98.7" r="1.67"/><circle cx="411.6" cy="94.0" r="2.98"/><circle cx="467.0" cy="98.5" r="2.84"/><circle cx="523.1" cy="112.1" r="2.98"/><circle cx="755.1" cy="346.8" r="1.61"/><circle cx="767.6" cy="399.5" r="2.09"/></g>
-    <circle class="o-civic-glint-halo" cx="666.0" cy="200.0" r="14"/>
-    <circle class="o-civic-glint" cx="666.0" cy="200.0" r="5.5"/>
+    <path class="o-civic-ring" d="M 790.1 302.4 A 410 410 0 1 1 563.6 75.9"/>
+    <g class="o-ticks"><line x1="820.0" y1="456.0" x2="807.5" y2="456.0"/><line x1="817.8" y1="498.9" x2="811.0" y2="498.1"/><line x1="811.0" y1="541.2" x2="804.4" y2="539.8"/><line x1="799.9" y1="582.7" x2="793.5" y2="580.6"/><line x1="784.6" y1="622.8" x2="778.3" y2="620.0"/><line x1="765.1" y1="661.0" x2="754.3" y2="654.8"/><line x1="741.7" y1="697.0" x2="736.2" y2="693.0"/><line x1="714.7" y1="730.3" x2="709.6" y2="725.8"/><line x1="684.3" y1="760.7" x2="679.8" y2="755.6"/><line x1="651.0" y1="787.7" x2="647.0" y2="782.2"/><line x1="615.0" y1="811.1" x2="608.8" y2="800.3"/><line x1="576.8" y1="830.6" x2="574.0" y2="824.3"/><line x1="536.7" y1="845.9" x2="534.6" y2="839.5"/><line x1="495.2" y1="857.0" x2="493.8" y2="850.4"/><line x1="452.9" y1="863.8" x2="452.1" y2="857.0"/><line x1="410.0" y1="866.0" x2="410.0" y2="853.5"/><line x1="367.1" y1="863.8" x2="367.9" y2="857.0"/><line x1="324.8" y1="857.0" x2="326.2" y2="850.4"/><line x1="283.3" y1="845.9" x2="285.4" y2="839.5"/><line x1="243.2" y1="830.6" x2="246.0" y2="824.3"/><line x1="205.0" y1="811.1" x2="211.2" y2="800.3"/><line x1="169.0" y1="787.7" x2="173.0" y2="782.2"/><line x1="135.7" y1="760.7" x2="140.2" y2="755.6"/><line x1="105.3" y1="730.3" x2="110.4" y2="725.8"/><line x1="78.3" y1="697.0" x2="83.8" y2="693.0"/><line x1="54.9" y1="661.0" x2="65.7" y2="654.8"/><line x1="35.4" y1="622.8" x2="41.7" y2="620.0"/><line x1="20.1" y1="582.7" x2="26.5" y2="580.6"/><line x1="9.0" y1="541.2" x2="15.6" y2="539.8"/><line x1="2.2" y1="498.9" x2="9.0" y2="498.1"/><line x1="0.0" y1="456.0" x2="12.5" y2="456.0"/><line x1="2.2" y1="413.1" x2="9.0" y2="413.9"/><line x1="9.0" y1="370.8" x2="15.6" y2="372.2"/><line x1="20.1" y1="329.3" x2="26.5" y2="331.4"/><line x1="35.4" y1="289.2" x2="41.7" y2="292.0"/><line x1="54.9" y1="251.0" x2="65.7" y2="257.2"/><line x1="78.3" y1="215.0" x2="83.8" y2="219.0"/><line x1="105.3" y1="181.7" x2="110.4" y2="186.2"/><line x1="135.7" y1="151.3" x2="140.2" y2="156.4"/><line x1="169.0" y1="124.3" x2="173.0" y2="129.8"/><line x1="205.0" y1="100.9" x2="211.2" y2="111.7"/><line x1="243.2" y1="81.4" x2="246.0" y2="87.7"/><line x1="283.3" y1="66.1" x2="285.4" y2="72.5"/><line x1="324.8" y1="55.0" x2="326.2" y2="61.6"/><line x1="367.1" y1="48.2" x2="367.9" y2="55.0"/><line x1="410.0" y1="46.0" x2="410.0" y2="58.5"/><line x1="452.9" y1="48.2" x2="452.1" y2="55.0"/><line x1="495.2" y1="55.0" x2="493.8" y2="61.6"/><line x1="536.7" y1="66.1" x2="534.6" y2="72.5"/><line x1="799.9" y1="329.3" x2="793.5" y2="331.4"/><line x1="811.0" y1="370.8" x2="804.4" y2="372.2"/><line x1="817.8" y1="413.1" x2="811.0" y2="413.9"/></g>
+    <g class="o-people"><circle cx="820.0" cy="451.2" r="1.92"/><circle cx="814.2" cy="524.8" r="3.00"/><circle cx="799.9" cy="582.9" r="2.50"/><circle cx="775.5" cy="641.8" r="2.22"/><circle cx="741.4" cy="697.4" r="3.05"/><circle cx="701.6" cy="744.2" r="2.08"/><circle cx="648.9" cy="789.2" r="2.69"/><circle cx="598.8" cy="820.0" r="2.44"/><circle cx="538.6" cy="845.3" r="2.72"/><circle cx="476.1" cy="860.6" r="3.47"/><circle cx="412.5" cy="866.0" r="3.30"/><circle cx="348.9" cy="861.4" r="2.06"/><circle cx="286.5" cy="847.0" r="2.31"/><circle cx="223.4" cy="821.1" r="3.11"/><circle cx="172.4" cy="790.1" r="3.36"/><circle cx="119.7" cy="745.5" r="2.87"/><circle cx="77.3" cy="695.6" r="3.45"/><circle cx="44.1" cy="641.0" r="3.38"/><circle cx="19.1" cy="579.6" r="1.88"/><circle cx="5.6" cy="523.3" r="2.42"/><circle cx="0.0" cy="456.7" r="1.85"/><circle cx="4.4" cy="395.9" r="3.12"/><circle cx="19.7" cy="330.5" r="2.54"/><circle cx="44.5" cy="270.1" r="3.42"/><circle cx="79.5" cy="213.4" r="2.98"/><circle cx="118.9" cy="167.3" r="2.42"/><circle cx="166.1" cy="126.4" r="2.04"/><circle cx="227.5" cy="88.9" r="2.36"/><circle cx="280.4" cy="67.0" r="2.89"/><circle cx="344.3" cy="51.3" r="1.89"/><circle cx="411.8" cy="46.0" r="3.38"/><circle cx="474.6" cy="51.1" r="3.22"/><circle cx="538.1" cy="66.5" r="3.37"/><circle cx="800.9" cy="332.3" r="1.82"/><circle cx="815.0" cy="392.0" r="2.37"/></g>
+    <circle class="o-civic-glint-halo" cx="699.9" cy="166.1" r="15.86"/>
+    <circle class="o-civic-glint" cx="699.9" cy="166.1" r="6.23"/>
   </g>
   <rect class="o-halo" x="0" y="0" width="1440" height="913" fill="url(#orrery-halo)"/>
   <g class="o-ai">
-    <circle class="o-ai-ring" cx="410" cy="456" r="120"/>
-    <circle class="o-ai-disc" cx="410" cy="456" r="120"/>
-    <circle class="o-ai-planet" cx="410" cy="336" r="6"/>
-    <circle class="o-ai-halo" cx="410" cy="336" r="13"/>
+    <circle class="o-ai-ring" cx="410" cy="456" r="135.91"/>
+    <circle class="o-ai-disc" cx="410" cy="456" r="135.91"/>
+    <circle class="o-ai-planet" cx="410" cy="320.09000000000003" r="6.8"/>
+    <circle class="o-ai-halo" cx="410" cy="320.09000000000003" r="14.72"/>
   </g>
-  <circle class="o-centre" cx="410" cy="456" r="2.6"/>
+  <circle class="o-centre" cx="410" cy="456" r="2.94"/>
   <text class="o-caption" aria-hidden="true"><textPath href="#orrery-cap" startOffset="50%" text-anchor="middle" aria-hidden="true">AI · IN · THE · LOOP · OF · HUMANITY</textPath></text>
 </svg></div>
     <div class="hero-content">
@@ -2886,7 +3032,7 @@ footer .footer-name, footer p { position: relative; z-index: 1; }
                 </a>
             </div>
             <div class="care-map-body">
-                <div class="care-map-dial" aria-label="6-Pack of Care map">
+                <div class="care-map-dial" data-orrery="care" aria-label="6-Pack of Care map">
                     <svg class="care-map-svg" viewBox="0 0 620 620" aria-hidden="true" focusable="false">
                         <circle class="care-map-rim" cx="310" cy="310" r="292"/>
                         <line class="care-map-horizon" x1="82" y1="310" x2="538" y2="310"/>
@@ -3276,7 +3422,7 @@ footer .footer-name, footer p { position: relative; z-index: 1; }
 
 <!-- ════════ FOOTER ════════ -->
 <footer>
-    <div class="orrery orrery--footer" aria-hidden="true"><svg class="orrery-svg" viewBox="0 0 480 480" preserveAspectRatio="xMidYMid meet" fill="none" aria-hidden="true" focusable="false">
+    <div class="orrery orrery--footer" data-orrery="footer" aria-hidden="true"><svg class="orrery-svg" viewBox="0 0 480 480" preserveAspectRatio="xMidYMid meet" fill="none" aria-hidden="true" focusable="false">
   <circle class="o-boundary" cx="240" cy="240" r="140"/>
   <g class="o-graticule"><line x1="304" y1="240" x2="380" y2="240"/><line x1="295.4" y1="272" x2="361.2" y2="310"/><line x1="272" y1="295.4" x2="310" y2="361.2"/><line x1="240" y1="304" x2="240" y2="380"/><line x1="208" y1="295.4" x2="170" y2="361.2"/><line x1="184.6" y1="272" x2="118.8" y2="310"/><line x1="176" y1="240" x2="100" y2="240"/><line x1="184.6" y1="208" x2="118.8" y2="170"/><line x1="208" y1="184.6" x2="170" y2="118.8"/><line x1="240" y1="176" x2="240" y2="100"/><line x1="272" y1="184.6" x2="310" y2="118.8"/><line x1="295.4" y1="208" x2="361.2" y2="170"/></g>
   <g class="o-civic">
@@ -3435,6 +3581,799 @@ langCb.addEventListener('change', () => {
 document.querySelector('.lang-toggle').addEventListener('keydown', (e) => {
     if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); langCb.click(); }
 });
+</script>
+
+<script>
+/* orrery-gl.js — the instrument, rendered.
+
+   A dependency-free WebGL2 point-sprite orrery. Two mounts, one engine:
+
+     [data-orrery="hero"]  light on ink    — additive blend, brass + steel
+     [data-orrery="care"]  ink on paper    — premultiplied over, the care cycle
+
+   Every particle is one orbit: (radius, phase, angular speed) plus the two
+   basis vectors of its plane. The vertex shader integrates the orbit, so a
+   whole frame is a single draw call and nothing is touched on the CPU but
+   six uniforms. Colour is never hard-coded — it is read out of the CSS custom
+   properties on the mount, so scheme flips and token edits carry through.
+
+   The SVG under each mount is the no-JS / no-WebGL / print fallback. Only once
+   a context is live do we add `.is-live` and let CSS retire the strata the GPU
+   has taken over. `prefers-reduced-motion` draws exactly one still frame and
+   never starts a rAF loop. */
+
+(function () {
+    'use strict';
+
+    var mounts = document.querySelectorAll('[data-orrery]');
+    if (!mounts.length) return;
+
+    var TAU = Math.PI * 2;
+    var D2R = Math.PI / 180;
+    var FOV = 34 * D2R;
+    var STRIDE = 18;                       // floats per particle
+
+    var mqMotion = matchMedia('(prefers-reduced-motion: reduce)');
+    var mqDark = matchMedia('(prefers-color-scheme: dark)');
+
+    /* ── colour: resolve any CSS colour expression (var, color-mix) to sRGB ── */
+
+    var probe = document.createElement('span');
+    probe.setAttribute('aria-hidden', 'true');
+    probe.style.cssText = 'position:absolute;width:0;height:0;overflow:hidden;visibility:hidden';
+    var swatch = document.createElement('canvas');
+    swatch.width = swatch.height = 1;
+    var sctx = swatch.getContext('2d', { willReadFrequently: true });
+
+    function hue(host, expr, fallback) {
+        try {
+            probe.style.color = '';
+            probe.style.color = expr;
+            host.appendChild(probe);
+            var resolved = getComputedStyle(probe).color;
+            probe.remove();
+            sctx.fillStyle = '#000';
+            sctx.fillStyle = resolved;
+            sctx.fillRect(0, 0, 1, 1);
+            var d = sctx.getImageData(0, 0, 1, 1).data;
+            return [d[0] / 255, d[1] / 255, d[2] / 255];
+        } catch (e) {
+            probe.remove();
+            return fallback || [1, 1, 1];
+        }
+    }
+
+    /* ── maths ───────────────────────────────────────────────────────────── */
+
+    function perspective(out, fovY, aspect, near, far) {
+        var f = 1 / Math.tan(fovY / 2), nf = 1 / (near - far);
+        out[0] = f / aspect; out[1] = 0; out[2] = 0; out[3] = 0;
+        out[4] = 0; out[5] = f; out[6] = 0; out[7] = 0;
+        out[8] = 0; out[9] = 0; out[10] = (far + near) * nf; out[11] = -1;
+        out[12] = 0; out[13] = 0; out[14] = 2 * far * near * nf; out[15] = 0;
+    }
+
+    /* view = translate(0,0,-dist) · rotX(rx) · rotY(ry), column-major */
+    function viewMatrix(out, dist, rx, ry) {
+        var cx = Math.cos(rx), sx = Math.sin(rx);
+        var cy = Math.cos(ry), sy = Math.sin(ry);
+        out[0] = cy;       out[1] = sx * sy;  out[2] = -cx * sy; out[3] = 0;
+        out[4] = 0;        out[5] = cx;       out[6] = sx;       out[7] = 0;
+        out[8] = sy;       out[9] = -sx * cy; out[10] = cx * cy; out[11] = 0;
+        out[12] = 0;       out[13] = 0;       out[14] = -dist;   out[15] = 1;
+    }
+
+    function rotX(p, a) { var c = Math.cos(a), s = Math.sin(a); return [p[0], p[1] * c - p[2] * s, p[1] * s + p[2] * c]; }
+    function rotZ(p, a) { var c = Math.cos(a), s = Math.sin(a); return [p[0] * c - p[1] * s, p[0] * s + p[1] * c, p[2]]; }
+
+    /* A ring plane. Screen-space convention matches the SVGs: theta 0 points
+       right and grows clockwise, so v is -Y. `tilt` leans the plane away from
+       the camera, `swing` rotates that lean around the view axis. */
+    function plane(tilt, swing, squash) {
+        var u = rotX(rotZ([1, 0, 0], swing), tilt);
+        var v = rotX(rotZ([0, -1, 0], swing), tilt);
+        if (squash !== undefined) { u[2] *= squash; v[2] *= squash; }
+        return { u: u, v: v };
+    }
+
+    var FLAT = plane(0, 0);
+
+    /* mulberry32 — the instrument is identical on every load, like the SVGs */
+    function rng(seed) {
+        return function () {
+            seed |= 0; seed = (seed + 0x6D2B79F5) | 0;
+            var t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+            t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+            return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+        };
+    }
+
+    /* ── particle pen ────────────────────────────────────────────────────── */
+
+    function Pen() { this.d = []; this.n = 0; }
+
+    Pen.prototype.dot = function (radius, theta, o) {
+        var pl = o.plane || FLAT;
+        this.d.push(
+            radius, theta, o.spin || 0, o.pulse || 0,
+            pl.u[0], pl.u[1], pl.u[2],
+            pl.v[0], pl.v[1], pl.v[2],
+            o.color[0], o.color[1], o.color[2],
+            o.size, o.alpha, o.seed || 0, o.flare || 0,
+            o.group || 0
+        );
+        this.n++;
+    };
+
+    /* ── shaders ─────────────────────────────────────────────────────────── */
+
+    var VERT = [
+        '#version 300 es',
+        'precision highp float;',
+        'in vec4 a_orbit;',            // radius, theta0, spin, pulse-gain
+        'in vec3 a_u;',
+        'in vec3 a_v;',
+        'in vec3 a_color;',
+        'in vec4 a_style;',            // size, alpha, seed, flare
+        'in float a_group;',
+        'uniform mat4 u_mv;',
+        'uniform mat4 u_proj;',
+        'uniform vec2 u_offset;',
+        'uniform vec2 u_dcue;',        // reference depth, gain
+        'uniform vec3 u_spark;',       // colour the travelling light drives toward
+        'uniform float u_time;',
+        'uniform float u_flow;',       // head of the travelling light, radians
+        'uniform float u_px;',
+        'uniform float u_tail;',
+        'uniform float u_master;',
+        'uniform float u_maxpt;',
+        'uniform float u_group[8];',
+        'out vec3 v_color;',
+        'out float v_alpha;',
+        'out float v_flare;',
+        'const float TAU = 6.283185307179586;',
+        'void main() {',
+        /* group 7 rides the travelling light instead of its own clock, so the
+           head of the comet is a real bead on the ring, not a shader gradient */
+        '  float th = a_orbit.y + (a_group > 6.5 ? u_flow : a_orbit.z * u_time);',
+        '  vec3 p = a_orbit.x * (cos(th) * a_u + sin(th) * a_v);',
+        '  vec4 mv = u_mv * vec4(p, 1.0);',
+        '  vec4 clip = u_proj * mv;',
+        '  clip.xy += u_offset * clip.w;',
+        '  gl_Position = clip;',
+        '  float depth = max(-mv.z, 0.001);',
+        '  float g = u_group[int(a_group)];',
+        '  float d = mod(u_flow - th, TAU);',
+        '  float pulse = exp(-d * u_tail) * a_orbit.w;',
+        '  float tw = 0.88 + 0.12 * sin(u_time * 0.8 + a_style.z * TAU);',
+        '  float dc = clamp(1.0 + (u_dcue.x - depth) * u_dcue.y, 0.40, 1.75);',
+        '  float want = a_style.x * u_px * (1.0 + pulse * 0.5) / depth;',
+        '  float got = clamp(want, 1.0, u_maxpt);',
+        '  gl_PointSize = got;',
+        /* drivers cap point size (63px on some mobile GL ES). When a halo is
+           clamped, put the lost area back as density so the glow keeps its
+           weight instead of silently thinning out. */
+        '  float comp = clamp((want / got) * (want / got), 1.0, 3.5);',
+        '  v_alpha = clamp(a_style.y * g * tw * dc * u_master * comp * (1.0 + pulse * 1.15), 0.0, 1.0);',
+        '  v_color = mix(a_color, u_spark, clamp(pulse * 0.9, 0.0, 0.72));',
+        '  v_flare = a_style.w + pulse * 1.1;',
+        '}'
+    ].join('\n');
+
+    var FRAG = [
+        '#version 300 es',
+        'precision mediump float;',
+        'in vec3 v_color;',
+        'in float v_alpha;',
+        'in float v_flare;',
+        'out vec4 frag;',
+        'void main() {',
+        '  vec2 q = gl_PointCoord * 2.0 - 1.0;',
+        '  float r2 = dot(q, q);',
+        '  if (r2 >= 1.0) discard;',
+        '  float core = pow(1.0 - r2, 1.6);',
+        '  float halo = (1.0 - sqrt(r2)) * 0.34;',
+        '  float a = clamp((core * (1.0 + v_flare * 1.7) + halo) * v_alpha, 0.0, 1.0);',
+        '  frag = vec4(v_color * a, a);',   // premultiplied; suits both blend modes
+        '}'
+    ].join('\n');
+
+    function compile(gl, type, src) {
+        var sh = gl.createShader(type);
+        gl.shaderSource(sh, src);
+        gl.compileShader(sh);
+        if (!gl.getShaderParameter(sh, gl.COMPILE_STATUS)) { gl.deleteShader(sh); return null; }
+        return sh;
+    }
+
+    /* ── the instruments ─────────────────────────────────────────────────── */
+
+    /* An orrery of democracy: a flat cracked great circle (the brand mark, kept
+       circular so the favicon still reads), two armillary bands leaning away
+       from the viewer, a tilted AI orbit whose planet genuinely passes behind
+       the plane, and a shell of cool dust for the space it hangs in.
+
+       The footer runs the same instrument in its own, smaller viewBox at three
+       quarters density — a closing bookend, not a second event. */
+    function heroSpec(mount, footer) {
+        var CRACK_MID = -45 * D2R, CRACK_HALF = 23 * D2R;
+        var CIVIC = 0.01745;                                  // one turn / 360s
+        var D = footer ? 0.75 : 1;                            // density
+        var n = function (c) { return Math.max(1, Math.round(c * D)); };
+        return {
+            viewBox: footer ? [480, 480] : [1440, 913],
+            centre: footer ? [240, 240] : [410, 456],
+            /* 410 === centre[0]: the civic ring is inscribed to the left edge of
+               the design frame so its arc can never reach the fixed 80px lockup
+               gutter. Must stay in step with R in tools/build-orrery-hero.mjs. */
+            unit: footer ? 185 : 410,
+            preserve: footer ? 'meet' : 'slice',
+            blend: 'add', dcue: 0.16, tail: 1.5, spin: 0.235, master: 1,
+            parallax: footer ? [0.03, 0.02] : [0.085, 0.055],
+            palette: function (m) {
+                return {
+                    ring:   hue(m, 'var(--orrery-bright)', [0.79, 0.66, 0.38]),
+                    people: hue(m, 'color-mix(in srgb, var(--orrery-bright) 62%, #ffffff)', [0.9, 0.83, 0.68]),
+                    dust:   hue(m, 'color-mix(in srgb, var(--orrery-bright) 30%, #7d93ab)', [0.55, 0.6, 0.66]),
+                    ai:     hue(m, '#4bc3d4', [0.29, 0.76, 0.83]),
+                    spark:  [1, 1, 1]
+                };
+            },
+            build: function (pen, C) {
+                var rnd = rng(7), i, th, a, r, k;
+                /* two uniforms summed → a soft bell, so bands are dense at the
+                   centre line and feather at the edges instead of ending flat */
+                function bell() { return (rnd() + rnd() - 1); }
+
+                /* crack: the ring is open upper-right — that's how the light gets in */
+                function crackFade(t) {
+                    var d = Math.abs(((t - CRACK_MID + Math.PI) % TAU + TAU) % TAU - Math.PI);
+                    return Math.min(1, Math.max(0, (d - CRACK_HALF * 0.66) / (CRACK_HALF * 0.5)));
+                }
+
+                /* dust shell — cool, slow, the space the instrument hangs in */
+                var N = n(1150);
+                for (i = 0; i < N; i++) {
+                    r = 0.24 + Math.pow(rnd(), 0.62) * 2.05;
+                    pen.dot(r, rnd() * TAU, {
+                        plane: plane((rnd() - 0.5) * Math.PI, rnd() * TAU, 0.42),
+                        spin: (rnd() - 0.5) * 0.012,
+                        color: rnd() < 0.24 ? C.ring : C.dust,
+                        size: 0.0030 + rnd() * 0.0068,
+                        alpha: 0.06 + rnd() * 0.20,
+                        seed: rnd(), group: 0
+                    });
+                }
+                /* the civic great circle — a filament of light, not a bead string */
+                N = n(1700);
+                for (i = 0; i < N; i++) {
+                    th = (i / N) * TAU - Math.PI + (rnd() - 0.5) * 0.005;
+                    a = crackFade(th); if (a < 0.02) continue;
+                    pen.dot(1 + bell() * 0.0032, th, {
+                        spin: CIVIC, pulse: 1, color: C.ring,
+                        size: 0.0042 + rnd() * 0.0032, alpha: (0.15 + rnd() * 0.17) * a,
+                        seed: rnd(), group: 1
+                    });
+                }
+                /* graduated rim: 60 radial ticks, every fifth one long */
+                for (i = 0; i < 60; i++) {
+                    th = -Math.PI + (i / 60) * TAU;
+                    a = crackFade(th); if (a < 0.02) continue;
+                    var major = i % 5 === 0;
+                    for (k = 0; k < (major ? 5 : 3); k++) {
+                        pen.dot(0.951 + k * (major ? 0.0105 : 0.0088), th, {
+                            spin: CIVIC, pulse: 1, color: C.ring,
+                            size: major ? 0.0072 : 0.0052,
+                            alpha: (major ? 0.46 : 0.24) * a,
+                            seed: rnd(), group: 1
+                        });
+                    }
+                }
+                /* the forty, standing on the ring */
+                for (i = 0; i < 40; i++) {
+                    th = -Math.PI + ((i + 0.5) / 40) * TAU + (rnd() - 0.5) * 0.055;
+                    a = crackFade(th); if (a < 0.04) continue;
+                    pen.dot(1 + bell() * 0.016, th, {
+                        spin: CIVIC, pulse: 1.25, color: C.people,
+                        size: 0.0140 + rnd() * 0.0130, alpha: (0.58 + rnd() * 0.36) * a,
+                        seed: rnd(), flare: 0.35, group: 2
+                    });
+                }
+                /* the glint riding the crack */
+                pen.dot(1, CRACK_MID, { spin: CIVIC, color: [1, 1, 1], size: 0.044, alpha: 1, flare: 1.6, group: 2 });
+                pen.dot(1, CRACK_MID, { spin: CIVIC, color: C.people, size: 0.098, alpha: 0.26, group: 2 });
+                pen.dot(1, CRACK_MID, { spin: CIVIC, color: C.ring, size: 0.195, alpha: 0.10, group: 2 });
+
+                /* armillary bands — where the flat mark becomes an instrument */
+                var bands = [
+                    { r: 0.862, tilt: 74 * D2R, swing: 0, n: n(420), spin: -0.0255, a: 0.19 },
+                    { r: 0.742, tilt: 67 * D2R, swing: 63 * D2R, n: n(360), spin: 0.0195, a: 0.15 }
+                ];
+                for (var b = 0; b < bands.length; b++) {
+                    var B = bands[b], pl = plane(B.tilt, B.swing);
+                    for (i = 0; i < B.n; i++) {
+                        pen.dot(B.r + bell() * 0.010, (i / B.n) * TAU, {
+                            plane: pl, spin: B.spin, color: rnd() < 0.3 ? C.dust : C.ring,
+                            size: 0.0042 + rnd() * 0.0040, alpha: B.a * (0.5 + rnd() * 0.8),
+                            seed: rnd(), group: 3
+                        });
+                    }
+                }
+
+                /* the bounded horizon — dashed, flat, patient */
+                N = n(260);
+                for (i = 0; i < N; i++) {
+                    if (i % 5 > 2) continue;
+                    pen.dot(0.569 + bell() * 0.004, (i / N) * TAU, {
+                        spin: 0.0082, color: C.ring, size: 0.0046 + rnd() * 0.002,
+                        alpha: 0.20 + rnd() * 0.1, seed: rnd(), group: 4
+                    });
+                }
+                /* the AI orbit: tilted, so the planet swings in front of and
+                   behind the civic plane once every 48 seconds */
+                var aiPlane = plane(64 * D2R, 17 * D2R);
+                N = n(300);
+                for (i = 0; i < N; i++) {
+                    pen.dot(0.331 + bell() * 0.005, (i / N) * TAU, {
+                        plane: aiPlane, spin: 0.1309, color: C.ai,
+                        size: 0.0042 + rnd() * 0.0030, alpha: 0.34 + rnd() * 0.24,
+                        seed: rnd(), group: 5
+                    });
+                }
+                pen.dot(0.331, -Math.PI / 2, { plane: aiPlane, spin: 0.1309, color: C.ai, size: 0.050, alpha: 1, flare: 1.5, group: 6 });
+                pen.dot(0.331, -Math.PI / 2, { plane: aiPlane, spin: 0.1309, color: C.ai, size: 0.150, alpha: 0.26, group: 6 });
+
+                pen.dot(0, 0, { color: C.people, size: 0.022, alpha: 1, flare: 0.9, group: 6 });
+                pen.dot(0, 0, { color: C.ring, size: 0.105, alpha: 0.15, group: 6 });
+            }
+        };
+    }
+
+    /* The 6-Pack of Care, read as an instrument. The four arcs stay flat and
+       registered with their chips — this is a diagram before it is a picture —
+       but they are drawn as bands of light with the cycle running through them,
+       so the loop visibly turns. Groups 0-3 are the arcs, 4 the solidarity
+       field, 5 its rim, 6 the centre. */
+    function careSpec(mount) {
+        var ARCS = [[-128, -52], [-38, 38], [52, 128], [142, 218]];
+        return {
+            viewBox: [620, 620], centre: [310, 310], unit: 292, preserve: 'meet',
+            blend: 'over', dcue: 0.1, tail: 2.0, spin: 0.52, master: 1,
+            parallax: [0.05, 0.035], arcs: ARCS,
+            palette: function (m) {
+                return {
+                    p1: hue(m, 'var(--care-p1)', [0.49, 0.39, 0.19]),
+                    p2: hue(m, 'var(--care-p2)', [0.79, 0.66, 0.38]),
+                    p3: hue(m, 'var(--care-p3)', [0.16, 0.5, 0.54]),
+                    p4: hue(m, 'var(--care-p4)', [0.2, 0.4, 0.44]),
+                    p5: hue(m, 'var(--care-p5)', [0.4, 0.55, 0.5]),
+                    p6: hue(m, 'var(--care-p6)', [0.79, 0.66, 0.38]),
+                    spark: hue(m, 'var(--care-spark)', [0.1, 0.15, 0.2])
+                };
+            },
+            build: function (pen, C) {
+                var rnd = rng(19), i, j, t, th;
+                function bell() { return (rnd() + rnd() + rnd() - 1.5) * 0.667; }
+
+                /* Four arcs of the cycle. The SVG draws them as 12px strokes;
+                   here each is a bell-weighted band of motes of the same weight,
+                   so the stroke has grain and the cycle can run through it. */
+                for (j = 0; j < 4; j++) {
+                    var a0 = ARCS[j][0] * D2R, a1 = ARCS[j][1] * D2R;
+                    var col = C['p' + (j + 1)];
+                    for (i = 0; i < 780; i++) {
+                        t = i / 779;
+                        var edge = Math.min(1, Math.min(t, 1 - t) / 0.045);   // rounded caps
+                        th = a0 + (a1 - a0) * t + (rnd() - 0.5) * 0.010;
+                        pen.dot(0.808 + bell() * 0.024, th, {
+                            spin: 0, pulse: 1, color: col,
+                            size: 0.012 + rnd() * 0.014,
+                            alpha: (0.30 + rnd() * 0.30) * edge,
+                            seed: rnd(), group: j
+                        });
+                    }
+                }
+
+                /* The solidarity field. Big soft motes at low alpha make a wash;
+                   a scatter of small sharp grains keeps it from reading as noise.
+                   Weighted toward the centre so it thins out before the rim. */
+                for (i = 0; i < 420; i++) {
+                    pen.dot(0.56 * Math.pow(rnd(), 0.62), rnd() * TAU, {
+                        plane: plane((rnd() - 0.5) * 1.15, rnd() * TAU, 0.45),
+                        spin: -0.030 - rnd() * 0.035, color: C.p5,
+                        size: 0.017 + rnd() * 0.034, alpha: 0.07 + rnd() * 0.13,
+                        seed: rnd(), group: 4
+                    });
+                }
+                for (i = 0; i < 95; i++) {
+                    pen.dot(0.55 * Math.pow(rnd(), 0.5), rnd() * TAU, {
+                        plane: plane((rnd() - 0.5) * 1.15, rnd() * TAU, 0.45),
+                        spin: -0.030 - rnd() * 0.04, color: C.p5,
+                        size: 0.008 + rnd() * 0.009, alpha: 0.40 + rnd() * 0.38,
+                        seed: rnd(), flare: 0.4, group: 4
+                    });
+                }
+                for (i = 0; i < 224; i++) {
+                    if (i % 4 > 1) continue;
+                    pen.dot(0.589 + bell() * 0.004, (i / 224) * TAU, {
+                        spin: -0.018, color: C.p5, size: 0.010 + rnd() * 0.005,
+                        alpha: 0.55 + rnd() * 0.28, seed: rnd(), group: 5
+                    });
+                }
+
+                /* the centre it all answers to */
+                pen.dot(0, 0, { color: C.p6, size: 0.030, alpha: 1, flare: 0.9, group: 6 });
+                pen.dot(0, 0, { color: C.p6, size: 0.100, alpha: 0.16, group: 6 });
+
+                /* the head of the cycle — a bead that actually rides the loop
+                   (group 7 takes its angle from u_flow), with a short comb of
+                   sparks dragging behind it */
+                pen.dot(0.808, 0, { color: C.spark, size: 0.019, alpha: 1, flare: 1.9, group: 7 });
+                pen.dot(0.808, 0, { color: C.p6, size: 0.056, alpha: 0.30, group: 7 });
+                pen.dot(0.808, 0, { color: C.p6, size: 0.140, alpha: 0.085, group: 7 });
+                for (i = 1; i <= 5; i++) {
+                    pen.dot(0.808 + bell() * 0.010, -i * 0.030, {
+                        color: C.spark, size: 0.0135 - i * 0.0013,
+                        alpha: 0.44 - i * 0.070, seed: rnd(), flare: 0.6, group: 7
+                    });
+                }
+            }
+        };
+    }
+
+    /* ── instrument runtime ──────────────────────────────────────────────── */
+
+    function Instrument(mount, spec) {
+        var canvas = document.createElement('canvas');
+        canvas.className = 'orrery-gl';
+        canvas.setAttribute('aria-hidden', 'true');
+
+        var gl = canvas.getContext('webgl2', {
+            alpha: true, antialias: false, depth: false, stencil: false,
+            premultipliedAlpha: true, powerPreference: 'low-power', desynchronized: true
+        });
+        if (!gl) return null;
+
+        var vs = compile(gl, gl.VERTEX_SHADER, VERT);
+        var fs = compile(gl, gl.FRAGMENT_SHADER, FRAG);
+        if (!vs || !fs) return null;
+        var prog = gl.createProgram();
+        gl.attachShader(prog, vs); gl.attachShader(prog, fs); gl.linkProgram(prog);
+        if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) return null;
+        gl.useProgram(prog);
+
+        var U = {};
+        ['u_mv', 'u_proj', 'u_offset', 'u_dcue', 'u_spark', 'u_time', 'u_flow',
+         'u_px', 'u_tail', 'u_master', 'u_maxpt'].forEach(function (k) { U[k] = gl.getUniformLocation(prog, k); });
+        U.u_group = gl.getUniformLocation(prog, 'u_group[0]');
+        var ptRange = gl.getParameter(gl.ALIASED_POINT_SIZE_RANGE);
+        var maxPt = Math.max(16, Math.min(ptRange && ptRange[1] ? ptRange[1] : 255, 255));
+
+        var vao = gl.createVertexArray();
+        gl.bindVertexArray(vao);
+        var buf = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+        var LAYOUT = [['a_orbit', 4, 0], ['a_u', 3, 4], ['a_v', 3, 7],
+                      ['a_color', 3, 10], ['a_style', 4, 13], ['a_group', 1, 17]];
+        LAYOUT.forEach(function (f) {
+            var loc = gl.getAttribLocation(prog, f[0]);
+            if (loc < 0) return;
+            gl.enableVertexAttribArray(loc);
+            gl.vertexAttribPointer(loc, f[1], gl.FLOAT, false, STRIDE * 4, f[2] * 4);
+        });
+
+        gl.disable(gl.DEPTH_TEST);
+        gl.enable(gl.BLEND);
+        if (spec.blend === 'add') gl.blendFunc(gl.ONE, gl.ONE);
+        else gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
+        gl.clearColor(0, 0, 0, 0);
+
+        var count = 0, spark = [1, 1, 1];
+        function upload() {
+            var C = spec.palette(mount);
+            spark = C.spark || [1, 1, 1];
+            var pen = new Pen();
+            spec.build(pen, C);
+            count = pen.n;
+            gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+            gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(pen.d), gl.STATIC_DRAW);
+        }
+        upload();
+
+        var proj = new Float32Array(16), mv = new Float32Array(16);
+        var groups = new Float32Array([1, 1, 1, 1, 1, 1, 1, 1]);
+        var target = new Float32Array([1, 1, 1, 1, 1, 1, 1, 1]);
+        var dist = 4, pxScale = 1, off = [0, 0], dcue = [4, spec.dcue];
+        var wantX = 0, wantY = 0, haveX = 0, haveY = 0;
+        var flow = 0, park = null, master = 0;
+
+        function layout() {
+            var w = mount.clientWidth, h = mount.clientHeight;
+            if (!w || !h) return false;
+            var dpr = Math.min(window.devicePixelRatio || 1, 2);
+            var bw = Math.max(1, Math.round(w * dpr)), bh = Math.max(1, Math.round(h * dpr));
+            if (canvas.width !== bw || canvas.height !== bh) { canvas.width = bw; canvas.height = bh; }
+            gl.viewport(0, 0, bw, bh);
+            var vb = spec.viewBox;
+            var s = spec.preserve === 'slice'
+                ? Math.max(w / vb[0], h / vb[1])
+                : Math.min(w / vb[0], h / vb[1]);
+            var cx = spec.centre[0] * s + (w - vb[0] * s) / 2;
+            var cy = spec.centre[1] * s + (h - vb[1] * s) / 2;
+            var R = spec.unit * s;
+            var f = 1 / Math.tan(FOV / 2);
+            dist = f * h / (2 * R);
+            perspective(proj, FOV, w / h, 0.05, 60);
+            off[0] = (2 * cx / w) - 1;
+            off[1] = 1 - (2 * cy / h);
+            pxScale = f * bh / 2;
+            dcue[0] = dist;
+            return true;
+        }
+
+        var arcNow = -2;
+
+        function draw(t, dt) {
+            if (!count) return;
+            /* pointer parallax, critically damped */
+            var k = 1 - Math.exp(-dt * 3.2);
+            haveX += (wantX - haveX) * k;
+            haveY += (wantY - haveY) * k;
+
+            /* the travelling light */
+            if (park === null) {
+                flow += dt * spec.spin;
+            } else {
+                var delta = ((park - flow) % TAU + TAU) % TAU;
+                if (delta > Math.PI * 1.5) delta -= TAU;          // nearest way round
+                flow += delta * (1 - Math.exp(-dt * 3.4));
+            }
+            flow = ((flow % TAU) + TAU) % TAU;
+
+            /* narrate the loop: tell the page which arc the head is on */
+            if (spec.arcs && api.onArc) {
+                var deg = flow * 180 / Math.PI;
+                if (deg > 180) deg -= 360;
+                var hit = -1;
+                for (var q = 0; q < 4; q++) {
+                    var lo = spec.arcs[q][0], hi = spec.arcs[q][1];
+                    var v = deg; if (v < lo - 180) v += 360;
+                    if (v >= lo && v <= hi) { hit = q; break; }
+                }
+                if (hit !== arcNow) { arcNow = hit; api.onArc(hit); }
+            }
+
+            for (var i = 0; i < 8; i++) groups[i] += (target[i] - groups[i]) * (1 - Math.exp(-dt * 5));
+            master += (1 - master) * (1 - Math.exp(-dt * 1.1));
+
+            viewMatrix(mv, dist, -haveY * spec.parallax[1], haveX * spec.parallax[0]);
+            gl.useProgram(prog);
+            gl.bindVertexArray(vao);
+            gl.uniformMatrix4fv(U.u_proj, false, proj);
+            gl.uniformMatrix4fv(U.u_mv, false, mv);
+            gl.uniform2fv(U.u_offset, off);
+            gl.uniform2fv(U.u_dcue, dcue);
+            gl.uniform3fv(U.u_spark, spark);
+            gl.uniform1f(U.u_time, t);
+            gl.uniform1f(U.u_flow, flow);
+            gl.uniform1f(U.u_px, pxScale);
+            gl.uniform1f(U.u_tail, spec.tail);
+            gl.uniform1f(U.u_master, spec.master * master);
+            gl.uniform1f(U.u_maxpt, maxPt);
+            gl.uniform1fv(U.u_group, groups);
+            gl.clear(gl.COLOR_BUFFER_BIT);
+            gl.drawArrays(gl.POINTS, 0, count);
+        }
+
+        var api = {
+            mount: mount, canvas: canvas, gl: gl, spec: spec,
+            layout: layout, draw: draw, upload: upload,
+            still: function () { master = 1; for (var i = 0; i < 8; i++) groups[i] = target[i]; },
+            point: function (x, y) { wantX = x; wantY = y; },
+            park: function (a) { park = a; },
+            group: function (i, v) { target[i] = v; },
+            lost: false
+        };
+        return api;
+    }
+
+    /* ── boot ────────────────────────────────────────────────────────────── */
+
+    var live = [];
+
+    mounts.forEach(function (mount) {
+        var kind = mount.getAttribute('data-orrery');
+        var spec = kind === 'hero' ? heroSpec(mount, false)
+                 : kind === 'footer' ? heroSpec(mount, true)
+                 : kind === 'care' ? careSpec(mount) : null;
+        if (!spec) return;
+
+        var inst;
+        try { inst = Instrument(mount, spec); } catch (e) { inst = null; }
+        if (!inst) return;
+
+        mount.appendChild(inst.canvas);
+        if (!inst.layout()) { inst.canvas.remove(); return; }
+        mount.classList.add('is-live');
+        inst.kind = kind;
+        live.push(inst);
+
+        /* A lost context invalidates every GL object we hold. Rebuilding is not
+           worth it for a decorative layer — retire this instrument for good and
+           give the SVG engraving back, which is exactly the no-WebGL path. */
+        inst.canvas.addEventListener('webglcontextlost', function (e) {
+            e.preventDefault();
+            inst.lost = true;
+            mount.classList.remove('is-live');
+            inst.canvas.remove();
+        });
+
+        /* Resizing reallocates (and so clears) the backing store. With motion
+           reduced there is no loop to repaint it, so draw the still frame here
+           or the canvas is left blank while `.is-live` hides the SVG. */
+        var relayout = function () {
+            if (!inst.layout()) return;
+            inst.dirty = true;
+            if (mqMotion.matches) redrawStill(inst);
+        };
+        if (typeof ResizeObserver === 'function') new ResizeObserver(relayout).observe(mount);
+        else addEventListener('resize', relayout, { passive: true });
+
+        if (typeof IntersectionObserver === 'function') {
+            new IntersectionObserver(function (es) { inst.onscreen = es[0].isIntersecting; },
+                { rootMargin: '120px' }).observe(mount);
+        } else { inst.onscreen = true; }
+
+        wire(inst, kind, mount);
+    });
+
+    if (!live.length) return;
+
+    /* A pose, not a frame: enough time on the clock that the travelling light
+       has already arrived somewhere interesting. */
+    function redrawStill(inst) {
+        inst.still();
+        inst.draw(6.5, 0);
+    }
+
+    /* colour tokens can flip under the user (scheme switch) — rebuild in place */
+    function repalette() {
+        live.forEach(function (i) {
+            i.upload();
+            i.dirty = true;
+            if (mqMotion.matches) redrawStill(i);
+        });
+    }
+    if (mqDark.addEventListener) mqDark.addEventListener('change', repalette);
+
+    /* ── interaction wiring ──────────────────────────────────────────────── */
+
+    function wire(inst, kind, mount) {
+        if (kind === 'hero' || kind === 'footer') {
+            var host = mount.parentNode;
+            addEventListener('pointermove', function (e) {
+                if (!inst.onscreen || e.pointerType === 'touch') return;
+                var r = host.getBoundingClientRect();
+                inst.point(
+                    Math.max(-1, Math.min(1, ((e.clientX - r.left) / r.width) * 2 - 1)),
+                    Math.max(-1, Math.min(1, ((e.clientY - r.top) / r.height) * 2 - 1))
+                );
+            }, { passive: true });
+            addEventListener('pointerleave', function () { inst.point(0, 0); }, { passive: true });
+            return;
+        }
+
+        /* care: the chips park the cycle and bloom their own arc */
+        var root = mount.closest('.care-map') || mount.parentNode;
+        var arcCentre = [-90, 0, 90, 180];
+        var pinned = -1, hovered = -1;
+
+        function apply() {
+            var n = hovered >= 0 ? hovered : pinned;
+            for (var i = 0; i < 7; i++) inst.group(i, 1);
+            if (n < 0) { inst.park(null); return; }
+            if (n < 4) {
+                for (var j = 0; j < 4; j++) inst.group(j, j === n ? 1.85 : 0.42);
+                inst.group(4, 0.55); inst.group(5, 0.6);
+                inst.park(arcCentre[n] * D2R);
+            } else if (n === 4) {
+                for (var q = 0; q < 4; q++) inst.group(q, 0.45);
+                inst.group(4, 2.1); inst.group(5, 1.8);
+                inst.park(null);
+            } else {
+                for (var s = 0; s < 5; s++) inst.group(s, 0.5);
+                inst.group(5, 1.0); inst.group(6, 1.6);
+                inst.park(null);
+            }
+        }
+
+        root.querySelectorAll('.care-map-chip').forEach(function (chip) {
+            var m = /#care-pack-(\d)/.exec(chip.getAttribute('href') || '');
+            if (!m) return;
+            var idx = +m[1] - 1;
+            var on = function () { hovered = idx; apply(); };
+            var off = function () { hovered = -1; apply(); };
+            chip.addEventListener('pointerenter', on);
+            chip.addEventListener('pointerleave', off);
+            chip.addEventListener('focus', on);
+            chip.addEventListener('blur', off);
+        });
+
+        /* the cards below the map hold the same six identities */
+        root.parentNode.querySelectorAll('.work-grid > .work-item').forEach(function (item, i) {
+            item.addEventListener('pointerenter', function () { hovered = i; apply(); });
+            item.addEventListener('pointerleave', function () { hovered = -1; apply(); });
+        });
+
+        /* the diagram narrates itself: as the head enters an arc, its chip and
+           the matching card index quietly take the light for a beat */
+        var packs = [];
+        for (var p = 1; p <= 4; p++) {
+            packs.push(root.querySelector('.care-map-dial > .care-map-chip[href="#care-pack-' + p + '"]'));
+        }
+        var litItems = root.parentNode.querySelectorAll('.work-grid > .work-item');
+        inst.onArc = function (n) {
+            if (mqMotion.matches) n = -1;
+            for (var i = 0; i < 4; i++) {
+                if (packs[i]) packs[i].classList.toggle('is-lit', i === n);
+                if (litItems[i]) litItems[i].classList.toggle('is-lit', i === n);
+            }
+        };
+
+        function fromHash() {
+            var m = /^#care-pack-(\d)$/.exec(location.hash);
+            pinned = m ? +m[1] - 1 : -1;
+            apply();
+        }
+        addEventListener('hashchange', fromHash);
+        fromHash();
+    }
+
+    /* ── the loop ────────────────────────────────────────────────────────── */
+
+    function still() {
+        live.forEach(function (i) { i.layout(); redrawStill(i); });
+    }
+
+    var raf = 0, last = 0, t = 0;
+
+    function frame(now) {
+        raf = requestAnimationFrame(frame);
+        var dt = last ? Math.min((now - last) / 1000, 0.05) : 0.016;
+        last = now;
+        t += dt;
+        for (var i = 0; i < live.length; i++) {
+            var inst = live[i];
+            if (inst.lost) continue;
+            if (!inst.onscreen && !inst.dirty) continue;
+            inst.dirty = false;
+            inst.draw(t, dt);
+        }
+    }
+
+    function start() {
+        if (raf || mqMotion.matches) return;
+        last = 0;
+        raf = requestAnimationFrame(frame);
+    }
+    function stop() {
+        if (!raf) return;
+        cancelAnimationFrame(raf);
+        raf = 0;
+    }
+
+    if (mqMotion.matches) still(); else start();
+
+    document.addEventListener('visibilitychange', function () {
+        if (document.hidden) stop();
+        else if (!mqMotion.matches) start();
+    });
+    if (mqMotion.addEventListener) {
+        mqMotion.addEventListener('change', function () {
+            if (mqMotion.matches) { stop(); still(); } else start();
+        });
+    }
+})();
 </script>
 
 <script type="application/ld+json">

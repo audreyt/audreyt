@@ -800,7 +800,7 @@ function renderCivicAI(): string {
     lines.push(`${I}            </a>`);
     lines.push(`${I}        </div>`);
     lines.push(`${I}        <div class="care-map-body">`);
-    lines.push(`${I}            <div class="care-map-dial" aria-label="6-Pack of Care map">`);
+    lines.push(`${I}            <div class="care-map-dial" data-orrery="care" aria-label="6-Pack of Care map">`);
     lines.push(`${I}                <svg class="care-map-svg" viewBox="0 0 620 620" aria-hidden="true" focusable="false">`);
     lines.push(`${I}                    <circle class="care-map-rim" cx="310" cy="310" r="292"/>`);
     lines.push(`${I}                    <line class="care-map-horizon" x1="82" y1="310" x2="538" y2="310"/>`);

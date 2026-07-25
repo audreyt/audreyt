@@ -3,7 +3,18 @@
 // Run: bun tools/build-orrery-hero.mjs   (deterministic; seeded RNG)
 import { writeFileSync } from "node:fs";
 
-const cx = 410, cy = 456, R = 362;
+// R is inscribed to the LEFT EDGE of the design frame: cx - R === 0. That is
+// load-bearing, not decorative. The lockup lane is a fixed 80px gutter in CSS
+// px, but the orrery is `slice`-scaled, so as the window widens the ring grows
+// while the type does not — at the old R=362 the left arc swung up through
+// "CYBER AMBASSADOR" at every width (measured: it needed 371 at 1280px rising
+// to 383 at 3440px, asymptotic to cx). With R = cx the arc's own centre line
+// lands on viewBox x=0, so it can never enter the gutter, and the clearance
+// only improves as the window gets wider. Every other radius below is the
+// original hand-tuned drawing scaled by K, so the composition is unchanged.
+const cx = 410, cy = 456, R = 410;
+const K = R / 362;
+const k = (v) => +(v * K).toFixed(2);
 const pol = (r, a) => [cx + r * Math.cos(a), cy + r * Math.sin(a)];
 
 // The civic ring is cracked open upper-right — the same opening as favicon.svg
@@ -33,7 +44,7 @@ for (let i = 0; i < 60; i++) {
   const a = (2 * Math.PI * i) / 60;
   if (inCrack(a)) continue;                        // clean break across the crack
   const [x1, y1] = pol(R, a);
-  const [x2, y2] = pol(R - (i % 5 === 0 ? 11 : 6), a);
+  const [x2, y2] = pol(R - (i % 5 === 0 ? k(11) : k(6)), a);
   ticks += `<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}"/>`;
 }
 
@@ -42,7 +53,7 @@ let nodes = "";
 for (let i = 0; i < 40; i++) {
   const a = (2 * Math.PI * i) / 40 + (rand() - 0.5) * 0.024;
   const [x, y] = pol(R, a);
-  const r = (1.6 + rand() * 1.5).toFixed(2);       // advance RNG before the skip → survivors unchanged
+  const r = ((1.6 + rand() * 1.5) * K).toFixed(2);  // advance RNG before the skip → survivors unchanged
   if (inCrack(a)) continue;                         // people part at the opening
   nodes += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${r}"/>`;
 }
@@ -50,12 +61,12 @@ for (let i = 0; i < 40; i++) {
 let rad = "";
 for (let i = 0; i < 12; i++) {
   const a = (2 * Math.PI * i) / 12;
-  const [x1, y1] = pol(132, a);
-  const [x2, y2] = pol(R - 2, a);
+  const [x1, y1] = pol(k(132), a);
+  const [x2, y2] = pol(R - k(2), a);
   rad += `<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}"/>`;
 }
 
-const capR = R + 18;
+const capR = R + k(18);
 const [ax1, ay1] = pol(capR, Math.PI * 0.74);
 const [ax2, ay2] = pol(capR, Math.PI * 0.26);
 const capPath = `M ${ax1.toFixed(1)} ${ay1.toFixed(1)} A ${capR} ${capR} 0 0 1 ${ax2.toFixed(1)} ${ay2.toFixed(1)}`;
@@ -70,28 +81,28 @@ const [glx, gly] = pol(R, d2r(crackMid));               // the glint: on the out
 const svg = `<svg class="orrery-svg" viewBox="0 0 1440 913" preserveAspectRatio="xMidYMid slice"
      fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
   <defs>
-    <radialGradient id="orrery-halo" cx="${cx}" cy="${cy}" r="360" gradientUnits="userSpaceOnUse">
+    <radialGradient id="orrery-halo" cx="${cx}" cy="${cy}" r="${k(360)}" gradientUnits="userSpaceOnUse">
       <stop class="o-halo-0" offset="0"/><stop class="o-halo-1" offset="0.55"/><stop class="o-halo-2" offset="1"/>
     </radialGradient>
     <path id="orrery-cap" d="${capPath}"/>
   </defs>
-  <circle class="o-boundary" cx="${cx}" cy="${cy}" r="206"/>
+  <circle class="o-boundary" cx="${cx}" cy="${cy}" r="${k(206)}"/>
   <g class="o-graticule">${rad}</g>
   <g class="o-civic">
     <path class="o-civic-ring" d="${ringPath}"/>
     <g class="o-ticks">${ticks}</g>
     <g class="o-people">${nodes}</g>
-    <circle class="o-civic-glint-halo" cx="${glx.toFixed(1)}" cy="${gly.toFixed(1)}" r="14"/>
-    <circle class="o-civic-glint" cx="${glx.toFixed(1)}" cy="${gly.toFixed(1)}" r="5.5"/>
+    <circle class="o-civic-glint-halo" cx="${glx.toFixed(1)}" cy="${gly.toFixed(1)}" r="${k(14)}"/>
+    <circle class="o-civic-glint" cx="${glx.toFixed(1)}" cy="${gly.toFixed(1)}" r="${k(5.5)}"/>
   </g>
   <rect class="o-halo" x="0" y="0" width="1440" height="913" fill="url(#orrery-halo)"/>
   <g class="o-ai">
-    <circle class="o-ai-ring" cx="${cx}" cy="${cy}" r="120"/>
-    <circle class="o-ai-disc" cx="${cx}" cy="${cy}" r="120"/>
-    <circle class="o-ai-planet" cx="${cx}" cy="${cy - 120}" r="6"/>
-    <circle class="o-ai-halo" cx="${cx}" cy="${cy - 120}" r="13"/>
+    <circle class="o-ai-ring" cx="${cx}" cy="${cy}" r="${k(120)}"/>
+    <circle class="o-ai-disc" cx="${cx}" cy="${cy}" r="${k(120)}"/>
+    <circle class="o-ai-planet" cx="${cx}" cy="${cy - k(120)}" r="${k(6)}"/>
+    <circle class="o-ai-halo" cx="${cx}" cy="${cy - k(120)}" r="${k(13)}"/>
   </g>
-  <circle class="o-centre" cx="${cx}" cy="${cy}" r="2.6"/>
+  <circle class="o-centre" cx="${cx}" cy="${cy}" r="${k(2.6)}"/>
   <text class="o-caption" aria-hidden="true"><textPath href="#orrery-cap" startOffset="50%" text-anchor="middle" aria-hidden="true">AI · IN · THE · LOOP · OF · HUMANITY</textPath></text>
 </svg>
 `;
