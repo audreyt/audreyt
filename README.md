@@ -108,9 +108,9 @@ These agents are modelled on **local Kami**: guardian spirits bound to a specifi
 
 #### Case Study · Taiwan, 2024: Deliberative Poll on Deepfake Regulation
 
-AI-generated scam ads impersonating Jensen Huang were costing Taiwanese citizens millions of dollars. 200,000 text messages went out to randomly selected numbers across Taiwan, asking one question: what should be done? Thousands volunteered; 447 were chosen by lottery to mirror the country’s demographics. They deliberated in 44 virtual rooms. A [Trustworthy AI Dialogue Engine](https://taide.tw/en) synthesised their proposals the same day.
+AI-generated scam ads impersonating Jensen Huang were costing Taiwanese citizens millions of dollars. 200,000 text messages went out to randomly selected numbers across Taiwan, asking one question: what should be done? From those who responded, 447 were chosen by lottery to mirror the country’s demographics. They deliberated in 44 virtual rooms. A [Trustworthy AI Dialogue Engine](https://taide.tw/en) synthesised their proposals the same day.
 
-Three measures emerged — label unsigned ads as probable scams; hold platforms liable for losses from unsolicited deepfakes; slow down non-compliant services until they comply — actor-and-behavior regulation, not content moderation. 85% of the assembly agreed. The law passed with multiparty support. By 2025, impersonation ads on Taiwanese social media fell by 94%.
+Three measures emerged — label unsigned ads as probable scams; hold platforms liable for losses from unsolicited deepfakes; slow down non-compliant services until they comply — actor-and-behavior regulation, not content moderation. 85% of the assembly agreed. The law passed with multiparty support. By mid-2026, impersonation ads on Taiwanese social media had fallen 98% from their 2024 peak.
 
 Read the full framework at civic.ai →
 
