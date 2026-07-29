@@ -795,8 +795,9 @@ function renderCivicAI(): string {
     lines.push(`${I}    <div class="care-map-frame">`);
     lines.push(`${I}        <div class="care-map-title">`);
     lines.push(`${I}            <a class="care-map-chip" href="#care-pack-6">`);
-    lines.push(`${I}                <span id="care-map-title-en" lang="en-GB">Pack 6 &middot; ${entEn(enItems[5].name)} &mdash; the boundary in time</span>`);
-    lines.push(`${I}                <span id="care-map-title-zh" lang="zh-TW">第六力&#x30FB;${entZh(zhItems[5].name)}&mdash;&mdash;時間中的邊界</span>`);
+    lines.push(`${I}                <span class="care-map-chip-num" aria-hidden="true">6</span>`);
+    lines.push(`${I}                <span id="care-map-title-en" lang="en-GB">${entEn(enItems[5].name)}</span>`);
+    lines.push(`${I}                <span id="care-map-title-zh" lang="zh-TW">${entZh(zhItems[5].name)}</span>`);
     lines.push(`${I}            </a>`);
     lines.push(`${I}        </div>`);
     lines.push(`${I}        <div class="care-map-body">`);
