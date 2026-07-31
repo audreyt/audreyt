@@ -2,15 +2,14 @@
 // Builds og-trust-by-design.jpg — the share card for trust-by-design.html.
 // Run: bun tools/build-og-trust-by-design.mjs      (deterministic; no network)
 //
-// Bilingual title card from the page's own vocabulary — same asset for both
+// English title card from the page's own vocabulary — same asset for both
 // deployments (cyberambassador.tw / audreyt.org):
 //
 //  * washi ground + the page's own feTurbulence grain tile (body::before);
-//  * a feed-legible English / zh-TW title lockup and bilingual attribution;
+//  * a feed-legible English title lockup (no zh-TW line — one headline, full size);
 //  * the .art-frame tonal washes (kin upper-right, shu lower-left, ai mid);
-//  * the favicon's rotated vermillion seal frame with a solid geometric mark;
-//  * the qna-frame's octagon (ai into cream) and diamond (kin into cream),
-//    kept well inside the mat so the hairline frame stays intact.
+//  * the favicon's rotated vermillion seal with the 信 mark;
+//  * a single kin diamond kept well inside the mat (no cool-blue octagon).
 //
 // Colours are the page's light-mode literals; color-mix() results are
 // precomputed so the card renders identically in any headless Chrome.
@@ -84,118 +83,119 @@ const card = `<!DOCTYPE html>
 <html><head><meta charset="utf-8"><style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html, body { width: ${W}px; height: ${H}px; overflow: hidden; }
-body { position: relative; background: #faf7f0; }
+body { position: relative; background: #f3eee2; }
 
 /* .art-frame tonal washes — kin upper-right, shu lower-left, ai mid-left */
 .wash {
   position: absolute; inset: 0;
   background:
-    radial-gradient(70% 100% at 78% 18%, rgba(181,138,47,.16), transparent 60%),
-    radial-gradient(65% 95% at 18% 88%, rgba(194,64,47,.11), transparent 58%),
-    radial-gradient(55% 90% at 28% 28%, rgba(43,74,111,.08), transparent 58%);
+    radial-gradient(78% 110% at 86% 12%, rgba(181,138,47,.20), transparent 62%),
+    radial-gradient(70% 100% at 12% 92%, rgba(194,64,47,.14), transparent 58%),
+    radial-gradient(55% 90% at 22% 30%, rgba(43,74,111,.07), transparent 58%),
+    #faf7f0;
 }
 
 /* matting hairline — higher-contrast so it survives at thumbnail size */
 .mat {
-  position: absolute; inset: 32px;
-  border: 2.5px solid #cfc5ad; border-radius: 6px;
+  position: absolute; inset: 28px;
+  border: 2.5px solid #b3a992; border-radius: 6px;
 }
 
-/* qna-frame octagon: ai into cream — fully inside the mat */
-.oct {
-  position: absolute; right: 88px; bottom: 68px; width: 236px; height: 236px;
-  background: #a8b0b8;
-  clip-path: polygon(50% 0, 82% 18%, 100% 50%, 82% 82%, 50% 100%, 18% 82%, 0 50%, 18% 18%);
-  transform: rotate(12deg);
-  filter: drop-shadow(0 14px 11px rgba(35,37,45,.14));
-}
-
-/* qna-frame diamond: deeper sand for contrast against cream */
+/* single kin diamond — one accent shape, no cool-blue octagon */
 .dia {
-  position: absolute; right: 278px; bottom: 108px; width: 150px; height: 150px;
+  position: absolute; right: 300px; bottom: 72px; width: 132px; height: 132px;
   background: #c9a96a;
   clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
-  transform: rotate(-7deg);
-  filter: drop-shadow(0 11px 9px rgba(35,37,45,.12));
+  transform: rotate(-8deg);
+  filter: drop-shadow(0 14px 12px rgba(35,37,45,.14));
 }
 
-/* favicon seal frame + solid geometric mark */
+/* favicon seal frame + 信 mark (page identity) */
 .seal {
-  position: absolute; right: 92px; top: 110px; width: 300px; height: 300px;
-  border: 22px solid #c2402f; border-radius: 50px;
+  position: absolute; right: 96px; top: 96px; width: 292px; height: 292px;
+  border: 20px solid #c2402f; border-radius: 48px;
   transform: rotate(-3deg);
-  box-shadow: 0 42px 88px -50px rgba(160,47,33,.5);
+  box-shadow: 0 42px 88px -46px rgba(160,47,33,.55);
+  display: flex; align-items: center; justify-content: center;
 }
 .seal::before {
-  content: ""; position: absolute; inset: 18px;
-  border: 3px solid rgba(194,64,47,.32); border-radius: 32px;
+  content: ""; position: absolute; inset: 16px;
+  border: 3px solid rgba(194,64,47,.34); border-radius: 30px;
 }
-.seal::after {
-  content: ""; position: absolute; left: 50%; top: 50%;
-  width: 106px; height: 106px; margin: -53px 0 0 -53px;
-  background: #c2402f; border-radius: 18px; transform: rotate(3deg);
-  box-shadow: inset 0 0 0 10px #faf7f0;
+.seal .mark {
+  position: relative; z-index: 1;
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", "Songti TC", "Noto Serif TC", serif;
+  font-size: 168px; font-weight: 500; line-height: 1;
+  color: #c2402f;
+  transform: rotate(3deg);
+  text-shadow: 0 1px 0 rgba(250,247,240,.55);
+  user-select: none;
 }
 
-/* Shared EN / zh-TW identity for the language-mirrored deployments. */
+/* English identity lockup — full vertical span of the mat */
 .copy {
-  position: absolute; left: 92px; top: 88px; width: 650px;
+  position: absolute; left: 88px; top: 86px; bottom: 86px; width: 620px;
   color: #23252d;
+  display: flex; flex-direction: column;
 }
 .eyebrow {
   font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
-  font-size: 15px; line-height: 1.4; letter-spacing: .24em;
-  text-transform: uppercase; color: #7e7563;
+  font-size: 18px; line-height: 1.35; letter-spacing: .22em;
+  text-transform: uppercase; color: #5f594b;
 }
 .title {
-  margin-top: 24px;
+  margin-top: 28px;
   font-family: "Iowan Old Style", "Palatino Nova", Palatino, "Book Antiqua", Georgia, serif;
-  font-size: 76px; font-weight: 400; line-height: .98; letter-spacing: -.025em;
-  white-space: nowrap;
+  font-size: 104px; font-weight: 400; line-height: .94; letter-spacing: -.03em;
 }
 .title em { color: #c2402f; font-style: normal; }
-.zh {
-  margin-top: 17px;
-  font-family: "Hiragino Mincho ProN", "Yu Mincho", "Songti TC", serif;
-  font-size: 38px; font-weight: 500; line-height: 1.25; letter-spacing: .07em;
-  color: #34322c;
-}
-.zh em { color: #c2402f; font-style: normal; }
 .copy-rule {
-  width: 520px; height: 4px; margin-top: 27px;
-  background: linear-gradient(90deg, #c2402f 0 104px, #e2d9c5 104px);
+  width: 148px; height: 4px; margin-top: 30px;
+  background: #c2402f;
 }
 .subtitle {
-  margin-top: 22px; max-width: 520px;
+  margin-top: 26px; max-width: 540px;
   font-family: "Iowan Old Style", "Palatino Nova", Palatino, "Book Antiqua", Georgia, serif;
-  font-size: 22px; font-style: italic; line-height: 1.35; color: #5f594b;
+  font-size: 30px; font-style: italic; line-height: 1.32; color: #34322c;
+}
+.foot {
+  margin-top: auto;
+  padding-top: 24px;
+  border-top: 1px solid #cfc5ad;
+  display: flex; align-items: baseline; justify-content: space-between; gap: 18px;
 }
 .byline {
-  margin-top: 23px;
   font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
-  font-size: 17px; line-height: 1.4; letter-spacing: .12em;
-  text-transform: uppercase; color: #7e7563;
+  font-size: 18px; line-height: 1.35; letter-spacing: .16em;
+  text-transform: uppercase; color: #23252d;
+}
+.tag {
+  font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 15px; line-height: 1.35; letter-spacing: .18em;
+  text-transform: uppercase; color: #5f594b;
+  white-space: nowrap;
 }
 
 /* the page's grain, on top of everything */
 .grain {
-  position: absolute; inset: 0; opacity: .05;
+  position: absolute; inset: 0; opacity: .055;
   background-image: url("${GRAIN}"); pointer-events: none;
 }
 </style></head>
 <body>
   <div class="wash"></div>
-  <div class="oct"></div>
   <div class="dia"></div>
-  <div class="seal"></div>
+  <div class="seal"><span class="mark">信</span></div>
   <div class="mat"></div>
   <div class="copy">
     <p class="eyebrow">FDC2026 · Tokyo International Forum</p>
-    <h1 class="title">Trust <em>by</em> Design</h1>
-    <p class="zh">信任<em>始於</em>設計</p>
+    <h1 class="title">Trust <em>by</em><br>Design</h1>
     <div class="copy-rule"></div>
-    <p class="subtitle">Answering Doubt, Not Demanding Belief</p>
-    <p class="byline">Audrey Tang 唐鳳</p>
+    <p class="subtitle">Answering Doubt,<br>Not Demanding Belief</p>
+    <div class="foot">
+      <p class="byline">Audrey Tang</p>
+      <p class="tag">Keynote + Q&amp;A</p>
+    </div>
   </div>
   <div class="grain"></div>
 </body></html>
