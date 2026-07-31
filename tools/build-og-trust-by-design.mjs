@@ -2,17 +2,15 @@
 // Builds og-trust-by-design.jpg — the share card for trust-by-design.html.
 // Run: bun tools/build-og-trust-by-design.mjs      (deterministic; no network)
 //
-// Pure abstract art from the page's own vocabulary — same asset for every
-// language mode and both deployments (cyberambassador.tw / audreyt.org):
+// Bilingual title card from the page's own vocabulary — same asset for both
+// deployments (cyberambassador.tw / audreyt.org):
 //
 //  * washi ground + the page's own feTurbulence grain tile (body::before);
+//  * a feed-legible English / zh-TW title lockup and bilingual attribution;
 //  * the .art-frame tonal washes (kin upper-right, shu lower-left, ai mid);
-//  * the favicon's rotated vermillion seal frame with a solid geometric mark
-//    (no glyph / no text — text-free by construction);
+//  * the favicon's rotated vermillion seal frame with a solid geometric mark;
 //  * the qna-frame's octagon (ai into cream) and diamond (kin into cream),
-//    kept well inside the mat so the hairline frame stays intact;
-//  * the section-head hairline with its shu tip, and the chapter-rail dots
-//    with one accented stop and a sumi terminal.
+//    kept well inside the mat so the hairline frame stays intact.
 //
 // Colours are the page's light-mode literals; color-mix() results are
 // precomputed so the card renders identically in any headless Chrome.
@@ -105,7 +103,7 @@ body { position: relative; background: #faf7f0; }
 
 /* qna-frame octagon: ai into cream — fully inside the mat */
 .oct {
-  position: absolute; right: 140px; bottom: 78px; width: 260px; height: 260px;
+  position: absolute; right: 88px; bottom: 68px; width: 236px; height: 236px;
   background: #a8b0b8;
   clip-path: polygon(50% 0, 82% 18%, 100% 50%, 82% 82%, 50% 100%, 18% 82%, 0 50%, 18% 18%);
   transform: rotate(12deg);
@@ -114,56 +112,69 @@ body { position: relative; background: #faf7f0; }
 
 /* qna-frame diamond: deeper sand for contrast against cream */
 .dia {
-  position: absolute; right: 340px; bottom: 118px; width: 168px; height: 168px;
+  position: absolute; right: 278px; bottom: 108px; width: 150px; height: 150px;
   background: #c9a96a;
   clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
   transform: rotate(-7deg);
   filter: drop-shadow(0 11px 9px rgba(35,37,45,.12));
 }
 
-/* favicon seal frame + solid geometric mark (no glyph / no text) */
+/* favicon seal frame + solid geometric mark */
 .seal {
-  position: absolute; right: 178px; top: 112px; width: 320px; height: 320px;
-  border: 24px solid #c2402f; border-radius: 54px;
+  position: absolute; right: 92px; top: 110px; width: 300px; height: 300px;
+  border: 22px solid #c2402f; border-radius: 50px;
   transform: rotate(-3deg);
   box-shadow: 0 42px 88px -50px rgba(160,47,33,.5);
 }
 .seal::before {
   content: ""; position: absolute; inset: 18px;
-  border: 3px solid rgba(194,64,47,.32); border-radius: 34px;
+  border: 3px solid rgba(194,64,47,.32); border-radius: 32px;
 }
 .seal::after {
-  /* abstract hanko fill — solid geometry, not a character */
   content: ""; position: absolute; left: 50%; top: 50%;
-  width: 112px; height: 112px; margin: -56px 0 0 -56px;
-  background: #c2402f; border-radius: 20px; transform: rotate(3deg);
+  width: 106px; height: 106px; margin: -53px 0 0 -53px;
+  background: #c2402f; border-radius: 18px; transform: rotate(3deg);
   box-shadow: inset 0 0 0 10px #faf7f0;
 }
 
-/* section-head hairline with shu tip — anchors left weight */
-.rule {
-  position: absolute; left: 96px; top: 148px; width: 460px; height: 4px;
+/* Shared EN / zh-TW identity for the language-mirrored deployments. */
+.copy {
+  position: absolute; left: 92px; top: 88px; width: 650px;
+  color: #23252d;
+}
+.eyebrow {
+  font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 15px; line-height: 1.4; letter-spacing: .24em;
+  text-transform: uppercase; color: #7e7563;
+}
+.title {
+  margin-top: 24px;
+  font-family: "Iowan Old Style", "Palatino Nova", Palatino, "Book Antiqua", Georgia, serif;
+  font-size: 76px; font-weight: 400; line-height: .98; letter-spacing: -.025em;
+  white-space: nowrap;
+}
+.title em { color: #c2402f; font-style: normal; }
+.zh {
+  margin-top: 17px;
+  font-family: "Hiragino Mincho ProN", "Yu Mincho", "Songti TC", serif;
+  font-size: 38px; font-weight: 500; line-height: 1.25; letter-spacing: .07em;
+  color: #34322c;
+}
+.zh em { color: #c2402f; font-style: normal; }
+.copy-rule {
+  width: 520px; height: 4px; margin-top: 27px;
   background: linear-gradient(90deg, #c2402f 0 104px, #e2d9c5 104px);
 }
-
-/* chapter-rail dots + sumi terminal as one left column */
-.rail {
-  position: absolute; left: 98px; top: 208px;
-  display: flex; flex-direction: column; gap: 28px; align-items: center;
+.subtitle {
+  margin-top: 22px; max-width: 520px;
+  font-family: "Iowan Old Style", "Palatino Nova", Palatino, "Book Antiqua", Georgia, serif;
+  font-size: 22px; font-style: italic; line-height: 1.35; color: #5f594b;
 }
-.rail i { width: 11px; height: 11px; border-radius: 50%; background: #b3a992; display: block; }
-.rail i.on { background: #c2402f; border-radius: 3px; transform: scale(1.4); }
-.rail i.ink {
-  width: 34px; height: 34px; border-radius: 6px; background: #23252d;
-  margin-top: 18px; transform: rotate(-3deg);
-}
-
-/* secondary left weight: small kin diamond, clear of the sumi square */
-.left-dia {
-  position: absolute; left: 168px; bottom: 118px; width: 86px; height: 86px;
-  background: #c9a96a; opacity: .88;
-  clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
-  transform: rotate(8deg);
+.byline {
+  margin-top: 23px;
+  font-family: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 17px; line-height: 1.4; letter-spacing: .12em;
+  text-transform: uppercase; color: #7e7563;
 }
 
 /* the page's grain, on top of everything */
@@ -178,9 +189,14 @@ body { position: relative; background: #faf7f0; }
   <div class="dia"></div>
   <div class="seal"></div>
   <div class="mat"></div>
-  <div class="rule"></div>
-  <div class="rail"><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i class="ink"></i></div>
-  <div class="left-dia"></div>
+  <div class="copy">
+    <p class="eyebrow">FDC2026 · Tokyo International Forum</p>
+    <h1 class="title">Trust <em>by</em> Design</h1>
+    <p class="zh">信任<em>始於</em>設計</p>
+    <div class="copy-rule"></div>
+    <p class="subtitle">Answering Doubt, Not Demanding Belief</p>
+    <p class="byline">Audrey Tang 唐鳳</p>
+  </div>
   <div class="grain"></div>
 </body></html>
 `;
