@@ -394,7 +394,7 @@
                 for (i = 0; i < 420; i++) {
                     pen.dot(0.56 * Math.pow(rnd(), 0.62), rnd() * TAU, {
                         plane: plane((rnd() - 0.5) * 1.15, rnd() * TAU, 0.45),
-                        spin: -0.030 - rnd() * 0.035, color: C.p5,
+                        spin: 0.030 + rnd() * 0.035, color: C.p5,
                         size: 0.017 + rnd() * 0.034, alpha: 0.07 + rnd() * 0.13,
                         seed: rnd(), group: 4
                     });
@@ -402,7 +402,7 @@
                 for (i = 0; i < 95; i++) {
                     pen.dot(0.55 * Math.pow(rnd(), 0.5), rnd() * TAU, {
                         plane: plane((rnd() - 0.5) * 1.15, rnd() * TAU, 0.45),
-                        spin: -0.030 - rnd() * 0.04, color: C.p5,
+                        spin: 0.030 + rnd() * 0.04, color: C.p5,
                         size: 0.008 + rnd() * 0.009, alpha: 0.40 + rnd() * 0.38,
                         seed: rnd(), flare: 0.4, group: 4
                     });
@@ -410,7 +410,7 @@
                 for (i = 0; i < 224; i++) {
                     if (i % 4 > 1) continue;
                     pen.dot(0.589 + bell() * 0.004, (i / 224) * TAU, {
-                        spin: -0.018, color: C.p5, size: 0.010 + rnd() * 0.005,
+                        spin: 0.018, color: C.p5, size: 0.010 + rnd() * 0.005,
                         alpha: 0.55 + rnd() * 0.28, seed: rnd(), group: 5
                     });
                 }

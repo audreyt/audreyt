@@ -25,7 +25,7 @@
 <meta name="theme-color" content="#0f1923" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#faf8f5" media="(prefers-color-scheme: light)">
 <meta name="color-scheme" content="light dark">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-WqMorOfjjZNgOsb4BU+bclWxZec5y+bzTOujic3XVGw=' 'sha256-lskdTSrqRyP4LdjRriW37lMPfLDa6mJKLENxKpNLyr8=' 'sha256-4G7wnwQc6qvKDvB+Quf3SC5N+0WcBvc/riHtQRDvDX4=' 'sha256-PBIbXpxoZq+dGJKBjiohe0A6iJvI1eJGI9eoqhVuI+Q=' 'sha256-yJPetZ3zNtSq4H7Q0eHSsk1bczbCgMDE/ckFQdlFS0s='; style-src 'sha256-NFs9229jg1npBo+6D0CVjbf7yKGY0LMeCVEhL9F1i4I=' 'sha256-uh078DGOjpfFMDtYSQgFuxJeQQjqH3DwZPkCvqGu758=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-uGayCSwz7/ng+0bU//d1fTAgPiGWbx/Liw8iCuPII4Q=' 'sha256-MUSJ0ylowvUY1j7GajVq98IGX4nmHnPUPKFPfDcRFaM=' 'sha256-s7tzXwdnR9KMhhqaRx5TpSjRMd9fMajTr2FZV+p6ygc='; img-src 'self'; font-src 'self'; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-WqMorOfjjZNgOsb4BU+bclWxZec5y+bzTOujic3XVGw=' 'sha256-lskdTSrqRyP4LdjRriW37lMPfLDa6mJKLENxKpNLyr8=' 'sha256-4G7wnwQc6qvKDvB+Quf3SC5N+0WcBvc/riHtQRDvDX4=' 'sha256-PBIbXpxoZq+dGJKBjiohe0A6iJvI1eJGI9eoqhVuI+Q=' 'sha256-JBPwJwzdI8ThFPQzDysZ3uFDhj9dRsYQ4KnPZM/6Scg='; style-src 'sha256-NFs9229jg1npBo+6D0CVjbf7yKGY0LMeCVEhL9F1i4I=' 'sha256-uh078DGOjpfFMDtYSQgFuxJeQQjqH3DwZPkCvqGu758=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-uGayCSwz7/ng+0bU//d1fTAgPiGWbx/Liw8iCuPII4Q=' 'sha256-MUSJ0ylowvUY1j7GajVq98IGX4nmHnPUPKFPfDcRFaM=' 'sha256-s7tzXwdnR9KMhhqaRx5TpSjRMd9fMajTr2FZV+p6ygc='; img-src 'self'; font-src 'self'; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
 <link rel="preload" href="/fonts/spectral-700.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/iansui-critical.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="canonical" href="https://cyberambassador.tw/">
@@ -3982,7 +3982,7 @@ document.querySelector('.lang-toggle').addEventListener('keydown', (e) => {
                 for (i = 0; i < 420; i++) {
                     pen.dot(0.56 * Math.pow(rnd(), 0.62), rnd() * TAU, {
                         plane: plane((rnd() - 0.5) * 1.15, rnd() * TAU, 0.45),
-                        spin: -0.030 - rnd() * 0.035, color: C.p5,
+                        spin: 0.030 + rnd() * 0.035, color: C.p5,
                         size: 0.017 + rnd() * 0.034, alpha: 0.07 + rnd() * 0.13,
                         seed: rnd(), group: 4
                     });
@@ -3990,7 +3990,7 @@ document.querySelector('.lang-toggle').addEventListener('keydown', (e) => {
                 for (i = 0; i < 95; i++) {
                     pen.dot(0.55 * Math.pow(rnd(), 0.5), rnd() * TAU, {
                         plane: plane((rnd() - 0.5) * 1.15, rnd() * TAU, 0.45),
-                        spin: -0.030 - rnd() * 0.04, color: C.p5,
+                        spin: 0.030 + rnd() * 0.04, color: C.p5,
                         size: 0.008 + rnd() * 0.009, alpha: 0.40 + rnd() * 0.38,
                         seed: rnd(), flare: 0.4, group: 4
                     });
@@ -3998,7 +3998,7 @@ document.querySelector('.lang-toggle').addEventListener('keydown', (e) => {
                 for (i = 0; i < 224; i++) {
                     if (i % 4 > 1) continue;
                     pen.dot(0.589 + bell() * 0.004, (i / 224) * TAU, {
-                        spin: -0.018, color: C.p5, size: 0.010 + rnd() * 0.005,
+                        spin: 0.018, color: C.p5, size: 0.010 + rnd() * 0.005,
                         alpha: 0.55 + rnd() * 0.28, seed: rnd(), group: 5
                     });
                 }
