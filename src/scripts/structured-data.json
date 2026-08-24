@@ -5,9 +5,10 @@
     "alternateName": "唐鳳",
     "url": "https://cyberambassador.tw",
     "image": "https://cyberambassador.tw/og-image.jpg",
-    "jobTitle": ["Cyber Ambassador", "Senior Accelerator Fellow, Oxford Institute for Ethics in AI", "GLOCOM Visiting Professor, International University of Japan", "Senior Advisor, Special Competitive Studies Project", "Senior Advisor, BLOOM Project", "Plurality Initiative Advisor, Ethereum Foundation", "Board Member, Robust Open Online Safety Tools", "Board Member, Cooperative AI Foundation", "Board Member, RadicalxChange Foundation"],
-    "description": "Civic hacker, 2025 Right Livelihood Laureate, co-author of Plurality, Senior Accelerator Fellow at Oxford Institute for Ethics in AI. Former Digital Minister of Taiwan.",
+    "jobTitle": ["Cyber Ambassador", "2026–27 Carnegie Distinguished Fellow, Columbia SIPA Institute of Global Politics", "Senior Accelerator Fellow, Oxford Institute for Ethics in AI", "GLOCOM Visiting Professor, International University of Japan", "Senior Advisor, Special Competitive Studies Project", "Senior Advisor, BLOOM Project", "Plurality Initiative Advisor, Ethereum Foundation", "Board Member, Robust Open Online Safety Tools", "Board Member, Cooperative AI Foundation", "Board Member, RadicalxChange Foundation"],
+    "description": "Civic hacker, 2025 Right Livelihood Laureate, co-author of Plurality, Oxford Senior Accelerator Fellow and 2026–27 Carnegie Distinguished Fellow at Columbia SIPA's Institute of Global Politics. Former Digital Minister of Taiwan.",
     "sameAs": [
+        "https://igp.sipa.columbia.edu/distinguished-fellows/Audrey-Tang",
         "https://mu.social/profile/audreyt.org",
         "https://www.linkedin.com/in/tangaudrey/",
         "https://x.com/audreyt",
@@ -26,6 +27,11 @@
             "@type": "Organization",
             "name": "Oxford Institute for Ethics in AI",
             "url": "https://www.oxford-aiethics.ox.ac.uk/"
+        },
+        {
+            "@type": "Organization",
+            "name": "Institute of Global Politics, Columbia SIPA",
+            "url": "https://igp.sipa.columbia.edu/"
         },
         {
             "@type": "Organization",

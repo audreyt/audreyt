@@ -260,14 +260,27 @@ function renderHero(): string {
       }
     }
 
-    // Subtitle: non-heading, non-quote, non-rule, non-empty lines after the quote
-    const subtitleLines: string[] = [];
+    // Subtitle: non-heading, non-quote, non-rule paragraphs after the quote
+    const subtitleParagraphs: string[][] = [];
     let pastQuote = false;
-    for (const line of content.split("\n")) {
-      if (line.startsWith("> ")) pastQuote = true;
-      else if (pastQuote && line.trim() && !line.startsWith("#") && line.trim() !== "****") {
-        subtitleLines.push(line.trim());
+    let currentPara: string[] = [];
+    for (const rawLine of content.split("\n")) {
+      const line = rawLine.trim();
+      if (rawLine.startsWith("> ")) {
+        pastQuote = true;
+      } else if (pastQuote) {
+        if (!line || line === "****" || line.startsWith("#") || line === "---") {
+          if (currentPara.length > 0) {
+            subtitleParagraphs.push(currentPara);
+            currentPara = [];
+          }
+        } else {
+          currentPara.push(line);
+        }
       }
+    }
+    if (currentPara.length > 0) {
+      subtitleParagraphs.push(currentPara);
     }
 
     // Loop line: non-heading, non-rule, non-quote, non-empty lines BEFORE the quote.
@@ -282,7 +295,7 @@ function renderHero(): string {
       }
     }
 
-    return { name, quoteLines, subtitleLines, loopLines };
+    return { name, quoteLines, subtitleParagraphs, loopLines };
   }
 
   const enH = parseHero(en.HERO);
@@ -292,19 +305,17 @@ function renderHero(): string {
   lines.push(`${I}<h1 lang="zh-TW">${zhH.name}</h1>`);
 
   // Subtitle
-  lines.push(`${I}<p class="hero-subtitle" lang="en-GB">`);
-  for (let i = 0; i < enH.subtitleLines.length; i++) {
-    const suffix = i < enH.subtitleLines.length - 1 ? "<br>" : "";
-    lines.push(`${I}    ${enH.subtitleLines[i]}${suffix}`);
+  lines.push(`${I}<div class="hero-subtitle" lang="en-GB">`);
+  for (const para of enH.subtitleParagraphs) {
+    lines.push(`${I}    <p>${para.join("<br>")}</p>`);
   }
-  lines.push(`${I}</p>`);
+  lines.push(`${I}</div>`);
 
-  lines.push(`${I}<p class="hero-subtitle" lang="zh-TW">`);
-  for (let i = 0; i < zhH.subtitleLines.length; i++) {
-    const suffix = i < zhH.subtitleLines.length - 1 ? "<br>" : "";
-    lines.push(`${I}    ${zhH.subtitleLines[i]}${suffix}`);
+  lines.push(`${I}<div class="hero-subtitle" lang="zh-TW">`);
+  for (const para of zhH.subtitleParagraphs) {
+    lines.push(`${I}    <p>${para.join("<br>")}</p>`);
   }
-  lines.push(`${I}</p>`);
+  lines.push(`${I}</div>`);
 
   // Quote
   lines.push(`${I}<blockquote class="hero-quote" lang="en-GB">`);

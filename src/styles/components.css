@@ -134,6 +134,14 @@
     animation: fadeUp 0.8s ease 1s forwards;
 }
 
+.hero-subtitle p {
+    margin: 0;
+}
+
+.hero-subtitle p + p {
+    margin-top: 0.65rem;
+}
+
 .hero-quote {
     font-family: var(--serif);
     font-size: 1.15rem;
@@ -1308,6 +1316,14 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
         color: var(--print-muted) !important;
     }
 
+
+    .hero-subtitle p {
+        margin: 0 !important;
+    }
+
+    .hero-subtitle p + p {
+        margin-top: 1.2mm !important;
+    }
     .hero-quote {
         margin: 3mm 0 0 !important;
         padding: 2mm 0 0 5mm !important;

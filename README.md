@@ -10,6 +10,9 @@ AI in the loop of humanity
 
 Right Livelihood Laureate
 
+Carnegie Distinguished Fellow,
+Columbia SIPA
+
 Senior Accelerator Fellow,
 Oxford Institute for Ethics in AI
 
@@ -18,7 +21,7 @@ Oxford Institute for Ethics in AI
 <!-- section:BIO -->
 ## About
 
-Audrey Tang is a civic hacker, co-author of [*Plurality: The Future of Collaborative Technology and Democracy*](https://plurality.net), and an inaugural senior accelerator fellow at the Oxford Institute for Ethics in AI.
+Audrey Tang is a civic hacker, co-author of [*Plurality: The Future of Collaborative Technology and Democracy*](https://plurality.net), an inaugural senior accelerator fellow at the Oxford Institute for Ethics in AI, and a [2026–27 Carnegie Distinguished Fellow](https://igp.sipa.columbia.edu/distinguished-fellows/Audrey-Tang) at Columbia SIPA's Institute of Global Politics.
 
 Taiwan's cyber ambassador, first digital minister and the world's first nonbinary cabinet minister, Tang was awarded the 2025 [Right Livelihood Award](https://rightlivelihood.org/the-change-makers/find-a-laureate/audrey-tang/) for *“advancing the social use of digital technology to empower citizens, renew democracy and heal divides.”*
 
@@ -30,6 +33,7 @@ A child prodigy who practiced Taoism to manage a congenital heart condition, Tan
 |------|-------------|
 | Cyber Ambassador | Taiwan |
 | Senior Accelerator Fellow | Oxford Institute for Ethics in AI |
+| 2026–27 Carnegie Distinguished Fellow | Institute of Global Politics, Columbia SIPA |
 | GLOCOM Visiting Professor | International University of Japan |
 | Senior Research Fellow | Collective Intelligence Project |
 | Senior Advisor | Special Competitive Studies Project |
