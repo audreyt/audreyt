@@ -417,7 +417,7 @@ Used by `.award-card`, `.case-study`, `.work-item`, `.featured-outlet`. All flat
 ### Publication-specific (do not port into Broadsheet essays)
 
 - Palette: coral / peach / plum on warm paper (`--coral`, `--peach`, `--plum`, `--cream`, `--shell`) — The Humanist Review's identity, not ours.
-- Type: Noto Serif TC at weight 900 for display, Red Hat Mono for labels.
+- Type: justfont 蘭陽明體 (Light/Bold) for body/emphasis, 蘭陽黑體 (Bold/Heavy) for display and headings, system monospace for labels.
 - The plum always-dark closing band and the vertical-rl finale with Kaiti signature.
 - `em` rendered as 著重號 text-emphasis dots — in the reprint's coral. Broadsheet essays choose per page between Kaiti substitution (`good-enough-ancestor`, `collaborative-immune-system`) and gold 著重號 (`transparent-horse`); pick ONE per page, never both.
 
