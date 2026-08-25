@@ -75,9 +75,10 @@
     --border: #e5ddd2;
     /* justfont kit 65960: ming {200,700} hei {700,900}.
        CSS >500 prefers the heavier neighbour — never request 500/600. */
-    --serif: 'jf-lanyangming', 'Songti TC', 'PingFang TC', serif;
+    --serif: 'Songti TC', 'PingFang TC', serif;
+    --lanyang-ming: 'jf-lanyangming', 'Songti TC', 'PingFang TC', serif;
     --display: 'jf-lanyanghei', 'PingFang TC', 'Heiti TC', sans-serif;
-    --latin: 'jf-lanyanghei', 'jf-lanyangming', Georgia, serif;
+    --latin: 'jf-lanyanghei', var(--lanyang-ming), Georgia, serif;
     --mono: ui-monospace, 'SFMono-Regular', 'PingFang TC', monospace;
     --kai: 'Kaiti TC', 'DFKai-SB', 'BiauKai', 'STKaiti', var(--serif);
     --weight-body: 400;
@@ -361,6 +362,7 @@ header.site .crumbs .tagbtn:hover { color: var(--coral-deep); border-color: var(
     animation-delay: 0.4s;
 }
 .masthead .dek {
+    font-family: var(--lanyang-ming);
     font-size: clamp(1.05rem, 2.1vw, 1.28rem);
     line-height: 2;
     color: var(--muted);
@@ -481,9 +483,9 @@ header.site .crumbs .tagbtn:hover { color: var(--coral-deep); border-color: var(
     font-family: var(--mono); font-size: 0.66rem; letter-spacing: 0.18em;
     color: var(--coral-deep); min-width: 1.7em; flex: none;
 }
-.toc .t-title { font-size: 0.95rem; letter-spacing: 0.04em; color: var(--text); line-height: 1.75; }
+.toc .t-title { font-family: var(--lanyang-ming); font-size: 0.95rem; letter-spacing: 0.04em; color: var(--text); line-height: 1.75; }
 .toc a[aria-current="true"] { background: var(--accent); }
-.toc a[aria-current="true"] .t-title { font-family: var(--display); color: var(--coral-deep); font-weight: var(--weight-heading); }
+.toc a[aria-current="true"] .t-title { font-family: var(--lanyang-ming); color: var(--coral-deep); font-weight: var(--weight-heading); }
 @media (max-width: 640px) { .toc ol { grid-template-columns: 1fr; } }
 
 /* ── prose ── */
@@ -803,7 +805,7 @@ main { padding-bottom: 0; }
     box-shadow: 0 0 0 4px var(--shell), 0 10px 28px rgba(28, 23, 24, 0.2);
 }
 .author .label {
-    font-family: var(--mono);
+    font-family: var(--lanyang-ming);
     font-size: 0.68rem;
     letter-spacing: 0.3em;
     text-transform: uppercase;
@@ -812,6 +814,7 @@ main { padding-bottom: 0; }
     margin-bottom: 12px;
 }
 .author .bio {
+    font-family: var(--lanyang-ming);
     font-size: 0.99rem;
     line-height: 2;
     letter-spacing: 0.03em;
@@ -840,6 +843,7 @@ main { padding-bottom: 0; }
     margin-bottom: 20px;
 }
 .colophon p {
+    font-family: var(--lanyang-ming);
     font-size: 0.86rem;
     line-height: 2;
     letter-spacing: 0.03em;
@@ -849,7 +853,7 @@ main { padding-bottom: 0; }
     overflow-wrap: break-word;
 }
 .colophon .craft {
-    font-family: var(--mono);
+    font-family: var(--lanyang-ming);
     font-size: 0.68rem;
     letter-spacing: 0.14em;
     color: var(--stone);
