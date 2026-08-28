@@ -7,3 +7,5 @@ letter*html
 !.weave/glyph-source.html
 *.swp
 *.swo
+*.orig
+*.rej

@@ -20,7 +20,7 @@ AI 進入人類迴圈
 <!-- section:BIO -->
 ## 關於
 
-唐鳳是公民黑客、[《多元宇宙：協作科技與民主的未來》](https://plurality.net/zh/)共同作者，也是牛津 AI 倫理研究院首屆加速哲人，並擔任哥倫比亞大學國際公共事務學院全球政治研究所 [卡內基傑出學人](https://igp.sipa.columbia.edu/distinguished-fellows/Audrey-Tang)。
+唐鳳是公民黑客、[《多元宇宙：協作科技與民主的未來》](https://plurality.net/zh/)共同作者，也是牛津 AI 倫理研究院首屆加速哲人，並擔任哥倫比亞大學國際公共事務學院[卡內基傑出學人](https://igp.sipa.columbia.edu/distinguished-fellows/Audrey-Tang)。
 
 作為中華民國數位治理大使、首任數位發展部長、全球首位非二元性別內閣成員，唐鳳於 2025 年獲頒[正命獎](https://rightlivelihood.org/the-change-makers/find-a-laureate/audrey-tang/)，表彰其「推進數位科技的社會應用，賦權公民、更新民主並修補社會裂痕」的貢獻，是該獎項史上首位臺灣得主。
 
@@ -32,8 +32,8 @@ AI 進入人類迴圈
 |------|-------------|
 | 數位治理無任所大使 | 中華民國 |
 | 加速哲人 | 牛津大學 AI 倫理研究院 |
-| 卡內基傑出學人 | 哥倫比亞大學國際公共事務學院全球政治研究所 |
-| GLOCOM 客座教授 | International University of Japan |
+| 卡內基傑出學人 | 哥倫比亞大學國際公共事務學院 |
+| GLOCOM 客座教授 | 日本國際大學 |
 | 資深研究員 | 集體智慧計畫 |
 | 資深顧問 | Special Competitive Studies Project |
 | 資深顧問 | BLOOM Project |
