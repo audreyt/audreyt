@@ -33,7 +33,7 @@ A child prodigy who practiced Taoism to manage a congenital heart condition, Tan
 |------|-------------|
 | Cyber Ambassador | Taiwan |
 | Senior Accelerator Fellow | Oxford Institute for Ethics in AI |
-| 2026–27 Carnegie Distinguished Fellow | Institute of Global Politics, Columbia SIPA |
+| Carnegie Distinguished Fellow | Columbia SIPA |
 | GLOCOM Visiting Professor | International University of Japan |
 | Senior Research Fellow | Collective Intelligence Project |
 | Senior Advisor | Special Competitive Studies Project |
