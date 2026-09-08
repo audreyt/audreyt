@@ -2,6 +2,15 @@
 
 The design system **and** the operational guide for this repo live in **[DESIGN.md](DESIGN.md)**. Read it before editing pages, components, tokens, the weave pipeline, or sync workflow. The most-violated rules are kept here as a short reminder.
 
+## How to work
+
+Finish the current request. An explicit user instruction in this conversation overrides this file and DESIGN.md, except: never copy files into `../audreyt.org/` (cherry-pick only), never edit generated `index.html`, never swap `--ink` in the dark `:root` block, never add Google Fonts to index CSP, and do not copy audreyt.org `#lang-en` selectors onto this index.
+
+Treat action requests as authorization to edit. Do not stop at a plan or an offer to continue. If missing information would materially change the outcome, ask before acting; otherwise proceed and finish the local work. Do not push, publish, or copy into another repo unless explicitly requested.
+
+Delegate independent slices in parallel when that would save time. Keep replies short. Verify only what the change can break (the weave, Iansui regen when index copy changed, or the touched essay). Do not add tests that restate the edit.
+
+
 ## Must-know rules
 
 ### Syncing to audreyt.org
