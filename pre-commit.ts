@@ -43,7 +43,6 @@ const IMAGE_LQIP: Record<string, string> = {
   "assets/at-480.jpg": ".hero-portrait",
   "assets/at-800.jpg": ".hero-portrait",
   "assets/at-1200.jpg": ".hero-portrait",
-  "assets/at-1920.jpg": ".hero-portrait",
   "thumbs/fqvdaHWH7a0.jpg": "nth-child(1) .thumb",
   "thumbs/OcpF2yXj3b0.jpg": "nth-child(2) .thumb",
   "thumbs/q3PuX1JztKI.jpg": "nth-child(3) .thumb",
