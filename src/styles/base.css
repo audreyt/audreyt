@@ -123,6 +123,8 @@ nav.scrolled {
 
 .nav-links a { color: var(--text); text-decoration: none; transition: color 0.3s; }
 .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+/* the way to audreyt.box: a single mote of the screening room's light */
+.nav-links .nav-film::before { content: ''; display: inline-block; width: 5px; height: 5px; margin: 0 7px 0 0; border-radius: 50%; vertical-align: 0.12em; background: var(--gold-light); box-shadow: 0 0 6px 1px color-mix(in srgb, var(--gold-light) 70%, transparent); }
 
 .hamburger {
     display: none;

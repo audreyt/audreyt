@@ -352,32 +352,39 @@ a.award-card { color: inherit; text-decoration: none; }
 }
 
 /* ─── PULLQUOTE ─── */
+/* ─── PULLQUOTE: the geothermal interlude ───
+   Always dark, like the film band. motes.js ([data-motes="geo"]) lays two
+   plates of light along the foot of the band, creeping together; at the seam
+   their pressure rises as embers towards the quote. Without it (no JS, or a
+   canvas that never comes up) the people-arc stands in. */
 .pullquote {
-    padding: 80px;
+    padding: 120px 80px 300px;
     text-align: center;
-    background: var(--paper);
-    border-top: 1px solid var(--border);
+    background: var(--ink);
+    color: #fff;
 }
 
 .pullquote blockquote {
     font-family: var(--serif);
-    font-size: clamp(1.5rem, 3vw, 2.2rem);
-    font-weight: 400;
+    font-size: clamp(1.6rem, 3.2vw, 2.4rem);
+    font-weight: 300;
     font-style: italic;
-    color: var(--heading);
-    line-height: 1.5;
-    max-width: 800px;
-    margin: 0 auto 16px;
+    color: #f6efe1;
+    line-height: 1.45;
+    max-width: 820px;
+    margin: 0 auto 20px;
     letter-spacing: -0.01em;
+    text-shadow: 0 0 26px rgba(15,25,35,0.9), 0 0 3px rgba(15,25,35,0.6);
 }
 
 .pullquote cite {
     font-family: var(--serif);
     font-style: normal;
     font-size: 0.8rem;
-    color: var(--muted);
+    color: rgba(255,255,255,0.55);
     letter-spacing: 0.05em;
 }
+.pullquote cite a { color: var(--gold-light); }
 
 /* ─── FEATURED IN ─── */
 .featured-in {
@@ -388,6 +395,8 @@ a.award-card { color: inherit; text-decoration: none; }
 }
 
 .featured-inner {
+    position: relative;
+    z-index: 2;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -509,63 +518,195 @@ a.featured-outlet:hover {
     line-height: 1.7;
 }
 
-/* ─── FILM ─── */
+/* ─── FILM: the door to the screening room (audreyt.box) ───
+   Always dark. A projector's light falls from the top of the band onto the
+   poster, and motes.js ([data-motes="beam"]) sets dust turning in it. The
+   whole preview (screen and call to action) is one link to audreyt.box;
+   nothing plays here. */
 .film {
+    position: relative;
     background: var(--ink);
     color: #fff;
-    padding: 100px 80px;
+    padding: 110px 80px 120px;
+    overflow: hidden;
+}
+.film::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: -8%;
+    width: min(1600px, 170vw);
+    height: 92%;
+    transform: translateX(-50%);
+    pointer-events: none;
+    background: conic-gradient(from 154deg at 50% 0%, transparent 0deg, rgba(201,169,97,0.05) 16deg, rgba(255,246,226,0.075) 26deg, rgba(201,169,97,0.05) 36deg, transparent 52deg);
+    -webkit-mask-image: linear-gradient(to bottom, #000 20%, transparent 90%);
+    mask-image: linear-gradient(to bottom, #000 20%, transparent 90%);
 }
 
 .film-inner {
-    max-width: 1200px;
+    position: relative;
+    z-index: 2;
+    max-width: 1100px;
     margin: 0 auto;
+    text-align: center;
 }
 
-.film .section-label { color: var(--gold-light); }
+.film .section-label { color: var(--gold-light); width: fit-content; margin-left: auto; margin-right: auto; }
 
 .film h2 {
     font-family: var(--serif);
-    font-size: clamp(2rem, 3.5vw, 2.8rem);
-    font-weight: 400;
+    font-size: clamp(2.2rem, 4.4vw, 3.6rem);
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
     color: #fff;
-    margin-bottom: 16px;
+    margin-bottom: 20px;
+    text-wrap: balance;
 }
 
 .film-subtitle {
-    font-size: 1rem;
-    color: rgba(255,255,255,0.6);
-    margin-bottom: 40px;
+    font-size: 1.02rem;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.64);
+    max-width: 46em;
+    margin: 0 auto 56px;
+    text-wrap: pretty;
 }
+.film-subtitle strong { color: rgba(255,255,255,0.88); font-weight: 600; }
 
-.film-video {
+.film-door {
+    display: block;
+    max-width: 1000px;
+    margin: 0 auto;
+    color: #fff;
+    text-decoration: none;
+}
+.film-door:hover { color: #fff; }
+.film-screen {
     position: relative;
-    width: 100%;
-    max-width: 900px;
-    aspect-ratio: 16/9;
+    display: block;
+    aspect-ratio: 900 / 422;
     background: #000;
-    border-radius: 4px;
-    overflow: hidden;
-    margin-bottom: 48px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
 }
-
-.film-video video {
+.film-glow {
+    position: absolute;
+    inset: 8% -3%;
+    background: url(assets/GEA-poster.jpg) center / cover no-repeat;
+    background-image: image-set(url(assets/GEA-poster.avif) type('image/avif'), url(assets/GEA-poster.webp) type('image/webp'), url(assets/GEA-poster.jpg) type('image/jpeg'));
+    filter: blur(56px) saturate(1.6);
+    opacity: 0.55;
+    transform: translateZ(0);
+    pointer-events: none;
+    transition: opacity 0.8s ease;
+}
+.film-screen img {
+    position: relative;
+    display: block;
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
+    transition: transform 6s cubic-bezier(0.22, 1, 0.36, 1);
 }
+.film-screen::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 70% at 50% 55%, rgba(5,7,10,0.12), rgba(5,7,10,0.46));
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+}
+.film-play {
+    position: absolute;
+    left: 50%;
+    top: 56%;
+    z-index: 1;
+    width: clamp(60px, 7vw, 84px);
+    aspect-ratio: 1;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: 1px solid rgba(201,169,97,0.75);
+    background: rgba(5,7,10,0.36);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    color: var(--gold-light);
+    display: grid;
+    place-items: center;
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.3s, border-color 0.3s;
+}
+.film-play svg { width: 30%; height: 30%; margin-left: 7%; fill: currentColor; }
+.film-play::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: 50%;
+    border: 1px solid var(--gold-light);
+    opacity: 0;
+}
+@keyframes film-ripple { 0% { opacity: 0.55; transform: scale(1); } 100% { opacity: 0; transform: scale(1.7); } }
+@media (prefers-reduced-motion: no-preference) {
+    .film-play::before { animation: film-ripple 3.2s cubic-bezier(0.22, 1, 0.36, 1) 1.2s infinite; }
+}
+
+.film-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    margin-top: 36px;
+}
+.film-cta-k {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    padding: 17px 30px;
+    border-radius: 3px;
+    background: var(--gold-light);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    transition: background-color 0.3s;
+}
+.film-cta-k::after {
+    content: '\2192';
+    font-size: 1.15em;
+    letter-spacing: 0;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.film-cta-k [lang="zh-TW"] { font-family: var(--cjk); font-size: 1.1em; letter-spacing: 0.3em; }
+.film-cta-m {
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.52);
+}
+.film-cta-m [lang="zh-TW"] { font-family: var(--cjk); font-size: 1.08em; letter-spacing: 0.18em; }
+
+.film-door:hover .film-screen img { transform: scale(1.015); }
+.film-door:hover .film-glow { opacity: 0.8; }
+.film-door:hover .film-screen::after { opacity: 0.6; }
+.film-door:hover .film-play { transform: translate(-50%, -50%) scale(1.07); background: rgba(5,7,10,0.55); border-color: var(--gold-light); }
+.film-door:hover .film-cta-k { background: #e0c58a; }
+.film-door:hover .film-cta-k::after { transform: translateX(5px); }
+.film-door:focus-visible { outline: none; }
+.film-door:focus-visible .film-screen { outline: 2px solid var(--gold-light); outline-offset: 6px; }
 
 .film-meta {
     display: flex;
-    gap: 40px;
-    align-items: start;
-    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 72px;
+    text-align: left;
 }
 
 .film-quote {
-    max-width: 600px;
+    max-width: 640px;
     font-family: var(--serif);
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-style: italic;
     color: var(--gold-light);
     line-height: 1.6;
@@ -1117,6 +1258,11 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
     }
 
     .section, .film, .gallery, .pullquote { padding: 60px 24px; }
+    .pullquote { padding: 72px 24px 220px; }
+    .film { padding: 72px 24px 80px; }
+    .film-subtitle { margin-bottom: 40px; }
+    .film-cta-k { padding: 15px 22px; font-size: 0.74rem; letter-spacing: 0.18em; }
+    .film-meta { margin-top: 52px; }
     .featured-in { padding: 24px; }
     footer { padding: 40px 24px; }
 

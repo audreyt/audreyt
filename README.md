@@ -130,7 +130,7 @@ Oscar and Emmy-winning director Cynthia Wade's documentary on democracy, mortali
 
 > "I insist on relinquishing copyright because if I disappear tomorrow, future generations can make use of the materials that I have."
 
-— from *Good Enough Ancestor* · [Watch on YouTube](https://www.youtube.com/watch?v=idudNrLy8ek)
+— from *Good Enough Ancestor*
 
 ---
 

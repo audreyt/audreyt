@@ -130,7 +130,14 @@ langCb.addEventListener('change', () => {
     document.title = isZh ? '\u5510\u9cf3 \u00b7 \u6578\u4f4d\u6cbb\u7406\u5927\u4f7f' : 'Audrey Tang \u00b7 Cyber Ambassador';
     try { localStorage.setItem('lang', isZh ? 'zh-TW' : 'en-GB'); } catch (e) {}
     document.getElementById('lang-announce').textContent = isZh ? '語言已切換為華文' : 'Language switched to English';
+    boxLinks();
 });
+// audreyt.box is its own site: send the reader's current language along
+function boxLinks() {
+    const q = /^zh/.test(document.documentElement.lang) ? '?lang=zh' : '?lang=en';
+    document.querySelectorAll('a[data-box-link]').forEach((a) => { a.href = 'https://audreyt.box/' + q; });
+}
+boxLinks();
 document.querySelector('.lang-toggle').addEventListener('keydown', (e) => {
     if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); langCb.click(); }
 });

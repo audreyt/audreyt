@@ -62,6 +62,7 @@
             <a href="#dialogue"><span lang="en-GB">Addresses</span><span lang="zh-TW">演講</span></a>
             <a href="#recognition"><span lang="en-GB">Honours</span><span lang="zh-TW">獲獎</span></a>
             <a href="#work"><span lang="en-GB">Work</span><span lang="zh-TW">工作</span></a>
+            <a href="https://audreyt.box/" class="nav-film" data-box-link><span lang="en-GB">Film</span><span lang="zh-TW">影片</span></a>
             <a href="#publications"><span lang="en-GB">Published</span><span lang="zh-TW">著作</span></a>
             <a href="#essays"><span lang="en-GB">Long Read</span><span lang="zh-TW">長篇</span></a>
             <a href="#connect"><span lang="en-GB">Connect</span><span lang="zh-TW">聯絡</span></a>
@@ -86,7 +87,7 @@
 </style>
 
 <!-- ════════ HERO ════════ -->
-<header class="hero">
+<header class="hero" data-motes="air">
     <div class="hero-portrait-picture">
         <noscript><img class="hero-portrait" src="assets/at-fallback.jpg"
              srcset="assets/at-480.jpg 480w, assets/at-800.jpg 800w, assets/at-1200.jpg 1200w"
@@ -123,15 +124,14 @@
 {{content:RECOGNITION}}
 </section>
 
-<div class="divider-arc">{{svg:divider-arc}}</div>
 <!-- ════════ PULLQUOTE ════════ -->
-<aside class="pullquote reveal">
+<aside class="pullquote reveal" data-motes="geo">
     <div class="people-arc">{{svg:people-arc}}</div>
 {{content:PULLQUOTE}}
 </aside>
 
 <!-- ════════ FEATURED IN ════════ -->
-<section class="featured-in reveal" aria-label="Featured in">
+<section class="featured-in reveal" aria-label="Featured in" data-motes="air">
     <div class="featured-inner">
         <span class="featured-label" lang="en-GB">Featured in</span>
         <span class="featured-label" lang="zh-TW">媒體報導</span>
@@ -160,20 +160,27 @@
 </section>
 
 <!-- ════════ FILM ════════ -->
-<section class="film">
-    <div class="film-inner reveal">
+<!-- The door to the screening room at audreyt.box (its own domain, so
+     cyberambassador.tw can link to it too). The whole preview is one link: the
+     poster on a screen, dust turning in the projector's light, and the way in.
+     The film itself plays there, not here. -->
+<section class="film" id="film" data-motes="beam">
+    <div class="film-inner">
+        <div class="film-head reveal">
 {{content:FILM_HEADER}}
-        <div class="film-video">
-            <video controls preload="none" poster="assets/GEA-poster.jpg" data-poster="assets/GEA-poster" playsinline width="900" height="506" aria-label="Good Enough Ancestor — short documentary directed by Cynthia Wade, 21 min." aria-describedby="film-desc-en film-desc-zh">
-                <source src="assets/GEA.av1.mp4" type="video/mp4; codecs=av01">
-                <source src="assets/GEA.webm" type="video/webm; codecs=vp9">
-                <source src="assets/GEA.mp4" type="video/mp4">
-                <track kind="captions" src="assets/captions.vtt" srclang="en-GB" label="English">
-                <p>Your browser does not support HTML5 video. <a href="assets/GEA.mp4">Download the video here.</a></p>
-                <a href="assets/captions.vtt" class="sr-only">Full transcript (captions file)</a>
-            </video>
         </div>
-        <div class="film-meta">
+        <a class="film-door reveal" href="https://audreyt.box/" data-box-link>
+            <span class="film-screen">
+                <span class="film-glow" aria-hidden="true"></span>
+                <noscript><img src="assets/GEA-poster.jpg" alt="" width="900" height="422" loading="lazy" decoding="async"></noscript>
+                <span class="film-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 3.5v17a.6.6 0 0 0 .9.5l14-8.5a.6.6 0 0 0 0-1L6.9 3a.6.6 0 0 0-.9.5z"/></svg></span>
+            </span>
+            <span class="film-cta">
+                <span class="film-cta-k"><span lang="en-GB">Enter the screening room</span><span lang="zh-TW">進入放映廳</span></span>
+                <span class="film-cta-m"><span lang="en-GB">The full film &middot; 21 min &middot; seven lines in their own voices</span><span lang="zh-TW">全片 21 分鐘 &middot; 七句話，原聲重現</span></span>
+            </span>
+        </a>
+        <div class="film-meta reveal">
 {{content:FILM_QUOTES}}
         </div>
     </div>
@@ -247,7 +254,7 @@
 </main>
 
 <!-- ════════ FOOTER ════════ -->
-<footer>
+<footer data-motes="air">
     <div class="orrery orrery--footer" data-orrery="footer" aria-hidden="true">{{svg:orrery-footer}}</div>
     <div class="footer-name">Audrey Tang &middot; <span class="cjk" lang="zh-TW">唐鳳</span></div>
 {{content:FOOTER}}
@@ -259,6 +266,10 @@
 
 <script>
 {{script:orrery-gl}}
+</script>
+
+<script>
+{{script:motes}}
 </script>
 
 <script type="application/ld+json">

@@ -25,7 +25,7 @@
 <meta name="theme-color" content="#0f1923" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#faf8f5" media="(prefers-color-scheme: light)">
 <meta name="color-scheme" content="light dark">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-WqMorOfjjZNgOsb4BU+bclWxZec5y+bzTOujic3XVGw=' 'sha256-lskdTSrqRyP4LdjRriW37lMPfLDa6mJKLENxKpNLyr8=' 'sha256-4G7wnwQc6qvKDvB+Quf3SC5N+0WcBvc/riHtQRDvDX4=' 'sha256-PBIbXpxoZq+dGJKBjiohe0A6iJvI1eJGI9eoqhVuI+Q=' 'sha256-JBPwJwzdI8ThFPQzDysZ3uFDhj9dRsYQ4KnPZM/6Scg='; style-src 'sha256-NFs9229jg1npBo+6D0CVjbf7yKGY0LMeCVEhL9F1i4I=' 'sha256-gbaaUFFWC03oB1fHG5g0Hl9JSfH1kRtr7cnZcj2Hh0k=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-uGayCSwz7/ng+0bU//d1fTAgPiGWbx/Liw8iCuPII4Q=' 'sha256-8XDyOsGU0aDIEggXwK3q9hi5WA07w6hLPKTUILE0Fyw=' 'sha256-s7tzXwdnR9KMhhqaRx5TpSjRMd9fMajTr2FZV+p6ygc='; img-src 'self'; font-src 'self'; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-WqMorOfjjZNgOsb4BU+bclWxZec5y+bzTOujic3XVGw=' 'sha256-lskdTSrqRyP4LdjRriW37lMPfLDa6mJKLENxKpNLyr8=' 'sha256-4G7wnwQc6qvKDvB+Quf3SC5N+0WcBvc/riHtQRDvDX4=' 'sha256-h9buKn93WnvLZ5RcdSB6x3Aegekz11Tf6vRj3eBCH3M=' 'sha256-JBPwJwzdI8ThFPQzDysZ3uFDhj9dRsYQ4KnPZM/6Scg=' 'sha256-dqOhddL89/pdz2xARTEjH5ODQnNNmmDkJuqhZu6x52M='; style-src 'sha256-UTc4N3vCiNiA700WqF0aBW7Q0CrV4vapNPR5LYFIOe0=' 'sha256-KUyL4s1PavZDVqw5v0goU0ibR3W/rPaA8N8HsMCzQ+k=' 'sha256-K3OU2YCvfVRWPEqlfeZU/SPxm/qtLsuJoaAow9W6yvQ=' 'sha256-uGayCSwz7/ng+0bU//d1fTAgPiGWbx/Liw8iCuPII4Q=' 'sha256-rwaNH7lRn4JMWufsXkNfV+z+mSBQnsiXq/JM/6aeiMc=' 'sha256-+FMT7WA2Tp603wFg4jjz1p8TgQVGyoNkgMb8GrQxInU='; img-src 'self'; font-src 'self'; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none';"><!-- auto-rehashed by pre-commit book -->
 <link rel="preload" href="/fonts/spectral-700.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/iansui-critical.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="canonical" href="https://cyberambassador.tw/">
@@ -159,6 +159,8 @@ nav.scrolled {
 
 .nav-links a { color: var(--text); text-decoration: none; transition: color 0.3s; }
 .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+/* the way to audreyt.box: a single mote of the screening room's light */
+.nav-links .nav-film::before { content: ''; display: inline-block; width: 5px; height: 5px; margin: 0 7px 0 0; border-radius: 50%; vertical-align: 0.12em; background: var(--gold-light); box-shadow: 0 0 6px 1px color-mix(in srgb, var(--gold-light) 70%, transparent); }
 
 .hamburger {
     display: none;
@@ -276,7 +278,7 @@ picture { display: block; }
     font-weight: 400;
     font-display: swap;
     src: url('/fonts/iansui-critical.woff2') format('woff2');
-    unicode-range: U+000A, U+0020, U+0027, U+002C, U+002E, U+0030, U+0032, U+0035, U+0036, U+0037, U+0041, U+0043, U+0044, U+0045, U+0046, U+0047, U+0049, U+004C, U+004E, U+004F, U+0050, U+0052, U+0053, U+0054, U+0061, U+0062, U+0063, U+0064, U+0065, U+0066, U+0067, U+0068, U+0069, U+006C, U+006D, U+006E, U+006F, U+0072, U+0073, U+0074, U+0075, U+0076, U+0077, U+0078, U+0079, U+00B7, U+2013, U+3002, U+4E0B, U+4E3B, U+4E8B, U+4E9E, U+4EBA, U+4EE3, U+4F4D, U+4F5C, U+4F7F, U+502B, U+5091, U+5148, U+5165, U+5167, U+516C, U+5171, U+51FA, U+52A0, U+52D5, U+52D9, U+5361, U+5411, U+547D, U+54E5, U+54F2, U+5510, U+5708, U+570B, U+57FA, U+5920, U+5927, U+597D, U+5B50, U+5B6B, U+5B78, U+5DE5, U+5F8C, U+5F97, U+6211, U+6578, U+6B63, U+6BD4, U+6CBB, U+6D25, U+6EFE, U+6F14, U+725B, U+734E, U+7372, U+7406, U+7684, U+7814, U+7956, U+7A76, U+7BC7, U+7D61, U+806F, U+8457, U+8B1B, U+8FF4, U+901F, U+9032, U+9577, U+9662, U+969B, U+9858, U+985E, U+9CF3;
+    unicode-range: U+000A, U+0020, U+0027, U+002C, U+002E, U+0030, U+0032, U+0035, U+0036, U+0037, U+0041, U+0043, U+0044, U+0045, U+0046, U+0047, U+0049, U+004C, U+004E, U+004F, U+0050, U+0052, U+0053, U+0054, U+0061, U+0062, U+0063, U+0064, U+0065, U+0066, U+0067, U+0068, U+0069, U+006C, U+006D, U+006E, U+006F, U+0072, U+0073, U+0074, U+0075, U+0076, U+0077, U+0078, U+0079, U+00B7, U+2013, U+3002, U+4E0B, U+4E3B, U+4E8B, U+4E9E, U+4EBA, U+4EE3, U+4F4D, U+4F5C, U+4F7F, U+502B, U+5091, U+5148, U+5165, U+5167, U+516C, U+5171, U+51FA, U+52A0, U+52D5, U+52D9, U+5361, U+5411, U+547D, U+54E5, U+54F2, U+5510, U+5708, U+570B, U+57FA, U+5920, U+5927, U+597D, U+5B50, U+5B6B, U+5B78, U+5DE5, U+5F71, U+5F8C, U+5F97, U+6211, U+6578, U+6B63, U+6BD4, U+6CBB, U+6D25, U+6EFE, U+6F14, U+7247, U+725B, U+734E, U+7372, U+7406, U+7684, U+7814, U+7956, U+7A76, U+7BC7, U+7D61, U+806F, U+8457, U+8B1B, U+8FF4, U+901F, U+9032, U+9577, U+9662, U+969B, U+9858, U+985E, U+9CF3;
 }
 @font-face {
     font-family: 'Iansui';
@@ -284,7 +286,7 @@ picture { display: block; }
     font-weight: 400;
     font-display: swap;
     src: url('/fonts/iansui-index.woff2') format('woff2');
-    unicode-range: U+0025, U+0026, U+002D, U+0031, U+0034, U+0038, U+0039, U+0042, U+0048, U+004A, U+004B, U+004D, U+0056, U+0057, U+0059, U+006A, U+006B, U+0070, U+2014, U+2192, U+3001, U+300A, U+300B, U+300C, U+300D, U+30FB, U+4E00, U+4E09, U+4E0A, U+4E0D, U+4E14, U+4E16, U+4E26, U+4E2D, U+4E45, U+4E4B, U+4E5F, U+4E86, U+4E8C, U+4E94, U+4E9B, U+4EA4, U+4EAC, U+4EC0, U+4EC1, U+4ECD, U+4ED6, U+4EE4, U+4EE5, U+4EF6, U+4EFB, U+4EFF, U+4F0D, U+4F30, U+4F38, U+4F46, U+4F4E, U+4F4F, U+4F55, U+4F5B, U+4F73, U+4F86, U+4F8B, U+4F9B, U+4F9D, U+4FC2, U+4FDD, U+4FE1, U+4FEE, U+500B, U+5011, U+5021, U+503C, U+5047, U+505A, U+5065, U+507D, U+5099, U+50CF, U+50F9, U+512A, U+5143, U+514B, U+514D, U+5168, U+516D, U+5176, U+5177, U+5178, U+518D, U+5192, U+51E1, U+5206, U+5207, U+520A, U+5224, U+5225, U+5229, U+5230, U+5236, U+5247, U+524D, U+526F, U+5275, U+529B, U+529F, U+52C7, U+52DD, U+52F3, U+52F5, U+5305, U+5316, U+5347, U+5354, U+5360, U+5371, U+5373, U+539F, U+53C3, U+53CA, U+53D6, U+53D7, U+53E3, U+53EA, U+53EF, U+53F0, U+53F2, U+5404, U+5408, U+540C, U+540D, U+540F, U+5426, U+542B, U+544A, U+548C, U+54C8, U+54E1, U+54EA, U+554F, U+5587, U+55AE, U+561B, U+5668, U+56DB, U+56DE, U+56E0, U+570D, U+5716, U+5718, U+571F, U+5728, U+5730, U+574A, U+5750, U+578B, U+57DF, U+57F7, U+57F9, U+5805, U+5831, U+5834, U+584A, U+5883, U+58C7, U+58E4, U+58EB, U+5916, U+591A, U+5929, U+592A, U+5931, U+5957, U+5960, U+5967, U+5982, U+59CB, U+59D4, U+5A01, U+5A1C, U+5A92, U+5B57, U+5B64, U+5B83, U+5B87, U+5B88, U+5B89, U+5B8C, U+5B98, U+5B99, U+5B9A, U+5BA2, U+5BA3, U+5BA4, U+5BB6, U+5BB9, U+5BDF, U+5BE6, U+5BE9, U+5BEB, U+5BEC, U+5C01, U+5C07, U+5C08, U+5C0D, U+5C0E, U+5C0F, U+5C11, U+5C31, U+5C46, U+5C55, U+5C65, U+5CF0, U+5CF6, U+5DEE, U+5DF1, U+5DF2, U+5E03, U+5E2D, U+5E36, U+5E72, U+5E73, U+5E74, U+5E9C, U+5EA6, U+5EA7, U+5EB7, U+5EE3, U+5EF6, U+5EFA, U+5F0F, U+5F15, U+5F2D, U+5F35, U+5F37, U+5F62, U+5F70, U+5F71, U+5F80, U+5F8B, U+5F99, U+5F9E, U+5FA9, U+5FAA, U+5FB7, U+5FC3, U+5FC5, U+5FF5, U+5FFD, U+600E, U+601D, U+6027, U+6062, U+60F3, U+610F, U+611F, U+614B, U+6167, U+61C9, U+61F7, U+6210, U+6216, U+6240, U+624B, U+624D, U+6253, U+6258, U+626E, U+6279, U+627E, U+627F, U+6280, U+628A, U+6291, U+6295, U+62BD, U+62CB, U+62D2, U+62FF, U+6301, U+6307, U+6309, U+632F, U+6388, U+63A1, U+63A2, U+63A5, U+63A8, U+63AA, U+63B0, U+63D0, U+640D, U+642D, U+6469, U+649E, U+64AD, U+64C1, U+64CE, U+64D4, U+64F4, U+651C, U+652F, U+653E, U+653F, U+6545, U+6557, U+6559, U+6574, U+6587, U+6599, U+65AF, U+65B0, U+65B7, U+65B9, U+65BC, U+65BD, U+65E5, U+660E, U+6620, U+662F, U+6642, U+666F, U+667A, U+66F4, U+66F8, U+66FF, U+6700, U+6703, U+6708, U+6709, U+670D, U+671B, U+671F, U+672A, U+672C, U+6750, U+6771, U+677F, U+6797, U+679C, U+67B6, U+67CF, U+67E5, U+6821, U+6838, U+6848, U+689D, U+68C4, U+696D, U+6982, U+69AE, U+69CB, U+6A19, U+6A21, U+6A23, U+6A4B, U+6A5F, U+6AA2, U+6B04, U+6B0A, U+6B21, U+6B3E, U+6B62, U+6B64, U+6B72, U+6B7B, U+6B8A, U+6BB5, U+6BCF, U+6C11, U+6C23, U+6C34, U+6C38, U+6C42, U+6C7A, U+6CB9, U+6CD5, U+6CE2, U+6CE8, U+6D3B, U+6D3E, U+6D41, U+6D6E, U+6D88, U+6DF1, U+6E05, U+6E1B, U+6E90, U+6E96, U+6F84, U+6FFE, U+7063, U+706B, U+70BA, U+7121, U+7136, U+7167, U+71B1, U+7210, U+722D, U+723E, U+7247, U+7248, U+7269, U+7279, U+72C0, U+737B, U+7387, U+73FE, U+7403, U+74B0, U+751F, U+7522, U+7528, U+7531, U+754C, U+7559, U+756B, U+7570, U+7576, U+75AB, U+75C5, U+75D5, U+75DB, U+766E, U+767C, U+767D, U+767E, U+76EE, U+76F4, U+770B, U+771F, U+773E, U+7766, U+77E5, U+77ED, U+77F3, U+78BA, U+78BC, U+790E, U+793A, U+793E, U+795E, U+79A6, U+79D1, U+7A0B, U+7A31, U+7A3F, U+7A81, U+7ACB, U+7AD9, U+7B26, U+7B2C, U+7B56, U+7B97, U+7BA1, U+7BC0, U+7BC4, U+7BDD, U+7C21, U+7C3D, U+7CBE, U+7CFB, U+7D00, U+7D04, U+7D0D, U+7D1A, U+7D20, U+7D42, U+7D50, U+7D55, U+7D66, U+7D71, U+7D93, U+7DAD, U+7DB2, U+7DD2, U+7DDA, U+7DF4, U+7E3D, U+7E6B, U+7E8C, U+7F3A, U+7F55, U+7F69, U+7F72, U+7F8E, U+7FA4, U+7FA9, U+7FD2, U+7FFB, U+8005, U+800C, U+805E, U+8077, U+80AF, U+80B2, U+80CC, U+80FD, U+81DF, U+81EA, U+81F3, U+81FA, U+8207, U+8209, U+821E, U+826F, U+8272, U+827E, U+82B1, U+82E6, U+82F1, U+83EF, U+842C, U+843D, U+8521, U+85A6, U+85A9, U+860B, U+865F, U+884C, U+8853, U+885B, U+885D, U+8868, U+8896, U+88AB, U+88C2, U+88DC, U+88E1, U+8981, U+8986, U+898B, U+898F, U+8996, U+89BA, U+89C0, U+89D2, U+8A00, U+8A08, U+8A0A, U+8A0E, U+8A50, U+8A5E, U+8A66, U+8A71, U+8A72, U+8A8C, U+8A9E, U+8AB0, U+8ABF, U+8AC7, U+8ACB, U+8AD6, U+8AFE, U+8B49, U+8B58, U+8B70, U+8B77, U+8B80, U+8B93, U+8C37, U+8C9D, U+8CA0, U+8CA2, U+8CAC, U+8CBC, U+8CC7, U+8CE6, U+8CEA, U+8CF4, U+8D77, U+8D85, U+8DE1, U+8DE8, U+8DEF, U+8DF3, U+8E10, U+8EAB, U+8ECC, U+8EDF, U+8F03, U+8F2F, U+8F49, U+8FAF, U+8FD1, U+8FF0, U+9000, U+9001, U+900F, U+9010, U+9019, U+901A, U+9020, U+9023, U+9042, U+904B, U+904E, U+9053, U+9054, U+9060, U+9075, U+9077, U+9078, U+9080, U+9084, U+908A, U+90A6, U+90E8, U+90F5, U+90FD, U+914D, U+91CD, U+91CE, U+91D1, U+91DD, U+9304, U+9375, U+9418, U+9589, U+958B, U+9593, U+95A3, U+95B1, U+95DC, U+9632, U+964D, U+9650, U+9673, U+967D, U+968E, U+96A8, U+96AA, U+96C5, U+96C6, U+96DC, U+96E2, U+96F6, U+96FB, U+9700, U+975E, U+9769, U+97CC, U+97FF, U+9805, U+9808, U+9810, U+9812, U+9813, U+9818, U+984C, U+9867, U+990A, U+9996, U+99AC, U+9A19, U+9A45, U+9A57, U+9AD4, U+9AD8, U+9EBC, U+9EC3, U+9ED1, U+9EE8, U+9F4A, U+FF08, U+FF09, U+FF0C, U+FF1A, U+FF1B, U+FF1F;
+    unicode-range: U+0025, U+0026, U+002D, U+0031, U+0034, U+0038, U+0039, U+0042, U+0048, U+004A, U+004B, U+004D, U+0056, U+0057, U+006A, U+006B, U+0070, U+2014, U+2192, U+3001, U+300A, U+300B, U+300C, U+300D, U+30FB, U+4E00, U+4E03, U+4E09, U+4E0A, U+4E0D, U+4E14, U+4E16, U+4E26, U+4E2D, U+4E45, U+4E4B, U+4E5F, U+4E86, U+4E8C, U+4E94, U+4E9B, U+4EA4, U+4EAC, U+4EC0, U+4EC1, U+4ECD, U+4ED6, U+4EE4, U+4EE5, U+4EF6, U+4EFB, U+4EFF, U+4F0D, U+4F30, U+4F38, U+4F46, U+4F4E, U+4F4F, U+4F55, U+4F5B, U+4F73, U+4F86, U+4F8B, U+4F9B, U+4F9D, U+4FC2, U+4FDD, U+4FE1, U+4FEE, U+500B, U+5011, U+5021, U+503C, U+5047, U+505A, U+5065, U+507D, U+5099, U+50CF, U+50F9, U+512A, U+5143, U+514B, U+514D, U+5168, U+516D, U+5176, U+5177, U+5178, U+518D, U+5192, U+51E1, U+5206, U+5207, U+520A, U+5224, U+5225, U+5229, U+5230, U+5236, U+5247, U+524D, U+526F, U+5275, U+529B, U+529F, U+52C7, U+52DD, U+52F3, U+52F5, U+5305, U+5316, U+5347, U+5354, U+5360, U+5371, U+5373, U+539F, U+53C3, U+53CA, U+53D6, U+53D7, U+53E3, U+53E5, U+53EA, U+53EF, U+53F0, U+53F2, U+5404, U+5408, U+540C, U+540D, U+540F, U+5426, U+542B, U+544A, U+548C, U+54C8, U+54E1, U+54EA, U+554F, U+5587, U+55AE, U+561B, U+5668, U+56DB, U+56DE, U+56E0, U+570D, U+5716, U+5718, U+571F, U+5728, U+5730, U+574A, U+5750, U+578B, U+57DF, U+57F7, U+57F9, U+5805, U+5831, U+5834, U+584A, U+5883, U+58C7, U+58E4, U+58EB, U+5916, U+591A, U+5929, U+592A, U+5931, U+5957, U+5960, U+5967, U+5982, U+59CB, U+59D4, U+5A01, U+5A1C, U+5A92, U+5B57, U+5B64, U+5B83, U+5B87, U+5B88, U+5B89, U+5B8C, U+5B98, U+5B99, U+5B9A, U+5BA2, U+5BA3, U+5BA4, U+5BB6, U+5BB9, U+5BDF, U+5BE6, U+5BE9, U+5BEB, U+5BEC, U+5C01, U+5C07, U+5C08, U+5C0D, U+5C0E, U+5C0F, U+5C11, U+5C31, U+5C46, U+5C55, U+5C65, U+5CF0, U+5CF6, U+5DEE, U+5DF1, U+5DF2, U+5E03, U+5E2D, U+5E36, U+5E72, U+5E73, U+5E74, U+5E9C, U+5EA6, U+5EA7, U+5EB7, U+5EE3, U+5EF3, U+5EF6, U+5EFA, U+5F0F, U+5F15, U+5F2D, U+5F35, U+5F37, U+5F62, U+5F70, U+5F80, U+5F8B, U+5F99, U+5F9E, U+5FA9, U+5FAA, U+5FB7, U+5FC3, U+5FC5, U+5FF5, U+5FFD, U+600E, U+601D, U+6027, U+6062, U+60F3, U+610F, U+611F, U+614B, U+6167, U+61C9, U+61F7, U+6210, U+6216, U+6240, U+624B, U+624D, U+6253, U+6258, U+626E, U+6279, U+627E, U+627F, U+6280, U+628A, U+6291, U+6295, U+62BD, U+62CB, U+62D2, U+62FF, U+6301, U+6307, U+6309, U+632F, U+6388, U+63A1, U+63A2, U+63A5, U+63A8, U+63AA, U+63B0, U+63D0, U+640D, U+642D, U+6469, U+649E, U+64AD, U+64C1, U+64CE, U+64D4, U+64F4, U+651C, U+652F, U+653E, U+653F, U+6545, U+6557, U+6559, U+6574, U+6587, U+6599, U+65AF, U+65B0, U+65B7, U+65B9, U+65BC, U+65BD, U+65E5, U+660E, U+6620, U+662F, U+6642, U+666F, U+667A, U+66F4, U+66F8, U+66FF, U+6700, U+6703, U+6708, U+6709, U+670D, U+671B, U+671F, U+672A, U+672C, U+6750, U+6771, U+677F, U+6797, U+679C, U+67B6, U+67CF, U+67E5, U+6821, U+6838, U+6848, U+689D, U+68C4, U+696D, U+6982, U+69AE, U+69CB, U+6A19, U+6A21, U+6A23, U+6A4B, U+6A5F, U+6AA2, U+6B04, U+6B0A, U+6B21, U+6B3E, U+6B62, U+6B64, U+6B72, U+6B7B, U+6B8A, U+6BB5, U+6BCF, U+6C11, U+6C23, U+6C34, U+6C38, U+6C42, U+6C7A, U+6CB9, U+6CD5, U+6CE2, U+6CE8, U+6D3B, U+6D3E, U+6D41, U+6D6E, U+6D88, U+6DF1, U+6E05, U+6E1B, U+6E90, U+6E96, U+6F84, U+6FFE, U+7063, U+706B, U+70BA, U+7121, U+7136, U+7167, U+71B1, U+7210, U+722D, U+723E, U+7248, U+7269, U+7279, U+72C0, U+737B, U+7387, U+73FE, U+7403, U+74B0, U+751F, U+7522, U+7528, U+7531, U+754C, U+7559, U+756B, U+7570, U+7576, U+75AB, U+75C5, U+75D5, U+75DB, U+766E, U+767C, U+767D, U+767E, U+76EE, U+76F4, U+771F, U+773E, U+7766, U+77E5, U+77ED, U+77F3, U+78BA, U+78BC, U+790E, U+793A, U+793E, U+795E, U+79A6, U+79D1, U+7A0B, U+7A31, U+7A3F, U+7A81, U+7ACB, U+7AD9, U+7B26, U+7B2C, U+7B56, U+7B97, U+7BA1, U+7BC0, U+7BC4, U+7BDD, U+7C21, U+7C3D, U+7CBE, U+7CFB, U+7D00, U+7D04, U+7D0D, U+7D1A, U+7D20, U+7D42, U+7D50, U+7D55, U+7D66, U+7D71, U+7D93, U+7DAD, U+7DB2, U+7DD2, U+7DDA, U+7DF4, U+7E3D, U+7E6B, U+7E8C, U+7F3A, U+7F55, U+7F69, U+7F72, U+7F8E, U+7FA4, U+7FA9, U+7FD2, U+7FFB, U+8005, U+800C, U+805E, U+8072, U+8077, U+80AF, U+80B2, U+80CC, U+80FD, U+81DF, U+81EA, U+81F3, U+81FA, U+8207, U+8209, U+821E, U+826F, U+8272, U+827E, U+82B1, U+82E6, U+82F1, U+83EF, U+842C, U+843D, U+8521, U+85A6, U+85A9, U+860B, U+865F, U+884C, U+8853, U+885B, U+885D, U+8868, U+8896, U+88AB, U+88C2, U+88DC, U+88E1, U+8981, U+8986, U+898B, U+898F, U+8996, U+89BA, U+89D2, U+8A00, U+8A08, U+8A0A, U+8A0E, U+8A50, U+8A5E, U+8A66, U+8A71, U+8A72, U+8A8C, U+8A9E, U+8AB0, U+8ABF, U+8AC7, U+8ACB, U+8AD6, U+8AFE, U+8B49, U+8B58, U+8B70, U+8B77, U+8B80, U+8B93, U+8C37, U+8C9D, U+8CA0, U+8CA2, U+8CAC, U+8CBC, U+8CC7, U+8CE6, U+8CEA, U+8CF4, U+8D77, U+8D85, U+8DE1, U+8DE8, U+8DEF, U+8DF3, U+8E10, U+8EAB, U+8ECC, U+8EDF, U+8F03, U+8F2F, U+8F49, U+8FAF, U+8FD1, U+8FF0, U+9000, U+9001, U+900F, U+9010, U+9019, U+901A, U+9020, U+9023, U+9042, U+904B, U+904E, U+9053, U+9054, U+9060, U+9075, U+9077, U+9078, U+9080, U+9084, U+908A, U+90A6, U+90E8, U+90F5, U+90FD, U+914D, U+91CD, U+91CE, U+91D1, U+91DD, U+9304, U+9375, U+9418, U+9589, U+958B, U+9593, U+95A3, U+95B1, U+95DC, U+9632, U+964D, U+9650, U+9673, U+967D, U+968E, U+96A8, U+96AA, U+96C5, U+96C6, U+96DC, U+96E2, U+96F6, U+96FB, U+9700, U+975E, U+9769, U+97CC, U+97FF, U+9805, U+9808, U+9810, U+9812, U+9813, U+9818, U+984C, U+9867, U+990A, U+9996, U+99AC, U+9A19, U+9A45, U+9A57, U+9AD4, U+9AD8, U+9EBC, U+9EC3, U+9ED1, U+9EE8, U+9F4A, U+FF08, U+FF09, U+FF0C, U+FF1A, U+FF1B, U+FF1F;
 }
 </style>
 <noscript><style>.reveal { opacity: 1 !important; transform: none !important; }</style></noscript>
@@ -320,6 +322,7 @@ picture { display: block; }
             <a href="#dialogue"><span lang="en-GB">Addresses</span><span lang="zh-TW">演講</span></a>
             <a href="#recognition"><span lang="en-GB">Honours</span><span lang="zh-TW">獲獎</span></a>
             <a href="#work"><span lang="en-GB">Work</span><span lang="zh-TW">工作</span></a>
+            <a href="https://audreyt.box/" class="nav-film" data-box-link><span lang="en-GB">Film</span><span lang="zh-TW">影片</span></a>
             <a href="#publications"><span lang="en-GB">Published</span><span lang="zh-TW">著作</span></a>
             <a href="#essays"><span lang="en-GB">Long Read</span><span lang="zh-TW">長篇</span></a>
             <a href="#connect"><span lang="en-GB">Connect</span><span lang="zh-TW">聯絡</span></a>
@@ -697,32 +700,39 @@ a.award-card { color: inherit; text-decoration: none; }
 }
 
 /* ─── PULLQUOTE ─── */
+/* ─── PULLQUOTE: the geothermal interlude ───
+   Always dark, like the film band. motes.js ([data-motes="geo"]) lays two
+   plates of light along the foot of the band, creeping together; at the seam
+   their pressure rises as embers towards the quote. Without it (no JS, or a
+   canvas that never comes up) the people-arc stands in. */
 .pullquote {
-    padding: 80px;
+    padding: 120px 80px 300px;
     text-align: center;
-    background: var(--paper);
-    border-top: 1px solid var(--border);
+    background: var(--ink);
+    color: #fff;
 }
 
 .pullquote blockquote {
     font-family: var(--serif);
-    font-size: clamp(1.5rem, 3vw, 2.2rem);
-    font-weight: 400;
+    font-size: clamp(1.6rem, 3.2vw, 2.4rem);
+    font-weight: 300;
     font-style: italic;
-    color: var(--heading);
-    line-height: 1.5;
-    max-width: 800px;
-    margin: 0 auto 16px;
+    color: #f6efe1;
+    line-height: 1.45;
+    max-width: 820px;
+    margin: 0 auto 20px;
     letter-spacing: -0.01em;
+    text-shadow: 0 0 26px rgba(15,25,35,0.9), 0 0 3px rgba(15,25,35,0.6);
 }
 
 .pullquote cite {
     font-family: var(--serif);
     font-style: normal;
     font-size: 0.8rem;
-    color: var(--muted);
+    color: rgba(255,255,255,0.55);
     letter-spacing: 0.05em;
 }
+.pullquote cite a { color: var(--gold-light); }
 
 /* ─── FEATURED IN ─── */
 .featured-in {
@@ -733,6 +743,8 @@ a.award-card { color: inherit; text-decoration: none; }
 }
 
 .featured-inner {
+    position: relative;
+    z-index: 2;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -854,63 +866,195 @@ a.featured-outlet:hover {
     line-height: 1.7;
 }
 
-/* ─── FILM ─── */
+/* ─── FILM: the door to the screening room (audreyt.box) ───
+   Always dark. A projector's light falls from the top of the band onto the
+   poster, and motes.js ([data-motes="beam"]) sets dust turning in it. The
+   whole preview (screen and call to action) is one link to audreyt.box;
+   nothing plays here. */
 .film {
+    position: relative;
     background: var(--ink);
     color: #fff;
-    padding: 100px 80px;
+    padding: 110px 80px 120px;
+    overflow: hidden;
+}
+.film::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: -8%;
+    width: min(1600px, 170vw);
+    height: 92%;
+    transform: translateX(-50%);
+    pointer-events: none;
+    background: conic-gradient(from 154deg at 50% 0%, transparent 0deg, rgba(201,169,97,0.05) 16deg, rgba(255,246,226,0.075) 26deg, rgba(201,169,97,0.05) 36deg, transparent 52deg);
+    -webkit-mask-image: linear-gradient(to bottom, #000 20%, transparent 90%);
+    mask-image: linear-gradient(to bottom, #000 20%, transparent 90%);
 }
 
 .film-inner {
-    max-width: 1200px;
+    position: relative;
+    z-index: 2;
+    max-width: 1100px;
     margin: 0 auto;
+    text-align: center;
 }
 
-.film .section-label { color: var(--gold-light); }
+.film .section-label { color: var(--gold-light); width: fit-content; margin-left: auto; margin-right: auto; }
 
 .film h2 {
     font-family: var(--serif);
-    font-size: clamp(2rem, 3.5vw, 2.8rem);
-    font-weight: 400;
+    font-size: clamp(2.2rem, 4.4vw, 3.6rem);
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
     color: #fff;
-    margin-bottom: 16px;
+    margin-bottom: 20px;
+    text-wrap: balance;
 }
 
 .film-subtitle {
-    font-size: 1rem;
-    color: rgba(255,255,255,0.6);
-    margin-bottom: 40px;
+    font-size: 1.02rem;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.64);
+    max-width: 46em;
+    margin: 0 auto 56px;
+    text-wrap: pretty;
 }
+.film-subtitle strong { color: rgba(255,255,255,0.88); font-weight: 600; }
 
-.film-video {
+.film-door {
+    display: block;
+    max-width: 1000px;
+    margin: 0 auto;
+    color: #fff;
+    text-decoration: none;
+}
+.film-door:hover { color: #fff; }
+.film-screen {
     position: relative;
-    width: 100%;
-    max-width: 900px;
-    aspect-ratio: 16/9;
+    display: block;
+    aspect-ratio: 900 / 422;
     background: #000;
-    border-radius: 4px;
-    overflow: hidden;
-    margin-bottom: 48px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
 }
-
-.film-video video {
+.film-glow {
+    position: absolute;
+    inset: 8% -3%;
+    background: url(assets/GEA-poster.jpg) center / cover no-repeat;
+    background-image: image-set(url(assets/GEA-poster.avif) type('image/avif'), url(assets/GEA-poster.webp) type('image/webp'), url(assets/GEA-poster.jpg) type('image/jpeg'));
+    filter: blur(56px) saturate(1.6);
+    opacity: 0.55;
+    transform: translateZ(0);
+    pointer-events: none;
+    transition: opacity 0.8s ease;
+}
+.film-screen img {
+    position: relative;
+    display: block;
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
+    transition: transform 6s cubic-bezier(0.22, 1, 0.36, 1);
 }
+.film-screen::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 70% at 50% 55%, rgba(5,7,10,0.12), rgba(5,7,10,0.46));
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+}
+.film-play {
+    position: absolute;
+    left: 50%;
+    top: 56%;
+    z-index: 1;
+    width: clamp(60px, 7vw, 84px);
+    aspect-ratio: 1;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: 1px solid rgba(201,169,97,0.75);
+    background: rgba(5,7,10,0.36);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    color: var(--gold-light);
+    display: grid;
+    place-items: center;
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.3s, border-color 0.3s;
+}
+.film-play svg { width: 30%; height: 30%; margin-left: 7%; fill: currentColor; }
+.film-play::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: 50%;
+    border: 1px solid var(--gold-light);
+    opacity: 0;
+}
+@keyframes film-ripple { 0% { opacity: 0.55; transform: scale(1); } 100% { opacity: 0; transform: scale(1.7); } }
+@media (prefers-reduced-motion: no-preference) {
+    .film-play::before { animation: film-ripple 3.2s cubic-bezier(0.22, 1, 0.36, 1) 1.2s infinite; }
+}
+
+.film-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    margin-top: 36px;
+}
+.film-cta-k {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    padding: 17px 30px;
+    border-radius: 3px;
+    background: var(--gold-light);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    transition: background-color 0.3s;
+}
+.film-cta-k::after {
+    content: '\2192';
+    font-size: 1.15em;
+    letter-spacing: 0;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.film-cta-k [lang="zh-TW"] { font-family: var(--cjk); font-size: 1.1em; letter-spacing: 0.3em; }
+.film-cta-m {
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.52);
+}
+.film-cta-m [lang="zh-TW"] { font-family: var(--cjk); font-size: 1.08em; letter-spacing: 0.18em; }
+
+.film-door:hover .film-screen img { transform: scale(1.015); }
+.film-door:hover .film-glow { opacity: 0.8; }
+.film-door:hover .film-screen::after { opacity: 0.6; }
+.film-door:hover .film-play { transform: translate(-50%, -50%) scale(1.07); background: rgba(5,7,10,0.55); border-color: var(--gold-light); }
+.film-door:hover .film-cta-k { background: #e0c58a; }
+.film-door:hover .film-cta-k::after { transform: translateX(5px); }
+.film-door:focus-visible { outline: none; }
+.film-door:focus-visible .film-screen { outline: 2px solid var(--gold-light); outline-offset: 6px; }
 
 .film-meta {
     display: flex;
-    gap: 40px;
-    align-items: start;
-    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 72px;
+    text-align: left;
 }
 
 .film-quote {
-    max-width: 600px;
+    max-width: 640px;
     font-family: var(--serif);
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-style: italic;
     color: var(--gold-light);
     line-height: 1.6;
@@ -1462,6 +1606,11 @@ html:has(#lang-zh:checked) .essay-card p { font-family: var(--cjk); font-style: 
     }
 
     .section, .film, .gallery, .pullquote { padding: 60px 24px; }
+    .pullquote { padding: 72px 24px 220px; }
+    .film { padding: 72px 24px 80px; }
+    .film-subtitle { margin-bottom: 40px; }
+    .film-cta-k { padding: 15px 22px; font-size: 0.74rem; letter-spacing: 0.18em; }
+    .film-meta { margin-top: 52px; }
     .featured-in { padding: 24px; }
     footer { padding: 40px 24px; }
 
@@ -2686,9 +2835,9 @@ footer .footer-name, footer p { position: relative; z-index: 1; }
 .pullquote .people-arc { position: absolute; left: 0; right: 0; bottom: 18px; height: 120px;
   z-index: 0; pointer-events: none; }
 .pullquote .people-arc .people-arc-svg { width: 100%; height: 100%; display: block; }
-.pullquote .people-arc .pa-arc { stroke: var(--orrery-line); stroke-opacity: .22; stroke-width: 1; }
-.pullquote .people-arc .pa-nodes circle { fill: var(--orrery-line); fill-opacity: .55; }
-.pullquote blockquote, .pullquote cite { position: relative; z-index: 1; }
+.pullquote .people-arc .pa-arc { stroke: var(--gold-light); stroke-opacity: .3; stroke-width: 1; }
+.pullquote .people-arc .pa-nodes circle { fill: var(--gold-light); fill-opacity: .6; }
+.pullquote blockquote, .pullquote cite { position: relative; z-index: 2; }
 /* mobile: thin the studded nodes (the 1200-wide arc squashes 42 nodes into a dense
    crowded band at phone width) — keep every other node for a calmer arc. */
 @media (max-width: 768px) {
@@ -2734,10 +2883,24 @@ footer .footer-name, footer p { position: relative; z-index: 1; }
   opacity: 1; border-color: var(--care-card); transform: scale(1.15);
 }
 @media (prefers-reduced-motion: reduce) { .work-grid > .work-item::before { transition: none; } }
+
+/* ─── Motes (motes.js): the air of the dark islands ───────────────────────
+   The audreyt.box idiom brought home: soft glow sprites on one light ramp (sea
+   teal → steel → cream → gold → ember → rose). Dust drifts on the hero, the
+   press band and the footer; in the film band it turns in the projector's
+   light; in the pullquote two plates of light meet and their seam rises as
+   embers. The canvas sits under the content (z 1, content z 2) and, like the
+   orreries, is only inserted once it has a context, when the mount gains
+   `.is-live`. The geothermal plates then retire the people-arc; everywhere
+   else the dust is pure addition, so there is nothing to fall back to. */
+.motes { position: absolute; inset: 0; width: 100%; height: 100%; display: block; pointer-events: none; z-index: 1; }
+.featured-in { position: relative; }
+@media screen { .pullquote.is-live .people-arc { display: none; } }
+@media print { .motes { display: none !important; } }
 </style>
 
 <!-- ════════ HERO ════════ -->
-<header class="hero">
+<header class="hero" data-motes="air">
     <div class="hero-portrait-picture">
         <noscript><img class="hero-portrait" src="assets/at-fallback.jpg"
              srcset="assets/at-480.jpg 480w, assets/at-800.jpg 800w, assets/at-1200.jpg 1200w"
@@ -3012,9 +3175,8 @@ footer .footer-name, footer p { position: relative; z-index: 1; }
     </div>
 </section>
 
-<div class="divider-arc"><svg class="divider-arc-svg" viewBox="0 0 1200 40" preserveAspectRatio="none" aria-hidden="true" focusable="false" fill="none"><path class="d-arc" pathLength="1" d="M0 38 A 4000 4000 0 0 1 1200 38"/></svg></div>
 <!-- ════════ PULLQUOTE ════════ -->
-<aside class="pullquote reveal">
+<aside class="pullquote reveal" data-motes="geo">
     <div class="people-arc"><svg class="people-arc-svg" viewBox="0 0 1200 200" preserveAspectRatio="none" aria-hidden="true" focusable="false" fill="none"><path class="pa-arc" d="M 70 178 Q 600 -86 1130 178"/><g class="pa-nodes"><circle cx="70.0" cy="178.1" r="2.20"/><circle cx="95.9" cy="166.1" r="2.30"/><circle cx="121.7" cy="155.6" r="2.21"/><circle cx="147.6" cy="139.7" r="2.20"/><circle cx="173.4" cy="132.2" r="2.07"/><circle cx="199.3" cy="121.3" r="2.73"/><circle cx="225.1" cy="111.6" r="2.44"/><circle cx="251.0" cy="104.3" r="1.57"/><circle cx="276.8" cy="93.1" r="1.77"/><circle cx="302.7" cy="86.9" r="1.94"/><circle cx="328.5" cy="81.1" r="1.52"/><circle cx="354.4" cy="74.9" r="2.28"/><circle cx="380.2" cy="68.2" r="2.74"/><circle cx="406.1" cy="65.5" r="2.61"/><circle cx="432.0" cy="58.2" r="2.36"/><circle cx="457.8" cy="54.0" r="1.40"/><circle cx="483.7" cy="53.8" r="2.96"/><circle cx="509.5" cy="48.6" r="1.55"/><circle cx="535.4" cy="49.4" r="1.89"/><circle cx="561.2" cy="47.0" r="2.28"/><circle cx="587.1" cy="48.2" r="1.54"/><circle cx="612.9" cy="48.2" r="2.69"/><circle cx="638.8" cy="46.0" r="1.34"/><circle cx="664.6" cy="45.4" r="2.73"/><circle cx="690.5" cy="49.8" r="2.19"/><circle cx="716.3" cy="51.0" r="2.15"/><circle cx="742.2" cy="56.9" r="1.45"/><circle cx="768.0" cy="60.1" r="1.38"/><circle cx="793.9" cy="63.3" r="2.38"/><circle cx="819.8" cy="71.6" r="2.03"/><circle cx="845.6" cy="74.1" r="1.90"/><circle cx="871.5" cy="77.9" r="2.55"/><circle cx="897.3" cy="87.1" r="2.59"/><circle cx="923.2" cy="93.9" r="2.24"/><circle cx="949.0" cy="102.3" r="2.73"/><circle cx="974.9" cy="110.0" r="1.50"/><circle cx="1000.7" cy="122.2" r="2.36"/><circle cx="1026.6" cy="129.3" r="1.93"/><circle cx="1052.4" cy="141.5" r="2.89"/><circle cx="1078.3" cy="155.6" r="2.37"/><circle cx="1104.1" cy="164.9" r="2.86"/><circle cx="1130.0" cy="178.5" r="2.04"/></g></svg></div>
     <blockquote lang="en-GB">
         "We built a geothermal democracy &mdash;<br>the crashing plates turned<br>into positive energy for renewal."
@@ -3027,7 +3189,7 @@ footer .footer-name, footer p { position: relative; z-index: 1; }
 </aside>
 
 <!-- ════════ FEATURED IN ════════ -->
-<section class="featured-in reveal" aria-label="Featured in">
+<section class="featured-in reveal" aria-label="Featured in" data-motes="air">
     <div class="featured-inner">
         <span class="featured-label" lang="en-GB">Featured in</span>
         <span class="featured-label" lang="zh-TW">媒體報導</span>
@@ -3178,32 +3340,39 @@ footer .footer-name, footer p { position: relative; z-index: 1; }
 </section>
 
 <!-- ════════ FILM ════════ -->
-<section class="film">
-    <div class="film-inner reveal">
+<!-- The door to the screening room at audreyt.box (its own domain, so
+     cyberambassador.tw can link to it too). The whole preview is one link: the
+     poster on a screen, dust turning in the projector's light, and the way in.
+     The film itself plays there, not here. -->
+<section class="film" id="film" data-motes="beam">
+    <div class="film-inner">
+        <div class="film-head reveal">
         <div class="section-label" lang="en-GB"><svg class="o-glyph" viewBox="0 0 32 32" aria-hidden="true"><use href="#o-mark"/></svg>Short Film &middot; Directed by Cynthia Wade</div>
         <div class="section-label" lang="zh-TW"><svg class="o-glyph" viewBox="0 0 32 32" aria-hidden="true"><use href="#o-mark"/></svg>短片&#x30FB;導演：Cynthia Wade</div>
         <h2 lang="en-GB">Good Enough Ancestor &mdash; A Documentary</h2>
         <h2 lang="zh-TW">夠好的祖先（紀錄短片）</h2>
         <p class="film-subtitle" id="film-desc-en" lang="en-GB">Oscar and Emmy-winning director Cynthia Wade's documentary on democracy, mortality, and the courage to leave a wider canvas for future generations. <strong>Best Professional Documentary Short</strong>, SCAD Savannah Film Festival. Screened at the Woodstock Film Festival and Athena Film Festival. 21 min.</p>
         <p class="film-subtitle" id="film-desc-zh" lang="zh-TW">奧斯卡與艾美獎得主導演 Cynthia Wade 執導的紀錄片，探討民主、生死，以及留給後代更寬廣舞台的勇氣。獲得 <strong>SCAD 薩凡納電影節最佳專業紀錄短片獎</strong>，於伍德斯托克電影節與雅典娜電影節放映。片長 21 分鐘。</p>
-        <div class="film-video">
-            <video controls preload="none" poster="assets/GEA-poster.jpg" data-poster="assets/GEA-poster" playsinline width="900" height="506" aria-label="Good Enough Ancestor — short documentary directed by Cynthia Wade, 21 min." aria-describedby="film-desc-en film-desc-zh">
-                <source src="assets/GEA.av1.mp4" type="video/mp4; codecs=av01">
-                <source src="assets/GEA.webm" type="video/webm; codecs=vp9">
-                <source src="assets/GEA.mp4" type="video/mp4">
-                <track kind="captions" src="assets/captions.vtt" srclang="en-GB" label="English">
-                <p>Your browser does not support HTML5 video. <a href="assets/GEA.mp4">Download the video here.</a></p>
-                <a href="assets/captions.vtt" class="sr-only">Full transcript (captions file)</a>
-            </video>
         </div>
-        <div class="film-meta">
+        <a class="film-door reveal" href="https://audreyt.box/" data-box-link>
+            <span class="film-screen">
+                <span class="film-glow" aria-hidden="true"></span>
+                <noscript><img src="assets/GEA-poster.jpg" alt="" width="900" height="422" loading="lazy" decoding="async"></noscript>
+                <span class="film-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 3.5v17a.6.6 0 0 0 .9.5l14-8.5a.6.6 0 0 0 0-1L6.9 3a.6.6 0 0 0-.9.5z"/></svg></span>
+            </span>
+            <span class="film-cta">
+                <span class="film-cta-k"><span lang="en-GB">Enter the screening room</span><span lang="zh-TW">進入放映廳</span></span>
+                <span class="film-cta-m"><span lang="en-GB">The full film &middot; 21 min &middot; seven lines in their own voices</span><span lang="zh-TW">全片 21 分鐘 &middot; 七句話，原聲重現</span></span>
+            </span>
+        </a>
+        <div class="film-meta reveal">
         <blockquote class="film-quote" lang="en-GB">
             "I insist on relinquishing copyright because if I disappear tomorrow, future generations can make use of the materials that I have."
-            <cite>&mdash; from <em>Good Enough Ancestor</em> &middot; <a href="https://www.youtube.com/watch?v=idudNrLy8ek" target="_blank" rel="noopener noreferrer">Watch on YouTube</a></cite>
+            <cite>&mdash; from <em>Good Enough Ancestor</em></cite>
         </blockquote>
         <blockquote class="film-quote" lang="zh-TW">
             我堅持拋棄著作權，因為如果我明天消失了，後代子孫還是可以使用我留下的素材。
-            <cite>——出自《夠好的祖先》 &#x30FB; <a href="https://www.youtube.com/watch?v=idudNrLy8ek" target="_blank" rel="noopener noreferrer">於 YouTube 觀看</a></cite>
+            <cite>——出自《夠好的祖先》</cite>
         </blockquote>
         </div>
     </div>
@@ -3459,7 +3628,7 @@ footer .footer-name, footer p { position: relative; z-index: 1; }
 </main>
 
 <!-- ════════ FOOTER ════════ -->
-<footer>
+<footer data-motes="air">
     <div class="orrery orrery--footer" data-orrery="footer" aria-hidden="true"><svg class="orrery-svg" viewBox="0 0 480 480" preserveAspectRatio="xMidYMid meet" fill="none" aria-hidden="true" focusable="false">
   <circle class="o-boundary" cx="240" cy="240" r="140"/>
   <g class="o-graticule"><line x1="304" y1="240" x2="380" y2="240"/><line x1="295.4" y1="272" x2="361.2" y2="310"/><line x1="272" y1="295.4" x2="310" y2="361.2"/><line x1="240" y1="304" x2="240" y2="380"/><line x1="208" y1="295.4" x2="170" y2="361.2"/><line x1="184.6" y1="272" x2="118.8" y2="310"/><line x1="176" y1="240" x2="100" y2="240"/><line x1="184.6" y1="208" x2="118.8" y2="170"/><line x1="208" y1="184.6" x2="170" y2="118.8"/><line x1="240" y1="176" x2="240" y2="100"/><line x1="272" y1="184.6" x2="310" y2="118.8"/><line x1="295.4" y1="208" x2="361.2" y2="170"/></g>
@@ -3615,7 +3784,14 @@ langCb.addEventListener('change', () => {
     document.title = isZh ? '\u5510\u9cf3 \u00b7 \u6578\u4f4d\u6cbb\u7406\u5927\u4f7f' : 'Audrey Tang \u00b7 Cyber Ambassador';
     try { localStorage.setItem('lang', isZh ? 'zh-TW' : 'en-GB'); } catch (e) {}
     document.getElementById('lang-announce').textContent = isZh ? '語言已切換為華文' : 'Language switched to English';
+    boxLinks();
 });
+// audreyt.box is its own site: send the reader's current language along
+function boxLinks() {
+    const q = /^zh/.test(document.documentElement.lang) ? '?lang=zh' : '?lang=en';
+    document.querySelectorAll('a[data-box-link]').forEach((a) => { a.href = 'https://audreyt.box/' + q; });
+}
+boxLinks();
 document.querySelector('.lang-toggle').addEventListener('keydown', (e) => {
     if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); langCb.click(); }
 });
@@ -4411,6 +4587,259 @@ document.querySelector('.lang-toggle').addEventListener('keydown', (e) => {
             if (mqMotion.matches) { stop(); still(); } else start();
         });
     }
+})();
+</script>
+
+<script>
+/* motes.js — the air of the room.
+
+   Glow-sprite particles for the always-dark islands, in the idiom of the
+   screening room at audreyt.box: the same light ramp — sea teal, steel, cream, gold,
+   ember, rose — and the same soft sprites with a bright core.
+
+     [data-motes="air"]   dust drifting in the dark (hero, press band, footer)
+     [data-motes="beam"]  the same dust, caught in a projector's light (film band)
+     [data-motes="geo"]   the geothermal interlude: two plates of light creeping
+                          together, and at the seam the pressure rising as embers
+                          — "the crashing plates turned into positive energy"
+
+   Canvas 2D, no dependencies. A canvas is added only once it has a context,
+   and the mount gets `.is-live` so CSS may retire any fallback it covers. Each
+   mount draws only while on screen and the tab is visible; under reduced
+   motion it draws one still frame (and redraws it on resize). */
+
+(function () {
+    'use strict';
+
+    var mounts = document.querySelectorAll('[data-motes]');
+    if (!mounts.length || !window.requestAnimationFrame) return;
+
+    var TAU = Math.PI * 2;
+    var mqMotion = matchMedia('(prefers-reduced-motion: reduce)');
+    var SMALL = matchMedia('(max-width: 768px)');
+
+    /* ── sprites: one ramp, 24 steps, each a soft disc with a white-hot core ── */
+    var RAMP = [[0, 88, 196, 212], [0.2, 150, 180, 196], [0.45, 250, 240, 222], [0.7, 214, 178, 104], [0.86, 238, 150, 92], [1, 232, 116, 112]];
+    var SPR = [];
+    (function () {
+        for (var q = 0; q < 24; q++) {
+            var u = q / 23, c = RAMP[RAMP.length - 1];
+            for (var m = 1; m < RAMP.length; m++) if (u <= RAMP[m][0]) {
+                var A = RAMP[m - 1], B = RAMP[m], f = (u - A[0]) / (B[0] - A[0]);
+                c = [0, A[1] + (B[1] - A[1]) * f, A[2] + (B[2] - A[2]) * f, A[3] + (B[3] - A[3]) * f];
+                break;
+            }
+            var rgb = Math.round(c[1]) + ',' + Math.round(c[2]) + ',' + Math.round(c[3]);
+            var s = document.createElement('canvas');
+            s.width = s.height = 32;
+            var g = s.getContext('2d');
+            if (!g) return;
+            var gr = g.createRadialGradient(16, 16, 0, 16, 16, 16);
+            gr.addColorStop(0, 'rgba(255,252,245,1)');
+            gr.addColorStop(0.16, 'rgba(' + rgb + ',0.9)');
+            gr.addColorStop(0.42, 'rgba(' + rgb + ',0.2)');
+            gr.addColorStop(1, 'rgba(' + rgb + ',0)');
+            g.fillStyle = gr;
+            g.fillRect(0, 0, 32, 32);
+            SPR.push(s);
+        }
+    })();
+    if (SPR.length < 24) return;
+    function spr(u) { return SPR[Math.max(0, Math.min(23, Math.round(u * 23)))]; }
+
+    /* deterministic, so every visit sees the same sky */
+    function rng(seed) {
+        return function () {
+            seed = seed + 0x6D2B79F5 | 0;
+            var t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+            t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+            return ((t ^ t >>> 14) >>> 0) / 4294967296;
+        };
+    }
+    function clamp(x) { return x < 0 ? 0 : x > 1 ? 1 : x; }
+    function smooth(a, b, x) { var t = clamp((x - a) / (b - a)); return t * t * (3 - 2 * t); }
+
+    /* ── air and beam: dust in the dark room ──
+       Each mote has a depth: nearer motes are larger, brighter and faster, and
+       slide a little more against the scroll. In a beam, motes inside the cone
+       of light from the top centre catch it and glow; outside it they almost vanish. */
+    function dust(kind, W, H, seed) {
+        var r = rng(seed), beam = kind === 'beam';
+        var n = Math.round(Math.min(beam ? 190 : 120, W * H / (beam ? 5200 : 9000)) * (SMALL.matches ? 0.6 : 1));
+        var X = new Float32Array(n), Y = new Float32Array(n), D = new Float32Array(n), PH = new Float32Array(n), U = new Float32Array(n);
+        for (var i = 0; i < n; i++) {
+            X[i] = r(); Y[i] = r(); D[i] = 0.2 + 0.8 * r(); PH[i] = r() * TAU;
+            var c = r();
+            U[i] = c < 0.72 ? 0.3 + 0.12 * r() : c < 0.9 ? 0.62 + 0.1 * r() : 0.05 + 0.1 * r();
+        }
+        return function draw(ctx, t, scroll) {
+            for (var i = 0; i < n; i++) {
+                var d = D[i];
+                var x = (((X[i] + t * 0.0045 * d + 0.012 * Math.sin(t * 0.21 + PH[i])) % 1) + 1) % 1 * W;
+                var y = (((Y[i] - scroll * 0.06 * d - t * (beam ? 0.0016 : 0.001) * d + 0.01 * Math.cos(t * 0.17 + PH[i])) % 1) + 1) % 1 * H;
+                var tw = 0.62 + 0.38 * Math.sin(t * (0.5 + d) + PH[i] * 3);
+                var a = (0.05 + 0.26 * d) * tw, s = 1.3 + 3.8 * d;
+                if (beam) {
+                    /* the cone: apex above the band, spreading ±26° */
+                    var dx = x - W / 2, dy = y + H * 0.18, ang = Math.abs(Math.atan2(dx, dy));
+                    var lit = 1 - smooth(0.26, 0.46, ang);
+                    a *= 0.4 + 3.4 * lit * (0.55 + 0.45 * smooth(0, H * 0.7, dy));
+                    s *= 1 + 0.5 * lit;
+                }
+                if (a < 0.008) continue;
+                ctx.globalAlpha = a > 1 ? 1 : a;
+                ctx.drawImage(spr(U[i]), x - s / 2, y - s / 2, s, s);
+            }
+        };
+    }
+
+    /* ── geo: the geothermal interlude ──
+       Two plates of light, each a slab of luminous strata, creep towards a
+       seam. Squeezed there, their layers fold upward into a ridge (the way
+       the Central Range was raised where two plates meet under Taiwan) and
+       warm from steel to gold. At the crest the pressure leaves as embers,
+       hot at first and cooling to cream as they rise towards the words. A
+       particle that reaches the seam is reborn at the outer edge: nothing is
+       lost; it changes state. */
+    function geo(W, H, seed) {
+        var r = rng(seed), small = SMALL.matches;
+        var seam = W * 0.5, half = W * 0.5 + 16;
+        var depth = Math.min(H * (small ? 0.22 : 0.27), 180), floor = H + 6, top = floor - depth;
+        var lift = depth * (small ? 0.8 : 0.95), spread = W * (small ? 0.2 : 0.13);
+        var LAYERS = small ? 5 : 7, per = Math.round(Math.min(small ? 90 : 210, W / (small ? 4.4 : 6.8)));
+        var NP = LAYERS * per * 2, NE = small ? 120 : 240;
+        var PX = new Float32Array(NP), PL = new Float32Array(NP), PS = new Float32Array(NP), PJ = new Float32Array(NP), PH = new Float32Array(NP);
+        var EX = new Float32Array(NE), EV = new Float32Array(NE), EA = new Float32Array(NE), EP = new Float32Array(NE), EL = new Float32Array(NE);
+        var i, k = 0;
+        for (var side = 0; side < 2; side++) {
+            for (var l = 0; l < LAYERS; l++) {
+                for (var j = 0; j < per; j++, k++) {
+                    PX[k] = (j + r()) / per;           /* 0 at the outer edge, 1 at the seam */
+                    PL[k] = (l + 0.5 + (r() - 0.5) * 0.5) / LAYERS;
+                    PS[k] = side ? 1 : -1;
+                    PJ[k] = r();
+                    PH[k] = r() * TAU;
+                }
+            }
+        }
+        /* where a particle a share p of the way in stands: squeezed towards the seam */
+        function across(p) { return half * Math.pow(1 - p, 1.35); }
+        function uplift(dx) { var q = dx / spread; return Math.exp(-q * q); }
+        var crest = top - lift;
+        function spawn(i, age) {
+            var g = (r() + r() + r() - 1.5) / 1.5;
+            EX[i] = seam + g * spread * 0.45;
+            EV[i] = 0.6 + 0.8 * r();
+            EP[i] = r() * TAU;
+            EL[i] = 0.5 + 0.5 * r();
+            EA[i] = age;
+        }
+        for (i = 0; i < NE; i++) spawn(i, r());
+        var last = 0;
+        return function draw(ctx, t, scroll, energy) {
+            var dt = last ? Math.min(0.05, t - last) : 0;
+            last = t;
+            var creep = 0.0065 * (0.6 + 0.8 * energy);
+            /* the heat, tight at the crest */
+            var hr = spread * 1.3;
+            var g = ctx.createRadialGradient(seam, crest + lift * 0.5, 0, seam, crest + lift * 0.5, hr);
+            g.addColorStop(0, 'rgba(238,150,92,' + (0.16 + 0.1 * energy).toFixed(3) + ')');
+            g.addColorStop(0.5, 'rgba(214,178,104,0.05)');
+            g.addColorStop(1, 'rgba(214,178,104,0)');
+            ctx.globalAlpha = 1;
+            ctx.fillStyle = g;
+            ctx.fillRect(seam - hr, crest + lift * 0.5 - hr, hr * 2, hr * 2);
+            for (var k = 0; k < NP; k++) {
+                var p = (PX[k] + t * creep * (0.85 + 0.3 * PJ[k])) % 1;
+                var dx = PS[k] * across(p), x = seam + dx, L = PL[k], up = uplift(dx);
+                /* each stratum folds upward at the seam, the upper ones most */
+                var y = top + L * depth - up * lift * (1 - 0.55 * L) + Math.sin(PH[k] + t * 0.35 + p * 9) * 1.4;
+                var heat = up * (1 - 0.6 * L);
+                var edge = smooth(0, 0.05, p) * (1 - smooth(0.965, 1, p));
+                var a = (0.34 + 0.5 * (1 - L)) * (0.72 + 0.28 * Math.sin(t * (0.7 + PJ[k]) + PH[k])) * edge * (0.8 + 0.7 * heat);
+                if (a < 0.012) continue;
+                var s = (small ? 2.1 : 2.4) + 2.6 * (1 - L) * PJ[k] + 2.4 * heat;
+                ctx.globalAlpha = a > 1 ? 1 : a;
+                ctx.drawImage(spr(0.16 + 0.1 * L + 0.66 * heat), x - s / 2, y - s / 2, s, s);
+            }
+            /* embers: hot at the crest, cooling to cream as they climb */
+            var rate = 0.5 + 0.9 * energy, reach = crest * 0.7;
+            for (var i = 0; i < NE; i++) {
+                EA[i] += dt * 0.13 * EV[i] * rate;
+                if (EA[i] >= 1) { spawn(i, EA[i] - 1); continue; }
+                var h = EA[i], y0 = crest + lift * 0.18 * (1 - uplift(EX[i] - seam));
+                var ex = EX[i] + Math.sin(EP[i] + t * 0.9 + h * 6) * (3 + 26 * h) + (EX[i] - seam) * h * 1.8;
+                var ey = y0 - h * EL[i] * reach;
+                var ea = smooth(0, 0.06, h) * (1 - smooth(0.3, 1, h)) * (0.6 + 0.4 * Math.sin(t * 4 + EP[i] * 7));
+                if (ea < 0.012) continue;
+                var es = (1.8 + 3.8 * (1 - h)) * (0.7 + 0.4 * EV[i]);
+                ctx.globalAlpha = ea > 1 ? 1 : ea;
+                ctx.drawImage(spr(1 - 0.58 * h), ex - es / 2, ey - es / 2, es, es);
+            }
+        };
+    }
+
+    /* ── mounts ── */
+    [].forEach.call(mounts, function (host, idx) {
+        var kind = host.getAttribute('data-motes') || 'air';
+        var canvas = document.createElement('canvas');
+        var ctx = canvas.getContext && canvas.getContext('2d');
+        if (!ctx) return;
+        canvas.className = 'motes';
+        canvas.setAttribute('aria-hidden', 'true');
+        host.insertBefore(canvas, host.firstChild);
+        host.classList.add('is-live');
+
+        var W = 0, H = 0, dpr = 1, paint = null, raf = 0, visible = false, t0 = performance.now(), last = 0, energy = 0.5;
+        function size() {
+            var w = host.clientWidth, h = host.clientHeight;
+            if (!w || !h || (w === W && h === H)) return false;
+            W = w; H = h;
+            dpr = Math.min(window.devicePixelRatio || 1, 2);
+            canvas.width = Math.round(W * dpr);
+            canvas.height = Math.round(H * dpr);
+            paint = kind === 'geo' ? geo(W, H, 20251204 + idx) : dust(kind, W, H, 20240521 + idx * 7919);
+            return true;
+        }
+        /* where the band sits in the window: 0 entering at the bottom, 1 leaving at the top */
+        function progress() {
+            var b = host.getBoundingClientRect(), vh = window.innerHeight || 1;
+            return clamp((vh - b.top) / (vh + b.height));
+        }
+        function draw(now) {
+            var p = progress();
+            /* the geothermal energy peaks as the quote crosses the middle of the window */
+            energy = 1 - Math.min(1, Math.abs(p - 0.5) * 2.2);
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            ctx.clearRect(0, 0, W, H);
+            ctx.globalCompositeOperation = 'lighter';
+            paint(ctx, mqMotion.matches ? 24 : (now - t0) / 1000 + 24, p, energy);
+            ctx.globalAlpha = 1;
+        }
+        function frame(now) {
+            raf = 0;
+            if (!visible || document.hidden || mqMotion.matches) return;
+            /* everything here drifts slowly: ~30 fps is plenty, and halves the cost */
+            if (now - last > 30) { last = now; draw(now); }
+            raf = requestAnimationFrame(frame);
+        }
+        function start() {
+            if (!paint) return;
+            if (mqMotion.matches) { draw(performance.now()); return; }
+            if (!raf && visible && !document.hidden) raf = requestAnimationFrame(frame);
+        }
+        size();
+        if ('ResizeObserver' in window) new ResizeObserver(function () { if (size()) { last = 0; if (mqMotion.matches || !raf) draw(performance.now()); } }).observe(host);
+        if ('IntersectionObserver' in window) {
+            new IntersectionObserver(function (es) {
+                visible = es[0].isIntersecting;
+                if (visible) start();
+            }, { rootMargin: '60px 0px' }).observe(host);
+        } else { visible = true; start(); }
+        document.addEventListener('visibilitychange', start);
+        if (mqMotion.addEventListener) mqMotion.addEventListener('change', start);
+        if (paint) draw(performance.now());
+    });
 })();
 </script>
 

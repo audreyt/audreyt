@@ -564,9 +564,9 @@ footer .footer-name, footer p { position: relative; z-index: 1; }
 .pullquote .people-arc { position: absolute; left: 0; right: 0; bottom: 18px; height: 120px;
   z-index: 0; pointer-events: none; }
 .pullquote .people-arc .people-arc-svg { width: 100%; height: 100%; display: block; }
-.pullquote .people-arc .pa-arc { stroke: var(--orrery-line); stroke-opacity: .22; stroke-width: 1; }
-.pullquote .people-arc .pa-nodes circle { fill: var(--orrery-line); fill-opacity: .55; }
-.pullquote blockquote, .pullquote cite { position: relative; z-index: 1; }
+.pullquote .people-arc .pa-arc { stroke: var(--gold-light); stroke-opacity: .3; stroke-width: 1; }
+.pullquote .people-arc .pa-nodes circle { fill: var(--gold-light); fill-opacity: .6; }
+.pullquote blockquote, .pullquote cite { position: relative; z-index: 2; }
 /* mobile: thin the studded nodes (the 1200-wide arc squashes 42 nodes into a dense
    crowded band at phone width) — keep every other node for a calmer arc. */
 @media (max-width: 768px) {
@@ -612,3 +612,17 @@ footer .footer-name, footer p { position: relative; z-index: 1; }
   opacity: 1; border-color: var(--care-card); transform: scale(1.15);
 }
 @media (prefers-reduced-motion: reduce) { .work-grid > .work-item::before { transition: none; } }
+
+/* ─── Motes (motes.js): the air of the dark islands ───────────────────────
+   The audreyt.box idiom brought home: soft glow sprites on one light ramp (sea
+   teal → steel → cream → gold → ember → rose). Dust drifts on the hero, the
+   press band and the footer; in the film band it turns in the projector's
+   light; in the pullquote two plates of light meet and their seam rises as
+   embers. The canvas sits under the content (z 1, content z 2) and, like the
+   orreries, is only inserted once it has a context, when the mount gains
+   `.is-live`. The geothermal plates then retire the people-arc; everywhere
+   else the dust is pure addition, so there is nothing to fall back to. */
+.motes { position: absolute; inset: 0; width: 100%; height: 100%; display: block; pointer-events: none; z-index: 1; }
+.featured-in { position: relative; }
+@media screen { .pullquote.is-live .people-arc { display: none; } }
+@media print { .motes { display: none !important; } }

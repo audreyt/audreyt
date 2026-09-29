@@ -481,6 +481,31 @@ Tokens live in `orrery.css`'s `:root`: `--orrery-line` / `--orrery-bright` for t
 
 **Motion budget.** `prefers-reduced-motion: reduce` draws exactly one still frame and never starts a rAF (resize and scheme changes redraw that frame). `IntersectionObserver` skips off-screen instruments; `visibilitychange` stops the loop. DPR capped at 2. `gl_PointSize` is clamped to `ALIASED_POINT_SIZE_RANGE` with energy compensation, so halos do not silently thin out on drivers that cap at 63 px.
 
+### `motes` — the air of the dark islands (index)
+
+`src/scripts/motes.js` brings the screening room's particle idiom home. It is Canvas 2D and dependency-free, and uses the same glow sprites on the same light ramp as the screening room at [audreyt.box](https://audreyt.box/): sea teal → steel → cream → gold → ember → rose, each sprite a soft disc with a white-hot core. Mounts declare themselves:
+
+| Mount | Attribute | What it draws |
+|:------|:----------|:--------------|
+| Hero, press band, footer | `data-motes="air"` | Dust drifting in the dark. Nearer motes are larger, brighter, and slide a little against the scroll. |
+| Film band | `data-motes="beam"` | The same dust, lit only where it crosses the projector's cone (`.film::before`) on its way to the poster. |
+| Pullquote | `data-motes="geo"` | The geothermal interlude (below). |
+
+**The geothermal interlude.**
+- "The crashing plates turned into positive energy for renewal" is drawn literally. Two plates of luminous strata creep towards a seam. Squeezed there, their layers fold up into a ridge (as the Central Range was raised where two plates meet under Taiwan) and warm from steel to gold.
+- At the crest the pressure leaves as embers, which cool to cream as they climb towards the quote. A particle that reaches the seam is reborn at the outer edge.
+- The energy (ember rate, creep) peaks as the band crosses the middle of the window.
+- The band is always dark and runs straight into the press band, so the logos sit on bedrock. The divider arc that used to precede it is gone.
+
+**Contract.**
+- The canvas is inserted only once it has a context, and the mount then gains `.is-live`.
+- Only the geo mount retires anything: `.pullquote.is-live .people-arc` (screen only). With no JS, no canvas or in print, the people-arc stands in, recoloured gold for ink.
+- Canvas at z 1, content at z 2.
+- Each mount draws only while on screen and the tab is visible, at ~30 fps. Reduced motion gets one still frame.
+- DPR is capped at 2, and counts drop by ~40% at ≤ 768 px.
+
+**The film band is a door, not a player.** The homepage no longer embeds the trailer. The poster sits on a screen under the projector beam, and the whole preview (screen plus the solid gold "Enter the screening room" call to action) is one link to [audreyt.box](https://audreyt.box/), where the film plays. The screening room keeps its own domain so that `cyberambassador.tw` links to the same place. The nav carries a `Film · 影片` link there too, marked with a single glowing mote (`.nav-film::before`). Both links carry `data-box-link`, and `image-upgrade.js` appends `?lang=en|zh` from the current toggle, so the room opens in the reader's language.
+
 ## Do's and Don'ts
 
 The non-negotiable rules. Most originate from past incidents.
@@ -528,6 +553,7 @@ src/
     ├── image-probe.js
     ├── image-upgrade.js
     ├── orrery-gl.js              ← WebGL2 point-sprite orrery (hero / care / footer)
+    ├── motes.js                  ← Canvas 2D glow dust (hero / film beam / press / footer) + geothermal plates (pullquote)
     └── structured-data.json
 fonts/                            ← committed WOFF2/TTF at /fonts/ (Latin + Iansui)
 tools/                            ← build-fonts, build-iansui, glyph-harvest, iansui-format/manifest, build-image-variants
@@ -550,6 +576,7 @@ The **index** is woven from `README.md` + `src/`; the **essays** are single-file
 bun weave.ts              # assemble index.html (template + content + CSP hashes)
 bun pre-commit.ts --force # full pipeline: LQIP + weave
 bun dev.ts                # local preview: watch src/ + READMEs, rebuild + live-reload on :4321
+vp dev                    # also fine: vite.config.ts gives Vite's dev client a CSP nonce (dev only), so the hash-only CSP stays strict
 ```
 
 The pre-commit hook (`pre-commit.ts`, symlinked from `.git/hooks/pre-commit`) runs automatically:
