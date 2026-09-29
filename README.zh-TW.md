@@ -35,6 +35,7 @@ AI 進入人類迴圈
 | 卡內基傑出學人 | 哥倫比亞大學國際公共事務學院 |
 | GLOCOM 客座教授 | 日本國際大學 |
 | 資深研究員 | 集體智慧計畫 |
+| 資深研究員 | Change.org 基金會 |
 | 資深顧問 | Special Competitive Studies Project |
 | 資深顧問 | BLOOM Project |
 | 多元宇宙倡議顧問 | 以太坊基金會 |
